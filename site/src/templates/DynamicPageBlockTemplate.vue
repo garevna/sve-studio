@@ -1,7 +1,7 @@
 <script setup lang="ts">
-  import { computed } from 'vue'
-
   import type { TemplateBlockModel } from '@/types/common'
+
+  import { computed } from 'vue'
 
   import { useCommonStore } from '@/stores/common'
 
@@ -15,7 +15,17 @@
 
   const block = computed((): TemplateBlockModel | null => (commonStore.dynamicPageContent?.blocks?.[props.index] as TemplateBlockModel) || null)
 
-  const blockBackground = computed(() => block.value && block.value.background ? block.value.background : 'transparent')
+  // A block's own background, from the palette: `background` holds a palette
+  // key ("blue"), which as a bare CSS value is a different colour altogether
+  // (pure #0000FF). Carousels and card sets are left alone - their
+  // `background` is their cards' colour, as in the editor.
+  const CARD_BACKGROUND_TYPES = new Set(['carousel', 'cards'])
+  const ownBackground = computed(() => block.value?.background && !CARD_BACKGROUND_TYPES.has(block.value.type) ? block.value.background : '')
+  const blockBackground = computed(() => {
+    const value = ownBackground.value
+    if (!value) return 'transparent'
+    return /^[a-z][\w-]*$/i.test(value) && value !== 'transparent' ? `var(--${value})` : value
+  })
 
   const isLastBlock = computed(() => props.index === (commonStore.dynamicPageContent?.blocks?.length ?? 0) - 1)
 
@@ -26,7 +36,7 @@
 </script>
 
 <template>
-  <div v-if="block" :class="block.background ? 'colored-block' : ''" :style="{ marginBottom: blockSpacingBottom + 'px' }">
+  <div v-if="block" :class="ownBackground ? 'colored-block' : ''" :style="{ marginBottom: blockSpacingBottom + 'px' }">
     <template v-if="block.type === 'section'">
       <div :id="block.id || `section-${index}`" :class="['d-flex flex-wrap align-center', block.class]">
         <template-nested-section :item="block" />

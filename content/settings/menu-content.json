@@ -80,7 +80,13 @@
         },
         "route": "dynamic-page",
         "params": {
-          "pageId": "documents-to-cross-the-board"
+          "pageId": "licences"
+        }
+      },
+      {
+        "route": "dynamic-page",
+        "params": {
+          "pageId": "advanced-features"
         }
       }
     ],
@@ -88,11 +94,6 @@
     "expanded": false
   },
   {
-    "title": {
-      "uk": "Контакти",
-      "en": "Contact us",
-      "de": "Kontakt"
-    },
     "route": "dynamic-page",
     "params": {
       "pageId": "contacts-page"

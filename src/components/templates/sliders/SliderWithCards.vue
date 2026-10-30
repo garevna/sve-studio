@@ -9,7 +9,6 @@
 
   import { computed, onUnmounted, ref, watch } from 'vue'
   import EditableBlockWrapper from '@/components/editors/EditableBlockWrapper.vue'
-  import ResizableWrapper from '@/components/editors/ResizableWrapper.vue'
   import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
   import { useEditorMode } from '@/composables/useEditorMode'
   import { useSortableList } from '@/composables/useSortableList'
@@ -142,81 +141,20 @@
     size: props.block?.size,
     ver: props.block?.ver,
     width: props.block?.width || props.cards[0]?.width || 320,
+    // the cards' own fill, style and text format - the carousel's settings
+    // for them, the same ones a card set passes (CardSet.vue)
+    cardBackground: props.block?.cardBackground,
+    cardStyle: props.block?.cardStyle,
+    titleClass: props.block?.titleClass,
+    contentClass: props.block?.contentClass,
   }))
 
-  // Product decision: clipping card content is never acceptable, no matter
-  // how tall it gets - so instead of relying on Swiper's own auto-height
-  // (broke repeatedly in this exact loop + centered-slides combination, see
-  // the swiper element's own comment below), the required height is
-  // computed here, from the cards' actual rendered height while editing
-  // (editable-cards-grid below - a natural-height flex-wrap layout, not
-  // inside the swiper, so this is an honest measurement, not a swiper
-  // sizing quirk), and written straight into the block's own height field.
-  // Only ever raises it (never shrinks below what content needs), so a
-  // manual bump via CardContainerActions' height control still works for
-  // going higher, but can never leave a card clipped.
-  // Single source of truth for .swiper-slide's own "height: calc(100% -
-  // v-bind(slideHeightOverheadPx))" below - these two numbers drifting out
-  // of sync (one hardcoded in JS, the other in CSS) is exactly what caused
-  // slides to render taller than the swiper itself: the JS side added less
-  // than the CSS side subtracted, so the computed block.height fell short
-  // and the min-height:max-content floor kicked in and won. Sharing one
-  // constant via v-bind makes that class of bug impossible going forward.
-  // 0, not a tuned "magic number" - .swiper-slide no longer has any margin
-  // (removed below, it served no real purpose), so there's no longer any
-  // genuine gap between the swiper's own height and what a slide needs.
-  // Chasing a specific non-zero value here via DevTools trial and error was
-  // treating a symptom: it was compensating for block.height itself being
-  // stale/wrong at the moment of testing, not for any real CSS overhead -
-  // the fix for that is making sure block.height gets computed correctly
-  // (recomputeRequiredHeight above), not tuning this number.
-  // const slideHeightOverhead = 0
-  // const slideHeightOverheadPx = computed(() => `${slideHeightOverhead}px`)
-
-  const editableCardEls = new Map<number, HTMLElement>()
-  function recomputeRequiredHeight () {
-    let tallest = 0
-    for (const el of editableCardEls.values()) tallest = Math.max(tallest, el.offsetHeight)
-    if (tallest === 0 || !props.block) return
-    const required = Math.ceil(tallest) /* + slideHeightOverhead */
-    if ((props.block.height || 0) < required) {
-      // eslint-disable-next-line vue/no-mutating-props
-      props.block.height = required
-    }
-  }
-  const cardsHeightObserver = new ResizeObserver(recomputeRequiredHeight)
-  // A plain wrapping <div> (not a ref straight on <template-card>, a
-  // <script setup> component with no defineExpose) - a component ref
-  // without defineExpose may not reliably surface .$el, which would mean
-  // this never actually observes anything, tallest stays 0 forever, and
-  // block.height silently never gets written - exactly matching every
-  // screenshot so far still showing the untouched 300px default. A plain
-  // DOM element ref has no such ambiguity.
-  function setEditableCardRef (index: number, el: unknown) {
-    if (el instanceof HTMLElement) {
-      editableCardEls.set(index, el)
-      cardsHeightObserver.observe(el)
-    } else {
-      const prev = editableCardEls.get(index)
-      if (prev) cardsHeightObserver.unobserve(prev)
-      editableCardEls.delete(index)
-    }
-  }
-  onUnmounted(() => cardsHeightObserver.disconnect())
-
-  // Replaces the old +/- height buttons (CardContainerActions.vue) - those
-  // adjusted block.height with zero visible effect in edit mode (the grid
-  // never read that field at all), only showing up once you switched to
-  // preview. A drag handle on the grid itself, same as ImageEditor.vue's
-  // own resize bar, shows the real size directly instead of clicking blind.
-  // Dragging it below what the cards actually need just gets pushed back up
-  // by recomputeRequiredHeight's own ResizeObserver on the next tick -
-  // dragging taller works freely either way.
-  function onCarouselHeightChange (value: number) {
-    if (!props.block) return
-    // eslint-disable-next-line vue/no-mutating-props
-    props.block.height = value
-  }
+  // Height: none is stored any more. The editor's own chrome (fields,
+  // toolbars) made every card taller while editing, and the old code wrote
+  // that height into block.height, only ever growing it - the published
+  // carousel then stood 1600px tall. Now editing shows the cards in a grid
+  // at their natural height, and the carousel takes the height of its
+  // tallest card by itself (the slides stretch to it - see the styles).
 </script>
 
 <template>
@@ -227,24 +165,22 @@
     <template v-if="block" #delete>
       <ToolbarIconButton icon="mdi-delete" tooltip="Видалити блок" @click="emit('delete')" />
     </template>
-    <ResizableWrapper :height="block?.height || 300" :min-height="150" resize @update:height="onCarouselHeightChange">
-      <div ref="cardsContainer" class="editable-cards-grid">
-        <!-- Keyed on the card object, not its index - see EditableCardsBlock.vue's
+    <div ref="cardsContainer" class="editable-cards-grid">
+      <!-- Keyed on the card object, not its index - see EditableCardsBlock.vue's
           matching comment for why: Sortable physically moves the DOM node
           during a drag, and a positional key makes Vue's own reconciliation
           disagree with where it actually ended up. -->
-        <template v-for="(card, index) of props.cards" :key="stableKey(card)">
-          <EditableBlockWrapper :class="{ 'card-drag-cursor': dragActive }" type="card">
-            <template v-if="!dragActive" #actions>
-              <ToolbarIconButton icon="mdi-pencil" tooltip="Редагувати картку" @click="openCardEditor(index)" />
-            </template>
-            <div :ref="el => setEditableCardRef(index, el)" :style="{ width: (cardDefaults.width || 320) + 'px', height: '100%' }">
-              <template-card :class="{ 'card-drag-active': dragActive }" :defaults="cardDefaults" :item="card" style="height: 100%" />
-            </div>
-          </EditableBlockWrapper>
-        </template>
-      </div>
-    </ResizableWrapper>
+      <template v-for="(card, index) of props.cards" :key="stableKey(card)">
+        <EditableBlockWrapper :class="{ 'card-drag-cursor': dragActive }" type="card">
+          <template v-if="!dragActive" #actions>
+            <ToolbarIconButton icon="mdi-pencil" tooltip="Редагувати картку" @click="openCardEditor(index)" />
+          </template>
+          <div :style="{ width: (cardDefaults.width || 320) + 'px', height: '100%' }">
+            <template-card :class="{ 'card-drag-active': dragActive }" :defaults="cardDefaults" :item="card" style="height: 100%" />
+          </div>
+        </EditableBlockWrapper>
+      </template>
+    </div>
     <CardEditDialog :block-target="block?.uniformCardIcon !== false ? block : undefined" :card="editingCardModel" :defaults="cardDefaults" @close="closeCardEditor" />
   </EditableBlockWrapper>
   <div v-else ref="swiperContainer">
@@ -265,7 +201,6 @@
       :style="{
         '--swiper-navigation-color': 'var(--grey)',
         '--swiper-pagination-color': 'var(--blue)',
-        height: `${props.height}px`,
         marginBottom: '48px'
       }"
       @autoplay-time-left="onAutoplayTimeLeft"
@@ -342,9 +277,17 @@
   justify-items: stretch !important;
 }
 
+/* As tall as the tallest card: the wrapper stretches every slide to the
+   row's height, and the room under them is for the pagination. */
+.swiper {
+  height: auto;
+  padding-bottom: 42px;
+}
+.swiper :deep(.swiper-wrapper) {
+  align-items: stretch;
+}
 .swiper-slide {
-  /* height: calc(100% - v-bind(slideHeightOverheadPx)) !important; */
-  height: calc(100% - 42px) !important;
+  height: auto !important;
   cursor: grab;
   overflow: hidden;
 }

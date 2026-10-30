@@ -1,10 +1,6 @@
 {
   "id": "about-company",
-  "title": {
-    "uk": "Про компанію",
-    "en": "About the company",
-    "de": "Über das Unternehmen"
-  },
+  "title": "Про компанію",
   "breadcrumbs": false,
   "backButton": false,
   "blocks": [
@@ -23,7 +19,7 @@
         "images": {
           "desktop": [
             "/api/content/images/about-company/04-2.webp?v=7f1a32fe",
-            "/api/content/images/about-company/baner-desktop.png?v=04949532",
+            "/api/content/images/about-company/baner-desktop.jpg?v=ef67b50a",
             "/api/content/images/about-company/baner-mobile.jpg?v=6c6a8d78",
             "/api/content/images/about-company/01.avif?v=72ea9509"
           ],
@@ -56,8 +52,8 @@
               "class": "text-left mb-8 h6 text-bold text-dark",
               "content": {
                 "uk": "Тут затишніше, ніж у реальному світі.",
-                "en": "Virtual Dimension is a team of like-minded people who are shaping the future of the IT sector today.",
-                "de": "Virtual Dimension ist ein Team von Gleichgesinnten, das schon heute die Zukunft der IT-Branche gestaltet."
+                "en": "Virtual Reality is a team of like-minded people who are shaping the future of the IT sector today.",
+                "de": "Virtual Reality ist ein Team von Gleichgesinnten, das schon heute die Zukunft der IT-Branche gestaltet."
               }
             },
             {
@@ -65,8 +61,8 @@
               "class": "default-text text-thin mb-8 mb-md-0 text-black",
               "content": {
                 "uk": "Ласкаво просимо до Virtual Dimension — простору, де реальність втомилася від самої себе і пішла на перезавантаження. Ми не просто створюємо цифрові продукти, ми будуємо нові всесвіти.",
-                "en": "",
-                "de": ""
+                "en": "We are a Ukrainian transport company with over 25 years’ experience in international passenger and freight transport. We operate routes between Ukraine, Italy, Slovenia, Slovakia, Hungary and Poland, ensuring comfortable and safe journeys for our customers.",
+                "de": "Wir sind ein ukrainisches Transportunternehmen mit über 25 Jahren Erfahrung im Bereich des internationalen Personen- und Güterverkehrs. Wir verkehren zwischen der Ukraine, Italien, Slowenien, der Slowakei, Ungarn und Polen und sorgen für komfortable und sichere Reisen für unsere Kunden."
               }
             }
           ]
@@ -102,7 +98,7 @@
               "class": "mb-6",
               "content": {
                 "uk": "Virtual Dimension: Робимо складні штуки, щоб ви могли просто клікати.",
-                "en": "",
+                "en": "We combine cutting-edge technology, a creative approach and in-depth analytics to help our clients scale their businesses and achieve their ambitious goals.",
                 "de": "Wir verbinden modernste Technologien, einen kreativen Ansatz und fundierte Analysen, um unseren Kunden dabei zu helfen, ihr Geschäft auszubauen und ehrgeizige Ziele zu erreichen."
               }
             },
@@ -193,8 +189,8 @@
               "Wir verschwinden nicht am Freitagabend. Wir begeben uns lediglich in eine Parallelwelt, bleiben aber in Verbindung."
             ]
           },
-          "background": "accent",
-          "color": "dark-grey",
+          "background": "warning",
+          "color": "light-warning",
           "size": 82
         }
       ],

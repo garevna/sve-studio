@@ -11,30 +11,13 @@
   "hero": false,
   "blocks": [
     {
-      "type": "parallax",
+      "type": "title",
       "content": {
-        "uk": "/api/content/images/802be48c7981a699d0dde18ff1d99864848e45d62821e1c8d19d4b9f7a60979e.png",
-        "en": "/api/content/images/802be48c7981a699d0dde18ff1d99864848e45d62821e1c8d19d4b9f7a60979e.png",
-        "de": "/api/content/images/802be48c7981a699d0dde18ff1d99864848e45d62821e1c8d19d4b9f7a60979e.png"
+        "uk": "Virtual Dimension. Ми створюємо світи, бо в цьому реальність уже трохи підвисає.",
+        "en": "",
+        "de": ""
       },
-      "children": [
-        {
-          "type": "title",
-          "content": {
-            "uk": "",
-            "en": "",
-            "de": ""
-          }
-        },
-        {
-          "type": "header",
-          "content": {
-            "uk": "",
-            "en": "",
-            "de": ""
-          }
-        }
-      ]
+      "class": "my-8 text-center"
     },
     {
       "type": "section",
@@ -56,7 +39,8 @@
                 "uk": "",
                 "en": "",
                 "de": ""
-              }
+              },
+              "class": "my-8 text-center"
             },
             {
               "type": "text",
@@ -100,7 +84,8 @@
                 "uk": "",
                 "en": "",
                 "de": ""
-              }
+              },
+              "class": "my-8 text-center"
             },
             {
               "type": "text",
@@ -132,6 +117,15 @@
           ]
         }
       ]
+    },
+    {
+      "type": "text",
+      "content": {
+        "uk": "Коли буденність стає занадто передбачуваною, а закони фізики — занадто нудними, ми відкриваємо портал у дев’ятий вимір. Ні, ми не продаємо VR-окуляри. Ми продаємо квитки в один кінець туди, де гравітація — це лише рекомендація.",
+        "en": "",
+        "de": ""
+      },
+      "class": "default-text text-medium mb-4"
     }
   ]
 }

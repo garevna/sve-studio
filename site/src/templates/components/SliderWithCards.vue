@@ -26,7 +26,6 @@
   const background = computed(() => props.item.background)
   const cards = computed(() => props.item.children || [])
   const color = computed(() => props.item.color)
-  const height = computed(() => props.item.height || 300)
   const width = computed(() => props.item.width || 320)
   const size = computed(() => props.item.size || 24)
   const ver = computed(() => props.item.ver || 1)
@@ -69,20 +68,28 @@
     :style="{
       '--swiper-navigation-color': 'var(--grey)',
       '--swiper-pagination-color': 'var(--blue)',
-      height: `${height}px`,
     }"
     @autoplay-time-left="onAutoplayTimeLeft"
   >
     <template v-for="(card, index) of cards" :key="index">
       <swiper-slide>
+        <!-- The carousel's own settings are every card's defaults (a card's
+          own value wins) - the card reads them from its item, as in the
+          editor; passed as separate attributes they never reached it. -->
         <template-card
-          :background="background"
-          :color="color || 'white'"
-          :item="{ ...card, cardStyle: card.cardStyle || props.item.cardStyle }"
-          :size="size"
+          :item="{
+            ...card,
+            background: card.background || background,
+            color: card.color || color,
+            size: card.size ?? size,
+            ver: card.ver || ver,
+            width: card.width || width,
+            cardStyle: card.cardStyle || props.item.cardStyle,
+            cardBackground: card.cardBackground || props.item.cardBackground,
+            titleClass: card.titleClass || props.item.titleClass,
+            contentClass: card.contentClass || props.item.contentClass,
+          }"
           style="height: 100%"
-          :ver="ver"
-          :width="width"
         />
       </swiper-slide>
     </template>
@@ -105,8 +112,17 @@
   justify-items: stretch !important;
 }
 
+.swiper {
+  height: auto;
+  padding-bottom: 42px;
+}
+/* As tall as the tallest card: every slide stretches to the row's height
+   (no stored height - the editor used to write a far too tall one). */
+.swiper :deep(.swiper-wrapper) {
+  align-items: stretch;
+}
 .swiper-slide {
-  height: calc(100% - 16px) !important;
+  height: auto !important;
   margin-top: 8px;
   margin-bottom: 8px;
   width: v-bind(slideWidth) !important;

@@ -34,11 +34,13 @@ function initialLocale (): EditorUiLocale {
   } catch {
     // Storage blocked - fall through to the browser language.
   }
-  for (const language of navigator.languages ?? [navigator.language]) {
-    const short = language.slice(0, 2).toLowerCase()
-    if (isLocale(short)) {
-      return short
-    }
+  // Only the browser's FIRST language counts: going down the list picked a
+  // language the person merely tolerates (Russian first, German somewhere
+  // below - and the editor came up in German). Anything else - Russian,
+  // Belarusian, ... - gets Ukrainian.
+  const first = (navigator.languages?.[0] ?? navigator.language ?? '').slice(0, 2).toLowerCase()
+  if (isLocale(first)) {
+    return first
   }
   return 'uk'
 }

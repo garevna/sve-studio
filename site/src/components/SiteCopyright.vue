@@ -35,7 +35,7 @@
   max-width: 1368px;
   margin: 24px auto 0;
   padding: 16px 16px 0;
-  border-top: solid 1px rgb(255 255 255 / 0.2);
+  border-top: solid 1px color-mix(in srgb, var(--white) 20%, transparent);
   font-size: 13px;
   opacity: 0.85;
 }

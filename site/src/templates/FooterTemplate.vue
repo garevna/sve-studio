@@ -60,9 +60,9 @@
     <!-- Same arrangement as the editor and the real site: columns aligned to
       the top of the row, sized to their content, separated by the gap the
       designer actually set. -->
-    <div class="d-flex flex-wrap align-center justify-center gr-16" :class="gapClass">
+    <div class="footer-columns d-flex flex-wrap align-center justify-center gr-16" :class="gapClass">
       <template v-for="(block, index) of footerContent.children" :key="index">
-        <div :style="columnStyle(index)">
+        <div class="footer-column" :style="columnStyle(index)">
           <template v-if="block.type === 'section'">
             <div :class="block.class">
               <template v-for="(child, num) of block.children" :key="num">

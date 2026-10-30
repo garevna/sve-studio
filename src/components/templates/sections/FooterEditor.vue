@@ -10,13 +10,14 @@
   import { provideFooterBackground } from '@/composables/useFooterBackground'
   import { collectFooterKinds, isLegacyLinksSection, normalisePageLinks } from '@/configs/footer-blocks'
   import { FOOTER_RESPONSIVE_GAP_CLASS } from '@/configs/footer-layout'
-  import { FOOTER_HORIZON, resolveFooterVariant } from '@/configs/footer-variants'
+  import { FOOTER_FINAL_FRAME, FOOTER_HORIZON, resolveFooterVariant } from '@/configs/footer-variants'
   import { useAjaxStore } from '@/stores/ajax'
   import { useCommonStore } from '@/stores/common'
   import { useUiFeedbackStore } from '@/stores/ui-feedback'
   import { emptyTranslatedModel } from '@/utils/locale-text'
   import { stableKey } from '@/utils/stable-key'
   import FooterColumn from './FooterColumn.vue'
+  import FooterFinalFrame from './FooterFinalFrame.vue'
   import FooterHorizonSignature from './FooterHorizonSignature.vue'
   import FooterHorizonWave from './FooterHorizonWave.vue'
   import FooterInsertMenu from './FooterInsertMenu.vue'
@@ -361,11 +362,12 @@
 <template>
   <div
     :class="['footer-editor-root', `footer-editor-root--v${variant}`]"
-    :style="{ background: `var(--${block.background || 'primary'})`, marginTop: `${commonStore.currentBlockSpacing}px` }"
+    :style="{ background: `var(--${block.background || 'primary'})`, '--footer-bg': `var(--${block.background || 'primary'})`, marginTop: `${commonStore.currentBlockSpacing}px` }"
   >
     <!-- The look the footer's `ver` picks (configs/footer-variants.ts) -
       the same pieces the site draws. -->
     <FooterHorizonWave v-if="variant === FOOTER_HORIZON" :color="`var(--${block.background || 'primary'})`" />
+    <FooterFinalFrame v-if="variant === FOOTER_FINAL_FRAME" :block="block" :editing="sectionEditing" />
     <!-- justify-center with content-sized columns, NOT justify-space-around.
       space-around would centre things too, but it distributes the LEFTOVER
       room around the columns - so the visible distance between them becomes
@@ -461,6 +463,35 @@
   max-width: 1440px;
   width: 100%;
   margin-inline: auto;
+}
+/* "Bento" - the same tiles the site draws (site/src/App.vue). */
+.footer-editor-root--v4 {
+  background: transparent !important;
+  padding-inline: 0;
+}
+.footer-editor-root--v4 .footer-columns {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr);
+  gap: 16px !important;
+  align-items: stretch !important;
+}
+.footer-editor-root--v4 .footer-column {
+  width: auto !important;
+  max-width: none !important;
+  padding: clamp(20px, 3vw, 36px);
+  border-radius: var(--large-border-radius);
+  background: var(--dark);
+}
+.footer-editor-root--v4 .footer-column:first-child {
+  grid-row: span 2;
+  background: var(--footer-bg);
+}
+.footer-editor-root--v4 .footer-column:nth-child(3n) {
+  background: var(--secondary);
+}
+@media (max-width: 760px) {
+  .footer-editor-root--v4 .footer-columns { grid-template-columns: minmax(0, 1fr); }
+  .footer-editor-root--v4 .footer-column:first-child { grid-row: auto; }
 }
 .footer-editor-root--v2 {
   position: relative;

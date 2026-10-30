@@ -68,6 +68,9 @@ export interface BaseBlock {
   class?: string
   align?: AlignmentModel
   ver?: number
+  // Footer root block, "Фінальний кадр" variant: the big invitation and the line under it.
+  ctaTitle?: Record<string, string>
+  ctaText?: Record<string, string>
   images?: {
     src: string
     width?: number | undefined

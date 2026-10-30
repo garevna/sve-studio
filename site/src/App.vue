@@ -9,6 +9,7 @@
   import { loadThemeStyles } from '@/utils/load-theme-styles'
   import { applyThemeFonts } from '@/utils/theme-fonts'
   import LiveConnect from './components/buttons/theme_2/LiveConnect.vue'
+  import FooterFinalFrame from './components/FooterFinalFrame.vue'
   import FooterHorizonSignature from './components/FooterHorizonSignature.vue'
   import FooterHorizonWave from './components/FooterHorizonWave.vue'
   import HeroWithTitle from './components/hero-section/HeroWithTitle.vue'
@@ -16,7 +17,7 @@
   import MainMenu from './components/main-menu/MainMenu.vue'
   import SiteCopyright from './components/SiteCopyright.vue'
   import { siteStyles } from './configs/card-style'
-  import { FOOTER_HORIZON, resolveFooterVariant } from './configs/footer-variants'
+  import { FOOTER_FINAL_FRAME, FOOTER_HORIZON, resolveFooterVariant } from './configs/footer-variants'
   import { HERO_WITH_TITLE_VARIANT } from './configs/header-layout'
   import { loadCountryList } from './services/load-country-list'
   import { getFooter, getMenu, getPage, getPageTitles, getPalette, getSeoSettings, getSiteSettings } from './services/site-data'
@@ -260,10 +261,15 @@
       v-if="dynamicFooterContent?.visible !== false"
       id="app-footer"
       :class="['app-footer mt-4 py-8', `app-footer--v${footerVariant}`]"
-      :style="{ backgroundColor: footerBackground }"
+      :style="{ backgroundColor: footerBackground, '--footer-bg': footerBackground }"
     >
       <!-- The look the footer's own `ver` picks (configs/footer-variants.ts). -->
       <FooterHorizonWave v-if="footerVariant === FOOTER_HORIZON" :color="footerBackground" />
+      <FooterFinalFrame
+        v-if="footerVariant === FOOTER_FINAL_FRAME"
+        :text="dynamicFooterContent?.ctaText"
+        :title="dynamicFooterContent?.ctaTitle"
+      />
       <FooterTemplate />
       <SiteCopyright />
       <FooterHorizonSignature v-if="footerVariant === FOOTER_HORIZON" :text="company?.name || ''" />
@@ -303,6 +309,42 @@
   padding-bottom: 0 !important;
   border-radius: 0;
   overflow: visible;
+}
+/* "Bento": the footer's columns as tiles - the first one tall, the others
+   beside it - on the page's own background, each tile in a palette colour. */
+.v-footer.app-footer--v4 {
+  background: transparent !important;
+  color: var(--white);
+}
+.v-footer.app-footer--v4 :deep(.footer-columns) {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr);
+  gap: 16px !important;
+  align-items: stretch !important;
+  max-width: 1368px;
+  margin-inline: auto;
+}
+.v-footer.app-footer--v4 :deep(.footer-column) {
+  width: auto !important;
+  max-width: none !important;
+  padding: clamp(20px, 3vw, 36px);
+  border-radius: var(--large-border-radius);
+  background: var(--dark);
+}
+.v-footer.app-footer--v4 :deep(.footer-column:first-child) {
+  grid-row: span 2;
+  background: var(--footer-bg);
+}
+.v-footer.app-footer--v4 :deep(.footer-column:nth-child(3n)) {
+  background: var(--secondary);
+}
+.v-footer.app-footer--v4 :deep(.site-copyright) {
+  color: var(--black);
+  border-top-color: var(--accent);
+}
+@media (max-width: 760px) {
+  .v-footer.app-footer--v4 :deep(.footer-columns) { grid-template-columns: minmax(0, 1fr); }
+  .v-footer.app-footer--v4 :deep(.footer-column:first-child) { grid-row: auto; }
 }
 
 @media screen and (max-width: 960px) {

@@ -100,6 +100,10 @@ export interface BaseBlock {
   // renders at all. Default true when unset, same convention as
   // DynamicPageListItem.visible.
   visible?: boolean
+  // Footer root block only, "Фінальний кадр" variant (configs/footer-variants.ts):
+  // the big invitation over the columns and the line under it.
+  ctaTitle?: TranslatedModel
+  ctaText?: TranslatedModel
   // A page's top-level block hidden from the page (and the site) without
   // deleting it - brought back from the editor's "Приховані блоки" menu.
   hidden?: boolean

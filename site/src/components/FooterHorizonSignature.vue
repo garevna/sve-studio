@@ -12,7 +12,6 @@
       <text
         fill="currentColor"
         font-size="168"
-        font-weight="800"
         lengthAdjust="spacingAndGlyphs"
         :textLength="1000"
         x="0"
@@ -40,8 +39,11 @@
   height: auto;
   overflow: visible;
 }
+/* The site's second font ("Додатковий шрифт" in Загальні налаштування),
+   in its own weight - a display face like Rubik Dirt has only the one;
+   without a second font, the main one. */
 .footer-horizon-signature text {
-  font-family: inherit;
+  font-family: var(--accent-font, inherit);
   letter-spacing: -0.02em;
 }
 </style>

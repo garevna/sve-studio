@@ -18,7 +18,7 @@
               "type": "header",
               "class": "mb-8",
               "content": {
-                "uk": "",
+                "uk": "Virtual Dimension. Офіційні постачальники паралельних реальностей.",
                 "en": "",
                 "de": ""
               }
@@ -27,9 +27,9 @@
               "type": "text",
               "class": "default-text text-medium text-black mb-5",
               "content": {
-                "uk": "",
-                "en": "",
-                "de": ""
+                "uk": "Коли буденність стає занадто передбачуваною, а закони фізики — занадто нудними, ми відкриваємо портал у дев’ятий вимір.",
+                "en": "When everyday life becomes too predictable and the laws of physics too tedious, we open a portal to the ninth dimension. No, we don’t sell VR headsets. We sell one-way tickets to a place where gravity is merely a suggestion.",
+                "de": "Wenn der Alltag zu vorhersehbar und die Gesetze der Physik zu langweilig werden, öffnen wir ein Portal in die neunte Dimension. Nein, wir verkaufen keine VR-Brillen. Wir verkaufen One-Way-Tickets dorthin, wo die Schwerkraft nur eine Empfehlung ist."
               }
             },
             {
@@ -52,15 +52,6 @@
           }
         }
       ]
-    },
-    {
-      "type": "text",
-      "content": {
-        "uk": "Коли буденність стає занадто передбачуваною, а закони фізики — занадто нудними, ми відкриваємо портал у дев’ятий вимір. Ні, ми не продаємо VR-окуляри. Ми продаємо квитки в один кінець туди, де гравітація — це лише рекомендація.",
-        "en": "",
-        "de": ""
-      },
-      "class": "default-text text-medium mb-4"
     },
     {
       "type": "carousel",

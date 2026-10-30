@@ -1,5 +1,10 @@
 {
   "id": "contacts-page",
+  "title": {
+    "uk": "Контакти",
+    "en": "Contact us",
+    "de": "Kontakt"
+  },
   "breadcrumbs": false,
   "backButton": false,
   "hero": false,
@@ -79,8 +84,8 @@
               "class": "h6 text-thin text-black mb-4",
               "content": {
                 "uk": "Харків, вул. Космічна, 6А",
-                "en": "79010 Lviv Oblast, Lviv Raion, Lviv, 14 Pekarska Street, flat 4",
-                "de": "79010 Oblast Lemberg, Bezirk Lemberg, Stadt Lemberg, Pekarska-Straße 14, Wohnung 4"
+                "en": "6A Kosmichna Street, Kharkiv",
+                "de": "Kosmitschna-Straße 6A, Charkiw"
               }
             },
             {

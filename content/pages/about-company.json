@@ -1,6 +1,10 @@
 {
   "id": "about-company",
-  "title": "Про компанію",
+  "title": {
+    "uk": "Про компанію",
+    "en": "About the company",
+    "de": "Über das Unternehmen"
+  },
   "breadcrumbs": false,
   "backButton": false,
   "blocks": [
@@ -61,8 +65,8 @@
               "class": "default-text text-thin mb-8 mb-md-0 text-black",
               "content": {
                 "uk": "Ласкаво просимо до Virtual Dimension — простору, де реальність втомилася від самої себе і пішла на перезавантаження. Ми не просто створюємо цифрові продукти, ми будуємо нові всесвіти.",
-                "en": "We are a Ukrainian transport company with over 25 years’ experience in international passenger and freight transport. We operate routes between Ukraine, Italy, Slovenia, Slovakia, Hungary and Poland, ensuring comfortable and safe journeys for our customers.",
-                "de": "Wir sind ein ukrainisches Transportunternehmen mit über 25 Jahren Erfahrung im Bereich des internationalen Personen- und Güterverkehrs. Wir verkehren zwischen der Ukraine, Italien, Slowenien, der Slowakei, Ungarn und Polen und sorgen für komfortable und sichere Reisen für unsere Kunden."
+                "en": "",
+                "de": ""
               }
             }
           ]
@@ -98,7 +102,7 @@
               "class": "mb-6",
               "content": {
                 "uk": "Virtual Dimension: Робимо складні штуки, щоб ви могли просто клікати.",
-                "en": "We combine cutting-edge technology, a creative approach and in-depth analytics to help our clients scale their businesses and achieve their ambitious goals.",
+                "en": "",
                 "de": "Wir verbinden modernste Technologien, einen kreativen Ansatz und fundierte Analysen, um unseren Kunden dabei zu helfen, ihr Geschäft auszubauen und ehrgeizige Ziele zu erreichen."
               }
             },

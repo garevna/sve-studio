@@ -32,7 +32,17 @@ function hasOwnLabel (item: MenuLink): boolean {
 
 // The menu with every item's text filled in for every language of the site:
 // its own, or the name of the page it leads to.
-export function withMenuLabels<T extends MenuLink> (items: T[], pageTitles: Record<string, PageTitle>, locales: string[], defaultLocale: string): T[] {
+// Items leading to a hidden page are left out, and so is a group left with
+// nothing in it.
+export function withMenuLabels<T extends MenuLink> (items: T[], pageTitles: Record<string, PageTitle>, locales: string[], defaultLocale: string, hidden: Set<string> = new Set()): T[] {
+  const shown = (item: MenuLink) => {
+    const pageId = linkedPageId(item)
+    return !pageId || !hidden.has(pageId)
+  }
+  items = items
+    .filter(item => shown(item))
+    .map(item => item.submenu ? { ...item, submenu: item.submenu.filter(sub => shown(sub)) } : item)
+    .filter(item => !item.submenu || item.submenu.length > 0)
   const label = (item: MenuLink): Translated => {
     const pageId = linkedPageId(item)
     const source = pageId && !hasOwnLabel(item) ? pageTitles[pageId] : item.title

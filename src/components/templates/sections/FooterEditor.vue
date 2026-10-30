@@ -6,11 +6,12 @@
   import SortableList from '@/components/editors/SortableList.vue'
   import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
   import MenuLinkDialog from '@/components/special/MenuLinkDialog.vue'
+  import PaletteSwatchPicker from '@/components/special/PaletteSwatchPicker.vue'
   import { useEditorMode } from '@/composables/useEditorMode'
   import { provideFooterBackground } from '@/composables/useFooterBackground'
   import { collectFooterKinds, isLegacyLinksSection, normalisePageLinks } from '@/configs/footer-blocks'
   import { FOOTER_RESPONSIVE_GAP_CLASS } from '@/configs/footer-layout'
-  import { FOOTER_FINAL_FRAME, FOOTER_HORIZON, resolveFooterVariant } from '@/configs/footer-variants'
+  import { FOOTER_BENTO, FOOTER_FINAL_FRAME, FOOTER_HORIZON, resolveFooterVariant } from '@/configs/footer-variants'
   import { useAjaxStore } from '@/stores/ajax'
   import { useCommonStore } from '@/stores/common'
   import { useUiFeedbackStore } from '@/stores/ui-feedback'
@@ -54,6 +55,14 @@
   // their own known shape.
   const props = defineProps<{ block: TemplateBlockModel }>()
   const variant = computed(() => resolveFooterVariant(props.block.ver))
+  // "Bento": a tile's own colour, when it has one (the CSS falls back to the
+  // footer's colour for the first tile and palette colours for the rest).
+  function tileStyle (column: TemplateBlockModel) {
+    return column.background ? { '--tile-bg': `var(--${column.background})` } : {}
+  }
+  function setTile (column: TemplateBlockModel, key: string) {
+    column.background = key
+  }
   // For the dialogs inside that show the footer's texts (FooterContactsDialog).
   provideFooterBackground(computed(() => props.block.background || 'primary'))
 
@@ -402,10 +411,17 @@
           v-if="sectionEditing"
           class="footer-column"
           :class="dragClass"
-          :style="columnStyle(index)"
+          :style="[columnStyle(index), tileStyle(item)]"
           type="card"
         >
           <template #actions>
+            <!-- "Bento": this tile's own colour. -->
+            <PaletteSwatchPicker
+              v-if="variant === FOOTER_BENTO"
+              :model-value="item.background || ''"
+              no-transparent
+              @update:model-value="setTile(item, $event)"
+            />
             <FooterInsertMenu
               :present-kinds="presentKinds"
               @insert="insertIntoColumn(item, $event)"
@@ -429,7 +445,7 @@
             />
           </div>
         </EditableBlockWrapper>
-        <div v-else class="footer-column" :class="dragClass" :style="columnStyle(index)">
+        <div v-else class="footer-column" :class="dragClass" :style="[columnStyle(index), tileStyle(item)]">
           <div :class="contentClass">
             <FooterColumn :column="item" :editing="sectionEditing" />
           </div>
@@ -480,14 +496,14 @@
   max-width: none !important;
   padding: clamp(20px, 3vw, 36px);
   border-radius: var(--large-border-radius);
-  background: var(--dark);
+  background: var(--tile-bg, var(--dark));
 }
 .footer-editor-root--v4 .footer-column:first-child {
   grid-row: span 2;
-  background: var(--footer-bg);
+  background: var(--tile-bg, var(--footer-bg));
 }
 .footer-editor-root--v4 .footer-column:nth-child(3n) {
-  background: var(--secondary);
+  background: var(--tile-bg, var(--secondary));
 }
 @media (max-width: 760px) {
   .footer-editor-root--v4 .footer-columns { grid-template-columns: minmax(0, 1fr); }

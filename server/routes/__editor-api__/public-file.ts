@@ -26,6 +26,11 @@ function resolveTarget (relativePath: string): { target: string, base: string, p
   return { target: path.resolve(base, relativePath), base, prefix: '' }
 }
 
+async function denylist (): Promise<string[]> {
+  const raw = await fs.readFile(path.resolve(process.cwd(), '.private/denylist.txt'), 'utf8').catch(() => '')
+  return raw.split(/\r?\n/).map(line => line.trim().toLowerCase()).filter(line => line && !line.startsWith('#'))
+}
+
 export default defineEventHandler(async event => {
   if (!import.meta.dev) {
     throw createError({ statusCode: 404 })
@@ -65,6 +70,18 @@ export default defineEventHandler(async event => {
     : resolved.target
   if (!target.startsWith(resolved.base + path.sep)) {
     throw createError({ statusCode: 400, statusMessage: 'Path escapes the allowed directory' })
+  }
+
+  // A guard against content that must never reach the repository (a former
+  // client's names, phones, addresses): words listed one per line in
+  // .private/denylist.txt - a file git ignores, so the list itself is never
+  // published. Without the file, nothing is checked.
+  if (!isImageUpload && !isSeedImage) {
+    const text = (isJson ? JSON.stringify(body.content) : String(body.content)).toLowerCase()
+    const found = (await denylist()).filter(word => text.includes(word))
+    if (found.length > 0) {
+      throw createError({ statusCode: 409, statusMessage: `Not written: the content contains ${found.length} denied word(s) - see .private/denylist.txt` })
+    }
   }
 
   await fs.mkdir(path.dirname(target), { recursive: true })

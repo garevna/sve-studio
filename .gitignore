@@ -38,3 +38,7 @@ public/images/theme_*/uploads/
 .nuxt
 .output
 .data
+
+# Local only: words that must never reach the repository (see
+# server/routes/__editor-api__/public-file.ts)
+.private/

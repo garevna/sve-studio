@@ -62,7 +62,8 @@
       designer actually set. -->
     <div class="footer-columns d-flex flex-wrap align-center justify-center gr-16" :class="gapClass">
       <template v-for="(block, index) of footerContent.children" :key="index">
-        <div class="footer-column" :style="columnStyle(index)">
+        <!-- --tile-bg: the column's own colour, used by the "Bento" footer. -->
+        <div class="footer-column" :style="[columnStyle(index), block.background ? { '--tile-bg': `var(--${block.background})` } : {}]">
           <template v-if="block.type === 'section'">
             <div :class="block.class">
               <template v-for="(child, num) of block.children" :key="num">

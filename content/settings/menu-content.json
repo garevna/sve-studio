@@ -82,17 +82,6 @@
         "params": {
           "pageId": "documents-to-cross-the-board"
         }
-      },
-      {
-        "title": {
-          "uk": "Просунуті фічі",
-          "en": "Ticket refunds and rebooking",
-          "de": "Rückerstattung von Fahrkarten und Umbuchung"
-        },
-        "route": "dynamic-page",
-        "params": {
-          "pageId": "ticket-refund"
-        }
       }
     ],
     "selected": null,

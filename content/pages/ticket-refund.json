@@ -1,5 +1,11 @@
 {
   "id": "ticket-refund",
+  "title": {
+    "uk": "Просунуті фічі",
+    "en": "Advanced Features",
+    "de": "Erweiterte Funktionen"
+  },
+  "visible": false,
   "breadcrumbs": false,
   "backButton": false,
   "hero": false,
@@ -15,17 +21,17 @@
         {
           "type": "title",
           "content": {
-            "uk": "Перед тим, як скасувати квиток або змінити дату поїздки, ознайомтесь з правилами повернення коштів та можливостями перенесення. Це допоможе уникнути непорозумінь і спланувати вашу подорож максимально комфортно.",
-            "en": "Before cancelling your ticket or changing your travel dates, please familiarise yourself with the refund policy and rebooking options. This will help you avoid any misunderstandings and plan your journey as smoothly as possible.",
-            "de": "Bevor Sie ein Ticket stornieren oder das Reisedatum ändern, machen Sie sich bitte mit den Rückerstattungsbedingungen und den Umbuchungsmöglichkeiten vertraut. So können Sie Missverständnisse vermeiden und Ihre Reise so angenehm wie möglich planen."
+            "uk": "",
+            "en": "",
+            "de": ""
           }
         },
         {
           "type": "header",
           "content": {
-            "uk": "Повернення квитків та перенесення поїздки",
-            "en": "Ticket refunds and rebooking",
-            "de": "Rückgabe von Fahrkarten und Umbuchung der Reise"
+            "uk": "",
+            "en": "",
+            "de": ""
           }
         }
       ]
@@ -47,90 +53,85 @@
             {
               "type": "title",
               "content": {
-                "uk": "Умови відшкодування вартості",
-                "en": "Terms and conditions for reimbursement",
-                "de": "Bedingungen für die Kostenerstattung"
+                "uk": "",
+                "en": "",
+                "de": ""
               }
             },
             {
               "type": "text",
               "class": "default-text text-medium text-black",
               "content": {
-                "uk": "1. За 24 годин повертається 80% вартості квитка;",
-                "en": "1. 80 per cent of the ticket price is refunded within 24 hours;",
-                "de": "1. Innerhalb von 24 Stunden werden 80 % des Ticketpreises erstattet;"
+                "uk": "",
+                "en": "",
+                "de": ""
               }
             },
             {
               "type": "text",
               "class": "default-text text-medium text-black",
               "content": {
-                "uk": "2. За 12 год — 50% вартості квитка;",
-                "en": "2. 12 hours in advance — 50% of the ticket price;",
-                "de": "2. 12 Stunden vor Reiseantritt – 50 % des Ticketpreises;"
+                "uk": "",
+                "en": "",
+                "de": ""
               }
             },
             {
               "type": "text",
               "class": "default-text text-medium text-black",
               "content": {
-                "uk": "3. за 1 год — 20% вартості квитка;",
-                "en": "3. 1 hour in advance — 20% of the ticket price;",
-                "de": "3. 1 Stunde vor Reiseantritt – 20 % des Ticketpreises;"
+                "uk": "",
+                "en": "",
+                "de": ""
               }
             },
             {
               "type": "text",
               "class": "default-text text-medium text-black",
               "content": {
-                "uk": "4. за 0 год — 0% вартості квитка.",
-                "en": "4. 0 hours in advance — 0% of the ticket price.",
-                "de": "4. 0 Stunden vor Reiseantritt – 0 % des Ticketpreises."
+                "uk": "",
+                "en": "",
+                "de": ""
               }
             },
             {
               "type": "title",
               "content": {
-                "uk": "Перенесення поїздки",
-                "en": "Rescheduling a journey",
-                "de": "Verschiebung der Reise"
+                "uk": "",
+                "en": "",
+                "de": ""
               }
             },
             {
               "type": "text",
               "class": "default-text text-medium text-black",
               "content": {
-                "uk": "1. Можна переносити дату поїздки до 3 разів на рік.",
-                "en": "1. You can reschedule your journey up to three times a year.",
-                "de": "1. Das Reisedatum kann bis zu dreimal pro Jahr verschoben werden."
+                "uk": "",
+                "en": "",
+                "de": ""
               }
             },
             {
               "type": "text",
               "class": "default-text text-medium text-black",
               "content": {
-                "uk": "2. Перенесення можливе лише при наявності вільних місць на нову дату.",
-                "en": "2. Rescheduling is only possible if there are seats available on the new date.",
-                "de": "2. Eine Verschiebung ist nur möglich, wenn für den neuen Termin freie Plätze verfügbar sind."
+                "uk": "",
+                "en": "",
+                "de": ""
               }
             },
             {
               "type": "text",
               "class": "default-text text-medium text-black",
               "content": {
-                "uk": "3. Для перенесення звертайтесь у службу підтримки або через особистий кабінет.",
-                "en": "3. To reschedule, please contact customer support or use your personal account.",
-                "de": "3. Wenden Sie sich für eine Verschiebung bitte an den Kundenservice oder nutzen Sie Ihr Kundenkonto."
+                "uk": "",
+                "en": "",
+                "de": ""
               }
             }
           ]
         }
       ]
     }
-  ],
-  "title": {
-    "uk": "Просунуті фічі",
-    "en": "Advanced Features",
-    "de": "Erweiterte Funktionen"
-  }
+  ]
 }

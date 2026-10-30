@@ -30,9 +30,9 @@
               "type": "text",
               "class": "h5 text-medium text-primary my-4",
               "content": {
-                "uk": "Подорожуйте частіше — отримуйте більше",
-                "en": "Travel more often — get more rewards",
-                "de": "Reisen Sie öfter — erhalten Sie mehr Belohnungen"
+                "uk": "Працюйте з нами частіше — отримуйте більше",
+                "en": "Work with us more often — get more rewards",
+                "de": "Arbeiten Sie öfter mit uns — erhalten Sie mehr Vorteile"
               }
             },
             {
@@ -61,9 +61,9 @@
       "type": "text",
       "class": "my-4 text-black",
       "content": {
-        "uk": "Ми прагнемо зробити кожну вашу поїздку ще приємнішою. Для наших постійних клієнтів ми створили програму лояльності, яка дозволяє заощаджувати, отримувати бонуси та безкоштовні поїздки. Подорожуйте з нами регулярно — і ваша відданість буде винагороджена!",
-        "en": "We strive to make every journey more enjoyable. For our regular customers, we have created a loyalty program that allows you to save money, earn rewards, and get free rides. Travel with us regularly — and your loyalty will be rewarded!",
-        "de": "Wir bemühen uns darum, jede Reise angenehmer zu machen. Für unsere regelmäßigen Kunden haben wir ein Treueprogramm erstellt, das es Ihnen ermöglicht, Geld zu sparen, Belohnungen zu verdienen und kostenlose Fahrten zu erhalten. Reisen Sie regelmäßig mit uns — und Ihre Loyalität wird belohnt!"
+        "uk": "",
+        "en": "",
+        "de": ""
       }
     },
     {
@@ -78,18 +78,18 @@
               "type": "text",
               "class": "giga-text text-accent mt-n8",
               "content": {
-                "uk": "1.",
-                "en": "1.",
-                "de": "1."
+                "uk": "",
+                "en": "",
+                "de": ""
               }
             },
             {
               "type": "text",
               "class": "h6 text-medium text-black",
               "content": {
-                "uk": "Зареєструйтесь або увійдіть до особистого кабінету",
-                "en": "Register or log in to your personal account",
-                "de": "Registrieren Sie sich oder melden Sie sich in Ihrem persönlichen Konto an"
+                "uk": "",
+                "en": "",
+                "de": ""
               }
             }
           ]
@@ -103,18 +103,18 @@
               "type": "text",
               "class": "giga-text text-accent mt-n8",
               "content": {
-                "uk": "2.",
-                "en": "2.",
-                "de": "2."
+                "uk": "",
+                "en": "",
+                "de": ""
               }
             },
             {
               "type": "text",
               "class": "h6 text-medium text-black",
               "content": {
-                "uk": "Завжди бронюйте квитки онлайн через особистий кабінет",
-                "en": "Always book tickets online through your personal account",
-                "de": "Buchen Sie immer online über Ihr persönliches Konto"
+                "uk": "",
+                "en": "",
+                "de": ""
               }
             }
           ]
@@ -128,18 +128,18 @@
               "type": "text",
               "class": "giga-text text-accent mt-n8",
               "content": {
-                "uk": "3.",
-                "en": "3.",
-                "de": "3."
+                "uk": "",
+                "en": "",
+                "de": ""
               }
             },
             {
               "type": "text",
               "class": "h6 text-medium text-black",
               "content": {
-                "uk": "Ваша 5 завершена поїздка дарує статус «постійного клієнта»",
-                "en": "Your 5th completed journey grants you the status of a 'regular customer'",
-                "de": "Ihre 5. abgeschlossene Reise gewährt Ihnen den Status eines 'regelmäßigen Kunden'"
+                "uk": "",
+                "en": "",
+                "de": ""
               }
             }
           ]
@@ -153,18 +153,18 @@
               "type": "text",
               "class": "giga-text text-accent mt-n8",
               "content": {
-                "uk": "4.",
-                "en": "4.",
-                "de": "4."
+                "uk": "",
+                "en": "",
+                "de": ""
               }
             },
             {
               "type": "text",
               "class": "h6 text-medium text-black",
               "content": {
-                "uk": "6-та поїздка — зі знижкою 5% а 10-та  — безкоштовна",
-                "en": "Your 6th journey grants a 5% discount and your 10th journey is free",
-                "de": "Ihre 6. Reise gewährt einen Rabatt von 5% und Ihre 10. Reise ist kostenlos"
+                "uk": "",
+                "en": "",
+                "de": ""
               }
             }
           ]
@@ -182,27 +182,27 @@
         "de": "/api/content/images/ea0895b5644f0139b203d3e9950c308edfa47e379c91b38cffaaff87a89dcfbd.png"
       },
       "title": {
-        "uk": "-20€ на кожну поїздку до Італії!",
-        "en": "-20€ on each journey to Italy!",
-        "de": "-20€ auf jede Reise nach Italien!"
+        "uk": "",
+        "en": "",
+        "de": ""
       },
       "children": [
         {
           "type": "text",
           "class": "h4 text-medium text-primary my-8",
           "content": {
-            "uk": "Після 10 поїздок протягом одного року!",
-            "en": "After 10 journeys within a year!",
-            "de": "Nach 10 Reisen innerhalb eines Jahres!"
+            "uk": "",
+            "en": "",
+            "de": ""
           }
         },
         {
           "type": "text",
           "class": "h6 text-medium text-black",
           "content": {
-            "uk": "Тож збирайте поїздки, економте більше та подорожуйте з комфортом разом із нами!",
-            "en": "So collect your journeys, save more and travel with comfort together with us!",
-            "de": "Sammeln Sie also Ihre Reisen, sparen Sie mehr und reisen Sie mit Komfort zusammen mit uns!"
+            "uk": "",
+            "en": "",
+            "de": ""
           }
         }
       ]
@@ -211,9 +211,9 @@
       "type": "text",
       "class": "h6 text-medium text-black mb-n5",
       "content": {
-        "uk": "Приєднуйтесь до нашої програми лояльності вже сьогодні та отримуйте більше від кожної поїздки!",
-        "en": "Join our loyalty program today and get more from every journey!",
-        "de": "Treten Sie noch heute unserem Treueprogramm bei und profitieren Sie von jeder Reise!"
+        "uk": "",
+        "en": "",
+        "de": ""
       }
     }
   ],

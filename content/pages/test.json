@@ -29,36 +29,36 @@
           "type": "text",
           "class": "my-8 h3 text-bold text-special",
           "content": {
-            "uk": "Welcome to travel!",
-            "en": "",
-            "de": ""
+            "uk": "Ласкаво просимо до Virtual Dimension!",
+            "en": "Welcome to Virtual Dimension!",
+            "de": "Willkommen bei Virtual Dimension!"
           }
         },
         {
           "type": "text",
           "class": "text-medium text-black default-text",
           "content": {
-            "uk": "We'll help you to enjoy with your trip!",
-            "en": "",
-            "de": ""
+            "uk": "Ми допоможемо вам почуватися у віртуальному світі як удома!",
+            "en": "We will help you feel at home in the virtual world!",
+            "de": "Wir helfen Ihnen, sich in der virtuellen Welt wie zu Hause zu fühlen!"
           }
         },
         {
           "type": "text",
           "class": "h6 text-medium text-black",
           "content": {
-            "uk": "We'll help you to enjoy with your trip!",
-            "en": "",
-            "de": ""
+            "uk": "Ми допоможемо вам почуватися у віртуальному світі як удома!",
+            "en": "We will help you feel at home in the virtual world!",
+            "de": "Wir helfen Ihnen, sich in der virtuellen Welt wie zu Hause zu fühlen!"
           }
         },
         {
           "type": "text",
           "class": "h6 text-medium text-black",
           "content": {
-            "uk": "We'll help you to enjoy with your trip!",
-            "en": "",
-            "de": ""
+            "uk": "Ми допоможемо вам почуватися у віртуальному світі як удома!",
+            "en": "We will help you feel at home in the virtual world!",
+            "de": "Wir helfen Ihnen, sich in der virtuellen Welt wie zu Hause zu fühlen!"
           }
         }
       ]

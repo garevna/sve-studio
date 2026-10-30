@@ -85,7 +85,7 @@
     }
     commonStore.setGlobalSettings(settings)
     // A menu item leading to a page says the page's name (utils/page-title.ts).
-    commonStore.mainMenuContent = withMenuLabels(menu, pageTitles as Record<string, PageTitle>, commonStore.siteLocales, commonStore.defaultLocale)
+    commonStore.mainMenuContent = withMenuLabels(menu, pageTitles.titles as Record<string, PageTitle>, commonStore.siteLocales, commonStore.defaultLocale, pageTitles.hidden)
     commonStore.dynamicFooterContent = footer
     seo.value = seoSettings
     applyThemeFonts(settings)
@@ -329,14 +329,14 @@
   max-width: none !important;
   padding: clamp(20px, 3vw, 36px);
   border-radius: var(--large-border-radius);
-  background: var(--dark);
+  background: var(--tile-bg, var(--dark));
 }
 .v-footer.app-footer--v4 :deep(.footer-column:first-child) {
   grid-row: span 2;
-  background: var(--footer-bg);
+  background: var(--tile-bg, var(--footer-bg));
 }
 .v-footer.app-footer--v4 :deep(.footer-column:nth-child(3n)) {
-  background: var(--secondary);
+  background: var(--tile-bg, var(--secondary));
 }
 .v-footer.app-footer--v4 :deep(.site-copyright) {
   color: var(--black);

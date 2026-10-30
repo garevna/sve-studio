@@ -24,16 +24,24 @@ export async function getMenu (): Promise<MenuItemModel[]> {
   return (await dbRequest<MenuItemModel[] | null>('settings', 'get', { key: 'menu-content' })) ?? []
 }
 
-// Every page's name, by id - what a menu item leading to a page shows.
-export async function getPageTitles (): Promise<Record<string, unknown>> {
-  const pages = (await dbRequest<{ pageId: string, title?: unknown }[]>('pages', 'list').catch(() => [])) ?? []
-  return Object.fromEntries(pages.map(page => [page.pageId, page.title]))
+// Every page's name, by id - what a menu item leading to a page shows -
+// and the pages hidden in the editor, which the menu leaves out.
+export async function getPageTitles (): Promise<{ titles: Record<string, unknown>, hidden: Set<string> }> {
+  const pages = (await dbRequest<{ pageId: string, title?: unknown, visible?: boolean }[]>('pages', 'list').catch(() => [])) ?? []
+  return {
+    titles: Object.fromEntries(pages.map(page => [page.pageId, page.title])),
+    hidden: new Set(pages.filter(page => page.visible === false).map(page => page.pageId)),
+  }
 }
 
 // null: no such page. Blocks hidden in the editor are left out here, so no
 // part of the site ever sees them.
 export async function getPage (pageId: string): Promise<TemplatePageModel | null> {
   const page = (await dbRequest<TemplatePageModel | null>('pages', 'get', { pageId }).catch(() => null)) ?? null
+  // A page hidden in the editor is not there for a visitor.
+  if ((page as { visible?: boolean } | null)?.visible === false) {
+    return null
+  }
   if (page?.blocks) {
     page.blocks = page.blocks.filter(block => !(block as { hidden?: boolean }).hidden)
   }

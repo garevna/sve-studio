@@ -675,6 +675,11 @@ export const useAjaxStore = defineStore('ajax', () => {
           void syncContentImages()
         } catch (mirrorError) {
           console.warn('Dev-mirror write to public/ failed (IndexedDB save already succeeded):', mirrorError)
+          // Refused by the denylist guard (server/routes/__editor-api__/
+          // public-file.ts): the file keeps its clean version - say so.
+          if ((mirrorError as { response?: { status?: number } })?.response?.status === 409) {
+            useUiFeedbackStore().notifyError('Файл не записано', 'У вмісті є заборонені дані (див. .private/denylist.txt). Збережено лише в браузері.')
+          }
         }
       }
     } catch (error_) {

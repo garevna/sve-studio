@@ -206,7 +206,8 @@ async function seedIfEmpty (db: IDBDatabase, theme: number): Promise<void> {
       tasks.push(
         fetch(fileUrl(`dynamic-pages/${pageId}.json`), { cache: 'no-store' })
           .then(response => response.json())
-          .then(content => putRecord(db, 'pages', { pageId, content, ...seedOrigin(manifest, `pages/${pageId}.json`) } satisfies PageRecord))
+          // A page file can say it is hidden ("visible": false).
+          .then(content => putRecord(db, 'pages', { pageId, content, visible: (content as { visible?: boolean })?.visible !== false, ...seedOrigin(manifest, `pages/${pageId}.json`) } satisfies PageRecord))
           .catch(error => {
             seedSkipped.add(`pages/${pageId}.json`)
             console.warn(`seedIfEmpty: skipped page "${pageId}" (listed in manifest.json, but missing or not valid JSON)`, error)
@@ -279,7 +280,8 @@ async function seedMissingPages (db: IDBDatabase): Promise<void> {
       .map(pageId =>
         fetch(fileUrl(`dynamic-pages/${pageId}.json`), { cache: 'no-store' })
           .then(response => response.json())
-          .then(content => putRecord(db, 'pages', { pageId, content, ...seedOrigin(manifest, `pages/${pageId}.json`) } satisfies PageRecord))
+          // A page file can say it is hidden ("visible": false).
+          .then(content => putRecord(db, 'pages', { pageId, content, visible: (content as { visible?: boolean })?.visible !== false, ...seedOrigin(manifest, `pages/${pageId}.json`) } satisfies PageRecord))
           .catch(error => {
             seedSkipped.add(`pages/${pageId}.json`)
             console.warn(`seedMissingPages: failed to seed "${pageId}" from manifest.json`, error)
@@ -381,7 +383,8 @@ async function refreshChangedSeedFiles (db: IDBDatabase): Promise<void> {
         return
       }
       const content = await fetch(fileUrl(`dynamic-pages/${pageId}.json`), { cache: 'no-store' }).then(response => response.json())
-      await putRecord(db, 'pages', { pageId, content, visible: record?.visible ?? true, ...seedOrigin(manifest, seedPath) } satisfies PageRecord)
+      const hiddenInFile = (content as { visible?: boolean })?.visible === false
+      await putRecord(db, 'pages', { pageId, content, visible: hiddenInFile ? false : (record?.visible ?? true), ...seedOrigin(manifest, seedPath) } satisfies PageRecord)
     }).catch(error => console.warn(`refreshChangedSeedFiles: page "${pageId}"`, error)))
   }
   for (const key of manifest.settings) {
@@ -433,7 +436,10 @@ async function handlePages (db: IDBDatabase, action: string, data: { pageId?: st
   }
   if (action === 'set-visible') {
     const existing = await getRecord<PageRecord>(db, 'pages', data.pageId as string)
-    await putRecord(db, 'pages', { pageId: data.pageId as string, content: existing?.content, updated: existing?.updated, visible: data.visible } satisfies PageRecord)
+    // Also in the page's own content, so the next publish writes it to the
+    // page's file and the site (which reads the content) knows it too.
+    const content = existing?.content && typeof existing.content === 'object' ? { ...existing.content, visible: data.visible } : existing?.content
+    await putRecord(db, 'pages', { pageId: data.pageId as string, content, updated: existing?.updated, visible: data.visible } satisfies PageRecord)
     return { ok: true }
   }
   if (action === 'status') {

@@ -20,7 +20,8 @@ interface DocRecord {
 
 export interface PageListItem {
   slug: string
-  title?: string
+  // the page's name in every site language (a plain string in older pages)
+  title?: Record<string, string> | string
   visible: boolean
 }
 
@@ -113,19 +114,23 @@ export function createContentRepository ({ seed, docs, images }: ContentReposito
       if (stored?.deleted) {
         continue
       }
-      const visible = stored?.visible ?? true
-      if (!visible && !includeHidden) {
-        continue
-      }
       const body = await read('pages', slug)
       if (body === null) {
         continue
       }
-      let title: string | undefined
+      let title: PageListItem['title']
+      let hiddenInFile = false
       try {
-        title = (JSON.parse(body) as { title?: string }).title
+        const page = JSON.parse(body) as { title?: PageListItem['title'], visible?: boolean }
+        title = page.title
+        // A page's own file can say it is hidden ("visible": false).
+        hiddenInFile = page.visible === false
       } catch {
         // Listed without a title rather than not at all.
+      }
+      const visible = stored?.visible ?? !hiddenInFile
+      if (!visible && !includeHidden) {
+        continue
       }
       items.push({ slug, title, visible })
     }

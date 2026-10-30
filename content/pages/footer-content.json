@@ -5,121 +5,103 @@
   "visible": true,
   "children": [
     {
-      "type": "component",
-      "content": "FeedbackCard",
-      "width": 470,
-      "props": {
-        "type": "call-request",
-        "title": {
-          "uk": "Замовити зворотний дзвінок",
-          "en": "Request a callback",
-          "de": "Rückruf anfordern"
-        },
-        "text": {
-          "uk": "Вкажіть свої контактні дані, і наш представник зв'яжеться з вами найближчим часом.",
-          "en": "Leave your contact details and our representative will reach out shortly.",
-          "de": "Hinterlassen Sie Ihre Kontaktdaten, und unser Vertreter meldet sich in Kürze."
+      "type": "section",
+      "children": [
+        {
+          "type": "component",
+          "content": "FeedbackCard",
+          "width": 470,
+          "props": {
+            "type": "call-request",
+            "title": {
+              "uk": "Замовити зворотний дзвінок",
+              "en": "Request a callback",
+              "de": "Rückruf anfordern"
+            },
+            "text": {
+              "uk": "Вкажіть свої контактні дані, і наш представник зв'яжеться з вами найближчим часом.",
+              "en": "Leave your contact details and our representative will reach out shortly.",
+              "de": "Hinterlassen Sie Ihre Kontaktdaten, und unser Vertreter meldet sich in Kürze."
+            }
+          }
         }
-      }
+      ]
     },
     {
       "type": "section",
       "width": 270,
       "children": [
         {
-          "type": "route",
-          "class": "default-text text-medium mb-4",
-          "content": {
-            "uk": "Мої бронювання",
-            "en": "My bookings",
-            "de": "Meine Buchungen"
-          },
-          "route": "user-dashboard",
-          "params": {
-            "section": "trips"
-          },
-          "query": {
-            "section": "trips"
-          }
-        },
-        {
-          "type": "route",
-          "class": "default-text text-medium mb-4",
-          "content": {
-            "uk": "Програма лояльності",
-            "en": "Loyalty programme",
-            "de": "Treueprogramm"
-          },
-          "route": "dynamic-page",
-          "params": {
-            "pageId": "loyality-program"
-          }
-        },
-        {
-          "type": "route",
-          "class": "default-text text-medium mb-4",
-          "content": {
-            "uk": "Послуги трансферу",
-            "en": "Transfer services",
-            "de": "Transferservice"
-          },
-          "route": "dynamic-page",
-          "params": {
-            "pageId": "transfer-services"
-          }
-        },
-        {
-          "type": "route",
-          "class": "default-text text-medium mb-4",
-          "content": {
-            "uk": "Повернення квитків",
-            "en": "Ticket refunds",
-            "de": "Ticketrückerstattung"
-          },
-          "route": "dynamic-page",
-          "params": {
-            "pageId": "ticket-refund"
-          }
-        },
-        {
-          "type": "route",
-          "class": "default-text text-medium mb-4",
-          "content": {
-            "uk": "Про компанію",
-            "en": "About us",
-            "de": "Über das Unternehmen"
-          },
-          "route": "dynamic-page",
-          "params": {
-            "pageId": "about-company"
-          }
-        },
-        {
-          "type": "route",
-          "class": "default-text text-medium mb-4",
-          "content": {
-            "uk": "Наші автобуси",
-            "en": "Our buses",
-            "de": "Unsere Busse"
-          },
-          "route": "dynamic-page",
-          "params": {
-            "pageId": "bus-park"
-          }
-        },
-        {
-          "type": "route",
-          "class": "default-text text-medium mb-4",
-          "content": {
-            "uk": "Часто задавані питання",
-            "en": "Frequently Asked Questions",
-            "de": "Häufig gestellte Fragen"
-          },
-          "route": "dynamic-page",
-          "params": {
-            "pageId": "home-page"
-          },
-          "hash": "#faq-section"
+          "type": "page-links",
+          "width": 270,
+          "children": [
+            {
+              "type": "route",
+              "class": "default-text text-medium mb-4",
+              "content": {
+                "uk": "Асортимент",
+                "en": "Product Range",
+                "de": "Sortiment"
+              },
+              "route": "dynamic-page",
+              "params": {
+                "pageId": "products"
+              }
+            },
+            {
+              "type": "route",
+              "class": "default-text text-medium mb-4",
+              "content": {
+                "uk": "Дружні знижки",
+                "en": "Friendly Discounts",
+                "de": "Freundesrabatte"
+              },
+              "route": "dynamic-page",
+              "params": {
+                "pageId": "loyality-program"
+              }
+            },
+            {
+              "type": "route",
+              "class": "default-text text-medium mb-4",
+              "content": {
+                "uk": "Допомога експертів",
+                "en": "Expert Help",
+                "de": "Hilfe von Experten"
+              },
+              "route": "dynamic-page",
+              "params": {
+                "pageId": "transfer-services"
+              }
+            },
+            {
+              "type": "route",
+              "class": "default-text text-medium mb-4",
+              "content": {
+                "uk": "Про компанію",
+                "en": "About the company",
+                "de": "Über das Unternehmen"
+              },
+              "route": "dynamic-page",
+              "params": {
+                "pageId": "about-company"
+              }
+            },
+            {
+              "type": "route",
+              "class": "default-text text-medium mb-4",
+              "content": {
+                "uk": "Часті запитання",
+                "en": "Frequently Asked Questions",
+                "de": "Häufig gestellte Fragen"
+              },
+              "route": "dynamic-page",
+              "params": {
+                "pageId": "home-page"
+              },
+              "hash": "#faq-section"
+            }
+          ]
         }
       ]
     },
@@ -158,7 +140,7 @@
             {
               "type": "text-with-icon",
               "size": 18,
-              "text": "default-text text-medium text-dark-grey",
+              "text": "default-text text-medium mb-4",
               "content": {
                 "uk": "(+380) 44 000 01 01",
                 "en": "(+380) 44 000 01 01",
@@ -169,7 +151,7 @@
             {
               "type": "text-with-icon",
               "icon": "",
-              "text": "default-text text-medium text-dark-grey",
+              "text": "default-text text-medium mb-4",
               "content": {
                 "uk": "(+380) 44 000 01 02",
                 "en": "(+380) 44 000 01 02",
@@ -180,7 +162,7 @@
             {
               "type": "text-with-icon",
               "icon": "",
-              "text": "default-text text-medium text-dark-grey",
+              "text": "default-text text-medium mb-4 text-light-grey-2",
               "content": {
                 "uk": "(+380) 44 000 01 03",
                 "en": "(+380) 44 000 01 03",
@@ -191,7 +173,7 @@
             {
               "type": "text-with-icon",
               "size": 18,
-              "text": "default-text text-medium text-dark-grey",
+              "text": "default-text text-medium mb-4",
               "content": {
                 "uk": "(+39) 02 0000 0001",
                 "en": "(+39) 02 0000 0001",
@@ -202,7 +184,7 @@
             {
               "type": "text-with-icon",
               "icon": "",
-              "text": "default-text text-medium text-dark-grey",
+              "text": "default-text text-medium mb-4",
               "content": {
                 "uk": "(+39) 02 0000 0002",
                 "en": "(+39) 02 0000 0002",
@@ -218,5 +200,7 @@
         }
       ]
     }
-  ]
+  ],
+  "background": "dark",
+  "ver": 2
 }

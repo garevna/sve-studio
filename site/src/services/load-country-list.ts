@@ -1,5 +1,6 @@
 import type { CountryModel } from '../types/common'
 import { useCommonStore } from '../stores/common'
+import { sveRoot } from '../utils/sve-root'
 
 // Ported from client-side's own services/common/load-country-list.ts, which
 // App.vue there calls at startup and again on every locale change. Without
@@ -16,13 +17,9 @@ import { useCommonStore } from '../stores/common'
 export async function loadCountryList (locale: string) {
   const commonStore = useCommonStore()
 
-  // BASE_URL, not a bare '/': the editor can be deployed under a sub-path
-  // (VITE_BASE_PATH=/visual-editor/), and this preview is served from
-  // inside it. client-side's own copy hardcodes '/' because it always sits
-  // at a domain root.
-  // VITE_BASE_PATH is the site's base when the preview is built on its own
-  // (served at <base>preview/ - see modules/preview-app.ts).
-  const base = import.meta.env.VITE_BASE_PATH || import.meta.env.BASE_URL
+  // The lists are among the files the editor and the site share, at the
+  // demo's root ("/" locally, "/sve-studio/" on GitHub Pages).
+  const base = sveRoot()
   const namesUrl = locale === 'uk' ? `${base}countries-uk.json` : `https://flagcdn.com/${locale}/codes.json`
 
   try {

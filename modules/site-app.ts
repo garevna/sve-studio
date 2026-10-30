@@ -23,8 +23,14 @@ function nuxtCli (): string {
   return join(dirname(require.resolve('nuxt/package.json')), 'bin', 'nuxt.mjs')
 }
 
+// The site is built under <root>site/: its base comes from SVE_ROOT, and the
+// editor's own NUXT_APP_BASE_URL must not reach it (Nuxt would take it as
+// the site's base too).
 function run (args: string[], cwd: string): ChildProcess {
-  return spawn(process.execPath, [nuxtCli(), ...args], { cwd, stdio: 'inherit', env: process.env })
+  const root = process.env.NUXT_APP_BASE_URL || '/'
+  const env: NodeJS.ProcessEnv = { ...process.env, SVE_ROOT: root.endsWith('/') ? root : `${root}/` }
+  delete env.NUXT_APP_BASE_URL
+  return spawn(process.execPath, [nuxtCli(), ...args], { cwd, stdio: 'inherit', env })
 }
 
 export default defineNuxtModule({

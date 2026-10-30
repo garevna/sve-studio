@@ -43,7 +43,8 @@ export function resolveThemeAssetPath (path: string | undefined, theme: number):
   // src. Idempotent, so the callers that DO also call getImageURL stay
   // correct (an absolute URL returns at the top).
   if (path.startsWith('/api/')) {
-    return apiOrigin() + path
+    // The demo's API answers under the app's base (see ajax.ts).
+    return apiOrigin() + (REMOTE_API_DISABLED || import.meta.env.PROD ? appBase().replace(/\/$/, '') : '') + path
   }
 
   // Only the legacy "/images/..."/"/icons/..." shape needs the theme

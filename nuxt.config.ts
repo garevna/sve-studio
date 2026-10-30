@@ -3,6 +3,9 @@ import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
 
 const editorSrc = fileURLToPath(new URL('src', import.meta.url))
 const contentDir = fileURLToPath(new URL('content', import.meta.url))
+// Where the demo is served: "/" locally, "/sve-studio/" on GitHub Pages
+// (set by the deploy workflow). Nuxt reads the same variable for its base.
+const root = process.env.NUXT_APP_BASE_URL || '/'
 
 // Nuxt app of the Site Visual Editor (SVE).
 //
@@ -49,14 +52,17 @@ export default defineNuxtConfig({
   app: {
     head: {
       title: 'Site Visual Editor (SVE)',
+      // A deep link opened on GitHub Pages comes back through 404.html as
+      // ?__sve_path=... - the address is put back before the router starts.
+      script: [{ innerHTML: String.raw`(function(){var p=new URLSearchParams(location.search).get('__sve_path');if(p!==null){history.replaceState(null,'',location.pathname+p.replace(/^\//,''))}})()`, tagPosition: 'head' }],
       link: [
         // The editor's icon: the owner's logo. The GIF walks in Firefox (other
         // browsers show its first frame); the .ico and PNGs are the still version.
-        { rel: 'icon', href: '/favicon.ico', sizes: '48x48' },
-        { rel: 'icon', type: 'image/png', href: '/favicon-96x96.png', sizes: '96x96' },
-        { rel: 'icon', type: 'image/gif', href: '/favicon.gif' },
-        { rel: 'apple-touch-icon', href: '/apple-touch-icon.png', sizes: '180x180' },
-        { rel: 'manifest', href: '/site.webmanifest' },
+        { rel: 'icon', href: `${root}favicon.ico`, sizes: '48x48' },
+        { rel: 'icon', type: 'image/png', href: `${root}favicon-96x96.png`, sizes: '96x96' },
+        { rel: 'icon', type: 'image/gif', href: `${root}favicon.gif` },
+        { rel: 'apple-touch-icon', href: `${root}apple-touch-icon.png`, sizes: '180x180' },
+        { rel: 'manifest', href: `${root}site.webmanifest` },
         { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css' },
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
         { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },

@@ -124,7 +124,9 @@ export const useAjaxStore = defineStore('ajax', () => {
     // https://.../visual-editor/api/... instead of https://.../api/....
     // Demo: the API is the in-browser mock at this origin's /api (see
     // public/mock-api-sw.js) - never a remote server.
-    baseURL: REMOTE_API_DISABLED ? `${location.origin}/api` : (import.meta.env.PROD ? `${location.origin}/api` : import.meta.env.VUE_APP_API_URL || import.meta.env.VITE_API_URL),
+    // The demo's API is the in-browser worker, under the app's own base
+    // ("/" in dev, "/sve-studio/" on GitHub Pages).
+    baseURL: REMOTE_API_DISABLED ? `${location.origin}${appBase()}api` : (import.meta.env.PROD ? `${location.origin}${appBase()}api` : import.meta.env.VUE_APP_API_URL || import.meta.env.VITE_API_URL),
     timeout: 50_000,
     // Lets the mock API serve the right theme even if two tabs differ.
     headers: { 'X-Theme': String(getActiveTheme()) },

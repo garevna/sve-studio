@@ -1,5 +1,6 @@
 import type { DbRequestMessage, DbResponseMessage } from './protocol'
 import { getActiveTheme } from '@/utils/active-theme'
+import { sveRoot } from '../utils/sve-root'
 
 // Plain module, not a Pinia store - main.ts needs to read palette/settings/
 // CSS text before Pinia (or the Vue app) exists at all, so this has to be
@@ -12,20 +13,29 @@ const pending = new Map<number, { resolve: (value: unknown) => void, reject: (er
 let initPromise: Promise<void> | null = null
 
 function getWorker (): Worker {
-  if (worker) return worker
+  if (worker) {
+    return worker
+  }
 
-  worker = new Worker(new URL('./worker.ts', import.meta.url), { type: 'module' })
+  worker = new Worker(new URL('worker.ts', import.meta.url), { type: 'module' })
   worker.onmessage = (event: MessageEvent<DbResponseMessage>) => {
     const { id, error, data } = event.data
     const entry = pending.get(id)
-    if (!entry) return
+    if (!entry) {
+      return
+    }
     pending.delete(id)
-    if (error) entry.reject(new Error(error))
-    else entry.resolve(data)
+    if (error) {
+      entry.reject(new Error(error))
+    } else {
+      entry.resolve(data)
+    }
   }
   worker.onerror = event => {
     const error = new Error(event.message || 'DB worker crashed')
-    for (const entry of pending.values()) entry.reject(error)
+    for (const entry of pending.values()) {
+      entry.reject(error)
+    }
     pending.clear()
   }
   return worker
@@ -55,7 +65,8 @@ function send<T> (route: string, action: string, data?: unknown): Promise<T> {
 function ensureInit (): Promise<void> {
   if (!initPromise) {
     const theme = getActiveTheme()
-    initPromise = send('db', 'init', { theme }).then(() => undefined)
+    // The starting content is at the demo's root (<root>_seed/), not the site's.
+    initPromise = send('db', 'init', { theme, base: sveRoot() }).then(() => undefined)
   }
   return initPromise
 }

@@ -1,3 +1,4 @@
+import { sveRoot } from '../utils/sve-root'
 import { CONTENT_API_ORIGIN } from './content-api-base'
 
 export function getImageURL (src: string | undefined | null): string {
@@ -5,7 +6,8 @@ export function getImageURL (src: string | undefined | null): string {
     return src || ''
   }
   if (src.startsWith('/api/')) {
-    return CONTENT_API_ORIGIN + src
+    // the API answers under the demo's root (sve-root.ts)
+    return CONTENT_API_ORIGIN + (import.meta.env.PROD ? sveRoot().replace(/\/$/, '') : '') + src
   }
   return (typeof location === 'undefined' ? '' : location.origin) + src
 }

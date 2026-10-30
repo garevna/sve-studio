@@ -1,15 +1,15 @@
 {
   "pages": [
     "about-company",
+    "advanced-features",
     "contacts-page",
+    "expert-help",
     "footer-content",
     "home-page",
     "licences",
     "loyality-program",
     "products",
-    "test",
-    "ticket-refund",
-    "transfer-services"
+    "test"
   ],
   "settings": [
     "global",
@@ -133,18 +133,18 @@
   ],
   "hashes": {
     "pages/about-company.json": "aff77527943b601d",
+    "pages/advanced-features.json": "86d11d57438a58a0",
     "pages/contacts-page.json": "5e11cfe1443f2072",
-    "pages/footer-content.json": "2cc7e0c89daa35db",
+    "pages/expert-help.json": "bfeb4f8ec46798b2",
+    "pages/footer-content.json": "8b9feab4cc6c416e",
     "pages/home-page.json": "0c40d18010a2dabb",
     "pages/licences.json": "d675bc9f980ca240",
     "pages/loyality-program.json": "b95b97e59d057016",
     "pages/products.json": "dd5761d1ecdf2e69",
     "pages/test.json": "0c7e3e31856349b5",
-    "pages/ticket-refund.json": "cecc789d01ffec27",
-    "pages/transfer-services.json": "2b5434ea77aa4753",
     "public/account-pages.json": "c24f4753c468a9cc",
     "settings/global.json": "3632b22d5d89893d",
-    "settings/menu-content.json": "024b2733144c8854",
+    "settings/menu-content.json": "af12ffae9f989545",
     "settings/palette.json": "b44a9a3824ffbd39",
     "settings/seo.json": "30ca66019da035ef",
     "styles/buttons.css": "04573c5c06e1c3d1",

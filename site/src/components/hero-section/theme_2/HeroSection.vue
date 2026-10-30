@@ -4,6 +4,7 @@
 
   import { getHeroBanners } from '../../../services/get-hero-banners'
   import { useCommonStore } from '../../../stores/common'
+  import { sveRoot } from '../../../utils/sve-root'
 
   import SearchPanel from './SearchPanel.vue'
 
@@ -27,7 +28,7 @@
   // Same fallback chain production walks when a client has no banners on the
   // API: their own image from global settings, then the theme's bundled one.
   const fallbackSrc = computed(() => (mobileMode.value ? baners.value.mobile : baners.value.desktop)
-    || '/images/baner-placeholder.png')
+    || `${sveRoot()}images/baner-placeholder.png`)
 
   const banerStyle = computed(() => ({ height: `${banerHeight.value}px` }))
 </script>

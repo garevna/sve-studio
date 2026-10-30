@@ -27,6 +27,7 @@
   import FooterTemplate from './templates/FooterTemplate.vue'
   import PageNotFound from './templates/PageNotFound.vue'
   import { type PageTitle, pageTitleText, withMenuLabels } from './utils/page-title'
+  import { sveRoot } from './utils/sve-root'
 
   // The whole site around the page the address names: menu, top of the
   // page, the page's blocks, footer. Stays mounted while the visitor moves
@@ -180,7 +181,7 @@
     ],
     // The browser tab's icon is the site's own logo (Загальні налаштування)
     // - change the logo and the icon follows. The editor's icon until then.
-    link: [{ rel: 'icon', href: company.value?.logo?.src || '/favicon.ico', key: 'favicon' }],
+    link: [{ rel: 'icon', href: company.value?.logo?.src || `${sveRoot()}favicon.ico`, key: 'favicon' }],
   }))
 
   // --- the editor's frame -------------------------------------------------------

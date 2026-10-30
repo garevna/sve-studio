@@ -33,13 +33,17 @@ export default defineNuxtConfig({
   },
 
   app: {
-    baseURL: '/site/',
+    // <demo root>site/ - the root is "/" locally, "/sve-studio/" on GitHub
+    // Pages (SVE_ROOT, set by modules/site-app.ts when it builds the site).
+    baseURL: `${process.env.SVE_ROOT || '/'}site/`,
     head: {
       htmlAttrs: { lang: 'uk' },
+      // GitHub Pages deep links: see the editor's nuxt.config.ts.
+      script: [{ innerHTML: String.raw`(function(){var p=new URLSearchParams(location.search).get('__sve_path');if(p!==null){history.replaceState(null,'',location.pathname+p.replace(/^\//,''))}})()`, tagPosition: 'head' }],
       meta: [{ name: 'viewport', content: 'width=device-width, initial-scale=1' }],
       link: [
         // The site's own logo replaces this once its settings are in (App.vue).
-        { rel: 'icon', href: '/favicon.ico', key: 'favicon' },
+        { rel: 'icon', href: `${process.env.SVE_ROOT || '/'}favicon.ico`, key: 'favicon' },
         { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css' },
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
         { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },

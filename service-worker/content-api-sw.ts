@@ -67,12 +67,18 @@ self.addEventListener('message', event => {
 
 // --- requests ------------------------------------------------------------------
 
+// Requests under the worker's own scope: "/api/..." in dev, "/sve-studio/api/..."
+// on GitHub Pages. The API itself is mounted at /api, so the scope's path is
+// taken off before it answers.
 self.addEventListener('fetch', event => {
   const url = new URL(event.request.url)
-  if (url.origin !== self.location.origin || !url.pathname.startsWith('/api/')) {
+  const scopePath = new URL(base()).pathname
+  if (url.origin !== self.location.origin || !url.pathname.startsWith(`${scopePath}api/`)) {
     return
   }
-  event.respondWith(respond(event.request, url))
+  const apiUrl = new URL(url)
+  apiUrl.pathname = url.pathname.slice(scopePath.length - 1)
+  event.respondWith(respond(new Request(apiUrl, event.request), apiUrl))
 })
 
 // The API answers a missing image with 404, like a real one. On a page that

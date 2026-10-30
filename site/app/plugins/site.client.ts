@@ -3,6 +3,7 @@
 import { createPinia } from 'pinia'
 import { createVuetify } from 'vuetify'
 import { getPalette } from '../../src/services/site-data'
+import { sveRoot } from '../../src/utils/sve-root'
 
 // The editor's content API worker (service-worker/content-api-sw.ts) - it
 // serves the images the visitor uploaded in the editor, which exist only in
@@ -10,7 +11,7 @@ import { getPalette } from '../../src/services/site-data'
 // first; nothing waits for it.
 function startContentApi () {
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/content-api-sw.js', { scope: '/' }).catch(error => {
+    navigator.serviceWorker.register(`${sveRoot()}content-api-sw.js`, { scope: sveRoot() }).catch(error => {
       console.warn('Content API worker could not start', error)
     })
   }

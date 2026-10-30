@@ -2,6 +2,8 @@
 
 **English** | [Українська](README.uk.md)
 
+**Live demo:** <https://garevna.github.io/sve-studio/> - the editor; the site it builds is at <https://garevna.github.io/sve-studio/site/>. Everything you change stays in your own browser.
+
 A visual editor for multilingual websites: pages are assembled from ready-made blocks, edited in place and published - without touching code.
 
 - **Blocks, edited one at a time.** Every block looks exactly as on the site; a click opens it for editing. Hide, move or delete it from its menu.

@@ -3,6 +3,7 @@
   import { computed, ref, watch } from 'vue'
   import { useAjaxStore } from '@/stores/ajax'
   import { useCommonStore } from '@/stores/common'
+  import { appBase } from '@/utils/app-base'
   import { resolveThemeAssetPath } from '@/utils/theme-asset-path'
   import SearchPanelVer1 from './SearchPanelVer1.vue'
 
@@ -42,7 +43,7 @@
   // unconfigured site looks identical in both places.
   const fallbackSrc = computed(() => (baner.value
     ? resolveThemeAssetPath(baner.value, commonStore.activeTheme)
-    : '/images/baner-placeholder.png'))
+    : `${appBase()}images/baner-placeholder.png`))
 
   const banerStyle = computed(() => ({ height: `${banerHeight.value}px` }))
 </script>

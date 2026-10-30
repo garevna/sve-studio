@@ -1,0 +1,59 @@
+@import './breadcrumbs.css';
+@import './buttons.css';
+@import './card.css';
+@import './expansion-panel.css';
+@import './slide-group.css';
+@import './tables.css';
+@import './text-field.css';
+@import './overlay-content.css';
+
+.v-layout {
+  flex-direction: column;
+}
+.v-layout--full-height {
+  display: contents;
+}
+
+.v-main {
+  max-width: 1368px !important;
+  min-width: 336px !important;
+  width: calc(100% - 72px) !important;
+  padding-top: 72px !important;
+  padding-bottom: 180px !important;
+  --v-layout-top: 72px !important;
+  --v-layout-bottom: 180px !important;
+}
+
+#trip-carousel .v-window__container {
+  padding-inline: 40px;
+}
+
+.v-row {
+  align-items: center;
+}
+
+.v-carousel {
+  height: max-content !important;
+}
+
+.v-icon--size-small {
+  font-size: 18px !important;
+}
+
+.v-divider {
+  width: 100%;
+  border-color: var(--grey) !important;
+}
+
+.v-tabs--density-default {
+  --v-tabs-height: 56px !important;
+}
+
+@media screen and (max-width: 440px) {
+  .v-main {
+    width: calc(100% - 24px) !important;
+  }
+  #trip-carousel .v-window__container {
+    padding-inline: 24px;
+  }
+}

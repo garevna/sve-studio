@@ -1,0 +1,406 @@
+html {
+    overflow-y: auto !important;
+    width: 100vw;
+}
+
+/*
+ * Not mirrored from production - an editor-authored addition, but placed
+ * here (rather than styles/editor-ui.css) because it needs to apply
+ * wherever a missing/broken image can appear, including the standalone
+ * preview window (main.ts skips editor-ui.css there on purpose, but this
+ * file loads in both). Photoshop-style transparency checker (assets/
+ * image-placeholder.svg - a small tiled checkerboard square) so "no image
+ * set" (or a src that failed to load) reads as an empty placeholder
+ * instead of blank space.
+ */
+.image-placeholder-bg {
+    background-color: #fff;
+    background-image: url(./assets/image-placeholder.svg);
+    background-repeat: repeat;
+    background-size: 20px 20px;
+}
+
+* input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+    /* border-bottom: var(--light-border); */
+    /* -webkit-text-fill-color: green; */
+    -webkit-box-shadow: 0 0 0px 1000px var(--white) inset;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+.footer-content input:-webkit-autofill,
+.footer-content input:-webkit-autofill:hover,
+.footer-content input:-webkit-autofill:focus,
+.footer-content textarea:-webkit-autofill,
+.footer-content textarea:-webkit-autofill:hover,
+.footer-content textarea:-webkit-autofill:focus,
+.footer-content select:-webkit-autofill,
+.footer-content select:-webkit-autofill:hover,
+.footer-content select:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0px 1000px var(--primary) inset;
+    -webkit-text-fill-color: var(--white);
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+.app-footer {
+    background: var(--primary);
+    padding: 40px 40px 16px;
+    margin-top: 16px;
+    height: max-content;
+}
+
+.footer-copyright {
+    font-size: 12px;
+    font-weight: 200;
+    text-align: center;
+}
+
+.v-application {
+    background: var(--homefone);
+}
+
+.v-row {
+    align-items: center;
+}
+
+.mobile-mode,
+.mobile-menu,
+.mobile-lang-switcher,
+.mobile-currency-switcher,
+.mobile-icon-mode,
+.mobile-flex-mode,
+.mobile-grid-mode {
+    display: none !important;
+}
+
+.desktop-mode, .desktop-menu, .desktop-lang-switcher, .desktop-currency-switcher {
+    display: block;
+}
+
+.desktop-flex-mode {
+    display: flex;
+}
+
+.v-container,
+.v-container--fluid {
+    padding: 0 !important;
+}
+
+.v-autocomplete__selection:first-child {
+    margin-inline-start: -8px !important;
+}
+
+#app {
+    width: 100vw;
+    font-family: var(--main-font);
+    margin: 0 auto;
+    padding: 0;
+    font-weight: 400;
+    background: var(--main-background);
+    overflow-x: hidden;
+}
+
+input {
+    outline: none;
+}
+
+.baner-on-page {
+    width: 100%;
+    max-width: 1440px;
+    max-height: 400px;
+}
+
+.app-menu-bar {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 1440px;
+    z-index: 1005;
+    background: var(--white);
+    box-shadow: 0 2px 4px #0002;
+    padding-right: 36px;
+}
+
+.mobile-menu {
+    display: none;
+}
+
+.user-preferences {
+    display: grid;
+    align-items: center;
+    justify-items: end;
+    column-gap: 16px;
+    grid-area: preferences;
+}
+
+.v-carousel {
+    height: max-content !important;
+}
+
+.grid-2-template {
+    display: grid;
+    grid-template-columns: 1fr 32px;
+}
+
+@media screen and (max-width: 1000px) {
+    .passenger-details {
+        grid-template-columns: 100%;
+        grid-template-rows: max-content max-content;
+    }
+
+    .country-area {
+        margin-top: 48px !important;
+        margin-bottom: 32px;
+    }
+}
+
+.select-component-overlay {
+    z-index: 1000 !important;
+}
+
+/* Typographics */
+
+.text-12-400 {
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.text-12-500 {
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.text-14-400 {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.text-14-500 {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.text-14-600 {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.text-16-400 {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.default-text text-medium {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.default-text text-bold {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.text-18-400 {
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.text-18-500 {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.text-18-600 {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.text-20-500 {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.text-20-600 {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.text-22-500 {
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.text-22-600 {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.text-28-500 {
+    font-size: 28px;
+    font-weight: 500;
+}
+
+.text-28-600 {
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.text-64-700 {
+    font-size: 112px;
+    font-weight: 700;
+}
+
+.text-112-800 {
+    font-size: 112px;
+    font-weight: 800;
+}
+
+.text-shrinked {
+    line-height: 100% !important;
+}
+
+.mt-20 {
+    margin-top: 80px;
+}
+
+.mb-20 {
+    margin-bottom: 80px;
+}
+
+.my-20 {
+    margin-top: 80px;
+    margin-bottom: 80px;
+}
+
+.mt-25 {
+    margin-top: 100px;
+}
+
+.mb-25 {
+    margin-bottom: 100px;
+}
+
+.my-25 {
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+.bottom-mobile-menu-elements {
+    width: 100%;
+    margin-bottom: 80px;
+}
+
+.rounded-large {
+    border-radius: var(--v-large-border-radius);
+}
+
+.rounded-default {
+    border-radius: var(--v-default-border-radius);
+}
+
+.bordered-card {
+    border: var(--light-border);
+    padding: 24px;
+}
+
+.blue-card-title {
+    border-radius: var(--v-default-border-radius) 0 0 0;
+    height: max-content;
+    padding: 12px 8px 12px 24px !important
+}
+
+.bordered-section {
+    border-radius: var(--v-default-border-radius) !important;
+    border: var(--light-border) !important;
+    /* padding: 20px; */
+    height: 100%;
+}
+
+.popup-vertical-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 32px;
+}
+
+.ticket-slide {
+    width: max-content;
+    padding: 20px;
+    height: 100%;
+    border-radius: var(--v-default-border-radius);
+    background: var(--white);
+}
+
+.bottom-navigation {
+    position: fixed;
+    bottom: 0px;
+    z-index: 1004;
+    transform: translateY(0px);
+    height: 128px;
+    left: 0px;
+    width: calc(100% + 0px);
+    padding: 12px 16px 16px 12px;
+    border-top-left-radius: var(--v-default-border-radius);
+    border-top-right-radius: var(--v-default-border-radius);
+    background: var(--bottom-navigation-background);
+}
+
+/* Devices */
+
+@media screen and (max-width: 1250px) {
+    .mobile-menu, .mobile-lang-switcher, .mobile-currency-switcher {
+        display: block !important;
+    }
+
+    .desktop-menu,
+    .desktop-lang-switcher,
+    .desktop-currency-switcher {
+        display: none !important;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .mobile-mode {
+        display: block !important;
+    }
+
+    .mobile-icon-mode {
+        display: inline-block !important;
+    }
+    
+    .mobile-flex-mode {
+        display: flex !important;
+    }
+    
+    .mobile-grid-mode {
+        display: grid !important;
+    }
+    
+    .desktop-mode {
+        display: none !important;
+    }
+
+    .desktop-mode {
+        display: none !important;
+    }
+}
+
+@media screen and (max-height: 480px) {
+    .popup-vertical-buttons {
+        flex-direction: row;
+    }
+
+    .popup-vertical-buttons .primary-button,
+    .popup-vertical-buttons .outlined-button {
+        width: max-content !important;
+    }
+}

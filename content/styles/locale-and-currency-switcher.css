@@ -1,0 +1,42 @@
+.user-account-button {
+  border-radius: var(--default-border-radius);
+  border: solid 1px var(--primary);
+  transition: background-color 0.3s ease;
+  grid-area: user-account-button;
+  max-width: max-content;
+  cursor: pointer;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.user-account-button:hover {
+  border-color: var(--light-grey-1);
+}
+
+.user-account-button:active {
+  background-color: var(--light-grey-2);
+}
+
+.desktop-lang-switcher, .desktop-currency-switcher {
+  height: 48px;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  color: var(--primary);
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.desktop-lang-switcher {
+  grid-area: lang-switcher;
+  grid-template-columns: 24px 24px;
+}
+
+.desktop-currency-switcher {
+  grid-area: currency-switcher;
+  grid-template-columns: 40px 28px;
+}
+
+.desktop-lang-switcher:hover, .desktop-currency-switcher:hover {
+    color: var(--secondary);
+}

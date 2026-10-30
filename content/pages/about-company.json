@@ -1,0 +1,201 @@
+{
+  "id": "about-company",
+  "title": "Про компанію",
+  "breadcrumbs": false,
+  "backButton": false,
+  "blocks": [
+    {
+      "type": "component",
+      "class": "my-25",
+      "content": "ImagesGridVer1",
+      "props": {
+        "header": "",
+        "headerClass": "mt-25 mb-8",
+        "subheader": "",
+        "subheaderClass": "",
+        "text": "",
+        "textClass": "default-text text-thin mb-8",
+        "button": "",
+        "images": {
+          "desktop": [
+            "/api/content/images/about-company/04-2.webp?v=7f1a32fe",
+            "/api/content/images/about-company/baner-desktop.png?v=04949532",
+            "/api/content/images/about-company/baner-mobile.jpg?v=6c6a8d78",
+            "/api/content/images/about-company/01.avif?v=72ea9509"
+          ],
+          "mobile": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        }
+      }
+    },
+    {
+      "type": "section",
+      "children": [
+        {
+          "type": "section",
+          "children": [
+            {
+              "type": "header",
+              "class": "mb-8",
+              "content": {
+                "uk": "Virtual Dimension",
+                "en": "About the company",
+                "de": "Über das Unternehmen"
+              }
+            },
+            {
+              "type": "title",
+              "class": "text-left mb-8 h6 text-bold text-dark",
+              "content": {
+                "uk": "Тут затишніше, ніж у реальному світі.",
+                "en": "Virtual Dimension is a team of like-minded people who are shaping the future of the IT sector today.",
+                "de": "Virtual Dimension ist ein Team von Gleichgesinnten, das schon heute die Zukunft der IT-Branche gestaltet."
+              }
+            },
+            {
+              "type": "text",
+              "class": "default-text text-thin mb-8 mb-md-0 text-black",
+              "content": {
+                "uk": "Ласкаво просимо до Virtual Dimension — простору, де реальність втомилася від самої себе і пішла на перезавантаження. Ми не просто створюємо цифрові продукти, ми будуємо нові всесвіти.",
+                "en": "We are a Ukrainian transport company with over 25 years’ experience in international passenger and freight transport. We operate routes between Ukraine, Italy, Slovenia, Slovakia, Hungary and Poland, ensuring comfortable and safe journeys for our customers.",
+                "de": "Wir sind ein ukrainisches Transportunternehmen mit über 25 Jahren Erfahrung im Bereich des internationalen Personen- und Güterverkehrs. Wir verkehren zwischen der Ukraine, Italien, Slowenien, der Slowakei, Ungarn und Polen und sorgen für komfortable und sichere Reisen für unsere Kunden."
+              }
+            }
+          ]
+        },
+        {
+          "type": "image",
+          "content": {
+            "uk": "/api/content/images/about-company/03-2.jpg?v=efca0920",
+            "en": "/api/content/images/about-company/02-2.jpg?v=b0a20518",
+            "de": "/api/content/images/about-company/02-2.jpg?v=b0a20518"
+          }
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "children": [
+        {
+          "type": "image",
+          "switchOrder": true,
+          "content": {
+            "uk": "/api/content/images/about-company/01-2.jpg?v=179930cc",
+            "en": "/api/content/images/about-company/05-2.jpg?v=580eb84a",
+            "de": "/api/content/images/about-company/05-2.jpg?v=580eb84a"
+          }
+        },
+        {
+          "type": "section",
+          "switchOrder": true,
+          "children": [
+            {
+              "type": "title",
+              "class": "mb-6",
+              "content": {
+                "uk": "Virtual Dimension: Робимо складні штуки, щоб ви могли просто клікати.",
+                "en": "We combine cutting-edge technology, a creative approach and in-depth analytics to help our clients scale their businesses and achieve their ambitious goals.",
+                "de": "Wir verbinden modernste Technologien, einen kreativen Ansatz und fundierte Analysen, um unseren Kunden dabei zu helfen, ihr Geschäft auszubauen und ehrgeizige Ziele zu erreichen."
+              }
+            },
+            {
+              "type": "text",
+              "class": "default-text text-thin my-3 text-black",
+              "content": {
+                "uk": "Давайте чесно: ви тут, тому що шукаєте когось, хто вирішить ваші проблеми в цифровому просторі. Так от, ми — ті самі люди. Тільки ми живемо на два виміри попереду.",
+                "en": "What we do: We break down stereotypes and create bespoke solutions for every project.",
+                "de": "Was wir tun: Wir brechen mit Klischees und entwickeln maßgeschneiderte Lösungen für jedes Projekt."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "title",
+      "content": {
+        "uk": "Наші послуги",
+        "en": "Our services",
+        "de": "Unsere Dienstleistungen"
+      },
+      "class": "text-center"
+    },
+    {
+      "type": "cards",
+      "ver": 1,
+      "size": 94,
+      "children": [
+        {
+          "type": "card",
+          "icon": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjxzdmcgaW5rc2NhcGU6dmVyc2lvbj0iMC45Mi40ICg1ZGE2ODljMzEzLCAyMDE5LTAxLTE0KSIgdmVyc2lvbj0iMS4xIiB2aWV3Qm94PSIwIDAgMTUzLjM4MzE1IDEyMC4wMDc3NSIgaGVpZ2h0PSIxMjAuMDA3NzVtbSIgd2lkdGg9IjE1My4zODMxNW1tIiB4bWxuczppbmtzY2FwZT0iaHR0cDovL3d3dy5pbmtzY2FwZS5vcmcvbmFtZXNwYWNlcy9pbmtzY2FwZSIgeG1sbnM6c29kaXBvZGk9Imh0dHA6Ly9zb2RpcG9kaS5zb3VyY2Vmb3JnZS5uZXQvRFREL3NvZGlwb2RpLTAuZHRkIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnN2Zz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyIgeG1sbnM6Y2M9Imh0dHA6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL25zIyIgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIj4KICA8ZyBpbmtzY2FwZTpsYWJlbD0iQ2FtYWRhIDEiIGlua3NjYXBlOmdyb3VwbW9kZT0ibGF5ZXIiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0zMC4yNzU2OTMsLTYzLjA1ODkwOSkiPgogICAgPGcgdHJhbnNmb3JtPSJtYXRyaXgoMi44NDUwNTQzLC0wLjA0OTE4Njc5LDAuMDQ5MTg2NzksMi44NDUwNTQzLC0xNzEuNDg2NDksMTAuMTYxNTU3KSI+CiAgICAgIDxwYXRoIGZpbGw9IiMwOWIiIGQ9Im0gMTIwLjcxNzY2LDI4LjY1MTM2MSBjIC00LjIyMjk2LC02LjQ4NzQ5MSAtMTEuMzI5MDMsLTkuMjEzNzQgLTE4LjU1MTEzLC03LjA3MDc3NiAtNC40NTI0NTcsMS4zMDk0OTggLTguNjM0Njk4LDUuMzUxMjM2IC0xMC43ODE5Nyw4Ljc5NTU0MyAtMC45MDQ1MDYsMS40MjM1MzQgLTEuNDQ2NTIsMi45MDc1MzkgLTEuOTk0MzA4LDQuMzQxMjUgLTAuOTg1ODg2LDIuNjAxNjYgLTEuOTE3MjgzLDUuMDc2MiAtNC43NzkzMDMsNy4yMjExMDcgLTAuMzU4MTAyLDAuMjY1MjA5IC0zLjE0MDExNCwyLjE5NjcyNyAtMy40OTAxNSwyLjQyNDU4MyBsIDAuMjM5MzMxLDAuMzY3Njc2IDMuNTc1NDMxLC0yLjQ0MzUwNiA2LjMyZS00LDkuNzRlLTQgYyAyLjk2MDg1NCwtMi4yMzk5NjQgMy45NDM3MDksLTQuODY1NDAyIDQuOTA5MDUsLTcuNDA5MzI4IDAuNTQxMTc5LC0xLjQwMjQ5MyAxLjA3NjY1NSwtMi44NTU3ODkgMS45NTU2NTMsLTQuMjM1Nzc4IDIuMTE1MTU0LC0zLjM2OTU0OSA2LjE5NTcyMSwtNy4zMTgwNjUgMTAuNTI4OTk0LC04LjYwMzg0MyA3LjAwODM1LC0yLjA1NzY3IDEzLjkyMTY0LDAuNTc4IDE4LjAyMTQ5LDYuODc2MzU4IDQuMDk5ODUsNi4yOTgzNzYgMy43MTIwNiwxMy42ODc0NTggLTEuMDA2MjksMTkuMjYzMTQ0IC0yLjkyOTcxLDMuNDQxOTc3IC04LjE5MjM5LDUuNTc0NDkxIC0xMi4xMjk3MSw2LjE0NDczNCAtMS42MTc3MSwwLjI0NTE2MSAtMy4xNjI5NywwLjE0NzE3MSAtNC42NjQ0NywwLjA3NDM4IC0yLjc5Mzg3NSwtMC4xNTExMzggLTUuNjkzNDQxLC0wLjMwMjU3NSAtOS4wNDI5MjcsMS42NTUxMDQgbCAtMy41NTUyMzIsMi41MTA3ODQgMC4yMzU3MjgsMC4zNjIxMzUgYyAwLjI2MTQzOCwtMC4xNzQzMTMgMy4zMDg3NjYsLTIuMzQyMzYxIDMuNTQ2MDA5LC0yLjQ4NjAzMSAzLjIyMDY3LC0xLjg4ODE2MyA1LjkyMTYyNSwtMS43MzQ1OTcgOC43Njc3MzIsLTEuNTc5MzE4IDEuNTEzODMsMC4wOTE3NSAzLjA5Njc5LDAuMTY1NTE5IDQuNzc2OTMsLTAuMDY2NDUgNC4wMDYzOCwtMC41ODgyNzIgOS40MDczNywtMi43NTc3MDUgMTIuNDA3MDMsLTYuMjk5MDU4IDQuODcwNTUsLTUuNzU1NTI4IDUuMjY2NTksLTEzLjMzNzQ4MiAxLjAzMTMxLC0xOS44NDM5MTcgeiI+PC9wYXRoPgogICAgICA8cGF0aCBmaWxsPSIjMDliIiB0cmFuc2Zvcm09Im1hdHJpeCgxLjE1MjUzMTgsMS43NzA1Njk1LC0xLjc3MDU2OTUsMS4xNTI1MzE4LDE3MC41MzQ1NywtMjIxLjgzODMzKSIgZD0ibSA4OS4zNjgzMTIsMTAwLjY0NzA0IHYgMC4xNTkxOSI+PC9wYXRoPgogICAgICA8cGF0aCBmaWxsPSIjMDliIiBkPSJtIDg0Ljg5MjAwMSw0MS45MzMyNTggYyAtMC4yMzM5MjYsLTAuMzU5MzcyIC0wLjczMzI3NSwtMC40NjQyOTUgLTEuMDkyNjUzLC0wLjIzMDM2NiBsIC0wLjc3NTMwOCwwLjUwNDY4MiBjIC0wLjM1OTM1NCwwLjIzMzkxOCAtMC40NjU1NjIsMC43MzMwMTggLTAuMjMxNjI0LDEuMDkyMzkyIGwgOS4zMzI0OTUsMTQuMzM2OTkgYyAwLjIzMzkyNiwwLjM1OTM3MyAwLjczMzgwMSwwLjQ2NTA0NiAxLjA5MzE1NSwwLjIzMTEyOCBsIDAuNzc1MzA4LC0wLjUwNDY4MiBjIDAuMzU5Mzc4LC0wLjIzMzkzIDAuNDc3MzczLC0wLjcxNDg3IDAuMjMxMTM0LC0xLjA5MzE1MyB6IG0gLTIuODE4MjkzLDEuODM0NTQzIEMgODEuODM5NzcsNDMuNDA4NDI4IDgxLjM0MDM4NCw0My4zMDM1MjggODAuOTgxMDMsNDMuNTM3NDQ2IGwgLTAuNzc1MzE5LDAuNTA0NjgzIGMgLTAuMzU5MzY3LDAuMjMzOTI4IC0wLjQ2NTU2MiwwLjczMzAzIC0wLjIzMTYzNiwxLjA5MjQwMiBsIDkuMzMyNDk1LDE0LjMzNjk5MSBjIDAuMjMzOTM4LDAuMzU5MzcyIDAuNzMzOCwwLjQ2NTA0NSAxLjA5MzE2NiwwLjIzMTExNyBsIDAuNzc1MzIsLTAuNTA0NjgzIGMgMC4zNzgyNjUsLTAuMjQ2MjI3IDAuNDc3Mzg1LC0wLjcxNDg4MiAwLjIzMTE0NiwtMS4wOTMxNjMgeiBtIC0yLjYxMDM3NiwxLjY5OTE4OSBjIC0wLjMwNzc5LC0wLjQ3Mjg0OSAtMC45NDQ3NDksLTAuNjIzODQ0IC0xLjQzNjUxLC0wLjMwMzc0IGwgLTAuNzc1MzA4LDAuNTA0NjgyIGMgLTAuMjUwMjk1LDAuMTYyOTIyIC0wLjQwNDUxMiwwLjQxODU5MSAtMC40NTA5NTksMC42OTUyMzEgbCAtNi40MTY0MjUsMTUuMTg2MjU2IDE2LjU5MTE1NiwwLjI4NjgzNiBjIDAuMjQ2NzQsMC4wNDQwNyAwLjUwOTE2LDAuMDYwMTUgMC43NDE1MTEsLTAuMDkxMDkgbCAwLjc3NTMyLC0wLjUwNDY4MiBjIDAuNDkxNzUsLTAuMzIwMTA0IDAuNjIzODIzLC0wLjk0NDc0MiAwLjMwMzcyMSwtMS40MzY1IHogbSAwLjg4NDk3NSwzLjE1MjI5NiBjIDAuNTIxMDAxLDAuODAwOTEyIDAuNjk2MDEsMS43Nzg0NjIgMC40ODUyMzUsMi43MTAzODIgMC45Mzc0ODIsMC4xODQ0NzYgMS43NjA1MzUsMC43NDAxOTEgMi4yODIwMTksMS41NDA3OSAwLjY0Njc4OCwwLjk5NDMzMyAwLjc1MjM5NCwyLjI0NjU4IDAuMjgxMjY3LDMuMzM1MTkxIDEuMTg2NDY1LDAuMDA5OCAyLjI4OTA1LDAuNjEzNTkzIDIuOTM2NDA4LDEuNjA3OTM5IDAuNTY3MTgsMC44NzE4IDAuNzIyMTQxLDEuOTQ4OTY1IDAuNDIzNzA5LDIuOTQ1MjkyIGwgLTcuMzY5MjMsNi40NWUtNCAtNC43MTU5NjMsLTcuMzI1MDEzIDMuMjI3MzAzLC02LjM4NTM5MyBjIDEuMDAzNzQ4LDAuMTQ4MDk0IDEuODk1NjUxLDAuNzE5ODkyIDIuNDQ5MjE2LDEuNTcwMTkgeiI+PC9wYXRoPgogICAgICA8cGF0aCBmaWxsPSIjZjUwIiBkPSJtIDEwNi44ODkzOCwyMy42MTk5MzEgLTAuMDAyLDAuMDAyMSB2IDAuMDA4NCBjIC0xLjQ4MDMxLC0wLjExMzcgLTEuNjI2ODksMS4yNjkyODIgLTEuNTQwMDksMi41OTg0NDEgLTEuNzg4MjksMC44ODgzMTggLTEuNTg5NzQsMS45MzgwNTIgLTEuNDM4NTQsMi45ODI4ODkgLTAuMTY2OCwtMC4wNzkyNiAtMC4zMjU3NywtMC4wODc1NiAtMC41MDk3NCwwLjI2MTQxNyAwLjAwNSwwLjQ2NjY1IDAuMTEwNiwwLjkzMzUwNiAwLjQ4NTk4LDEuMTMzOTY4IDAuMDc2NSwwLjAzNzM0IDAuMTYzNzEsLTAuMTMxMTI0IDAuMjQ4NCwwLjA1NjAxIGwgMC4xODM1NywwLjI5NTg1OCBjIDAuMTg0NywwLjY5NjYxNCAtMC4xMDMwOCwxLjA4Mzc1OSAtMC4yOTYxNSwxLjYyMTczOCAtMC41OTA4NywwLjIyNzgwNiAtMS4yNDI3MSwwLjUxNTgyMSAtMS42Mzk0MSwwLjgyMjk2NSAtMC45OTY5NCwwLjc1MjEzNCAtMS40OTQ2OSwxLjk2NjkzMiAtMS40OTQ2OSwzLjY0NjAxNyAwLDEuNjYxNTMxIDAuNTk2OTIsMi45MjMwMTIgMS43ODYyOCwzLjc3OTkxOSAtMS41OTgxLDMuMzM3NTA0IDEuMDU5NTEsNC41NTg2MTEgMy40NTI4Nyw0Ljc1NzU3NyAxLjQ2OTY1LDAuMDU3MjcgMS44NDIxNywxLjY5NjYzNiAwLjEzNDYyLDEuNzAyNjEyIC0zLjYxMTg2LC0wLjQ5MzIwNiAtOC4zMDkxMzYsLTYuMzYzNDIyIC0xNC42Njc4NjcsMC4yNTI3MDMgbCAwLjkxMTQ5NywxLjM0MzUxNiBjIDQuNzUyMzA0LC00Ljc5Njk5OCA2LjI4NzA0LC0xLjgzNjIyNSA5LjAyMzQ4LDAuMzMxNTQyIDQuOTExMTgsNC40MDIwMSAxMS42MjAyNSwyLjY3MDgwOCAxMS42NzMyMywtMi41NjQ5MTMgLTAuMDkyNywtMy41NzQyNzIgLTMuMjE3MzQsLTMuOTI5MDkyIC01LjcyMTcyLC0zLjk2MTM3NiAtMS41NTkxLC0wLjA1NTE5IC0yLjY3MTczLDAuMDMzMTkgLTIuMjA5NiwtMS4yNTY5MTYgMy43MzE0NywwLjU1NzEwNyA2LjU5MTg5LC0wLjcwNDgyOSA2LjYxMTYzLC00LjUxMDEwMyAtMC4wMjQxLC0wLjcxNTQ1MiAtMC4zNjc2NSwtMS44MjM5NDEgLTAuOTM3NDMsLTIuNDM0MjQ2IC0wLjU4MTA4LC0wLjgxODQ0MiAtMS41ODk5MSwtMS41MDI1MjQgLTIuNzYyNTksLTEuODgzNDg3IC0wLjUwMTYyLC0wLjM5ODc2NCAtMC40MjY1OSwtMS4xMjcxNjIgLTAuNDgxNjgsLTEuNjEzMzE1IDAuMDE0MSwtMC4wOTU0MyAwLjA0NzYsLTAuMzE5NTA5IDAuMTMxNzYsLTAuNDQ3MTQ3IDAuMDkyOSwtMC4xNDAyNTIgMC4yODczNSwwLjA0OTggMC40Njg2OSwtMC4zODQ2NTUgMC4yNzA3NiwtMC41NzUxNTkgMC4yODYwMywtMS4zMjkzNjggLTAuNDczMDEsLTEuMTA4MDM0IDAuMDk4MywtMS4wMTUwODUgMC40MTMzNiwtMi4wODUzMTcgLTEuNDM0MjEsLTIuNjQzNzk1IC0wLjA0NzUsLTAuMjMwNzEgLTAuMTMzMTIsLTAuNDUxNDIxIDAuMDEyOSwtMC43Mjc5MDEgMC42MzA2OCwtMC4wNTEwNCAyLjExOTQ3LDIuMDE3NDMzIDMuMzA0NzQsMC41NTI5MTggLTEuMzQ1MjQsLTAuMjE5NTA3IC0xLjcxMjE4LC0yLjU2Nzk0MiAtMi44MjA5MSwtMi42MTU3MDIgeiBtIC0wLjQ5MjQ3LDExLjM5MTU4OCBjIDEuMzQ2NzYsMCAyLjAxOTU2LDAuNjQ3NDgzIDIuMDE5NTYsMS45NDE4MjcgMCwxLjI3NjY2OSAtMC42NzI4LDEuOTE1ODk1IC0yLjAxOTU2LDEuOTE1ODk1IC0xLjMyOTI1LDAgLTEuOTkzNjQsLTAuNjM5MjI2IC0xLjk5MzY0LC0xLjkxNTg5NSAwLC0xLjI5NDM0NCAwLjY2NDM5LC0xLjk0MTgyNyAxLjk5MzY0LC0xLjk0MTgyNyB6Ij48L3BhdGg+CiAgICAgIDxwYXRoIGZpbGw9IiNmNTAiIGQ9Im0gMTA2Ljg4OTM4LDIzLjYxOTkzMSAtMC4wMDIsMC4wMDIxIHYgMC4wMDg0IGMgLTEuNDgwMzEsLTAuMTEzNyAtMS42MjY4OSwxLjI2OTI4MiAtMS41NDAwOSwyLjU5ODQ0MSAtMS43ODgyOSwwLjg4ODMxOCAtMS41ODk3NCwxLjkzODA1MiAtMS40Mzg1NCwyLjk4Mjg4OSAtMC4xNjY4LC0wLjA3OTI2IC0wLjMyNTc3LC0wLjA4NzU2IC0wLjUwOTc0LDAuMjYxNDE3IDAuMDA1LDAuNDY2NjUgMC4xMTA2LDAuOTMzNTA2IDAuNDg1OTgsMS4xMzM5NjggMC4wNzY1LDAuMDM3MzQgMC4xNjM3MSwtMC4xMzExMjQgMC4yNDg0LDAuMDU2MDEgbCAwLjE4MzU3LDAuMjk1ODU4IGMgMC4xODQ3LDAuNjk2NjE0IC0wLjEwMzA4LDEuMDgzNzU5IC0wLjI5NjE1LDEuNjIxNzM4IC0wLjU5MDg3LDAuMjI3ODA2IC0xLjI0MjcxLDAuNTE1ODIxIC0xLjYzOTQxLDAuODIyOTY1IC0wLjk5Njk0LDAuNzUyMTM0IC0xLjQ5NDY5LDEuOTY2OTMyIC0xLjQ5NDY5LDMuNjQ2MDE3IDAsMS42NjE1MzEgMC41OTY5MiwyLjkyMzAxMiAxLjc4NjI4LDMuNzc5OTE5IC0xLjU5ODEsMy4zMzc1MDQgMS4wNTk1MSw0LjU1ODYxMSAzLjQ1Mjg3LDQuNzU3NTc3IDEuNDY5NjUsMC4wNTcyNyAxLjg0MjE3LDEuNjk2NjM2IDAuMTM0NjIsMS43MDI2MTIgLTMuNjExODYsLTAuNDkzMjA2IC04LjMwOTEzNiwtNi4zNjM0MjIgLTE0LjY2Nzg2NywwLjI1MjcwMyBsIDAuOTExNDk3LDEuMzQzNTE2IGMgNC43NTIzMDQsLTQuNzk2OTk4IDYuMjg3MDQsLTEuODM2MjI1IDkuMDIzNDgsMC4zMzE1NDIgNC45MTExOCw0LjQwMjAxIDExLjYyMDI1LDIuNjcwODA4IDExLjY3MzIzLC0yLjU2NDkxMyAtMC4wOTI3LC0zLjU3NDI3MiAtMy4yMTczNCwtMy45MjkwOTIgLTUuNzIxNzIsLTMuOTYxMzc2IC0xLjU1OTEsLTAuMDU1MTkgLTIuNjcxNzMsMC4wMzMxOSAtMi4yMDk2LC0xLjI1NjkxNiAzLjczMTQ3LDAuNTU3MTA3IDYuNTkxODksLTAuNzA0ODI5IDYuNjExNjMsLTQuNTEwMTAzIC0wLjAyNDEsLTAuNzE1NDUyIC0wLjM2NzY1LC0xLjgyMzk0MSAtMC45Mzc0MywtMi40MzQyNDYgLTAuNTgxMDgsLTAuODE4NDQyIC0xLjU4OTkxLC0xLjUwMjUyNCAtMi43NjI1OSwtMS44ODM0ODcgLTAuNTAxNjIsLTAuMzk4NzY0IC0wLjQyNjU5LC0xLjEyNzE2MiAtMC40ODE2OCwtMS42MTMzMTUgMC4wMTQxLC0wLjA5NTQzIDAuMDQ3NiwtMC4zMTk1MDkgMC4xMzE3NiwtMC40NDcxNDcgMC4wOTI5LC0wLjE0MDI1MiAwLjI4NzM1LDAuMDQ5OCAwLjQ2ODY5LC0wLjM4NDY1NSAwLjI3MDc2LC0wLjU3NTE1OSAwLjI4NjAzLC0xLjMyOTM2OCAtMC40NzMwMSwtMS4xMDgwMzQgMC4wOTgzLC0xLjAxNTA4NSAwLjQxMzM2LC0yLjA4NTMxNyAtMS40MzQyMSwtMi42NDM3OTUgLTAuMDQ3NSwtMC4yMzA3MSAtMC4xMzMxMiwtMC40NTE0MjEgMC4wMTI5LC0wLjcyNzkwMSAwLjYzMDY4LC0wLjA1MTA0IDIuMTE5NDcsMi4wMTc0MzMgMy4zMDQ3NCwwLjU1MjkxOCAtMS4zNDUyNCwtMC4yMTk1MDcgLTEuNzEyMTgsLTIuNTY3OTQyIC0yLjgyMDkxLC0yLjYxNTcwMiB6IG0gLTAuNDkyNDcsMTEuMzkxNTg4IGMgMS4zNDY3NiwwIDIuMDE5NTYsMC42NDc0ODMgMi4wMTk1NiwxLjk0MTgyNyAwLDEuMjc2NjY5IC0wLjY3MjgsMS45MTU4OTUgLTIuMDE5NTYsMS45MTU4OTUgLTEuMzI5MjUsMCAtMS45OTM2NCwtMC42MzkyMjYgLTEuOTkzNjQsLTEuOTE1ODk1IDAsLTEuMjk0MzQ0IDAuNjY0MzksLTEuOTQxODI3IDEuOTkzNjQsLTEuOTQxODI3IHoiPjwvcGF0aD48cGF0aCBmaWxsPSIjMDliIiBkPSJtIDg3LjUzMTIyNiw0MC4yNzE1MTMgYyAtMC4yMzM5NSwtMC4zNTkzNDMgLTAuNzMzMjg3LC0wLjQ2NDI4NCAtMS4wOTI2NTMsLTAuMjMwMjk2IGwgLTAuNzc1MzIsMC41MDQ2NTkgYyAtMC4zNTkzNDIsMC4yMzQwMzEgLTAuNDY1NTYyLDAuNzMzMDQ3IC0wLjIzMTY2LDEuMDkyMzkgbCA5LjMzMjQ5NSwxNC4zMzcwMDcgYyAwLjIzMzk1LDAuMzU5MzQ1IDAuNzMzODAxLDAuNDY1MDMxIDEuMDkzMTU1LDAuMjMxMTI1IGwgMC43NzUzMDgsLTAuNTA0NjU4IGMgMC4zNTkzOSwtMC4yMzQwMyAwLjQ3NzM3MywtMC43MTQ4NzEgMC4yMzExMzQsLTEuMDkzMTc4IHoiPjwvcGF0aD4KICAgIDwvZz4KICA8L2c+Cjwvc3ZnPgo=",
+          "title": {
+            "uk": "Дизайн, який не дратує",
+            "en": "Design that doesn’t annoy",
+            "de": "Design, das nicht nervt"
+          },
+          "content": {
+            "uk": [
+              "Ніяких \"пограйте з шрифтами\". Ми одразу робимо так, щоб ваші конкуренти тихо плакали в кутку."
+            ],
+            "en": [
+              "No ‘play around with fonts’. We make sure right from the start that your competitors are quietly crying in a corner."
+            ],
+            "de": [
+              "Kein „Spielt mal mit den Schriftarten“. Wir sorgen sofort dafür, dass eure Konkurrenten still in der Ecke weinen."
+            ]
+          }
+        },
+        {
+          "type": "card",
+          "icon": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjxzdmcKICB2ZXJzaW9uPSIxLjEiCiAgd2lkdGg9IjMwNCIKICBoZWlnaHQ9IjI2MyIKICB2aWV3Qm94PSIwIDAgMzAzOC42NjY3IDI2MzMuMzMzMyIKICBzb2RpcG9kaTpkb2NuYW1lPSJjb2RlLmVwcyIKICB4bWxuczppbmtzY2FwZT0iaHR0cDovL3d3dy5pbmtzY2FwZS5vcmcvbmFtZXNwYWNlcy9pbmtzY2FwZSIKICB4bWxuczpzb2RpcG9kaT0iaHR0cDovL3NvZGlwb2RpLnNvdXJjZWZvcmdlLm5ldC9EVEQvc29kaXBvZGktMC5kdGQiCiAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogIHhtbG5zOnN2Zz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCj4KICA8ZyBpbmtzY2FwZTpncm91cG1vZGU9ImxheWVyIiBpbmtzY2FwZTpsYWJlbD0iMSI+CiAgICA8ZyBpZD0iZ3JvdXAtUjUiPgogICAgICA8cGF0aCBmaWxsPSIjZmEwIiBkPSJtIDIwMjA3LjksMTE4MTQuMyBjIC0xMC4yLDQ3NC4zIC0yNi44LDk0Ni41IC01MC40LDE0MTYuNCAtMzIuMiw2NTIuOCAtNzYuNywxMzAwLjEgLTEzNC41LDE5MzkuNCBsIDAuMSwwLjEgLTMwMi45LDM5MS4zIHYgMCBoIC0wLjEgdiAwIDAgbCAtMTQsMy40IGMgLTI2NjkuOCw2MzcuNyAtNTg0OS45LDkxNCAtODgxNS4yLDkxNCAtMzMwNi44NiwtMC4xIC02MzQ1LjY4LC0zNDMuNSAtODExMy4xOCwtOTE0LjUgbCAtMTIuNjQsLTQgLTEuMTgsLTEzLjMgYyAtOTcuMDUsLTEwNzcuNiAtMTU4LjE2LC0yMTc4LjggLTE4My4zNiwtMzI4OCBsIC0wLjU1LC0yNC4xIGggMC4wMiBjIC04LjkxLC0zOTAuNCAtMTMuMzksLTc4MS44IC0xMy4zOCwtMTE3My42IDAsLTIxNDMuNyAxMzMuMTcsLTQzMDAuMSAzOTguODYsLTYzNjUuOSBsIDEuNzMsLTEzLjQgLTAuMDYsLTAuMSAzMzkuNywtMzU5IDAuMDMsMC4xIDAuMDIsLTAuMiBjIDQwNTguOTksLTEwNTcuOSAxMTQxNi45OSwtMTcwNS44IDE2NTE0LjU5LDAgNzAuMiw1NDYuNiAxMzEuMywxMDk5LjcgMTgyLjIsMTY1NyAxMzguMiwxNDg1LjUgMjEwLDMwMDIuNyAyMTUuOSw0NTE1LjYgMS42LDQzOS45IC0yLjEsODc5LjkgLTExLjcsMTMxOC44IiB0cmFuc2Zvcm09Im1hdHJpeCgwLjEzMzMzMzMzLDAsMCwtMC4xMzMzMzMzMywwLDI2MzMuMzMzMykiIGNsYXNzPSIiIC8+CiAgICAgIDxwYXRoIGZpbGw9IiMwMDAiIGQ9Im0gMTM4NjQuOSw1ODI1LjMgYyAtMTEuOCwzMy44IC0yMi4xLDY4LjMgLTMwLjksMTAzLjcgLTMwLjMsNjYuOSAtNTUuMywxMzcuNCAtNzMuNiwyMTEuNCBsIC0yLjYsMTAuOCA3LjgsOCBjIDYzNC40LDY1MC41IDE1MDIuNywxNTI3LjEgMjMwMy4zLDIzMzcuNyAxMS43LDExLjggMjMuMywyMy42IDM0LjksMzUuNCAtNzkwLjksODAxLjYgLTE2NDQuMSwxNjYzLjUgLTIyNzAuMiwyMzA0LjQgbCAtNiwxNi40IC02OS45LDE5MS45IGggMC4xIHYgMC4xIGwgMi42LDEwLjggYyA2Ni45LDI3MS41IDIyNC40LDQ5Ni45IDQwNS41LDY2NCAxODEuMywxNjcgMzg1LjgsMjc2LjEgNTUwLjYsMzE0LjQgbCA5LjUsMi4yIDcuNiwtNi4xIGMgNzYzLjgsLTYxMS41IDE2OTAuMiwtMTUwNi43IDI1MDQuNywtMjM3NC4xIDMzOSwtMzYwLjUgNjU4LC03MTYuNCA5MzguNSwtMTA0NC45IGwgMTEuMiwtMTMgLTAuMSwtMC4xIDI3LjIsLTIxNC4zIGMgLTEuNywtMiAtMy41LC00LjEgLTUuMiwtNi4xIC0yNzksLTMyNi41IC01OTYsLTY4MCAtOTMyLjYsLTEwMzggLTgxNCwtODY2LjggLTE3NDAuMSwtMTc2MS43IC0yNTAyLjcsLTIzNzIuMiAtMjk4LjgsNjguOSAtNzQ0LjQsMzgzLjMgLTkwOS43LDg1Ny42IHogbSAtNDUwNS44MywtNzg0IGMgLTMxLjc2LDI0LjggLTYyLjY2LDUwLjkgLTkyLjU5LDc4LjUgbCAtNzYuODUsMjA4LjQgMC4xNywwLjEgNCwxMi4yIGMgNzgwLjkyLDIzODIuNSAxNzQ4LjMsNDcwMy45IDI4OTAuMyw2OTM2IGwgNC40LDguNyA5LjUsMS45IGMgOTguNSwxOS43IDE5OSwyOS45IDI5OC42LDI5LjkgMTkzLjYsMCAzODMuNSwtMzguNyA1NDUuOCwtMTIyLjggMTU5LjgsLTgyLjcgMjkyLjYsLTIwOS45IDM3My44LC0zODYuMSAxLjMsLTIuNiAyLjUsLTUuMyAzLjcsLTcuOSBsIDMuNiwtOC4xIHYgMCBsIDMxLjcsLTIxNC41IEMgMTIzOTMsOTM0MS44IDExMzkyLjcsNjk3Ny4xIDEwNTY5LjUsNDY4Ni41IGMgLTQzNC4yLC0xMS45IC04NzEuODIsOTAuOCAtMTIxMC40MywzNTQuOCB6IE0gNDI5Ny4yOSw4NTk4LjUgaCAwLjA2IGwgMTEuMSwxMi45IGMgMjgwLjUxLDMyOC41IDU5OS41OCw2ODQuNCA5MzguNDYsMTA0NC45IDgxNC41Niw4NjcuNCAxNzQwLjk4LDE3NjIuNiAyNTA0LjgsMjM3NC4xIGwgNy42MSw2LjEgOS40OSwtMi4yIGMgMTY0LjczLC0zOC4zIDM2OS4yOSwtMTQ3LjQgNTUwLjU0LC0zMTQuNCAxODEuMSwtMTY3LjEgMzM4LjY1LC0zOTIuNSA0MDUuNDgsLTY2NCBsIDIuNjgsLTEwLjggLTAuMTEsLTAuMiAzMS41MiwtMjA4LjIgQyA4MTE4LjYyLDEwMTgxLjMgNzI0MC44Niw5Mjk0LjggNjQzNS4wOCw4NDc4IDcyMzAuNDcsNzY3Mi43IDgwOTAuMTksNjgwNC43IDg3MTkuNzEsNjE1OS4yIGwgNy43OSwtOCAtMi42NywtMTAuOCBjIC0xMS4yMiwtNDUuNSAtMjUuMDEsLTg5LjcgLTQxLjAxLC0xMzIuNiAyNS4zNiwtMjYgNTAuNDMsLTUxLjcgNzUuMSwtNzcgLTQ4LjM0LC0xOTYuMiAtMTQ1LjI1LC0zNjguNiAtMjY0LjM3LC01MTEuNiAtMjA0LjM5LC0yNDUuNSAtNDc0LjIzLC00MDQuOCAtNjc2LjY5LC00NTEuNSAtNzYyLjYsNjEwLjUgLTE2ODguNjQsMTUwNS40IC0yNTAyLjY3LDIzNzIuMiAtMzM4LjcyLDM2MC4zIC02NTcuNTYsNzE2IC05MzcuODUsMTA0NC4xIGwgLTMyLjg1LDg4LjEgLTQ3LjEzLDEyNi4yIC0wLjA3LDAuMSBoIDAuMDMgeiBtIDE1NTY5LjMxLDM1NzMuOSBjIC0yOTE5LDQ4Ny40IC01ODc4LjcsNzMxLjYgLTg4MzguNCw3MzEuNiAtMzY5LjgsMCAtNzM5LjYsLTMuOSAtMTEwOS4zMSwtMTEuNSAtMTk0NC44NywtNDAuMSAtMzg4Ny41LC0xODUuNiAtNTgxNi4zNywtNDM2LjkgLTQ5NS4wMywtNjQuNCAtOTg5LjE1LC0xMzUuOCAtMTQ4Mi4xNywtMjE0LjIgLTkuMDEsLTM5Mi41IC0xMy41MywtNzg2IC0xMy41MywtMTE4MCAwLC0yMTM3LjQgMTMyLjUyLC00Mjg3LjQgMzk2LjgxLC02MzQ3LjMgMjI1NS44MywtNTg2LjUgNTUyNy45NSwtMTA0Ni4yIDg4NjIuODcsLTEwNDYuMiAyNjU5LjYsMCA1MzU5LjIsMjkyLjQgNzYxNS4xLDEwNDUuMiA2OS4xLDUzOC42IDEyOS4xLDEwODMuMyAxODAuMSwxNjMyLjQgMTM4LjcsMTQ5MS4xIDIxMC45LDMwMTQuMSAyMTYuNCw0NTMyLjQgMC4yLDYzIDAuMywxMjUuOSAwLjMsMTg4LjkgMCwzNjkuMSAtMy45LDczNy44IC0xMS44LDExMDUuNiIgdHJhbnNmb3JtPSJtYXRyaXgoMC4xMzMzMzMzMywwLDAsLTAuMTMzMzMzMzMsMCwyNjMzLjMzMzMpIiAvPgogICAgICA8cGF0aCBmaWxsPSIjYjBiIiBkPSJtIDEwMTQwLjgsMTM2NjMuNSBjIC0xNDkuMTYsMCAtMjkwLjA5LDM1LjMgLTQxNC45MSw5Ny45IC0zMDMuNDYsMTUyLjIgLTUxMS43Myw0NjYuMSAtNTExLjc0LDgyOC44IDAuMDEsNTExLjggNDE0Ljg2LDkyNi42IDkyNi42NSw5MjYuNiAyNTcuMiwwIDQ4OS45LC0xMDQuOCA2NTcuNywtMjczLjkgMTY2LjIsLTE2Ny41IDI2OC45LC0zOTguMSAyNjguOSwtNjUyLjcgMCwtNTExLjggLTQxNC44LC05MjYuNyAtOTI2LjYsLTkyNi43IHogbSAtMjc2Ni4wMywtNTEgYyAtMTg5LjQzLDAgLTM2NS41Niw1Ni45IC01MTIuMywxNTQuNCAtMjQ5Ljc0LDE2NiAtNDE0LjM0LDQ0OS45IC00MTQuMzQsNzcyLjMgMCw1MTEuOCA0MTQuODQsOTI2LjYgOTI2LjY0LDkyNi42IDI4OS43MiwwIDU0OC4zNywtMTMzIDcxOC4yOSwtMzQxLjIgMTMwLjIyLC0xNTkuNiAyMDguMzQsLTM2My40IDIwOC4zNSwtNTg1LjQgLTAuMDIsLTUxMS44IC00MTQuODYsLTkyNi43IC05MjYuNjQsLTkyNi43IHogbSAtMjc2Ni4wNSwtMjk2LjEgYyAtMjQzLjY0LDAgLTQ2NS4zMiw5NCAtNjMwLjcyLDI0Ny43IC0xODIuMDMsMTY5LjIgLTI5NS45MSw0MTAuOCAtMjk1LjkyLDY3OC45IDAuMDEsMjk5LjkgMTQyLjQ2LDU2Ni41IDM2My40LDczNS45IDE1Ni4wOSwxMTkuNiAzNTEuMzYsMTkwLjcgNTYzLjI0LDE5MC43IDQxLjcyLDAgODIuOCwtMi43IDEyMy4wNywtOC4xIDI4Ni4wNywtMzcuOSA1MzAuOTIsLTIwNi40IDY3Mi43NiwtNDQzLjYgODMuMDcsLTEzOC45IDEzMC44MywtMzAxLjMgMTMwLjgzLC00NzQuOSAtMC4wMSwtNTExLjggLTQxNC44NywtOTI2LjYgLTkyNi42NiwtOTI2LjYgeiBtIDE1MjUwLjU4LC04NDAgYyAtMjUsOTI3LjUgLTc1LjIsMTg0OC40IC0xNTAuNywyNzUzLjkgLTguMyw5OS44IC0xNywxOTkuNCAtMjUuOSwyOTguOCAtMjY2Mi42LDYzNC40IC01ODM0LjMsOTA5LjcgLTg3OTEuOCw5MDkuNyAtMzI5NS44NiwwLjEgLTYzMjYuNDksLTM0Mi4yIC04MDg4LjE2LC05MDguNSAtMjguMjksLTMxNS4yIC01My40OCwtNjMyLjMgLTc1LjYyLC05NTEuMSAtOC4yOSwtMTE5LjMgLTE2LjE2LC0yMzguOCAtMjMuNTksLTM1OC42IC00LjIzLC02OC4zIC04LjMzLC0xMzYuNyAtMTIuMjksLTIwNS4yIC0xLjk4LC0zNC4yIC0zLjkzLC02OC40IC01LjgzLC0xMDIuNyAtMy44MiwtNjguNSAtNy40OSwtMTM3LjEgLTExLjA0LC0yMDUuOCAtMy41MiwtNjguNiAtNi45MiwtMTM3LjMgLTEwLjE4LC0yMDYuMSAtMi4wMSwtNDIuNSAtMy45NywtODUgLTUuODgsLTEyNy42IC03LjYyLC0xNzAuMiAtMTQuMzgsLTM0MC44IC0yMC4yOSwtNTExLjUgLTQuNDQsLTEyOC4xIC04LjM4LC0yNTYuNCAtMTEuODUsLTM4NC44IC0xLjc2LC02NC44IC0zLjM3LC0xMjkuNyAtNC44OCwtMTk0LjcgMjc3OC45OCw0NDEuNSA1NTkyLjk1LDY2MiA4NDA2LjkxLDY2MiAyOTU5LjQsMCA1OTE4LjgsLTI0My45IDg4MzcuNSwtNzMwLjkgLTEuOSw4Ny43IC00LDE3NS40IC02LjQsMjYzLjEiIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMjYzMy4zMzMzKSIgLz4KICAgICAgPHBhdGggZmlsbD0iIzBkNSIgZD0ibSA1MjM1LjU1LDE0ODY5LjggYyAtMTYwLjQ5LDE2MC41IC0zODEuOTksMjU5LjYgLTYyNi44MywyNTkuNiAtMjQ0Ljg1LDAgLTQ2Ni4zNCwtOTkuMSAtNjI2LjgyLC0yNTkuNiAtNTAuMTUsLTUwLjIgLTk0LjMzLC0xMDYuMyAtMTMxLjM1LC0xNjcuMiAtODEuNDEsLTEzNCAtMTI4LjI3LC0yOTEuMyAtMTI4LjI4LC00NTkuNiAwLjAxLC0yNDQuOSA5OS4xOCwtNDY2LjMgMjU5LjYzLC02MjYuOCAxNjAuNDgsLTE2MC41IDM4MS45NywtMjU5LjcgNjI2LjgyLC0yNTkuNyAyNDQuODQsMCA0NjYuMzQsOTkuMiA2MjYuODMsMjU5LjcgODkuMTUsODkuMSAxNTkuMzcsMTk3LjIgMjA0LjE5LDMxNy41IDM1Ljg0LDk2LjMgNTUuNDUsMjAwLjUgNTUuNDUsMzA5LjMgLTAuMDEsMjQ0LjkgLTk5LjE5LDQ2Ni4zIC0yNTkuNjQsNjI2LjgiIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMjYzMy4zMzMzKSIgLz4KICAgICAgPHBhdGggZmlsbD0iI2Y1MCIgZD0ibSA4MDAxLjU4LDE1MTY2IGMgLTE2MC40OCwxNjAuNCAtMzgxLjk2LDI1OS42IC02MjYuODEsMjU5LjYgLTI0NC44NywwIC00NjYuMzUsLTk5LjIgLTYyNi44MywtMjU5LjYgLTQ0LjMzLC00NC4zIC04My45NywtOTMuNCAtMTE4LjE1LC0xNDYuMiAtODkuNTEsLTEzOC41IC0xNDEuNDcsLTMwMy40IC0xNDEuNDcsLTQ4MC42IDAuMDEsLTI0NC45IDk5LjE4LC00NjYuNCAyNTkuNjIsLTYyNi44IDE2MC40OCwtMTYwLjUgMzgxLjk2LC0yNTkuNyA2MjYuODMsLTI1OS43IDI0NC44NiwwIDQ2Ni4zMyw5OS4yIDYyNi44MSwyNTkuNyA3Ni44Myw3Ni44IDEzOS41OSwxNjcuNiAxODQuMTYsMjY4LjMgNDguNTEsMTA5LjYgNzUuNDYsMjMwLjkgNzUuNDcsMzU4LjUgLTAuMDEsMjQ0LjggLTk5LjE4LDQ2Ni4zIC0yNTkuNjMsNjI2LjgiIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMjYzMy4zMzMzKSIgLz4KICAgICAgPHBhdGggZmlsbD0iI2ZkMCIgZD0ibSAxMTAyNy4yLDE0NTkzLjMgYyAtMC44LDI0My42IC05OS44LDQ2My45IC0yNTkuNiw2MjMuNyAtMTYwLjUsMTYwLjQgLTM4MS45LDI1OS42IC02MjYuOCwyNTkuNiAtMjQ0Ljg0LDAgLTQ2Ni4zNCwtOTkuMiAtNjI2LjgzLC0yNTkuNiAtOTcuMjMsLTk3LjMgLTE3MS45NiwtMjE2LjkgLTIxNS43NiwtMzUwLjYgLTI4LjQ2LC04Ni45IC00My44NiwtMTc5LjggLTQzLjg3LC0yNzYuMiAwLjAxLC0yNDQuOSA5OS4xOCwtNDY2LjQgMjU5LjYzLC02MjYuOSAxNjAuNDksLTE2MC40IDM4MS45OSwtMjU5LjYgNjI2LjgzLC0yNTkuNiAyNDQuOSwwIDQ2Ni4zLDk5LjIgNjI2LjgsMjU5LjYgMTYwLjUsMTYwLjUgMjU5LjYsMzgyIDI1OS43LDYyNi45IDAsMSAtMC4xLDIuMSAtMC4xLDMuMSIgdHJhbnNmb3JtPSJtYXRyaXgoMC4xMzMzMzMzMywwLDAsLTAuMTMzMzMzMzMsMCwyNjMzLjMzMzMpIiAvPgogICAgICA8cGF0aCBmaWxsPSIjOTA5IiBkPSJtIDE5ODY1LjcsMTIyMTMuMyBjIC0xLjksODcuNyAtNCwxNzUuNCAtNi40LDI2My4xIC01Njg5LDk3Mi40IC0xMTU0NC4wOSw5NzUgLTE3MjMzLjEzLDAuNSAtMS43NiwtNjQuOCAtMy4zNywtMTI5LjcgLTQuODgsLTE5NC43IDI3NzguOTgsNDQxLjUgNTU5Mi45NSw2NjIgODQwNi45MSw2NjIgMjk1OS40LDAgNTkxOC44LC0yNDMuOSA4ODM3LjUsLTczMC45IiB0cmFuc2Zvcm09Im1hdHJpeCgwLjEzMzMzMzMzLDAsMCwtMC4xMzMzMzMzMywwLDI2MzMuMzMzMykiIC8+CiAgICAgIDxwYXRoIGZpbGw9IiNmN2YiIGQ9Im0gNDYwOC43MiwxNTE2OS42IGMgNDEuNzIsMCA4Mi44LC0yLjcgMTIzLjA3LC04LjEgNDg4Ni41NywxMjQwLjEgMTAwODEuNjEsMTI3NiAxNDk3Ni44MSw2OC44IC04LjMsOTkuOCAtMTcsMTk5LjQgLTI1LjksMjk4LjggLTI2NjIuNiw2MzQuNCAtNTgzNC4zLDkwOS43IC04NzkxLjgsOTA5LjcgLTMyOTUuODYsMC4xIC02MzI2LjQ5LC0zNDIuMiAtODA4OC4xNiwtOTA4LjUgLTI4LjI5LC0zMTUuMiAtNTMuNDgsLTYzMi4zIC03NS42MiwtOTUxLjEgNDM2LjM1LDE0My4yIDg3NS45NiwyNzYuNCAxMzE4LjM2LDM5OS43IDE1Ni4wOSwxMTkuNiAzNTEuMzYsMTkwLjcgNTYzLjI0LDE5MC43IiB0cmFuc2Zvcm09Im1hdHJpeCgwLjEzMzMzMzMzLDAsMCwtMC4xMzMzMzMzMywwLDI2MzMuMzMzMykiIC8+CiAgICA8L2c+CiAgPC9nPgo8L3N2Zz4K",
+          "title": {
+            "uk": "Код, який працює",
+            "en": "Code that works",
+            "de": "Code, der funktioniert"
+          },
+          "content": {
+            "uk": [
+              "Наші розробники знають таємні заклинання, тому наші сайти та додатки не падають (навіть якщо ретроградний Меркурій)."
+            ],
+            "en": [
+              "Our developers know secret spells, which is why our websites and apps never crash (even when Mercury is in retrograde)."
+            ],
+            "de": [
+              "Unsere Entwickler kennen geheime Zaubersprüche, deshalb stürzen unsere Websites und Apps nicht ab (selbst wenn Merkur rückläufig ist)."
+            ]
+          },
+          "size": 120
+        },
+        {
+          "type": "card",
+          "icon": "mdi-account-cowboy-hat",
+          "title": {
+            "uk": "Менеджмент без валідолу",
+            "en": "Management without Validol",
+            "de": "Management ohne Validol"
+          },
+          "content": {
+            "uk": [
+              "Ми не зникаємо в п'ятницю ввечері. Ми просто переходимо у паралельну реальність, але залишаємося на зв'язку."
+            ],
+            "en": [
+              "We don’t vanish on Friday evenings. We simply slip into a parallel reality, but we stay in touch."
+            ],
+            "de": [
+              "Wir verschwinden nicht am Freitagabend. Wir begeben uns lediglich in eine Parallelwelt, bleiben aber in Verbindung."
+            ]
+          },
+          "background": "accent",
+          "color": "dark-grey",
+          "size": 82
+        }
+      ],
+      "uniformCardIcon": false
+    }
+  ],
+  "seo": {}
+}

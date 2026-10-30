@@ -1,0 +1,91 @@
+.text-shadow {
+  text-shadow: 0 0 8px #0008;
+}
+
+h1, h2, h3, h4, .default-text, .secondary-text, .small-text, .link-text, .button-text {
+  font-family: var(--main-font);
+}
+
+h2,
+h3 {
+  font-weight: 600;
+  color: var(--black);
+}
+
+h1, .text-h1 {
+  font-size: 96px;
+  font-weight: 700;
+  color: var(--white);
+}
+h2, .text-h2 {
+  font-size: 36px;
+}
+h3, .text-h3 {
+  font-size: 22px;
+}
+h4, .text-h4 {
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--black);
+}
+
+.default-text-1  {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--black);
+}
+.default-text-2 {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--black);
+}
+
+.secondary-text-1 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--black);
+}
+.secondary-text-2 {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--black);
+}
+
+.small-text {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--black);
+}
+
+.text-600 {
+  font-weight: 600;
+}
+.text-400 {
+  font-weight: 400;
+}
+
+.button-text-elipsed {
+  max-width: 130px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.text-grey {
+  color: var(--dark-grey) !important;
+}
+
+@media screen and (max-width: 600px) {
+  h1, .text-h1 {
+    font-size: 68px;
+  }
+  h2, .text-h2 {
+    font-size: 32px;
+  }
+  h3, .text-h3 {
+    font-size: 20px;
+  }
+  h4, .text-h4 {
+    font-size: 18px;
+  }
+}

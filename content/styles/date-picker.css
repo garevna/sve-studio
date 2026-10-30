@@ -1,0 +1,128 @@
+.date-picker-overlay {
+  z-index: 1000 !important;
+}
+
+.v-picker.v-sheet {
+  display: grid;
+  grid-auto-rows: min-content;
+  grid-template-areas: "body";
+  grid-template-columns: 100%;
+  overflow-x: visible !important;
+  margin-left: 0px !important;
+  width: 100%;
+  margin-right: 0 !important;
+  /* background: var(--light-grey-2) !important;
+  border-radius: var(--large-border-radius) !important; */
+}
+
+.custom-date-picker .v-date-picker-controls {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  row-gap: 16px;
+  margin-bottom: 16px;
+  background: var(--bright-grey);
+  color: var(--primary) !important;
+}
+
+.custom-date-picker .v-date-picker-controls > .v-btn:first-child {
+  color: var(--primary) !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  margin-left: 8px;
+}
+
+.custom-date-picker .v-date-picker-controls>.v-btn:first-child:disabled {
+  color: var(--grey) !important;
+}
+
+.custom-date-picker .v-date-picker-controls>.v-btn:nth-child(2) {
+  display: none;
+}
+
+.v-date-picker-controls > *:nth-child(4) {
+  color: var(--primary);
+}
+
+.custom-date-picker .v-date-picker-month {
+    margin-bottom: 0px !important;
+}
+
+.custom-date-picker .v-date-picker-month__weekday {
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    color: var(--blue) !important;
+    opacity: 0;
+}
+
+.custom-date-picker .v-btn--variant-outlined {
+    border: var(--light-border);
+    background: var(--soft-grey);
+}
+
+.custom-date-picker .v-btn--variant-outlined:disabled {
+    opacity: 0.7;
+}
+
+.custom-date-picker .v-btn--variant-text {
+    color: var(--primary);
+}
+
+.v-date-picker-month__day .v-btn.v-date-picker-month__day-btn {
+    border-radius: var(--small-border-radius) !important;
+    height: 36px !important;
+    width: 36px;
+    font-size: 14px !important;
+    font-weight: 600;
+}
+
+.v-date-picker-month__day--selected .v-btn.v-date-picker-month__day-btn {
+    background: var(--selected-dates-fone-color) !important;
+    color: var(--selected-dates-text-color) !important;
+}
+
+.v-date-picker-month__day--selected .v-btn.v-date-picker-month__day-btn:disabled,
+.v-date-picker-month__day--selected .v-btn--disabled {
+    background: transparent !important;
+    color: var(--grey) !important;
+    opacity: 1;
+}
+
+.v-date-picker-month__day--selected .v-btn.v-date-picker-month__day-btn:disabled .v-btn__overlay {
+    opacity: 0;
+}
+
+[data-testid="prev-month"]:disabled {
+  opacity: 0;
+}
+
+.date-picker-card {
+  max-width: 420px;
+  min-width: 336px !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.v-menu .v-card--variant-elevated {
+  background: var(--light-grey-2) !important;
+  /* border-radius: var(--default-border-radius) !important; */
+}
+
+.v-date-picker-month__days {
+  grid-template-columns: min-content min-content min-content min-content min-content min-content min-content !important;
+  /* column-gap: 8px !important; */
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--blue);
+}
+
+/* .date-picker-available-date {
+    background: var(--available-date-fone-color) !important;
+} */
+
+.available-date {
+    background: var(--available-date-fone-color) !important;
+}

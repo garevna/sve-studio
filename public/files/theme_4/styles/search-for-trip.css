@@ -1,0 +1,220 @@
+.simple-menu-activator {
+    background: var(--light-grey-2) !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 12px 16px !important;
+    border-radius: var(--super-border-radius) !important;
+    text-transform: none !important;
+}
+
+.route-select-panel,
+.dates-and-tickets {
+    height: 80px;
+    border-radius: var(--super-border-radius);
+    background: var(--light-grey-2);
+}
+
+.search-panel-tickets {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background: var(--light-grey-2);
+    border-radius: var(--super-border-radius);
+}
+.search-button {
+    margin: 0 !important;
+    height: 80px !important;
+    padding: 0 24px;
+    border-radius: var(--super-border-radius) !important;
+}
+
+.back-route-checkbox {
+    border-radius: var(--super-border-radius);
+    background: var(--light-grey-2);
+    padding: 0 24px;
+}
+
+.search-panel-passengers {
+    display: grid;
+    grid-template-columns: 164px 32px 32px 32px;
+    align-items: center;
+}
+
+/* .search-panel-passengers-header {
+    background: var(--bright-grey);
+    font-size: 18px;
+    font-weight: 500;
+} */
+
+.hero-section-wrapper > div {
+    min-height: 800px;
+}
+
+.search-panel-passengers-header {
+    background: var(--bright-grey);
+    height: 52px;
+    border-radius: var(--default-border-radius) var(--default-border-radius) 0 0 !important;
+    font-size: 16px !important;
+    font-weight: 500 !important;
+    color: var(--white) !important;
+}
+
+.search-panel-passengers-title {
+    display: block;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.search-panel-passengers-number {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.active-bus,
+.not-active-bus {
+    border-radius: var(--extra-small-border-radius);
+    box-sizing: border-box;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.active-bus {
+    padding: 12px;
+    background: var(--bright-grey);
+    color: var(--light-grey-2);
+}
+
+.not-active-bus {
+    padding: 8px;
+    border: solid 1px var(--light-grey-1);
+    color: var(--dark-grey);
+}
+
+.main-search-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    column-gap: 24px;
+    height: max-content;
+}
+
+.route-select-panel {
+    width: 528px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.grid-area-from {
+    grid-area: from;
+}
+
+.grid-area-to {
+    grid-area: to;
+}
+
+.dates-and-tickets {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    /* height: 64px; */
+}
+
+.grid-area-switch {
+    grid-area: switcher;
+    align-self: center;
+}
+
+@media screen and (max-width: 1240px) {
+    .grid-area-tickets {
+        margin-top: 0px;
+        margin-bottom: 28px;
+    }
+    .main-search-wrapper {
+        flex-direction: column;
+        row-gap: 12px;
+        height: max-content;
+    }
+
+    .route-select-panel,
+    .dates-and-tickets {
+        width: 670px;
+        margin-inline: auto;
+    }
+}
+
+@media screen and (max-width: 710px) {
+    .main-search-wrapper {
+        flex-direction: column;
+        row-gap: 24px;
+        height: max-content;
+    }
+
+    .route-select-panel,
+    .dates-and-tickets {
+        width: calc(100% - 40px);
+    }
+
+    .route-select-panel {
+        display: grid;
+        grid-template-columns: 1fr 68px;
+        grid-template-rows: 64px 64px;
+        grid-template-areas: 'from switcher' 'to switcher';
+        align-items: start;
+        column-gap: 24px;
+        margin-bottom: 24px;
+    }
+
+    .dates-and-tickets {
+        flex-direction: column;
+        height: max-content;
+        align-items: start;
+    }
+
+    .grid-area-from,
+    .grid-area-to {
+        padding: 12px 16px;
+        color: var(--grey);
+        align-content: center;
+        min-width: 240px;
+        cursor: pointer;
+    }
+
+    /* .grid-area-from {
+    border-bottom: solid 1px var(--light-grey-1);
+  } */
+    .grid-area-switch {
+        margin-right: 20px !important;
+    }
+
+    .route-select-panel>*:first-child,
+    .dates-and-tickets>*:first-child {
+        width: 100%;
+        /* border-bottom: solid 1px var(--bright-grey) !important; */
+    }
+
+    /* .route-select-panel > *:first-child {
+    margin-bottom: 8px;
+  } */
+    .dates-and-tickets>*:first-child {
+        padding-bottom: 8px;
+    }
+
+    /* .route-select-panel, .dates-and-tickets {
+    flex-direction: column;
+    height: max-content;
+    align-items: start;
+  } */
+    .search-panel-tickets {
+        flex-direction: column !important;
+    }
+
+    .search-panel-button {
+        width: 100%;
+        padding: 8px;
+    }
+}

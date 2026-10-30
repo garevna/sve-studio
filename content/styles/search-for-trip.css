@@ -1,0 +1,236 @@
+.simple-menu-activator {
+  background: var(--light-grey-2) !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 12px 16px !important;
+  border-radius: var(--default-border-radius) !important;
+  text-transform: none !important;
+}
+
+/* .simple-menu-activator {
+  width: 320px;
+  padding: 0 0 12px 0;
+  border-bottom: var(--light-border);
+  border-radius: var(--large-border-radius);
+} */
+
+.route-select-panel {
+  border-radius: var(--large-border-radius);
+  background: var(--light-grey-2);
+}
+
+.dates-and-tickets {
+  border-radius: var(--large-border-radius);
+  background: var(--light-grey-2);
+  padding: 8px;
+}
+
+.grid-area-date-from,
+.grid-area-date-to {
+  justify-items: start;
+  padding: 0;
+  color: var(--grey);
+  align-content: center;
+  width: 340px;
+  height: 60px;
+  border: var(--light-border);
+  border-radius: var(--default-border-radius);
+  background: var(--light-grey-2);
+}
+
+.grid-area-date-from {
+  grid-area: date-from;
+}
+.grid-area-date-to {
+  grid-area: date-to;
+}
+
+.search-panel-tickets {
+  grid-area: tickets;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background: var(--light-grey-2);
+  border-radius: var(--default-border-radius);
+  border: var(--light-border);
+  height: 100%;
+}
+.search-panel-button {
+  grid-area: search-button;
+  margin-top: -20px !important;
+  height: 100%;
+  margin-top: 8px;
+  /* height: 56px !important; */
+  /* padding: 0 32px; */
+}
+
+.search-panel-button > .v-btn {
+  height: 60px;
+  margin-top: 16px !important;
+}
+
+.search-panel-passengers {
+  /* grid-area: passengers; */
+  display: grid;
+  grid-template-columns: 164px 32px 32px 32px;
+  align-items: center;
+}
+
+.search-panel-passengers-header {
+  background: var(--light-blue);
+  font-size: 18px;
+  font-weight: 500;
+  height: 52px;
+  border-radius: var(--default-border-radius) var(--default-border-radius) 0 0 !important;
+  color: var(--primary);
+}
+
+.search-panel-passengers-number {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.main-search-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  /* flex-direction: row; */
+  align-items: center;
+  justify-content: center;
+  column-gap: 40px;
+  row-gap: 24px;
+  height: max-content;
+}
+
+.route-select-panel {
+  width: 528px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: 8px;
+}
+
+/* .grid-area-date-to {
+  grid-area: date-to;
+} */
+
+.dates-and-tickets {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  height: max-content;
+}
+
+.grid-area-switch {
+  grid-area: switcher;
+  align-self: center;
+}
+
+@media screen and (max-width: 1020px) {
+  .route-select-panel {
+    width: 100%;
+  }
+  .dates-and-tickets {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto 72px;
+    /* background: transparent; */
+  }
+
+  .grid-area-date-from {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .grid-area-date-to {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .search-panel-tickets {
+    grid-column: 2;
+    grid-row: 1;
+    align-items: start;
+  }
+
+  .search-panel-button {
+    grid-column: 2;
+    /* Кнопка ВСЕГДА будет во второй строке, даже если первой строки для нее нет */
+    grid-row: 2;
+  }
+
+  .dates-and-tickets:not(:has(.grid-area-date-to)) .search-panel-button {
+    grid-row: 2;
+    grid-column: 1 / span 2;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .route-select-panel {
+    display: grid;
+    grid-template-columns: calc(100% - 40px) 48px;
+    grid-template-rows: 64px 64px;
+    grid-template-areas: 'from switcher' 'to switcher';
+    align-items: start;
+  }
+
+  .grid-area-switch {
+    width: 48px !important;
+    height: 48px !important;
+    font-size: 36px !important;
+  }
+
+  .dates-and-tickets {
+    display: flex;
+    flex-direction: column;
+    height: max-content;
+    align-items: start;
+    width: 100%;
+    /* margin-inline: 16px; */
+  }
+
+  .search-panel-button {
+    display: block;
+    height: 80px !important;
+  }
+
+  /* .grid-area-switch {
+    margin-right: 20px !important;
+  } */
+
+  .grid-area-date-from,
+  .grid-area-date-to,
+  .search-panel-tickets {
+    width: 100%;
+    height: 60px;
+    margin-bottom: 8px;
+  }
+
+  /* .route-select-panel>*:first-child,
+  .dates-and-tickets>*:first-child {
+    width: 100%;
+    border-bottom: solid 1px var(--bright-grey) !important;
+  } */
+
+  .dates-and-tickets > *:first-child {
+    padding-bottom: 8px;
+  }
+
+  .search-panel-tickets {
+    flex-direction: column !important;
+  }
+
+  .search-panel-button {
+    width: 100%;
+    padding: 12px 0;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .route-select-panel,
+  .dates-and-tickets {
+    border-radius: 0;
+    background: transparent;
+  }
+}

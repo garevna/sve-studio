@@ -1,0 +1,57 @@
+.tickets-info-card-desktop {
+    /* background: var(--bright-grey); */
+    border-radius: var(--default-border-radius);
+    border: var(--light-border);
+    width: 353px;
+}
+
+.tickets-info-card-desktop--title {
+    background: var(--bright-grey);
+    border-radius: var(--default-border-radius) var(--default-border-radius) 0 0;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--white);
+}
+
+.seat-class {
+    border-radius: 50%;
+    padding: 4px 8px;
+}
+
+.booked-seat {
+    background: var(--booked-seat-background);
+    color: var(--booked-seat-color);
+    border: var(--booked-seat-border);
+}
+
+.active-booked-seat {
+    background: var(--booked-seat-background);
+    color: var(--booked-seat-color);
+    border: var(--booked-seat-active-border);
+}
+
+.recommended-seat {
+    border: var(--recommended-seat-border);
+}
+.not-available-seat {
+    background: var(--not-available-seat-background);
+    color: var(--not-available-seat-color);
+    border: var(--not-available-seat-border);
+}
+
+.bus-scheme-legend-bordered-item {
+    border: solid 1px var(--light-grey-1);
+    padding: 4px 8px;
+    column-gap: 4px;
+    border-radius: var(--small-border-radius) !important;
+    align-items: center;
+}
+
+.bus-scheme-legend-item-icon {
+    display: inline-block;
+    margin-right: 16px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: solid 1px var(--light-grey-1);
+}

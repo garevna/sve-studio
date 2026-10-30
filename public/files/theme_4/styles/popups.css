@@ -1,0 +1,82 @@
+.popup-card {
+  min-width: 353px;
+  max-width: 360px;
+  height: max-content;
+  border-radius: var(--default-border-radius);
+  background: var(--white);
+  /* padding: 8px 24px 24px 24px !important; */
+}
+.popup-close-button {
+  text-align: right;
+  margin-top: 12px;
+  margin-right: -4px;
+}
+
+.popup-close-button::after {
+  text-align: right;
+  content: '⛌';
+  font-size: 16px;
+  color: var(--grey);
+  cursor: pointer;
+}
+
+.popup-card-title {
+  display: grid !important;
+  grid-template-columns: 1fr 28px;
+}
+
+.popup-card-title *:last-child {
+  color: var(--dark-grey);
+}
+
+.popup-card-title *:first-child {
+  font-weight: 500;
+  color: var(--black);
+}
+
+.popup-card-text {
+  color: var(--dark-grey);
+}
+
+.popup-title {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 24px;
+  color: var(--black);
+  text-align: center;
+  white-space: break-spaces;
+  margin-bottom: 20px;
+}
+
+.popup-text-black, .popup-text-grey {
+  font-size: 16px;
+  font-weight: 400;
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.popup-text-black {
+  color: var(--black);
+}
+
+.popup-text-grey {
+  color: var(--dark-grey);
+}
+
+.user-dashboard-reservations-passenger-title {
+  border-radius: var(--default-border-radius) var(--default-border-radius) 0 0;
+  background: var(--bright-grey);
+  padding: 4px 16px;
+}
+
+.user-dashboard-reservations-passenger-content {
+  border-radius: 0 0 var(--default-border-radius) var(--default-border-radius);
+  border: solid 1px var(--light-grey-1);
+  padding: 12px 16px;
+}
+
+@media screen and (max-width: 600px), (max-height: 480px) {
+  .popup-title {
+    font-size: 18px;
+  }
+}

@@ -1,0 +1,140 @@
+{
+  "default": "clarity",
+  "looks": [
+    {
+      "id": "clarity",
+      "name": "Clarity",
+      "description": "Світлий і стриманий: білі поверхні, тонкі лінії, синій акцент. Шрифт Inter.",
+      "font": "inter",
+      "colors": {
+        "bg": "#F6F7F9",
+        "surface": "#FFFFFF",
+        "surface-muted": "#F1F3F6",
+        "surface-sunken": "#E9ECF1",
+        "border": "#E3E6EB",
+        "border-strong": "#C9CED6",
+        "text": "#16181D",
+        "text-muted": "#5E6573",
+        "text-subtle": "#8A909C",
+        "primary": "#2F6BFF",
+        "primary-hover": "#1F57E0",
+        "primary-soft": "#E8EFFF",
+        "on-primary": "#FFFFFF",
+        "danger": "#D93838",
+        "danger-soft": "#FDECEC",
+        "success": "#1E9E5A",
+        "warning": "#C98A12",
+        "focus": "#2F6BFF59",
+        "topbar-bg": "#FFFFFF",
+        "topbar-text": "#16181D",
+        "topbar-muted": "#5E6573",
+        "topbar-border": "#E3E6EB",
+        "topbar-hover": "#F1F3F6",
+        "block-outline": "#2F6BFF",
+        "backdrop": "#0E111733"
+      },
+      "radius": {
+        "sm": 6,
+        "md": 8,
+        "lg": 12
+      },
+      "shadow": {
+        "sm": "0 1px 2px #1018280F",
+        "md": "0 4px 12px #1018281A",
+        "lg": "0 16px 40px #10182829"
+      },
+      "control": 36,
+      "topbarHeight": 56
+    },
+    {
+      "id": "graphite",
+      "name": "Graphite",
+      "description": "Строгий робочий: темна верхня панель, теплі сірі поверхні, бірюзовий акцент. Шрифт Manrope.",
+      "font": "manrope",
+      "colors": {
+        "bg": "#F2F1EE",
+        "surface": "#FFFFFF",
+        "surface-muted": "#F7F6F3",
+        "surface-sunken": "#E8E6E1",
+        "border": "#DDDAD3",
+        "border-strong": "#BFBAB0",
+        "text": "#1F1E1C",
+        "text-muted": "#66625A",
+        "text-subtle": "#928D84",
+        "primary": "#0F766E",
+        "primary-hover": "#0B5F58",
+        "primary-soft": "#E3F2F0",
+        "on-primary": "#FFFFFF",
+        "danger": "#B42318",
+        "danger-soft": "#FBEAE8",
+        "success": "#2E7D32",
+        "warning": "#B26B00",
+        "focus": "#0F766E59",
+        "topbar-bg": "#1F1E1C",
+        "topbar-text": "#F4F2EE",
+        "topbar-muted": "#B5B0A6",
+        "topbar-border": "#1F1E1C",
+        "topbar-hover": "#34322E",
+        "block-outline": "#0F766E",
+        "backdrop": "#1F1E1C40"
+      },
+      "radius": {
+        "sm": 4,
+        "md": 6,
+        "lg": 8
+      },
+      "shadow": {
+        "sm": "0 1px 2px #1F1E1C14",
+        "md": "0 6px 16px #1F1E1C1F",
+        "lg": "0 18px 44px #1F1E1C33"
+      },
+      "control": 36,
+      "topbarHeight": 52
+    },
+    {
+      "id": "pastel",
+      "name": "Pastel",
+      "description": "М’який і дружній: лавандові відтінки, великі заокруглення, фіолетовий акцент. Шрифт Nunito Sans.",
+      "font": "nunito-sans",
+      "colors": {
+        "bg": "#F5F3FC",
+        "surface": "#FFFFFF",
+        "surface-muted": "#F8F6FE",
+        "surface-sunken": "#ECE8F8",
+        "border": "#E4DEF6",
+        "border-strong": "#CBC2EA",
+        "text": "#241F3A",
+        "text-muted": "#6B6487",
+        "text-subtle": "#9A93B5",
+        "primary": "#7C3AED",
+        "primary-hover": "#6928D6",
+        "primary-soft": "#F0E8FE",
+        "on-primary": "#FFFFFF",
+        "danger": "#E0445F",
+        "danger-soft": "#FDEBEF",
+        "success": "#1F9D74",
+        "warning": "#D38B12",
+        "focus": "#7C3AED4D",
+        "topbar-bg": "#FFFFFFE6",
+        "topbar-text": "#241F3A",
+        "topbar-muted": "#6B6487",
+        "topbar-border": "#ECE8F8",
+        "topbar-hover": "#F3EFFD",
+        "block-outline": "#7C3AED",
+        "backdrop": "#241F3A33"
+      },
+      "radius": {
+        "sm": 8,
+        "md": 12,
+        "lg": 18
+      },
+      "shadow": {
+        "sm": "0 1px 3px #3B2A7A14",
+        "md": "0 8px 20px #3B2A7A1F",
+        "lg": "0 20px 48px #3B2A7A2E"
+      },
+      "control": 40,
+      "topbarHeight": 60
+    }
+  ]
+}

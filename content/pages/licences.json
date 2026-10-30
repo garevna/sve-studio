@@ -1,0 +1,236 @@
+{
+  "id": "licences",
+  "title": {
+    "uk": "Ліцензії",
+    "en": "Licences",
+    "de": "Lizenzen"
+  },
+  "breadcrumbs": false,
+  "backButton": false,
+  "hero": false,
+  "blocks": [
+    {
+      "type": "parallax",
+      "content": {
+        "uk": "/api/content/images/aac9af90a1a64eaf375895888ab37692ad7ea83bb9c00430787bf60876d7864e.jpg",
+        "en": "/api/content/images/aac9af90a1a64eaf375895888ab37692ad7ea83bb9c00430787bf60876d7864e.jpg",
+        "de": "/api/content/images/aac9af90a1a64eaf375895888ab37692ad7ea83bb9c00430787bf60876d7864e.jpg"
+      },
+      "children": [
+        {
+          "type": "header",
+          "content": {
+            "uk": "Документи для перетину кордону",
+            "en": "Documents required for crossing the border",
+            "de": "Reisedokumente für den Grenzübertritt"
+          }
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "children": [
+        {
+          "type": "section",
+          "children": [
+            {
+              "type": "header",
+              "class": "mb-5",
+              "content": {
+                "uk": "Перетин кордону до країн ЄС: які документи потрібні",
+                "en": "Crossing the border into EU countries: what documents are required",
+                "de": "Grenzübertritt in EU-Länder: Welche Dokumente werden benötigt?"
+              }
+            },
+            {
+              "type": "text",
+              "class": "h6 text-thin text-black mb-5",
+              "content": {
+                "uk": "Перед тим як вирушати в подорож до країн ЄС, важливо переконатися, що у вас (та ваших супутників — дітей або домашніх тварин) є всі необхідні документи. У цій добірці — актуальні вимоги до в'їзду для дорослих, дітей і тварин вагою до 10 кг.",
+                "en": "Before setting off on a trip to EU countries, it is important to ensure that you (and your travelling companions – children or pets) have all the necessary documents. This guide sets out the current entry requirements for adults, children and pets weighing up to 10 kg.",
+                "de": "Bevor Sie eine Reise in die EU-Länder antreten, sollten Sie sich vergewissern, dass Sie (und Ihre Mitreisenden – Kinder oder Haustiere) über alle erforderlichen Dokumente verfügen. In dieser Übersicht finden Sie die aktuellen Einreisebestimmungen für Erwachsene, Kinder und Tiere mit einem Gewicht von bis zu 10 kg."
+              }
+            },
+            {
+              "type": "text",
+              "class": "small-text text-thin text-grey",
+              "content": {
+                "uk": "*Уточнюйте актуальні правила перед подорожжю: країни ЄС можуть змінювати вимоги в залежності від епідеміологічної ситуації чи політичних рішень.",
+                "en": "*Please check the latest rules before travelling: EU countries may change their requirements depending on the epidemiological situation or political decisions.",
+                "de": "*Informieren Sie sich vor Reiseantritt über die aktuellen Bestimmungen: Die EU-Länder können ihre Anforderungen je nach epidemiologischer Lage oder politischen Entscheidungen ändern."
+              }
+            }
+          ]
+        },
+        {
+          "type": "image",
+          "content": {
+            "uk": "/api/content/images/57c145288f383ad41d09ceb1442038edf0186ebd8a4ea5e80fdc622cb7912752.jpg",
+            "en": "/api/content/images/57c145288f383ad41d09ceb1442038edf0186ebd8a4ea5e80fdc622cb7912752.jpg",
+            "de": "/api/content/images/57c145288f383ad41d09ceb1442038edf0186ebd8a4ea5e80fdc622cb7912752.jpg"
+          }
+        }
+      ]
+    },
+    {
+      "type": "float",
+      "children": [
+        {
+          "type": "card-with-toolbar-image",
+          "width": 390,
+          "height": 200,
+          "image": "/api/content/images/d56fbd9850eabeeeb0b3c0c86f40ec93b393b3384b1e42530ea4717db0409ce4.jpg",
+          "children": [
+            {
+              "type": "title",
+              "class": "text-center my-4",
+              "content": {
+                "uk": "Для дорослого",
+                "en": "For adults",
+                "de": "Für Erwachsene"
+              }
+            },
+            {
+              "type": "text",
+              "content": {
+                "uk": "• Закордонний паспорт (біометричний або небіометричний — залежить від чинних правил в’їзду).",
+                "en": "• International passport (biometric or non-biometric — depending on the current entry requirements).",
+                "de": "• Reisepass (biometrisch oder nicht biometrisch – je nach den geltenden Einreisebestimmungen)."
+              }
+            },
+            {
+              "type": "text",
+              "content": {
+                "uk": "• Віза: для громадян України з біометричним паспортом віза не потрібна (до 90 днів у межах 180-денного періоду).",
+                "en": "• Visa: Ukrainian nationals holding a biometric passport do not require a visa (for stays of up to 90 days within a 180-day period).",
+                "de": "• Visum: Für ukrainische Staatsbürger mit einem biometrischen Reisepass ist kein Visum erforderlich (bis zu 90 Tage innerhalb eines Zeitraums von 180 Tagen)."
+              }
+            },
+            {
+              "type": "text",
+              "content": {
+                "uk": "• Підтвердження мети поїздки (бронювання готелю, запрошення тощо).",
+                "en": "• Proof of the purpose of the trip (hotel booking, invitation, etc.).",
+                "de": "• Nachweis des Reisezwecks (Hotelbuchung, Einladung usw.)."
+              }
+            },
+            {
+              "type": "text",
+              "content": {
+                "uk": "• Медичне страхування (рекомендується, але не обов’язкове для короткострокових поїздок).",
+                "en": "• Travel insurance (recommended but not compulsory for short-term trips).",
+                "de": "• Krankenversicherung (empfohlen, aber für Kurzzeitreisen nicht zwingend erforderlich)."
+              }
+            }
+          ]
+        },
+        {
+          "type": "card-with-toolbar-image",
+          "width": 390,
+          "height": 200,
+          "image": "/api/content/images/3a1e7949edc8775831992409f75dc37fada3b8989bb9e71f5c80a971a877b635.jpg",
+          "children": [
+            {
+              "type": "title",
+              "class": "text-center my-4",
+              "content": {
+                "uk": "Для дитини",
+                "en": "For a child",
+                "de": "Für Kinder"
+              }
+            },
+            {
+              "type": "text",
+              "content": {
+                "uk": "• Закордонний паспорт дитини (біометричний або небіометричний).",
+                "en": "• The child’s international passport (biometric or non-biometric).",
+                "de": "• Reisepass des Kindes (biometrisch oder nicht biometrisch)."
+              }
+            },
+            {
+              "type": "text",
+              "content": {
+                "uk": "• Свідоцтво про народження (особливо, якщо дитина подорожує з одним із батьків).",
+                "en": "• Birth certificate (particularly if the child is travelling with only one parent).",
+                "de": "• Geburtsurkunde (insbesondere, wenn das Kind mit nur einem Elternteil reist)."
+              }
+            },
+            {
+              "type": "text",
+              "content": {
+                "uk": "• Нотаріально завірена згода другого з батьків — якщо дитина перетинає кордон лише з одним із батьків або з іншою особою.",
+                "en": "• A notarised consent form from the other parent — if the child is crossing the border with only one parent or with another person.",
+                "de": "• Notariell beglaubigte Einwilligung des anderen Elternteils – falls das Kind die Grenze nur mit einem Elternteil oder einer anderen Person überquert."
+              }
+            },
+            {
+              "type": "text",
+              "content": {
+                "uk": "• Медичне страхування (рекомендується).",
+                "en": "• Medical insurance (recommended).",
+                "de": "• Krankenversicherung (empfohlen)."
+              }
+            }
+          ]
+        },
+        {
+          "type": "card-with-toolbar-image",
+          "width": 390,
+          "height": 200,
+          "image": "/api/content/images/d1fab7567083afef337f435f7e7706f7af2783bc4773ad2ea3faa7d64a3dd6a0.jpg",
+          "children": [
+            {
+              "type": "title",
+              "class": "text-center my-4",
+              "content": {
+                "uk": "Для тварини до 10 кг",
+                "en": "For pets weighing up to 10 kg",
+                "de": "Für Tiere bis 10 kg"
+              }
+            },
+            {
+              "type": "text",
+              "content": {
+                "uk": "• Паспорт Європейського зразка для тварини.",
+                "en": "• European-style pet passport.",
+                "de": "• Europäischer Heimtierausweis."
+              }
+            },
+            {
+              "type": "text",
+              "content": {
+                "uk": "• Мікрочип (ідентифікація обов’язкова).",
+                "en": "• Microchip (identification is compulsory).",
+                "de": "• Mikrochip (Identifizierung obligatorisch)."
+              }
+            },
+            {
+              "type": "text",
+              "content": {
+                "uk": "• Вакцинація проти сказу (не менше ніж за 21 день до виїзду).",
+                "en": "• Rabies vaccination (administered at least 21 days before departure).",
+                "de": "• Tollwutimpfung (mindestens 21 Tage vor der Abreise)."
+              }
+            },
+            {
+              "type": "text",
+              "content": {
+                "uk": "• Ветеринарна довідка/сертифікат (форма ЄС або інша, передбачена правилами перетину кордону).",
+                "en": "• Veterinary certificate (EU form or another form required by border crossing regulations).",
+                "de": "• Veterinärbescheinigung/Zertifikat (EU-Formular oder ein anderes, gemäß den Grenzübertrittsbestimmungen vorgeschriebenes Formular)."
+              }
+            },
+            {
+              "type": "text",
+              "content": {
+                "uk": "• Переноска, що відповідає вимогам перевізника (для тварин до 10 кг).",
+                "en": "• A carrier that meets the carrier’s requirements (for animals weighing up to 10 kg).",
+                "de": "• Transportbox, die den Anforderungen des Beförderungsunternehmens entspricht (für Tiere bis 10 kg)."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "@sve/site",
+  "private": true,
+  "license": "SEE LICENSE IN ../LICENSE",
+  "author": "Irina Fylyppova (https://github.com/garevna)",
+  "type": "module",
+  "version": "1.0.0",
+  "dependencies": {
+    "libphonenumber-js": "^1.12.9",
+    "pinia": "^3.0.1",
+    "vue": "^3.5.13",
+    "vue-3-mask": "^0.0.1-alpha",
+    "vue-router": "^4.5.0",
+    "vuetify": "3.12.5"
+  }
+}

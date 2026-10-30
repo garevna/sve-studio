@@ -1,0 +1,13 @@
+<svg width="37" height="36" viewBox="0 0 37 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- The glyph is cut out of the circle (mask), so it shows whatever is behind the icon. -->
+  <defs>
+    <mask id="glyph-cut" maskUnits="userSpaceOnUse" x="0" y="0" width="37" height="36">
+      <rect width="37" height="36" fill="white"/>
+      <g fill="black" fill-rule="evenodd" clip-rule="evenodd">
+        <path d="M15.2002 26.2498C15.6502 26.2498 15.8482 26.0446 16.1002 25.7998L18.5 23.467L15.5062 21.6613"/>
+        <path d="M15.5062 21.6612L22.7602 27.0209C23.5882 27.4774 24.1858 27.2412 24.391 26.2526L27.3444 12.3379C27.6468 11.1262 26.8822 10.5761 26.0902 10.9354L8.75186 17.6213C7.56818 18.0965 7.57538 18.756 8.53586 19.0505L12.9855 20.4394L23.2865 13.9406C23.7725 13.6454 24.2189 13.8038 23.8524 14.1293"/>
+      </g>
+    </mask>
+  </defs>
+  <path d="M18.5 36C28.4411 36 36.5 27.9411 36.5 18C36.5 8.05888 28.4411 0 18.5 0C8.55888 0 0.5 8.05888 0.5 18C0.5 27.9411 8.55888 36 18.5 36Z" fill="#C2D7FF" mask="url(#glyph-cut)"/>
+</svg>

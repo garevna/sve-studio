@@ -1,0 +1,114 @@
+[
+  {
+    "title": {
+      "uk": "Хто ми є",
+      "en": "Who we are",
+      "de": "Wer wir sind"
+    },
+    "submenu": [
+      {
+        "title": {
+          "uk": "Місія",
+          "en": "Mission",
+          "de": "Leitbild"
+        },
+        "route": "dynamic-page",
+        "params": {
+          "pageId": "about-company"
+        }
+      },
+      {
+        "title": {
+          "uk": "Асортимент",
+          "en": "Product range",
+          "de": "Sortiment"
+        },
+        "route": "dynamic-page",
+        "params": {
+          "pageId": "products"
+        }
+      }
+    ],
+    "selected": null,
+    "expanded": false
+  },
+  {
+    "title": {
+      "uk": "Для вас",
+      "en": "For You",
+      "de": "Für Sie"
+    },
+    "submenu": [
+      {
+        "title": {
+          "uk": "Особистий кабінет",
+          "en": "Personal account",
+          "de": "Persönliches Konto"
+        },
+        "route": "user-dashboard",
+        "params": {
+          "section": "trips"
+        }
+      },
+      {
+        "title": {
+          "uk": "Дружні знижки",
+          "en": "Loyalty programme",
+          "de": "Treueprogramm"
+        },
+        "route": "dynamic-page",
+        "params": {
+          "pageId": "loyality-program"
+        }
+      },
+      {
+        "title": {
+          "uk": "Допомога експертів",
+          "en": "Training",
+          "de": "Schulungen"
+        },
+        "route": "dynamic-page",
+        "params": {
+          "pageId": "transfer-services"
+        }
+      },
+      {
+        "title": {
+          "uk": "Ліцензії",
+          "en": "Licences",
+          "de": "Lizenzen"
+        },
+        "route": "dynamic-page",
+        "params": {
+          "pageId": "documents-to-cross-the-board"
+        }
+      },
+      {
+        "title": {
+          "uk": "Просунуті фічі",
+          "en": "Ticket refunds and rebooking",
+          "de": "Rückerstattung von Fahrkarten und Umbuchung"
+        },
+        "route": "dynamic-page",
+        "params": {
+          "pageId": "ticket-refund"
+        }
+      }
+    ],
+    "selected": null,
+    "expanded": false
+  },
+  {
+    "title": {
+      "uk": "Контакти",
+      "en": "Contact us",
+      "de": "Kontakt"
+    },
+    "route": "dynamic-page",
+    "params": {
+      "pageId": "contacts-page"
+    },
+    "selected": null,
+    "expanded": false
+  }
+]

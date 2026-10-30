@@ -1,0 +1,32 @@
+.parallax-content-light,
+.parallax-content-dark {
+  position: absolute;
+  border-radius: var(--default-border-radius);
+  border: solid 20px transparent;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #00000040;
+  right: 20px;
+  top: 40px;
+  bottom: 20px;
+}
+
+.parallax-content-light *,
+.parallax-content-dark * {
+  color: var(--white) !important;
+  text-shadow: 0 0 6px #000;
+}
+
+@media screen and (max-width: 960px) {
+  .v-parallax .v-responsive__sizer {
+    padding-bottom: 60% !important;
+    left: 20px;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .v-parallax .v-responsive__sizer {
+    padding-bottom: 120% !important;
+  }
+}

@@ -1,0 +1,80 @@
+.faq {
+    margin: 100px 0px;
+}
+
+.faq-expansion-panels {
+    background: transparent !important;
+    border-radius: var(--default-border-radius);
+}
+
+/* The section heading is a <p class="faq-title h2">, not an <h2>: this is
+   content inside a page, and a real heading tag here would misrepresent the
+   page's own outline to search engines. typographics.css gives .h2 the font
+   SIZE, but its weight/colour rule is element-scoped (`h2, h3 { ... }`) and
+   so never reaches a paragraph - this restores exactly what the tag used to
+   provide, and nothing more. */
+.faq-title {
+    font-weight: 600;
+    color: var(--black);
+}
+
+/* .faq-question-text/.faq-answer-text are stable marker classes FAQ.vue
+   always applies alongside the block's own editable questionClass/
+   answerClass (see that component's own comment). They carry the parts that
+   must hold regardless of whatever size/weight/colour the visual editor's
+   format menu currently has set - which the fixed .faq-item-title/.faq-item
+   below used to carry bundled in with their font styling.
+
+   line-height/letter-spacing matter here: nothing in the editor's own
+   editable vocabulary (h4, text-medium, ...) sets line-height at all, so a
+   panel's real ~67px height (16px padding top+bottom + 22px font at 160%)
+   silently collapsed to ~54px once the fixed class stopped being applied. */
+.faq-question-text {
+    line-height: 160%;
+    letter-spacing: 0.8px;
+}
+
+.faq-answer-text {
+    margin: 16px 24px;
+    white-space: pre-wrap;
+}
+
+/* The open question turns primary. This has to target the <p> itself, not
+   the panel title around it: `color` is inherited, and inheritance only
+   applies to an element with NO colour declaration of its own - the
+   question's own text-* colour class is exactly such a declaration, so a
+   rule on the title never reaches it, however !important it is. The second
+   selector covers a block whose JSON carries no questionClass and therefore
+   still renders the legacy fixed class. */
+.v-expansion-panel-title--active .faq-question-text,
+.v-expansion-panel-title--active .faq-item-title {
+    color: var(--primary) !important;
+}
+
+/* Fallback look for a block whose JSON has no questionClass/answerClass at
+   all - FAQ.vue falls back to these two fixed classes (see its template). */
+.faq-item-title {
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--dark-grey);
+    line-height: 160%;
+    letter-spacing: 0.8px;
+}
+
+.faq-item {
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--black);
+    margin: 16px 24px;
+    white-space: pre-wrap;
+}
+
+@media screen and (max-width: 480px) {
+    .faq-item-title {
+        font-size: 18px;
+    }
+
+    .faq-item {
+        font-size: 16px;
+    }
+}

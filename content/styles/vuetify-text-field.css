@@ -1,0 +1,63 @@
+.v-textarea textarea {
+  min-height: 120px !important;
+  padding: 16px !important;
+}
+
+.v-text-field {
+  border-radius: var(--default-border-radius) !important;
+  background: var(--light-grey-2);
+  border: var(--light-border);
+  margin: 8px 0;
+}
+
+.v-text-field .v-field {
+  align-items: center !important;
+}
+
+.v-field {
+  background: transparent !important;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: var(--default-border-radius);
+  padding-left: 12px;
+  --v-field-padding-start: 16px;
+  --v-field-padding-end: 16px;
+}
+
+.v-field--variant-filled .v-field__overlay {
+  display: none !important;
+}
+
+.v-field__clearable > .v-icon {
+  opacity: 0.2 !important;
+  font-size: 16px;
+}
+
+.v-field__field {
+  height: 56px !important;
+  align-items: center !important;
+}
+
+.v-field__input {
+  min-height: 48px !important;
+  min-width: 160px !important;
+  padding-left: 8px !important;
+  padding-top: 0px !important;
+  padding-bottom: 0 !important;
+}
+
+.v-field__append-inner {
+  padding: 0 12px 0 0 !important;
+}
+
+.v-field--variant-filled .v-field__outline::before,
+.v-field--variant-underlined .v-field__outline::before,
+.v-field--variant-filled .v-field__outline::after,
+.v-field--variant-underlined .v-field__outline::after {
+  border-bottom: none !important;
+}
+
+.v-field.v-field--variant-plain .v-field__clearable {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}

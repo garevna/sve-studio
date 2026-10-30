@@ -1,0 +1,10 @@
+.v-slide-group {
+  min-height: 48px !important;
+  width: 100%;
+  justify-self: center;
+}
+
+.v-slide-group__next--disabled,
+.v-slide-group__prev--disabled {
+  display: none !important;
+}

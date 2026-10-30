@@ -1,0 +1,71 @@
+.country-code-button {
+  width: 100%;
+  box-shadow: none;
+  justify-content: start;
+  padding: 12px 16px;
+  border: var(--light-border);
+  background: var(--light-grey-2);
+  border-radius: var(--default-border-radius);
+}
+
+.phone-number-input {
+    display: grid;
+    grid-template-columns: 140px 180px;
+    align-items: center;
+    height: 56px;
+    background: var(--light-grey-2);
+    border-radius: var(--large-border-radius);
+}
+
+.v-input__prepend {
+  padding-top: 0 !important;
+  align-self: center !important;
+  margin-inline-start: 8px !important;
+  margin-inline-end: 4px !important;
+}
+
+.v-number-input--inset .v-text-field,
+.v-number-input--inset .v-field--no-label input,
+.v-number-input--inset .v-text-field .v-field--active input {
+  padding: 0 !important;
+}
+
+.v-number-input--inset .v-field--variant-filled .v-field__outline::after,
+.v-number-input--inset .v-field--variant-underlined .v-field__outline::after {
+  border: none !important;
+}
+
+.v-number-input--inset .v-field__input,
+.v-number-input--inset .v-field.v-field--variant-plain .v-field__append-inner,
+.v-number-input--inset .v-field.v-field--variant-plain .v-field__prepend-inner {
+  padding-top: 0 !important;
+}
+
+.v-number-input--inset .v-divider {
+  border: none !important;
+}
+
+.v-number-input__control .v-btn {
+  background: var(--bright-grey);
+  color: var(--special);
+  border-radius: var(--default-border-radius) !important;
+  width: 32px;
+  height: 32px !important;
+  align-self: center;
+  font-size: 16px !important;
+}
+
+.v-number-input,
+.v-number-input--inset,
+.v-number-input--split {
+  padding: 0 !important;
+}
+
+@media screen and (max-width: 390px) {
+  .phone-number-input {
+    grid-template-columns: 120px 130px  !important;
+  }
+  .input-phone-number {
+    grid-template-columns: 140px 16px !important;
+  }
+}

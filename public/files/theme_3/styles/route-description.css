@@ -1,0 +1,216 @@
+.route-card {
+    min-width: 300px;
+    max-width: 480px;
+    width: calc(50% - 56px);
+    height: max-content;
+    border-radius: var(--default-border-radius);
+    background: var(--light-grey-2);
+    padding: 20px;
+}
+
+.route-card-mobile {
+    width: 340px;
+}
+
+.route-card-desktop {
+    width: 480px;
+}
+
+.trip-component-card {
+    border-radius: var(--default-border-radius);
+    background: var(--light-grey-2);
+    margin: 8px;
+    padding: 16px;
+}
+
+.trip-with-transfers-card {
+    border-radius: var(--default-border-radius);
+    border: solid 1px var(--light-grey-1);
+}
+
+.trip-with-transfers-card-title {
+    border-radius: var(--default-border-radius) var(--default-border-radius) 0 0;
+    background: var(--light-yellow);
+}
+
+.route-duration {
+    margin-top: 88px !important;
+}
+
+.price-block, .price-block-mobile {
+    border: solid 1px var(--primary);
+    color: var(--primary);
+    width: max-content;
+    height: max-content;
+    justify-self: end;
+    padding: 8px;
+    border-radius: var(--large-border-radius);
+    grid-area: price;
+}
+
+.price-block-desktop {
+    justify-self: end;
+}
+
+.price-block-mobile {
+    margin-top: 44px;
+    margin-bottom: 12px;
+    justify-self: center;
+}
+
+.route-details-dialog-popup {
+    max-width: 380px !important;
+    width: 100%;
+    left: 100% !important;
+    z-index: 1008 !important;
+    transform: translateX(calc(-100% + 8px));
+    border-radius: var(--navigation-drawer-border-radius) !important;
+    transform: translateX(0) !important;
+}
+
+.v-navigation-drawer--active {
+    transform: translateX(-380px) !important;
+    height: 100% !important;
+    width: 380px !important;
+}
+
+/* .city-from,
+.city-to {
+    align-self: start;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--black);
+}
+
+.time-from,
+.time-to {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--black);
+    margin-top: -16px;
+} */
+
+@media screen and (max-width: 1240px) {
+    .route-duration {
+        margin-top: 16px !important;
+    }
+}
+
+@media screen and (max-width: 959px) {
+    .trip-with-transfers-card {
+        border-radius: 0;
+        border: none;
+    }
+    .trip-with-transfers-card-title {
+        min-height: 80px;
+        border-radius: 0;
+        background: transparent !important;
+    }
+}
+
+/* @media screen and (max-width: 880px) {
+    .trip-with-transfers-card {
+        border-radius: 0;
+        border: none;
+    }
+} */
+
+@media screen and (max-width: 600px) {
+    /* .route-card {
+        width: 300px;
+        height: 300px;
+    } */
+
+    .route-card-small-content :nth-child(2) {
+        justify-self: end !important;
+    }
+
+    .route-card-small-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 48px 12px 116px 16px 16px 48px;
+        grid-template-areas:
+            'route seats'
+            'divider divider'
+            'city-from city-to'
+            'time-from time-to'
+            'date-from date-to'
+            'price price';
+    }
+
+    .time-from,
+    .time-to {
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--dark-grey);
+    }
+
+    .date-from,
+    .date-to {
+        font-size: 12px;
+        color: var(--grey);
+    }
+
+    .price-block {
+        justify-self: center;
+        bottom: 12px;
+    }
+}
+
+.available-seats-red,
+.available-seats-blue {
+    align-content: center;
+    border-radius: var(--default-border-radius);
+    padding: 4px 12px 0;
+    height: 36px;
+    width: max-content;
+    justify-self: end;
+    vertical-align: text-top;
+}
+
+.available-seats-red {
+    border: solid 1px var(--error);
+    color: var(--error);
+}
+
+.available-seats-blue {
+    border: solid 1px var(--primary);
+    color: var(--primary);
+}
+
+.avalable-seats-text {
+    font-weight: 600;
+    font-size: 16px;
+    vertical-align: text-bottom;
+}
+
+.available-seats-blue>.avalable-seats-text {
+    color: var(--primary);
+}
+
+.available-seats-red>.avalable-seats-text {
+    color: var(--error);
+}
+
+.passenger-icon {
+    vertical-align: baseline;
+    font-size: 24px;
+}
+
+@media screen and (max-width: 480px) {
+
+    .available-seats-red,
+    .available-seats-blue {
+        height: 32px;
+        padding: 0px 8px 0;
+    }
+
+    .avalable-seats-text {
+        font-size: 14px;
+        vertical-align: baseline;
+    }
+
+    .passenger-icon {
+        font-size: 18px;
+    }
+}

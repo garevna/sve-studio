@@ -1,0 +1,24 @@
+.v-btn--primary {
+  background: var(--primary) !important;
+  color: var(--white) !important;
+  width: 100%;
+}
+
+.v-btn--primary:hover {
+  background: var(--secondary) !important;
+}
+
+.v-btn--primary:disabled {
+  opacity: 0.36 !important;
+}
+
+.v-btn[aria-haspopup=menu][aria-expanded=true] > .v-btn__overlay,
+.v-btn--disabled .v-btn__overlay {
+  opacity: 0 !important;
+}
+
+.v-btn--text {
+  color: var(--special) !important;
+  font-weight: 500 !important;
+  font-size: 18px !important;
+}

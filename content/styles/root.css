@@ -1,0 +1,84 @@
+/*
+ * Base colors used to live here as literal values. They're now defined once
+ * in palette.ts and injected onto :root as custom properties at startup
+ * (see main.ts) — everything below that reads var(--primary) etc. still
+ * works the same, it's just no longer the second copy of the value.
+ */
+:root {
+  --light-border: var(--light-grey-1) solid 1px;
+
+  --main-font: 'Montserrat', sans-serif;
+  --additional-font: 'Montserrat', sans-serif;
+
+  --default-border-radius: 32px;
+  --large-border-radius: 36px;
+  --super-border-radius: 80px;
+  --small-border-radius: 28px;
+  --extra-small-border-radius: 8px;
+
+  --right-navigation-drawer-border-radius: var(--default-border-radius) 0 0 var(--default-border-radius);
+
+  --transfer-services-number-in-circle-background: var(--accent);
+  --transfer-services-text-in-circle-background: var(--light-grey-1);
+}
+
+/* Style the entire scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+/* Style the scrollbar track */
+::-webkit-scrollbar-track {
+  background: var(--bright-grey);
+}
+
+/* Style the scrollbar thumb */
+::-webkit-scrollbar-thumb {
+  background: var(--special);
+  border-radius: var(--default-border-radius);
+}
+
+/* Style the scrollbar thumb on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  font-weight: normal;
+}
+
+body {
+  min-height: 100vh;
+  background: var(--homefone);
+  transition:
+    color 0.5s,
+    background-color 0.5s;
+  line-height: 1.6;
+  font-family: var(--main-font);
+  font-size: 16px;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.v-container {
+  max-width: 1368px !important;
+  min-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+
+}
+
+.v-btn--size-default {
+  --v-btn-height: 56px !important;
+}
+
+.v-btn__content {
+  letter-spacing: normal !important;
+  font-size: 16px;
+  /* font-weight: 600; */
+}

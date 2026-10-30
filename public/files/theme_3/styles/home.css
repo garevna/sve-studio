@@ -1,0 +1,32 @@
+.popular-destinations {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 28px;
+    column-gap: 28px;
+}
+
+.popular-destination-card {
+    max-width: 392px;
+    min-width: 360px;
+    background: var(--white);
+    border-radius: var(--v-default-border-radius);
+    border: solid 1px var(--light-grey-1);
+    padding: 20px;
+    box-shadow: 0 0 12px #00000020;
+}
+
+.popular-destination-icon {
+    border-radius: 50%;
+    background: var(--bright-grey);
+    padding: 16px;
+}
+
+.popular-destinamtion-price {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.template-card-icon {
+    background: var(--bright-grey);
+}

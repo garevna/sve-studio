@@ -1,0 +1,178 @@
+/* .user-dashboard-content {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    column-gap: 24px;
+} */
+
+.passenger-details-container {
+    padding-top: 16px;
+}
+
+.user-dash {
+    background: transparent;
+    margin-top: 100px;
+}
+
+.user-dash-menu {
+    grid-area: user-dash-menu;
+}
+
+.user-dashboard-menu .v-expansion-panel {
+    width: 320px;
+    background: var(--light-grey-2);
+    border-radius: var(--default-border-radius);
+    height: max-content;
+    flex-grow: 1;
+}
+
+.user-dash-buyer-details {
+    border-radius: var(--default-border-radius);
+    border: solid 1px var(--light-grey-1);
+}
+
+.user-dashboard-menu-item,
+.user-dashboard-menu-item--exit {
+    cursor: pointer;
+    padding: 12px 0px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--dark-grey);
+}
+
+.user-dashboard-menu-item {
+    border-bottom: solid 1px var(--light-grey-1);
+}
+
+.user-dashboard-menu-item--exit {
+    margin-left: 16px;
+    margin-bottom: 20px;
+    margin-top: 8px;
+}
+
+.user-dashboard-menu-item--active {
+    color: var(--secondary);
+}
+
+.user-dashboard-menu-item-content {
+    grid-area: user-dash-tab-content;
+    flex-grow: 1;
+    width: calc(100% - 344px);
+    overflow-x: clip;
+    justify-items: center;
+}
+
+.reservation-card {
+    width: 100%;
+    border-radius: var(--default-border-radius);
+    border: solid 2px var(--light-grey-1);
+    padding: 24px;
+}
+
+.reservation-bus,
+.reservation-bus--active {
+    width: 100%;
+    border-radius: var(--default-border-radius);
+    background: var(--white);
+    padding: 16px 12px;
+    transition: all .3s;
+}
+
+.reservation-bus {
+    border: solid 1px var(--light-grey-1);
+}
+
+.reservation-bus--active {
+    border: solid 1px var(--secondary);
+}
+
+.reservation-bus:hover {
+    background: var(--light-grey-2);
+    cursor: pointer;
+}
+
+.user-dashboard-reservations-passenger, .user-dashboard-reservations-active-passenger {
+    cursor: pointer;
+    padding: 24px !important;
+    margin-bottom: 8px;
+    border-radius: var(--large-border-radius) !important;
+}
+
+.user-dashboard-reservations-passenger {
+    border: solid 1px var(--light-grey-1);
+}
+
+.user-dashboard-reservations-active-passenger {
+    color: var(--primary);
+    border: solid 1px var(--primary);
+}
+
+.ticket {
+    border-radius: var(--default-border-radius) !important;
+    border: solid 1px var(--light-grey-1);
+    height: max-content;
+}
+
+.active-ticket {
+    border: solid 1px var(--primary);
+}
+
+.ticket-slide {
+    border: solid 1px var(--light-grey-1);
+    background: var(--white);
+}
+
+@media screen and (max-width: 1170px) {
+    .country-area {
+        margin-top: 24px;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+}
+
+@media screen and (max-width: 880px) {
+    .user-dashboard-content {
+        flex-direction: column;
+        row-gap: 0px;
+        align-items: center;
+    }
+    
+    .user-dashboard-menu {
+        width: 100%;
+    }
+    .user-dashboard-menu-item-content {
+        width: 100%;
+        overflow-x: hidden;
+        margin-top: 24px;
+    }
+
+    .user-info {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .user-avatar {
+        width: 36px;
+        height: 36px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .user-dashboard-menu {
+        justify-self: center;
+    }
+}
+
+@media screen and (max-width: 430px) {
+    .passenger-details-container {
+        width: calc(100% - 0px);
+        padding: 8px;
+        border: none;
+    }
+
+    .country-area {
+        margin-top: 24px;
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+}

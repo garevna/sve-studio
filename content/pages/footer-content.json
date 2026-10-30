@@ -1,0 +1,222 @@
+{
+  "type": "footer-1",
+  "id": "app-footer",
+  "class": "py-12 px-8",
+  "visible": true,
+  "children": [
+    {
+      "type": "component",
+      "content": "FeedbackCard",
+      "width": 470,
+      "props": {
+        "type": "call-request",
+        "title": {
+          "uk": "Замовити зворотний дзвінок",
+          "en": "Request a callback",
+          "de": "Rückruf anfordern"
+        },
+        "text": {
+          "uk": "Вкажіть свої контактні дані, і наш представник зв'яжеться з вами найближчим часом.",
+          "en": "Leave your contact details and our representative will reach out shortly.",
+          "de": "Hinterlassen Sie Ihre Kontaktdaten, und unser Vertreter meldet sich in Kürze."
+        }
+      }
+    },
+    {
+      "type": "section",
+      "width": 270,
+      "children": [
+        {
+          "type": "route",
+          "class": "default-text text-medium mb-4",
+          "content": {
+            "uk": "Мої бронювання",
+            "en": "My bookings",
+            "de": "Meine Buchungen"
+          },
+          "route": "user-dashboard",
+          "params": {
+            "section": "trips"
+          },
+          "query": {
+            "section": "trips"
+          }
+        },
+        {
+          "type": "route",
+          "class": "default-text text-medium mb-4",
+          "content": {
+            "uk": "Програма лояльності",
+            "en": "Loyalty programme",
+            "de": "Treueprogramm"
+          },
+          "route": "dynamic-page",
+          "params": {
+            "pageId": "loyality-program"
+          }
+        },
+        {
+          "type": "route",
+          "class": "default-text text-medium mb-4",
+          "content": {
+            "uk": "Послуги трансферу",
+            "en": "Transfer services",
+            "de": "Transferservice"
+          },
+          "route": "dynamic-page",
+          "params": {
+            "pageId": "transfer-services"
+          }
+        },
+        {
+          "type": "route",
+          "class": "default-text text-medium mb-4",
+          "content": {
+            "uk": "Повернення квитків",
+            "en": "Ticket refunds",
+            "de": "Ticketrückerstattung"
+          },
+          "route": "dynamic-page",
+          "params": {
+            "pageId": "ticket-refund"
+          }
+        },
+        {
+          "type": "route",
+          "class": "default-text text-medium mb-4",
+          "content": {
+            "uk": "Про компанію",
+            "en": "About us",
+            "de": "Über das Unternehmen"
+          },
+          "route": "dynamic-page",
+          "params": {
+            "pageId": "about-company"
+          }
+        },
+        {
+          "type": "route",
+          "class": "default-text text-medium mb-4",
+          "content": {
+            "uk": "Наші автобуси",
+            "en": "Our buses",
+            "de": "Unsere Busse"
+          },
+          "route": "dynamic-page",
+          "params": {
+            "pageId": "bus-park"
+          }
+        },
+        {
+          "type": "route",
+          "class": "default-text text-medium mb-4",
+          "content": {
+            "uk": "Часто задавані питання",
+            "en": "Frequently Asked Questions",
+            "de": "Häufig gestellte Fragen"
+          },
+          "route": "dynamic-page",
+          "params": {
+            "pageId": "home-page"
+          },
+          "hash": "#faq-section"
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "class": "d-flex flex-column gr-5 align-start",
+      "width": 350,
+      "children": [
+        {
+          "type": "section",
+          "id": "footer-top-group",
+          "children": [
+            {
+              "type": "text",
+              "class": "default-text text-medium mb-4",
+              "content": {
+                "uk": "Контакти",
+                "en": "Contact details",
+                "de": "Kontakt"
+              },
+              "id": "footer-contacts-heading"
+            },
+            {
+              "type": "component",
+              "content": "FooterIcons",
+              "props": {
+                "links": {}
+              }
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "id": "footer-contacts-list",
+          "children": [
+            {
+              "type": "text-with-icon",
+              "size": 18,
+              "text": "default-text text-medium text-dark-grey",
+              "content": {
+                "uk": "(+380) 44 000 01 01",
+                "en": "(+380) 44 000 01 01",
+                "de": "(+380) 44 000 01 01"
+              },
+              "icon": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjUiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNSAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXAwXzg3Ml80ODUzMCkiPgo8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTAuNTAwOTc3IDBIMjQuNTAxVjI0SDAuNTAwOTc3VjBaIiBmaWxsPSIjRkZENzAwIi8+CjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMC41MDA5NzcgMEgyNC41MDFWMTJIMC41MDA5NzdWMFoiIGZpbGw9IiMyQTY3REEiLz4KPC9nPgo8ZGVmcz4KPGNsaXBQYXRoIGlkPSJjbGlwMF84NzJfNDg1MzAiPgo8cmVjdCB4PSIwLjUiIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgcng9IjEyIiBmaWxsPSJ3aGl0ZSIvPgo8L2NsaXBQYXRoPgo8L2RlZnM+Cjwvc3ZnPgo="
+            },
+            {
+              "type": "text-with-icon",
+              "icon": "",
+              "text": "default-text text-medium text-dark-grey",
+              "content": {
+                "uk": "(+380) 44 000 01 02",
+                "en": "(+380) 44 000 01 02",
+                "de": "(+380) 44 000 01 02"
+              },
+              "size": 18
+            },
+            {
+              "type": "text-with-icon",
+              "icon": "",
+              "text": "default-text text-medium text-dark-grey",
+              "content": {
+                "uk": "(+380) 44 000 01 03",
+                "en": "(+380) 44 000 01 03",
+                "de": "(+380) 44 000 01 03"
+              },
+              "size": 18
+            },
+            {
+              "type": "text-with-icon",
+              "size": 18,
+              "text": "default-text text-medium text-dark-grey",
+              "content": {
+                "uk": "(+39) 02 0000 0001",
+                "en": "(+39) 02 0000 0001",
+                "de": "(+39) 02 0000 0001"
+              },
+              "icon": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjUiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNSAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEuMTM3NyAxMS45OTkyQzEuMTM3NyAxNi45MTE3IDQuMjg3NyAyMS4wNzQyIDguNjM3NyAyMi42MTE3VjEuMzg2NzJDNC4yODc3IDIuOTI0MjIgMS4xMzc3IDcuMDg2NzIgMS4xMzc3IDExLjk5OTJaIiBmaWxsPSIjNzVBODQzIi8+CjxwYXRoIGQ9Ik0yMy42Mzc3IDExLjk5OTJDMjMuNjM3NyA3LjA4NjcyIDIwLjQ4NzcgMi45MjQyMiAxNi4xMzc3IDEuMzg2NzJWMjIuNjExN0MyMC41MjUyIDIxLjA3NDIgMjMuNjM3NyAxNi45MTE3IDIzLjYzNzcgMTEuOTk5MloiIGZpbGw9IiNFRDRDNUMiLz4KPHBhdGggZD0iTTguNjM3NyAyMi42MTI1QzkuODAwMiAyMy4wMjUgMTEuMDc1MiAyMy4yNSAxMi4zODc3IDIzLjI1QzEzLjcwMDIgMjMuMjUgMTQuOTc1MiAyMy4wMjUgMTYuMTM3NyAyMi42MTI1VjEuMzg3NUMxNC45NzUyIDAuOTc1IDEzLjcwMDIgMC43NSAxMi4zODc3IDAuNzVDMTEuMDc1MiAwLjc1IDkuODAwMiAwLjk3NSA4LjYzNzcgMS4zODc1VjIyLjYxMjVaIiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4K"
+            },
+            {
+              "type": "text-with-icon",
+              "icon": "",
+              "text": "default-text text-medium text-dark-grey",
+              "content": {
+                "uk": "(+39) 02 0000 0002",
+                "en": "(+39) 02 0000 0002",
+                "de": "(+39) 02 0000 0002"
+              },
+              "size": 18
+            }
+          ]
+        },
+        {
+          "type": "component",
+          "content": "FooterVisaLogo"
+        }
+      ]
+    }
+  ]
+}

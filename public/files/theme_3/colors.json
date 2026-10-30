@@ -1,0 +1,19 @@
+{
+    "background": "#FFFFFF",
+    "homefone": "#FFFFFF",
+    "surface": "#FFFFFF",
+    "surface-bright": "#FFFFFF",
+    "surface-light": "#FFFFFF",
+    "surface-variant": "FFFFFF",
+    "black": "#000000",
+    "dark-grey": "#4B5563",
+    "light-grey": "#f0f0f0",
+    "primary": "#34492e",
+    "secondary": "#739869",
+    "light-yellow": "#fefbf0",
+    "divider": "#f0bd0d",
+    "error": "#E15254",
+    "success": "#17A473",
+    "warning": "#efbf0c",
+    "icon-grey": "#C0CADE"
+  }

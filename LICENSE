@@ -1,0 +1,99 @@
+Site Visual Editor (SVE)
+Copyright (c) 2026 Irina Fylyppova. All rights reserved.
+
+PROPRIETARY SOFTWARE LICENSE - SOURCE AVAILABLE FOR EVALUATION ONLY
+
+(Український текст - нижче.)
+
+1. Ownership
+   This software, including its source code, design, user interface, editor
+   UI kit, documentation and all related materials (the "Software"), is the
+   exclusive property of Irina Fylyppova (the "Author") and is protected by
+   copyright law and international treaties. No rights are granted except
+   those expressly stated below.
+
+2. What you may do without a license
+   You may view the source code in this repository and run the Software
+   locally, or use its public demo, solely to evaluate it.
+
+3. What requires a written license from the Author
+   Without a separate written agreement with the Author you may NOT:
+   a) use the Software, or any part of it, for any commercial or production
+      purpose, including building, editing or hosting websites for yourself
+      or for third parties;
+   b) copy, modify, adapt or translate the Software, or create derivative
+      works based on it, beyond what running it for evaluation requires;
+   c) distribute, publish, sell, rent, lease, sublicense or otherwise make
+      the Software or any part of it available to others, including as a
+      hosted or online service;
+   d) remove or alter this notice or any copyright notice, including the
+      "Made with Site Visual Editor - (c) Irina Fylyppova" line shown on
+      sites built with it.
+   Adapting the Software for a client (its API, content, hosting and so on)
+   is a use that requires such an agreement. Its terms - including any fees
+   - are set by the Author.
+
+4. Third-party components
+   Open-source libraries the Software depends on (for example Vue, Nuxt,
+   Vuetify) and sample photos (see src/assets/gallery-samples/CREDITS.md)
+   remain under their own licenses. This license does not change them.
+
+5. No warranty
+   The Software is provided "as is", without warranty of any kind. In no
+   event shall the Author be liable for any claim, damages or other
+   liability arising from the use of the Software.
+
+6. Licensing and permissions
+   Irina Fylyppova - Telegram / Viber / WhatsApp: +380 99 491 27 53
+   GitHub: https://github.com/garevna
+
+-------------------------------------------------------------------------------
+
+Site Visual Editor (SVE)
+© 2026 Irina Fylyppova. Усі права захищені.
+
+ВЛАСНИЦЬКА ЛІЦЕНЗІЯ - КОД ВІДКРИТИЙ ЛИШЕ ДЛЯ ОЗНАЙОМЛЕННЯ
+
+1. Право власності
+   Це програмне забезпечення, включно з вихідним кодом, дизайном,
+   інтерфейсом, UI Kit редактора, документацією та всіма пов'язаними
+   матеріалами («Програма»), є виключною власністю Irina Fylyppova
+   («Автор») і охороняється законодавством про авторське право та
+   міжнародними договорами. Жодні права не надаються, крім прямо
+   зазначених нижче.
+
+2. Що можна без ліцензії
+   Переглядати вихідний код у цьому репозиторії та запускати Програму
+   локально або користуватися її публічним демо - виключно для
+   ознайомлення.
+
+3. Що потребує письмової ліцензії Автора
+   Без окремої письмової угоди з Автором заборонено:
+   а) використовувати Програму або будь-яку її частину з комерційною метою
+      чи в робочій експлуатації, зокрема для створення, редагування або
+      розміщення сайтів для себе чи третіх осіб;
+   б) копіювати, змінювати, адаптувати, перекладати Програму чи створювати
+      похідні твори на її основі понад те, що потрібно для ознайомлення;
+   в) поширювати, публікувати, продавати, здавати в оренду,
+      субліцензувати чи іншим чином надавати Програму або її частину
+      іншим особам, зокрема як онлайн-сервіс;
+   г) видаляти чи змінювати цей текст або будь-які позначення авторського
+      права, зокрема рядок «Зроблено в Site Visual Editor - © Irina
+      Fylyppova» на сайтах, створених за її допомогою.
+   Адаптація Програми під клієнта (API, контент, хостинг тощо) є
+   використанням, яке потребує такої угоди. Її умови, зокрема оплату,
+   визначає Автор.
+
+4. Сторонні компоненти
+   Бібліотеки з відкритим кодом, які використовує Програма (наприклад Vue,
+   Nuxt, Vuetify), і зразкові фото (див. src/assets/gallery-samples/
+   CREDITS.md) лишаються під своїми ліцензіями. Ця ліцензія їх не змінює.
+
+5. Відсутність гарантій
+   Програма надається «як є», без жодних гарантій. Автор не несе
+   відповідальності за будь-які претензії, збитки чи інші наслідки
+   використання Програми.
+
+6. Ліцензування та дозволи
+   Irina Fylyppova - Telegram / Viber / WhatsApp: +380 99 491 27 53
+   GitHub: https://github.com/garevna

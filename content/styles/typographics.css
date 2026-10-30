@@ -1,0 +1,114 @@
+h1, h2, h3, h4, h5, h6, .default-text, .small-text {
+  font-family: var(--main-font);
+}
+
+/* The second font (global.json "accentFont"). Texts the editor marks with
+   "Додатковий шрифт" carry this class. Falls back to the main font when no
+   accent font is set. */
+.accent-font,
+.accent-font * {
+  font-family: var(--accent-font, var(--main-font)) !important;
+}
+
+h2,
+h3 {
+  font-weight: 600;
+  color: var(--black);
+}
+
+h1, .h1 {
+  font-size: 96px;
+  font-weight: 700;
+}
+h2, .h2 {
+  font-size: 36px;
+}
+h3, .h3 {
+  font-size: 28px;
+}
+h4, .h4 {
+  font-size: 22px;
+}
+h5, .h5 {
+  font-size: 20px;
+}
+h6, .h6 {
+  font-size: 18px;
+}
+
+.text-bold {
+  font-weight: 600;
+}
+.text-medium {
+  font-weight: 500;
+}
+.text-thin {
+  font-weight: 400;
+}
+
+.default-text {
+  font-size: 16px;
+}
+
+.small-text {
+  font-size: 14px;
+}
+
+.extra-small-text {
+  font-size: 12px;
+}
+
+.text-600 {
+  font-weight: 600;
+}
+.text-400 {
+  font-weight: 400;
+}
+
+.button-text-elipsed {
+  max-width: 130px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.text-grey {
+  color: var(--special) !important;
+}
+
+.giga-text {
+  font-size: 112px;
+  font-weight: 800;
+}
+
+.text-shrinked {
+  line-height: 100% !important;
+}
+
+.v-selection-control .v-label {
+  font-size: 16px;
+}
+
+@media screen and (max-width: 600px) {
+  h1, .h1 {
+    font-size: 68px;
+  }
+  h2, .h2 {
+    font-size: 28px;
+  }
+  h3, .h3 {
+    font-size: 24px;
+  }
+  h4, .text-h4 {
+    font-size: 20px;
+  }
+  h5, .h5 {
+    font-size: 18px;
+  }
+  h6, .h6 {
+    font-size: 16px;
+  }
+  .default-text, .v-selection-control .v-label {
+    font-size: 15px;
+  }
+}

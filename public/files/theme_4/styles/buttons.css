@@ -1,0 +1,102 @@
+.v-btn:hover>.v-btn__overlay {
+  opacity: 0 !important;
+}
+
+button,
+.simple-button,
+.tab-button,
+.primary-button,
+.outlined-button {
+  font-family: var(--main-font) !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  text-transform: none !important;
+  padding: 12px auto !important;
+  box-shadow: none !important;
+  height: 56px !important;
+}
+
+button,
+.simple-button,
+.primary-button,
+.outlined-button {
+  border-radius: var(--default-border-radius) !important;
+}
+
+.tab-button--active {
+  border-radius: var(--large-border-radius);
+  background: var(--primary);
+  color: var(--white) !important;
+}
+
+.simple-button {
+  border: solid 1px var(--black) !important;
+  color: var(--black) !important;
+}
+
+.primary-button {
+  background: var(--primary) !important;
+  color: var(--white) !important;
+  width: 100%;
+}
+
+.primary-button:hover {
+  background: var(--secondary) !important;
+}
+
+.primary-button:disabled {
+  opacity: 0.36 !important;
+}
+
+.outlined-button,
+.button-with-icon-right {
+  border: solid 1px var(--primary) !important;
+  color: var(--primary) !important;
+  width: 100%;
+}
+
+.outlined-button:hover {
+  opacity: 92% !important;
+}
+
+.button-with-icon-right:hover {
+  background: var(--primary) !important;
+  color: var(--white) !important;
+}
+
+.outlined-button:disabled,
+.button-with-icon-right:disabled  {
+  border: solid 1px var(--grey) !important;
+  color: var(--grey) !important;
+}
+
+.button-with-icon-right {
+  width: 100%;
+  display: grid !important;
+  grid-template-columns: 8px 1fr 8px !important;
+  justify-items: flex-start flex-end !important;
+}
+
+.google-button .v-btn__content {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--black);
+}
+
+.google-button:hover .v-btn__content {
+  color: var(--secondary);
+}
+
+.google-button {
+  border: solid 1px var(--light-grey-1) !important;
+}
+
+.google-button:hover {
+  border: solid 2px var(--bright-grey) !important;
+}
+
+@media screen and (max-width: 1024px) {
+  .tab-button *, .tab-button--active * {
+    font-size: 16px;
+  }
+}

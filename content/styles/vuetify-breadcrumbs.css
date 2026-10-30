@@ -1,0 +1,7 @@
+.v-breadcrumbs,
+.v-breadcrumbs--density-default {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  padding: 0 !important;
+}

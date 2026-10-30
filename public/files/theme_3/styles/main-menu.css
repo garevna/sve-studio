@@ -1,0 +1,114 @@
+.desktop-app-bar {
+    display: grid;
+    grid-template-columns: 1fr max-content !important;
+    grid-template-rows: 1fr;
+    grid-template-areas: 'menu preferences';
+    align-items: center;
+    column-gap: 36px;
+    border-bottom-left-radius: var(--v-default-border-radius);
+    border-bottom-right-radius: var(--v-default-border-radius);
+}
+
+.app-menu-bar {
+    height: 64px;
+}
+
+.user-preferences {
+    grid-template-columns: 110px max-content 68px;
+    grid-template-areas: 'lang-switcher user-account-button currency-switcher';
+}
+
+.desktop-menu {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(var(--menu-items-number), max-content);
+    column-gap: 32px;
+    height: 48px;
+    align-content: center;
+    grid-area: menu;
+}
+
+/* Mobile menu styles */
+
+#menuToggle {
+    display: block;
+    position: absolute;
+    top: 20px;
+    right: 16px;
+    z-index: 1;
+
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+#menuToggle a {
+    text-decoration: none;
+    color: var(--primary);
+
+    transition: color 0.3s ease;
+}
+
+#menuToggle a:hover {
+    color: var(--secondary);
+}
+
+#menuToggle input {
+    display: block;
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    top: -7px;
+    left: -5px;
+
+    cursor: pointer;
+
+    opacity: 0;
+    z-index: 2;
+
+    -webkit-touch-callout: none;
+}
+
+#menuToggle span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    margin-bottom: 5px;
+    position: relative;
+
+    background: var(--primary);
+    border-radius: 2px;
+
+    z-index: 1;
+
+    transform-origin: 4px 0px;
+
+    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0),
+        background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0),
+        opacity 0.55s ease;
+}
+
+#menuToggle span:first-child {
+    transform-origin: 0% 0%;
+}
+
+#menuToggle span:nth-last-child(2) {
+    width: 18px;
+    transform-origin: 0% 100%;
+    transform: translateX(6px);
+}
+
+#menuToggle input:checked~span {
+    opacity: 1;
+    transform: rotate(45deg) translate(-7px, -6px);
+    background: var(--primary);
+}
+
+#menuToggle input:checked~span:nth-last-child(3) {
+    opacity: 0;
+    transform: rotate(0deg) scale(0.2, 0.2);
+}
+
+#menuToggle input:checked~span:nth-last-child(2) {
+    width: 24px;
+    transform: rotate(-45deg) translate(-8px, 8px);
+}

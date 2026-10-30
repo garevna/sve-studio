@@ -1,0 +1,9 @@
+packages:
+  - 'packages/*'
+  - 'site'
+
+allowBuilds:
+  esbuild: true
+  # опциональная зависимость @vueuse/shared; бинарник приезжает готовым из
+  # @parcel/watcher-linux-*-musl, а вотчер в production-сборке не нужен вовсе
+  "@parcel/watcher": false

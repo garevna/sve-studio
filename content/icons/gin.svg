@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 450 500" width="100%" height="100%">
+  <defs>
+    <!-- Основной градиент кожи Джинна -->
+    <linearGradient id="genieSkin" x1="30%" y1="10%" x2="70%" y2="90%">
+      <stop offset="0%" stop-color="#66ccff"/>
+      <stop offset="60%" stop-color="#22a6ff"/>
+      <stop offset="100%" stop-color="#0066cc"/>
+    </linearGradient>
+
+    <!-- Золото для заколки хвостика -->
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffee55"/>
+      <stop offset="100%" stop-color="#e69500"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Хвостик (Чубчик на макушке) -->
+  <g id="hair">
+    <path d="M 235 130 C 235 90, 260 40, 340 30 C 430 20, 440 90, 370 145 C 330 175, 290 170, 275 160 C 255 145, 240 140, 235 130 Z" fill="#000000"/>
+    <!-- Золотая резинка/кольцо -->
+    <path d="M 226 122 Q 235 110 246 126 L 240 137 Q 230 123 221 133 Z" fill="url(#gold)" stroke="#000000" stroke-width="3" stroke-linejoin="round"/>
+  </g>
+
+  <!-- Форма головы (Шея, щека и затылок) -->
+  <path d="M 130 330 C 100 370, 95 440, 180 470 C 240 490, 275 440, 290 380 C 310 310, 315 240, 280 180 C 250 140, 190 150, 160 190 C 130 230, 140 280, 130 330 Z" 
+        fill="url(#genieSkin)" stroke="#000000" stroke-width="5" stroke-linejoin="round"/>
+
+  <!-- Заостренное ухо Джинна -->
+  <g id="ear">
+    <path d="M 285 220 C 320 200, 395 180, 400 205 C 405 225, 340 265, 310 285 C 290 300, 280 270, 285 220 Z" fill="url(#genieSkin)" stroke="#000000" stroke-width="5" stroke-linejoin="round"/>
+    <!-- Внутренние штрихи ушной раковины -->
+    <path d="M 315 240 C 345 225, 365 215, 375 220 C 350 240, 330 255, 318 268" fill="none" stroke="#004499" stroke-width="3.5" stroke-linecap="round"/>
+  </g>
+
+  <!-- Выразительные глаза -->
+  <g id="eyes">
+    <!-- Правый глаз (в перспективе, за носом) -->
+    <path d="M 175 210 C 160 210, 150 260, 160 295 C 168 320, 185 315, 192 285 C 195 250, 190 210, 175 210 Z" fill="#ffffff" stroke="#000000" stroke-width="4.5" stroke-linejoin="round"/>
+    <!-- Левый глаз (ближний к зрителю) -->
+    <path d="M 202 215 C 220 200, 250 210, 250 260 C 250 315, 215 330, 202 285 C 196 250, 194 220, 202 215 Z" fill="#ffffff" stroke="#000000" stroke-width="4.5" stroke-linejoin="round"/>
+    
+    <!-- Зрачки -->
+    <ellipse cx="178" cy="265" rx="7" ry="11" fill="#000000"/>
+    <ellipse cx="218" cy="260" rx="7" ry="11" fill="#000000"/>
+    
+    <!-- Блики -->
+    <circle cx="176" cy="258" r="2.5" fill="#ffffff"/>
+    <circle cx="216" cy="253" r="2.5" fill="#ffffff"/>
+  </g>
+
+  <!-- Нос «картошкой», заходящий на правый глаз -->
+  <path d="M 175 245 C 170 210, 210 215, 205 250 C 200 280, 175 325, 145 315 C 125 305, 150 270, 175 245 Z" fill="url(#genieSkin)" stroke="#000000" stroke-width="5" stroke-linejoin="round"/>
+
+  <!-- Черные нависшие брови -->
+  <path d="M 152 205 C 145 175, 180 160, 195 195 C 180 185, 160 190, 152 205 Z" fill="#000000"/>
+  <path d="M 215 190 C 235 155, 275 180, 270 210 C 255 190, 230 180, 215 190 Z" fill="#000000"/>
+
+  <!-- Складка приподнятой щеки -->
+  <path d="M 125 300 C 110 320, 100 355, 135 370 C 160 380, 165 340, 150 320" fill="url(#genieSkin)" stroke="#000000" stroke-width="4" stroke-linejoin="round"/>
+
+  <!-- Огромный открытый рот (фирменная широкая улыбка) -->
+  <g id="bigMouth">
+    <!-- Бордовая полость рта -->
+    <path d="M 134 350 C 180 340, 245 285, 275 340 C 290 370, 260 445, 185 450 C 120 455, 105 390, 134 350 Z" fill="#a82316" stroke="#000000" stroke-width="5" stroke-linejoin="round"/>
+    
+    <!-- Верхний ряд зубов -->
+    <path d="M 138 354 C 175 352, 235 315, 268 344 C 250 330, 180 335, 144 358 Z" fill="#ffffff" stroke="#000000" stroke-width="3" stroke-linejoin="round"/>
+    
+    <!-- Розовый язык холмиком -->
+    <path d="M 145 425 C 145 390, 190 380, 215 395 C 240 410, 245 440, 220 443 C 190 445, 165 440, 145 425 Z" fill="#ff6666" stroke="#000000" stroke-width="3.5" stroke-linejoin="round"/>
+    <!-- Линия текстуры языка -->
+    <path d="M 185 400 Q 195 420 200 435" fill="none" stroke="#a82316" stroke-width="2"/>
+  </g>
+
+  <!-- Изогнутая черная бородка колечком -->
+  <path d="M 135 440 C 115 455, 55 435, 30 475 C 10 510, 65 525, 95 495 C 115 475, 155 470, 170 455 C 155 455, 145 450, 135 440 Z" fill="#000000" stroke="#000000" stroke-width="2" stroke-linejoin="round"/>
+</svg>

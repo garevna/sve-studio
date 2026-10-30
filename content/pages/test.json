@@ -1,0 +1,67 @@
+{
+  "id": "test",
+  "title": {
+    "uk": "Test",
+    "en": "Test",
+    "de": "Test"
+  },
+  "breadcrumbs": true,
+  "backButton": true,
+  "hero": false,
+  "blocks": [
+    {
+      "type": "baner",
+      "class": "bright-grey pa-0",
+      "dark": false,
+      "image": "/api/content/images/c443c91e1166df4ea34c3b94549090b2672270006f70d15df4f26e9eb517fd15.jpg",
+      "content": {
+        "uk": "/api/content/images/eff3e8010aa4ce81e95272026f81b32a36ecc257307dcd547225ac6b6d032c0a.jpg",
+        "en": "",
+        "de": ""
+      },
+      "title": {
+        "uk": "You are at the right place!",
+        "en": "",
+        "de": ""
+      },
+      "children": [
+        {
+          "type": "text",
+          "class": "my-8 h3 text-bold text-special",
+          "content": {
+            "uk": "Welcome to travel!",
+            "en": "",
+            "de": ""
+          }
+        },
+        {
+          "type": "text",
+          "class": "text-medium text-black default-text",
+          "content": {
+            "uk": "We'll help you to enjoy with your trip!",
+            "en": "",
+            "de": ""
+          }
+        },
+        {
+          "type": "text",
+          "class": "h6 text-medium text-black",
+          "content": {
+            "uk": "We'll help you to enjoy with your trip!",
+            "en": "",
+            "de": ""
+          }
+        },
+        {
+          "type": "text",
+          "class": "h6 text-medium text-black",
+          "content": {
+            "uk": "We'll help you to enjoy with your trip!",
+            "en": "",
+            "de": ""
+          }
+        }
+      ]
+    }
+  ]
+}

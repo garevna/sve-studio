@@ -1,0 +1,454 @@
+/*
+ * Styles for the editor's own chrome (menus, page headers, forms) — kept
+ * deliberately separate from the edited app's CSS (root.css, common.css
+ * etc., loaded per theme) so the two never mix. Only classes below are
+ * used by editor screens; nothing here touches :root or generic tags.
+ */
+
+/*
+ * Shared "panel" look for a standalone editor control surface - currently
+ * EditableBlockWrapper's own block toolbar (used to be a flat color="#ddd"
+ * v-toolbar) and TextEditor.vue's expandable format panel (a bare div). A
+ * light tinted background plus a real border/radius reads as a distinct,
+ * raised surface instead of a flat gray bar. Callers pass
+ * color="transparent" on their own v-toolbar so Vuetify's own theme
+ * background doesn't fight this.
+ *
+ * Deliberately NOT applied (yet) to EditableTextSection.vue/CardEditDialog.vue's
+ * own color="#ddd" dialog-header toolbars - those already sit flush inside
+ * a rounded v-card, so a second border+radius directly on the toolbar could
+ * visually clash with the card's own corners in a way that needs eyeballing
+ * first, unlike the two standalone cases above.
+ */
+/*
+ * color and border-radius are both explicit, fixed values on purpose - not
+ * var(--v-default-border-radius) (theme-scoped, and this panel can render
+ * nested inside previewed content whose own ambient `color` would otherwise
+ * win by plain CSS inheritance, e.g. a white-text footer/dark-fone-section -
+ * confirmed live: TextEditor.vue's format panel and any bare (non-v-toolbar)
+ * control placed directly in such content rendered illegible, white-on-
+ * near-white). Editor chrome must look identical regardless of what content
+ * it's floating over - see DynamicPageTemplate.vue's own comment on the
+ * identical class of bug for real Vuetify component theming.
+ */
+.editor-panel {
+  /* The editor page's own former background - now that the page is white
+     (see main.ts), this is what makes a panel legible as a panel. */
+  background: #EEF2F6;
+  border: solid 1px #ddd;
+  border-radius: 8px;
+  color: #3A4A58 !important;
+}
+
+/*
+ * Shared active-tab treatment for editor-chrome tab groups (v-tabs set
+ * hide-slider + selected-class="editor-tab--active") - a filled, rounded
+ * pill in the same primary color EditorSaveBar's own "Зберегти" button
+ * uses (rgb(var(--v-theme-primary)), editorTheme's own primary - #5C7A99),
+ * instead of Vuetify's default thin underline indicator, which reads too
+ * faint against a light .editor-panel background to tell which tab is
+ * active at a glance.
+ *
+ * Also pass height="40" on the <v-tabs> itself (see UiKitListView.vue) -
+ * every .v-tab already gets height:40px forced by the .v-btn rule further
+ * down this file (v-tab is a v-btn under the hood), but the v-tabs
+ * container (the slide-group wrapper) doesn't inherit that and defaults to
+ * Vuetify's own taller height on its own, so without the prop the colored
+ * pill visibly floats inside extra empty space above/below it instead of
+ * filling its row.
+ */
+.editor-tabs .v-tab {
+  border-radius: 8px;
+  text-transform: none;
+}
+.editor-tab--active {
+  background: rgb(var(--v-theme-primary)) !important;
+  color: #fff !important;
+}
+
+
+/*
+ * Editor chrome pages (dashboards/lists/tools, not a previewed production
+ * page) just need breathing room on the sides - full available width
+ * otherwise, no artificial max-width capping the whole layout into a
+ * centered box (that capped-box treatment is deliberately only for
+ * production-content previews, e.g. AuthPageView.vue's own
+ * .route-variants-visual, which mirrors production's real layout).
+ *
+ * Layered AND specificity-bumped for the same reason as the @layer
+ * app-content block further down this file: theme_2's own root.css sets
+ * `.v-container { max-width:1368px !important; min-width:100% !important;
+ * padding:0 !important; margin:0 !important; }`, loaded via loadThemeStyles.
+ * That file is unlayered now (see main.ts), which only helps here: among
+ * important declarations a layered rule outranks an unlayered one.
+ *
+ * Putting .editor-page in the same layer (first attempt) turned out not to
+ * be enough on its own: within one layer, a tie in specificity falls back
+ * to source order, and root.css's rule is injected at runtime (after this
+ * bundled file), so a bare `.editor-page` (specificity 0,1,0 - same as
+ * `.v-container`'s 0,1,0) still lost. The `.v-container.editor-page`
+ * variant below (0,2,0) only matters for pages that apply .editor-page
+ * directly to a real <v-container> element - most apply it to <v-main>
+ * instead, which root.css's selector doesn't match at all - but
+ * UiKitListView.vue does, and rendered edge-to-edge with the padding
+ * silently discarded until this got both the layer AND the specificity fix.
+ *
+ * min-width:0 matters too, separately from all of the above: by the CSS
+ * spec, min-width always wins over max-width when they conflict, regardless
+ * of which cascade rule "won" for each property individually - each
+ * property's winning value is resolved independently, then the width
+ * algorithm combines them. root.css's `.v-container` also sets
+ * `min-width:100% !important`, which this rule never contests, so it would
+ * otherwise force the box back out to 100% of its parent's width even after
+ * winning the cascade fight above for whatever width-related property it
+ * contests (same mechanism already found and fixed for the route-variants
+ * preview pages' own width - see AuthPageView.vue).
+ */
+/*
+ * The two halves of drag-to-reorder, applied by SortableList.vue's callers
+ * to their own item markup (see that component for why the classes are
+ * handed out rather than applied there). Global and UNLAYERED on purpose:
+ * they're used from inside several components' scoped templates, and
+ * neither property is contested by Vuetify or the theme, so there is no
+ * layer fight to win here.
+ */
+/*
+ * The editor's dialog shape, in one place instead of per-dialog CSS: a
+ * v-card whose TOOLBAR and ACTIONS stay put while only the body scrolls.
+ * Without the flex column + min-height:0, a long body grows the card itself
+ * and takes the toolbar (and the OK button) off-screen with it - the exact
+ * problem this shape exists to prevent.
+ */
+.editor-dialog.v-card {
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - 96px);
+}
+.editor-dialog.v-card > .v-card-text {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+}
+.editor-dialog.v-card > .v-toolbar,
+.editor-dialog.v-card > .v-card-actions {
+  flex: 0 0 auto;
+}
+
+.sortable-drag-cursor {
+  cursor: move;
+}
+.sortable-drag-inert {
+  pointer-events: none;
+}
+
+/* While a text field's settings panel is out, the field's own bottom margin
+ * is collapsed so the panel sits right under the text it belongs to. Fields
+ * in a list routinely carry an mb-4 (16px) of their own; with the list's own
+ * gap on top of that, an open panel ended up closer to the NEXT row than to
+ * its own text, and read as belonging to that row instead - see
+ * TextEditor.vue.
+ *
+ * Layered and !important because Vuetify's spacing utilities (.mb-4 and
+ * friends) are themselves !important: an unlayered rule - a scoped SFC style
+ * included - loses to them no matter how specific it is, since for important
+ * declarations any layer outranks unlayered. app-content is declared FIRST
+ * in index.html, which for important declarations makes it the strongest.
+ */
+@layer app-content {
+  .text-format-open > [contenteditable] {
+    margin-bottom: 0 !important;
+  }
+}
+
+@layer app-content {
+  .editor-page,
+  .v-container.editor-page {
+    min-width: 0 !important;
+    width: 100%;
+    padding: 32px clamp(16px, 5vw, 48px) 64px !important;
+  }
+}
+
+.editor-page-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #49b;
+}
+
+.editor-back-button {
+  flex-shrink: 0;
+}
+
+.editor-back-button i {
+  font-size: 40px !important;
+  color: #49b;
+}
+
+.v-fab .v-btn--variant-elevated {
+  /* border: solid 1px #ddd; */
+  background: #49b;
+  color: #fff;
+  width: 32px;
+  height: 32px;
+}
+.v-fab--bottom .v-fab__container .v-btn {
+  bottom: 16px !important;
+  width: 32px;
+  height: 32px;
+}
+
+.v-fab__container .v-btn:has(.mdi-delete) {
+  background: #ddd;
+}
+
+.mdi-delete {
+  color: #900;
+}
+
+.v-btn-group--density-compact.v-btn-group--horizontal {
+  height: 56px !important;
+}
+
+.v-btn-group {
+  border-radius: 8px !important;
+  /* The group is taller than its own buttons (56px vs the 48px min-height
+     below), and a flex item with an explicit height ignores `stretch` and
+     lands at the START of the cross axis. Centring the whole group means
+     every button sits the same way in that slack, instead of each rule
+     having to align its own buttons - which is exactly how the active
+     toggle button ended up 4px lower than its neighbours. */
+  align-items: center;
+}
+
+.v-btn-group .v-btn {
+  min-height: 56px;
+  background: transparent;
+  border-radius: 0px !important;
+  border-start-start-radius: 0px !important;
+  border-start-end-radius: 0px !important;
+  border-end-start-radius: 0px !important;
+  border-end-end-radius: 0px !important;
+}
+
+.v-btn-group .v-btn__overlay {
+  opacity: 0 !important;
+}
+
+.v-btn-group .v-btn.v-btn--active {
+  color: #478;
+}
+
+.v-btn-group .v-btn .v-btn__content {
+  font-size: 14px !important;
+}
+
+.v-icon--size-large {
+  font-size: 40px !important;
+}
+
+/*
+ * v-icon's `color` prop only resolves against a registered Vuetify theme
+ * color name (routed through the active .v-theme--* context) - 'green'
+ * isn't one (this app's theme colors are primary/secondary/error/warning/
+ * success/etc, see main.ts), so passing color="green" silently does
+ * nothing instead of falling back to a literal CSS color. Styling the icon
+ * font glyph directly via ::before sidesteps that entirely - the account
+ * pages' "variant selected" checkmark (mdi-check-bold) is the current use.
+ */
+.mdi-check-bold::before {
+  color: var(--green);
+  font-size: 36px;
+}
+
+.editor-tile-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 260px;
+  height: 120px;
+  padding: 24px 28px;
+  border-radius: 8px;
+  border: solid 1px rgba(58, 74, 88, 0.1);
+  background: linear-gradient(180deg, #F4F7FA 0%, #E3E9EF 100%);
+  color: #3A4A58;
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.85),
+    inset 0 -2px 5px rgba(58, 74, 88, 0.14),
+    0 1px 2px rgba(58, 74, 88, 0.08);
+  transition: box-shadow 0.15s ease, transform 0.05s ease;
+}
+.editor-tile-button:hover {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    inset 0 -2px 6px rgba(58, 74, 88, 0.18),
+    0 2px 5px rgba(58, 74, 88, 0.12);
+}
+.editor-tile-button:active {
+  box-shadow: inset 0 2px 5px rgba(58, 74, 88, 0.22);
+  transform: translateY(1px);
+}
+.editor-tile-button .v-icon {
+  color: #5C7A99;
+}
+
+/*
+ * The edited app's own theme CSS (root.css's `* { margin: 0 }`, and
+ * overlay-content.css's `.v-dialog > .v-overlay__content { min-width: 100% }`
+ * meant for the edited app's own full-width mobile dialogs) leaks onto every
+ * v-dialog the editor itself opens, since dialogs render outside any scoped
+ * component tree. Editor dialogs size their own <v-card> explicitly instead
+ * of relying on v-dialog's max-width prop (see DynamicPageTemplate.vue,
+ * TemplateNestedSection.vue) - this just re-centers that card within the
+ * now-full-width content box and restores Vuetify's own spacing.
+ */
+.v-dialog > .v-overlay__content {
+  margin: 24px;
+  align-items: center;
+}
+
+/*
+ * v-speed-dial's own content panel (CardWithHoverMenu.vue - the only
+ * remaining real v-speed-dial in the app; TextEditor.vue's used to have one
+ * too, this rule originally lived there, moved here once that one was
+ * replaced with a plain expanding panel) has no background/border/shadow of
+ * its own by default, so it's invisible against a similarly light page
+ * behind it.
+ */
+.v-speed-dial__content {
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  border: solid 1px #ddd;
+  box-shadow: 0 12px 16px #0004;
+}
+
+/*
+ * Open v-speed-dial menus render white circular buttons with no shadow of
+ * their own (Vuetify's elevation shadow resolves to nothing here, likely
+ * because only theme *color* vars are injected for appTheme - see
+ * hexToRgbTriple usage in main.ts), so a menu opened over a white page/dialog
+ * background visually disappears. Force a drop shadow on every menu item so
+ * an open dial always reads as raised above whatever is behind it.
+ *
+ * Wrapped in @layer app-content (below) for the same reason as the button
+ * rules further down - see that comment.
+ */
+
+/*
+ * index.html declares `@layer app-content, vuetify-core, ...` up front,
+ * with app-content listed FIRST - for *important* declarations specifically,
+ * CSS Cascade Layers reverses the usual order and the earliest-declared
+ * layer wins, and that priority beats even unlayered !important rules
+ * entirely, regardless of specificity. theme_2's own buttons.css (loaded at
+ * runtime by load-theme-styles.ts) has `button { border-radius: var(--v-...)
+ * !important }` - a bare, low-specificity selector that used to win anyway,
+ * back when that file was layered and this one wasn't. Putting these
+ * specific rules in a layer settles it either way: the theme is unlayered
+ * now (see main.ts), and among important declarations a layered rule
+ * outranks an unlayered one. Everything else in this file stays
+ * unlayered on purpose - unlayered rules already always beat every layer
+ * for *non-important* declarations, so there's no reason to layer rules
+ * that don't need to fight an !important from app-content specifically.
+ */
+@layer app-content {
+  .v-speed-dial__content .v-btn,
+  .v-btn__overlay {
+    border-radius: 8px !important;
+  }
+
+  /*
+   * The single "Готово" confirm button every content-editing dialog has
+   * (CardEditDialog, EditableTextSection, CardWithHoverEditDialog,
+   * IconEditor's picker) - one shared class so it looks and behaves
+   * identically everywhere, rather than each dialog styling its own. 8px
+   * radius matches the editor's own button convention - deliberately a
+   * literal 8px, not var(--v-default-border-radius) (theme-scoped: resolves
+   * to the editorTheme theme's own 8px when a dialog correctly declares
+   * theme="editorTheme", but to the appTheme theme's palette-driven value
+   * otherwise - see main.ts) - this class must look identical everywhere
+   * regardless of which theme its dialog happens to be nested under.
+   */
+  /*
+   * Every labeled button the editor's own chrome shows - ConfirmDialog's
+   * Скасувати/Видалити, EditableTextSection's "Додати текст", EditableCard's
+   * "Додати пункт", the icon picker's "Завантажити SVG-файл", etc. 8px/40px
+   * is the editor's own button convention, not Vuetify's default shape.
+   *
+   * Scoped to .v-theme--editorTheme (the class Vuetify stamps on the
+   * element carrying theme="editorTheme" and everything under it), not
+   * every .v-btn globally - meant to catch only genuine editor chrome, never
+   * a button rendered as part of the *previewed page's own content* (under
+   * theme="appTheme"). That scoping alone turned out not to be enough: this
+   * is a DESCENDANT combinator, so it matches on DOM ancestry, not "which
+   * theme is actually in effect here" - v-app itself defaults to editorTheme
+   * (no explicit :theme prop) and stamps that class on its own root, so
+   * EVERY button on the page is a descendant of it, including ones a nested
+   * <v-theme-provider theme="appTheme"> further down correctly re-themed -
+   * Vue's theme context doesn't erase the physical class sitting higher up
+   * in the DOM. Confirmed via DevTools: a real content button
+   * (.primary-button, genuinely carrying v-theme--appTheme itself) was still
+   * getting height:40px/radius:8px forced onto it here, silently overriding
+   * its own real border-radius. :not(.v-theme--appTheme) excludes any
+   * button that's itself been re-themed this way - genuine editor buttons
+   * (ToolbarIconButton.vue etc, always rendered under editorTheme, never
+   * appTheme) are unaffected by this extra exclusion.
+   * :not(.v-fab):not(.v-btn--icon) excludes the small round block-toolbar
+   * buttons (ToolbarIconButton.vue - cog/pencil/delete/etc, plain v-btn
+   * with the icon prop set, not v-fab, since the editable-block chrome
+   * redesign moved off v-fab entirely), which stay circular on purpose -
+   * the speed-dial rule above already gives their *expanded* items 8px.
+   */
+  .v-theme--editorTheme .v-btn:not(.v-fab):not(.v-btn--icon):not(.v-theme--appTheme) {
+    height: 40px !important;
+    border-radius: 8px !important;
+  }
+
+  /*
+   * ToolbarIconButton.vue's "pressed" state for mode-toggle buttons (drag
+   * mode, uniform card format...) - same app-content fight as every other
+   * rule in this layer: theme_2's own buttons.css matches the underlying
+   * <button> element with `box-shadow: none !important`, which would
+   * otherwise always win over an unlayered rule regardless of specificity.
+   */
+  /*
+   * The colour swatch is a plain square. theme_2's own buttons.css matches
+   * every bare <button> with `border-radius: var(--default-border-radius)
+   * !important` and `padding: 12px`, which turned this 28px control into a
+   * circle with a shrunken square inside it. Same layer, higher
+   * specificity - the only way to win an !important that lives in a layer.
+   */
+  .palette-swatch-tile {
+    border-radius: 4px !important;
+    padding: 0 !important;
+  }
+
+  .toolbar-icon-button--active {
+    box-shadow: inset 2px 2px 4px #0008 !important;
+    height: 48px !important;
+    border-radius: 8px !important;
+  }
+  .v-btn-group .v-btn {
+    min-height: 48px !important;
+  }
+  /*
+   * Look only - deliberately no height/alignment here. Sizing every button
+   * in the group is `.v-btn-group .v-btn`'s job above; when this rule set
+   * its own height and align-self, the active button was the only item in
+   * the row centred in the group's 8px of spare height while its siblings
+   * hugged the top, so it read as having dropped down.
+   */
+  .v-btn-toggle > .v-btn.v-btn--active:not(.v-btn--disabled) {
+    box-shadow: inset 2px 2px 4px #0008 !important;
+    border-radius: 8px !important;
+  }
+}
+
+.v-theme--editorTheme .v-card-actions {
+  padding: 24px;
+}

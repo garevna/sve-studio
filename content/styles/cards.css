@@ -1,0 +1,36 @@
+/* Card styles - the UI Kit's "Картки" tab edits this file. A cards block
+   refers to one of these classes by name (block.cardStyle); a block that
+   names none uses the style of its layout variant (see card-style.ts).
+   Only the LOOK lives here - fill, border, corners, shadow. Where the icon
+   and text sit is the variant's job (TemplateCard.vue).
+   --card-style-label is the name shown in the editor. */
+.card-elevated {
+  --card-style-label: "Тінь без рамки";
+  border-radius: var(--default-border-radius);
+  box-shadow: 0 0 12px #00000020;
+}
+
+.card-outlined {
+  --card-style-label: "Рамка без тіні";
+  border: var(--light-border);
+  border-radius: var(--default-border-radius);
+}
+
+.card-pill {
+  --card-style-label: "Таблетка";
+  background: var(--light-grey-2);
+  border: var(--light-border);
+  border-radius: var(--super-border-radius);
+}
+
+.card-filled {
+  --card-style-label: "Заливка";
+  background: var(--light-grey-2);
+  border-radius: var(--default-border-radius);
+}
+
+@media screen and (max-width: 600px) {
+  .card-pill {
+    border-radius: var(--small-border-radius);
+  }
+}

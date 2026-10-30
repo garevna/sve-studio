@@ -1,0 +1,142 @@
+<!-- eslint-disable unicorn/prefer-add-event-listener -->
+<script setup lang="ts">
+  import type { TemplateBlockModel } from '@/types/TemplateBlockModel'
+  import { computed, ref } from 'vue'
+  import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
+  import { useBlockActionsTarget } from '@/composables/useEditableBlockActions'
+  import { useAjaxStore } from '@/stores/ajax'
+  import { uploadImage } from '@/utils/upload-image'
+
+  // Edit-mode host for both swiper variants ("carousel-with-preview" =
+  // swiper type; "carousel-with-images" = slider-with-images type) - same
+  // upload flow either way. This is edit-mode ONLY: TemplateItem.vue never
+  // mounts this component outside mode==='edit', real preview goes straight
+  // to SliderWithThumbnails.vue/SliderWithImages.vue instead. Deliberately
+  // does NOT render either of those real components here even though images
+  // exist - they carry autoplay/loop/centered-slides, which has no business
+  // running while editing (same reasoning SliderWithCards.vue already
+  // established: its own edit-mode grid is a plain flex-wrap, the real
+  // autoplay swiper only ever mounts in its v-else preview branch). A real
+  // Swiper instance repeatedly mounting/unmounting as images.length toggles
+  // between 0 and 1+, inside a still-reflowing edit-mode layout, is exactly
+  // the fragile combination that was causing images to silently fail to
+  // render - a plain static thumbnail grid sidesteps that whole class of
+  // issue, not just one instance of it.
+  const props = defineProps<{ block: TemplateBlockModel }>()
+
+  const ajaxStore = useAjaxStore()
+  const blockActionsTarget = useBlockActionsTarget()
+
+  const images = computed(() => {
+    const list = props.block.images || []
+    return list.map(image => typeof image === 'string' ? { src: image } : image)
+  })
+
+  const fileInput = ref<HTMLInputElement | null>(null)
+
+  function triggerFileDialog () {
+    fileInput.value?.click()
+  }
+
+  // Loads a whole series of photos at once and replaces the slider's image
+  // list wholesale - individual slides aren't edited one by one. Instant
+  // blob: previews while the real uploads happen in the background, same
+  // "no client-side image storage" pattern as ImageEditor.vue - each
+  // upload swaps to its own real server path once it resolves; base64
+  // data URIs were never an option here (that's storing the actual image
+  // bytes inside the page's own JSON content, bloating every read/write of
+  // that page and contradicting the project's own established design:
+  // the client only ever holds a URL).
+  //
+  // If any file fails to upload, that one is dropped rather than rejecting
+  // the whole batch (Promise.all would otherwise hang on/fail the entire
+  // series over one bad file) - if every file fails, results is empty and
+  // block.images ends up [] as well, which is exactly the "no images yet"
+  // empty-canvas state the template already falls back to, per the agreed
+  // convention.
+  function onFilesChange (event: Event) {
+    const files = (event.target as HTMLInputElement).files
+    if (!files || files.length === 0) return
+    const fileList = [...files]
+
+    const blobUrls = fileList.map(file => URL.createObjectURL(file))
+    // eslint-disable-next-line vue/no-mutating-props
+    props.block.images = blobUrls.map(src => ({ src }))
+
+    Promise.all(fileList.map(file => uploadImage(file).catch(() => null))).then(paths => {
+      // eslint-disable-next-line vue/no-mutating-props
+      props.block.images = paths.filter((path): path is string => path !== null).map(src => ({ src }))
+      for (const blobUrl of blobUrls) URL.revokeObjectURL(blobUrl)
+    })
+  }
+</script>
+
+<template>
+  <div class="swiper-images-editor">
+    <input
+      ref="fileInput"
+      accept="image/*"
+      multiple
+      style="display: none"
+      type="file"
+      @change="onFilesChange"
+    >
+    <div v-if="images.length > 0" class="swiper-images-grid">
+      <v-img
+        v-for="(image, index) of images"
+        :key="index"
+        class="swiper-images-thumb"
+        cover
+        :src="ajaxStore.getImageURL(image.src)"
+      />
+    </div>
+    <div v-else class="swiper-images-empty">
+      Немає завантажених фото
+    </div>
+    <Teleport :disabled="!blockActionsTarget" :to="blockActionsTarget">
+      <ToolbarIconButton
+        :class="{ 'swiper-images-upload-btn': !blockActionsTarget }"
+        icon="mdi-image-multiple-outline"
+        tooltip="Завантажити серію фото"
+        @click="triggerFileDialog"
+      />
+    </Teleport>
+  </div>
+</template>
+
+<style scoped>
+.swiper-images-editor {
+  position: relative;
+}
+
+.swiper-images-upload-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 5;
+}
+
+.swiper-images-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-height: 300px;
+}
+
+.swiper-images-thumb {
+  width: 160px;
+  height: 160px;
+  border-radius: var(--v-default-border-radius);
+  flex: 0 0 auto;
+}
+
+.swiper-images-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+  background: var(--light-grey-2);
+  border-radius: var(--v-default-border-radius);
+  color: var(--grey);
+}
+</style>

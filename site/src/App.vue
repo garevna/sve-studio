@@ -9,17 +9,20 @@
   import { loadThemeStyles } from '@/utils/load-theme-styles'
   import { applyThemeFonts } from '@/utils/theme-fonts'
   import LiveConnect from './components/buttons/theme_2/LiveConnect.vue'
+  import FooterHorizonSignature from './components/FooterHorizonSignature.vue'
+  import FooterHorizonWave from './components/FooterHorizonWave.vue'
   import HeroWithTitle from './components/hero-section/HeroWithTitle.vue'
   import HeroSection from './components/hero-section/theme_2/HeroSection.vue'
   import MainMenu from './components/main-menu/MainMenu.vue'
+  import SiteCopyright from './components/SiteCopyright.vue'
   import { siteStyles } from './configs/card-style'
+  import { FOOTER_HORIZON, resolveFooterVariant } from './configs/footer-variants'
   import { HERO_WITH_TITLE_VARIANT } from './configs/header-layout'
   import { loadCountryList } from './services/load-country-list'
   import { getFooter, getMenu, getPage, getPageTitles, getPalette, getSeoSettings, getSiteSettings } from './services/site-data'
   import { parseSitePath } from './services/site-links'
   import { useCommonStore } from './stores/common'
   import DynamicPageTemplate from './templates/DynamicPageTemplate.vue'
-  import SiteCopyright from './components/SiteCopyright.vue'
   import FooterTemplate from './templates/FooterTemplate.vue'
   import PageNotFound from './templates/PageNotFound.vue'
   import { type PageTitle, pageTitleText, withMenuLabels } from './utils/page-title'
@@ -46,6 +49,7 @@
 
   // footer-content.json's own visible/background fields - visible defaults
   // true when unset, background to --primary.
+  const footerVariant = computed(() => resolveFooterVariant(dynamicFooterContent.value?.ver))
   const footerBackground = computed(() => `var(--${dynamicFooterContent.value?.background || 'primary'})`)
 
   const headerVisibility = computed(() => dynamicPageContent.value?.hero)
@@ -255,11 +259,14 @@
     <v-footer
       v-if="dynamicFooterContent?.visible !== false"
       id="app-footer"
-      class="app-footer mt-4 py-8"
+      :class="['app-footer mt-4 py-8', `app-footer--v${footerVariant}`]"
       :style="{ backgroundColor: footerBackground }"
     >
+      <!-- The look the footer's own `ver` picks (configs/footer-variants.ts). -->
+      <FooterHorizonWave v-if="footerVariant === FOOTER_HORIZON" :color="footerBackground" />
       <FooterTemplate />
       <SiteCopyright />
+      <FooterHorizonSignature v-if="footerVariant === FOOTER_HORIZON" :text="company?.name || ''" />
     </v-footer>
 
     <!-- <AuthErrorPopup />
@@ -286,6 +293,16 @@
   /* the copyright line (SiteCopyright) goes under the columns, full width */
   flex-wrap: wrap;
   border-radius: var(--default-border-radius) var(--default-border-radius) 0 0;
+}
+/* "Горизонт": the wave is the footer's top edge (it sits above the box, so
+   the box keeps room for it), straight corners, and the signature reaching
+   the very bottom. */
+.v-footer.app-footer--v2 {
+  position: relative;
+  margin-top: calc(clamp(40px, 6vw, 96px) + 24px) !important;
+  padding-bottom: 0 !important;
+  border-radius: 0;
+  overflow: visible;
 }
 
 @media screen and (max-width: 960px) {

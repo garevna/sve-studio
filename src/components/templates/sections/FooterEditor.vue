@@ -10,12 +10,15 @@
   import { provideFooterBackground } from '@/composables/useFooterBackground'
   import { collectFooterKinds, isLegacyLinksSection, normalisePageLinks } from '@/configs/footer-blocks'
   import { FOOTER_RESPONSIVE_GAP_CLASS } from '@/configs/footer-layout'
+  import { FOOTER_HORIZON, resolveFooterVariant } from '@/configs/footer-variants'
   import { useAjaxStore } from '@/stores/ajax'
   import { useCommonStore } from '@/stores/common'
   import { useUiFeedbackStore } from '@/stores/ui-feedback'
   import { emptyTranslatedModel } from '@/utils/locale-text'
   import { stableKey } from '@/utils/stable-key'
   import FooterColumn from './FooterColumn.vue'
+  import FooterHorizonSignature from './FooterHorizonSignature.vue'
+  import FooterHorizonWave from './FooterHorizonWave.vue'
   import FooterInsertMenu from './FooterInsertMenu.vue'
 
   const commonStore = useCommonStore()
@@ -49,6 +52,7 @@
   // reasoning TemplateCard.vue/DarkFoneSection.vue are self-contained for
   // their own known shape.
   const props = defineProps<{ block: TemplateBlockModel }>()
+  const variant = computed(() => resolveFooterVariant(props.block.ver))
   // For the dialogs inside that show the footer's texts (FooterContactsDialog).
   provideFooterBackground(computed(() => props.block.background || 'primary'))
 
@@ -356,9 +360,12 @@
 
 <template>
   <div
-    class="footer-editor-root"
+    :class="['footer-editor-root', `footer-editor-root--v${variant}`]"
     :style="{ background: `var(--${block.background || 'primary'})`, marginTop: `${commonStore.currentBlockSpacing}px` }"
   >
+    <!-- The look the footer's `ver` picks (configs/footer-variants.ts) -
+      the same pieces the site draws. -->
+    <FooterHorizonWave v-if="variant === FOOTER_HORIZON" :color="`var(--${block.background || 'primary'})`" />
     <!-- justify-center with content-sized columns, NOT justify-space-around.
       space-around would centre things too, but it distributes the LEFTOVER
       room around the columns - so the visible distance between them becomes
@@ -428,6 +435,8 @@
       </template>
     </SortableList>
 
+    <FooterHorizonSignature v-if="variant === FOOTER_HORIZON" :text="commonStore.companyName" />
+
     <MenuLinkDialog v-if="linkDialogTarget" v-model="linkDialogOpen" :item="linkDialogTarget" />
   </div>
 </template>
@@ -452,6 +461,12 @@
   max-width: 1440px;
   width: 100%;
   margin-inline: auto;
+}
+.footer-editor-root--v2 {
+  position: relative;
+  margin-top: calc(clamp(40px, 6vw, 96px) + 24px) !important;
+  padding-bottom: 0;
+  border-radius: 0;
 }
 @media screen and (max-width: 390px) {
   .footer-editor-root {

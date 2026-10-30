@@ -1,7 +1,9 @@
 <script setup lang="ts">
   import type { TemplateBlockModel } from '@/types/TemplateBlockModel'
+  import { computed } from 'vue'
   import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
   import PaletteSwatchPicker from '@/components/special/PaletteSwatchPicker.vue'
+  import { FOOTER_VARIANTS, resolveFooterVariant } from '@/configs/footer-variants'
 
   const props = defineProps<{ block: TemplateBlockModel }>()
 
@@ -25,6 +27,12 @@
     props.block.background = value
   }
 
+  const variant = computed(() => resolveFooterVariant(props.block.ver))
+  function setVariant (id: number) {
+    // eslint-disable-next-line vue/no-mutating-props -- the footer block is edited in place, like its background
+    props.block.ver = id
+  }
+
   function toggleVisible () {
     // eslint-disable-next-line vue/no-mutating-props
     props.block.visible = props.block.visible === false
@@ -33,6 +41,15 @@
 </script>
 
 <template>
+  <!-- The footer's look: one button per variant (configs/footer-variants.ts). -->
+  <ToolbarIconButton
+    v-for="item of FOOTER_VARIANTS"
+    :key="item.id"
+    :active="variant === item.id"
+    :icon="item.icon"
+    :tooltip="`Вигляд футера: ${item.title}`"
+    @click="setVariant(item.id)"
+  />
   <PaletteSwatchPicker dark-only :model-value="block.background || 'primary'" @update:model-value="setBackground">
     <template #activator="{ menuProps }">
       <v-tooltip location="top" text="Фон футера" theme="editorTheme">

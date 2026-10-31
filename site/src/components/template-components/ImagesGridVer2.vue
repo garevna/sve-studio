@@ -24,8 +24,8 @@
     <p v-if="props.subheader" :class="props.subheaderClass || 'h5 text-medium text-special text-center mb-8'">{{ props.subheader }}</p>
 
     <div id="theme-2-mobile-mode" class="d-flex flex-column gr-5">
-      <img class="rounded-border-image" :src="getImageURL(props.images.mobile[0])">
-      <img class="rounded-border-image" :src="getImageURL(props.images.mobile[1])">
+      <img class="rounded-border-image" :src="getImageURL(props.images.mobile[0] || props.images.desktop[0])">
+      <img class="rounded-border-image" :src="getImageURL(props.images.mobile[1] || props.images.desktop[1])">
       <p v-if="props.text" :class="props.textClass || 'default-text text-medium text-black mt-2 text-justify'">
         {{ props.text }}
       </p>

@@ -30,7 +30,10 @@
   // place every other block without its own content-editing menu gets it,
   // rather than merging two unrelated actions into one menu just because
   // they're both "in this component".
-  const props = defineProps<{ naturalSize?: boolean }>()
+  // fallback: what to show while this slot has no picture of its own - a
+  // phone slot shows the desktop picture, as the site does. An upload still
+  // fills this slot.
+  const props = defineProps<{ naturalSize?: boolean, fallback?: string }>()
 
   // Fired with the real uploaded path (not the transient blob: preview) so
   // a caller with access to the block's full {uk,en,de} content (see
@@ -52,7 +55,7 @@
   // fails to load - both should read as the checkerboard placeholder rather
   // than blank space.
   const imageFailed = ref(false)
-  watch(src, () => {
+  watch(() => [src.value, props.fallback], () => {
     imageFailed.value = false
   })
 
@@ -61,7 +64,8 @@
   // every other render site in the app does, rather than handing a bare
   // path straight to <v-img>. Passes blob:/data: previews and legacy
   // absolute URLs through untouched (see getImageURL's own first branch).
-  const resolvedSrc = computed(() => ajaxStore.getImageURL(src.value))
+  const shownSrc = computed(() => src.value || props.fallback || '')
+  const resolvedSrc = computed(() => ajaxStore.getImageURL(shownSrc.value))
 
   function triggerFileDialog () {
     fileInput.value?.click()
@@ -93,13 +97,13 @@
   <v-img
     v-if="naturalSize && mode !== 'edit'"
     class="rounded-border-image"
-    :class="{ 'image-placeholder-bg': !src || imageFailed }"
+    :class="{ 'image-placeholder-bg': !shownSrc || imageFailed }"
     cover
     :src="resolvedSrc"
     @error="imageFailed = true"
   />
   <ResizableWrapper v-else v-model:height="height">
-    <div :class="['image-editor-wrap', { 'image-placeholder-bg': !src || imageFailed }]">
+    <div :class="['image-editor-wrap', { 'image-placeholder-bg': !shownSrc || imageFailed }]">
       <input
         v-if="mode === 'edit'"
         ref="fileInput"

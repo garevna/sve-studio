@@ -103,41 +103,41 @@
         <v-col cols="7">
           <v-img
             class="rounded-border-image"
-            :class="placeholderClass(props.images.mobile[0])"
+            :class="placeholderClass(props.images.mobile[0] || props.images.desktop[0])"
             cover
             height="344"
-            :src="ajaxStore.getImageURL(props.images.mobile[0] || '')"
-            @error="onImageError(props.images.mobile[0])"
+            :src="ajaxStore.getImageURL(props.images.mobile[0] || props.images.desktop[0] || '')"
+            @error="onImageError(props.images.mobile[0] || props.images.desktop[0])"
           />
         </v-col>
         <v-col cols="5">
           <div class="d-flex flex-column justify-space-between">
             <v-img
               class="rounded-border-image mb-3"
-              :class="placeholderClass(props.images.mobile[1])"
+              :class="placeholderClass(props.images.mobile[1] || props.images.desktop[1])"
               cover
               height="160"
-              :src="ajaxStore.getImageURL(props.images.mobile[1] || '')"
-              @error="onImageError(props.images.mobile[1])"
+              :src="ajaxStore.getImageURL(props.images.mobile[1] || props.images.desktop[1] || '')"
+              @error="onImageError(props.images.mobile[1] || props.images.desktop[1])"
             />
             <v-img
               class="rounded-border-image mt-3"
-              :class="placeholderClass(props.images.mobile[2])"
+              :class="placeholderClass(props.images.mobile[2] || props.images.desktop[2])"
               cover
               height="160"
-              :src="ajaxStore.getImageURL(props.images.mobile[2] || '')"
-              @error="onImageError(props.images.mobile[2])"
+              :src="ajaxStore.getImageURL(props.images.mobile[2] || props.images.desktop[2] || '')"
+              @error="onImageError(props.images.mobile[2] || props.images.desktop[2])"
             />
           </div>
         </v-col>
       </v-row>
       <v-img
         class="rounded-border-image mt-4"
-        :class="placeholderClass(props.images.mobile[3])"
+        :class="placeholderClass(props.images.mobile[3] || props.images.desktop[3])"
         cover
-        :src="ajaxStore.getImageURL(props.images.mobile[3] || '')"
+        :src="ajaxStore.getImageURL(props.images.mobile[3] || props.images.desktop[3] || '')"
         style="height: 200px"
-        @error="onImageError(props.images.mobile[3])"
+        @error="onImageError(props.images.mobile[3] || props.images.desktop[3])"
       />
     </template>
   </v-container>

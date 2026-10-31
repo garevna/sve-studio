@@ -56,16 +56,16 @@
     <template v-else>
       <v-row>
         <v-col cols="7">
-          <v-img class="rounded-border-image" cover height="344" :src="getImageURL(props.images.mobile[0])" />
+          <v-img class="rounded-border-image" cover height="344" :src="getImageURL(props.images.mobile[0] || props.images.desktop[0])" />
         </v-col>
         <v-col cols="5">
           <div class="d-flex flex-column justify-space-between">
-            <v-img class="rounded-border-image mb-3" cover height="160" :src="getImageURL(props.images.mobile[1])" />
-            <v-img class="rounded-border-image mt-3" cover height="160" :src="getImageURL(props.images.mobile[2])" />
+            <v-img class="rounded-border-image mb-3" cover height="160" :src="getImageURL(props.images.mobile[1] || props.images.desktop[1])" />
+            <v-img class="rounded-border-image mt-3" cover height="160" :src="getImageURL(props.images.mobile[2] || props.images.desktop[2])" />
           </div>
         </v-col>
       </v-row>
-      <v-img class="rounded-border-image mt-4" cover :src="getImageURL(props.images.mobile[3])" style="height: 200px" />
+      <v-img class="rounded-border-image mt-4" cover :src="getImageURL(props.images.mobile[3] || props.images.desktop[3])" style="height: 200px" />
     </template>
   </div>
 </template>

@@ -90,8 +90,14 @@
   <v-container v-if="model">
     <div id="galery-2-mobile-mode" class="d-flex flex-column gr-5">
       <template v-if="mode === 'edit'">
-        <image-editor v-model:src="model.images.mobile[0]" />
-        <image-editor v-model:src="model.images.mobile[1]" />
+        <image-editor
+          v-model:src="model.images.mobile[0]"
+          :fallback="model.images.desktop[0]"
+        />
+        <image-editor
+          v-model:src="model.images.mobile[1]"
+          :fallback="model.images.desktop[1]"
+        />
         <text-editor
           v-if="model.text"
           v-model:class-name="model.textClass"
@@ -103,15 +109,15 @@
       <template v-else>
         <img
           class="rounded-border-image"
-          :class="placeholderClass(model.images.mobile[0])"
-          :src="ajaxStore.getImageURL(model.images.mobile[0] || '')"
-          @error="onImageError(model.images.mobile[0])"
+          :class="placeholderClass(model.images.mobile[0] || model.images.desktop[0])"
+          :src="ajaxStore.getImageURL(model.images.mobile[0] || model.images.desktop[0] || '')"
+          @error="onImageError(model.images.mobile[0] || model.images.desktop[0])"
         >
         <img
           class="rounded-border-image"
-          :class="placeholderClass(model.images.mobile[1])"
-          :src="ajaxStore.getImageURL(model.images.mobile[1] || '')"
-          @error="onImageError(model.images.mobile[1])"
+          :class="placeholderClass(model.images.mobile[1] || model.images.desktop[1])"
+          :src="ajaxStore.getImageURL(model.images.mobile[1] || model.images.desktop[1] || '')"
+          @error="onImageError(model.images.mobile[1] || model.images.desktop[1])"
         >
         <p v-if="model.text" :class="model.textClass || defaultTextClass">
           {{ localizedText }}

@@ -166,6 +166,7 @@
             <image-editor
               v-model:height="mobileHeight1"
               v-model:src="model.images.mobile[0]"
+              :fallback="model.images.desktop[0]"
               :resize="false"
             />
           </v-col>
@@ -174,11 +175,13 @@
               <image-editor
                 v-model:height="mobileHeight2"
                 v-model:src="model.images.mobile[1]"
+                :fallback="model.images.desktop[1]"
                 :resize="false"
               />
               <image-editor
                 v-model:height="mobileHeight2"
                 v-model:src="model.images.mobile[2]"
+                :fallback="model.images.desktop[2]"
                 :resize="false"
               />
             </div>
@@ -187,6 +190,7 @@
         <image-editor
           v-model:height="mobileHeight3"
           v-model:src="model.images.mobile[3]"
+          :fallback="model.images.desktop[3]"
           :resize="false"
         />
       </template>

@@ -12,6 +12,7 @@ import type {
 } from '../types/common'
 import type { FooterSettingsModel } from '@/configs/footer-layout'
 import type { HeaderSettingsModel } from '@/configs/header-layout'
+import type { Banner } from '@/types/common/GlobalSettingsModel'
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 import { resolveHeaderSettings, resolveHeroVariant } from '@/configs/header-layout'
@@ -88,9 +89,9 @@ export const useCommonStore = defineStore('common', () => {
   } | null>(null)
 
   const userDashBreackpoint = ref(880)
-  const baners = ref({ desktop: '', mobile: '' })
+  const baners = ref<Banner>({ desktop: '', mobile: '' })
   // The extra carousel banners of layout 1 (global.json banerSlides).
-  const banerSlides = ref<{ desktop: string, mobile: string }[]>([])
+  const banerSlides = ref<Banner[]>([])
   const mainMenuContent = ref<MenuItemModel[]>([])
 
   const currentLocaleBaners = ref<{ mobile: boolean, locale: LocaleModel, id: number, imageURL: string }[]>([])

@@ -14,12 +14,9 @@ export interface GlobalSettingsModel {
     width: number
     height: number
   }
-  baner: {
-    desktop: string
-    mobile: string
-  }
+  baner: Banner
   // More banners after `baner`: with any, layout 1 turns into a carousel.
-  banerSlides?: { desktop: string, mobile: string }[]
+  banerSlides?: Banner[]
   logoWhite: string
   links: Record<string, string>
   styles: string[]
@@ -69,4 +66,24 @@ export interface GlobalSettingsModel {
   // Settings of the layout heroVariant picks (company-name corner, menu bar
   // colour) - see configs/header-layout.ts.
   header?: Partial<HeaderSettingsModel>
+}
+
+// A text laid over a banner (layout 1 of the top of the site): its words in
+// every language, where it sits and how big it is. Position and width are
+// % of the banner box, size is % of its width (cqw) - so the text scales
+// with the picture. A phone banner box is shaped differently: `mobile` has
+// the text's own place there (derived from the desktop one when unset).
+export type BannerTextBox = { x: number, y: number, width: number, size: number }
+export type BannerText = BannerTextBox & {
+  id: string
+  text: { uk: string, en: string, de: string }
+  // text format classes: weight, colour (text-<palette key>), alignment, font
+  class: string
+  mobile?: BannerTextBox
+}
+
+export type Banner = {
+  desktop: string
+  mobile: string
+  texts?: BannerText[]
 }

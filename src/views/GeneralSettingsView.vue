@@ -1,6 +1,7 @@
 <script lang="ts" setup>
-  import type { GlobalSettingsModel } from '@/types/GlobalSettingsModel'
+  import type { Banner, GlobalSettingsModel } from '@/types/GlobalSettingsModel'
   import { computed, onMounted, ref, watch } from 'vue'
+  import BannerTextsEditor from '@/components/special/BannerTextsEditor.vue'
   import EditorPageHeader from '@/components/special/EditorPageHeader.vue'
   import EditorSaveBar from '@/components/special/EditorSaveBar.vue'
   import { t } from '@/i18n'
@@ -154,6 +155,15 @@
       feedback.notifyError(t('popups.bannerUploadFailed'), error instanceof Error ? error.message : String(error))
     }
   }
+  // The banner whose texts are being edited (BannerTextsEditor).
+  const textsOf = ref<Banner | null>(null)
+  const textsOpen = computed({
+    get: () => textsOf.value !== null,
+    set: value => {
+      if (!value) textsOf.value = null
+    },
+  })
+
   function removeSlide (index: number) {
     if (!settings.value?.banerSlides) return
     settings.value.banerSlides = settings.value.banerSlides.filter((_, i) => i !== index)
@@ -341,6 +351,9 @@
             <img v-if="settings.baner.mobile" class="banner-preview mt-2" :src="settings.baner.mobile">
           </v-col>
         </v-row>
+        <v-btn class="mt-2" prepend-icon="mdi-format-text" variant="tonal" @click="textsOf = settings.baner">
+          {{ t('generalSettings.bannerTexts', { n: settings.baner.texts?.length ?? 0 }) }}
+        </v-btn>
 
         <h3 class="banner-slides-title">{{ t('generalSettings.slides') }}</h3>
         <p class="text-body-2 text-medium-emphasis mb-3">{{ t('generalSettings.slidesHint') }}</p>
@@ -359,6 +372,13 @@
               </label>
             </div>
             <v-btn
+              :aria-label="t('generalSettings.bannerTexts', { n: slide.texts?.length ?? 0 })"
+              icon="mdi-format-text"
+              size="small"
+              variant="text"
+              @click="textsOf = slide"
+            />
+            <v-btn
               :aria-label="t('generalSettings.slideRemove')"
               color="error"
               icon="mdi-delete-outline"
@@ -375,6 +395,8 @@
             @update:model-value="addSlide($event)"
           />
         </div>
+
+        <BannerTextsEditor v-if="textsOf" v-model="textsOpen" v-model:texts="textsOf.texts" :banner="textsOf" />
 
         <EditorSaveBar
           :dirty="dirty"

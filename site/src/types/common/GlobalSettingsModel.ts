@@ -24,12 +24,9 @@ export type GlobalSettingsModel = {
   locales: string[]
   // The language of addresses without a language prefix (/site/...).
   defaultLocale?: string
-  baner: {
-    desktop: string
-    mobile: string
-  }
+  baner: Banner
   // More banners after `baner`: with any, layout 1 turns into a carousel.
-  banerSlides?: { desktop: string, mobile: string }[]
+  banerSlides?: Banner[]
   userDashBreackpoint: number
   pageContentMarginTop: number
   blockSpacing: {
@@ -44,4 +41,24 @@ export type GlobalSettingsModel = {
     header?: string
     text?: string[]
   }
+}
+
+// A text laid over a banner (layout 1 of the top of the site): its words in
+// every language, where it sits and how big it is. Position and width are
+// % of the banner box, size is % of its width (cqw) - so the text scales
+// with the picture. A phone banner box is shaped differently: `mobile` has
+// the text's own place there (derived from the desktop one when unset).
+export type BannerTextBox = { x: number, y: number, width: number, size: number }
+export type BannerText = BannerTextBox & {
+  id: string
+  text: { uk: string, en: string, de: string }
+  // text format classes: weight, colour (text-<palette key>), alignment, font
+  class: string
+  mobile?: BannerTextBox
+}
+
+export type Banner = {
+  desktop: string
+  mobile: string
+  texts?: BannerText[]
 }

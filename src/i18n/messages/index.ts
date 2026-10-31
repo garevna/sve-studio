@@ -3,6 +3,7 @@
 // An empty "en"/"de" shows the Ukrainian text until it is translated.
 // A new section: add its file here.
 
+import bannerTexts from './bannerTexts.json'
 import cardStyles from './cardStyles.json'
 import common from './common.json'
 import confirm from './confirm.json'
@@ -19,6 +20,7 @@ import translations from './translations.json'
 import ui from './ui.json'
 
 export const MESSAGES = {
+  bannerTexts,
   cardStyles,
   common,
   confirm,

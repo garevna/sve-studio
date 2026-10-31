@@ -1,7 +1,7 @@
 import type { TemplateBlockModel, TranslatedModel } from '@/types/TemplateBlockModel'
 import { textPlaceholder } from '../defaults/text-placeholder'
 
-// "Шукайте маршрут" - the numbered circles. Inserted with a heading and
+// "Кроки в кружках" - the numbered circles. Inserted with a heading and
 // three empty steps rather than an empty block: the circles are the whole
 // point of this block, and one with none of them renders as a title over
 // nothing, which reads as broken rather than as "add your steps".
@@ -14,15 +14,15 @@ import { textPlaceholder } from '../defaults/text-placeholder'
 // (--transfer-services-*-in-circle-background), so a fresh block matches the
 // site until someone deliberately changes it.
 const seedTitle: TranslatedModel = {
-  uk: 'Шукайте маршрут',
-  en: 'Search for a route',
-  de: 'Route suchen',
+  uk: 'Як ми працюємо',
+  en: 'How we work',
+  de: 'So arbeiten wir',
 }
 
 const seedSubtitle: TranslatedModel = {
-  uk: '«Трансфер + Міжнародний рейс»',
-  en: '«Transfer + International route»',
-  de: '«Transfer + Internationale Fahrt»',
+  uk: 'Від ідеї до запуску - кілька простих кроків',
+  en: 'From idea to launch - a few simple steps',
+  de: 'Von der Idee bis zum Start - ein paar einfache Schritte',
 }
 
 function emptyStep () {

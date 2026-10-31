@@ -13,7 +13,7 @@
   import { useUiFeedbackStore } from '@/stores/ui-feedback'
   import { emptyTranslatedModel, resolveLocaleText } from '@/utils/locale-text'
 
-  // "Шукайте маршрут" - the numbered circles on the transfer page. Markup,
+  // "Кроки в кружках" - the numbered circles. Markup,
   // sizes and colours are production's own (see client-side's
   // TransferServicesSteps.vue / TransferServicesCircle.vue), which is the
   // point: the editor draws the real thing.

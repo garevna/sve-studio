@@ -1,12 +1,12 @@
 <script setup lang="ts">
   import type { TranslatedModel } from '@/types/TemplateBlockModel'
   import { computed } from 'vue'
-  import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
   import LocaleSwitcher from '@/components/editors/small/LocaleSwitcher.vue'
+  import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
   import { useCommonStore } from '@/stores/common'
   import { emptyTranslatedModel, isTranslatedModel, resolveLocaleText } from '@/utils/locale-text'
 
-  // One step of "Шукайте маршрут": its ordinary text and the part of it set
+  // One step of "Кроки в кружках": its ordinary text and the part of it set
   // in bold. Two fields and a delete, in the project's own dialog shape -
   // a toolbar that stays put, the body below it, the confirm at the bottom.
   //

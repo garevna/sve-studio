@@ -2,7 +2,7 @@
   import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
   import PaletteSwatchPicker from '@/components/special/PaletteSwatchPicker.vue'
 
-  // Block-level actions for "Шукайте маршрут": add a step, reorder them, and
+  // Block-level actions for "Кроки в кружках": add a step, reorder them, and
   // the two colours every circle shares. Rendered into the block's own
   // EditableBlockWrapper toolbar (TransferServicesSteps.vue Teleports it
   // there), the same shape PopularDestinationsActions and FaqBlockActions

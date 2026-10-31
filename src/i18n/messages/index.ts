@@ -6,6 +6,8 @@
 import cardStyles from './cardStyles.json'
 import common from './common.json'
 import confirm from './confirm.json'
+import generalSettings from './generalSettings.json'
+import header from './header.json'
 import home from './home.json'
 import images from './images.json'
 import kit from './kit.json'
@@ -20,6 +22,8 @@ export const MESSAGES = {
   cardStyles,
   common,
   confirm,
+  generalSettings,
+  header,
   home,
   images,
   kit,
@@ -29,10 +33,4 @@ export const MESSAGES = {
   siteSettings,
   translations,
   ui,
-}
-
-// Dev: a text saved on /editor-ui changes these files - the interface has
-// already been given the new texts (applyMessages), so no page reload.
-if (import.meta.hot) {
-  import.meta.hot.accept(() => {})
 }

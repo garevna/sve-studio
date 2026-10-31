@@ -89,6 +89,8 @@ export const useCommonStore = defineStore('common', () => {
 
   const userDashBreackpoint = ref(880)
   const baners = ref({ desktop: '', mobile: '' })
+  // The extra carousel banners of layout 1 (global.json banerSlides).
+  const banerSlides = ref<{ desktop: string, mobile: string }[]>([])
   const mainMenuContent = ref<MenuItemModel[]>([])
 
   const currentLocaleBaners = ref<{ mobile: boolean, locale: LocaleModel, id: number, imageURL: string }[]>([])
@@ -174,6 +176,7 @@ export const useCommonStore = defineStore('common', () => {
     company.value = Object.assign({}, { name: provider, logo, logoWhite, links, icons, baner })
     applyHeaderSettings(response)
     baners.value = response.baner
+    banerSlides.value = Array.isArray(response.banerSlides) ? response.banerSlides : []
     if (Array.isArray(response.locales) && response.locales.length > 0) {
       siteLocales.value = response.locales
       defaultLocale.value = response.defaultLocale && response.locales.includes(response.defaultLocale) ? response.defaultLocale : response.locales[0]!
@@ -236,6 +239,7 @@ export const useCommonStore = defineStore('common', () => {
     userDashBreackpoint,
     heroSection,
     baners,
+    banerSlides,
     company,
     resize,
     setLocale,

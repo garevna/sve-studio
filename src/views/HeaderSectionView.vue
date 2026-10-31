@@ -1,9 +1,10 @@
 <script lang="ts" setup>
-  import type { MenuTheme, TitlePosition } from '@/configs/header-layout'
+  import type { HeaderTagline, MenuTheme, TitlePosition } from '@/configs/header-layout'
   import type { GlobalSettingsModel } from '@/types/GlobalSettingsModel'
   import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
   import EditorPageHeader from '@/components/special/EditorPageHeader.vue'
   import EditorSaveBar from '@/components/special/EditorSaveBar.vue'
+  import PaletteSwatchPicker from '@/components/special/PaletteSwatchPicker.vue'
   import { resolveHeaderSettings } from '@/configs/header-layout'
   import { HERO_VARIANTS, resolveHeroVariant } from '@/configs/hero-variants'
   import { t } from '@/i18n'
@@ -75,6 +76,17 @@
     settings.value.header = { ...header.value, menuTheme: value }
     void saveDraft()
   }
+  function setBackground (value: string) {
+    if (!settings.value || header.value.background === value) return
+    settings.value.header = { ...header.value, background: value }
+    void saveDraft()
+  }
+  function setTagline (locale: keyof HeaderTagline, value: string) {
+    if (!settings.value) return
+    settings.value.header = { ...header.value, tagline: { ...header.value.tagline, [locale]: value } }
+    void saveDraft()
+  }
+  const TAGLINE_LOCALES: (keyof HeaderTagline)[] = ['uk', 'en', 'de']
 
   async function save () {
     if (!settings.value) return
@@ -96,16 +108,14 @@
   }
 
   // Corners of the banner, in the order they sit on screen (2 x 2 grid).
-  const CORNERS: { value: TitlePosition, icon: string, label: string }[] = [
-    { value: 'top-left', icon: 'mdi-arrow-top-left', label: 'Вгорі ліворуч' },
-    { value: 'top-right', icon: 'mdi-arrow-top-right', label: 'Вгорі праворуч' },
-    { value: 'bottom-left', icon: 'mdi-arrow-bottom-left', label: 'Внизу ліворуч' },
-    { value: 'bottom-right', icon: 'mdi-arrow-bottom-right', label: 'Внизу праворуч' },
+  // Labels: header.corners.<value>, header.menuThemes.<value>.
+  const CORNERS: { value: TitlePosition, icon: string }[] = [
+    { value: 'top-left', icon: 'mdi-arrow-top-left' },
+    { value: 'top-right', icon: 'mdi-arrow-top-right' },
+    { value: 'bottom-left', icon: 'mdi-arrow-bottom-left' },
+    { value: 'bottom-right', icon: 'mdi-arrow-bottom-right' },
   ]
-  const MENU_THEMES: { value: MenuTheme, label: string }[] = [
-    { value: 'dark', label: 'Чорна' },
-    { value: 'light', label: 'Біла' },
-  ]
+  const MENU_THEMES: MenuTheme[] = ['dark', 'light']
 
   // --- live preview -------------------------------------------------------
 
@@ -167,13 +177,9 @@
 <template>
   <v-app>
     <v-main class="editor-page">
-      <EditorPageHeader back-to="/" title="Верхня частина сторінки" />
+      <EditorPageHeader back-to="/" :title="t('header.title')" />
 
-      <p class="text-body-2 text-medium-emphasis mb-6">
-        Макет верхньої частини сторінок, для яких її увімкнено в налаштуваннях
-        сторінки. Назва компанії, логотип і банер беруться із загальних
-        налаштувань, кольори й шрифти — з UI Kit.
-      </p>
+      <p class="text-body-2 text-medium-emphasis mb-6">{{ t('header.intro') }}</p>
 
       <v-progress-linear v-if="loading" color="primary" indeterminate />
 
@@ -191,35 +197,58 @@
               <v-icon :color="selected === variant.id ? 'primary' : undefined" size="20">
                 {{ selected === variant.id ? 'mdi-radiobox-marked' : 'mdi-radiobox-blank' }}
               </v-icon>
-              {{ variant.title }}
+              {{ t(`header.variants.${variant.id}.title`) }}
             </span>
-            <span class="hero-variant-hint">{{ variant.description }}</span>
+            <span class="hero-variant-hint">{{ t(`header.variants.${variant.id}.description`) }}</span>
           </button>
         </div>
 
-        <!-- Settings of the chosen layout, when it has any. -->
-        <div v-if="selectedVariant?.configurable" class="hero-settings">
-          <div>
-            <p class="hero-setting-label">Назва компанії</p>
+        <!-- Settings of the chosen layout. -->
+        <div class="hero-settings">
+          <div v-if="selectedVariant?.settings === 'title'">
+            <p class="hero-setting-label">{{ t('header.companyName') }}</p>
             <div class="corner-picker">
               <v-btn
                 v-for="corner of CORNERS"
                 :key="corner.value"
                 :active="header.titlePosition === corner.value"
-                :aria-label="corner.label"
+                :aria-label="t(`header.corners.${corner.value}`)"
                 color="primary"
                 size="small"
                 variant="outlined"
                 @click="setTitlePosition(corner.value)"
               >
                 <v-icon>{{ corner.icon }}</v-icon>
-                <v-tooltip activator="parent" location="top">{{ corner.label }}</v-tooltip>
+                <v-tooltip activator="parent" location="top">{{ t(`header.corners.${corner.value}`) }}</v-tooltip>
               </v-btn>
             </div>
           </div>
 
+          <template v-if="selectedVariant?.settings === 'split'">
+            <div>
+              <p class="hero-setting-label">{{ t('header.fill') }}</p>
+              <PaletteSwatchPicker dark-only :model-value="header.background" @update:model-value="setBackground" />
+              <p class="hero-setting-hint">{{ t('header.fillHint') }}</p>
+            </div>
+            <div class="hero-tagline">
+              <p class="hero-setting-label">{{ t('header.tagline') }}</p>
+              <v-textarea
+                v-for="locale of TAGLINE_LOCALES"
+                :key="locale"
+                auto-grow
+                density="compact"
+                hide-details
+                :label="locale.toUpperCase()"
+                :model-value="header.tagline[locale]"
+                rows="1"
+                variant="outlined"
+                @update:model-value="setTagline(locale, $event)"
+              />
+            </div>
+          </template>
+
           <div>
-            <p class="hero-setting-label">Смуга меню</p>
+            <p class="hero-setting-label">{{ t('header.menuBar') }}</p>
             <v-btn-toggle
               color="primary"
               density="comfortable"
@@ -228,20 +257,26 @@
               variant="outlined"
               @update:model-value="setMenuTheme"
             >
-              <v-btn v-for="theme of MENU_THEMES" :key="theme.value" :value="theme.value">
-                <span class="menu-theme-swatch" :class="`menu-theme-swatch--${theme.value}`" />
-                {{ theme.label }}
+              <v-btn v-for="theme of MENU_THEMES" :key="theme" :value="theme">
+                <span class="menu-theme-swatch" :class="`menu-theme-swatch--${theme}`" />
+                {{ t(`header.menuThemes.${theme}`) }}
               </v-btn>
             </v-btn-toggle>
-            <p class="hero-setting-hint">Тексти, рамки й іконки на смузі змінюють колір разом із нею.</p>
+            <p class="hero-setting-hint">{{ t('header.menuBarHint') }}</p>
           </div>
         </div>
 
         <div class="hero-preview-head">
-          <p class="hero-setting-label mb-0">Превʼю головної сторінки</p>
-          <v-btn-toggle v-model="device" color="primary" density="compact" mandatory variant="outlined">
-            <v-btn prepend-icon="mdi-monitor" size="small" value="desktop">Десктоп</v-btn>
-            <v-btn prepend-icon="mdi-cellphone" size="small" value="phone">Телефон</v-btn>
+          <p class="hero-setting-label mb-0">{{ t('header.preview') }}</p>
+          <v-btn-toggle
+            v-model="device"
+            color="primary"
+            density="compact"
+            mandatory
+            variant="outlined"
+          >
+            <v-btn prepend-icon="mdi-monitor" size="small" value="desktop">{{ t('header.desktop') }}</v-btn>
+            <v-btn prepend-icon="mdi-cellphone" size="small" value="phone">{{ t('header.phone') }}</v-btn>
           </v-btn-toggle>
         </div>
         <div ref="frameBox" class="hero-preview">
@@ -251,7 +286,7 @@
               class="hero-preview-frame"
               :src="previewUrl"
               :style="frameStyle"
-              title="Превʼю головної сторінки"
+              :title="t('header.preview')"
             />
           </div>
         </div>
@@ -265,7 +300,7 @@
               variant="outlined"
               @click="openPreviewTab"
             >
-              Відкрити превʼю
+              {{ t('header.openPreview') }}
             </v-btn>
           </template>
         </EditorSaveBar>
@@ -308,6 +343,13 @@
   padding-inline-start: 28px;
 }
 
+.hero-tagline {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1 1 280px;
+  max-width: 520px;
+}
 .hero-settings {
   display: flex;
   flex-wrap: wrap;

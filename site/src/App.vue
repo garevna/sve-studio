@@ -12,13 +12,14 @@
   import FooterFinalFrame from './components/FooterFinalFrame.vue'
   import FooterHorizonSignature from './components/FooterHorizonSignature.vue'
   import FooterHorizonWave from './components/FooterHorizonWave.vue'
+  import HeroSplit from './components/hero-section/HeroSplit.vue'
   import HeroWithTitle from './components/hero-section/HeroWithTitle.vue'
   import HeroSection from './components/hero-section/theme_2/HeroSection.vue'
   import MainMenu from './components/main-menu/MainMenu.vue'
   import SiteCopyright from './components/SiteCopyright.vue'
   import { siteStyles } from './configs/card-style'
   import { FOOTER_FINAL_FRAME, FOOTER_HORIZON, resolveFooterVariant } from './configs/footer-variants'
-  import { HERO_WITH_TITLE_VARIANT } from './configs/header-layout'
+  import { HERO_SPLIT_VARIANT, HERO_WITH_TITLE_VARIANT } from './configs/header-layout'
   import { loadCountryList } from './services/load-country-list'
   import { getFooter, getMenu, getPage, getPageTitles, getPalette, getSeoSettings, getSiteSettings } from './services/site-data'
   import { parseSitePath } from './services/site-links'
@@ -59,10 +60,12 @@
   // Layout 2: the banner with the company name comes first and the menu bar
   // sits under it, sticking to the top once scrolled to (configs/header-layout.ts).
   const heroWithTitle = computed(() => heroVariant.value === HERO_WITH_TITLE_VARIANT)
+  // Layout 3: the menu bar first, in the page's flow, then the split banner.
+  const heroSplit = computed(() => heroVariant.value === HERO_SPLIT_VARIANT)
   const menuBarClass = computed(() => [
     'main-menu-bar',
     `main-menu-bar--${headerSettings.value.menuTheme}`,
-    { 'main-menu-bar--in-flow': heroWithTitle.value },
+    { 'main-menu-bar--in-flow': heroWithTitle.value || heroSplit.value },
   ])
 
   // 'loading' until the site's settings are in; then per page.
@@ -216,6 +219,12 @@
         <HeroWithTitle />
       </div>
       <MainMenu id="main-menu-bar" :class="menuBarClass" />
+    </template>
+    <template v-else-if="heroSplit">
+      <MainMenu id="main-menu-bar" :class="menuBarClass" />
+      <div v-if="headerVisibility" id="app-hero-section">
+        <HeroSplit />
+      </div>
     </template>
     <template v-else>
       <MainMenu id="main-menu-bar" :class="menuBarClass" />

@@ -879,36 +879,6 @@ export const useAjaxStore = defineStore('ajax', () => {
       .catch(() => null)
   }
 
-  // The hero's banners for one locale. A public endpoint - confirmed live:
-  // it answers without any Authorization header, as do the images it points
-  // at - so this is a plain read, not part of the content API's own
-  // draft/publish machinery.
-  //
-  // Fetched rather than mocked, at the project owner's call: production
-  // shows a rotating carousel of the client's real banners, and a single
-  // static picture in its place would misrepresent the page badly enough to
-  // mislead whoever is editing it.
-  //
-  // Returns image URLs, not ids - where an id turns into a URL is this
-  // layer's business, not the component's.
-  async function getHeroBanners (locale: string, mobile: boolean): Promise<string[]> {
-    try {
-      const response = await api.get(`/finance/banners?locale=${locale}&mobile=${mobile ? 1 : 0}`)
-      const images = (response.data as { images?: unknown } | null)?.images
-      if (!Array.isArray(images)) {
-        return []
-      }
-      const base = api.defaults.baseURL || ''
-      return images.map(id => `${base}/import/show/${id}`)
-    } catch (error_) {
-      // No warning popup: an empty carousel falls back to the theme's own
-      // bundled banner, exactly as production does, so there is nothing for
-      // the user to act on.
-      logApiFallback('/finance/banners', error_)
-      return []
-    }
-  }
-
   async function getStyleFile (name: string) {
     const mode = API_REQUEST_MODE
     if (mode === 'test') {
@@ -1418,7 +1388,6 @@ export const useAjaxStore = defineStore('ajax', () => {
     setGlobalProgress,
     getImageURL,
     getGlobalSettings,
-    getHeroBanners,
     saveGlobalSettings,
     isGlobalSettingsUpdated,
     undoGlobalSettings,

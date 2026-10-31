@@ -3,13 +3,13 @@
   import { computed, onMounted, ref, watch } from 'vue'
   import EditorPageHeader from '@/components/special/EditorPageHeader.vue'
   import EditorSaveBar from '@/components/special/EditorSaveBar.vue'
+  import { t } from '@/i18n'
   import { useAjaxStore } from '@/stores/ajax'
   import { useCommonStore } from '@/stores/common'
   import { useUiFeedbackStore } from '@/stores/ui-feedback'
-  import { readImageFile } from '@/utils/read-image-file'
   import { defaultSiteLocale, isLocaleCode, localeDisplayName, setSiteLocales, siteLocales } from '@/utils/locale-text'
+  import { readImageFile } from '@/utils/read-image-file'
   import { applyThemeFonts } from '@/utils/theme-fonts'
-  import { t } from '@/i18n'
 
   const ajaxStore = useAjaxStore()
   const feedback = useUiFeedbackStore()
@@ -127,6 +127,36 @@
     } catch (error) {
       feedback.notifyError(t('popups.bannerUploadFailed'), error instanceof Error ? error.message : String(error))
     }
+  }
+
+  // More banners after the main one: with any, layout 1 of the top of the
+  // site turns into a carousel (global.json banerSlides).
+  async function addSlide (value: File | File[] | null) {
+    const file = pickFile(value)
+    if (!file || !settings.value) return
+    try {
+      const { dataUrl } = await readImageFile(file)
+      settings.value.banerSlides = [...(settings.value.banerSlides ?? []), { desktop: dataUrl, mobile: '' }]
+    } catch (error) {
+      feedback.notifyError(t('popups.bannerUploadFailed'), error instanceof Error ? error.message : String(error))
+    }
+  }
+  async function replaceSlide (index: number, variant: 'desktop' | 'mobile', event: Event) {
+    const input = event.target as HTMLInputElement
+    const file = input.files?.[0]
+    input.value = ''
+    const slide = settings.value?.banerSlides?.[index]
+    if (!file || !slide) return
+    try {
+      const { dataUrl } = await readImageFile(file)
+      slide[variant] = dataUrl
+    } catch (error) {
+      feedback.notifyError(t('popups.bannerUploadFailed'), error instanceof Error ? error.message : String(error))
+    }
+  }
+  function removeSlide (index: number) {
+    if (!settings.value?.banerSlides) return
+    settings.value.banerSlides = settings.value.banerSlides.filter((_, i) => i !== index)
   }
 
   async function save () {
@@ -312,6 +342,40 @@
           </v-col>
         </v-row>
 
+        <h3 class="banner-slides-title">{{ t('generalSettings.slides') }}</h3>
+        <p class="text-body-2 text-medium-emphasis mb-3">{{ t('generalSettings.slidesHint') }}</p>
+        <div class="banner-slides">
+          <div v-for="(slide, index) of settings.banerSlides ?? []" :key="index" class="banner-slide">
+            <div class="banner-slide-pictures">
+              <label class="banner-slide-picture">
+                <img v-if="slide.desktop" alt="" :src="slide.desktop">
+                <span class="banner-slide-caption"><v-icon size="16">mdi-monitor</v-icon> {{ t('generalSettings.slideDesktop') }}</span>
+                <input accept="image/*" hidden type="file" @change="replaceSlide(index, 'desktop', $event)">
+              </label>
+              <label class="banner-slide-picture banner-slide-picture--phone">
+                <img v-if="slide.mobile" alt="" :src="slide.mobile">
+                <span class="banner-slide-caption"><v-icon size="16">mdi-cellphone</v-icon> {{ slide.mobile ? t('generalSettings.slidePhone') : t('generalSettings.slidePhoneAdd') }}</span>
+                <input accept="image/*" hidden type="file" @change="replaceSlide(index, 'mobile', $event)">
+              </label>
+            </div>
+            <v-btn
+              :aria-label="t('generalSettings.slideRemove')"
+              color="error"
+              icon="mdi-delete-outline"
+              size="small"
+              variant="text"
+              @click="removeSlide(index)"
+            />
+          </div>
+          <v-file-upload
+            accept="image/*"
+            class="upload-dropzone"
+            density="compact"
+            :title="t('generalSettings.slideAdd')"
+            @update:model-value="addSlide($event)"
+          />
+        </div>
+
         <EditorSaveBar
           :dirty="dirty"
           :loading="saving"
@@ -346,6 +410,61 @@
     object-fit: contain;
     border: solid 1px rgba(58, 74, 88, 0.15);
     border-radius: 8px;
+  }
+  .banner-slides-title {
+    margin: 24px 0 4px;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+  .banner-slides {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .banner-slide {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 8px;
+    border: solid 1px rgba(58, 74, 88, 0.15);
+    border-radius: 12px;
+  }
+  .banner-slide-pictures {
+    display: grid;
+    grid-template-columns: minmax(0, 3fr) minmax(0, 1fr);
+    gap: 8px;
+    flex: 1;
+    min-width: 0;
+  }
+  /* Click a picture to replace it. */
+  .banner-slide-picture {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    min-height: 96px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #f2f5f8;
+    cursor: pointer;
+  }
+  .banner-slide-picture img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .banner-slide-caption {
+    position: relative;
+    margin: 6px;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.9);
+    font-size: 12px;
+  }
+  @media (max-width: 600px) {
+    .banner-slide-pictures { grid-template-columns: minmax(0, 1fr); }
   }
   .banner-preview {
     display: block;

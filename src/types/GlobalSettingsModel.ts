@@ -18,6 +18,8 @@ export interface GlobalSettingsModel {
     desktop: string
     mobile: string
   }
+  // More banners after `baner`: with any, layout 1 turns into a carousel.
+  banerSlides?: { desktop: string, mobile: string }[]
   logoWhite: string
   links: Record<string, string>
   styles: string[]

@@ -1,13 +1,16 @@
 <script setup lang="ts">
   import type { TemplateBlockModel } from '@/types/TemplateBlockModel'
   import { computed } from 'vue'
-  import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
   import LocaleSwitcher from '@/components/editors/small/LocaleSwitcher.vue'
+  import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
+  import { textWithIcon } from '@/configs/components/simple/text-with-icon'
+  import { defaultTextClass } from '@/configs/defaults/default-classes'
   import { textPlaceholder } from '@/configs/defaults/text-placeholder'
   import { useCommonStore } from '@/stores/common'
   import { useUiFeedbackStore } from '@/stores/ui-feedback'
   import { resolveLocaleText, setLocalizedContent, translationHint } from '@/utils/locale-text'
   import TextEditor from './TextEditor.vue'
+  import TextWithIconEditor from './TextWithIconEditor.vue'
 
   // Shared dialog for editing a *list* of text/header/title items - used
   // both by TemplateNestedSection.vue (a "section" child's text half, next
@@ -40,6 +43,9 @@
     formattable?: boolean
     groupUniformActive?: boolean
     newItemClass?: string
+    // Texts with an icon can be added too (a card with an image on top,
+    // for contacts: a phone, an address...).
+    withIcons?: boolean
   }>(), {
     formattable: true,
   })
@@ -78,6 +84,16 @@
     // eslint-disable-next-line vue/no-mutating-props
     props.children.push({ type: 'text', content: textPlaceholder(), class: props.newItemClass || 'default-text text-medium' })
   }
+  function addTextWithIcon () {
+    // eslint-disable-next-line vue/no-mutating-props
+    props.children.push({ ...textWithIcon(), content: textPlaceholder(), text: props.newItemClass || defaultTextClass } as TemplateBlockModel)
+  }
+  // A text with an icon keeps its text's format in `text` (the class), the
+  // same field TemplateItem.vue edits for a standalone one.
+  function iconTextClass (child: TemplateBlockModel) {
+    return typeof child.text === 'string' ? child.text : ''
+  }
+
   async function removeText (index: number) {
     if (!await useUiFeedbackStore().confirmDelete('text')) return
     // eslint-disable-next-line vue/no-mutating-props
@@ -116,25 +132,48 @@
               v-model:type="child.type"
               :class="child.class"
               :content="getText(child)"
-              :missing-translation="translationHint(child.content, commonStore.locale)"
               deletable
               :formattable="props.formattable"
+              :missing-translation="translationHint(child.content, commonStore.locale)"
               parent-type="usual"
               @delete="removeText(index)"
               @update:class="value => onClassChange(child, value)"
               @update:content="value => setText(child, value)"
             />
+            <TextWithIconEditor
+              v-else-if="child.type === 'text-with-icon'"
+              v-model:icon="child.icon"
+              v-model:icon-background="child.background"
+              v-model:icon-color="child.color"
+              v-model:icon-size="child.size"
+              deletable
+              :text="getText(child)"
+              :text-class="iconTextClass(child)"
+              @delete="removeText(index)"
+              @update:text="value => setText(child, value)"
+              @update:text-class="value => child.text = value"
+            />
           </div>
         </template>
-        <v-btn
-          block
-          class="mt-2"
-          prepend-icon="mdi-plus"
-          variant="outlined"
-          @click="addText"
-        >
-          Додати текст
-        </v-btn>
+        <div class="editable-text-section-add">
+          <v-btn
+            class="mt-2"
+            prepend-icon="mdi-plus"
+            variant="outlined"
+            @click="addText"
+          >
+            Додати текст
+          </v-btn>
+          <v-btn
+            v-if="withIcons"
+            class="mt-2"
+            prepend-icon="mdi-image-text"
+            variant="outlined"
+            @click="addTextWithIcon"
+          >
+            Текст з іконкою
+          </v-btn>
+        </div>
       </v-card-text>
       <v-card-actions>
         <LocaleSwitcher :scope="children" />
@@ -163,6 +202,14 @@
      - pushing the title below that row instead of relying on horizontal
      spacing keeps this safe regardless of how long the title text gets. */
   /* padding-top: 40px; */
+}
+.editable-text-section-add {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.editable-text-section-add > .v-btn {
+  flex: 1 1 200px;
 }
 .editable-text-section-item {
   margin-bottom: 12px;

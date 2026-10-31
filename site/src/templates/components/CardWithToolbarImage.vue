@@ -4,6 +4,7 @@
   import { storeToRefs } from 'pinia'
   import { getImageURL } from '../../services/get-image-url'
   import { useCommonStore } from '../../stores/common'
+  import TextWithIcon from './TextWithIcon.vue'
 
   const { locale } = storeToRefs(useCommonStore())
 
@@ -27,6 +28,7 @@
     <v-card-text v-for="(child, index) of props.item.children" :key="index">
       <h3 v-if="child.type === 'title'" :class="['text-center', child.class]">{{ child.content[locale as 'uk' | 'en' | 'de'] }}</h3>
       <p v-if="child.type === 'text'" :class="child.class">{{ child.content[locale as 'uk' | 'en' | 'de'] }}</p>
+      <TextWithIcon v-if="child.type === 'text-with-icon'" :item="child" />
     </v-card-text>
   </div>
 </template>

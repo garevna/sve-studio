@@ -4,6 +4,7 @@
   import ImageEditor from '@/components/editors/ImageEditor.vue'
   import EditableTextSection from '@/components/editors/text/EditableTextSection.vue'
   import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
+  import CardTextWithIcon from '@/components/templates/cards/CardTextWithIcon.vue'
   import { useBlockActionsTarget } from '@/composables/useEditableBlockActions'
   import { useEditorMode } from '@/composables/useEditorMode'
   import { useAjaxStore } from '@/stores/ajax'
@@ -147,6 +148,7 @@
     <v-card-text v-for="(child, index) of card.children" :key="index">
       <h3 v-if="child.type === 'title'" :class="['text-center', child.class]">{{ resolveLocaleText(child.content, commonStore.locale) }}</h3>
       <p v-if="child.type === 'text'" :class="child.class">{{ resolveLocaleText(child.content, commonStore.locale) }}</p>
+      <CardTextWithIcon v-if="child.type === 'text-with-icon'" :item="child" />
     </v-card-text>
     <template v-if="mode === 'edit'">
       <Teleport v-if="blockActionsTarget" :to="blockActionsTarget">
@@ -172,6 +174,7 @@
     :group-uniform-active="uniformActive"
     :new-item-class="referenceTextClass"
     :sync-text-format="card.syncTextFormat"
+    with-icons
     @class-change="onClassChange"
     @update:sync-text-format="onSyncTextFormatChange"
   />

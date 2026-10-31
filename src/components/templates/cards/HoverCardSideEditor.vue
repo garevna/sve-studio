@@ -8,7 +8,8 @@
   // One side (base or hover) of a card-with-hover pair, shown inside its own
   // tab by CardWithHoverEditDialog.vue - no heading needed here, the tab
   // label already says which side this is.
-  defineProps<{ card: TemplateBlockModel }>()
+  // ver: the card's look, for the text format defaults.
+  defineProps<{ card: TemplateBlockModel, ver?: number }>()
 
   const color = defineModel<string>('color', { default: '' })
   const image = defineModel<string>('image', { default: '' })
@@ -87,7 +88,7 @@
       background if they want, formatting/removing it themselves; only the
       icon gets a dedicated show/hide toggle - text visibility is already
       just "did the user add any" via EditableCard's own add/remove buttons. -->
-    <EditableCard :card="card" class="mt-4" show-icon-toggle />
+    <EditableCard :card="card" class="mt-4" :format-ver="ver ?? 1" show-icon-toggle />
   </div>
 </template>
 

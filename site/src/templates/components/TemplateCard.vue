@@ -72,7 +72,7 @@
   >
     <div style="grid-area: icon; align-content: center;">
       <icon-variant
-        v-if="props.item.icon"
+        v-if="props.item.icon && !props.item.iconHidden"
         :background="iconBackground"
         :color="iconColor"
         :icon="props.item.icon"

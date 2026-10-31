@@ -1,8 +1,8 @@
 <script setup lang="ts">
   import type { TemplateBlockModel } from '@/types/TemplateBlockModel'
   import { computed, ref, watch } from 'vue'
-  import HoverCardSideEditor from './HoverCardSideEditor.vue'
   import LocaleSwitcher from '@/components/editors/small/LocaleSwitcher.vue'
+  import HoverCardSideEditor from './HoverCardSideEditor.vue'
 
   // `block` is the whole type:'component' content:'CardWithHover' block
   // (see card-with-hover.ts) - block.props.card.children[0]/[1] hold each
@@ -18,6 +18,8 @@
     hoverColor?: string
     hoverImage?: string
     card?: { children?: TemplateBlockModel[] }
+    // The card's look (TemplateCard variant); unset = 1.
+    ver?: number
   }
 
   const props = defineProps<{ block: TemplateBlockModel | null }>()
@@ -40,27 +42,32 @@
 </script>
 
 <template>
+  <!-- scrollable: only the settings scroll; the languages, OK and the two
+    tabs stay on top however long the card's texts get. -->
   <v-dialog
     :model-value="!!block"
+    scrollable
     @update:model-value="(val: boolean) => { if (!val) emit('close') }"
   >
     <v-card
       v-if="cardProps"
       class="card-with-hover-edit-dialog"
-      style="width: 560px; max-width: calc(100vw - 48px);"
+      style="width: 560px; max-width: calc(100vw - 48px); max-height: calc(100dvh - 48px);"
       theme="editorTheme"
     >
-      <div class="card-with-hover-edit-dialog-toolbar">
-        <LocaleSwitcher :scope="cardProps.card" />
-        <v-btn color="primary" variant="elevated" @click="emit('close')">ОК</v-btn>
+      <div class="card-with-hover-edit-dialog-head">
+        <div class="card-with-hover-edit-dialog-toolbar">
+          <LocaleSwitcher :scope="cardProps.card" />
+          <v-btn color="primary" variant="elevated" @click="emit('close')">ОК</v-btn>
+        </div>
+
+        <v-tabs v-model="tab" color="primary">
+          <v-tab value="base">Базова картка</v-tab>
+          <v-tab value="hover">Ховер-картка</v-tab>
+        </v-tabs>
       </div>
 
-      <v-tabs v-model="tab" color="primary">
-        <v-tab value="base">Базова картка</v-tab>
-        <v-tab value="hover">Ховер-картка</v-tab>
-      </v-tabs>
-
-      <v-card-text>
+      <v-card-text class="card-with-hover-edit-dialog-body">
         <v-window v-model="tab">
           <v-window-item value="base">
             <HoverCardSideEditor
@@ -68,6 +75,7 @@
               v-model:color="cardProps.backgroundColor"
               v-model:image="cardProps.backgroundImage"
               :card="cardProps.card.children[0]"
+              :ver="cardProps.ver"
             />
           </v-window-item>
           <v-window-item value="hover">
@@ -76,6 +84,7 @@
               v-model:color="cardProps.hoverColor"
               v-model:image="cardProps.hoverImage"
               :card="cardProps.card.children[1]"
+              :ver="cardProps.ver"
             />
           </v-window-item>
         </v-window>
@@ -85,6 +94,15 @@
 </template>
 
 <style scoped>
+.card-with-hover-edit-dialog-head {
+  flex: none;
+  border-bottom: solid 1px rgb(0 0 0 / 0.08);
+}
+.card-with-hover-edit-dialog-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+}
 .card-with-hover-edit-dialog-toolbar {
   display: flex;
   align-items: center;

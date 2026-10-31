@@ -15,9 +15,11 @@
             <template-item :item="child" />
           </div>
         </template>
-        <template v-else-if="block && block.type === 'component'">
-          <component :is="block.component" v-bind="block.props" />
-        </template>
+        <!-- Everything else - a component block (a card with hover:
+          { type: 'component', content: 'CardWithHover' }) included - goes
+          through TemplateItem, which loads a component by its name in
+          `content`. A branch here used to read `block.component`, which
+          no block has, and drew nothing. -->
         <template v-else>
           <template-item :item="block" />
         </template>

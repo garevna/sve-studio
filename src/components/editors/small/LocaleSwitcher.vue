@@ -108,6 +108,11 @@
   flex-wrap: wrap;
   height: auto !important;
 }
+/* The counts of untranslated texts stick out of the buttons a little; a
+   scrolling group drew a scrollbar under the languages for that. */
+.v-btn-group.locale-switcher {
+  overflow: visible;
+}
 .locale-switcher :deep(.v-btn) {
   min-width: 44px;
 }

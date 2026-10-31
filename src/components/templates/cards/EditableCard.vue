@@ -2,9 +2,11 @@
   import type { TemplateBlockModel, TranslatedModel } from '@/types/TemplateBlockModel'
   import { computed } from 'vue'
   import IconEditor from '@/components/editors/text/IconEditor.vue'
+  import TextEditor from '@/components/editors/text/TextEditor.vue'
   import { useCommonStore } from '@/stores/common'
   import { useUiFeedbackStore } from '@/stores/ui-feedback'
-  import { emptyTranslatedModel, isTranslatedModel, siteLocales, resolveLocaleLines, resolveLocaleText } from '@/utils/locale-text'
+  import { defaultCardContentClass, defaultCardTitleClass } from '@/utils/card-text-defaults'
+  import { emptyTranslatedModel, isTranslatedModel, resolveLocaleLines, resolveLocaleText, siteLocales } from '@/utils/locale-text'
 
   const commonStore = useCommonStore()
 
@@ -27,7 +29,29 @@
     defaults?: Partial<TemplateBlockModel>
     showIconToggle?: boolean
     blockTarget?: TemplateBlockModel
+    // The card's own title and text format (titleClass/contentClass on the
+    // card - TemplateCard reads them, in the editor and on the site). Only
+    // a card with hover: each of its two sides has its own background, so
+    // each needs its own text colour. Plain "cards" format all their cards
+    // at once from the block's toolbar instead. The number is the card's
+    // look (ver), for the defaults.
+    formatVer?: number
   }>()
+
+  const titleFormat = computed({
+    get: () => props.card.titleClass || defaultCardTitleClass(props.formatVer ?? 1),
+    set: (value: string) => {
+      // eslint-disable-next-line vue/no-mutating-props
+      props.card.titleClass = value
+    },
+  })
+  const contentFormat = computed({
+    get: () => props.card.contentClass || defaultCardContentClass(props.formatVer ?? 1),
+    set: (value: string) => {
+      // eslint-disable-next-line vue/no-mutating-props
+      props.card.contentClass = value
+    },
+  })
 
   const iconStyleTarget = computed(() => props.blockTarget || props.card)
 
@@ -140,7 +164,19 @@
       v-model:icon-size="iconSize"
       :appearance="!blockTarget"
     />
+    <!-- With its own format (a card with hover): the editor's usual text
+      field - the format button on its right, the panel opening under it. -->
+    <div v-if="formatVer !== undefined" class="mt-6">
+      <span class="card-content-label">Заголовок</span>
+      <TextEditor
+        v-model:class="titleFormat"
+        v-model:content="title"
+        parent-type="usual"
+        type="title"
+      />
+    </div>
     <v-textarea
+      v-else
       v-model="title"
       auto-grow
       class="mt-6"
@@ -162,7 +198,22 @@
     <div v-else class="card-content-section mt-6">
       <span class="card-content-label">Текст</span>
       <div class="card-content-list">
-        <div v-for="(line, index) of lines" :key="index" class="card-content-row">
+        <!-- Every paragraph shares one format (contentClass): changing it
+          under any of them changes them all. -->
+        <template v-if="formatVer !== undefined">
+          <TextEditor
+            v-for="(line, index) of lines"
+            :key="index"
+            v-model:class="contentFormat"
+            :content="line"
+            deletable
+            parent-type="usual"
+            type="text"
+            @delete="removeLine(index)"
+            @update:content="(value: string | undefined) => setLine(index, value || '')"
+          />
+        </template>
+        <div v-for="(line, index) of lines" v-else :key="index" class="card-content-row">
           <v-textarea
             auto-grow
             hide-details

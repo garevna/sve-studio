@@ -62,6 +62,7 @@ export interface BaseBlock {
   width?: number
   height?: number
   icon?: string
+  iconHidden?: boolean /* card: the icon is switched off ("Показувати іконку") */
   image?: string
   title?: TranslatedModel
   content: TranslatedModel

@@ -112,6 +112,25 @@
 
   // --- the page the address names ---------------------------------------------
 
+  // Opened from the editor ("?preview" - its "На сайті" button): this tab
+  // also shows pages hidden in the editor, with a note saying so. A visitor
+  // gets "page not found" for them.
+  const PREVIEW_KEY = 'sve-editor-preview'
+  function editorPreview (): boolean {
+    try {
+      if (route.query.preview !== undefined) sessionStorage.setItem(PREVIEW_KEY, '1')
+      return sessionStorage.getItem(PREVIEW_KEY) === '1'
+    } catch {
+      return route.query.preview !== undefined
+    }
+  }
+  const pageHidden = ref(false)
+  const HIDDEN_NOTE = {
+    uk: 'Ця сторінка прихована в редакторі: відвідувачі сайту її не бачать.',
+    en: 'This page is hidden in the editor: site visitors do not see it.',
+    de: 'Diese Seite ist im Editor ausgeblendet: Besucher sehen sie nicht.',
+  }
+
   let pageRequest = 0
   async function showPage () {
     const segments = ([] as string[]).concat(route.params.slug ?? [])
@@ -121,11 +140,12 @@
     commonStore.setLocale(target.locale as LocaleModel)
     commonStore.currentPageId = target.pageId
     // footer-content is stored like a page, but it is not one.
-    const page = target.pageId === 'footer-content' ? null : await getPage(target.pageId)
+    const page = target.pageId === 'footer-content' ? null : await getPage(target.pageId, { includeHidden: editorPreview() })
     if (request !== pageRequest) {
       return
     }
     commonStore.dynamicPageContent = page
+    pageHidden.value = (page as { visible?: boolean } | null)?.visible === false
     status.value = page ? 'ready' : 'not-found'
     // The page's top parallax (block type "parallax") is drawn here, not by
     // the block loop.
@@ -257,6 +277,10 @@
           </div>
         </div> -->
 
+      <div v-if="pageHidden && status === 'ready'" class="hidden-page-note">
+        <i aria-hidden="true" class="mdi mdi-eye-off-outline" />
+        {{ HIDDEN_NOTE[locale as keyof typeof HIDDEN_NOTE] || HIDDEN_NOTE.uk }}
+      </div>
       <PageNotFound v-if="status === 'not-found'" />
       <DynamicPageTemplate v-else />
     </v-main>
@@ -381,4 +405,18 @@
   }
 }
 
+/* Only in the editor's preview: a hidden page says so. */
+.hidden-page-note {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: var(--light-grey-2);
+  color: var(--dark-grey);
+  font-size: 14px;
+  text-align: center;
+}
 </style>

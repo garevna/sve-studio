@@ -15,7 +15,9 @@ export function pagePreviewUrl (pageId: string | undefined, locale: string): str
   if (pageId && pageId !== 'home-page') {
     segments.push(encodeURIComponent(pageId))
   }
-  return `${location.origin}${base}/site/${segments.join('/')}`
+  // ?preview: opened from the editor - the site then also shows hidden
+  // pages (with a note), for the rest of that tab (site/src/App.vue).
+  return `${location.origin}${base}/site/${segments.join('/')}?preview`
 }
 
 // Tracks a single "preview" window: reloads it if still open (guaranteed

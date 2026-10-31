@@ -40,6 +40,23 @@
   const route = useRoute()
   const commonStore = useCommonStore()
   const ajaxStore = useAjaxStore()
+
+  // A hidden page (the eye in the pages list) is edited as usual, but the
+  // site leaves it out: no menu item, and a visitor who has its address
+  // gets "page not found". Said here, so a hidden page is never a mystery.
+  const pageHidden = computed(() => (commonStore.dynamicPageContent as { visible?: boolean } | null)?.visible === false)
+  const showingPage = ref(false)
+  async function showHiddenPage () {
+    if (!pageId.value) return
+    showingPage.value = true
+    try {
+      await ajaxStore.setDynamicPageVisibility(pageId.value, true)
+      const content = commonStore.dynamicPageContent as { visible?: boolean } | null
+      if (content) content.visible = true
+    } finally {
+      showingPage.value = false
+    }
+  }
   const feedback = useUiFeedbackStore()
 
   const pageId = computed(() => route.params.pageId as string | undefined)
@@ -460,7 +477,14 @@
           class="editor-page-skeleton"
           type="table-tbody"
         />
-        <dynamic-page-template v-else />
+        <template v-else>
+          <div v-if="pageHidden" class="sve-ui hidden-page-notice">
+            <i aria-hidden="true" class="sve-icon mdi mdi-eye-off-outline" />
+            <span>{{ t('pages.hiddenNotice') }}</span>
+            <SveButton icon="mdi-eye-outline" :loading="showingPage" @click="showHiddenPage">{{ t('pages.showPage') }}</SveButton>
+          </div>
+          <dynamic-page-template />
+        </template>
       </v-main>
       <select-color-from-palette v-model="selectedColor" v-model:open="selectColorFromPaletteOpen" />
     </v-layout>
@@ -515,6 +539,23 @@
      breathing room that content has - flush against the system bar and the
      window edges it read as a stray grey slab. Inline padding uses the same
      clamp as .editor-page's own, so it lines up with what replaces it. */
+  .hidden-page-notice {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 12px;
+    max-width: 1200px;
+    margin: 12px auto 0;
+    padding: 10px 16px;
+    border: solid 1px var(--sve-border);
+    border-radius: var(--sve-radius-lg);
+    background: var(--sve-surface-muted);
+    color: var(--sve-text-muted);
+    font-size: 14px;
+  }
+  .hidden-page-notice > span {
+    flex: 1 1 260px;
+  }
   .editor-page-skeleton {
     /* Centred and width-capped like the real content it stands in for -
        .v-main below is 1368px wide, so a full-bleed skeleton would be wider

@@ -36,10 +36,12 @@ export async function getPageTitles (): Promise<{ titles: Record<string, unknown
 
 // null: no such page. Blocks hidden in the editor are left out here, so no
 // part of the site ever sees them.
-export async function getPage (pageId: string): Promise<TemplatePageModel | null> {
+// includeHidden: the page is wanted even when it is hidden in the editor
+// (the editor's own preview - see App.vue).
+export async function getPage (pageId: string, { includeHidden = false } = {}): Promise<TemplatePageModel | null> {
   const page = (await dbRequest<TemplatePageModel | null>('pages', 'get', { pageId }).catch(() => null)) ?? null
   // A page hidden in the editor is not there for a visitor.
-  if ((page as { visible?: boolean } | null)?.visible === false) {
+  if ((page as { visible?: boolean } | null)?.visible === false && !includeHidden) {
     return null
   }
   if (page?.blocks) {

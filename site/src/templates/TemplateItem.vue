@@ -213,6 +213,10 @@
   max-width: none;
   width: 100%;
 }
+/* Room for the close button beside the heading. */
+.feedback-popup .footer-feedback-card > p:first-child {
+  padding-right: 32px;
+}
 .feedback-popup-close {
   position: absolute;
   top: 8px;

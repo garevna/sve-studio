@@ -76,9 +76,9 @@
         v-if="has('message')"
         disabled
         hide-details
-        :label="kind.messageLabel?.[lang]"
+        :placeholder="kind.messageLabel?.[lang]"
         rows="3"
-        variant="outlined"
+        variant="plain"
       />
     </div>
     <v-btn class="primary-button mt-6" disabled :text="kind.button[lang]" />
@@ -90,6 +90,15 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+}
+/* The message field wears the theme's own field look (plain, like the
+   others - no Vuetify outline). The theme fixes every field at 56px high,
+   which a several-line field does not fit into. */
+.feedback-fields :deep(.v-textarea .v-field__field) {
+  height: auto !important;
+}
+.feedback-fields :deep(.v-text-field) {
+  margin: 0;
 }
 .feedback-phone-prefix {
   display: inline-flex;

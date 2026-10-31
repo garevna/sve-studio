@@ -1,0 +1,12 @@
+{
+  "svgMarkupError": {
+    "uk": "SVG-файл містить помилку розмітки ({detail})",
+    "en": "The SVG file has a markup error ({detail})",
+    "de": "Die SVG-Datei enthält einen Markup-Fehler ({detail})"
+  },
+  "cannotDisplay": {
+    "uk": "Браузер не зміг показати файл «{name}» як зображення",
+    "en": "The browser could not display “{name}” as an image",
+    "de": "Der Browser konnte „{name}“ nicht als Bild anzeigen"
+  }
+}

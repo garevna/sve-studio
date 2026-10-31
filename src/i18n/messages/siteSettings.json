@@ -1,0 +1,27 @@
+{
+  "languages": {
+    "uk": "Мови сайту",
+    "en": "Site languages",
+    "de": "Sprachen der Website"
+  },
+  "languagesHint": {
+    "uk": "Кожен текст потрібно ввести всіма обраними мовами. Коди мов: uk, en, de, pl, fr…",
+    "en": "Every text has to be entered in all chosen languages. Language codes: uk, en, de, pl, fr…",
+    "de": "Jeder Text muss in allen gewählten Sprachen eingegeben werden. Sprachcodes: uk, en, de, pl, fr…"
+  },
+  "defaultLanguage": {
+    "uk": "Основна мова",
+    "en": "Main language",
+    "de": "Hauptsprache"
+  },
+  "defaultLanguageHint": {
+    "uk": "Мова, з якої перекладають; її тексти показуються як підказка в полях без перекладу.",
+    "en": "The language you translate from; its texts are shown as a hint in untranslated fields.",
+    "de": "Die Sprache, aus der übersetzt wird; ihre Texte erscheinen als Hinweis in unübersetzten Feldern."
+  },
+  "removedLanguageKept": {
+    "uk": "Тексти прибраних мов не видаляються — якщо мову повернути, вони з’являться знову.",
+    "en": "Texts of removed languages are kept — add the language back and they reappear.",
+    "de": "Texte entfernter Sprachen bleiben erhalten — wird die Sprache wieder hinzugefügt, erscheinen sie erneut."
+  }
+}

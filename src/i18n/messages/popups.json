@@ -1,0 +1,182 @@
+{
+  "saved": {
+    "uk": "{what} збережено",
+    "en": "{what} saved",
+    "de": "{what} gespeichert"
+  },
+  "localOnly": {
+    "uk": "Робота з локальною копією",
+    "en": "Working on the local copy",
+    "de": "Arbeit an der lokalen Kopie"
+  },
+  "localOnlyDetail": {
+    "uk": "Браузер обходить вбудований API (у DevTools увімкнено «Bypass for network» або Service Worker не запустився). Зміни зберігаються локально; у режимі розробки — і у файли content/.",
+    "en": "The browser bypasses the built-in API (DevTools \"Bypass for network\" is on, or the service worker did not start). Changes are saved locally - and, in development, to the content/ files.",
+    "de": "Der Browser umgeht die eingebaute API (in den DevTools ist \"Bypass for network\" aktiv, oder der Service Worker ist nicht gestartet). Änderungen werden lokal gespeichert - im Entwicklungsmodus auch in die content/-Dateien."
+  },
+  "saveFailed": {
+    "uk": "Не вдалося зберегти: {what}",
+    "en": "Could not save: {what}",
+    "de": "Speichern fehlgeschlagen: {what}"
+  },
+  "saveFailedDetail": {
+    "uk": "Зміни залишилися локально. Спробуйте ще раз, коли з’явиться зв’язок із сервером.",
+    "en": "Your changes are kept locally. Try again once the server is reachable.",
+    "de": "Die Änderungen bleiben lokal erhalten. Versuchen Sie es erneut, sobald der Server erreichbar ist."
+  },
+  "noPrivilege": {
+    "uk": "Недостатньо прав",
+    "en": "Not enough permissions",
+    "de": "Keine ausreichenden Rechte"
+  },
+  "noPrivilegeReadDetail": {
+    "uk": "Ваш обліковий запис не має прав на цей розділ. Показані локально збережені дані.",
+    "en": "Your account has no access to this section. Showing the locally saved data.",
+    "de": "Ihr Konto hat keinen Zugriff auf diesen Bereich. Es werden die lokal gespeicherten Daten angezeigt."
+  },
+  "noPrivilegeWriteDetail": {
+    "uk": "Ваш обліковий запис не має прав на цю дію ({what}), тому сервер відхилив запит. Зміни збережені локально й не втрачені.",
+    "en": "Your account is not allowed to do this ({what}), so the server rejected the request. Your changes are kept locally and not lost.",
+    "de": "Ihr Konto darf diese Aktion nicht ausführen ({what}), daher hat der Server die Anfrage abgelehnt. Die Änderungen sind lokal gespeichert und gehen nicht verloren."
+  },
+  "tokenTitle": {
+    "uk": "Обмежені права доступу",
+    "en": "Limited access",
+    "de": "Eingeschränkter Zugriff"
+  },
+  "tokenWriteDetail": {
+    "uk": "Токен доступу прострочений або відсутній, тому зберегти на сервері не вдалося ({what}). Зміни збережені локально й не втрачені — відкрийте редактор заново, щоб отримати новий токен.",
+    "en": "The access token is missing or has expired, so saving on the server failed ({what}). Your changes are kept locally and not lost — reopen the editor to get a new token.",
+    "de": "Das Zugriffstoken fehlt oder ist abgelaufen, daher konnte nicht auf dem Server gespeichert werden ({what}). Die Änderungen sind lokal gespeichert — öffnen Sie den Editor erneut, um ein neues Token zu erhalten."
+  },
+  "noApiAccess": {
+    "uk": "Немає доступу до сервера API",
+    "en": "No access to the API server",
+    "de": "Kein Zugriff auf den API-Server"
+  },
+  "noApiConnection": {
+    "uk": "Немає з’єднання з сервером API",
+    "en": "No connection to the API server",
+    "de": "Keine Verbindung zum API-Server"
+  },
+  "noApiAccessDetail": {
+    "uk": "Токен доступу прострочений або відсутній. Показані локально збережені дані.",
+    "en": "The access token is missing or has expired. Showing the locally saved data.",
+    "de": "Das Zugriffstoken fehlt oder ist abgelaufen. Es werden die lokal gespeicherten Daten angezeigt."
+  },
+  "noApiConnectionDetail": {
+    "uk": "Показані локально збережені дані — вони можуть бути застарілими.",
+    "en": "Showing the locally saved data — it may be out of date.",
+    "de": "Es werden die lokal gespeicherten Daten angezeigt — sie können veraltet sein."
+  },
+  "sessionEnded": {
+    "uk": "Сеанс завершено",
+    "en": "Session ended",
+    "de": "Sitzung beendet"
+  },
+  "pageDeleted": {
+    "uk": "Сторінку видалено",
+    "en": "Page deleted",
+    "de": "Seite gelöscht"
+  },
+  "pageDeleteNoPrivilegeDetail": {
+    "uk": "Ваш обліковий запис не має прав видаляти сторінки. Локально її прибрано, на сервері вона залишилась.",
+    "en": "Your account is not allowed to delete pages. It was removed locally but is still on the server.",
+    "de": "Ihr Konto darf keine Seiten löschen. Sie wurde lokal entfernt, ist aber noch auf dem Server."
+  },
+  "pageDeleteTokenDetail": {
+    "uk": "Токен доступу прострочений або відсутній, тому видалити сторінку на сервері не вдалося. Локально її прибрано — відкрийте редактор заново, щоб отримати новий токен.",
+    "en": "The access token is missing or has expired, so the page could not be deleted on the server. It was removed locally — reopen the editor to get a new token.",
+    "de": "Das Zugriffstoken fehlt oder ist abgelaufen, daher konnte die Seite auf dem Server nicht gelöscht werden. Sie wurde lokal entfernt — öffnen Sie den Editor erneut, um ein neues Token zu erhalten."
+  },
+  "pageDeleteFailed": {
+    "uk": "Не вдалося видалити сторінку на сервері",
+    "en": "Could not delete the page on the server",
+    "de": "Die Seite konnte auf dem Server nicht gelöscht werden"
+  },
+  "pageDeleteFailedDetail": {
+    "uk": "Локально її прибрано, але на сервері вона залишилась — повторіть, коли з’явиться зв’язок.",
+    "en": "It was removed locally but is still on the server — try again once the server is reachable.",
+    "de": "Sie wurde lokal entfernt, ist aber noch auf dem Server — versuchen Sie es erneut, sobald der Server erreichbar ist."
+  },
+  "undoDone": {
+    "uk": "Зміни скасовано",
+    "en": "Changes reverted",
+    "de": "Änderungen verworfen"
+  },
+  "undoFailed": {
+    "uk": "Не вдалося скасувати зміни",
+    "en": "Could not revert the changes",
+    "de": "Die Änderungen konnten nicht verworfen werden"
+  },
+  "saveCancelled": {
+    "uk": "Збереження скасовано",
+    "en": "Saving cancelled",
+    "de": "Speichern abgebrochen"
+  },
+  "saveCancelledWrongPage": {
+    "uk": "Завантажений вміст належить сторінці «{loaded}», а відкрита сторінка — «{opened}». Перезавантажте сторінку редактора.",
+    "en": "The loaded content belongs to page “{loaded}”, but the open page is “{opened}”. Reload the editor page.",
+    "de": "Der geladene Inhalt gehört zur Seite „{loaded}“, geöffnet ist aber „{opened}“. Laden Sie die Editorseite neu."
+  },
+  "logoUploadFailed": {
+    "uk": "Не вдалося завантажити логотип",
+    "en": "Could not upload the logo",
+    "de": "Das Logo konnte nicht hochgeladen werden"
+  },
+  "bannerUploadFailed": {
+    "uk": "Не вдалося завантажити банер",
+    "en": "Could not upload the banner",
+    "de": "Das Banner konnte nicht hochgeladen werden"
+  },
+  "imageUploadFailed": {
+    "uk": "Не вдалося завантажити зображення",
+    "en": "Could not upload the image",
+    "de": "Das Bild konnte nicht hochgeladen werden"
+  },
+  "menuLinkRemoved": {
+    "uk": "Посилання прибрано з меню",
+    "en": "Link removed from the menu",
+    "de": "Link aus dem Menü entfernt"
+  },
+  "menuLinkUpdated": {
+    "uk": "Посилання в меню оновлено",
+    "en": "Menu link updated",
+    "de": "Menülink aktualisiert"
+  },
+  "menuLinkAdded": {
+    "uk": "Посилання додано в меню",
+    "en": "Link added to the menu",
+    "de": "Link zum Menü hinzugefügt"
+  },
+  "publishPartial": {
+    "uk": "Опубліковано {published} з {total}",
+    "en": "Published {published} of {total}",
+    "de": "{published} von {total} veröffentlicht"
+  },
+  "publishPartialDetail": {
+    "uk": "Сторінок, які не вдалося відправити на сервер: {failed}.",
+    "en": "Pages that could not be sent to the server: {failed}.",
+    "de": "Seiten, die nicht an den Server gesendet werden konnten: {failed}."
+  },
+  "publishAll": {
+    "uk": "Опубліковано всі сторінки ({published})",
+    "en": "All pages published ({published})",
+    "de": "Alle Seiten veröffentlicht ({published})"
+  },
+  "seedSkipped": {
+    "uk": "Деякі файли сайту не вдалося завантажити",
+    "en": "Some site files could not be loaded",
+    "de": "Einige Dateien der Website konnten nicht geladen werden"
+  },
+  "seedSkippedDetail": {
+    "uk": "Їх немає або вони пошкоджені: {files}. Решта сайту працює.",
+    "en": "They are missing or damaged: {files}. The rest of the site works.",
+    "de": "Sie fehlen oder sind beschädigt: {files}. Der Rest der Website funktioniert."
+  },
+  "roleHint": {
+    "uk": "Показані розділи для ролі «{role}». Роль можна змінити внизу екрана.",
+    "en": "Showing the sections for the “{role}” role. You can change the role at the bottom of the screen.",
+    "de": "Angezeigt werden die Bereiche für die Rolle „{role}“. Die Rolle lässt sich unten auf dem Bildschirm ändern."
+  }
+}

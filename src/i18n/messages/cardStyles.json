@@ -1,0 +1,104 @@
+{
+  "tab": {
+    "uk": "Картки",
+    "en": "Cards",
+    "de": "Karten"
+  },
+  "hint": {
+    "uk": "Стиль задається тут один раз. Блоки карток на сторінках посилаються на нього — змініть стиль, і зміняться всі картки з ним.",
+    "en": "A style is set here once. Card blocks on the pages refer to it - change the style and every card using it changes.",
+    "de": "Ein Stil wird hier einmal festgelegt. Kartenblöcke auf den Seiten verweisen darauf - ändern Sie den Stil, ändern sich alle Karten damit."
+  },
+  "background": {
+    "uk": "Фон",
+    "en": "Background",
+    "de": "Hintergrund"
+  },
+  "border": {
+    "uk": "Рамка",
+    "en": "Border",
+    "de": "Rahmen"
+  },
+  "noBorder": {
+    "uk": "Без рамки",
+    "en": "No border",
+    "de": "Ohne Rahmen"
+  },
+  "radius": {
+    "uk": "Заокруглення",
+    "en": "Corner radius",
+    "de": "Eckenradius"
+  },
+  "noRadius": {
+    "uk": "Без заокруглення",
+    "en": "Square corners",
+    "de": "Eckige Ecken"
+  },
+  "shadow": {
+    "uk": "Тінь",
+    "en": "Shadow",
+    "de": "Schatten"
+  },
+  "shadows": {
+    "none": {
+      "uk": "Без тіні",
+      "en": "No shadow",
+      "de": "Ohne Schatten"
+    },
+    "soft": {
+      "uk": "Легка",
+      "en": "Light",
+      "de": "Leicht"
+    },
+    "medium": {
+      "uk": "Середня",
+      "en": "Medium",
+      "de": "Mittel"
+    },
+    "strong": {
+      "uk": "Сильна",
+      "en": "Strong",
+      "de": "Stark"
+    }
+  },
+  "add": {
+    "uk": "Додати стиль",
+    "en": "Add style",
+    "de": "Stil hinzufügen"
+  },
+  "newStyle": {
+    "uk": "Новий стиль карток",
+    "en": "New card style",
+    "de": "Neuer Kartenstil"
+  },
+  "name": {
+    "uk": "Назва стилю",
+    "en": "Style name",
+    "de": "Name des Stils"
+  },
+  "sampleTitle": {
+    "uk": "Заголовок картки",
+    "en": "Card title",
+    "de": "Kartentitel"
+  },
+  "sampleText": {
+    "uk": "Так виглядатиме текст картки з цим стилем.",
+    "en": "This is how card text looks with this style.",
+    "de": "So sieht der Kartentext mit diesem Stil aus."
+  },
+  "pick": {
+    "uk": "Стиль карток з UI Kit",
+    "en": "Card style from the UI Kit",
+    "de": "Kartenstil aus dem UI Kit"
+  },
+  "byVariant": {
+    "uk": "Як у варіанті",
+    "en": "As in the variant",
+    "de": "Wie in der Variante"
+  },
+  "usedBy": {
+    "uk": "Типовий для варіанта {ver}",
+    "en": "Default for variant {ver}",
+    "de": "Standard für Variante {ver}"
+  }
+}

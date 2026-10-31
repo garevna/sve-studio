@@ -135,19 +135,19 @@
 <template>
   <v-app>
     <v-main class="editor-page">
-      <EditorPageHeader back-to="/" detail="palette.json" title="Палітра" />
+      <EditorPageHeader back-to="/" detail="palette.json" :title="t('palette.title')" />
 
       <v-progress-linear v-if="loading" color="primary" indeterminate />
 
       <template v-else>
-        <h2 class="text-h6 mb-3">Кольори</h2>
+        <h2 class="text-h6 mb-3">{{ t('palette.colors') }}</h2>
         <div class="color-grid mb-8">
           <PaletteColorPicker v-for="entry in colorEntries" :key="entry.key" v-model="entry.color">
             {{ entry.key }}
           </PaletteColorPicker>
         </div>
 
-        <h2 class="text-h6 mb-3">Рамки (border)</h2>
+        <h2 class="text-h6 mb-3">{{ t('palette.borders') }}</h2>
         <p class="palette-hint">{{ t('palette.bordersHint') }}</p>
         <div class="border-list mb-4">
           <div v-for="entry in borderEntries" :key="entry.key" class="border-row">
@@ -198,7 +198,7 @@
           {{ t('palette.addBorder') }}
         </v-btn>
 
-        <h2 class="text-h6 mb-3">Радіуси заокруглення</h2>
+        <h2 class="text-h6 mb-3">{{ t('palette.radii') }}</h2>
         <div class="radius-list mb-8">
           <div v-for="entry in radiusEntries" :key="entry.key" class="border-row">
             <span class="border-label">{{ entry.key }}</span>
@@ -219,7 +219,7 @@
         </div>
 
         <template v-if="gradientEntries.length > 0">
-          <h2 class="text-h6 mb-3">Градієнти</h2>
+          <h2 class="text-h6 mb-3">{{ t('palette.gradients') }}</h2>
           <div class="gradient-list mb-8">
             <div v-for="{ entry, colorEntry } in gradientEntries" :key="entry.key" class="gradient-row">
               <span class="border-label">{{ entry.key }}</span>
@@ -233,7 +233,7 @@
         </template>
 
         <template v-if="unresolvedRawEntries.length > 0">
-          <h2 class="text-h6 mb-3">Інше (складні значення, редагування поки недоступне)</h2>
+          <h2 class="text-h6 mb-3">{{ t('palette.other') }}</h2>
           <div class="raw-list mb-4">
             <v-text-field
               v-for="entry in unresolvedRawEntries"

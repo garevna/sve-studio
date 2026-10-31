@@ -10,6 +10,7 @@
 //
 // Nothing here is about the SITE being edited - its look lives in its own
 // palette and stylesheets.
+import { kitLabels } from './labels'
 import data from './looks.json'
 
 export type LookColors = {
@@ -65,7 +66,9 @@ export const FONTS = {
   'inter': { name: 'Inter', family: '"Inter Variable", system-ui, sans-serif', load: () => import('@fontsource-variable/inter') },
   'manrope': { name: 'Manrope', family: '"Manrope Variable", system-ui, sans-serif', load: () => import('@fontsource-variable/manrope') },
   'nunito-sans': { name: 'Nunito Sans', family: '"Nunito Sans Variable", system-ui, sans-serif', load: () => import('@fontsource-variable/nunito-sans') },
-  'system': { name: 'Системний', family: 'system-ui, -apple-system, "Segoe UI", Roboto, sans-serif', load: () => Promise.resolve() },
+  'system': { get name () {
+    return kitLabels.systemFont
+  }, family: 'system-ui, -apple-system, "Segoe UI", Roboto, sans-serif', load: () => Promise.resolve() },
 } satisfies Record<string, { name: string, family: string, load: () => Promise<unknown> }>
 
 export type FontId = keyof typeof FONTS

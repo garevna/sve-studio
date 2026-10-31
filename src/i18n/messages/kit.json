@@ -1,0 +1,32 @@
+{
+  "back": {
+    "uk": "Назад",
+    "en": "Back",
+    "de": "Zurück"
+  },
+  "close": {
+    "uk": "Закрити",
+    "en": "Close",
+    "de": "Schließen"
+  },
+  "look": {
+    "uk": "Оформлення редактора",
+    "en": "Editor appearance",
+    "de": "Aussehen des Editors"
+  },
+  "pickColor": {
+    "uk": "Вибрати колір",
+    "en": "Pick a colour",
+    "de": "Farbe wählen"
+  },
+  "tools": {
+    "uk": "Інструменти",
+    "en": "Tools",
+    "de": "Werkzeuge"
+  },
+  "systemFont": {
+    "uk": "Системний",
+    "en": "System",
+    "de": "System"
+  }
+}

@@ -6,9 +6,7 @@
 // call time.
 import type { MessageSchema } from './schema'
 import { createI18n } from 'vue-i18n'
-import de from './locales/de'
-import en from './locales/en'
-import uk from './locales/uk'
+import { MESSAGES } from './messages'
 
 export type EditorUiLocale = 'uk' | 'en' | 'de'
 
@@ -45,6 +43,28 @@ function initialLocale (): EditorUiLocale {
   return 'uk'
 }
 
+// One language's texts out of messages/*.json. An empty text is left out,
+// so vue-i18n falls back to the Ukrainian one.
+function textsIn (tree: Record<string, unknown>, locale: EditorUiLocale): Record<string, unknown> {
+  const result: Record<string, unknown> = {}
+  for (const [key, value] of Object.entries(tree)) {
+    const node = value as Record<string, unknown>
+    if (typeof node.uk === 'string') {
+      const text = node[locale]
+      if (typeof text === 'string' && text !== '') {
+        result[key] = text
+      }
+    } else {
+      result[key] = textsIn(node, locale)
+    }
+  }
+  return result
+}
+
+const uk = textsIn(MESSAGES, 'uk') as MessageSchema
+const en = textsIn(MESSAGES, 'en') as MessageSchema
+const de = textsIn(MESSAGES, 'de') as MessageSchema
+
 export const i18n = createI18n<[MessageSchema], EditorUiLocale, false>({
   legacy: false,
   locale: initialLocale(),
@@ -70,5 +90,12 @@ export function setEditorUiLocale (locale: EditorUiLocale) {
     localStorage.setItem(STORAGE_KEY, locale)
   } catch {
     // Not remembered across reloads - still applies now.
+  }
+}
+
+// Texts edited on /editor-ui ("Тексти"), shown at once after saving.
+export function applyMessages (tree: typeof MESSAGES) {
+  for (const locale of EDITOR_UI_LOCALES) {
+    i18n.global.setLocaleMessage(locale.value, textsIn(tree, locale.value) as MessageSchema)
   }
 }

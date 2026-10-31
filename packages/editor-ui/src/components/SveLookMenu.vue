@@ -1,4 +1,5 @@
 <script setup lang="ts">
+  import { kitLabels } from '../labels'
   import { LOOKS } from '../looks'
   import { useLook } from '../use-look'
   import SveIconButton from './SveIconButton.vue'
@@ -15,9 +16,9 @@
 <template>
   <SveMenu :min-width="240">
     <template #activator="{ props: activator }">
-      <SveIconButton icon="mdi-palette-outline" label="Оформлення редактора" v-bind="activator" />
+      <SveIconButton icon="mdi-palette-outline" :label="kitLabels.look" v-bind="activator" />
     </template>
-    <SveMenuLabel>Оформлення редактора</SveMenuLabel>
+    <SveMenuLabel>{{ kitLabels.look }}</SveMenuLabel>
     <SveMenuItem
       v-for="item of LOOKS"
       :key="item.id"

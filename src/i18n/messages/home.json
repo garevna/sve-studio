@@ -1,0 +1,223 @@
+{
+  "greeting": {
+    "uk": "Що робимо сьогодні?",
+    "en": "What are we doing today?",
+    "de": "Was machen wir heute?"
+  },
+  "workingAs": {
+    "uk": "Ви працюєте як",
+    "en": "You are working as",
+    "de": "Sie arbeiten als"
+  },
+  "roleMenu": {
+    "uk": "Роль - які розділи доступні",
+    "en": "Role - which sections are available",
+    "de": "Rolle - welche Bereiche verfügbar sind"
+  },
+  "resume": {
+    "uk": "Продовжити: {page}",
+    "en": "Continue: {page}",
+    "de": "Weiter: {page}"
+  },
+  "groups": {
+    "content": {
+      "uk": "Контент",
+      "en": "Content",
+      "de": "Inhalt"
+    },
+    "look": {
+      "uk": "Вигляд",
+      "en": "Look",
+      "de": "Aussehen"
+    },
+    "settings": {
+      "uk": "Налаштування",
+      "en": "Settings",
+      "de": "Einstellungen"
+    }
+  },
+  "sections": {
+    "pages": {
+      "title": {
+        "uk": "Сторінки",
+        "en": "Pages",
+        "de": "Seiten"
+      },
+      "description": {
+        "uk": "Створення та редагування сторінок сайту",
+        "en": "Create and edit the site's pages",
+        "de": "Seiten der Website erstellen und bearbeiten"
+      }
+    },
+    "menu": {
+      "title": {
+        "uk": "Меню",
+        "en": "Menu",
+        "de": "Menü"
+      },
+      "description": {
+        "uk": "Пункти головного меню",
+        "en": "Main menu items",
+        "de": "Einträge des Hauptmenüs"
+      }
+    },
+    "header": {
+      "title": {
+        "uk": "Верхня частина сторінки",
+        "en": "Page header",
+        "de": "Seitenkopf"
+      },
+      "description": {
+        "uk": "Меню й банер угорі кожної сторінки",
+        "en": "The menu and banner at the top of every page",
+        "de": "Menü und Banner oben auf jeder Seite"
+      }
+    },
+    "footer": {
+      "title": {
+        "uk": "Нижня частина сторінки",
+        "en": "Page footer",
+        "de": "Seitenfuß"
+      },
+      "description": {
+        "uk": "Контакти, посилання та іконки внизу",
+        "en": "Contacts, links and icons at the bottom",
+        "de": "Kontakte, Links und Icons unten"
+      }
+    },
+    "palette": {
+      "title": {
+        "uk": "Палітра",
+        "en": "Palette",
+        "de": "Palette"
+      },
+      "description": {
+        "uk": "Кольори та градієнти сайту",
+        "en": "The site's colours and gradients",
+        "de": "Farben und Verläufe der Website"
+      }
+    },
+    "ui-kit": {
+      "title": {
+        "uk": "UI Kit",
+        "en": "UI Kit",
+        "de": "UI Kit"
+      },
+      "description": {
+        "uk": "Вигляд кнопок, карток і полів",
+        "en": "How buttons, cards and fields look",
+        "de": "Aussehen von Buttons, Karten und Feldern"
+      }
+    },
+    "styles": {
+      "title": {
+        "uk": "Стилі",
+        "en": "Styles",
+        "de": "Stile"
+      },
+      "description": {
+        "uk": "Файли CSS сайту",
+        "en": "The site's CSS files",
+        "de": "CSS-Dateien der Website"
+      }
+    },
+    "general-settings": {
+      "title": {
+        "uk": "Загальні налаштування",
+        "en": "General settings",
+        "de": "Allgemeine Einstellungen"
+      },
+      "description": {
+        "uk": "Мови, шрифти, логотип, дані компанії",
+        "en": "Languages, fonts, logo, company details",
+        "de": "Sprachen, Schriften, Logo, Firmendaten"
+      }
+    },
+    "seo": {
+      "title": {
+        "uk": "SEO",
+        "en": "SEO",
+        "de": "SEO"
+      },
+      "description": {
+        "uk": "Заголовки та описи для пошукових систем",
+        "en": "Titles and descriptions for search engines",
+        "de": "Titel und Beschreibungen für Suchmaschinen"
+      }
+    },
+    "account": {
+      "title": {
+        "uk": "Особистий кабінет",
+        "en": "Customer account",
+        "de": "Kundenkonto"
+      },
+      "description": {
+        "uk": "Сторінки кабінету клієнта",
+        "en": "Pages of the customer's account",
+        "de": "Seiten des Kundenkontos"
+      }
+    }
+  },
+  "roles": {
+    "content-manager": {
+      "title": {
+        "uk": "Контент-менеджер",
+        "en": "Content manager",
+        "de": "Content-Manager"
+      },
+      "hint": {
+        "uk": "Сторінки, меню, футер, банер і дані компанії. Без стилів, палітри та технічних налаштувань.",
+        "en": "Pages, menu, footer, banner and company details. No styles, palette or technical settings.",
+        "de": "Seiten, Menü, Fußbereich, Banner und Firmendaten. Ohne Stile, Palette und technische Einstellungen."
+      }
+    },
+    "seo": {
+      "title": {
+        "uk": "SEO-спеціаліст",
+        "en": "SEO specialist",
+        "de": "SEO-Spezialist"
+      },
+      "hint": {
+        "uk": "Глобальне SEO та SEO кожної сторінки. Сторінки відкриваються лише для перегляду.",
+        "en": "Site-wide SEO and the SEO of every page. Pages open read-only.",
+        "de": "Globales SEO und SEO jeder Seite. Seiten öffnen sich nur zur Ansicht."
+      }
+    },
+    "designer": {
+      "title": {
+        "uk": "Дизайнер",
+        "en": "Designer",
+        "de": "Designer"
+      },
+      "hint": {
+        "uk": "Палітра, UI Kit, сторінки, футер і банер hero-секції.",
+        "en": "Palette, UI Kit, pages, footer and the hero banner.",
+        "de": "Palette, UI Kit, Seiten, Fußbereich und Hero-Banner."
+      }
+    },
+    "developer": {
+      "title": {
+        "uk": "Розробник",
+        "en": "Developer",
+        "de": "Entwickler"
+      },
+      "hint": {
+        "uk": "Усі технічні розділи, включно з файлами стилів і темою Vuetify.",
+        "en": "Every technical section, including the style files and the Vuetify theme.",
+        "de": "Alle technischen Bereiche, einschließlich der Stildateien und des Vuetify-Themes."
+      }
+    },
+    "supervisor": {
+      "title": {
+        "uk": "Супервайзер",
+        "en": "Supervisor",
+        "de": "Supervisor"
+      },
+      "hint": {
+        "uk": "Повний доступ до всіх розділів редактора.",
+        "en": "Full access to every section of the editor.",
+        "de": "Voller Zugriff auf alle Bereiche des Editors."
+      }
+    }
+  }
+}

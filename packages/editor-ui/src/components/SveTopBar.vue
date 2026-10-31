@@ -1,5 +1,7 @@
 <script setup lang="ts">
   import type { RouteLocationRaw } from 'vue-router'
+  import { kitLabels } from '../labels'
+  import { topBarExtras } from '../top-bar-extras'
   import SveIconButton from './SveIconButton.vue'
   import SveLookMenu from './SveLookMenu.vue'
 
@@ -25,7 +27,7 @@
       <SveIconButton
         v-if="props.back"
         icon="mdi-arrow-left"
-        :label="props.backLabel || 'Назад'"
+        :label="props.backLabel || kitLabels.back"
         :to="props.back"
       />
       <slot name="start">
@@ -42,7 +44,9 @@
       <slot name="actions" />
       <!-- Where SveTopBarActions sends its buttons. -->
       <div id="sve-topbar-actions" class="sve-topbar__teleport" />
-      <!-- Always last: the editor's own colour scheme. -->
+      <!-- The app's own additions (addTopBarItem), then, always last, the
+        editor's own colour scheme. -->
+      <component :is="item" v-for="(item, index) of topBarExtras" :key="index" />
       <SveLookMenu />
     </div>
   </header>

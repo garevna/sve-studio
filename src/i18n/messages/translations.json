@@ -1,0 +1,22 @@
+{
+  "missingCount": {
+    "uk": "без перекладу: {count}",
+    "en": "not translated: {count}",
+    "de": "nicht übersetzt: {count}"
+  },
+  "missingHint": {
+    "uk": "Немає перекладу. Оригінал: «{text}»",
+    "en": "No translation yet. Original: “{text}”",
+    "de": "Noch keine Übersetzung. Original: „{text}“"
+  },
+  "pageIncomplete": {
+    "uk": "Сторінку збережено, але переклад неповний",
+    "en": "Page saved, but the translation is incomplete",
+    "de": "Seite gespeichert, aber die Übersetzung ist unvollständig"
+  },
+  "pageIncompleteDetail": {
+    "uk": "Без перекладу: {list}. На сайті ці тексти не будуть перекладені.",
+    "en": "Not translated: {list}. These texts will not be translated on the site.",
+    "de": "Nicht übersetzt: {list}. Diese Texte werden auf der Website nicht übersetzt."
+  }
+}

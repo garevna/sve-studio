@@ -1,5 +1,6 @@
 <script setup lang="ts">
   import { computed } from 'vue'
+  import { kitLabels } from '../labels'
   import SveField from './SveField.vue'
 
   // A colour: the swatch opens the system colour picker, the text takes any
@@ -27,7 +28,7 @@
   <SveField :hint="hint" :label="label">
     <span class="sve-input sve-input--affix sve-color-field">
       <span class="sve-color-field__swatch" :style="{ background: model }">
-        <input aria-label="Вибрати колір" type="color" :value="opaque" @input="pick">
+        <input :aria-label="kitLabels.pickColor" type="color" :value="opaque" @input="pick">
       </span>
       <input
         class="sve-input--mono"

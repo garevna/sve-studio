@@ -1,0 +1,122 @@
+{
+  "title": {
+    "uk": "Палітра",
+    "en": "Palette",
+    "de": "Palette"
+  },
+  "colors": {
+    "uk": "Кольори",
+    "en": "Colours",
+    "de": "Farben"
+  },
+  "borders": {
+    "uk": "Рамки (border)",
+    "en": "Borders",
+    "de": "Rahmen"
+  },
+  "radii": {
+    "uk": "Радіуси заокруглення",
+    "en": "Corner radii",
+    "de": "Eckenradien"
+  },
+  "gradients": {
+    "uk": "Градієнти",
+    "en": "Gradients",
+    "de": "Verläufe"
+  },
+  "other": {
+    "uk": "Інше (складні значення, редагування поки недоступне)",
+    "en": "Other (complex values, not editable yet)",
+    "de": "Sonstiges (komplexe Werte, noch nicht bearbeitbar)"
+  },
+  "bordersHint": {
+    "uk": "Рамка — це колір з палітри, товщина й тип лінії. Змініть колір у палітрі — зміняться всі рамки на ньому.",
+    "en": "A border is a palette colour plus a width and line style. Change the colour in the palette and every border built on it changes too.",
+    "de": "Ein Rahmen ist eine Palettenfarbe mit Breite und Linienart. Ändern Sie die Farbe in der Palette, ändern sich alle Rahmen darauf."
+  },
+  "addBorder": {
+    "uk": "Додати рамку",
+    "en": "Add border",
+    "de": "Rahmen hinzufügen"
+  },
+  "newBorder": {
+    "uk": "Нова рамка",
+    "en": "New border",
+    "de": "Neuer Rahmen"
+  },
+  "borderName": {
+    "uk": "Назва (латиницею)",
+    "en": "Name (Latin letters)",
+    "de": "Name (lateinische Buchstaben)"
+  },
+  "deleteBorder": {
+    "uk": "Видалити рамку",
+    "en": "Delete border",
+    "de": "Rahmen löschen"
+  },
+  "nameInvalid": {
+    "uk": "Лише латинські літери, цифри та дефіс.",
+    "en": "Latin letters, digits and hyphens only.",
+    "de": "Nur lateinische Buchstaben, Ziffern und Bindestriche."
+  },
+  "nameTaken": {
+    "uk": "Така назва вже є в палітрі.",
+    "en": "The palette already has this name.",
+    "de": "Dieser Name ist in der Palette schon vergeben."
+  },
+  "gradientsHint": {
+    "uk": "Градієнт складається з кольорів палітри. Змініть колір у палітрі — зміняться всі градієнти з ним. Градієнт можна вибрати як заливку фону.",
+    "en": "A gradient is made of palette colours. Change a colour in the palette and every gradient using it changes too. A gradient can be picked as a background fill.",
+    "de": "Ein Verlauf besteht aus Palettenfarben. Ändern Sie eine Farbe in der Palette, ändern sich alle Verläufe damit. Ein Verlauf kann als Hintergrundfüllung gewählt werden."
+  },
+  "addGradient": {
+    "uk": "Додати градієнт",
+    "en": "Add gradient",
+    "de": "Verlauf hinzufügen"
+  },
+  "newGradient": {
+    "uk": "Новий градієнт",
+    "en": "New gradient",
+    "de": "Neuer Verlauf"
+  },
+  "deleteGradient": {
+    "uk": "Видалити градієнт",
+    "en": "Delete gradient",
+    "de": "Verlauf löschen"
+  },
+  "linear": {
+    "uk": "Лінійний",
+    "en": "Linear",
+    "de": "Linear"
+  },
+  "radial": {
+    "uk": "Радіальний",
+    "en": "Radial",
+    "de": "Radial"
+  },
+  "angle": {
+    "uk": "Кут",
+    "en": "Angle",
+    "de": "Winkel"
+  },
+  "stops": {
+    "uk": "Кольори",
+    "en": "Colours",
+    "de": "Farben"
+  },
+  "addStop": {
+    "uk": "Додати колір",
+    "en": "Add colour",
+    "de": "Farbe hinzufügen"
+  },
+  "removeStop": {
+    "uk": "Прибрати колір",
+    "en": "Remove colour",
+    "de": "Farbe entfernen"
+  },
+  "position": {
+    "uk": "Позиція",
+    "en": "Position",
+    "de": "Position"
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "title": {
+    "uk": "Підтвердження",
+    "en": "Confirmation",
+    "de": "Bestätigung"
+  },
+  "irreversible": {
+    "uk": "Цю дію не можна скасувати.",
+    "en": "This cannot be undone.",
+    "de": "Dies kann nicht rückgängig gemacht werden."
+  },
+  "deleteTitle": {
+    "uk": "Видалити {what}?",
+    "en": "Delete {what}?",
+    "de": "{what} löschen?"
+  },
+  "objects": {
+    "button": {
+      "uk": "цю кнопку",
+      "en": "this button",
+      "de": "Diese Schaltfläche"
+    },
+    "element": {
+      "uk": "цей елемент",
+      "en": "this element",
+      "de": "Dieses Element"
+    },
+    "card": {
+      "uk": "цю картку",
+      "en": "this card",
+      "de": "Diese Karte"
+    },
+    "text": {
+      "uk": "цей текст",
+      "en": "this text",
+      "de": "Diesen Text"
+    },
+    "question": {
+      "uk": "це питання",
+      "en": "this question",
+      "de": "Diese Frage"
+    },
+    "step": {
+      "uk": "цей крок",
+      "en": "this step",
+      "de": "Diesen Schritt"
+    },
+    "row": {
+      "uk": "цей рядок",
+      "en": "this row",
+      "de": "Diese Zeile"
+    },
+    "block": {
+      "uk": "цей блок",
+      "en": "this block",
+      "de": "Diesen Block"
+    },
+    "contactsRow": {
+      "uk": "цей рядок контактів",
+      "en": "this contacts row",
+      "de": "Diese Kontaktzeile"
+    },
+    "columnWithContent": {
+      "uk": "цю колонку разом з її вмістом",
+      "en": "this column and everything in it",
+      "de": "Diese Spalte samt Inhalt"
+    },
+    "link": {
+      "uk": "це посилання",
+      "en": "this link",
+      "de": "Diesen Link"
+    },
+    "textRow": {
+      "uk": "цей текстовий рядок",
+      "en": "this text line",
+      "de": "Diese Textzeile"
+    },
+    "styleClass": {
+      "uk": "клас .{name}",
+      "en": "the .{name} class",
+      "de": "Die Klasse .{name}"
+    },
+    "paletteBorder": {
+      "uk": "рамку {name}",
+      "en": "the {name} border",
+      "de": "Den Rahmen {name}"
+    },
+    "cardStyle": {
+      "uk": "стиль карток «{name}»",
+      "en": "the “{name}” card style",
+      "de": "Den Kartenstil „{name}“"
+    },
+    "menuItemWithChildren": {
+      "uk": "цей пункт меню разом з його підпунктами",
+      "en": "this menu item and its sub-items",
+      "de": "Diesen Menüpunkt samt Unterpunkten"
+    },
+    "menuSubitem": {
+      "uk": "цей підпункт",
+      "en": "this sub-item",
+      "de": "Diesen Unterpunkt"
+    },
+    "mainMenuLink": {
+      "uk": "це посилання з головного меню",
+      "en": "this link from the main menu",
+      "de": "Diesen Link aus dem Hauptmenü"
+    }
+  }
+}

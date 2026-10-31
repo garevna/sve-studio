@@ -1,0 +1,27 @@
+{
+  "close": {
+    "uk": "Закрити",
+    "en": "Close",
+    "de": "Schließen"
+  },
+  "cancel": {
+    "uk": "Скасувати",
+    "en": "Cancel",
+    "de": "Abbrechen"
+  },
+  "add": {
+    "uk": "Додати",
+    "en": "Add",
+    "de": "Hinzufügen"
+  },
+  "delete": {
+    "uk": "Видалити",
+    "en": "Delete",
+    "de": "Löschen"
+  },
+  "understood": {
+    "uk": "Зрозуміло",
+    "en": "Got it",
+    "de": "Verstanden"
+  }
+}

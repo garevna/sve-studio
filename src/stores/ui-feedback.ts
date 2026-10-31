@@ -120,7 +120,7 @@ export const useUiFeedbackStore = defineStore('ui-feedback', () => {
 
   // The common case, so it doesn't have to be spelled out at every one of
   // the delete call sites: `what` names the thing - a key of
-  // confirm.objects in src/i18n/locales (e.g. 'card' -> "цю картку").
+  // confirm.objects in src/i18n/messages/confirm.json (e.g. 'card' -> "цю картку").
   function confirmDelete (what: ConfirmObjectKey, params: Record<string, string> = {}): Promise<boolean> {
     return confirm({
       title: t('confirm.deleteTitle', { what: t(`confirm.objects.${what}`, params) }),

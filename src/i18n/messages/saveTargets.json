@@ -1,0 +1,42 @@
+{
+  "globalSettings": {
+    "uk": "Загальні налаштування",
+    "en": "General settings",
+    "de": "Allgemeine Einstellungen"
+  },
+  "seoSettings": {
+    "uk": "SEO-налаштування",
+    "en": "SEO settings",
+    "de": "SEO-Einstellungen"
+  },
+  "styleFile": {
+    "uk": "Файл {name}",
+    "en": "File {name}",
+    "de": "Datei {name}"
+  },
+  "mainMenu": {
+    "uk": "Головне меню",
+    "en": "Main menu",
+    "de": "Hauptmenü"
+  },
+  "page": {
+    "uk": "Сторінку",
+    "en": "Page",
+    "de": "Seite"
+  },
+  "footer": {
+    "uk": "Футер",
+    "en": "Footer",
+    "de": "Fußzeile"
+  },
+  "palette": {
+    "uk": "Палітру",
+    "en": "Palette",
+    "de": "Palette"
+  },
+  "accountPages": {
+    "uk": "Вибір сторінок кабінету",
+    "en": "Account pages selection",
+    "de": "Auswahl der Kontoseiten"
+  }
+}

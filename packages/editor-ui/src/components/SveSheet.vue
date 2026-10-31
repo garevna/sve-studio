@@ -1,4 +1,5 @@
 <script setup lang="ts">
+  import { kitLabels } from '../labels'
   import SveIconButton from './SveIconButton.vue'
 
   // A panel beside the page: on a wide screen it stands at the right edge,
@@ -22,7 +23,7 @@
             <div class="sve-sheet__title">{{ title }}</div>
             <div v-if="subtitle" class="sve-sheet__subtitle">{{ subtitle }}</div>
           </div>
-          <SveIconButton icon="mdi-close" label="Закрити" size="sm" @click="open = false" />
+          <SveIconButton icon="mdi-close" :label="kitLabels.close" size="sm" @click="open = false" />
         </header>
         <div class="sve-sheet__body">
           <slot />

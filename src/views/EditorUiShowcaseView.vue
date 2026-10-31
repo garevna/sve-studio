@@ -22,6 +22,8 @@
     useLook,
   } from '@sve/editor-ui'
   import { computed, onBeforeUnmount, ref, toRaw, watch } from 'vue'
+  import { useRoute, useRouter } from 'vue-router'
+  import EditorTextsPanel from '@/components/special/EditorTextsPanel.vue'
 
   // The editor's interface kit on one page (dev only - see router/routes.ts):
   // its colour schemes, edited here and saved into the kit
@@ -30,6 +32,15 @@
   // schemes (the palette button on the top bar).
 
   const { look, setLook } = useLook()
+
+  // Two parts: the look (schemes + every control) and the interface texts.
+  // Kept in the address (?tab=texts), so a reload stays on the same part.
+  const route = useRoute()
+  const router = useRouter()
+  const tab = computed<'look' | 'texts'>({
+    get: () => route.query.tab === 'texts' ? 'texts' : 'look',
+    set: value => void router.replace({ query: { ...route.query, tab: value === 'texts' ? 'texts' : undefined } }),
+  })
 
   // --- the schemes, being edited ---------------------------------------------
 
@@ -141,7 +152,7 @@
 
 <template>
   <SvePage back="/" subtitle="Набір елементів редактора · тільки під час розробки" title="Editor UI">
-    <template #center>
+    <template v-if="tab === 'look'" #center>
       <SveSegmented
         v-model="mode"
         :options="[
@@ -153,225 +164,236 @@
     </template>
 
     <div class="sve-ui showcase">
-      <!-- The looks -->
-      <section>
-        <div class="showcase-heading">Схеми оформлення редактора</div>
-        <p class="showcase-text">
-          Користувачі перемикаються між ними кнопкою з палітрою у верхній панелі. Тут їх налаштовують: оберіть схему - зміни одразу видно на всьому редакторі, а «Зберегти» записує їх у пакет.
-        </p>
-        <div class="showcase-looks">
-          <div
-            v-for="item of draft.looks"
-            :key="item.id"
-            :aria-checked="editing.id === item.id"
-            :class="['showcase-look', { 'showcase-look--active': editing.id === item.id }]"
-            role="radio"
-            :style="lookVariables(item)"
-            tabindex="0"
-            @click="select(item.id)"
-            @keydown.enter.prevent="select(item.id)"
-          >
-            <div class="showcase-look__bar">
-              <span class="showcase-look__dot" />
-              <span class="showcase-look__line" />
-              <span class="showcase-look__btn" />
-            </div>
-            <div class="showcase-look__body">
-              <div class="showcase-look__card">
-                <span class="showcase-look__line showcase-look__line--long" />
+      <SveSegmented
+        v-model="tab"
+        class="showcase-tabs"
+        :options="[
+          { value: 'look', icon: 'mdi-palette-outline', label: 'Оформлення' },
+          { value: 'texts', icon: 'mdi-translate', label: 'Тексти' },
+        ]"
+      />
+      <EditorTextsPanel v-if="tab === 'texts'" />
+      <template v-else>
+        <!-- The looks -->
+        <section>
+          <div class="showcase-heading">Схеми оформлення редактора</div>
+          <p class="showcase-text">
+            Користувачі перемикаються між ними кнопкою з палітрою у верхній панелі. Тут їх налаштовують: оберіть схему - зміни одразу видно на всьому редакторі, а «Зберегти» записує їх у пакет.
+          </p>
+          <div class="showcase-looks">
+            <div
+              v-for="item of draft.looks"
+              :key="item.id"
+              :aria-checked="editing.id === item.id"
+              :class="['showcase-look', { 'showcase-look--active': editing.id === item.id }]"
+              role="radio"
+              :style="lookVariables(item)"
+              tabindex="0"
+              @click="select(item.id)"
+              @keydown.enter.prevent="select(item.id)"
+            >
+              <div class="showcase-look__bar">
+                <span class="showcase-look__dot" />
                 <span class="showcase-look__line" />
+                <span class="showcase-look__btn" />
               </div>
-              <div class="showcase-look__swatches">
-                <span v-for="key in ['primary', 'text', 'surface-sunken', 'danger']" :key="key" :style="{ background: item.colors[key as 'primary'] }" />
+              <div class="showcase-look__body">
+                <div class="showcase-look__card">
+                  <span class="showcase-look__line showcase-look__line--long" />
+                  <span class="showcase-look__line" />
+                </div>
+                <div class="showcase-look__swatches">
+                  <span v-for="key in ['primary', 'text', 'surface-sunken', 'danger']" :key="key" :style="{ background: item.colors[key as 'primary'] }" />
+                </div>
               </div>
+              <div class="showcase-look__name">
+                {{ item.name }}
+                <SveBadge v-if="draft.default === item.id">типова</SveBadge>
+              </div>
+              <div class="showcase-look__text">{{ item.description }}</div>
             </div>
-            <div class="showcase-look__name">
-              {{ item.name }}
-              <SveBadge v-if="draft.default === item.id">типова</SveBadge>
-            </div>
-            <div class="showcase-look__text">{{ item.description }}</div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- The chosen scheme's settings -->
-      <section>
-        <div class="showcase-heading">Налаштування схеми «{{ editing.name }}»</div>
-        <div class="showcase-row showcase-actions">
-          <SveButton
-            :disabled="!dirty"
-            icon="mdi-content-save-outline"
-            :loading="saving"
-            variant="primary"
-            @click="saveLooks"
-          >Зберегти</SveButton>
-          <SveButton :disabled="!dirty" icon="mdi-undo-variant" @click="resetDraft">Скасувати зміни</SveButton>
-          <SveButton icon="mdi-content-copy" variant="ghost" @click="addLook">Копія як нова схема</SveButton>
-          <SveButton :disabled="draft.default === editing.id" icon="mdi-star-outline" variant="ghost" @click="draft.default = editing.id">Зробити типовою</SveButton>
-          <SveButton :disabled="draft.looks.length < 2" icon="mdi-delete-outline" variant="danger" @click="removeLook">Видалити схему</SveButton>
-          <span class="showcase-text showcase-text--small">{{ saveMessage || (dirty ? 'Є незбережені зміни' : '') }}</span>
-        </div>
-
-        <div class="showcase-settings">
-          <SvePanel title="Загальне">
-            <div class="showcase-fields">
-              <SveTextField v-model="editing.name" label="Назва" />
-              <SveTextField v-model="editing.description" label="Опис" :rows="2" />
-              <div class="sve-field">
-                <span class="sve-field__label">Шрифт</span>
-                <SveSegmented v-model="editing.font" :options="fontOptions" />
-              </div>
-            </div>
-          </SvePanel>
-          <SvePanel title="Форма і розміри">
-            <div class="showcase-fields showcase-fields--two">
-              <SveNumberField v-model="editing.radius.sm" label="Заокруглення, мале" :max="40" />
-              <SveNumberField v-model="editing.radius.md" label="Заокруглення, середнє" :max="40" />
-              <SveNumberField v-model="editing.radius.lg" label="Заокруглення, велике" :max="40" />
-              <SveNumberField
-                v-model="editing.control"
-                hint="Висота кнопок і полів"
-                label="Елементи"
-                :max="64"
-                :min="24"
-              />
-              <SveNumberField v-model="editing.topbarHeight" label="Верхня панель" :max="96" :min="40" />
-            </div>
-          </SvePanel>
-          <SvePanel title="Тіні">
-            <div class="showcase-fields">
-              <SveTextField v-model="editing.shadow.sm" label="Мала" mono />
-              <SveTextField v-model="editing.shadow.md" label="Середня" mono />
-              <SveTextField v-model="editing.shadow.lg" label="Велика (меню, вікна)" mono />
-            </div>
-          </SvePanel>
-          <SvePanel v-for="group of COLOR_GROUPS" :key="group.title" :title="group.title">
-            <div class="showcase-fields showcase-fields--two">
-              <SveColorField v-for="[key, label] of group.colors" :key="key" v-model="editing.colors[key]" :label="label" />
-            </div>
-          </SvePanel>
-        </div>
-      </section>
-
-      <!-- A page being edited -->
-      <section>
-        <div class="showcase-heading">Сторінка в режимі редагування</div>
-        <p class="showcase-text">
-          Наведіть на блок - з’явиться рамка і кнопка налаштувань у правому верхньому куті. Активний блок обведено.
-        </p>
-        <div class="showcase-canvas">
-          <div class="showcase-canvas__bar">
-            <SveMenu v-if="hidden.length > 0">
-              <template #activator="{ props }">
-                <SveButton icon="mdi-eye-off-outline" size="sm" variant="secondary" v-bind="props">
-                  Приховані блоки <SveBadge>{{ hidden.length }}</SveBadge>
-                </SveButton>
-              </template>
-              <SveMenuLabel>Повернути на сторінку</SveMenuLabel>
-              <SveMenuItem v-for="item of hidden" :key="item.id" icon="mdi-eye-outline" @click="restore(item.id)">
-                {{ item.label }}
-              </SveMenuItem>
-            </SveMenu>
-            <span class="showcase-text showcase-text--small">{{ lastAction }}</span>
+        <!-- The chosen scheme's settings -->
+        <section>
+          <div class="showcase-heading">Налаштування схеми «{{ editing.name }}»</div>
+          <div class="showcase-row showcase-actions">
+            <SveButton
+              :disabled="!dirty"
+              icon="mdi-content-save-outline"
+              :loading="saving"
+              variant="primary"
+              @click="saveLooks"
+            >Зберегти</SveButton>
+            <SveButton :disabled="!dirty" icon="mdi-undo-variant" @click="resetDraft">Скасувати зміни</SveButton>
+            <SveButton icon="mdi-content-copy" variant="ghost" @click="addLook">Копія як нова схема</SveButton>
+            <SveButton :disabled="draft.default === editing.id" icon="mdi-star-outline" variant="ghost" @click="draft.default = editing.id">Зробити типовою</SveButton>
+            <SveButton :disabled="draft.looks.length < 2" icon="mdi-delete-outline" variant="danger" @click="removeLook">Видалити схему</SveButton>
+            <span class="showcase-text showcase-text--small">{{ saveMessage || (dirty ? 'Є незбережені зміни' : '') }}</span>
           </div>
-          <div
-            v-for="block of ['about', 'faq', 'gallery']"
-            v-show="!hidden.some(item => item.id === block)"
-            :key="block"
-            :class="['sve-block', 'showcase-block', { 'sve-block--active': activeBlock === block, 'sve-block--flash': flashing === block }]"
-          >
-            <div class="sve-block__settings">
-              <SveMenu>
+
+          <div class="showcase-settings">
+            <SvePanel title="Загальне">
+              <div class="showcase-fields">
+                <SveTextField v-model="editing.name" label="Назва" />
+                <SveTextField v-model="editing.description" label="Опис" :rows="2" />
+                <div class="sve-field">
+                  <span class="sve-field__label">Шрифт</span>
+                  <SveSegmented v-model="editing.font" :options="fontOptions" />
+                </div>
+              </div>
+            </SvePanel>
+            <SvePanel title="Форма і розміри">
+              <div class="showcase-fields showcase-fields--two">
+                <SveNumberField v-model="editing.radius.sm" label="Заокруглення, мале" :max="40" />
+                <SveNumberField v-model="editing.radius.md" label="Заокруглення, середнє" :max="40" />
+                <SveNumberField v-model="editing.radius.lg" label="Заокруглення, велике" :max="40" />
+                <SveNumberField
+                  v-model="editing.control"
+                  hint="Висота кнопок і полів"
+                  label="Елементи"
+                  :max="64"
+                  :min="24"
+                />
+                <SveNumberField v-model="editing.topbarHeight" label="Верхня панель" :max="96" :min="40" />
+              </div>
+            </SvePanel>
+            <SvePanel title="Тіні">
+              <div class="showcase-fields">
+                <SveTextField v-model="editing.shadow.sm" label="Мала" mono />
+                <SveTextField v-model="editing.shadow.md" label="Середня" mono />
+                <SveTextField v-model="editing.shadow.lg" label="Велика (меню, вікна)" mono />
+              </div>
+            </SvePanel>
+            <SvePanel v-for="group of COLOR_GROUPS" :key="group.title" :title="group.title">
+              <div class="showcase-fields showcase-fields--two">
+                <SveColorField v-for="[key, label] of group.colors" :key="key" v-model="editing.colors[key]" :label="label" />
+              </div>
+            </SvePanel>
+          </div>
+        </section>
+
+        <!-- A page being edited -->
+        <section>
+          <div class="showcase-heading">Сторінка в режимі редагування</div>
+          <p class="showcase-text">
+            Наведіть на блок - з’явиться рамка і кнопка налаштувань у правому верхньому куті. Активний блок обведено.
+          </p>
+          <div class="showcase-canvas">
+            <div class="showcase-canvas__bar">
+              <SveMenu v-if="hidden.length > 0">
                 <template #activator="{ props }">
-                  <SveIconButton icon="mdi-cog-outline" label="Налаштування блоку" variant="soft" v-bind="props" />
+                  <SveButton icon="mdi-eye-off-outline" size="sm" variant="secondary" v-bind="props">
+                    Приховані блоки <SveBadge>{{ hidden.length }}</SveBadge>
+                  </SveButton>
                 </template>
-                <SveMenuItem icon="mdi-pencil-outline" @click="activeBlock = block">Редагувати</SveMenuItem>
-                <SveMenuItem icon="mdi-eye-off-outline" @click="hidden.push({ id: block, label: block })">Приховати</SveMenuItem>
-                <SveMenuDivider />
-                <SveMenuItem danger icon="mdi-delete-outline">Видалити</SveMenuItem>
+                <SveMenuLabel>Повернути на сторінку</SveMenuLabel>
+                <SveMenuItem v-for="item of hidden" :key="item.id" icon="mdi-eye-outline" @click="restore(item.id)">
+                  {{ item.label }}
+                </SveMenuItem>
               </SveMenu>
+              <span class="showcase-text showcase-text--small">{{ lastAction }}</span>
             </div>
-            <div class="showcase-block__title">{{ block === 'about' ? 'Про компанію' : block === 'faq' ? 'Часті питання' : 'Галерея' }}</div>
-            <div class="showcase-block__line" />
-            <div class="showcase-block__line showcase-block__line--short" />
+            <div
+              v-for="block of ['about', 'faq', 'gallery']"
+              v-show="!hidden.some(item => item.id === block)"
+              :key="block"
+              :class="['sve-block', 'showcase-block', { 'sve-block--active': activeBlock === block, 'sve-block--flash': flashing === block }]"
+            >
+              <div class="sve-block__settings">
+                <SveMenu>
+                  <template #activator="{ props }">
+                    <SveIconButton icon="mdi-cog-outline" label="Налаштування блоку" variant="soft" v-bind="props" />
+                  </template>
+                  <SveMenuItem icon="mdi-pencil-outline" @click="activeBlock = block">Редагувати</SveMenuItem>
+                  <SveMenuItem icon="mdi-eye-off-outline" @click="hidden.push({ id: block, label: block })">Приховати</SveMenuItem>
+                  <SveMenuDivider />
+                  <SveMenuItem danger icon="mdi-delete-outline">Видалити</SveMenuItem>
+                </SveMenu>
+              </div>
+              <div class="showcase-block__title">{{ block === 'about' ? 'Про компанію' : block === 'faq' ? 'Часті питання' : 'Галерея' }}</div>
+              <div class="showcase-block__line" />
+              <div class="showcase-block__line showcase-block__line--short" />
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- Controls -->
-      <section class="showcase-grid">
-        <SvePanel title="Кнопки">
-          <div class="showcase-row">
-            <SveButton variant="primary">Зберегти</SveButton>
-            <SveButton>Скасувати</SveButton>
-            <SveButton variant="ghost">Детальніше</SveButton>
-            <SveButton variant="danger">Видалити</SveButton>
-          </div>
-          <div class="showcase-row">
-            <SveButton icon="mdi-plus" size="sm" variant="primary">Малий</SveButton>
-            <SveButton icon="mdi-plus" variant="primary">Звичайний</SveButton>
-            <SveButton icon="mdi-plus" size="lg" variant="primary">Великий</SveButton>
-          </div>
-          <div class="showcase-row">
-            <SveButton loading variant="primary">Зберігаю</SveButton>
-            <SveButton disabled>Недоступна</SveButton>
-            <SveButton icon-end="mdi-chevron-down">З меню</SveButton>
-          </div>
-        </SvePanel>
+        <!-- Controls -->
+        <section class="showcase-grid">
+          <SvePanel title="Кнопки">
+            <div class="showcase-row">
+              <SveButton variant="primary">Зберегти</SveButton>
+              <SveButton>Скасувати</SveButton>
+              <SveButton variant="ghost">Детальніше</SveButton>
+              <SveButton variant="danger">Видалити</SveButton>
+            </div>
+            <div class="showcase-row">
+              <SveButton icon="mdi-plus" size="sm" variant="primary">Малий</SveButton>
+              <SveButton icon="mdi-plus" variant="primary">Звичайний</SveButton>
+              <SveButton icon="mdi-plus" size="lg" variant="primary">Великий</SveButton>
+            </div>
+            <div class="showcase-row">
+              <SveButton loading variant="primary">Зберігаю</SveButton>
+              <SveButton disabled>Недоступна</SveButton>
+              <SveButton icon-end="mdi-chevron-down">З меню</SveButton>
+            </div>
+          </SvePanel>
 
-        <SvePanel title="Кнопки-іконки">
-          <div class="showcase-row">
-            <SveIconButton icon="mdi-format-bold" label="Жирний" />
-            <SveIconButton active icon="mdi-format-italic" label="Курсив" />
-            <SveIconButton icon="mdi-link-variant" label="Посилання" />
-            <SveIconButton danger icon="mdi-delete-outline" label="Видалити" />
-          </div>
-          <div class="showcase-row">
-            <SveIconButton icon="mdi-cog-outline" label="Налаштування" variant="soft" />
-            <SveIconButton icon="mdi-cog-outline" label="Налаштування" size="sm" variant="soft" />
-            <SveIconButton disabled icon="mdi-undo" label="Скасувати" />
-          </div>
-        </SvePanel>
+          <SvePanel title="Кнопки-іконки">
+            <div class="showcase-row">
+              <SveIconButton icon="mdi-format-bold" label="Жирний" />
+              <SveIconButton active icon="mdi-format-italic" label="Курсив" />
+              <SveIconButton icon="mdi-link-variant" label="Посилання" />
+              <SveIconButton danger icon="mdi-delete-outline" label="Видалити" />
+            </div>
+            <div class="showcase-row">
+              <SveIconButton icon="mdi-cog-outline" label="Налаштування" variant="soft" />
+              <SveIconButton icon="mdi-cog-outline" label="Налаштування" size="sm" variant="soft" />
+              <SveIconButton disabled icon="mdi-undo" label="Скасувати" />
+            </div>
+          </SvePanel>
 
-        <SvePanel title="Перемикачі">
-          <div class="showcase-row">
-            <SveSegmented v-model="locale" :options="[{ value: 'uk', label: 'UK' }, { value: 'en', label: 'EN' }, { value: 'de', label: 'DE' }]" />
-          </div>
-          <div class="showcase-row">
-            <SveSegmented
-              v-model="mode"
-              :options="[
-                { value: 'preview', icon: 'mdi-eye-outline', label: 'Перегляд' },
-                { value: 'edit', icon: 'mdi-pencil-outline', label: 'Редагування' },
-                { value: 'drag', icon: 'mdi-cursor-move', label: 'Переміщення' },
-              ]"
-            />
-          </div>
-        </SvePanel>
+          <SvePanel title="Перемикачі">
+            <div class="showcase-row">
+              <SveSegmented v-model="locale" :options="[{ value: 'uk', label: 'UK' }, { value: 'en', label: 'EN' }, { value: 'de', label: 'DE' }]" />
+            </div>
+            <div class="showcase-row">
+              <SveSegmented
+                v-model="mode"
+                :options="[
+                  { value: 'preview', icon: 'mdi-eye-outline', label: 'Перегляд' },
+                  { value: 'edit', icon: 'mdi-pencil-outline', label: 'Редагування' },
+                  { value: 'drag', icon: 'mdi-cursor-move', label: 'Переміщення' },
+                ]"
+              />
+            </div>
+          </SvePanel>
 
-        <SvePanel title="Меню">
-          <template #actions>
-            <SveBadge>3</SveBadge>
-          </template>
-          <SveMenu location="bottom start">
-            <template #activator="{ props }">
-              <SveButton icon-end="mdi-chevron-down" v-bind="props">Відкрити меню</SveButton>
+          <SvePanel title="Меню">
+            <template #actions>
+              <SveBadge>3</SveBadge>
             </template>
-            <SveMenuLabel>Блок</SveMenuLabel>
-            <SveMenuItem hint="E" icon="mdi-pencil-outline">Редагувати</SveMenuItem>
-            <SveMenuItem icon="mdi-content-copy">Дублювати</SveMenuItem>
-            <SveMenuItem disabled icon="mdi-arrow-up">Вище</SveMenuItem>
-            <SveMenuDivider />
-            <SveMenuItem danger icon="mdi-delete-outline">Видалити</SveMenuItem>
-          </SveMenu>
-        </SvePanel>
-      </section>
-
+            <SveMenu location="bottom start">
+              <template #activator="{ props }">
+                <SveButton icon-end="mdi-chevron-down" v-bind="props">Відкрити меню</SveButton>
+              </template>
+              <SveMenuLabel>Блок</SveMenuLabel>
+              <SveMenuItem hint="E" icon="mdi-pencil-outline">Редагувати</SveMenuItem>
+              <SveMenuItem icon="mdi-content-copy">Дублювати</SveMenuItem>
+              <SveMenuItem disabled icon="mdi-arrow-up">Вище</SveMenuItem>
+              <SveMenuDivider />
+              <SveMenuItem danger icon="mdi-delete-outline">Видалити</SveMenuItem>
+            </SveMenu>
+          </SvePanel>
+        </section>
+      </template>
     </div>
   </SvePage>
 </template>
 
 <style scoped>
+.showcase-tabs { align-self: center; }
 /* Layout of this page only - every control on it is styled by the kit. */
 .showcase {
   display: flex;

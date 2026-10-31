@@ -1,11 +1,13 @@
 // Starts the editor once the content API is up (01.content-api.client.ts):
 // pinia, site settings + palette, theme styles, fonts, Vuetify, i18n - see
 // src/bootstrap/editor-app.ts.
-import { startLook, vuetifyColors } from '@sve/editor-ui'
+import { addTopBarItem, setKitLabels, startLook, vuetifyColors } from '@sve/editor-ui'
 import { createPinia } from 'pinia'
+import { watch } from 'vue'
 import { createEditorVuetify, installEditor, prepareEditor } from '@/bootstrap/editor-app'
+import EditorLocaleMenu from '@/components/special/EditorLocaleMenu.vue'
 import { useLocalOnlyMode } from '@/configs/api-mode'
-import { t } from '@/i18n'
+import { i18n, t } from '@/i18n'
 import { useUiFeedbackStore } from '@/stores/ui-feedback'
 import { getActiveTheme } from '@/utils/active-theme'
 import { syncContentImages } from '@/utils/dev-content-images'
@@ -28,6 +30,12 @@ export default defineNuxtPlugin({
     installEditor(nuxtApp.vueApp, { pinia, vuetify, theme })
     // The editor's own look (packages/editor-ui): its CSS variables, and the
     // same colours for the editor's Vuetify theme - now and on every switch.
+    // The interface language, on every top bar next to the colour scheme.
+    addTopBarItem(EditorLocaleMenu)
+    // The kit's own words (Back, Close...) in the interface language.
+    const kitTexts = () => setKitLabels({ back: t('kit.back'), close: t('kit.close'), look: t('kit.look'), pickColor: t('kit.pickColor'), tools: t('kit.tools'), systemFont: t('kit.systemFont') })
+    kitTexts()
+    watch(i18n.global.locale, kitTexts)
     startLook(look => Object.assign(vuetify.theme.themes.value[EDITOR_THEME_NAME]!.colors, vuetifyColors(look)))
     // Dev: catch up on uploaded pictures that content/ links to but lacks.
     if (import.meta.dev && nuxtApp.$contentApiReady) {

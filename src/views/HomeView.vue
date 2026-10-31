@@ -1,9 +1,8 @@
 <script lang="ts" setup>
-  import { SveButton, SveMenu, SveMenuItem, SveMenuLabel, SveSegmented, SveTopBar } from '@sve/editor-ui'
+  import { SveButton, SveMenu, SveMenuItem, SveMenuLabel, SveTopBar } from '@sve/editor-ui'
   import { computed } from 'vue'
   import { useI18n } from 'vue-i18n'
   import { EDITOR_ROLES, EDITOR_SECTION_GROUPS, sectionsForRole } from '@/configs/editor-roles'
-  import { EDITOR_UI_LOCALES, setEditorUiLocale } from '@/i18n'
   import { useCommonStore } from '@/stores/common'
   import { lastEditedPage } from '@/utils/last-edited-page'
 
@@ -23,47 +22,31 @@
 
   const role = computed(() => commonStore.roleConfig)
   const lastPage = lastEditedPage()
+  const { t } = useI18n()
 
-  const { t, locale: uiLocale } = useI18n()
-  function setUiLocale (value: string | null) {
-    const match = EDITOR_UI_LOCALES.find(locale => locale.value === value)
-    if (match) {
-      setEditorUiLocale(match.value)
-    }
-  }
 </script>
 
 <template>
   <v-app>
     <v-main>
-      <!-- The same top bar as every other screen. On it: the language of
-        the editor itself (not the site's content languages - the list comes
-        from i18n/index.ts) and the editor's colour scheme. -->
-      <SveTopBar title="Site Visual Editor">
-        <template #actions>
-          <SveSegmented
-            :aria-label="t('ui.language')"
-            :model-value="uiLocale"
-            :options="EDITOR_UI_LOCALES.map(locale => ({ value: locale.value, label: locale.title }))"
-            @update:model-value="setUiLocale($event ?? null)"
-          />
-        </template>
-      </SveTopBar>
+      <!-- The same top bar as every other screen, the editor's language and
+        colour scheme on it (EditorLocaleMenu, SveLookMenu). -->
+      <SveTopBar title="Site Visual Editor" />
 
       <div class="sve-ui home">
         <header class="home__intro">
-          <h1 class="home__greeting">Що робимо сьогодні?</h1>
+          <h1 class="home__greeting">{{ t('home.greeting') }}</h1>
           <!-- The role decides which sections are here. Switched in place:
             it used to be a bar along the bottom that nothing pointed to. -->
           <div class="home__role">
-            <span>Ви працюєте як</span>
+            <span>{{ t('home.workingAs') }}</span>
             <SveMenu location="bottom start" :min-width="320">
               <template #activator="{ props: activator }">
                 <SveButton :icon="role.icon" icon-end="mdi-chevron-down" size="sm" v-bind="activator">
-                  {{ role.title }}
+                  {{ t(`home.roles.${role.value}.title`) }}
                 </SveButton>
               </template>
-              <SveMenuLabel>Роль - які розділи доступні</SveMenuLabel>
+              <SveMenuLabel>{{ t('home.roleMenu') }}</SveMenuLabel>
               <SveMenuItem
                 v-for="item of EDITOR_ROLES"
                 :key="item.value"
@@ -71,13 +54,13 @@
                 @click="commonStore.setRole(item.value)"
               >
                 <span class="home__role-option">
-                  <span class="home__role-title">{{ item.title }}</span>
-                  <span class="home__role-hint">{{ item.hint }}</span>
+                  <span class="home__role-title">{{ t(`home.roles.${item.value}.title`) }}</span>
+                  <span class="home__role-hint">{{ t(`home.roles.${item.value}.hint`) }}</span>
                 </span>
               </SveMenuItem>
             </SveMenu>
           </div>
-          <p class="home__hint">{{ role.hint }}</p>
+          <p class="home__hint">{{ t(`home.roles.${role.value}.hint`) }}</p>
           <SveButton
             v-if="lastPage"
             class="home__resume"
@@ -85,12 +68,12 @@
             :to="`/editor/${lastPage}`"
             variant="primary"
           >
-            Продовжити: {{ lastPage }}
+            {{ t('home.resume', { page: lastPage }) }}
           </SveButton>
         </header>
 
         <section v-for="group of groups" :key="group.key" class="home__group">
-          <h2 class="home__group-title">{{ group.title }}</h2>
+          <h2 class="home__group-title">{{ t(`home.groups.${group.key}`) }}</h2>
           <div class="home__grid">
             <RouterLink
               v-for="section of group.sections"
@@ -100,8 +83,8 @@
             >
               <span class="home__tile-icon"><i :class="['sve-icon mdi', section.icon]" /></span>
               <span class="home__tile-text">
-                <span class="home__tile-title">{{ section.title }}</span>
-                <span class="home__tile-description">{{ section.description }}</span>
+                <span class="home__tile-title">{{ t(`home.sections.${section.key}.title`) }}</span>
+                <span class="home__tile-description">{{ t(`home.sections.${section.key}.description`) }}</span>
               </span>
               <i class="sve-icon mdi mdi-arrow-right home__tile-arrow" />
             </RouterLink>

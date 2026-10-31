@@ -84,6 +84,7 @@
               v-model:color="cardProps.hoverColor"
               v-model:image="cardProps.hoverImage"
               :card="cardProps.card.children[1]"
+              fallback-color="secondary"
               :ver="cardProps.ver"
             />
           </v-window-item>

@@ -9,7 +9,9 @@
   // tab by CardWithHoverEditDialog.vue - no heading needed here, the tab
   // label already says which side this is.
   // ver: the card's look, for the text format defaults.
-  defineProps<{ card: TemplateBlockModel, ver?: number }>()
+  // fallbackColor: the side's fill when none is chosen (the hover side's
+  // default, the same as on the site).
+  defineProps<{ card: TemplateBlockModel, ver?: number, fallbackColor?: string }>()
 
   const color = defineModel<string>('color', { default: '' })
   const image = defineModel<string>('image', { default: '' })
@@ -88,7 +90,14 @@
       background if they want, formatting/removing it themselves; only the
       icon gets a dedicated show/hide toggle - text visibility is already
       just "did the user add any" via EditableCard's own add/remove buttons. -->
-    <EditableCard :card="card" class="mt-4" :format-ver="ver ?? 1" show-icon-toggle />
+    <EditableCard
+      :background="color || fallbackColor"
+      :background-image="image"
+      :card="card"
+      class="mt-4"
+      :format-ver="ver ?? 1"
+      show-icon-toggle
+    />
   </div>
 </template>
 

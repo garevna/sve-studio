@@ -4,6 +4,7 @@
   import LocaleSwitcher from '@/components/editors/small/LocaleSwitcher.vue'
   import IconEditor from '@/components/editors/text/IconEditor.vue'
   import TextEditor from '@/components/editors/text/TextEditor.vue'
+  import TextOnBackground from '@/components/editors/text/TextOnBackground.vue'
   import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
   import ConfirmDialog from '@/components/special/ConfirmDialog.vue'
   import PaletteSwatchPicker from '@/components/special/PaletteSwatchPicker.vue'
@@ -11,10 +12,8 @@
   import { useSortableList } from '@/composables/useSortableList'
   import { useCommonStore } from '@/stores/common'
   import { useUiFeedbackStore } from '@/stores/ui-feedback'
-  import { EDITED_APP_SCOPE_CLASS } from '@/utils/edited-app-scope'
   import { emptyTranslatedModel, resolveLocaleText, setLocalizedContent } from '@/utils/locale-text'
   import { NON_COLOR_TEXT_CLASSES } from '@/utils/text-format-scale'
-  import { APP_THEME_NAME, themeClass } from '@/utils/vuetify-theme-names'
 
   // The footer's "contacts" list (phone numbers, addresses, anything else
   // with or without an icon) - reached via a click on the list itself in
@@ -80,11 +79,8 @@
     item.icon = ''
   }
 
-  // Each entry is shown on the footer's own background, in the site's own
-  // styles - a light text for a dark footer was invisible on the dialog's
-  // white.
+  // Each entry is shown on the footer's own background (TextOnBackground).
   const footerBackground = useFooterBackground()
-  const previewClass = [EDITED_APP_SCOPE_CLASS, themeClass(APP_THEME_NAME), 'contacts-dialog-preview']
 
   // One colour for every entry at once - setting it entry by entry was the
   // tedious part. Only the colour class changes; each entry keeps its size,
@@ -137,9 +133,8 @@
 
         <div ref="container">
           <div v-for="(item, index) of section.children" :key="index" class="contacts-dialog-item">
-            <!-- The entry as the footer shows it: its background, its
-              styles (the site's stylesheets apply inside the scope class). -->
-            <div :class="previewClass" :style="{ background: `var(--${footerBackground})` }">
+            <!-- The entry as the footer shows it: its background, its styles. -->
+            <TextOnBackground :background="footerBackground" class="contacts-dialog-preview">
               <IconEditor
                 v-model:icon="item.icon"
                 v-model:icon-background="item.background"
@@ -156,13 +151,13 @@
                 @update:class="item.text = $event"
                 @update:content="value => setText(item, value)"
               />
-            </div>
+            </TextOnBackground>
             <!-- Kept in place (only hidden) without an icon, so every row's
               preview is the same width. -->
             <ToolbarIconButton
-              :style="{ visibility: item.icon ? 'visible' : 'hidden' }"
               icon="mdi-close"
               size="small"
+              :style="{ visibility: item.icon ? 'visible' : 'hidden' }"
               tooltip="Прибрати іконку"
               @click="clearIcon(item)"
             />
@@ -198,14 +193,5 @@
   flex: 1 1 auto;
   align-items: center;
   gap: 12px;
-  min-width: 0;
-  padding: 8px 12px;
-  border-radius: 10px;
-}
-/* The format button sits on the footer's colour, light or dark: a light
-   chip of its own keeps it visible on either. */
-.contacts-dialog-preview :deep(.v-btn--icon) {
-  background: rgb(255 255 255 / 0.85);
-  color: #3a4a58;
 }
 </style>

@@ -3,6 +3,7 @@
   import { computed } from 'vue'
   import IconEditor from '@/components/editors/text/IconEditor.vue'
   import TextEditor from '@/components/editors/text/TextEditor.vue'
+  import TextOnBackground from '@/components/editors/text/TextOnBackground.vue'
   import { useCommonStore } from '@/stores/common'
   import { useUiFeedbackStore } from '@/stores/ui-feedback'
   import { defaultCardContentClass, defaultCardTitleClass } from '@/utils/card-text-defaults'
@@ -36,6 +37,10 @@
     // at once from the block's toolbar instead. The number is the card's
     // look (ver), for the defaults.
     formatVer?: number
+    // The card's fill (a palette key) and picture: with formatVer, its texts
+    // are edited on them, so a pale text for a dark card stays visible.
+    background?: string
+    backgroundImage?: string
   }>()
 
   const titleFormat = computed({
@@ -157,23 +162,32 @@
       and are set once from its own toolbar (CardContainerActions ->
       IconAppearance) - so this card offers only the choice of icon. Without
       one, this card owns its icon outright and gets both halves. -->
-    <IconEditor
-      v-model:icon="icon"
-      v-model:icon-background="iconBackground"
-      v-model:icon-color="iconColor"
-      v-model:icon-size="iconSize"
-      :appearance="!blockTarget"
-    />
+    <!-- With formatVer the icon sits on the card's background too. -->
+    <component
+      :is="formatVer !== undefined ? TextOnBackground : 'div'"
+      :background="formatVer !== undefined ? background : undefined"
+      :image="formatVer !== undefined ? backgroundImage : undefined"
+    >
+      <IconEditor
+        v-model:icon="icon"
+        v-model:icon-background="iconBackground"
+        v-model:icon-color="iconColor"
+        v-model:icon-size="iconSize"
+        :appearance="!blockTarget"
+      />
+    </component>
     <!-- With its own format (a card with hover): the editor's usual text
       field - the format button on its right, the panel opening under it. -->
     <div v-if="formatVer !== undefined" class="mt-6">
       <span class="card-content-label">Заголовок</span>
-      <TextEditor
-        v-model:class="titleFormat"
-        v-model:content="title"
-        parent-type="usual"
-        type="title"
-      />
+      <TextOnBackground :background="background" :image="backgroundImage">
+        <TextEditor
+          v-model:class="titleFormat"
+          v-model:content="title"
+          parent-type="usual"
+          type="title"
+        />
+      </TextOnBackground>
     </div>
     <v-textarea
       v-else
@@ -200,7 +214,7 @@
       <div class="card-content-list">
         <!-- Every paragraph shares one format (contentClass): changing it
           under any of them changes them all. -->
-        <template v-if="formatVer !== undefined">
+        <TextOnBackground v-if="formatVer !== undefined" :background="background" :image="backgroundImage">
           <TextEditor
             v-for="(line, index) of lines"
             :key="index"
@@ -212,7 +226,7 @@
             @delete="removeLine(index)"
             @update:content="(value: string | undefined) => setLine(index, value || '')"
           />
-        </template>
+        </TextOnBackground>
         <div v-for="(line, index) of lines" v-else :key="index" class="card-content-row">
           <v-textarea
             auto-grow

@@ -96,6 +96,9 @@ export interface BaseBlock {
   color?: string /* text-with-icon: icon color */
   text?: TranslatedModel | string /* text-with-icon: class name for content; dark-fone-section: translated body copy (field is overloaded) */
   background?: string /* for footer-icons component and for the future updates */
+  // Footer root block, "Bento" variant: the palette keys of its tile
+  // colours, as a set (configs/footer-variants.ts BENTO_TILE_SETS).
+  tiles?: string[]
   // Footer root block only (FooterSettingsView.vue) - whether the footer
   // renders at all. Default true when unset, same convention as
   // DynamicPageListItem.visible.

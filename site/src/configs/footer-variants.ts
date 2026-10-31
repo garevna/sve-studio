@@ -25,3 +25,20 @@ export const FOOTER_CTA_DEFAULTS: Record<string, { title: string, text: string }
 export function resolveFooterVariant (ver: number | undefined): number {
   return FOOTER_VARIANTS.some(variant => variant.id === ver) ? ver! : 1
 }
+
+// "Bento": the three tiles are coloured as a set, not one by one - the
+// footer keeps the set's palette keys in `tiles` (a colour or a gradient
+// each; tile N takes tiles[N % 3]). Without one, the first set. Every key
+// is a dark one: the footer's texts are white.
+export const BENTO_TILE_SETS = [
+  { id: 'classic', tiles: ['primary', 'dark', 'secondary'] },
+  { id: 'night', tiles: ['black', 'primary', 'dark-grey'] },
+  { id: 'contrast', tiles: ['dark', 'secondary', 'special'] },
+  { id: 'mono', tiles: ['primary', 'primary', 'primary'] },
+  { id: 'gradients', tiles: ['deep-space-gradient', 'night-sky-gradient', 'glow-gradient'] },
+] as const
+
+export function bentoTile (tiles: readonly string[] | undefined, index: number): string {
+  const set = tiles && tiles.length > 0 ? tiles : BENTO_TILE_SETS[0].tiles
+  return set[index % set.length]!
+}

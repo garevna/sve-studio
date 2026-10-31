@@ -89,6 +89,9 @@ export interface BaseBlock {
   color: string /* text-with-icon: icon color */
   text: TranslatedModel | string /* text-with-icon: class name for content */
   background: string /* for footer-icons component and for the future updates */
+  // Footer root block, "Bento" variant: the palette keys of its tile
+  // colours, as a set (configs/footer-variants.ts BENTO_TILE_SETS).
+  tiles?: string[]
   // "cards" block: the CARD's own fill, as a bare palette key
   // ("light-green"). Not `background` above - that one has always meant the
   // disc drawn behind the icon (IconVariant.vue), and a card whose icon is a

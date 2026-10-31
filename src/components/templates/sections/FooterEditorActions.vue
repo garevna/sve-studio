@@ -1,9 +1,11 @@
 <script setup lang="ts">
   import type { TemplateBlockModel } from '@/types/TemplateBlockModel'
-  import { computed } from 'vue'
+  import { computed, onMounted, ref } from 'vue'
+  import { useI18n } from 'vue-i18n'
   import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
   import PaletteSwatchPicker from '@/components/special/PaletteSwatchPicker.vue'
-  import { FOOTER_VARIANTS, resolveFooterVariant } from '@/configs/footer-variants'
+  import { BENTO_TILE_SETS, bentoTile, FOOTER_BENTO, FOOTER_VARIANTS, resolveFooterVariant } from '@/configs/footer-variants'
+  import { useAjaxStore } from '@/stores/ajax'
 
   const props = defineProps<{ block: TemplateBlockModel }>()
 
@@ -33,6 +35,27 @@
     props.block.ver = id
   }
 
+  // "Bento": the three tiles are coloured as a set (configs/footer-variants.ts).
+  // Only the sets whose colours are all in this site's palette are offered.
+  const { t } = useI18n()
+  const palette = ref<Record<string, string>>({})
+  onMounted(async () => {
+    palette.value = await useAjaxStore().getPalette() ?? {}
+  })
+  const tileSets = computed(() => BENTO_TILE_SETS.filter(set => set.tiles.every(key => key in palette.value)))
+  const currentTiles = computed(() => [0, 1, 2].map(index => bentoTile(props.block.tiles as string[] | undefined, index)))
+  function isCurrent (tiles: readonly string[]) {
+    return tiles.every((key, index) => key === currentTiles.value[index])
+  }
+  function setTiles (tiles: readonly string[]) {
+    // eslint-disable-next-line vue/no-mutating-props -- the footer block is edited in place, like its background
+    props.block.tiles = [...tiles]
+    // The footer's own colour follows the first tile: the dialogs that show
+    // the footer's texts (FooterContactsDialog) are drawn on it.
+    // eslint-disable-next-line vue/no-mutating-props
+    props.block.background = tiles[0]
+  }
+
   function toggleVisible () {
     // eslint-disable-next-line vue/no-mutating-props
     props.block.visible = props.block.visible === false
@@ -50,7 +73,33 @@
     :tooltip="`Вигляд футера: ${item.title}`"
     @click="setVariant(item.id)"
   />
-  <PaletteSwatchPicker dark-only :model-value="block.background || 'primary'" @update:model-value="setBackground">
+  <v-menu v-if="variant === FOOTER_BENTO" location="bottom">
+    <template #activator="{ props: menuProps }">
+      <v-tooltip location="top" :text="t('footer.tileSets')" theme="editorTheme">
+        <template #activator="{ props: tooltipProps }">
+          <v-btn v-bind="{ ...tooltipProps, ...menuProps }" icon="mdi-format-color-fill" variant="text" />
+        </template>
+      </v-tooltip>
+    </template>
+    <v-card class="pa-3" theme="editorTheme">
+      <div class="tile-sets-label">{{ t('footer.tileSets') }}</div>
+      <div class="tile-sets">
+        <button
+          v-for="set of tileSets"
+          :key="set.id"
+          :class="['tile-set', { 'tile-set--active': isCurrent(set.tiles) }]"
+          type="button"
+          @click="setTiles(set.tiles)"
+        >
+          <span class="tile-set-preview">
+            <span v-for="(key, index) of set.tiles" :key="index" :style="{ background: palette[key] }" />
+          </span>
+          <span class="tile-set-name">{{ t(`footer.tileSetNames.${set.id}`) }}</span>
+        </button>
+      </div>
+    </v-card>
+  </v-menu>
+  <PaletteSwatchPicker v-else dark-only :model-value="block.background || 'primary'" @update:model-value="setBackground">
     <template #activator="{ menuProps }">
       <v-tooltip location="top" text="Фон футера" theme="editorTheme">
         <template #activator="{ props: tooltipProps }">
@@ -86,3 +135,48 @@
   />
 
 </template>
+
+<style scoped>
+.tile-sets-label {
+  margin-bottom: 8px;
+  font-size: 12px;
+  color: #7a8699;
+}
+.tile-sets {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 112px);
+  gap: 10px;
+  max-width: 372px;
+}
+.tile-set {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 6px;
+  border: solid 2px transparent;
+  border-radius: 10px;
+  background: none;
+  cursor: pointer;
+}
+.tile-set--active {
+  border-color: #4f8cff;
+}
+/* The Bento shape in small: a tall tile on the left, two on the right. */
+.tile-set-preview {
+  display: grid;
+  grid-template-columns: 1fr 1.35fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 3px;
+  height: 56px;
+}
+.tile-set-preview span {
+  border-radius: 5px;
+}
+.tile-set-preview span:first-child {
+  grid-row: span 2;
+}
+.tile-set-name {
+  font-size: 12px;
+  text-align: start;
+}
+</style>

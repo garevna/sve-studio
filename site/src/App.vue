@@ -343,10 +343,6 @@
 }
 .v-footer.app-footer--v4 :deep(.footer-column:first-child) {
   grid-row: span 2;
-  background: var(--tile-bg, var(--footer-bg));
-}
-.v-footer.app-footer--v4 :deep(.footer-column:nth-child(3n)) {
-  background: var(--tile-bg, var(--secondary));
 }
 .v-footer.app-footer--v4 :deep(.site-copyright) {
   color: var(--black);

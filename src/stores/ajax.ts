@@ -132,13 +132,14 @@ export const useAjaxStore = defineStore('ajax', () => {
     headers: { 'X-Theme': String(getActiveTheme()) },
   })
 
-  // Guard for the demo: a request may only go to this origin's /api, and
+  // Guard for the demo: a request may only go to this origin's <base>api
+  // ("/api" in dev, "/sve-studio/api" on GitHub Pages), and
   // only while the mock API is running. Anything else is rejected before it
   // is sent; callers fall back to IndexedDB / bundled files on failure.
   if (REMOTE_API_DISABLED) {
     api.interceptors.request.use(config => {
       const target = new URL(axios.getUri(config), location.origin)
-      if (API_REQUEST_MODE === 'live' && target.origin === location.origin && target.pathname.startsWith('/api/')) {
+      if (API_REQUEST_MODE === 'live' && target.origin === location.origin && target.pathname.startsWith(`${appBase()}api/`)) {
         return config
       }
       return Promise.reject(new Error(`Demo mode: request blocked (${config.method?.toUpperCase()} ${target.href})`))
@@ -425,7 +426,10 @@ export const useAjaxStore = defineStore('ajax', () => {
     // rewrite of every page that references an image. Confirmed public (no
     // auth difference in a live probe) - safe to use in a plain <img src>,
     // which can't carry an Authorization header anyway.
-    return new URL(api.defaults.baseURL || location.origin, location.origin).origin + imageId
+    // The demo's API answers under the app's base ("/sve-studio/api/..." on
+    // GitHub Pages), so a stored /api/... path gets that base in front.
+    const apiBase = (REMOTE_API_DISABLED || import.meta.env.PROD) && imageId.startsWith('/api/') ? appBase().replace(/\/$/, '') : ''
+    return new URL(api.defaults.baseURL || location.origin, location.origin).origin + apiBase + imageId
   }
 
   // Third fallback tier, below the live API and IndexedDB (see

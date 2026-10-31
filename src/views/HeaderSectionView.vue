@@ -227,7 +227,7 @@
           <template v-if="selectedVariant?.settings === 'split'">
             <div>
               <p class="hero-setting-label">{{ t('header.fill') }}</p>
-              <PaletteSwatchPicker dark-only :model-value="header.background" @update:model-value="setBackground" />
+              <PaletteSwatchPicker dark-only gradients :model-value="header.background" @update:model-value="setBackground" />
               <p class="hero-setting-hint">{{ t('header.fillHint') }}</p>
             </div>
             <div class="hero-tagline">

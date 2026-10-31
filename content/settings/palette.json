@@ -35,5 +35,9 @@
   "small-border-radius": "28px",
   "extra-small-border-radius": "8px",
   "large-border-radius": "36px",
-  "super-border-radius": "80px"
+  "super-border-radius": "80px",
+  "deep-space-gradient": "linear-gradient(160deg, var(--black) 0%, var(--primary) 100%)",
+  "night-sky-gradient": "linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%)",
+  "soft-light-gradient": "linear-gradient(180deg, var(--white) 0%, var(--accent) 100%)",
+  "glow-gradient": "radial-gradient(circle, var(--secondary) 0%, var(--primary) 70%)"
 }

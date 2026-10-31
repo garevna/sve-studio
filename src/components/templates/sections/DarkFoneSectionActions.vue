@@ -30,7 +30,7 @@
 </script>
 
 <template>
-  <PaletteSwatchPicker dark-only :model-value="block.background || 'primary'" @update:model-value="setBackground">
+  <PaletteSwatchPicker dark-only gradients :model-value="block.background || 'primary'" @update:model-value="setBackground">
     <template #activator="{ menuProps }">
       <v-tooltip location="top" text="Фон секції" theme="editorTheme">
         <template #activator="{ props: tooltipProps }">

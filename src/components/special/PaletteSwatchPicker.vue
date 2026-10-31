@@ -1,8 +1,10 @@
 <script lang="ts" setup>
   import { computed, onMounted, ref } from 'vue'
+  import { t } from '@/i18n'
   import { useAjaxStore } from '@/stores/ajax'
   import { isHexColor } from '@/utils/build-color-scheme'
   import { isColorDarkEnoughForWhiteText } from '@/utils/color-luminance'
+  import { isGradientValue, parseGradient } from '@/utils/palette-entry'
 
   // A dedicated literal value, not a palette key - present in the swatch
   // grid itself (not just something a caller can happen to already hold),
@@ -25,6 +27,9 @@
     darkOnly?: boolean
     // No "transparent" choice (a text colour, for one, has to be a colour).
     noTransparent?: boolean
+    // The palette's gradients too - only for fills drawn with `background:`
+    // (a gradient is an image, it cannot be a text or border colour).
+    gradients?: boolean
   }>()
   const emit = defineEmits<{ 'update:modelValue': [value: string] }>()
 
@@ -58,6 +63,20 @@
       if (!existing || key.length < existing[0].length) byHex.set(hex, [key, value])
     }
     return [...byHex.values()]
+  })
+
+  // With darkOnly, a gradient whose every colour is dark enough for white text.
+  const gradientSwatches = computed(() => {
+    if (!props.gradients) return []
+    return Object.entries(palette.value).filter(([key, value]) => {
+      if (!isGradientValue(value)) return false
+      if (!props.darkOnly) return true
+      const gradient = parseGradient(key, value)
+      return !!gradient && gradient.stops.every(stop => {
+        const hex = palette.value[stop.color]
+        return !!hex && isHexColor(hex) && isColorDarkEnoughForWhiteText(hex)
+      })
+    })
   })
 
   function select (key: string) {
@@ -103,6 +122,19 @@
           @click="select(key)"
         />
       </div>
+      <template v-if="gradientSwatches.length > 0">
+        <div class="palette-swatch-label">{{ t('palette.gradients') }}</div>
+        <div class="palette-swatch-grid palette-swatch-grid--gradients">
+          <button
+            v-for="[key, value] of gradientSwatches"
+            :key="key"
+            :class="['palette-swatch-cell', 'palette-swatch-cell--gradient', { 'palette-swatch-cell--active': key === props.modelValue }]"
+            :style="{ background: value }"
+            :title="key"
+            @click="select(key)"
+          />
+        </div>
+      </template>
     </v-card>
   </v-menu>
 </template>
@@ -134,6 +166,17 @@
   border: solid 1px rgba(0, 0, 0, 0.15);
   cursor: pointer;
   padding: 0;
+}
+.palette-swatch-label {
+  margin: 10px 0 6px;
+  font-size: 12px;
+  color: #7a8699;
+}
+.palette-swatch-grid--gradients {
+  grid-template-columns: repeat(3, 1fr);
+}
+.palette-swatch-cell--gradient {
+  width: 100%;
 }
 .palette-swatch-cell--active {
   outline: solid 2px #333;

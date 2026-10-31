@@ -104,6 +104,11 @@
       "uk": "це посилання з головного меню",
       "en": "this link from the main menu",
       "de": "Diesen Link aus dem Hauptmenü"
+    },
+    "paletteGradient": {
+      "uk": "градієнт {name}",
+      "en": "",
+      "de": ""
     }
   }
 }

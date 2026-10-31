@@ -212,7 +212,7 @@
 
   <CardStyleMenu :block="block" />
 
-  <PaletteSwatchPicker v-model="cardBackground">
+  <PaletteSwatchPicker v-model="cardBackground" gradients>
     <template #activator="{ menuProps }">
       <ToolbarIconButton
         v-bind="menuProps"

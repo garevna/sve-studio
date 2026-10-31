@@ -418,6 +418,7 @@
             <!-- "Bento": this tile's own colour. -->
             <PaletteSwatchPicker
               v-if="variant === FOOTER_BENTO"
+              gradients
               :model-value="item.background || ''"
               no-transparent
               @update:model-value="setTile(item, $event)"

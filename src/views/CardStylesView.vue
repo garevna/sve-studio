@@ -191,7 +191,7 @@
               />
               <div class="card-styles-field">
                 <span>{{ t('cardStyles.background') }}</span>
-                <PaletteSwatchPicker v-model="entry.background" />
+                <PaletteSwatchPicker v-model="entry.background" gradients />
               </div>
               <v-select
                 v-model="entry.border"

@@ -35,7 +35,64 @@ export interface RadiusPaletteEntry {
   value: number
 }
 
-export type PaletteEntry = ColorPaletteEntry | BorderPaletteEntry | RawPaletteEntry | RadiusPaletteEntry
+// A named gradient, built from palette colours only: every stop is a
+// palette KEY at a position (%), so recolouring a palette colour recolours
+// every gradient using it. Stored as plain CSS -
+// "linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%)" or
+// "radial-gradient(circle, ...)" - so anything that takes `background:`
+// can use it as var(--key).
+export interface GradientStop {
+  color: string
+  at: number
+}
+export interface GradientPaletteEntry {
+  kind: 'gradient'
+  key: string
+  type: 'linear' | 'radial'
+  angle: number
+  stops: GradientStop[]
+}
+
+export type PaletteEntry = ColorPaletteEntry | BorderPaletteEntry | RawPaletteEntry | RadiusPaletteEntry | GradientPaletteEntry
+
+const GRADIENT_RE = /^(linear|radial)-gradient\((.*)\)$/i
+const ANGLE_RE = /^(-?\d+(?:\.\d+)?)deg$/i
+const STOP_RE = /^var\(--([\w-]+)\)\s+(\d+(?:\.\d+)?)%$/
+
+// A gradient this editor can take apart - palette stops only; anything else
+// stays a raw value.
+export function parseGradient (key: string, value: string): GradientPaletteEntry | null {
+  const match = value.match(GRADIENT_RE)
+  if (!match) {
+    return null
+  }
+  const type = match[1]!.toLowerCase() as 'linear' | 'radial'
+  const parts = match[2]!.split(',').map(part => part.trim())
+  let angle = 180
+  if (type === 'linear' && ANGLE_RE.test(parts[0] ?? '')) {
+    angle = Number(parts.shift()!.match(ANGLE_RE)![1])
+  } else if (type === 'radial' && parts[0] === 'circle') {
+    parts.shift()
+  }
+  const stops: GradientStop[] = []
+  for (const part of parts) {
+    const stop = part.match(STOP_RE)
+    if (!stop) {
+      return null
+    }
+    stops.push({ color: stop[1]!, at: Number(stop[2]) })
+  }
+  return stops.length >= 2 ? { kind: 'gradient', key, type, angle, stops } : null
+}
+
+export function gradientCss (entry: Pick<GradientPaletteEntry, 'type' | 'angle' | 'stops'>): string {
+  const stops = entry.stops.toSorted((a, b) => a.at - b.at).map(stop => `var(--${stop.color}) ${stop.at}%`).join(', ')
+  return entry.type === 'radial' ? `radial-gradient(circle, ${stops})` : `linear-gradient(${entry.angle}deg, ${stops})`
+}
+
+export function isGradientValue (value: unknown): boolean {
+  return typeof value === 'string' && GRADIENT_RE.test(value.trim())
+}
 
 export const BORDER_STYLES = ['none', 'solid', 'dashed', 'dotted', 'double', 'groove', 'ridge', 'inset', 'outset']
 
@@ -51,6 +108,11 @@ export function parsePaletteEntry (key: string, rawValue: unknown): PaletteEntry
 
   if (/^#[\da-f]{3,8}$/i.test(value)) {
     return { kind: 'color', key, color: value }
+  }
+
+  const gradient = parseGradient(key, value)
+  if (gradient) {
+    return gradient
   }
 
   if (RADIUS_KEY_RE.test(key)) {
@@ -90,6 +152,9 @@ export function serializePaletteEntry (entry: PaletteEntry): string {
   }
   if (entry.kind === 'radius') {
     return `${entry.value}px`
+  }
+  if (entry.kind === 'gradient') {
+    return gradientCss(entry)
   }
   return entry.value
 }

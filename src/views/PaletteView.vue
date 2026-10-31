@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-  import type { BorderPaletteEntry, ColorPaletteEntry, PaletteEntry, RadiusPaletteEntry, RawPaletteEntry } from '@/utils/palette-entry'
+  import type { BorderPaletteEntry, ColorPaletteEntry, GradientPaletteEntry, PaletteEntry, RadiusPaletteEntry, RawPaletteEntry } from '@/utils/palette-entry'
   import { computed, onMounted, ref, watch } from 'vue'
   import EditorPageHeader from '@/components/special/EditorPageHeader.vue'
   import EditorSaveBar from '@/components/special/EditorSaveBar.vue'
@@ -8,7 +8,7 @@
   import { t } from '@/i18n'
   import { useAjaxStore } from '@/stores/ajax'
   import { useUiFeedbackStore } from '@/stores/ui-feedback'
-  import { BORDER_STYLES, borderEntryCss, extractPaletteVarReferences, parsePaletteEntry, serializePaletteEntry } from '@/utils/palette-entry'
+  import { BORDER_STYLES, borderEntryCss, gradientCss, parsePaletteEntry, serializePaletteEntry } from '@/utils/palette-entry'
 
   const ajaxStore = useAjaxStore()
   const feedback = useUiFeedbackStore()
@@ -30,26 +30,11 @@
   const radiusEntries = computed(() => entries.value.filter(entry => entry.kind === 'radius') as RadiusPaletteEntry[])
   const rawEntries = computed(() => entries.value.filter(entry => entry.kind === 'raw') as RawPaletteEntry[])
 
-  function findColorEntry (key: string) {
-    return colorEntries.value.find(entry => entry.key === key)
-  }
+  const gradientEntries = computed(() => entries.value.filter(entry => entry.kind === 'gradient') as GradientPaletteEntry[])
 
-  // Raw values (gradients etc.) that reference exactly one existing color entry via var(--key) -
-  // the designer edits the color right there, the preview shows the real computed gradient.
-  const gradientEntries = computed(() => {
-    const result: { entry: RawPaletteEntry, colorEntry: ColorPaletteEntry }[] = []
-    for (const entry of rawEntries.value) {
-      const [colorKey] = extractPaletteVarReferences(entry.value, colorEntries.value.map(item => item.key))
-      const colorEntry = colorKey ? findColorEntry(colorKey) : undefined
-      if (colorEntry) result.push({ entry, colorEntry })
-    }
-    return result
-  })
-
-  const unresolvedRawEntries = computed(() => {
-    const gradientKeys = new Set(gradientEntries.value.map(item => item.entry.key))
-    return rawEntries.value.filter(entry => !gradientKeys.has(entry.key))
-  })
+  // The colours as they are being edited, as CSS variables - so a gradient
+  // preview follows a colour changed above before anything is saved.
+  const paletteVars = computed(() => Object.fromEntries(colorEntries.value.map(entry => [`--${entry.key}`, entry.color])))
 
   onMounted(async () => {
     const palette = await ajaxStore.getPalette()
@@ -82,6 +67,40 @@
     entries.value.push({ kind: 'border', key, borderStyle: 'solid', width: 1, color: 'primary' })
     addBorderOpen.value = false
   }
+  // Gradients: palette colours at positions, linear (with an angle) or radial.
+  const addGradientOpen = ref(false)
+  const newGradientKey = ref('')
+  const addGradientError = ref('')
+  function openAddGradient () {
+    newGradientKey.value = ''
+    addGradientError.value = ''
+    addGradientOpen.value = true
+  }
+  function confirmAddGradient () {
+    const key = newGradientKey.value.trim()
+    if (!BORDER_KEY_RE.test(key)) {
+      addGradientError.value = t('palette.nameInvalid')
+      return
+    }
+    if (entries.value.some(entry => entry.key === key)) {
+      addGradientError.value = t('palette.nameTaken')
+      return
+    }
+    entries.value.push({ kind: 'gradient', key, type: 'linear', angle: 135, stops: [{ color: 'primary', at: 0 }, { color: 'secondary', at: 100 }] })
+    addGradientOpen.value = false
+  }
+  async function removeGradient (key: string) {
+    if (!await feedback.confirmDelete('paletteGradient', { name: key })) return
+    entries.value = entries.value.filter(entry => entry.key !== key)
+  }
+  function addStop (entry: GradientPaletteEntry) {
+    const last = entry.stops.at(-1)
+    entry.stops.push({ color: last?.color ?? 'primary', at: 100 })
+    if (last && last.at === 100) {
+      last.at = 50
+    }
+  }
+
   async function removeBorder (key: string) {
     if (!await feedback.confirmDelete('paletteBorder', { name: key })) return
     entries.value = entries.value.filter(entry => entry.key !== key)
@@ -127,7 +146,13 @@
     if (autoSaveTimer) clearTimeout(autoSaveTimer)
     autoSaveTimer = setTimeout(() => {
       autoSaveTimer = null
-      ajaxStore.savePalette(serializeEntries(), { publish: false })
+      const palette = serializeEntries()
+      ajaxStore.savePalette(palette, { publish: false })
+      // The editor's own CSS variables (set once at startup, editor-app.ts)
+      // follow, so a new gradient can be picked as a fill right away.
+      for (const [name, value] of Object.entries(palette)) {
+        document.documentElement.style.setProperty(`--${name}`, value)
+      }
     }, 800)
   }, { deep: true })
 </script>
@@ -218,25 +243,94 @@
           </div>
         </div>
 
-        <template v-if="gradientEntries.length > 0">
-          <h2 class="text-h6 mb-3">{{ t('palette.gradients') }}</h2>
-          <div class="gradient-list mb-8">
-            <div v-for="{ entry, colorEntry } in gradientEntries" :key="entry.key" class="gradient-row">
+        <h2 class="text-h6 mb-3">{{ t('palette.gradients') }}</h2>
+        <p class="palette-hint">{{ t('palette.gradientsHint') }}</p>
+        <div class="gradient-list mb-4">
+          <div v-for="entry in gradientEntries" :key="entry.key" class="gradient-card">
+            <div class="gradient-head">
               <span class="border-label">{{ entry.key }}</span>
-              <div
-                class="gradient-preview"
-                :style="{ [`--${colorEntry.key}`]: colorEntry.color, background: entry.value }"
+              <v-btn-toggle
+                v-model="entry.type"
+                color="primary"
+                density="compact"
+                mandatory
+                variant="outlined"
+              >
+                <v-btn size="small" value="linear">{{ t('palette.linear') }}</v-btn>
+                <v-btn size="small" value="radial">{{ t('palette.radial') }}</v-btn>
+              </v-btn-toggle>
+              <v-spacer />
+              <v-btn
+                density="comfortable"
+                icon="mdi-delete"
+                :title="t('palette.deleteGradient')"
+                variant="text"
+                @click="removeGradient(entry.key)"
               />
-              <PaletteColorPicker v-model="colorEntry.color" />
+            </div>
+            <div class="gradient-preview" :style="[paletteVars, { background: gradientCss(entry) }]" />
+            <div v-if="entry.type === 'linear'" class="gradient-angle">
+              <span class="gradient-angle-label">{{ t('palette.angle') }}</span>
+              <v-slider
+                v-model="entry.angle"
+                color="primary"
+                hide-details
+                :max="360"
+                :min="0"
+                :step="5"
+                thumb-label
+              />
+              <span class="gradient-angle-value">{{ entry.angle }}°</span>
+            </div>
+            <div class="gradient-stops">
+              <div v-for="(stop, index) in entry.stops" :key="index" class="gradient-stop">
+                <PaletteSwatchPicker v-model="stop.color" no-transparent />
+                <v-slider
+                  v-model="stop.at"
+                  color="primary"
+                  hide-details
+                  :max="100"
+                  :min="0"
+                  :step="1"
+                />
+                <span class="gradient-angle-value">{{ stop.at }}%</span>
+                <v-btn
+                  density="comfortable"
+                  :disabled="entry.stops.length <= 2"
+                  icon="mdi-close"
+                  size="small"
+                  :title="t('palette.removeStop')"
+                  variant="text"
+                  @click="entry.stops.splice(index, 1)"
+                />
+              </div>
+              <v-btn
+                class="align-self-start"
+                prepend-icon="mdi-plus"
+                size="small"
+                variant="text"
+                @click="addStop(entry)"
+              >
+                {{ t('palette.addStop') }}
+              </v-btn>
             </div>
           </div>
-        </template>
+        </div>
+        <v-btn
+          class="mb-8"
+          color="secondary"
+          prepend-icon="mdi-plus"
+          variant="outlined"
+          @click="openAddGradient"
+        >
+          {{ t('palette.addGradient') }}
+        </v-btn>
 
-        <template v-if="unresolvedRawEntries.length > 0">
+        <template v-if="rawEntries.length > 0">
           <h2 class="text-h6 mb-3">{{ t('palette.other') }}</h2>
           <div class="raw-list mb-4">
             <v-text-field
-              v-for="entry in unresolvedRawEntries"
+              v-for="entry in rawEntries"
               :key="entry.key"
               density="compact"
               hide-details
@@ -276,6 +370,27 @@
             <v-spacer />
             <v-btn variant="text" @click="addBorderOpen = false">{{ t('common.cancel') }}</v-btn>
             <v-btn color="primary" variant="flat" @click="confirmAddBorder">{{ t('common.add') }}</v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+      <v-dialog v-model="addGradientOpen" max-width="420">
+        <v-card theme="editorTheme">
+          <v-card-title>{{ t('palette.newGradient') }}</v-card-title>
+          <v-card-text>
+            <v-text-field
+              v-model="newGradientKey"
+              autofocus
+              :error-messages="addGradientError ? [addGradientError] : []"
+              :label="t('palette.borderName')"
+              placeholder="sunset-gradient"
+              variant="outlined"
+              @keyup.enter="confirmAddGradient"
+            />
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer />
+            <v-btn variant="text" @click="addGradientOpen = false">{{ t('common.cancel') }}</v-btn>
+            <v-btn color="primary" variant="flat" @click="confirmAddGradient">{{ t('common.add') }}</v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
@@ -334,20 +449,52 @@
     gap: 12px;
   }
   .gradient-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 420px), 1fr));
+    gap: 16px;
+  }
+  .gradient-card {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
+    padding: 16px;
+    border: solid 1px rgba(58, 74, 88, 0.15);
+    border-radius: 12px;
   }
-  .gradient-row {
+  .gradient-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 12px;
+  }
+  .gradient-head .border-label {
+    min-width: 0;
+    font-weight: 600;
+  }
+  .gradient-preview {
+    height: 72px;
+    border-radius: 8px;
+    border: solid 1px rgba(0, 0, 0, 0.15);
+  }
+  .gradient-angle,
+  .gradient-stop {
     display: flex;
     align-items: center;
     gap: 12px;
   }
-  .gradient-preview {
-    flex: 1;
-    min-width: 80px;
-    height: 40px;
-    border-radius: 6px;
-    border: solid 1px rgba(0, 0, 0, 0.15);
+  .gradient-angle-label {
+    font-size: 0.85rem;
+    min-width: 40px;
+  }
+  .gradient-angle-value {
+    min-width: 44px;
+    text-align: end;
+    font-size: 0.85rem;
+    font-variant-numeric: tabular-nums;
+  }
+  .gradient-stops {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
   }
 </style>

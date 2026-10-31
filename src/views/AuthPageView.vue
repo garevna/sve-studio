@@ -136,23 +136,10 @@
                 </div>
               </v-tabs-window-item>
             </v-tabs-window>
-            <v-card-text class="px-8">
-              <div class="mt-8">
-                <p class="default-text text-thin text-special my-4">В особистому кабінеті ви можете</p>
-                <p class="text-black">
-                  <v-icon color="green">mdi-check</v-icon>
-                  Завантажити куплений квиток
-                </p>
-                <p class="text-black">
-                  <v-icon color="green">mdi-check</v-icon>
-                  Повернути квитки
-                </p>
-                <p class="text-black">
-                  <v-icon color="green">mdi-check</v-icon>
-                  Переглянути інформацію про рейс
-                </p>
-              </div>
-            </v-card-text>
+            <!-- The "what the account lets you do" list (download a ticket,
+              return tickets, trip details) is gone for now: it only fits a
+              carrier. The account keeps the user's own data; what else it
+              offers will depend on the kind of business the site is for. -->
           </v-card>
         </v-theme-provider>
       </div>

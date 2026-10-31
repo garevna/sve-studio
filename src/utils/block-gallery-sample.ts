@@ -23,7 +23,7 @@ const PHOTOS = [sample1, sample2, sample3, sample4, sample5, sample6, sample7, s
 // A card set with one and the same icon on every card reads as a
 // placeholder; a few different ones (from the mdi set the editor already
 // has) read as a real set.
-const ICONS = ['mdi-map-marker-outline', 'mdi-shield-check-outline', 'mdi-headset', 'mdi-clock-outline', 'mdi-ticket-outline', 'mdi-star-outline']
+const ICONS = ['mdi-map-marker-outline', 'mdi-shield-check-outline', 'mdi-headset', 'mdi-clock-outline', 'mdi-rocket-launch-outline', 'mdi-star-outline']
 
 const SAMPLE_TEXT: Record<string, string> = {
   header: 'Заголовок розділу',

@@ -24,7 +24,7 @@
   const DEFAULT_CARD_ICONS = {
     cityFrom: 'mdi-map-marker',
     cityTo: 'mdi-map-marker',
-    carrier: 'mdi-bus-multiple',
+    carrier: 'mdi-map-marker-path',
     duration: 'mdi-clipboard-text-clock-outline',
   }
 

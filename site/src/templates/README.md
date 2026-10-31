@@ -46,7 +46,7 @@ This doc exists so you don't have to re-read the component source every time you
 
 ```json
 {
-  "id": "bus-park",
+  "id": "our-team",
   "breadcrumbs": false,
   "backButton": false,
   "blocks": [ ]
@@ -165,7 +165,7 @@ These are handled by `TemplateItem.vue`. `type` is looked up in a fixed componen
 ### `image`
 
 ```json
-{ "type": "image", "content": { "uk": "/images/bus-park/image-01.jpg", "en": "...", "de": "..." } }
+{ "type": "image", "content": { "uk": "/images/our-team/image-01.jpg", "en": "...", "de": "..." } }
 ```
 The image URL is per-locale and lives in `content`, **not** `image`. (`image` is a separate string-only field used by other components — see below.)
 
@@ -198,7 +198,7 @@ Loads `src/components/template-components/{content}.vue` and passes `props` thro
   "ver": 1,
   "width": 310,
   "size": 90,
-  "icon": "/icons/bus-park/01.svg",
+  "icon": "/icons/our-team/01.svg",
   "title": { "uk": "Комфортні сидіння", "en": "...", "de": "..." },
   "content": { "uk": ["line 1", "line 2"], "en": ["...", "..."], "de": ["...", "..."] }
 }
@@ -225,7 +225,7 @@ Loads `src/components/template-components/{content}.vue` and passes `props` thro
 
 ### `carousel` (`SliderWithCards.vue`)
 
-Same children shape as `cards`, but auto-playing Swiper carousel instead of a static wrap. See `bus-park.json` for a 10-card example. Slide count-per-view is computed from viewport width automatically.
+Same children shape as `cards`, but auto-playing Swiper carousel instead of a static wrap. See `our-team.json` for a 10-card example. Slide count-per-view is computed from viewport width automatically.
 
 ### `swiper` (`SliderWithThumbnails.vue`)
 
@@ -233,8 +233,8 @@ Same children shape as `cards`, but auto-playing Swiper carousel instead of a st
 {
   "type": "swiper",
   "images": [
-    "/images/bus-park/van-hool-tdx/01.png",
-    "/images/bus-park/van-hool-tdx/02.png"
+    "/images/our-team/model-x/01.png",
+    "/images/our-team/model-x/02.png"
   ]
 }
 ```
@@ -327,7 +327,7 @@ To swap which side of a **`section`** shows first on mobile (`≤ 960px`), set `
 ```
 This only affects layout **below 960px**; desktop order always follows the order in `children`.
 
-Do **not** use Vuetify's own `order-first` / `order-last` utility classes for this — they set `order` unconditionally at every screen width (`!important`, no media query), which is almost never what you want here and doesn't compose with `switchOrder`. (This exact mixup broke reordering on the bus-park page once — see git history if you want the gory details.)
+Do **not** use Vuetify's own `order-first` / `order-last` utility classes for this — they set `order` unconditionally at every screen width (`!important`, no media query), which is almost never what you want here and doesn't compose with `switchOrder`. (This exact mixup broke reordering on the our-team page once — see git history if you want the gory details.)
 
 ## The `parallax` block is special
 

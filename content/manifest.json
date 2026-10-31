@@ -156,7 +156,7 @@
     "products/baner-desktop.png"
   ],
   "hashes": {
-    "pages/about-company.json": "6682958975bc6d1b",
+    "pages/about-company.json": "365a7d987d30afa2",
     "pages/advanced-features.json": "b8dd6cef20f0554f",
     "pages/contacts-page.json": "5e11cfe1443f2072",
     "pages/expert-help.json": "bfeb4f8ec46798b2",
@@ -167,7 +167,7 @@
     "pages/products.json": "178c6fcfd83e29b2",
     "pages/test.json": "0c7e3e31856349b5",
     "public/account-pages.json": "c24f4753c468a9cc",
-    "settings/global.json": "de5de24dc39f7dde",
+    "settings/global.json": "1f4a54433a44b773",
     "settings/menu-content.json": "6c65d627954580cd",
     "settings/palette.json": "b44a9a3824ffbd39",
     "settings/seo.json": "30ca66019da035ef",

@@ -27,12 +27,6 @@ import { useAjaxStore } from './ajax'
 //   countryName: string
 //   phoneCode: string
 // }
-// export type IconSetModel = {
-//   iconFrom: string
-//   iconTo: string
-//   switchDirection: string
-//   calendarIcon: string
-// }
 // export type LinksModel = {
 //   instagram?: string
 //   telegram?: string

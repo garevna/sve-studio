@@ -3,13 +3,14 @@
   // import type { RouteQueryModel } from '../types/navigation/RouteQueryModel.ts'
   import { storeToRefs } from 'pinia'
 
-  import { computed, defineAsyncComponent, shallowRef, watch } from 'vue'
+  import { computed, defineAsyncComponent, ref, shallowRef, watch } from 'vue'
 
+  import FeedbackCard from '../components/template-components/FeedbackCard.vue'
   // import { scrollByRef } from '@/utils/scroll-by-ref'
   // import { getDynamicPageContent } from '@/services/ajax/get-dynamic-page-content'
   import { useSiteNavigation } from '../composables/site-navigation'
-  import { getImageURL } from '../services/get-image-url'
 
+  import { getImageURL } from '../services/get-image-url'
   import { useCommonStore } from '../stores/common'
   import ErrorComponent from './ErrorComponent.vue'
   import LoadingComponent from './LoadingComponent.vue'
@@ -24,6 +25,17 @@
   // A link to a part of the original booking site the demo does not have
   // (accounts...) is not shown at all.
   const leadsNowhere = computed(() => !!props.item.route && targetPath.value === null)
+
+  // A button set to open the feedback form (action 'form') shows it in a
+  // window over the page instead of going anywhere.
+  const formOpen = ref(false)
+  function onButtonClick () {
+    if (props.item.action === 'form') {
+      formOpen.value = true
+    } else if (targetPath.value) {
+      follow(props.item)
+    }
+  }
 
   const component = shallowRef<unknown>(null)
   const templateComponent = shallowRef<unknown>(null)
@@ -131,13 +143,31 @@
     <template v-if="props.item.type === 'button'">
       <!-- Stays a <button> with a click: the site's buttons.css styles
         the tag itself. -->
-      <v-btn :class="['primary-button', props.item.class]" @click="targetPath && follow(props.item)">
+      <v-btn :class="['primary-button', props.item.class]" @click="onButtonClick">
         <!-- Optional, and only rendered when the block actually carries one -
           a button with no icon must look exactly as it always has. -->
         <v-icon v-if="props.item.icon" class="mr-2" :icon="props.item.icon" size="20" />
         {{ props.item.content[locale as 'uk' | 'en' | 'de'] }}
       </v-btn>
     </template>
+
+    <v-dialog v-if="props.item.action === 'form'" v-model="formOpen" content-class="feedback-popup-dialog">
+      <div class="feedback-popup">
+        <v-btn
+          aria-label="Close"
+          class="feedback-popup-close"
+          icon="mdi-close"
+          size="small"
+          variant="text"
+          @click="formOpen = false"
+        />
+        <FeedbackCard
+          :text="props.item.form?.text || ''"
+          :title="props.item.form?.title || ''"
+          :type="props.item.form?.type || 'message'"
+        />
+      </div>
+    </v-dialog>
 
     <template v-if="props.item.type === 'route' && props.item.route && !leadsNowhere">
       <p
@@ -164,5 +194,30 @@
 
 .rounded {
   border-radius: var(--large-border-radius) !important;
+}
+</style>
+
+<style>
+/* Not scoped: the window is drawn by Vuetify outside this component.
+   The theme stretches every dialog to the full width
+   (vuetify-overlay-content.css); the form keeps the width of a form. */
+.v-dialog:not(.v-bottom-sheet) > .v-overlay__content.feedback-popup-dialog {
+  min-width: 0;
+  width: min(440px, calc(100% - 32px));
+}
+.feedback-popup {
+  position: relative;
+}
+.feedback-popup .footer-feedback-card {
+  min-width: 0;
+  max-width: none;
+  width: 100%;
+}
+.feedback-popup-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 1;
+  color: var(--black);
 }
 </style>

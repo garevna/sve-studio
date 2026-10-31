@@ -2,6 +2,7 @@
   import type { TemplateBlockModel } from '@/types/TemplateBlockModel'
   import { computed } from 'vue'
   import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
+  import { button } from '@/configs/components/simple/button'
   import { image } from '@/configs/components/simple/image'
   import { text } from '@/configs/components/simple/text'
   import { textWithIcon } from '@/configs/components/simple/text-with-icon'
@@ -67,6 +68,9 @@
     { title: 'Текст', icon: 'mdi-text-long', factory: () => text() as TemplateBlockModel },
     { title: 'Текст з іконкою', icon: 'mdi-image-text', factory: () => textWithIcon() as TemplateBlockModel },
     { title: 'Зображення', icon: 'mdi-image', factory: () => image() as TemplateBlockModel },
+    // A button leads to a page (or a block on it - the form on the contacts
+    // page, say) or opens the feedback form in a popup (ButtonEditor.vue).
+    { title: 'Кнопка', icon: 'mdi-button-pointer', factory: () => button() as TemplateBlockModel },
   ]
 
   const props = defineProps<{

@@ -99,6 +99,10 @@ export interface BaseBlock {
   // Footer root block, "Bento" variant: the palette keys of its tile
   // colours, as a set (configs/footer-variants.ts BENTO_TILE_SETS).
   tiles?: string[]
+  // Button: what a click does. Unset = go to its page (route/params/hash);
+  // 'form' = open the feedback form, with the texts in `form`, in a popup.
+  action?: 'form'
+  form?: FeedbackFormModel
   // Footer root block only (FooterSettingsView.vue) - whether the footer
   // renders at all. Default true when unset, same convention as
   // DynamicPageListItem.visible.
@@ -177,3 +181,12 @@ export type TemplatePageModel = { id: string, title?: TranslatedModel | string, 
 // it's just excluded from anything production shows to real visitors
 // (main menu, sitemap, direct-route resolution).
 export interface DynamicPageListItem { pageId: string, title?: TranslatedModel | string, visible?: boolean }
+
+// The feedback form's own settings: on a page (the "FeedbackForm" block),
+// in the footer (FeedbackCard) and in a button's popup.
+export interface FeedbackFormModel {
+  // A kind from configs/feedback-forms.ts (callback, message, question...).
+  type?: string
+  title?: TranslatedModel
+  text?: TranslatedModel
+}

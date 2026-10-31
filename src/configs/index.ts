@@ -4,6 +4,7 @@ import { cardWithIconLeftTemplate, cardWithIconTopTemplate } from './components/
 import { cardWithToolbarImageGroupTemplate } from './components/cards/card-with-toolbar-image'
 import { carouselWithCardsTemplate } from './components/carousel-with-cards'
 import { faq } from './components/faq'
+import { feedbackForm } from './components/feedback-form'
 import { galery1 } from './components/galery-1'
 import { galery2 } from './components/galery-2'
 import { parallaxTemplate } from './components/parallax'
@@ -53,4 +54,5 @@ export const components = {
   faq,
   'popular-destinations': popularDestinations,
   'transfer-services-steps': transferServicesSteps,
+  'feedback-form': feedbackForm,
 }

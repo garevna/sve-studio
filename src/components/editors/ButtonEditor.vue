@@ -6,7 +6,9 @@
   import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
   import ButtonVariantSelect from '@/components/special/ButtonVariantSelect.vue'
   import LinkTargetSettings from '@/components/special/LinkTargetSettings.vue'
+  import FeedbackCardDialog from '@/components/templates/sections/FeedbackCardDialog.vue'
   import { useEditorMode } from '@/composables/useEditorMode'
+  import { feedbackFormTexts } from '@/configs/components/feedback-form'
   import { useUiFeedbackStore } from '@/stores/ui-feedback'
 
   // A button block: what it says, how it looks, whether it carries an icon,
@@ -52,7 +54,28 @@
     emit('delete')
   }
 
+  // What a click does: go to a page (or a block on it - the form on the
+  // contacts page, say), or open the feedback form in a popup. The popup's
+  // form has its own texts, set in the same window the footer's card uses.
+  const formOpen = ref(false)
+  const action = computed({
+    get: () => (props.block.action === 'form' ? 'form' : 'link'),
+    set: (value: 'link' | 'form') => {
+      /* eslint-disable vue/no-mutating-props -- the block is edited in place, see the top comment */
+      if (value === 'form') {
+        props.block.action = 'form'
+        props.block.form ??= feedbackFormTexts()
+      } else {
+        delete props.block.action
+      }
+      /* eslint-enable vue/no-mutating-props */
+    },
+  })
+
   const linkSummary = computed(() => {
+    if (props.block.action === 'form') {
+      return 'Відкриває форму зворотного зв’язку'
+    }
     if (props.block.route !== 'dynamic-page') {
       return props.block.route ? `Сторінка «${props.block.route}»` : 'Перехід не налаштований'
     }
@@ -148,9 +171,27 @@
             <v-btn v-if="icon" size="small" variant="text" @click="icon = ''">Прибрати</v-btn>
           </div>
 
+          <p class="button-editor-field-label mb-2">Що робить кнопка</p>
+          <v-btn-toggle
+            v-model="action"
+            class="mb-6 button-editor-action-toggle"
+            color="primary"
+            density="compact"
+            mandatory
+            variant="outlined"
+          >
+            <v-btn prepend-icon="mdi-link-variant" value="link">Веде на сторінку</v-btn>
+            <v-btn prepend-icon="mdi-message-text-outline" value="form">Відкриває форму</v-btn>
+          </v-btn-toggle>
+
           <!-- The same three fields the menu and the footer's links use -
             a page, and optionally one block on it to scroll to. -->
-          <LinkTargetSettings :active="panelOpen" auto :item="block" />
+          <LinkTargetSettings v-if="action === 'link'" :active="panelOpen" auto :item="block" />
+          <template v-else-if="block.form">
+            <p class="text-body-2 mb-3">Форма відкриється у вікні поверх сторінки.</p>
+            <v-btn prepend-icon="mdi-playlist-edit" variant="tonal" @click="formOpen = true">Тексти форми</v-btn>
+            <FeedbackCardDialog v-model="formOpen" :card="block.form" />
+          </template>
         </v-card-text>
 
         <v-card-actions>
@@ -192,6 +233,10 @@
   display: flex;
   align-items: center;
   gap: 12px;
+}
+.button-editor-action-toggle {
+  flex-wrap: wrap;
+  height: auto;
 }
 .button-editor-field-label {
   font-size: 0.85rem;

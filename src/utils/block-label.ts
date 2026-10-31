@@ -43,6 +43,7 @@ const COMPONENT_LABELS: Record<string, string> = {
   PopularDestinationsTheme3: 'Популярні напрямки',
   CardWithHover: 'Картки з ефектом наведення',
   FeedbackCard: 'Картка зворотного зв’язку',
+  FeedbackForm: 'Форма зворотного зв’язку',
   FooterIcons: 'Іконки соцмереж',
   FooterVisaLogo: 'Логотип Visa/Mastercard',
 }

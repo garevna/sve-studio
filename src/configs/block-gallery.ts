@@ -18,7 +18,7 @@ export const BLOCK_DESCRIPTIONS: Record<string, string> = {
   'title': 'Менший заголовок під основним.',
   'text': 'Абзац тексту з форматуванням.',
   'text-with-icon': 'Короткий текст з іконкою поруч.',
-  'button': 'Кнопка - посилання на сторінку чи її розділ.',
+  'button': 'Кнопка: веде на сторінку чи її розділ або відкриває форму зворотного зв’язку.',
   'image-universal': 'Одне зображення для всіх екранів.',
   'image-desktop-mobile': 'Окремі зображення для комп’ютера й для телефона.',
   'parallax': 'Велике фото вгорі сторінки, заголовок поверх нього.',
@@ -39,6 +39,7 @@ export const BLOCK_DESCRIPTIONS: Record<string, string> = {
   'faq': 'Питання, що розгортаються у відповіді.',
   'popular-destinations': 'Популярні маршрути списком.',
   'transfer-services-steps': 'Кроки процесу в кружечках, один за одним.',
+  'feedback-form': 'Форма, де відвідувач лишає ім’я, телефон і повідомлення. На неї може вести кнопка.',
 }
 
 // Blocks whose content is up to the user: shown in the gallery as several

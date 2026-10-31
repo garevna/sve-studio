@@ -92,6 +92,10 @@ export interface BaseBlock {
   // Footer root block, "Bento" variant: the palette keys of its tile
   // colours, as a set (configs/footer-variants.ts BENTO_TILE_SETS).
   tiles?: string[]
+  // Button: what a click does. Unset = go to its page (route/params/hash);
+  // 'form' = open the feedback form, with the texts in `form`, in a popup.
+  action?: 'form'
+  form?: FeedbackFormModel
   // "cards" block: the CARD's own fill, as a bare palette key
   // ("light-green"). Not `background` above - that one has always meant the
   // disc drawn behind the icon (IconVariant.vue), and a card whose icon is a
@@ -119,3 +123,12 @@ type BlockTreeModel = BaseBlock & { children?: BlockTreeModel[] }
 
 export type TemplateBlockModel = BlockTreeModel
 export type TemplatePageModel = { id: string, breadcrumbs: boolean, backButton: boolean, hero: boolean, blocks: TemplateBlockModel[], seo?: PageSeoModel }
+
+// The feedback form's own settings: on a page (the "FeedbackForm" block),
+// in the footer (FeedbackCard) and in a button's popup.
+export interface FeedbackFormModel {
+  // A kind from configs/feedback-forms.ts (callback, message, question...).
+  type?: string
+  title?: TranslatedModel
+  text?: TranslatedModel
+}

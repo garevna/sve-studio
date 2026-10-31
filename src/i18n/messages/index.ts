@@ -7,6 +7,7 @@ import bannerTexts from './bannerTexts.json'
 import cardStyles from './cardStyles.json'
 import common from './common.json'
 import confirm from './confirm.json'
+import feedbackForms from './feedbackForms.json'
 import footer from './footer.json'
 import generalSettings from './generalSettings.json'
 import header from './header.json'
@@ -25,6 +26,7 @@ export const MESSAGES = {
   cardStyles,
   common,
   confirm,
+  feedbackForms,
   footer,
   generalSettings,
   header,

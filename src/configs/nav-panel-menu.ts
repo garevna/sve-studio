@@ -264,6 +264,14 @@ export const listOfComponents = [
         iconClass: 'mr-2',
         image: null,
       },
+      {
+        id: 'feedback-form',
+        title: 'Форма зворотного зв’язку',
+        icon: 'mdi-email-edit-outline',
+        class: 'ml-12',
+        iconClass: 'mr-2',
+        image: null,
+      },
     ],
   },
 ]

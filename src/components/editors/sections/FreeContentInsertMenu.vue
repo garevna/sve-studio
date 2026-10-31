@@ -2,6 +2,7 @@
   import type { TemplateBlockModel } from '@/types/TemplateBlockModel'
   import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
   import { cardWithIconRowTemplate } from '@/configs/components/cards/card-with-icon'
+  import { feedbackForm } from '@/configs/components/feedback-form'
   import { button } from '@/configs/components/simple/button'
   import { header } from '@/configs/components/simple/header'
   import { image } from '@/configs/components/simple/image'
@@ -35,6 +36,7 @@
     { title: 'Кнопка', icon: 'mdi-button-pointer', factory: () => button() as TemplateBlockModel },
     { title: 'Карусель зображень', icon: 'mdi-camera-burst', factory: swiperWithImagesTemplate },
     { title: 'Карусель з ескізами', icon: 'mdi-view-gallery', factory: swiperWithThumbnailsTemplate },
+    { title: 'Форма зворотного зв’язку', icon: 'mdi-email-edit-outline', factory: () => feedbackForm() as TemplateBlockModel },
   ]
 
   const emit = defineEmits<{ insert: [block: TemplateBlockModel] }>()

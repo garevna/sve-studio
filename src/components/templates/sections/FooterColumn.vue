@@ -113,7 +113,7 @@
     block.class = value
   }
 
-  type FeedbackProps = { type?: 'call-request' | 'message', title?: TranslatedModel, text?: TranslatedModel }
+  type FeedbackProps = { type?: string, title?: TranslatedModel, text?: TranslatedModel }
   function feedbackProps (block: TemplateBlockModel): FeedbackProps {
     return (block.props ??= {}) as FeedbackProps
   }

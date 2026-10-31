@@ -2,6 +2,7 @@
   import type { Banner, BannerText, BannerTextBox } from '@/types/GlobalSettingsModel'
   import { computed, ref } from 'vue'
   import { useI18n } from 'vue-i18n'
+  import { useDisplay } from 'vuetify'
   import TextFormatMenu from '@/components/editors/text/TextFormatMenu.vue'
   import { BANNER_ASPECT, bannerTextBox } from '@/utils/banner-text'
   import { EDITED_APP_SCOPE_CLASS } from '@/utils/edited-app-scope'
@@ -17,6 +18,7 @@
   const open = defineModel<boolean>({ default: false })
   const model = defineModel<BannerText[]>('texts', { default: () => [] })
   const { t } = useI18n()
+  const { smAndDown } = useDisplay()
 
   const LOCALES = ['uk', 'en', 'de'] as const
   const SIZE_STEP = 0.25
@@ -107,7 +109,7 @@
 </script>
 
 <template>
-  <v-dialog v-model="open" :fullscreen="$vuetify.display.smAndDown" max-width="1100" scrollable>
+  <v-dialog v-model="open" :fullscreen="smAndDown" max-width="1100" scrollable>
     <v-card>
       <v-card-title class="d-flex align-center ga-2">
         {{ t('bannerTexts.title') }}

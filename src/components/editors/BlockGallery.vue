@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import type { TemplateBlockModel } from '@/types/TemplateBlockModel'
-  import { SveSegmented, SveSheet, SveTextField } from '@sve/editor-ui'
+  import { SveSegmented, SveSheet, SveSwipeRow, SveTextField } from '@sve/editor-ui'
   import { computed, ref, watch } from 'vue'
   import { usePageBlocks } from '@/composables/usePageBlocks'
   import { components } from '@/configs'
@@ -39,6 +39,8 @@
     implemented: (child as { implemented?: boolean }).implemented,
   })))
   const GROUPS = listOfComponents.map(group => ({ value: group.id, label: group.title }))
+  // "Усі" first, then the kinds - one swiped row of tabs.
+  const TABS: { value: string | null, label: string }[] = [{ value: null, label: 'Усі' }, ...GROUPS]
 
   type View = 'previews' | 'list'
   const VIEW_KEY = 'sve-block-gallery-view'
@@ -125,20 +127,14 @@
           ]"
         />
       </div>
-      <div class="sve-ui block-gallery__groups" role="tablist">
+      <SveSwipeRow
+        v-slot="{ item }"
+        :active="TABS.findIndex(tab => tab.value === group)"
+        class="block-gallery__groups"
+        :items="TABS"
+        role="tablist"
+      >
         <div
-          :aria-selected="group === null"
-          :class="['block-gallery__group', { 'block-gallery__group--active': group === null }]"
-          role="tab"
-          tabindex="0"
-          @click="group = null"
-          @keydown.enter.prevent="group = null"
-        >
-          Усі
-        </div>
-        <div
-          v-for="item of GROUPS"
-          :key="item.value"
           :aria-selected="group === item.value"
           :class="['block-gallery__group', { 'block-gallery__group--active': group === item.value }]"
           role="tab"
@@ -148,7 +144,7 @@
         >
           {{ item.label }}
         </div>
-      </div>
+      </SveSwipeRow>
 
       <div v-if="shown.length > 0 && view === 'previews'" class="block-gallery__items">
         <div
@@ -206,14 +202,10 @@
 <style scoped>
 .block-gallery { display: flex; flex-direction: column; gap: 12px; }
 
-/* kinds of blocks: one row of chips, scrolled sideways when it does not fit */
+/* kinds of blocks: one row of chips, swiped sideways when it does not fit */
 .block-gallery__groups {
-  display: flex;
-  gap: 6px;
-  overflow-x: auto;
-  scrollbar-width: none;
   margin: 0 -10px;
-  padding: 0 10px 2px;
+  padding: 0 10px;
 }
 .block-gallery__group {
   flex: none;

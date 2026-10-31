@@ -11,6 +11,7 @@
     "./styles.css": "./src/styles/editor-ui.css"
   },
   "peerDependencies": {
+    "swiper": "^14.0.5",
     "vue": "^3.5.0",
     "vuetify": "3.12.5"
   },

@@ -413,6 +413,32 @@ async function refreshChangedSeedFiles (db: IDBDatabase): Promise<void> {
   await Promise.all(tasks)
 }
 
+// Palette keys of the removed booking wizard. A palette saved in a browser
+// before they left content/settings/palette.json still carries them (and
+// may lack keys added since): they are dropped and the missing ones taken
+// from the file, the rest of the visitor's colours kept as they are.
+const RETIRED_PALETTE_KEYS = [
+  'active-seat-border', 'booked-seat-background', 'booked-seat-color', 'booked-seat-active-border',
+  'extra-seat-background', 'recommended-seat-border', 'not-available-seat-background',
+  'not-available-seat-color', 'not-available-seat-border',
+]
+
+async function dropRetiredPaletteKeys (db: IDBDatabase): Promise<void> {
+  const record = await getRecord<SettingsRecord>(db, 'settings', 'palette')
+  const content = record?.content as Record<string, string> | undefined
+  if (!record || !content || !RETIRED_PALETTE_KEYS.some(key => key in content)) {
+    return
+  }
+  const fromFile = await fetch(fileUrl('palette.json'), { cache: 'no-store' }).then(response => response.json()).catch(() => ({})) as Record<string, string>
+  const cleaned: Record<string, string> = {}
+  for (const [key, value] of Object.entries({ ...fromFile, ...content })) {
+    if (!RETIRED_PALETTE_KEYS.includes(key) && !RETIRED_PALETTE_KEYS.some(retired => value?.includes?.(`var(--${retired})`))) {
+      cleaned[key] = value
+    }
+  }
+  await putRecord(db, 'settings', { ...record, content: cleaned })
+}
+
 // --- Route handlers ---
 
 // data.published distinguishes a live in-progress edit (autosave, keeps
@@ -537,6 +563,7 @@ self.onmessage = async (event: MessageEvent<DbRequestMessage>) => {
         await seedMissingSettings(db)
         await seedMissingStyles(db)
         await refreshChangedSeedFiles(db)
+        await dropRetiredPaletteKeys(db).catch(error => console.warn('dropRetiredPaletteKeys', error))
         return db
       })
       await dbPromise

@@ -29,6 +29,10 @@ export interface ContentRepositoryOptions {
   seed: SeedSource
   docs: Storage
   images: Storage
+  // Dev: "Зберегти" writes the file in content/ as well, so the file IS the
+  // saved version - a document that has one is read from it, and a fix made
+  // in content/ by hand is not hidden by an older copy stored here.
+  followSeed?: boolean
 }
 
 const IMAGE_EXTENSION_PRIORITY = ['webp', 'avif', 'png', 'jpg', 'jpeg', 'svg', 'gif']
@@ -54,7 +58,7 @@ function seedPath (kind: DocKind, name: string): string {
   return kind === 'styles' ? `styles/${name}` : `${kind}/${name}.json`
 }
 
-export function createContentRepository ({ seed, docs, images }: ContentRepositoryOptions) {
+export function createContentRepository ({ seed, docs, images, followSeed = false }: ContentRepositoryOptions) {
   // The manifest rarely changes; re-read at most every few seconds.
   let manifestCache: { at: number, value: Promise<SeedManifest> } | null = null
   function manifest (): Promise<SeedManifest> {
@@ -78,7 +82,8 @@ export function createContentRepository ({ seed, docs, images }: ContentReposito
       return null
     }
     if (typeof stored?.body === 'string') {
-      return stored.body
+      const fromFile = followSeed ? await seed.readText(seedPath(kind, name)) : null
+      return fromFile ?? stored.body
     }
     return seed.readText(seedPath(kind, name))
   }

@@ -43,6 +43,7 @@ const repo = createContentRepository({
   // One IndexedDB database per store: idb-keyval opens each with one store.
   docs: createStorage({ driver: indexedbDriver({ dbName: 'content-api-docs', storeName: 'docs' }) }),
   images: createStorage({ driver: indexedbDriver({ dbName: 'content-api-images', storeName: 'images' }) }),
+  followSeed: process.env.NODE_ENV === 'development',
 })
 
 const handle = toWebHandler(createContentApiHandler({ repo, access: 'open' }))

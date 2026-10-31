@@ -66,7 +66,7 @@
   display: grid;
   grid-template-columns: v-bind(iconColumnWidth) 1fr;
   column-gap: 16px;
-  align-items: center;
+  align-content: center;
 }
 
 .text-with-icon img {

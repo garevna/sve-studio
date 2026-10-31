@@ -35,7 +35,7 @@
   display: grid;
   grid-template-columns: v-bind(iconSize) 1fr;
   column-gap: 8px;
-  align-items: center;
+  align-content: center;
 }
 
 .text-with-icon img {

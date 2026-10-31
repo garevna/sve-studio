@@ -16,15 +16,19 @@
 
   const iconSize = computed(() => (props.item.size || 24) + 'px')
 
-  function callback () {
-    if (props.item.link) {
-      window.open(props.item.link, '_blank')
-    }
-  }
+  // A line with a link (a social network, tel:, mailto:) is a real link;
+  // web addresses open in a new tab.
+  const external = computed(() => /^https?:/i.test(props.item.link || ''))
 </script>
 
 <template>
-  <div :class="['text-with-icon', props.item.class]" @click="callback">
+  <component
+    :is="props.item.link ? 'a' : 'div'"
+    :class="['text-with-icon', props.item.class, { 'text-with-icon--link': props.item.link }]"
+    :href="props.item.link || undefined"
+    :rel="external ? 'noopener' : undefined"
+    :target="external ? '_blank' : undefined"
+  >
     <icon-variant
       v-if="props.item.icon"
       :background="props.item.background ? `var(--${props.item.background})` : null"
@@ -41,7 +45,7 @@
     <p :class="props.item.text || 'default-text text-medium text-black text-left'">
       {{ props.item.content[lang] }}
     </p>
-  </div>
+  </component>
 </template>
 
 <style scoped>
@@ -51,6 +55,15 @@
   column-gap: 16px;
   align-content: center;
   margin-top: 12px;
+}
+
+.text-with-icon--link {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+.text-with-icon--link:hover p {
+  text-decoration: underline;
 }
 
 .text-with-icon img {

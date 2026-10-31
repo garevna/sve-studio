@@ -275,6 +275,7 @@
         v-model:icon-background="item.background"
         v-model:icon-color="item.color"
         v-model:icon-size="item.size"
+        v-model:link="item.link"
         v-model:text="localizedContent"
         v-model:text-class="textWithIconTextClass"
         v-model:type="item.type"

@@ -1,6 +1,10 @@
 <script setup lang="ts">
-  import { computed } from 'vue'
+  import { computed, ref } from 'vue'
+  import { useI18n } from 'vue-i18n'
+  import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
+  import { useEditorMode } from '@/composables/useEditorMode'
   import { defaultTextClass } from '@/configs/defaults/default-classes'
+  import { linkHref } from '@/utils/link-href'
   import IconEditor from './IconEditor.vue'
   import TextEditor from './TextEditor.vue'
 
@@ -18,6 +22,26 @@
   const iconBackground = defineModel<string>('iconBackground', { default: '' })
   const text = defineModel<string>('text', { default: '' })
   const textClass = defineModel<string>('textClass', { default: defaultTextClass })
+  // Where a click on the line leads (a social network, a phone, an email) -
+  // set with the link button beside the text, opened by the site.
+  const link = defineModel<string>('link', { default: '' })
+
+  const { t } = useI18n()
+  const mode = useEditorMode()
+  const linkOpen = ref(false)
+  const linkDraft = ref('')
+  function openLink () {
+    linkDraft.value = link.value || ''
+    linkOpen.value = true
+  }
+  function saveLink () {
+    link.value = linkHref(linkDraft.value)
+    linkOpen.value = false
+  }
+  function removeLink () {
+    link.value = ''
+    linkOpen.value = false
+  }
 
   // Production's own TextWithIcon.vue sizes this column to just the bare
   // icon size (grid-template-columns: v-bind(iconSize) 1fr), but IconEditor
@@ -35,7 +59,7 @@
 </script>
 
 <template>
-  <div class="text-with-icon">
+  <div :class="['text-with-icon', { 'text-with-icon--editing': mode === 'edit' }]">
     <!-- Icon color/size/background/glyph are fully self-contained here -
       click the icon to open IconEditor's own dialog. TextEditor's own
       format panel used to also expose an icon-color picker (parentType
@@ -58,6 +82,36 @@
       type="text"
       @delete="emit('delete')"
     />
+    <template v-if="mode === 'edit'">
+      <ToolbarIconButton
+        :active="!!link"
+        class="text-with-icon-link"
+        icon="mdi-link-variant"
+        :tooltip="link || t('textWithIcon.link')"
+        @click="openLink"
+      />
+      <v-dialog v-model="linkOpen" max-width="460">
+        <v-card theme="editorTheme" :title="t('textWithIcon.link')">
+          <v-card-text>
+            <v-text-field
+              v-model="linkDraft"
+              autofocus
+              :hint="t('textWithIcon.linkHint')"
+              persistent-hint
+              placeholder="https://instagram.com/…"
+              variant="outlined"
+              @keyup.enter="saveLink"
+            />
+          </v-card-text>
+          <v-card-actions>
+            <v-btn v-if="link" color="error" variant="text" @click="removeLink">{{ t('textWithIcon.removeLink') }}</v-btn>
+            <v-spacer />
+            <v-btn variant="text" @click="linkOpen = false">{{ t('common.cancel') }}</v-btn>
+            <v-btn color="primary" variant="flat" @click="saveLink">OK</v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+    </template>
   </div>
 </template>
 
@@ -69,6 +123,9 @@
   align-content: center;
 }
 
+.text-with-icon--editing {
+  grid-template-columns: v-bind(iconColumnWidth) 1fr auto;
+}
 .text-with-icon img {
   vertical-align: middle;
 }

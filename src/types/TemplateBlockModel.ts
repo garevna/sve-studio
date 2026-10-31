@@ -99,6 +99,9 @@ export interface BaseBlock {
   // Footer root block, "Bento" variant: the palette keys of its tile
   // colours, as a set (configs/footer-variants.ts BENTO_TILE_SETS).
   tiles?: string[]
+  // Text with icon: where a click leads - a web address (a social network,
+  // say), tel:... or mailto:... (utils/link-href.ts). Opened by the site.
+  link?: string
   // Button: what a click does. Unset = go to its page (route/params/hash);
   // 'form' = open the feedback form, with the texts in `form`, in a popup.
   action?: 'form'

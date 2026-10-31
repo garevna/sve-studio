@@ -146,6 +146,7 @@
               v-model:icon-background="child.background"
               v-model:icon-color="child.color"
               v-model:icon-size="child.size"
+              v-model:link="child.link"
               deletable
               :text="getText(child)"
               :text-class="iconTextClass(child)"

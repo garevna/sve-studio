@@ -18,6 +18,7 @@ import palette from './palette.json'
 import popups from './popups.json'
 import saveTargets from './saveTargets.json'
 import siteSettings from './siteSettings.json'
+import textWithIcon from './textWithIcon.json'
 import translations from './translations.json'
 import ui from './ui.json'
 
@@ -37,6 +38,7 @@ export const MESSAGES = {
   popups,
   saveTargets,
   siteSettings,
+  textWithIcon,
   translations,
   ui,
 }

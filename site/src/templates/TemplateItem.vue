@@ -222,6 +222,11 @@
   top: 8px;
   right: 8px;
   z-index: 1;
-  color: var(--black);
+  /* Quiet, not black: it is there when needed, not an accent. */
+  color: var(--grey);
+  transition: color 0.2s;
+}
+.feedback-popup-close:hover {
+  color: var(--dark-grey);
 }
 </style>

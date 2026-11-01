@@ -43,5 +43,3 @@ public/images/theme_*/uploads/
 # server/routes/__editor-api__/public-file.ts)
 .private/
 
-# Pictures kept at hand for uploading in the editor - not site content.
-upload-images/

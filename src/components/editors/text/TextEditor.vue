@@ -49,6 +49,8 @@
     // The text comes from elsewhere (a contact from the general settings) -
     // shown, formatted, but not typed into here.
     readonly?: boolean
+    // The gap below the text in the format panel (see TextFormatMenu).
+    spacing?: boolean
     // Narrows the format panel to these controls only - see
     // TextFormatMenu's own `only`.
     formatControls?: ('size' | 'align' | 'color' | 'weight')[]
@@ -233,6 +235,7 @@
                   :deletable="props.deletable"
                   :only="props.formatControls"
                   :parent-type="props.parentType"
+                  :spacing="props.spacing"
                   vertical
                   @configure="emit('configure')"
                   @delete="emit('delete')"
@@ -268,6 +271,7 @@
               :deletable="props.deletable"
               :only="props.formatControls"
               :parent-type="props.parentType"
+              :spacing="props.spacing"
               @configure="emit('configure')"
               @delete="emit('delete')"
             />

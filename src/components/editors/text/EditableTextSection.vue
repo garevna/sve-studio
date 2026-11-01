@@ -1,10 +1,13 @@
 <script setup lang="ts">
   import type { TemplateBlockModel } from '@/types/TemplateBlockModel'
-  import { computed } from 'vue'
+  import { computed, ref } from 'vue'
   import ContactLineMenu from '@/components/editors/ContactLineMenu.vue'
+  import MarginBottomMenu from '@/components/editors/MarginBottomMenu.vue'
   import LocaleSwitcher from '@/components/editors/small/LocaleSwitcher.vue'
   import SocialLinkMenu from '@/components/editors/SocialLinkMenu.vue'
+  import SortableList from '@/components/editors/SortableList.vue'
   import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
+  import PaletteSwatchPicker from '@/components/special/PaletteSwatchPicker.vue'
   import { useSiteContacts } from '@/composables/useSiteContacts'
   import { textWithIcon } from '@/configs/components/simple/text-with-icon'
   import { defaultTextClass } from '@/configs/defaults/default-classes'
@@ -50,6 +53,9 @@
     // Texts with an icon can be added too (a card with an image on top,
     // for contacts: a phone, an address...).
     withIcons?: boolean
+    // Lines stacked in a card: each has the gap below it in its format
+    // panel, and horizontal dividers can go between them.
+    cardLines?: boolean
   }>(), {
     formattable: true,
   })
@@ -57,8 +63,11 @@
 
   const syncTextFormat = defineModel<boolean>('syncTextFormat', { default: false })
 
+  // "Переміщення": the lines are dragged into order (a divider between the
+  // right two lines, say) - the same mode the footer's contacts window has.
+  const dragActive = ref(false)
+
   const textItemCount = computed(() => props.children.filter(child => child.type === 'text').length)
-  const firstTextIndex = computed(() => props.children.findIndex(child => child.type === 'text'))
   const showSyncCheckbox = computed(() => !props.groupUniformActive && textItemCount.value >= 2)
 
   const siteContacts = useSiteContacts()
@@ -87,6 +96,11 @@
   }
   // Only plain text can be added here for now - matches SectionWithFreeContent's
   // existing scope; images/icons/components join this dialog later.
+  // A horizontal line between two lines of a card.
+  function addDivider () {
+    // eslint-disable-next-line vue/no-mutating-props
+    props.children.push({ type: 'divider', color: 'light-grey-1', class: 'mb-4' } as TemplateBlockModel)
+  }
   function addText () {
     // eslint-disable-next-line vue/no-mutating-props
     props.children.push({ type: 'text', content: textPlaceholder(), class: props.newItemClass || 'default-text text-medium' })
@@ -124,51 +138,74 @@
           Редагування тексту
         </v-toolbar-title>
         <v-spacer />
+        <ToolbarIconButton
+          :active="dragActive"
+          icon="mdi-cursor-move"
+          tooltip="Переміщення"
+          @click="dragActive = !dragActive"
+        />
         <ToolbarIconButton icon="mdi-close" tooltip="Закрити" @click="emit('update:modelValue', false)" />
       </v-toolbar>
       <!-- <v-card-title class="editable-text-section-dialog-title">Редагування тексту</v-card-title> -->
       <v-card-text>
-        <template v-for="(child, index) of children" :key="index">
-          <v-checkbox
-            v-if="showSyncCheckbox && index === firstTextIndex"
-            v-model="syncTextFormat"
-            class="mb-2"
-            density="compact"
-            hide-details
-            label="Однаковий формат для всіх пунктів"
-          />
-          <div class="editable-text-section-item">
-            <TextEditor
-              v-if="child.type === 'text' || child.type === 'header' || child.type === 'title'"
-              v-model:type="child.type"
-              :class="child.class"
-              :content="getText(child)"
-              deletable
-              :formattable="props.formattable"
-              :missing-translation="translationHint(child.content, commonStore.locale)"
-              parent-type="usual"
-              :readonly="!!child.contact"
-              @delete="removeText(index)"
-              @update:class="value => onClassChange(child, value)"
-              @update:content="value => setText(child, value)"
-            />
-            <TextWithIconEditor
-              v-else-if="child.type === 'text-with-icon'"
-              v-model:icon="child.icon"
-              v-model:icon-background="child.background"
-              v-model:icon-color="child.color"
-              v-model:icon-size="child.size"
-              v-model:link="child.link"
-              deletable
-              :readonly="!!child.contact"
-              :text="getText(child)"
-              :text-class="iconTextClass(child)"
-              @delete="removeText(index)"
-              @update:text="value => setText(child, value)"
-              @update:text-class="value => child.text = value"
-            />
-          </div>
-        </template>
+        <v-checkbox
+          v-if="showSyncCheckbox"
+          v-model="syncTextFormat"
+          class="mb-2"
+          density="compact"
+          hide-details
+          label="Однаковий формат для всіх пунктів"
+        />
+        <SortableList v-model:active="dragActive" :items="children">
+          <template #item="{ item: child, index, dragClass, contentClass }">
+            <div :class="['editable-text-section-item', dragClass]">
+              <div :class="contentClass">
+                <TextEditor
+                  v-if="child.type === 'text' || child.type === 'header' || child.type === 'title'"
+                  v-model:type="child.type"
+                  :class="child.class"
+                  :content="getText(child)"
+                  deletable
+                  :formattable="props.formattable"
+                  :missing-translation="translationHint(child.content, commonStore.locale)"
+                  parent-type="usual"
+                  :readonly="!!child.contact"
+                  :spacing="cardLines"
+                  @delete="removeText(index)"
+                  @update:class="value => onClassChange(child, value)"
+                  @update:content="value => setText(child, value)"
+                />
+                <TextWithIconEditor
+                  v-else-if="child.type === 'text-with-icon'"
+                  v-model:icon="child.icon"
+                  v-model:icon-background="child.background"
+                  v-model:icon-color="child.color"
+                  v-model:icon-size="child.size"
+                  v-model:link="child.link"
+                  deletable
+                  :readonly="!!child.contact"
+                  :spacing="cardLines"
+                  :text="getText(child)"
+                  :text-class="iconTextClass(child)"
+                  @delete="removeText(index)"
+                  @update:text="value => setText(child, value)"
+                  @update:text-class="value => child.text = value"
+                />
+                <!-- A divider: the line itself, its colour and the gap below. -->
+                <div v-else-if="child.type === 'divider'" class="editable-text-section-divider">
+                  <hr :style="{ borderColor: `var(--${child.color || 'light-grey-1'})` }">
+                  <PaletteSwatchPicker
+                    :model-value="child.color || 'light-grey-1'"
+                    no-transparent
+                    @update:model-value="(value: string) => child.color = value"
+                  />
+                  <MarginBottomMenu v-model:class="child.class" :tooltip="t('cardTexts.spacingBelow')" />
+                  <ToolbarIconButton icon="mdi-delete" tooltip="Видалити" @click="removeText(index)" />
+                </div>
+              </div>
+            </div>
+          </template>
+        </SortableList>
         <div class="editable-text-section-add">
           <v-btn
             class="mt-2"
@@ -189,6 +226,15 @@
           </v-btn>
           <!-- A ready line for a social network: icon, name, address from
             the general settings. -->
+          <v-btn
+            v-if="cardLines"
+            class="mt-2"
+            prepend-icon="mdi-minus"
+            variant="outlined"
+            @click="addDivider"
+          >
+            {{ t('cardTexts.divider') }}
+          </v-btn>
           <ContactLineMenu v-if="withIcons" @insert="addSocialLink">
             <template #activator="{ props: contactProps }">
               <v-btn v-bind="contactProps" class="mt-2" prepend-icon="mdi-card-account-phone-outline" variant="outlined">
@@ -215,6 +261,18 @@
 </template>
 
 <style scoped>
+.editable-text-section-divider {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+}
+.editable-text-section-divider hr {
+  flex: 1 1 auto;
+  margin: 0;
+  border: none;
+  border-top: solid 1px;
+}
 .editable-text-section-dialog {
   position: relative;
 }

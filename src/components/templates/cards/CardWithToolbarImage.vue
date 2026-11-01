@@ -147,10 +147,16 @@
         />
       </template>
     </v-toolbar>
-    <v-card-text v-for="(child, index) of card.children" :key="index">
-      <h3 v-if="child.type === 'title'" :class="['text-center', child.class]">{{ resolveLocaleText(child.content, commonStore.locale) }}</h3>
-      <p v-if="child.type === 'text'" :class="child.class">{{ siteContacts.lineText(child.contact, commonStore.locale) ?? resolveLocaleText(child.content, commonStore.locale) }}</p>
-      <CardTextWithIcon v-if="child.type === 'text-with-icon'" :item="child" />
+    <!-- One box for all the lines, as on the site: the space between two
+      lines is the gap below the upper one (mb-*, "Відступ знизу" in its
+      format panel). -->
+    <v-card-text class="card-lines">
+      <template v-for="(child, index) of card.children" :key="index">
+        <h3 v-if="child.type === 'title'" :class="['text-center', child.class]">{{ resolveLocaleText(child.content, commonStore.locale) }}</h3>
+        <p v-else-if="child.type === 'text'" :class="child.class">{{ siteContacts.lineText(child.contact, commonStore.locale) ?? resolveLocaleText(child.content, commonStore.locale) }}</p>
+        <CardTextWithIcon v-else-if="child.type === 'text-with-icon'" :item="child" />
+        <hr v-else-if="child.type === 'divider'" :class="['card-divider', child.class]" :style="{ borderColor: `var(--${child.color || 'light-grey-1'})` }">
+      </template>
     </v-card-text>
     <template v-if="mode === 'edit'">
       <Teleport v-if="blockActionsTarget" :to="blockActionsTarget">
@@ -172,6 +178,7 @@
   <EditableTextSection
     v-if="card.children"
     v-model="textDialogOpen"
+    card-lines
     :children="card.children"
     :group-uniform-active="uniformActive"
     :new-item-class="referenceTextClass"
@@ -188,5 +195,12 @@
   }
   .card-with-toolbar-image {
     position: relative;
+  }
+  .card-lines > * {
+    margin-top: 0;
+  }
+  .card-divider {
+    border: none;
+    border-top: solid 1px;
   }
 </style>

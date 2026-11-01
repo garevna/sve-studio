@@ -5,6 +5,7 @@
 
 import bannerTexts from './bannerTexts.json'
 import cardStyles from './cardStyles.json'
+import cardTexts from './cardTexts.json'
 import common from './common.json'
 import confirm from './confirm.json'
 import contacts from './contacts.json'
@@ -30,6 +31,7 @@ import ui from './ui.json'
 export const MESSAGES = {
   bannerTexts,
   cardStyles,
+  cardTexts,
   common,
   confirm,
   contacts,

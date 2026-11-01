@@ -99,7 +99,7 @@ export function mobileRow (type: MobileRowType): MobileMenuRow {
       return { type, align: 'center', buttonClass: 'primary-button', label: { ...CONTACT_LABEL }, form: { type: 'message' } }
     }
     case 'divider': {
-      return { type, color: 'light-grey' }
+      return { type, color: 'light-grey-1' }
     }
     default: {
       return { type }

@@ -17,6 +17,8 @@
     deletable?: boolean
     // The text is a contact's from the general settings (see TextEditor).
     readonly?: boolean
+    // The gap below the line, in the format panel (see TextFormatMenu).
+    spacing?: boolean
   }>()
   const emit = defineEmits<{ delete: [] }>()
 
@@ -110,6 +112,7 @@
       :deletable="deletable"
       parent-type="icon"
       :readonly="readonly"
+      :spacing="spacing"
       type="text"
       @delete="emit('delete')"
     />

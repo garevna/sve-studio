@@ -59,6 +59,7 @@
 /* A contact keeps the look of the text it is. */
 .contact-link {
   color: inherit;
+  font: inherit;
   text-decoration: none;
 }
 .contact-link:hover {

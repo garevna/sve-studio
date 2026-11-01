@@ -21,6 +21,8 @@ enum BlockTypeModel {
   CARD_WITH_TOOLBAR_IMAGE = 'card-with-toolbar-image',
   BANER = 'baner',
   TEXT_WITH_ICON = 'text-with-icon',
+  // A horizontal line between the lines of a card.
+  DIVIDER = 'divider',
   DARK_FONE_SECTION = 'dark-fone-section',
   // A footer's list of links to pages and in-page anchors. A type of its
   // own rather than the generic 'section' it used to be stored as, because

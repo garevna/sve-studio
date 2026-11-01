@@ -25,6 +25,8 @@ enum BlockTypeModel {
   // CARD_WITH_IMAGE_IN_CIRCLE = 'card-with-image-in-circle',
   BANER = 'baner',
   TEXT_WITH_ICON = 'text-with-icon',
+  // A horizontal line between the lines of a card.
+  DIVIDER = 'divider',
   DARK_FONE_SECTION = 'dark-fone-section',
   HOVER_CARD = 'hover-card',
   // Two containers rather than leaves: each renders whatever it holds, and

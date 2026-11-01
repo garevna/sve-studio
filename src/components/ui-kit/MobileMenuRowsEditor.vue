@@ -179,7 +179,7 @@
 
             <div v-if="row.type === 'divider'" class="mobile-rows-field">
               <span>{{ t('menuStyle.dividerColor') }}</span>
-              <PaletteSwatchPicker :model-value="row.color || 'light-grey'" no-transparent @update:model-value="(value: string) => row.color = value" />
+              <PaletteSwatchPicker :model-value="row.color || 'light-grey-1'" no-transparent @update:model-value="(value: string) => row.color = value" />
             </div>
           </div>
         </v-expand-transition>

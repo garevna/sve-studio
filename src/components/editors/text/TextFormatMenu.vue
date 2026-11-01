@@ -1,5 +1,6 @@
 <script setup lang="ts">
   import { computed } from 'vue'
+  import MarginBottomMenu from '@/components/editors/MarginBottomMenu.vue'
   import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
   import PaletteSwatchPicker from '@/components/special/PaletteSwatchPicker.vue'
   import { t } from '@/i18n'
@@ -56,6 +57,9 @@
     // so it's the fix for "no room to widen into" rather than "widen
     // further".
     vertical?: boolean
+    // The gap below the text (MarginBottomMenu) - for texts stacked in a
+    // component (a card's lines), where nothing else sets it.
+    spacing?: boolean
   }>()
 
   const emit = defineEmits<{
@@ -260,6 +264,8 @@
           </v-list>
         </v-card>
       </v-menu>
+
+      <MarginBottomMenu v-if="spacing" v-model:class="className" />
 
       <ToolbarIconButton
         v-if="configurable"

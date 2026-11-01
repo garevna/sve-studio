@@ -41,7 +41,7 @@
   <div v-if="row.type === 'spacer'" class="mobile-menu-row mobile-menu-row--spacer" :style="rowStyle(row)" />
 
   <div v-else-if="row.type === 'divider'" class="mobile-menu-row mobile-menu-row--divider" :style="rowStyle(row)">
-    <hr :style="{ borderColor: `var(--${row.color || 'light-grey'})` }">
+    <hr :style="{ borderColor: `var(--${row.color || 'light-grey-1'})` }">
   </div>
 
   <div v-else-if="row.type !== 'user' || signedInUser" class="mobile-menu-row" :style="rowStyle(row)">

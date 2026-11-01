@@ -1,11 +1,13 @@
 <script lang="ts" setup>
   import type { Banner, GlobalSettingsModel } from '@/types/GlobalSettingsModel'
   import { computed, onMounted, ref, watch } from 'vue'
+  import ImageEditor from '@/components/editors/ImageEditor.vue'
   import BannerTextsEditor from '@/components/special/BannerTextsEditor.vue'
   import EditorPageHeader from '@/components/special/EditorPageHeader.vue'
   import EditorSaveBar from '@/components/special/EditorSaveBar.vue'
   import FontSpecField from '@/components/special/FontSpecField.vue'
-  import { SOCIAL_NETWORKS } from '@/configs/social-networks'
+  import { provideEditorMode } from '@/composables/useEditorMode'
+  import { SOCIAL_NETWORK_LABELS, SOCIAL_NETWORKS } from '@/configs/social-networks'
   import { t } from '@/i18n'
   import { useAjaxStore } from '@/stores/ajax'
   import { useCommonStore } from '@/stores/common'
@@ -122,42 +124,44 @@
     loading.value = false
   })
 
-  function pickFile (value: File | File[] | null): File | null {
-    return Array.isArray(value) ? value[0] ?? null : value
-  }
-
-  async function onLogoChange (value: File | File[] | null) {
-    const file = pickFile(value)
-    if (!file || !settings.value) return
+  // The pictures here are edited the way pictures are everywhere in the
+  // editor (ImageEditor: the picture itself, a camera button to replace it),
+  // but kept inside global.json rather than uploaded.
+  provideEditorMode(computed(() => 'edit'))
+  const logoBox = ref(120)
+  const bannerBox = ref(200)
+  async function readLogo (file: File): Promise<string> {
     try {
       const { dataUrl, width, height } = await readImageFile(file)
-      settings.value.logo = { src: dataUrl, width, height }
+      if (settings.value) settings.value.logo = { src: dataUrl, width, height }
+      return dataUrl
     } catch (error) {
       feedback.notifyError(t('popups.logoUploadFailed'), error instanceof Error ? error.message : String(error))
+      throw error
     }
   }
-
-  async function onBannerChange (variant: 'desktop' | 'mobile', value: File | File[] | null) {
-    const file = pickFile(value)
-    if (!file || !settings.value) return
+  async function readBanner (file: File): Promise<string> {
     try {
-      const { dataUrl } = await readImageFile(file)
-      settings.value.baner[variant] = dataUrl
+      return (await readImageFile(file)).dataUrl
     } catch (error) {
       feedback.notifyError(t('popups.bannerUploadFailed'), error instanceof Error ? error.message : String(error))
+      throw error
     }
   }
 
   // More banners after the main one: with any, layout 1 of the top of the
   // site turns into a carousel (global.json banerSlides).
-  async function addSlide (value: File | File[] | null) {
-    const file = pickFile(value)
+  const slideInput = ref<HTMLInputElement | null>(null)
+  async function addSlide (event: Event) {
+    const input = event.target as HTMLInputElement
+    const file = input.files?.[0]
+    input.value = ''
     if (!file || !settings.value) return
     try {
-      const { dataUrl } = await readImageFile(file)
+      const dataUrl = await readBanner(file)
       settings.value.banerSlides = [...(settings.value.banerSlides ?? []), { desktop: dataUrl, mobile: '' }]
-    } catch (error) {
-      feedback.notifyError(t('popups.bannerUploadFailed'), error instanceof Error ? error.message : String(error))
+    } catch {
+      // Already reported.
     }
   }
   async function replaceSlide (index: number, variant: 'desktop' | 'mobile', event: Event) {
@@ -291,22 +295,12 @@
 
         <h2 class="editor-section-title">Логотип</h2>
         <v-row align="center">
-          <v-col cols="12" md="5">
-            <v-file-upload
-              accept="image/*"
-              class="upload-dropzone"
-              density="compact"
-              title="Перетягніть логотип сюди або натисніть"
-              @update:model-value="onLogoChange"
-            />
+          <v-col cols="12" md="auto">
+            <div class="settings-logo">
+              <ImageEditor v-model:height="logoBox" v-model:src="settings.logo.src" fit="contain" :read="readLogo" />
+            </div>
           </v-col>
-          <v-col v-if="settings.logo.src" class="d-flex flex-wrap align-center ga-4" cols="12" md="7">
-            <img
-              class="logo-preview"
-              :height="settings.logo.height"
-              :src="settings.logo.src"
-              :width="settings.logo.width"
-            >
+          <v-col v-if="settings.logo.src" class="d-flex flex-wrap align-center ga-4" cols="12" md="auto">
             <v-text-field
               v-model.number="settings.logo.width"
               density="compact"
@@ -342,7 +336,7 @@
               v-model="settings.links[name]"
               density="compact"
               hide-details
-              :label="name"
+              :label="SOCIAL_NETWORK_LABELS[name]"
               placeholder="https://..."
               variant="outlined"
             />
@@ -352,24 +346,12 @@
         <h2 class="editor-section-title">Банер hero-секції</h2>
         <v-row>
           <v-col cols="12" md="6">
-            <v-file-upload
-              accept="image/*"
-              class="upload-dropzone"
-              density="compact"
-              title="Банер (десктоп)"
-              @update:model-value="onBannerChange('desktop', $event)"
-            />
-            <img v-if="settings.baner.desktop" class="banner-preview mt-2" :src="settings.baner.desktop">
+            <p class="settings-image-label">Банер (десктоп)</p>
+            <ImageEditor v-model:height="bannerBox" v-model:src="settings.baner.desktop" :read="readBanner" />
           </v-col>
           <v-col cols="12" md="6">
-            <v-file-upload
-              accept="image/*"
-              class="upload-dropzone"
-              density="compact"
-              title="Банер (мобільна версія)"
-              @update:model-value="onBannerChange('mobile', $event)"
-            />
-            <img v-if="settings.baner.mobile" class="banner-preview mt-2" :src="settings.baner.mobile">
+            <p class="settings-image-label">Банер (мобільна версія)</p>
+            <ImageEditor v-model:height="bannerBox" v-model:src="settings.baner.mobile" :read="readBanner" />
           </v-col>
         </v-row>
         <v-btn class="mt-2" prepend-icon="mdi-format-text" variant="tonal" @click="textsOf = settings.baner">
@@ -408,13 +390,16 @@
               @click="removeSlide(index)"
             />
           </div>
-          <v-file-upload
-            accept="image/*"
-            class="upload-dropzone"
-            density="compact"
-            :title="t('generalSettings.slideAdd')"
-            @update:model-value="addSlide($event)"
-          />
+          <div>
+            <v-btn prepend-icon="mdi-plus" variant="outlined" @click="slideInput?.click()">{{ t('generalSettings.slideAdd') }}</v-btn>
+            <input
+              ref="slideInput"
+              accept="image/*"
+              hidden
+              type="file"
+              @change="addSlide"
+            >
+          </div>
         </div>
 
         <BannerTextsEditor v-if="textsOf" v-model="textsOpen" v-model:texts="textsOf.texts" :banner="textsOf" />
@@ -443,16 +428,14 @@
     color: #7A8699;
     margin-bottom: 12px;
   }
-  .upload-dropzone :deep(.v-file-upload-dropzone) {
-    border: dashed 1px rgba(58, 74, 88, 0.3) !important;
-    border-radius: 8px;
-  }
-  .logo-preview {
+  .settings-logo {
+    width: 240px;
     max-width: 100%;
-    max-height: 120px;
-    object-fit: contain;
-    border: solid 1px rgba(58, 74, 88, 0.15);
-    border-radius: 8px;
+  }
+  .settings-image-label {
+    margin: 0 0 6px;
+    font-size: 0.85rem;
+    color: #3a4a58;
   }
   .banner-slides-title {
     margin: 24px 0 4px;
@@ -508,13 +491,5 @@
   }
   @media (max-width: 600px) {
     .banner-slide-pictures { grid-template-columns: minmax(0, 1fr); }
-  }
-  .banner-preview {
-    display: block;
-    max-width: 100%;
-    max-height: 200px;
-    object-fit: contain;
-    border: solid 1px rgba(58, 74, 88, 0.15);
-    border-radius: 8px;
   }
 </style>

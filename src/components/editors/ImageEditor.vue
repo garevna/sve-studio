@@ -33,7 +33,16 @@
   // fallback: what to show while this slot has no picture of its own - a
   // phone slot shows the desktop picture, as the site does. An upload still
   // fills this slot.
-  const props = defineProps<{ naturalSize?: boolean, fallback?: string }>()
+  // fit: 'contain' shows the whole picture (a logo) instead of filling the box.
+  // read: where a picked file goes instead of the server upload - returns the
+  // value to keep (the general settings keep their pictures inside
+  // global.json, see GeneralSettingsView.vue).
+  const props = defineProps<{
+    naturalSize?: boolean
+    fallback?: string
+    fit?: 'cover' | 'contain'
+    read?: (file: File) => Promise<string>
+  }>()
 
   // Fired with the real uploaded path (not the transient blob: preview) so
   // a caller with access to the block's full {uk,en,de} content (see
@@ -81,12 +90,18 @@
     src.value = previewUrl
 
     try {
-      const path = await uploadImage(file, { replaces: previous, preview: previewUrl })
+      const path = props.read ? await props.read(file) : await uploadImage(file, { replaces: previous, preview: previewUrl })
       src.value = path
       emit('uploaded', path)
       URL.revokeObjectURL(previewUrl)
     } catch (error) {
       uploadError.value = error instanceof Error ? error.message : 'Не вдалося завантажити зображення.'
+      // A file read locally (read) has no upload to retry - the old picture
+      // comes back rather than a preview that is gone after a reload.
+      if (props.read) {
+        src.value = previous
+        URL.revokeObjectURL(previewUrl)
+      }
       // Keep the blob: preview so editing isn't blocked - the model just
       // won't persist until the upload succeeds (re-pick the file to retry).
     }
@@ -112,7 +127,12 @@
         type="file"
         @change="onFileChange"
       >
-      <v-img class="rounded-border-image" cover :src="resolvedSrc" @error="imageFailed = true" />
+      <v-img
+        :class="['rounded-border-image', { 'image-editor-contain': fit === 'contain' }]"
+        :cover="fit !== 'contain'"
+        :src="resolvedSrc"
+        @error="imageFailed = true"
+      />
       <template v-if="mode === 'edit'">
         <Teleport v-if="blockActionsTarget" :to="blockActionsTarget">
           <ToolbarIconButton icon="mdi-camera" tooltip="Завантажити зображення" @click="triggerFileDialog" />
@@ -138,6 +158,9 @@
   position: relative;
   width: 100%;
   height: 100%;
+}
+.image-editor-contain :deep(img) {
+  object-fit: contain;
 }
 .image-editor-upload-error {
   position: absolute;

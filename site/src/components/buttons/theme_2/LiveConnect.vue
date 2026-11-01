@@ -39,8 +39,15 @@
 
   // function callback () {}
 
+  // A web address opens in a new tab; an app's (viber:, tg:...) is handed
+  // to the app in place - a new tab for it only said the page is unavailable.
   function openLink (link: string | undefined) {
-    if (link) window.open(link, '_blank')
+    if (!link) return
+    if (/^https?:/i.test(link)) {
+      window.open(link, '_blank')
+    } else {
+      window.location.href = link
+    }
   }
 </script>
 

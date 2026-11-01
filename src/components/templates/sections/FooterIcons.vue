@@ -18,27 +18,43 @@
     return props.icons?.[name] || footerIcons[name as keyof typeof footerIcons]
   }
 
-  function goto (name: string) {
-    const url = props.links?.[name]
-    if (url) window.open(url, '_blank')
+  // Real links, as on the site: a web address in a new tab, an app's
+  // (viber:, tg:...) handed to the app in place.
+  function href (name: string): string | undefined {
+    return props.links?.[name] || undefined
+  }
+  function isWeb (name: string): boolean {
+    return /^https?:/i.test(href(name) ?? '')
   }
 </script>
 
 <template>
   <div class="grid-icons">
-    <img
+    <a
       v-for="name in SOCIAL_NETWORKS"
       :key="name"
-      class="footer-icon cursor-pointer"
-      height="36"
-      :src="iconSrc(name)"
-      width="36"
-      @click="goto(name)"
+      :aria-label="name"
+      class="footer-icon-link"
+      :href="href(name)"
+      :rel="isWeb(name) ? 'noopener' : undefined"
+      :target="isWeb(name) ? '_blank' : undefined"
     >
+      <img
+        alt=""
+        class="footer-icon cursor-pointer"
+        height="36"
+        :src="iconSrc(name)"
+        width="36"
+      >
+    </a>
   </div>
 </template>
 
 <style scoped>
+.footer-icon-link {
+  display: block;
+  line-height: 0;
+}
 .grid-icons {
   display: grid;
   grid-template-columns: repeat(6, 36px);

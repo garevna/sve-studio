@@ -298,7 +298,11 @@
                   the real app theme's, which is exactly backwards for a
                   preview of what these buttons look like on the actual site. -->
             <v-theme-provider :theme="APP_THEME_NAME">
-              <div class="button-palette-preview" :class="[themeClass(APP_THEME_NAME), { 'button-palette-preview--wide': isWideButton(entry) }]">
+              <div
+                class="button-palette-preview"
+                :class="[themeClass(APP_THEME_NAME), { 'button-palette-preview--wide': isWideButton(entry) }]"
+                :style="{ '--btn-inherited-radius': inheritedRadius || '0' }"
+              >
                 <button
                   class="button-palette-preview-btn"
                   :class="{ 'button-palette-preview-btn--wide': isWideButton(entry) }"
@@ -387,6 +391,7 @@
           class="mb-6"
           :entries="entries"
           :plate-class="PREVIEW_PLATE"
+          :style="{ '--btn-inherited-radius': inheritedRadius || '0' }"
           :tabs="PREVIEW_TABS"
         />
 
@@ -551,6 +556,11 @@
  * here by the real CSS cascade via var() instead of JS, since a genuine
  * :hover can't be expressed through inline styles at all.
  *
+ * The radius is !important: the theme's buttons.css gives every bare
+ * <button> one with !important, and this sample is a real <button> - without
+ * it every sample showed that radius whatever was picked. A class that sets
+ * no radius falls back to that bare-button one (--btn-inherited-radius).
+ *
  * The explicit border/box-shadow/outline/background resets below matter:
  * a bare <button> has real browser default styling (most visibly a native
  * border) that would otherwise show through on any class that doesn't
@@ -566,7 +576,7 @@
   background: var(--btn-bg, transparent);
   color: var(--btn-color, inherit);
   border: var(--btn-border, none);
-  border-radius: var(--btn-radius, 0);
+  border-radius: var(--btn-radius, var(--btn-inherited-radius, 0)) !important;
   box-shadow: var(--btn-shadow, none);
   opacity: var(--btn-opacity, 1);
 }
@@ -578,7 +588,7 @@
   background: var(--btn-hover-bg, var(--btn-bg, transparent));
   color: var(--btn-hover-color, var(--btn-color, inherit));
   border: var(--btn-hover-border, var(--btn-border, none));
-  border-radius: var(--btn-hover-radius, var(--btn-radius, 0));
+  border-radius: var(--btn-hover-radius, var(--btn-radius, var(--btn-inherited-radius, 0))) !important;
   box-shadow: var(--btn-hover-shadow, var(--btn-shadow, none));
   opacity: var(--btn-hover-opacity, var(--btn-opacity, 1));
 }
@@ -587,7 +597,7 @@
   background: var(--btn-disabled-bg, var(--btn-bg, transparent));
   color: var(--btn-disabled-color, var(--btn-color, inherit));
   border: var(--btn-disabled-border, var(--btn-border, none));
-  border-radius: var(--btn-disabled-radius, var(--btn-radius, 0));
+  border-radius: var(--btn-disabled-radius, var(--btn-radius, var(--btn-inherited-radius, 0))) !important;
   box-shadow: var(--btn-disabled-shadow, var(--btn-shadow, none));
   opacity: var(--btn-disabled-opacity, var(--btn-opacity, 1));
 }

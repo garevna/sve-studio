@@ -15,6 +15,7 @@ import header from './header.json'
 import home from './home.json'
 import images from './images.json'
 import kit from './kit.json'
+import menuStyle from './menuStyle.json'
 import pages from './pages.json'
 import palette from './palette.json'
 import popups from './popups.json'
@@ -38,6 +39,7 @@ export const MESSAGES = {
   home,
   images,
   kit,
+  menuStyle,
   pages,
   palette,
   popups,

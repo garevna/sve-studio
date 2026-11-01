@@ -5,9 +5,10 @@
   import ButtonPaletteView from '@/views/ButtonPaletteView.vue'
   import CardStylesView from '@/views/CardStylesView.vue'
   import FooterLayoutView from '@/views/FooterLayoutView.vue'
+  import MenuStyleView from '@/views/MenuStyleView.vue'
   import SpacingSettingsView from '@/views/SpacingSettingsView.vue'
 
-  // "Кнопки" and "Футер" are the real tabs; "Меню"/"Вибір дати" are stubs,
+  // "Вибір дати" is a stub,
   // the same "Розділ у розробці" placeholder PlaceholderView.vue uses for
   // not-yet-built sections elsewhere in the app.
   //
@@ -53,7 +54,7 @@
           <SpacingSettingsView />
         </v-tabs-window-item>
         <v-tabs-window-item value="menu">
-          <p class="text-body-1 text-medium-emphasis mt-4">Розділ у розробці</p>
+          <MenuStyleView />
         </v-tabs-window-item>
         <v-tabs-window-item value="date">
           <p class="text-body-1 text-medium-emphasis mt-4">Розділ у розробці</p>

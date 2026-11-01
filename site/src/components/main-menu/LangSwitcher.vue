@@ -1,7 +1,10 @@
 <script setup lang="ts">
   import type { LocaleModel } from '../../types/common'
 
-  import { ref } from 'vue'
+  import { storeToRefs } from 'pinia'
+  import { computed, ref } from 'vue'
+  import { dropdownVars } from '../../configs/menu-style'
+  import { useCommonStore } from '../../stores/common'
 
   type LangModel = {
     id: LocaleModel
@@ -16,6 +19,10 @@
 
   const opened = ref(false)
 
+  // The same dropdown look as the menu's (global.json menuStyle).
+  const { locale, menuStyle } = storeToRefs(useCommonStore())
+  const dropdownProps = computed(() => ({ style: dropdownVars(menuStyle.value.dropdown) }))
+
   const emit = defineEmits(['switch-locale'])
 </script>
 
@@ -29,7 +36,7 @@
       </v-icon>
     </div>
 
-    <v-menu v-model="opened" activator="parent">
+    <v-menu v-model="opened" activator="parent" content-class="site-dropdown" :content-props="dropdownProps">
       <v-list class="lang-switcher-menu-list">
         <v-list-item
           v-for="(item, index) in props.langs"
@@ -38,8 +45,7 @@
           @click="emit('switch-locale', item.id)"
         >
           <v-list-item-title>
-            <!-- <span v-html="item.prependAvatar" class="mr-3" /> -->
-            {{ item.title }}
+            <p :class="item.id === locale ? menuStyle.dropdown.activeClass : menuStyle.dropdown.itemClass">{{ item.title }}</p>
           </v-list-item-title>
         </v-list-item>
       </v-list>

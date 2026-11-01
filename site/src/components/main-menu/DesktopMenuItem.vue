@@ -4,9 +4,13 @@
   import { computed, ref } from 'vue'
 
   import { useSiteNavigation } from '../../composables/site-navigation'
+  import { dropdownVars } from '../../configs/menu-style'
   import { useCommonStore } from '../../stores/common'
 
-  const { locale } = storeToRefs(useCommonStore())
+  const { locale, menuStyle } = storeToRefs(useCommonStore())
+  // The dropdown's look from the UI Kit (global.json menuStyle).
+  const dropdown = computed(() => menuStyle.value.dropdown)
+  const dropdownProps = computed(() => ({ style: dropdownVars(dropdown.value) }))
   const { isCurrent } = useSiteNavigation()
 
   const lang = computed(() => locale.value as 'uk' | 'en' | 'de')
@@ -46,7 +50,7 @@
           {{ expanded ? 'mdi-chevron-up' : 'mdi-chevron-down' }}
         </v-icon>
       </div>
-      <v-menu v-model="expanded" activator="parent">
+      <v-menu v-model="expanded" activator="parent" content-class="site-dropdown" :content-props="dropdownProps">
         <v-list class="main-menu-submenu">
           <v-list-item
             v-for="(item, index) in props.item.submenu"
@@ -55,7 +59,7 @@
             @click="selectSubMenuItem(item)"
           >
             <v-list-item-title>
-              <p :class="['default-text text-medium', isCurrent(item) ? 'text-primary' : 'text-special']">{{ item.title[lang] }}</p>
+              <p :class="isCurrent(item) ? dropdown.activeClass : dropdown.itemClass">{{ item.title[lang] }}</p>
             </v-list-item-title>
           </v-list-item>
         </v-list>
@@ -66,6 +70,19 @@
     </div>
   </div>
 </template>
+
+<style>
+/* The dropdown's corners and fill (global.json menuStyle, set as CSS
+   variables on the box): above the theme's own .v-menu rules. Shared by
+   the language switcher (LangSwitcher.vue). */
+.v-menu > .v-overlay__content.site-dropdown {
+  border-radius: var(--dropdown-radius) !important;
+}
+.v-menu > .v-overlay__content.site-dropdown > .v-list {
+  border-radius: inherit;
+  background: var(--dropdown-background) !important;
+}
+</style>
 
 <style scoped>
 .menu-item {

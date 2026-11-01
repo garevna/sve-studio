@@ -89,6 +89,9 @@
   background: var(--btn-bg, transparent);
   border-radius: var(--btn-radius, 0);
 }
+/* The tabs are real <button>s, and the theme's buttons.css gives every
+   bare <button> a radius with !important - hence !important here, falling
+   back to that same bare-button radius when the class sets none. */
 .tabs-preview-tab {
   padding: 10px 20px;
   font-family: inherit;
@@ -98,7 +101,7 @@
   background: var(--btn-bg, transparent);
   color: var(--btn-color, inherit);
   border: var(--btn-border, none);
-  border-radius: var(--btn-radius, 0);
+  border-radius: var(--btn-radius, var(--btn-inherited-radius, 0)) !important;
   box-shadow: var(--btn-shadow, none);
   opacity: var(--btn-opacity, 1);
 }
@@ -111,7 +114,7 @@
   background: var(--btn-hover-bg, var(--btn-bg, transparent));
   color: var(--btn-hover-color, var(--btn-color, inherit));
   border: var(--btn-hover-border, var(--btn-border, none));
-  border-radius: var(--btn-hover-radius, var(--btn-radius, 0));
+  border-radius: var(--btn-hover-radius, var(--btn-radius, var(--btn-inherited-radius, 0))) !important;
   box-shadow: var(--btn-hover-shadow, var(--btn-shadow, none));
   opacity: var(--btn-hover-opacity, var(--btn-opacity, 1));
 }
@@ -120,7 +123,7 @@
   background: var(--btn-disabled-bg, var(--btn-bg, transparent));
   color: var(--btn-disabled-color, var(--btn-color, inherit));
   border: var(--btn-disabled-border, var(--btn-border, none));
-  border-radius: var(--btn-disabled-radius, var(--btn-radius, 0));
+  border-radius: var(--btn-disabled-radius, var(--btn-radius, var(--btn-inherited-radius, 0))) !important;
   box-shadow: var(--btn-disabled-shadow, var(--btn-shadow, none));
   opacity: var(--btn-disabled-opacity, var(--btn-opacity, 1));
 }

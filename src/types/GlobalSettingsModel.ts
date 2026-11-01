@@ -1,4 +1,5 @@
 import type { HeaderSettingsModel } from '@/configs/header-layout'
+import type { DropdownStyle } from '@/configs/menu-style'
 export interface GlobalSettingsModel {
   activeTheme: number
   font: string
@@ -6,6 +7,8 @@ export interface GlobalSettingsModel {
   accentFont?: string
   // Every extra font, in order: classes accent-font, accent-font-2, ... (see utils/theme-fonts.ts).
   accentFonts?: string[]
+  // The menus' look, set in the UI Kit (see configs/menu-style.ts).
+  menuStyle?: { dropdown?: Partial<DropdownStyle> }
   // The site's content languages and the one shown when a text has no
   // translation (see utils/locale-text.ts). Missing = uk/en/de.
   locales?: string[]

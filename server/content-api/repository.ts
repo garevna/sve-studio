@@ -210,16 +210,19 @@ export function createContentRepository ({ seed, docs, images, followSeed = fals
     if (uploaded) {
       return { bytes: uploaded, type: IMAGE_TYPES[extensionOf(name)] ?? 'application/octet-stream' }
     }
+    // The exact file first - listed, or not in the (cached) manifest yet: a
+    // picture the editor has just written into content/images in dev. Only
+    // then a file of the same name with another extension (an old link
+    // without one): before, a just-uploaded "01.png" not listed yet was
+    // answered with the page's old "01.webp", so the editor showed a
+    // different picture than the one uploaded.
+    const exact = await seed.readBytes(`images/${name}`)
+    if (exact) {
+      return { bytes: exact, type: IMAGE_TYPES[extensionOf(name)] ?? 'application/octet-stream' }
+    }
     const bundled = await findSeedImage(name)
     const bytes = bundled ? await seed.readBytes(`images/${bundled}`) : null
-    if (bundled && bytes) {
-      return { bytes, type: IMAGE_TYPES[extensionOf(bundled)] ?? 'application/octet-stream' }
-    }
-    // Not in the (cached) manifest yet, or the manifest still names a file
-    // that was just replaced - a picture the editor has just written into
-    // content/images in dev. Asked for by its exact name.
-    const fresh = await seed.readBytes(`images/${name}`)
-    return fresh ? { bytes: fresh, type: IMAGE_TYPES[extensionOf(name)] ?? 'application/octet-stream' } : null
+    return bundled && bytes ? { bytes, type: IMAGE_TYPES[extensionOf(bundled)] ?? 'application/octet-stream' } : null
   }
 
   async function findSeedImage (name: string): Promise<string | null> {

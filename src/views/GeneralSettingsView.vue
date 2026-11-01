@@ -4,13 +4,14 @@
   import BannerTextsEditor from '@/components/special/BannerTextsEditor.vue'
   import EditorPageHeader from '@/components/special/EditorPageHeader.vue'
   import EditorSaveBar from '@/components/special/EditorSaveBar.vue'
+  import FontSpecField from '@/components/special/FontSpecField.vue'
   import { t } from '@/i18n'
   import { useAjaxStore } from '@/stores/ajax'
   import { useCommonStore } from '@/stores/common'
   import { useUiFeedbackStore } from '@/stores/ui-feedback'
   import { defaultSiteLocale, isLocaleCode, localeDisplayName, setSiteLocales, siteLocales } from '@/utils/locale-text'
   import { readImageFile } from '@/utils/read-image-file'
-  import { applyThemeFonts } from '@/utils/theme-fonts'
+  import { accentFontsOf, applyThemeFonts } from '@/utils/theme-fonts'
 
   const ajaxStore = useAjaxStore()
   const feedback = useUiFeedbackStore()
@@ -88,13 +89,31 @@
     }
   }, { deep: true })
 
-  watch(() => [settings.value?.font, settings.value?.accentFont], () => {
+  // The extra fonts as a list (global.json accentFonts; the older single
+  // accentFont is folded into it on the first change).
+  const accentFonts = computed(() => accentFontsOf(settings.value))
+  function setAccentFonts (list: string[]) {
+    if (!settings.value) return
+    settings.value.accentFonts = list
+    delete settings.value.accentFont
+  }
+  function setAccentFont (index: number, value: string) {
+    setAccentFonts(accentFonts.value.map((font, at) => at === index ? value : font))
+  }
+  function removeAccentFont (index: number) {
+    setAccentFonts(accentFonts.value.filter((_, at) => at !== index))
+  }
+  function addAccentFont () {
+    setAccentFonts([...accentFonts.value, ''])
+  }
+
+  watch(() => [settings.value?.font, settings.value?.accentFont, settings.value?.accentFonts], () => {
     if (fontTimer) clearTimeout(fontTimer)
     fontTimer = setTimeout(() => {
       fontTimer = null
       applyThemeFonts(settings.value)
     }, 600)
-  })
+  }, { deep: true })
 
   onMounted(async () => {
     const loaded = await ajaxStore.getGlobalSettings()
@@ -210,33 +229,36 @@
 
       <template v-else-if="settings">
         <v-row>
-          <v-col cols="12" :md="advancedFields ? 4 : 12">
+          <v-col cols="12">
             <v-text-field
               v-model="settings.provider"
               label="Назва компанії"
               variant="outlined"
             />
           </v-col>
-          <v-col v-if="advancedFields" cols="12" md="4">
-            <v-text-field
-              v-model="settings.font"
-              hint="Назва шрифту з Google Fonts. Якщо такого шрифту немає, браузер тихо відкотиться на запасний варіант."
-              label="Основний шрифт (Google Fonts)"
-              persistent-hint
-              variant="outlined"
-            />
-          </v-col>
-          <v-col v-if="advancedFields" cols="12" md="4">
-            <v-text-field
-              v-model="settings.accentFont"
-              clearable
-              hint="Для окремих текстів і заголовків: у меню формату тексту оберіть «Додатковий шрифт». Порожньо — скрізь основний."
-              label="Додатковий шрифт (Google Fonts)"
-              persistent-hint
-              variant="outlined"
-            />
-          </v-col>
         </v-row>
+
+        <template v-if="advancedFields">
+          <h2 class="editor-section-title">{{ t('fonts.title') }}</h2>
+          <p class="editor-section-hint">{{ t('fonts.hint') }}</p>
+          <v-row>
+            <v-col cols="12" md="6">
+              <FontSpecField v-model="settings.font" :label="t('fonts.main')" />
+            </v-col>
+            <v-col v-for="(font, index) of accentFonts" :key="index" cols="12" md="6">
+              <FontSpecField
+                :label="t('fonts.extra', { n: index + 1 })"
+                :model-value="font"
+                removable
+                @remove="removeAccentFont(index)"
+                @update:model-value="(value: string) => setAccentFont(index, value)"
+              />
+            </v-col>
+            <v-col class="d-flex align-start" cols="12" md="6">
+              <v-btn prepend-icon="mdi-plus" variant="outlined" @click="addAccentFont">{{ t('fonts.add') }}</v-btn>
+            </v-col>
+          </v-row>
+        </template>
 
         <h2 class="editor-section-title">{{ t('siteSettings.languages') }}</h2>
         <v-row>

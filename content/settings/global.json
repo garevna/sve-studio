@@ -1,7 +1,10 @@
 {
   "activeTheme": 2,
   "font": "Montserrat",
-  "accentFont": "Rubik Dirt",
+  "accentFonts": [
+    "Rubik Dirt",
+    "Shantell Sans:ital,wght@0,300..800;1,300..800"
+  ],
   "locales": [
     "uk",
     "en",
@@ -20,9 +23,9 @@
   },
   "logoWhite": "",
   "links": {
-    "telegram": "",
-    "whatsApp": "",
-    "viber": "",
+    "telegram": "https://telegram.me/garevna",
+    "whatsApp": "https://wa.me/380994912753",
+    "viber": "viber://add?number=380994912753",
     "facebook": "https://www.facebook.com/virtuallineband/?locale=hr_HR",
     "tiktok": "https://www.tiktok.com/tag/virtualline",
     "instagram": "https://www.instagram.com/popular/virtualline/"

@@ -6,6 +6,8 @@ export type GlobalSettingsModel = {
   styles?: string[]
   font?: string
   accentFont?: string
+  // Every extra font, in order: classes accent-font, accent-font-2, ... (see utils/theme-fonts.ts).
+  accentFonts?: string[]
   provider: string
   logo: {
     src: string

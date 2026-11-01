@@ -4,6 +4,8 @@ export interface GlobalSettingsModel {
   font: string
   // Optional second font for texts marked "Додатковий шрифт" (see utils/theme-fonts.ts).
   accentFont?: string
+  // Every extra font, in order: classes accent-font, accent-font-2, ... (see utils/theme-fonts.ts).
+  accentFonts?: string[]
   // The site's content languages and the one shown when a text has no
   // translation (see utils/locale-text.ts). Missing = uk/en/de.
   locales?: string[]

@@ -2,7 +2,9 @@
   import { computed } from 'vue'
   import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
   import PaletteSwatchPicker from '@/components/special/PaletteSwatchPicker.vue'
+  import { t } from '@/i18n'
   import { NON_COLOR_TEXT_CLASSES, SIZE_PIXELS, SIZE_SCALE, WEIGHT_SCALE } from '@/utils/text-format-scale'
+  import { appliedThemeFonts, isFontClass } from '@/utils/theme-fonts'
 
   // The format controls themselves - size, alignment, colour, weight, plus
   // two optional caller-specific actions. Every multi-choice control shows
@@ -150,14 +152,14 @@
   })
   const otherAlignments = computed(() => (['left', 'center', 'right'] as const).filter(key => key !== alignment.value))
 
-  // Main or accent font (global.json font / accentFont) - one class,
-  // `accent-font`, present or not. See utils/theme-fonts.ts.
-  const ACCENT_FONT_CLASS = 'accent-font'
-  const usesAccentFont = computed(() => classSet().has(ACCENT_FONT_CLASS))
-  function setAccentFont (on: boolean) {
+  // Which of the site's fonts (global.json font / accentFonts) the text
+  // uses: the main one, or an extra one through its class (accent-font,
+  // accent-font-2, ...). See utils/theme-fonts.ts.
+  const fontClass = computed(() => [...classSet()].find(name => isFontClass(name)) ?? '')
+  function setFont (name: string) {
     applyClass(set => {
-      if (on) set.add(ACCENT_FONT_CLASS)
-      else set.delete(ACCENT_FONT_CLASS)
+      for (const cls of set) if (isFontClass(cls)) set.delete(cls)
+      if (name) set.add(name)
     })
   }
 
@@ -237,14 +239,24 @@
         </v-card>
       </v-menu>
 
-      <v-menu v-if="shows('font')" location="bottom center">
+      <v-menu v-if="shows('font') && appliedThemeFonts.length > 1" location="bottom center">
         <template #activator="{ props: fontProps }">
-          <ToolbarIconButton v-bind="fontProps" :color="usesAccentFont ? 'primary' : undefined" icon="mdi-format-font" tooltip="Шрифт" />
+          <ToolbarIconButton v-bind="fontProps" :color="fontClass ? 'primary' : undefined" icon="mdi-format-font" :tooltip="t('fonts.menuTitle')" />
         </template>
         <v-card theme="editorTheme">
           <v-list density="compact">
-            <v-list-item :active="!usesAccentFont" title="Основний шрифт" @click="setAccentFont(false)" />
-            <v-list-item :active="usesAccentFont" title="Додатковий шрифт" @click="setAccentFont(true)" />
+            <!-- Each font named and drawn in itself. -->
+            <v-list-item
+              v-for="font of appliedThemeFonts"
+              :key="font.className"
+              :active="font.className === fontClass"
+              @click="setFont(font.className)"
+            >
+              <v-list-item-title :style="{ fontFamily: `'${font.name}', sans-serif`, fontSize: '18px' }">
+                {{ font.name }}
+              </v-list-item-title>
+              <v-list-item-subtitle v-if="!font.className">{{ t('fonts.menuMain') }}</v-list-item-subtitle>
+            </v-list-item>
           </v-list>
         </v-card>
       </v-menu>

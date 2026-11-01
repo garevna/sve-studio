@@ -9,8 +9,12 @@
     confirmText?: string
     cancelText?: string
     loading?: boolean
+    // A confirmation that is not a deletion (replacing settings, say) is
+    // not red.
+    confirmColor?: string
   }>(), {
     loading: false,
+    confirmColor: 'error',
   })
 
   const emit = defineEmits<{
@@ -30,7 +34,7 @@
       <v-card-actions>
         <v-spacer />
         <v-btn variant="text" @click="cancel">{{ props.cancelText ?? t('common.cancel') }}</v-btn>
-        <v-btn color="error" :loading="loading" variant="elevated" @click="emit('confirm')">{{ props.confirmText ?? t('common.delete') }}</v-btn>
+        <v-btn :color="props.confirmColor" :loading="loading" variant="elevated" @click="emit('confirm')">{{ props.confirmText ?? t('common.delete') }}</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>

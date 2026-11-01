@@ -5,7 +5,7 @@
 
   import { computed, defineAsyncComponent, ref, shallowRef, watch } from 'vue'
 
-  import FeedbackCard from '../components/template-components/FeedbackCard.vue'
+  import FeedbackPopup from '../components/template-components/FeedbackPopup.vue'
   // import { scrollByRef } from '@/utils/scroll-by-ref'
   // import { getDynamicPageContent } from '@/services/ajax/get-dynamic-page-content'
   import { useSiteNavigation } from '../composables/site-navigation'
@@ -151,23 +151,13 @@
       </v-btn>
     </template>
 
-    <v-dialog v-if="props.item.action === 'form'" v-model="formOpen" content-class="feedback-popup-dialog">
-      <div class="feedback-popup">
-        <v-btn
-          aria-label="Close"
-          class="feedback-popup-close"
-          icon="mdi-close"
-          size="small"
-          variant="text"
-          @click="formOpen = false"
-        />
-        <FeedbackCard
-          :text="props.item.form?.text || ''"
-          :title="props.item.form?.title || ''"
-          :type="props.item.form?.type || 'message'"
-        />
-      </div>
-    </v-dialog>
+    <FeedbackPopup
+      v-if="props.item.action === 'form'"
+      v-model="formOpen"
+      :text="props.item.form?.text"
+      :title="props.item.form?.title"
+      :type="props.item.form?.type"
+    />
 
     <template v-if="props.item.type === 'route' && props.item.route && !leadsNowhere">
       <p
@@ -194,39 +184,5 @@
 
 .rounded {
   border-radius: var(--large-border-radius) !important;
-}
-</style>
-
-<style>
-/* Not scoped: the window is drawn by Vuetify outside this component.
-   The theme stretches every dialog to the full width
-   (vuetify-overlay-content.css); the form keeps the width of a form. */
-.v-dialog:not(.v-bottom-sheet) > .v-overlay__content.feedback-popup-dialog {
-  min-width: 0;
-  width: min(440px, calc(100% - 32px));
-}
-.feedback-popup {
-  position: relative;
-}
-.feedback-popup .footer-feedback-card {
-  min-width: 0;
-  max-width: none;
-  width: 100%;
-}
-/* Room for the close button beside the heading. */
-.feedback-popup .footer-feedback-card > p:first-child {
-  padding-right: 32px;
-}
-.feedback-popup-close {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  z-index: 1;
-  /* Quiet, not black: it is there when needed, not an accent. */
-  color: var(--grey);
-  transition: color 0.2s;
-}
-.feedback-popup-close:hover {
-  color: var(--dark-grey);
 }
 </style>

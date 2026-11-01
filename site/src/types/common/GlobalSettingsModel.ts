@@ -1,7 +1,7 @@
 import type { HeaderSettingsModel } from '../../configs/header-layout'
 import type { IconSetModel } from './IconSetModel'
 import type { LinksModel } from './LinksModel'
-import type { DropdownStyle } from '@/configs/menu-style'
+import type { DropdownStyle, MobileMenuStyle } from '@/configs/menu-style'
 
 export type GlobalSettingsModel = {
   styles?: string[]
@@ -10,7 +10,7 @@ export type GlobalSettingsModel = {
   // Every extra font, in order: classes accent-font, accent-font-2, ... (see utils/theme-fonts.ts).
   accentFonts?: string[]
   // The menus' look, set in the UI Kit (see configs/menu-style.ts).
-  menuStyle?: { dropdown?: Partial<DropdownStyle> }
+  menuStyle?: { dropdown?: Partial<DropdownStyle>, mobile?: Partial<MobileMenuStyle> }
   provider: string
   logo: {
     src: string

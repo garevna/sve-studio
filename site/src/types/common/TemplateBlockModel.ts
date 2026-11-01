@@ -80,6 +80,8 @@ export interface BaseBlock {
   props?: object
   callback?: () => void
   link?: string
+  // A contact from global.json (configs/site-contacts.ts) this line shows.
+  contact?: string
   route?: string /* route for type 'route */
   params?: object /* route params for type 'route */
   query?: RouteQueryModel /* route query for type 'route' */

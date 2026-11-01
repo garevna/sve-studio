@@ -6,6 +6,7 @@
   import SliderWithImages from '@/components/templates/sliders/SliderWithImages.vue'
   import SliderWithThumbnails from '@/components/templates/sliders/SliderWithThumbnails.vue'
   import { useEditorMode } from '@/composables/useEditorMode'
+  import { useSiteContacts } from '@/composables/useSiteContacts'
   import { defaultTextClass } from '@/configs/defaults/default-classes'
   import { useCommonStore } from '@/stores/common'
   import { emptyTranslatedModel, isTranslatedModel, localeTextStrict, resolveLocaleAsset, resolveLocaleText, siteLocales, translationHint } from '@/utils/locale-text'
@@ -130,6 +131,7 @@
 
   // Shared read/write view of item.content for the currently active locale -
   // used by whichever editor is active (text/header/title, text-with-icon, image).
+  const siteContacts = useSiteContacts()
   const localizedContent = computed({
     get: () => {
       // Images fall back to another language's picture (see below); a text
@@ -137,10 +139,13 @@
       if (item.value?.type === 'image') {
         return resolveThemeAssetPath(resolveLocaleAsset(item.value.content, commonStore.locale), commonStore.activeTheme)
       }
+      // A contact line shows the contact from the general settings.
+      const contact = siteContacts.lineText(item.value?.contact, commonStore.locale)
+      if (contact !== null) return contact
       return localeTextStrict(item.value?.content, commonStore.locale)
     },
     set: (value: string | undefined) => {
-      if (!item.value) return
+      if (!item.value || item.value.contact) return
       if (!isTranslatedModel(item.value.content)) {
         item.value.content = emptyTranslatedModel()
       }
@@ -264,8 +269,9 @@
         v-model:type="item.type"
         :deletable="props.deletable"
         :formattable="props.formattable !== false"
-        :missing-translation="translationHint(item.content, commonStore.locale)"
+        :missing-translation="item.contact ? undefined : translationHint(item.content, commonStore.locale)"
         parent-type="usual"
+        :readonly="!!item.contact"
         @delete="emit('delete')"
       />
     </template>
@@ -282,6 +288,7 @@
         :class="displayClass"
         :deletable="props.deletable"
         parent-type="icon"
+        :readonly="!!item.contact"
         @delete="emit('delete')"
       />
     </template>

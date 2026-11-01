@@ -3,6 +3,7 @@
   import { computed } from 'vue'
   import TextWithIconEditor from '@/components/editors/text/TextWithIconEditor.vue'
   import { provideEditorMode } from '@/composables/useEditorMode'
+  import { useSiteContacts } from '@/composables/useSiteContacts'
   import { useCommonStore } from '@/stores/common'
   import { resolveLocaleText } from '@/utils/locale-text'
 
@@ -12,6 +13,7 @@
   const props = defineProps<{ item: TemplateBlockModel }>()
   provideEditorMode(computed(() => 'preview'))
   const commonStore = useCommonStore()
+  const siteContacts = useSiteContacts()
 </script>
 
 <template>
@@ -20,7 +22,7 @@
     :icon-background="props.item.background || ''"
     :icon-color="props.item.color || 'grey'"
     :icon-size="props.item.size || 24"
-    :text="resolveLocaleText(props.item.content, commonStore.locale)"
+    :text="siteContacts.lineText(props.item.contact, commonStore.locale) ?? resolveLocaleText(props.item.content, commonStore.locale)"
     :text-class="typeof props.item.text === 'string' ? props.item.text : ''"
   />
 </template>

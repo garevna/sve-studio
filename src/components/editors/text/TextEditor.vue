@@ -46,6 +46,9 @@
     // to `false` (not `undefined`), so every caller that didn't pass this
     // explicitly would otherwise silently lose its format menu.
     formattable?: boolean
+    // The text comes from elsewhere (a contact from the general settings) -
+    // shown, formatted, but not typed into here.
+    readonly?: boolean
     // Narrows the format panel to these controls only - see
     // TextFormatMenu's own `only`.
     formatControls?: ('size' | 'align' | 'color' | 'weight')[]
@@ -166,8 +169,8 @@
       <p
         v-if="type === 'text'"
         ref="textContainer"
-        :class="[mode === 'edit' ? (content ? 'editing-text' : activeClass) : '', className, { 'missing-translation': missingHint }]"
-        :contenteditable="mode === 'edit'"
+        :class="[mode === 'edit' ? (content ? 'editing-text' : activeClass) : '', className, { 'missing-translation': missingHint, 'readonly-text': props.readonly }]"
+        :contenteditable="mode === 'edit' && !props.readonly"
         :data-hint="missingHint"
         :innerText="content || ''"
         @focus="panel.closeIfForeign()"
@@ -179,8 +182,8 @@
       <h2
         v-else-if="type === 'header'"
         ref="textContainer"
-        :class="[mode === 'edit' ? (content ? 'editing-text' : activeClass) : '', className, { 'missing-translation': missingHint }]"
-        :contenteditable="mode === 'edit'"
+        :class="[mode === 'edit' ? (content ? 'editing-text' : activeClass) : '', className, { 'missing-translation': missingHint, 'readonly-text': props.readonly }]"
+        :contenteditable="mode === 'edit' && !props.readonly"
         :data-hint="missingHint"
         :innerText="content || ''"
         :style="{ width: 'calc(100% - 32px)' }"
@@ -193,8 +196,8 @@
       <h3
         v-else-if="type === 'title'"
         ref="textContainer"
-        :class="[mode === 'edit' ? (content ? 'editing-text' : activeClass) : '', className, { 'missing-translation': missingHint }]"
-        :contenteditable="mode === 'edit'"
+        :class="[mode === 'edit' ? (content ? 'editing-text' : activeClass) : '', className, { 'missing-translation': missingHint, 'readonly-text': props.readonly }]"
+        :contenteditable="mode === 'edit' && !props.readonly"
         :data-hint="missingHint"
         :innerText="content || ''"
         :style="{ width: 'calc(100% - 32px)' }"
@@ -308,6 +311,12 @@
 .editing-text:focus {
   outline: solid 1px #79a !important;
   padding: 0 8px;
+}
+/* A contact's text: shown and formatted, typed in the general settings. */
+.readonly-text {
+  cursor: default;
+  outline: 1px dashed #b7c2cc;
+  outline-offset: 2px;
 }
 .text-format-panel {
   margin-top: 4px;

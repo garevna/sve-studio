@@ -3,10 +3,12 @@
   import { computed, onMounted, ref, watch } from 'vue'
   import ImageEditor from '@/components/editors/ImageEditor.vue'
   import BannerTextsEditor from '@/components/special/BannerTextsEditor.vue'
+  import ContactsSettings from '@/components/special/ContactsSettings.vue'
   import EditorPageHeader from '@/components/special/EditorPageHeader.vue'
   import EditorSaveBar from '@/components/special/EditorSaveBar.vue'
   import FontSpecField from '@/components/special/FontSpecField.vue'
   import { provideEditorMode } from '@/composables/useEditorMode'
+  import { setSiteContacts } from '@/composables/useSiteContacts'
   import { SOCIAL_NETWORK_LABELS, SOCIAL_NETWORKS } from '@/configs/social-networks'
   import { t } from '@/i18n'
   import { useAjaxStore } from '@/stores/ajax'
@@ -115,6 +117,15 @@
       applyThemeFonts(settings.value)
     }, 600)
   }, { deep: true })
+
+  const contactsModel = computed({
+    get: () => settings.value?.contacts ?? [],
+    set: value => {
+      if (settings.value) settings.value.contacts = value
+    },
+  })
+  // Every contact line in the editor follows an edit here at once.
+  watch(() => settings.value?.contacts, list => setSiteContacts(list), { deep: true })
 
   onMounted(async () => {
     const loaded = await ajaxStore.getGlobalSettings()
@@ -321,6 +332,10 @@
             />
           </v-col>
         </v-row>
+
+        <h2 class="editor-section-title">{{ t('contacts.title') }}</h2>
+        <p class="editor-section-hint">{{ t('contacts.hint') }}</p>
+        <ContactsSettings v-model="contactsModel" class="mb-4" />
 
         <h2 class="editor-section-title">Соціальні мережі</h2>
         <!-- <p class="editor-section-hint">

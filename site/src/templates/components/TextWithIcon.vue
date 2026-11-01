@@ -5,11 +5,12 @@
   import { computed } from 'vue'
 
   import IconVariant from '../../components/small/IconVariant.vue'
+  import { contactHref, contactOf, contactText } from '../../configs/site-contacts'
   import { resolveLink } from '../../configs/social-networks'
   import { getImageURL } from '../../services/get-image-url'
   import { useCommonStore } from '../../stores/common'
 
-  const { locale, company } = storeToRefs(useCommonStore())
+  const { locale, company, contacts } = storeToRefs(useCommonStore())
 
   const lang = computed(() => locale.value as 'uk' | 'en' | 'de')
 
@@ -20,7 +21,11 @@
   // A line with a link (a social network, tel:, mailto:) is a real link;
   // web addresses open in a new tab. "social:<network>" is the network's
   // address from global.json (configs/social-networks.ts).
-  const href = computed(() => resolveLink(props.item.link, company.value?.links as Record<string, string> | undefined))
+  // A contact line (item.contact) shows the contact from global.json and
+  // leads to a call / a letter / the map, unless it has a link of its own.
+  const contact = computed(() => contactOf(props.item.contact, contacts.value))
+  const shownText = computed(() => contact.value ? contactText(contact.value, lang.value) : props.item.content[lang.value])
+  const href = computed(() => resolveLink(props.item.link, company.value?.links as Record<string, string> | undefined) || (contact.value ? contactHref(contact.value) : ''))
   const external = computed(() => /^https?:/i.test(href.value))
 </script>
 
@@ -46,7 +51,7 @@
     <span v-else />
 
     <p :class="props.item.text || 'default-text text-medium text-black text-left'">
-      {{ props.item.content[lang] }}
+      {{ shownText }}
     </p>
   </component>
 </template>

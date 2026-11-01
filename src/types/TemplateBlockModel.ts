@@ -102,6 +102,8 @@ export interface BaseBlock {
   // Text with icon: where a click leads - a web address (a social network,
   // say), tel:... or mailto:... (utils/link-href.ts). Opened by the site.
   link?: string
+  // A contact from global.json (configs/site-contacts.ts) this line shows.
+  contact?: string
   // Button: what a click does. Unset = go to its page (route/params/hash);
   // 'form' = open the feedback form, with the texts in `form`, in a popup.
   action?: 'form'

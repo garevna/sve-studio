@@ -1,5 +1,6 @@
 import type { HeaderSettingsModel } from '@/configs/header-layout'
 import type { DropdownStyle, MobileMenuStyle } from '@/configs/menu-style'
+import type { SiteContact } from '@/configs/site-contacts'
 export interface GlobalSettingsModel {
   activeTheme: number
   font: string
@@ -8,6 +9,9 @@ export interface GlobalSettingsModel {
   // Every extra font, in order: classes accent-font, accent-font-2, ... (see utils/theme-fonts.ts).
   accentFonts?: string[]
   // The menus' look, set in the UI Kit (see configs/menu-style.ts).
+  // Phones, emails, the address... - one source for every page and the
+  // footer (see configs/site-contacts.ts).
+  contacts?: SiteContact[]
   menuStyle?: { dropdown?: Partial<DropdownStyle>, mobile?: Partial<MobileMenuStyle> }
   // The site's content languages and the one shown when a text has no
   // translation (see utils/locale-text.ts). Missing = uk/en/de.

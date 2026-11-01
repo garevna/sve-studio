@@ -15,6 +15,8 @@
     // field's own format-menu fab, only when this whole component IS a
     // top-level page block.
     deletable?: boolean
+    // The text is a contact's from the general settings (see TextEditor).
+    readonly?: boolean
   }>()
   const emit = defineEmits<{ delete: [] }>()
 
@@ -107,6 +109,7 @@
       v-model:content="text"
       :deletable="deletable"
       parent-type="icon"
+      :readonly="readonly"
       type="text"
       @delete="emit('delete')"
     />

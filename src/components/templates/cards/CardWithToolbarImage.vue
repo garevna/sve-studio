@@ -7,6 +7,7 @@
   import CardTextWithIcon from '@/components/templates/cards/CardTextWithIcon.vue'
   import { useBlockActionsTarget } from '@/composables/useEditableBlockActions'
   import { useEditorMode } from '@/composables/useEditorMode'
+  import { useSiteContacts } from '@/composables/useSiteContacts'
   import { useAjaxStore } from '@/stores/ajax'
   import { useCommonStore } from '@/stores/common'
   import { applyHeightToGroup, applyTextClassToGroup, applyTitleClassToGroup } from '@/utils/card-with-toolbar-image-format-sync'
@@ -23,6 +24,7 @@
   defineOptions({ inheritAttrs: false })
 
   const commonStore = useCommonStore()
+  const siteContacts = useSiteContacts()
 
   const mode = useEditorMode()
   const ajaxStore = useAjaxStore()
@@ -147,7 +149,7 @@
     </v-toolbar>
     <v-card-text v-for="(child, index) of card.children" :key="index">
       <h3 v-if="child.type === 'title'" :class="['text-center', child.class]">{{ resolveLocaleText(child.content, commonStore.locale) }}</h3>
-      <p v-if="child.type === 'text'" :class="child.class">{{ resolveLocaleText(child.content, commonStore.locale) }}</p>
+      <p v-if="child.type === 'text'" :class="child.class">{{ siteContacts.lineText(child.contact, commonStore.locale) ?? resolveLocaleText(child.content, commonStore.locale) }}</p>
       <CardTextWithIcon v-if="child.type === 'text-with-icon'" :item="child" />
     </v-card-text>
     <template v-if="mode === 'edit'">

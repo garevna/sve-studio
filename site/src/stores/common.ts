@@ -12,6 +12,7 @@ import type {
 } from '../types/common'
 import type { FooterSettingsModel } from '@/configs/footer-layout'
 import type { HeaderSettingsModel } from '@/configs/header-layout'
+import type { SiteContact } from '@/configs/site-contacts'
 import type { Banner } from '@/types/common/GlobalSettingsModel'
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
@@ -76,6 +77,8 @@ export const useCommonStore = defineStore('common', () => {
   const headerSettings = ref<HeaderSettingsModel>(resolveHeaderSettings())
   // The menus' look (global.json menuStyle) - see configs/menu-style.ts.
   const menuStyle = ref<MenuStyleModel>(resolveMenuStyle())
+  // Phones, emails, the address (global.json contacts).
+  const contacts = ref<SiteContact[]>([])
 
   const company = ref<{
     name: string
@@ -180,6 +183,7 @@ export const useCommonStore = defineStore('common', () => {
     company.value = Object.assign({}, { name: provider, logo, logoWhite, links, icons, baner })
     applyHeaderSettings(response)
     menuStyle.value = resolveMenuStyle(response.menuStyle)
+    contacts.value = Array.isArray(response.contacts) ? response.contacts : []
     baners.value = response.baner
     banerSlides.value = Array.isArray(response.banerSlides) ? response.banerSlides : []
     if (Array.isArray(response.locales) && response.locales.length > 0) {
@@ -253,6 +257,7 @@ export const useCommonStore = defineStore('common', () => {
     heroVariant,
     headerSettings,
     menuStyle,
+    contacts,
     applyHeaderSettings,
     resetParallax,
     setParallax,

@@ -1,9 +1,11 @@
 <script setup lang="ts">
   import type { TemplateBlockModel } from '@/types/TemplateBlockModel'
   import { computed } from 'vue'
+  import ContactLineMenu from '@/components/editors/ContactLineMenu.vue'
   import LocaleSwitcher from '@/components/editors/small/LocaleSwitcher.vue'
   import SocialLinkMenu from '@/components/editors/SocialLinkMenu.vue'
   import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
+  import { useSiteContacts } from '@/composables/useSiteContacts'
   import { textWithIcon } from '@/configs/components/simple/text-with-icon'
   import { defaultTextClass } from '@/configs/defaults/default-classes'
   import { textPlaceholder } from '@/configs/defaults/text-placeholder'
@@ -59,10 +61,13 @@
   const firstTextIndex = computed(() => props.children.findIndex(child => child.type === 'text'))
   const showSyncCheckbox = computed(() => !props.groupUniformActive && textItemCount.value >= 2)
 
+  const siteContacts = useSiteContacts()
   function getText (child: TemplateBlockModel) {
-    return resolveLocaleText(child.content, commonStore.locale)
+    // A contact line shows the contact from the general settings.
+    return siteContacts.lineText(child.contact, commonStore.locale) ?? resolveLocaleText(child.content, commonStore.locale)
   }
   function setText (child: TemplateBlockModel, value: string | undefined) {
+    if (child.contact) return
     setLocalizedContent(child, commonStore.locale, value || '')
   }
   // Every format-panel edit lands here (instead of a plain v-model:class) so
@@ -142,6 +147,7 @@
               :formattable="props.formattable"
               :missing-translation="translationHint(child.content, commonStore.locale)"
               parent-type="usual"
+              :readonly="!!child.contact"
               @delete="removeText(index)"
               @update:class="value => onClassChange(child, value)"
               @update:content="value => setText(child, value)"
@@ -154,6 +160,7 @@
               v-model:icon-size="child.size"
               v-model:link="child.link"
               deletable
+              :readonly="!!child.contact"
               :text="getText(child)"
               :text-class="iconTextClass(child)"
               @delete="removeText(index)"
@@ -182,6 +189,13 @@
           </v-btn>
           <!-- A ready line for a social network: icon, name, address from
             the general settings. -->
+          <ContactLineMenu v-if="withIcons" @insert="addSocialLink">
+            <template #activator="{ props: contactProps }">
+              <v-btn v-bind="contactProps" class="mt-2" prepend-icon="mdi-card-account-phone-outline" variant="outlined">
+                {{ t('contacts.menu') }}
+              </v-btn>
+            </template>
+          </ContactLineMenu>
           <SocialLinkMenu v-if="withIcons" @insert="addSocialLink">
             <template #activator="{ props: socialProps }">
               <v-btn v-bind="socialProps" class="mt-2" prepend-icon="mdi-share-variant" variant="outlined">

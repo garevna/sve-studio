@@ -4,16 +4,21 @@
 
   import { computed } from 'vue'
 
+  import { contactHref, contactOf, contactText } from '@/configs/site-contacts'
   import { useCommonStore } from '@/stores/common'
 
-  const { locale } = storeToRefs(useCommonStore())
+  const { locale, contacts } = storeToRefs(useCommonStore())
 
   const props = defineProps<{ item: TemplateBlockModel }>()
 
   const type = computed(() => props.item.type as 'header' | 'title' | 'text')
   const id = computed(() => props.item.id || '')
   const className = computed(() => props.item.class)
-  const text = computed(() => props.item.content[locale.value as keyof typeof props.item.content])
+  // A contact line (item.contact): the contact from global.json, a link to
+  // call or write for a phone or an email.
+  const contact = computed(() => contactOf(props.item.contact, contacts.value))
+  const text = computed(() => contact.value ? contactText(contact.value, locale.value) : props.item.content[locale.value as keyof typeof props.item.content])
+  const href = computed(() => contact.value ? contactHref(contact.value) : '')
 </script>
 
 <template>
@@ -37,8 +42,26 @@
     </template>
     <template v-else>
       <p :class="className || 'default-text text-thin text-grey py-5 py-md-3'">
-        {{ text }}
+        <a
+          v-if="href"
+          class="contact-link"
+          :href="href"
+          :rel="href.startsWith('http') ? 'noopener' : undefined"
+          :target="href.startsWith('http') ? '_blank' : undefined"
+        >{{ text }}</a>
+        <template v-else>{{ text }}</template>
       </p>
     </template>
   </template>
 </template>
+
+<style scoped>
+/* A contact keeps the look of the text it is. */
+.contact-link {
+  color: inherit;
+  text-decoration: none;
+}
+.contact-link:hover {
+  text-decoration: underline;
+}
+</style>

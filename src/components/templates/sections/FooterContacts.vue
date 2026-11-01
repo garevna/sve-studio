@@ -4,6 +4,7 @@
   import EditableBlockWrapper from '@/components/editors/EditableBlockWrapper.vue'
   import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
   import { useEditorMode } from '@/composables/useEditorMode'
+  import { useSiteContacts } from '@/composables/useSiteContacts'
   import { useCommonStore } from '@/stores/common'
   import { resolveLocaleText } from '@/utils/locale-text'
   import FooterContactsActions from './FooterContactsActions.vue'
@@ -42,8 +43,9 @@
 
   const dialogOpen = defineModel<boolean>('dialogOpen', { default: false })
 
+  const siteContacts = useSiteContacts()
   function getText (item: TemplateBlockModel): string {
-    return resolveLocaleText(item.content, commonStore.locale)
+    return siteContacts.lineText(item.contact, commonStore.locale) ?? resolveLocaleText(item.content, commonStore.locale)
   }
 
   // A row without an icon still reserves the icon column, sized to whatever

@@ -1,6 +1,7 @@
 <script setup lang="ts">
   import type { TemplateBlockModel } from '@/types/TemplateBlockModel'
   import { computed, ref } from 'vue'
+  import ContactLineMenu from '@/components/editors/ContactLineMenu.vue'
   import LocaleSwitcher from '@/components/editors/small/LocaleSwitcher.vue'
   import IconEditor from '@/components/editors/text/IconEditor.vue'
   import TextEditor from '@/components/editors/text/TextEditor.vue'
@@ -9,7 +10,9 @@
   import ConfirmDialog from '@/components/special/ConfirmDialog.vue'
   import PaletteSwatchPicker from '@/components/special/PaletteSwatchPicker.vue'
   import { useFooterBackground } from '@/composables/useFooterBackground'
+  import { useSiteContacts } from '@/composables/useSiteContacts'
   import { useSortableList } from '@/composables/useSortableList'
+  import { t } from '@/i18n'
   import { useCommonStore } from '@/stores/common'
   import { useUiFeedbackStore } from '@/stores/ui-feedback'
   import { emptyTranslatedModel, resolveLocaleText, setLocalizedContent } from '@/utils/locale-text'
@@ -38,10 +41,13 @@
   const dragActive = ref(false)
   const { container } = useSortableList(() => props.section.children, dragActive)
 
+  const siteContacts = useSiteContacts()
   function getText (item: TemplateBlockModel): string {
-    return resolveLocaleText(item.content, commonStore.locale)
+    // A contact line shows the contact from the general settings.
+    return siteContacts.lineText(item.contact, commonStore.locale) ?? resolveLocaleText(item.content, commonStore.locale)
   }
   function setText (item: TemplateBlockModel, value: string | undefined) {
+    if (item.contact) return
     setLocalizedContent(item, commonStore.locale, value || '')
   }
 
@@ -68,6 +74,11 @@
       text: 'default-text text-medium text-dark-grey',
       content: emptyTranslatedModel(),
     })
+  }
+  // A line showing one of the site's contacts (general settings).
+  function addContact (line: TemplateBlockModel) {
+    props.section.children ??= []
+    props.section.children.push({ ...line, size: 18, text: 'default-text text-medium text-dark-grey' })
   }
   async function removeItem (index: number) {
     if (!await useUiFeedbackStore().confirmDelete('contactsRow')) return
@@ -119,6 +130,13 @@
           <v-btn prepend-icon="mdi-plus" size="small" variant="outlined" @click="addItem">
             Додати пункт
           </v-btn>
+          <ContactLineMenu @insert="addContact">
+            <template #activator="{ props: contactProps }">
+              <v-btn v-bind="contactProps" prepend-icon="mdi-card-account-phone-outline" size="small" variant="outlined">
+                {{ t('contacts.menu') }}
+              </v-btn>
+            </template>
+          </ContactLineMenu>
           <ToolbarIconButton
             :active="dragActive"
             icon="mdi-cursor-move"
@@ -147,6 +165,7 @@
                 :class="typeof item.text === 'string' ? item.text : ''"
                 :content="getText(item)"
                 parent-type="usual"
+                :readonly="!!item.contact"
                 type="text"
                 @update:class="item.text = $event"
                 @update:content="value => setText(item, value)"

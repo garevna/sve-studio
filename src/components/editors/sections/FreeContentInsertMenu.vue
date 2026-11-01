@@ -1,6 +1,7 @@
 <script setup lang="ts">
   import type { TemplateBlockModel } from '@/types/TemplateBlockModel'
   import { ref } from 'vue'
+  import ContactLineMenu from '@/components/editors/ContactLineMenu.vue'
   import SocialLinkMenu from '@/components/editors/SocialLinkMenu.vue'
   import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
   import { cardWithIconRowTemplate } from '@/configs/components/cards/card-with-icon'
@@ -75,6 +76,16 @@
           </template>
         </v-list-item>
         <!-- A ready line: icon, name and the address from the settings. -->
+        <!-- A contact from the general settings. -->
+        <ContactLineMenu @insert="insertSocial">
+          <template #activator="{ props: contactProps }">
+            <v-list-item v-bind="contactProps" link :title="t('contacts.menu')">
+              <template #append>
+                <v-icon icon="mdi-card-account-phone-outline" size="x-small" />
+              </template>
+            </v-list-item>
+          </template>
+        </ContactLineMenu>
         <SocialLinkMenu @insert="insertSocial">
           <template #activator="{ props: socialProps }">
             <v-list-item v-bind="socialProps" link :title="t('socialLinks.menu')">

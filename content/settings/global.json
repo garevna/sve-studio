@@ -72,5 +72,40 @@
       320,
       340
     ]
-  }
+  },
+  "contacts": [
+    {
+      "id": "contact-1",
+      "kind": "phone",
+      "value": "(+380) 99 491 27 53"
+    },
+    {
+      "id": "contact-2",
+      "kind": "phone",
+      "value": "(+380) 50 986 40 13"
+    },
+    {
+      "id": "contact-3",
+      "kind": "email",
+      "value": "irina.h.fylyppova@gmail.com"
+    },
+    {
+      "id": "contact-4",
+      "kind": "address",
+      "text": {
+        "uk": "Харків, вул. Космічна, 6А",
+        "en": "6A Kosmichna Street, Kharkiv",
+        "de": "Charkiw, Kosmicheskaja-Straße 6A"
+      }
+    },
+    {
+      "id": "contact-5",
+      "kind": "text",
+      "text": {
+        "uk": "40181587",
+        "en": "40181587",
+        "de": "40181587"
+      }
+    }
+  ]
 }

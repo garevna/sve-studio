@@ -30,7 +30,7 @@
         class="d-flex flex-column align-center justify-space-between"
         color="transparent"
         flat
-        max-width="240"
+        :style="{ width: `${props.item.cardWidth || 240}px`, maxWidth: '100%' }"
       >
         <div style="justify-items: center">
           <div

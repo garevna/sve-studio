@@ -106,6 +106,8 @@ export interface BaseBlock {
   link?: string
   // A contact from global.json (configs/site-contacts.ts) this line shows.
   contact?: string
+  // dark-fone-section: the cards' width, px (240 when unset).
+  cardWidth?: number
   // Button: what a click does. Unset = go to its page (route/params/hash);
   // 'form' = open the feedback form, with the texts in `form`, in a popup.
   action?: 'form'

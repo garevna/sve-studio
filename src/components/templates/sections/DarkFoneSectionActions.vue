@@ -22,6 +22,14 @@
     props.block.background = value
   }
 
+  // The cards' width (block.cardWidth, px) - a pick from a short list, the
+  // same shape as the gap between columns (ColumnGapMenu.vue).
+  const CARD_WIDTHS = [200, 240, 280, 320, 360, 400]
+  function setCardWidth (value: number) {
+    // eslint-disable-next-line vue/no-mutating-props
+    props.block.cardWidth = value
+  }
+
   function addCard () {
     // eslint-disable-next-line vue/no-mutating-props
     const children = props.block.children ??= []
@@ -40,6 +48,23 @@
     </template>
   </PaletteSwatchPicker>
   <ToolbarIconButton icon="mdi-plus" tooltip="Додати картку" @click="addCard" />
+  <v-menu location="bottom center">
+    <template #activator="{ props: menuProps }">
+      <ToolbarIconButton v-bind="menuProps" icon="mdi-arrow-expand-horizontal" :tooltip="`Ширина карток: ${block.cardWidth || 240}px`" />
+    </template>
+    <v-card theme="editorTheme">
+      <v-list density="compact">
+        <v-list-item
+          v-for="px of CARD_WIDTHS"
+          :key="px"
+          :active="px === (block.cardWidth || 240)"
+          link
+          :title="`${px} px`"
+          @click="setCardWidth(px)"
+        />
+      </v-list>
+    </v-card>
+  </v-menu>
   <ToolbarIconButton
     :active="dragActive"
     icon="mdi-cursor-move"

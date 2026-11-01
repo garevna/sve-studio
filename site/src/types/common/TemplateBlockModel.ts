@@ -84,6 +84,8 @@ export interface BaseBlock {
   link?: string
   // A contact from global.json (configs/site-contacts.ts) this line shows.
   contact?: string
+  // dark-fone-section: the cards' width, px (240 when unset).
+  cardWidth?: number
   route?: string /* route for type 'route */
   params?: object /* route params for type 'route */
   query?: RouteQueryModel /* route query for type 'route' */

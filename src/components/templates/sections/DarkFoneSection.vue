@@ -85,6 +85,7 @@
           v-for="(child, index) of section.children"
           :key="index"
           :class="['dark-fone-editor-card', { 'dark-fone-editor-card--drag-cursor': dragActive }]"
+          :style="{ width: `${section.cardWidth || 240}px` }"
         >
           <v-btn
             v-if="!dragActive"
@@ -140,7 +141,7 @@
           class="d-flex flex-column align-center"
           color="transparent"
           flat
-          max-width="240"
+          :style="{ width: `${section.cardWidth || 240}px`, maxWidth: '100%' }"
         >
           <div
             :style="{
@@ -190,7 +191,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 240px;
+  max-width: 100%;
   padding: 16px;
   border-radius: var(--v-default-border-radius);
   background: #FFFFFF1A;

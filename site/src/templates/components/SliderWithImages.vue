@@ -19,6 +19,9 @@
 
   const images = computed(() => props.item.images || [])
   const height = computed(() => props.item.height || 360)
+  // Every slide is the size set in the editor: width x height (width
+  // defaults to the height - a square). Swiper lays them out itself.
+  const width = computed(() => props.item.width || height.value)
 
   const modules = [Autoplay, Pagination, Navigation]
 
@@ -33,8 +36,6 @@
       (progressContent.value as HTMLElement).textContent = `${Math.ceil(time / 1000)}s`
     }
   }
-
-  const slidesPerShow = computed(() => images.value.length - 3)
 </script>
 
 <template>
@@ -44,7 +45,7 @@
     :class="['mx-auto', props.item.class]"
     :loop="true"
     :modules="modules"
-    :slides-per-view="slidesPerShow"
+    :slides-per-view="'auto'"
     :space-between="space"
     :style="{
       '--swiper-navigation-color': 'var(--secondary)',
@@ -54,7 +55,7 @@
     @autoplay-time-left="onAutoplayTimeLeft"
   >
     <template v-for="(image, index) of images" :key="index">
-      <swiper-slide :style="{ height: '100%', width: image.width ? image.width + 'px' : '100%' }">
+      <swiper-slide :style="{ width: `${image.width || width}px` }">
         <!-- <template-card :item="image" style="height: 100%" /> -->
         <v-img cover :src="getImageURL(image.src)" style="height: 100%; width: 100%" />
       </swiper-slide>
@@ -81,6 +82,7 @@
 .swiper-slide {
   height: 100% !important;
   /* width: v-bind(slideWidth) !important; */
+  max-width: 100%;
   cursor: grab;
 }
 

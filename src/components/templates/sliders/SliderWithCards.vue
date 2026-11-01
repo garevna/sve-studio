@@ -193,7 +193,7 @@
       v-if="measuredContainerWidth > 0"
       :autoplay="{ delay: 3000, disableOnInteraction: true }"
       :centered-slides="true"
-      class="mx-auto"
+      class="mx-auto slider-with-cards-swiper"
       :loop="true"
       :modules="modules"
       slides-per-view="auto"
@@ -233,7 +233,7 @@
    min-height keeps content from ever clipping (never smaller than its own
    natural size) while still letting the uniform, computed height below
    apply on top of that floor, so every slide matches the tallest one. */
-.swiper-slide {
+.slider-with-cards-swiper .swiper-slide {
   min-height: max-content !important;
 }
 /* Global, not scoped: Swiper's own loop-mode clones slides directly via JS
@@ -243,8 +243,11 @@
    slides-per-view="auto" expects each slide's actual CSS width to be the
    source of truth (see the .swiper element's own comment) - max-content
    lets it size to the card's own concrete width (see cardDefaults' width
-   fallback) instead of fighting a computed slot-width formula. */
-.swiper-slide {
+   fallback) instead of fighting a computed slot-width formula.
+   Under this slider's own class: unprefixed, it reached every other Swiper
+   in the editor - the image slider's slides (a picture has no content
+   width) collapsed to 0. */
+.slider-with-cards-swiper .swiper-slide {
   width: max-content !important;
 }
 </style>

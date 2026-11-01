@@ -1,97 +1,127 @@
 <script setup lang="ts">
   import type { TemplateBlockModel } from '@/types/TemplateBlockModel'
+  import SwiperCore from 'swiper'
+  import { Autoplay, Navigation, Pagination } from 'swiper/modules'
+  import { Swiper, SwiperSlide } from 'swiper/vue'
   import { computed, ref } from 'vue'
   import { useAjaxStore } from '@/stores/ajax'
+  import 'swiper/css/autoplay'
+  import 'swiper/css'
 
-  // Plain image carousel, no thumbnail strip - was a Swiper.js instance
-  // (matching production's own real component) but its per-slide width
-  // repeatedly landed on 0 in this context despite several rounds of
-  // targeted fixes (container-width gating, removing a conflicting inline
-  // style, forcing a post-mount recalculation, finally a CSS-computed
-  // !important width) - confirmed via live DevTools inspection each time,
-  // never resolved. Vuetify's own v-carousel needs none of Swiper's
-  // module/CSS/loop-mode machinery at all, so this deliberately trades
-  // production fidelity for something that actually works reliably in the
-  // editor - a real, known divergence from client-side's own component,
-  // not an oversight.
+  import 'swiper/css/navigation'
+  import 'swiper/css/pagination'
+
+  SwiperCore.use([Navigation, Autoplay, Pagination])
+
+  const space = 16
+
+  // The site's own slider (site/src/templates/components/SliderWithImages.vue),
+  // markup and styles as there - only the image addresses come from the
+  // editor's store. Slides are block.width x block.height, set with the
+  // handles in edit mode (SwiperImagesEditor.vue).
   const props = defineProps<{ item: TemplateBlockModel }>()
-
   const ajaxStore = useAjaxStore()
 
-  const images = computed(() => {
-    const list = props.item.images || []
-    return list.map(image => typeof image === 'string' ? { src: image } : image)
-  })
+  const images = computed(() => (props.item.images || []).map(image => typeof image === 'string' ? { src: image } : image))
   const height = computed(() => props.item.height || 360)
+  // Every slide is the size set in the editor: width x height (width
+  // defaults to the height - a square). Swiper lays them out itself.
+  const width = computed(() => props.item.width || height.value)
 
-  // v-carousel's own built-in prev/next arrows overlay the image itself
-  // (Vuetify's .v-window__controls is position:absolute over the content,
-  // white circular buttons with a shadow) - production instead places
-  // these controls OUTSIDE the scrolled images entirely, so :show-arrows
-  // is off here and these two plain buttons (real flex siblings, not
-  // overlaid) replace them, driving navigation through v-carousel's own
-  // v-model instead.
-  const activeIndex = ref(0)
-  function prev () {
-    activeIndex.value = (activeIndex.value - 1 + images.value.length) % images.value.length
-  }
-  function next () {
-    activeIndex.value = (activeIndex.value + 1) % images.value.length
+  const modules = [Autoplay, Pagination, Navigation]
+
+  const progressCircle = ref(null)
+  const progressContent = ref(null)
+
+  function onAutoplayTimeLeft (s: unknown, time: number, progress: number) {
+    if (progressCircle.value) {
+      (progressCircle.value as HTMLElement).style.setProperty('--progress', (1 - progress).toString())
+    }
+    if (progressContent.value) {
+      (progressContent.value as HTMLElement).textContent = `${Math.ceil(time / 1000)}s`
+    }
   }
 </script>
 
 <template>
-  <div class="slider-with-images-wrap">
-    <v-btn
-      v-if="images.length > 1"
-      class="slider-with-images-arrow"
-      icon="mdi-chevron-left"
-      variant="text"
-      @click="prev"
-    />
-    <v-carousel
-      v-model="activeIndex"
-      :class="props.item.class"
-      :continuous="true"
-      :cycle="images.length > 1"
-      :height="height"
-      hide-delimiter-background
-      :interval="3000"
-      :show-arrows="false"
-    >
-      <v-carousel-item
-        v-for="(image, index) of images"
-        :key="index"
-        cover
-        :src="ajaxStore.getImageURL(image.src)"
-      />
-    </v-carousel>
-    <v-btn
-      v-if="images.length > 1"
-      class="slider-with-images-arrow"
-      icon="mdi-chevron-right"
-      variant="text"
-      @click="next"
-    />
-  </div>
+  <swiper
+    :autoplay="{ delay: 3000, disableOnInteraction: true }"
+    :centered-slides="true"
+    :class="['mx-auto', props.item.class]"
+    :loop="true"
+    :modules="modules"
+    :slides-per-view="'auto'"
+    :space-between="space"
+    :style="{
+      '--swiper-navigation-color': 'var(--secondary)',
+      '--swiper-pagination-color': 'var(--secondary)',
+      height: `${height}px`,
+    }"
+    @autoplay-time-left="onAutoplayTimeLeft"
+  >
+    <template v-for="(image, index) of images" :key="index">
+      <swiper-slide :style="{ width: `${image.width || width}px` }">
+        <!-- <template-card :item="image" style="height: 100%" /> -->
+        <v-img cover :src="ajaxStore.getImageURL(image.src)" style="height: 100%; width: 100%" />
+      </swiper-slide>
+    </template>
+    <template #container-end>
+      <div class="autoplay-progress">
+        <svg ref="progressCircle" viewBox="0 0 48 48">
+          <circle cx="24" cy="24" r="20" />
+        </svg>
+        <span ref="progressContent" />
+      </div>
+    </template>
+  </swiper>
 </template>
 
 <style scoped>
-.slider-with-images-wrap {
+.swiper {
+  width: 100%;
+  height: 100%;
+  align-items: stretch !important;
+  justify-items: stretch !important;
+}
+
+.swiper-slide {
+  height: 100% !important;
+  /* width: v-bind(slideWidth) !important; */
+  max-width: 100%;
+  cursor: grab;
+}
+
+.swiper-slide .v-img {
+  border-radius: var(--default-border-radius) !important;
+}
+
+.autoplay-progress {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  z-index: 10;
+  width: 48px;
+  height: 48px;
   display: flex;
   align-items: center;
-  gap: 4px;
+  justify-content: center;
+  font-weight: bold;
+  color: var(--grey);
 }
-.v-carousel {
-  flex: 1 1 auto;
-  min-width: 0;
-  border-radius: var(--v-default-border-radius);
-}
-.slider-with-images-arrow {
-  flex: 0 0 auto;
-  color: #B7C2CC;
-}
-.v-carousel-item :deep(.v-img) {
-  border-radius: var(--v-default-border-radius) !important;
+
+.autoplay-progress svg {
+  --progress: 0;
+  position: absolute;
+  left: 0;
+  top: 0px;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  stroke-width: 4px;
+  stroke: var(--grey);
+  fill: none;
+  stroke-dashoffset: calc(125.6px * (1 - var(--progress)));
+  stroke-dasharray: 125.6;
+  transform: rotate(-90deg);
 }
 </style>

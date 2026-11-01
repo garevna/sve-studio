@@ -2,6 +2,8 @@
 <script setup lang="ts">
   import type { TemplateBlockModel } from '@/types/TemplateBlockModel'
   import { computed, ref } from 'vue'
+  import ResizableColumn from '@/components/editors/ResizableColumn.vue'
+  import ResizableWrapper from '@/components/editors/ResizableWrapper.vue'
   import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
   import { useBlockActionsTarget } from '@/composables/useEditableBlockActions'
   import { useAjaxStore } from '@/stores/ajax'
@@ -30,6 +32,27 @@
   const images = computed(() => {
     const list = props.block.images || []
     return list.map(image => typeof image === 'string' ? { src: image } : image)
+  })
+
+  // The plain image slider (slider-with-images) shows its slides at the size
+  // the site gives them: block.width x block.height. The first slide carries
+  // the handles - its right edge for the width, the bar under it for the
+  // height - and every other slide follows it. Width defaults to the height
+  // (a square).
+  const sized = computed(() => props.block.type === 'slider-with-images')
+  const slideHeight = computed({
+    get: () => props.block.height || 300,
+    set: value => {
+      // eslint-disable-next-line vue/no-mutating-props
+      props.block.height = value
+    },
+  })
+  const slideWidth = computed({
+    get: () => props.block.width || slideHeight.value,
+    set: value => {
+      // eslint-disable-next-line vue/no-mutating-props
+      props.block.width = value
+    },
   })
 
   const fileInput = ref<HTMLInputElement | null>(null)
@@ -81,7 +104,29 @@
       type="file"
       @change="onFilesChange"
     >
-    <div v-if="images.length > 0" class="swiper-images-grid">
+    <div v-if="images.length > 0 && sized" class="swiper-images-grid swiper-images-row">
+      <template v-for="(image, index) of images" :key="index">
+        <ResizableColumn
+          v-if="index === 0"
+          v-model:width="slideWidth"
+          :max="1200"
+          :min="120"
+          resizable
+        >
+          <ResizableWrapper v-model:height="slideHeight" :min-height="120" resize>
+            <v-img class="swiper-images-slide" cover height="100%" :src="ajaxStore.getImageURL(image.src)" />
+          </ResizableWrapper>
+        </ResizableColumn>
+        <v-img
+          v-else
+          class="swiper-images-slide"
+          cover
+          :src="ajaxStore.getImageURL(image.src)"
+          :style="{ width: `${slideWidth}px`, height: `${slideHeight}px` }"
+        />
+      </template>
+    </div>
+    <div v-else-if="images.length > 0" class="swiper-images-grid">
       <v-img
         v-for="(image, index) of images"
         :key="index"
@@ -128,6 +173,27 @@
   height: 160px;
   border-radius: var(--v-default-border-radius);
   flex: 0 0 auto;
+}
+
+/* One row, as the site's slider shows it - a long row scrolls. */
+.swiper-images-row {
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  gap: 16px;
+  min-height: 0;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  padding-right: 8px;
+}
+/* The width badge stays over the next slide while dragging. */
+.swiper-images-row :deep(.resizable-column) {
+  z-index: 1;
+}
+
+.swiper-images-slide {
+  flex: 0 0 auto;
+  max-width: 100%;
+  border-radius: var(--v-default-border-radius);
 }
 
 .swiper-images-empty {

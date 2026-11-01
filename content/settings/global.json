@@ -107,5 +107,56 @@
         "de": "40181587"
       }
     }
-  ]
+  ],
+  "menuStyle": {
+    "mobile": {
+      "radius": "default-border-radius",
+      "background": "white",
+      "width": 320,
+      "itemClass": "default-text text-medium text-black",
+      "activeClass": "default-text text-medium text-primary",
+      "subItemClass": "default-text text-thin text-black",
+      "userNameClass": "default-text text-medium text-black",
+      "placement": "full",
+      "rows": [
+        {
+          "type": "logo",
+          "align": "center"
+        },
+        {
+          "type": "divider",
+          "color": "light-grey-1"
+        },
+        {
+          "type": "locales",
+          "align": "center",
+          "localeLook": "chips",
+          "localeLabel": false
+        },
+        {
+          "type": "divider",
+          "color": "light-grey-1"
+        },
+        {
+          "type": "menu"
+        },
+        {
+          "type": "spacer"
+        },
+        {
+          "type": "divider",
+          "color": "light-grey-1"
+        },
+        {
+          "type": "user"
+        }
+      ]
+    },
+    "dropdown": {
+      "radius": "extra-small-border-radius",
+      "background": "light-grey-2",
+      "itemClass": "default-text text-medium text-special",
+      "activeClass": "default-text text-medium text-primary"
+    }
+  }
 }

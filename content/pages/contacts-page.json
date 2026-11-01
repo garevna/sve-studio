@@ -22,6 +22,262 @@
       "type": "float",
       "children": [
         {
+          "type": "card-with-toolbar-image",
+          "width": 390,
+          "height": 200,
+          "image": "/api/content/images/contacts-page/11.webp?v=d78b100e",
+          "children": [
+            {
+              "type": "title",
+              "class": "my-4",
+              "content": {
+                "uk": "Відомості про компанію",
+                "en": "Information about the seller",
+                "de": "Informationen zum Unternehmen"
+              }
+            },
+            {
+              "type": "text",
+              "content": {
+                "uk": "Назва компанії",
+                "en": "Company name",
+                "de": "Firmenname"
+              },
+              "class": "default-text text-medium mb-4 text-dark-grey"
+            },
+            {
+              "type": "text",
+              "content": {
+                "uk": "Virtual Dimension Ltd",
+                "en": "Virtual Dimension Ltd",
+                "de": "Virtual Dimension Ltd"
+              },
+              "class": "default-text mb-4 text-dark text-bold"
+            },
+            {
+              "type": "text",
+              "content": {
+                "uk": "ЄДРПОУ",
+                "en": "EDRPOU",
+                "de": "EDRPOU"
+              },
+              "class": "default-text text-medium mb-4 text-dark-grey"
+            },
+            {
+              "type": "text",
+              "content": {
+                "uk": "40181587",
+                "en": "40181587",
+                "de": "40181587"
+              },
+              "class": "default-text mb-4 text-bold text-dark",
+              "contact": "contact-5"
+            },
+            {
+              "type": "text",
+              "content": {
+                "uk": "Адреса",
+                "en": "Address",
+                "de": "Adresse"
+              },
+              "class": "default-text text-medium mb-4 text-dark-grey"
+            },
+            {
+              "type": "text",
+              "content": {
+                "uk": "Харків, вул. Космічна, 6А",
+                "en": "6A Kosmichna Street, Kharkiv",
+                "de": "Charkiw, Kosmicheskaja-Straße 6A"
+              },
+              "class": "default-text mb-4 text-dark text-bold",
+              "contact": "contact-4"
+            },
+            {
+              "type": "text",
+              "content": {
+                "uk": "Уповноважена особа",
+                "en": "Authorised representative",
+                "de": "Bevollmächtigter"
+              },
+              "class": "default-text text-medium mb-4 text-dark-grey"
+            },
+            {
+              "type": "text",
+              "content": {
+                "uk": "Филиппова Ірина",
+                "en": "Fylyppova Irina",
+                "de": "Irina Filippova"
+              },
+              "class": "default-text mb-4 text-bold text-dark"
+            }
+          ]
+        },
+        {
+          "type": "card-with-toolbar-image",
+          "width": 390,
+          "height": 200,
+          "image": "/api/content/images/contacts-page/01.jpg?v=d021a659",
+          "children": [
+            {
+              "type": "title",
+              "class": "my-4",
+              "content": {
+                "uk": "Контактні дані",
+                "en": "Contact details",
+                "de": "Kontaktdaten"
+              }
+            },
+            {
+              "type": "text-with-icon",
+              "content": {
+                "uk": "(+380) 994912753",
+                "en": "(+380) 99 491 27 53",
+                "de": "(+380) 99 491 27 53"
+              },
+              "class": "default-text text-medium mb-4",
+              "icon": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjUiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNSAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXAwXzg3Ml80ODUzMCkiPgo8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTAuNTAwOTc3IDBIMjQuNTAxVjI0SDAuNTAwOTc3VjBaIiBmaWxsPSIjRkZENzAwIi8+CjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMC41MDA5NzcgMEgyNC41MDFWMTJIMC41MDA5NzdWMFoiIGZpbGw9IiMyQTY3REEiLz4KPC9nPgo8ZGVmcz4KPGNsaXBQYXRoIGlkPSJjbGlwMF84NzJfNDg1MzAiPgo8cmVjdCB4PSIwLjUiIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgcng9IjEyIiBmaWxsPSJ3aGl0ZSIvPgo8L2NsaXBQYXRoPgo8L2RlZnM+Cjwvc3ZnPgo=",
+              "size": 24,
+              "color": "grey",
+              "text": "default-text text-medium mb-4 text-dark-grey",
+              "contact": "contact-1"
+            },
+            {
+              "type": "text-with-icon",
+              "content": {
+                "uk": "(+380) 50 986 40 13",
+                "en": "(+380) 50 986 40 13",
+                "de": "(+380) 50 986 40 13"
+              },
+              "class": "default-text text-medium mb-4",
+              "icon": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjUiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNSAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXAwXzg3Ml80ODUzMCkiPgo8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTAuNTAwOTc3IDBIMjQuNTAxVjI0SDAuNTAwOTc3VjBaIiBmaWxsPSIjRkZENzAwIi8+CjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMC41MDA5NzcgMEgyNC41MDFWMTJIMC41MDA5NzdWMFoiIGZpbGw9IiMyQTY3REEiLz4KPC9nPgo8ZGVmcz4KPGNsaXBQYXRoIGlkPSJjbGlwMF84NzJfNDg1MzAiPgo8cmVjdCB4PSIwLjUiIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgcng9IjEyIiBmaWxsPSJ3aGl0ZSIvPgo8L2NsaXBQYXRoPgo8L2RlZnM+Cjwvc3ZnPgo=",
+              "size": 24,
+              "color": "grey",
+              "text": "default-text text-medium mb-4 text-dark-grey",
+              "contact": "contact-2"
+            },
+            {
+              "type": "text-with-icon",
+              "content": {
+                "uk": "irina.h.fylyppova@gmail.com",
+                "en": "irina.h.fylyppova@gmail.com",
+                "de": "irina.h.fylyppova@gmail.com"
+              },
+              "class": "default-text text-medium mb-4",
+              "icon": "mdi-email-fast-outline",
+              "size": 24,
+              "color": "grey",
+              "text": "default-text text-medium mb-4 text-dark-grey",
+              "contact": "contact-3"
+            }
+          ]
+        },
+        {
+          "type": "card-with-toolbar-image",
+          "width": 390,
+          "height": 200,
+          "image": "/api/content/images/contacts-page/06.webp?v=5a268b48",
+          "children": [
+            {
+              "type": "title",
+              "class": "my-4",
+              "content": {
+                "uk": "Соціальні мережі",
+                "en": "Social Media",
+                "de": "Soziale Netzwerke"
+              }
+            },
+            {
+              "type": "text-with-icon",
+              "content": {
+                "uk": "TikTok",
+                "en": "TikTok",
+                "de": "TikTok"
+              },
+              "class": "default-text text-medium mb-4",
+              "icon": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzciIGhlaWdodD0iMzYiIHZpZXdCb3g9IjAgMCAzNyAzNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0zNi42NjcgNS4wODMyOUMzNi42NjcgMi4yNzU4OCAzNC4zOTExIDAgMzEuNTgzNyAwSDUuNzUwMjhDMi45NDI4NyAwIDAuNjY2OTkyIDIuMjc1ODggMC42NjY5OTIgNS4wODMyOVYzMC45MTY3QzAuNjY2OTkyIDMzLjcyNDIgMi45NDI4NyAzNiA1Ljc1MDI4IDM2SDMxLjU4MzdDMzQuMzkxMSAzNiAzNi42NjcgMzMuNzI0MiAzNi42NjcgMzAuOTE2N1Y1LjA4MzI5Wk0zMC40OTExIDE1LjcwMTJDMjguMTY4NSAxNS43MjcyIDI2LjAwNDIgMTUuMDI1IDI0LjEwMzkgMTMuNzI0NVYyMi44NTM4QzI0LjEwMzkgMjYuOTExMyAyMS4zMjY1IDMwLjM5NjcgMTcuMzk5MSAzMS4zMDdDMTIuMDQxMSAzMi41Mjk0IDcuNTA1MjQgMjguNjU0MSA2LjkzMzE1IDI0LjAyNDRDNi4zMzQ5MiAxOS4zOTQ2IDkuMjg3NjQgMTUuMzM3MSAxMy44MTMzIDE0LjQyNjhDMTQuNjk3NiAxNC4yNDQ4IDE2LjAyNzcgMTQuMjQ0OCAxNi43MTM5IDE0LjQwMDhWMTkuMjkwNkMxNi41MDI4IDE5LjIzODcgMTYuMzA1IDE5LjE4NjYgMTYuMDk3IDE5LjE2MDZDMTQuMzI4MyAxOC44NDg0IDEyLjYxNTMgMTkuNzMyOCAxMS45MTMgMjEuMzQ1M0MxMS4yMTA4IDIyLjk1ODEgMTEuNjgwOCAyNC44MzA2IDEzLjExMTMgMjUuOTIzMkMxNC4zMDc3IDI2Ljg1OTUgMTUuNjM1MiAyNi45ODk0IDE2Ljk4NzYgMjYuMzY1MkMxOC4zNDAyIDI1Ljc2NzEgMTkuMDY3MSAyNC42NzQ3IDE5LjIyMzEgMjMuMTkyMUMxOS4yNDkxIDIyLjk4NDIgMTkuMjQ3NiAyMi43NSAxOS4yNDc2IDIyLjUxNTlWNC45NTkyN0MxOS4yNDc2IDQuNDY1MTIgMTkuMjUxNSA0LjQ4NjY4IDE5Ljc0NTcgNC40ODY2OEgyMy42MjExQzIzLjkwNzMgNC40ODY2OCAyNC4wMTE0IDQuNTI3ODUgMjQuMDM3MyA0Ljg2NjE2QzI0LjI0NTMgNy44ODMyOCAyNi41MzYgMTAuNDUyOCAyOS40NzUgMTAuODQzQzI5Ljc4NzIgMTAuODk0OSAzMC4xMjE2IDEwLjkxNTYgMzAuNDkxMSAxMC45NDE1VjE1LjcwMTJaIiBmaWxsPSIjMkE2N0RBIi8+Cjwvc3ZnPgo=",
+              "size": 24,
+              "color": "grey",
+              "text": "default-text text-medium mb-4 text-dark-grey",
+              "link": "social:tiktok"
+            },
+            {
+              "type": "text-with-icon",
+              "content": {
+                "uk": "Instagram",
+                "en": "Instagram",
+                "de": "Instagram"
+              },
+              "class": "default-text text-medium mb-4",
+              "icon": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzciIGhlaWdodD0iMzYiIHZpZXdCb3g9IjAgMCAzNyAzNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXAwXzg3Ml80ODUxMCkiPgo8cGF0aCBkPSJNMTguNTA4OCAxMkMxNi45MTc1IDEyIDE1LjM5MTQgMTIuNjMyMSAxNC4yNjYxIDEzLjc1NzRDMTMuMTQwOSAxNC44ODI2IDEyLjUwODggMTYuNDA4NyAxMi41MDg4IDE4QzEyLjUwODggMTkuNTkxMyAxMy4xNDA5IDIxLjExNzQgMTQuMjY2MSAyMi4yNDI2QzE1LjM5MTQgMjMuMzY3OSAxNi45MTc1IDI0IDE4LjUwODggMjRDMjAuMTAwMSAyNCAyMS42MjYyIDIzLjM2NzkgMjIuNzUxNCAyMi4yNDI2QzIzLjg3NjYgMjEuMTE3NCAyNC41MDg4IDE5LjU5MTMgMjQuNTA4OCAxOEMyNC41MDg4IDE2LjQwODcgMjMuODc2NiAxNC44ODI2IDIyLjc1MTQgMTMuNzU3NEMyMS42MjYyIDEyLjYzMjEgMjAuMTAwMSAxMiAxOC41MDg4IDEyWiIgZmlsbD0iIzJBNjdEQSIvPgo8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTguNDI1NTIgMC41NjQ2QzE1LjIzMjQgLTAuMTg4MiAyMi4xMDE3IC0wLjE4ODIgMjguOTA4NiAwLjU2NDZDMzIuNjI3MyAwLjk3OTA1MiAzNS42MjUzIDMuOTAxNzIgMzYuMDYyIDcuNjI3ODlDMzYuODY4NyAxNC41MTg1IDM2Ljg2ODcgMjEuNDc5NSAzNi4wNjIgMjguMzcwMUMzNS42MjUzIDMyLjA5NjIgMzIuNjI3MyAzNS4wMTg5IDI4LjkxMDUgMzUuNDM1M0MyMi4xMDMgMzYuMTg4MiAxNS4yMzMgMzYuMTg4MiA4LjQyNTUyIDM1LjQzNTNDNC43MDY4NCAzNS4wMTg5IDEuNzA4OCAzMi4wOTYyIDEuMjcyMTEgMjguMzcyQzAuNDY1Mjg2IDIxLjQ4MDggMC40NjUyODYgMTQuNTE5MSAxLjI3MjExIDcuNjI3ODlDMS43MDg4IDMuOTAxNzIgNC43MDY4NCAwLjk3OTA1MiA4LjQyNTUyIDAuNTY0NlpNMjguNDU4MiA2LjI2OTE5QzI3LjkzODggNi4yNjkxOSAyNy40NDA3IDYuNDc1MTUgMjcuMDczNSA2Ljg0MTc4QzI2LjcwNjMgNy4yMDg0MSAyNi41IDcuNzA1NjYgMjYuNSA4LjIyNDE1QzI2LjUgOC43NDI2NCAyNi43MDYzIDkuMjM5ODkgMjcuMDczNSA5LjYwNjUyQzI3LjQ0MDcgOS45NzMxNCAyNy45Mzg4IDEwLjE3OTEgMjguNDU4MiAxMC4xNzkxQzI4Ljk3NzUgMTAuMTc5MSAyOS40NzU2IDkuOTczMTQgMjkuODQyOSA5LjYwNjUyQzMwLjIxMDEgOS4yMzk4OSAzMC40MTY0IDguNzQyNjQgMzAuNDE2NCA4LjIyNDE1QzMwLjQxNjQgNy43MDU2NiAzMC4yMTAxIDcuMjA4NDEgMjkuODQyOSA2Ljg0MTc4QzI5LjQ3NTYgNi40NzUxNSAyOC45Nzc1IDYuMjY5MTkgMjguNDU4MiA2LjI2OTE5Wk05LjM2NTQ3IDE3Ljk5OUM5LjM2NTQ3IDE1LjUzNjEgMTAuMzQ1NSAxMy4xNzQyIDEyLjA4OTggMTEuNDMyN0MxMy44MzQyIDkuNjkxMjQgMTYuMjAwMSA4LjcxMjg5IDE4LjY2NyA4LjcxMjg5QzIxLjEzNCA4LjcxMjg5IDIzLjQ5OTkgOS42OTEyNCAyNS4yNDQzIDExLjQzMjdDMjYuOTg4NiAxMy4xNzQyIDI3Ljk2ODYgMTUuNTM2MSAyNy45Njg2IDE3Ljk5OUMyNy45Njg2IDIwLjQ2MTggMjYuOTg4NiAyMi44MjM3IDI1LjI0NDMgMjQuNTY1MkMyMy40OTk5IDI2LjMwNjcgMjEuMTM0IDI3LjI4NSAxOC42NjcgMjcuMjg1QzE2LjIwMDEgMjcuMjg1IDEzLjgzNDIgMjYuMzA2NyAxMi4wODk4IDI0LjU2NTJDMTAuMzQ1NSAyMi44MjM3IDkuMzY1NDcgMjAuNDYxOCA5LjM2NTQ3IDE3Ljk5OVoiIGZpbGw9IiMyQTY3REEiLz4KPC9nPgo8ZGVmcz4KPGNsaXBQYXRoIGlkPSJjbGlwMF84NzJfNDg1MTAiPgo8cmVjdCB3aWR0aD0iMzYiIGhlaWdodD0iMzYiIGZpbGw9IndoaXRlIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLjY2Njk5MikiLz4KPC9jbGlwUGF0aD4KPC9kZWZzPgo8L3N2Zz4K",
+              "size": 24,
+              "color": "grey",
+              "text": "default-text text-medium mb-4 text-dark-grey",
+              "link": "social:instagram"
+            },
+            {
+              "type": "text-with-icon",
+              "content": {
+                "uk": "Facebook",
+                "en": "Facebook",
+                "de": "Facebook"
+              },
+              "class": "default-text text-medium mb-4",
+              "icon": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzciIGhlaWdodD0iMzYiIHZpZXdCb3g9IjAgMCAzNyAzNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPG1hc2sgaWQ9Im1hc2swXzUxMjRfNDE5MDQiIHN0eWxlPSJtYXNrLXR5cGU6bHVtaW5hbmNlIiBtYXNrVW5pdHM9InVzZXJTcGFjZU9uVXNlIiB4PSIwIiB5PSIwIiB3aWR0aD0iMzciIGhlaWdodD0iMzYiPgo8cGF0aCBkPSJNMC42NjY5OTIgMEgzNi42NjdWMzZIMC42NjY5OTJWMFoiIGZpbGw9IndoaXRlIi8+CjwvbWFzaz4KPGcgbWFzaz0idXJsKCNtYXNrMF81MTI0XzQxOTA0KSI+CjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMC42NjY5OTIgMTguMTAwNUMwLjY2Njk5MiAyNy4wNTEgNy4xNjY0OSAzNC40OTEgMTUuNjY3IDM2VjIyLjk5OTVIMTEuMTY3VjE4SDE1LjY2N1YxMy45OTk1QzE1LjY2NyA5LjQ5OTUgMTguNTY2NSA3LjAwMDUgMjIuNjY3NSA3LjAwMDVDMjMuOTY2NSA3LjAwMDUgMjUuMzY3NSA3LjIgMjYuNjY2NSA3LjM5OTVWMTJIMjQuMzY3QzIyLjE2NjUgMTIgMjEuNjY3IDEzLjA5OTUgMjEuNjY3IDE0LjUwMDVWMThIMjYuNDY3TDI1LjY2NzUgMjIuOTk5NUgyMS42NjdWMzZDMzAuMTY3NSAzNC40OTEgMzYuNjY3IDI3LjA1MSAzNi42NjcgMTguMTAwNUMzNi42NjcgOC4xNDUgMjguNTY3IDAgMTguNjY3IDBDOC43NjY5OSAwIDAuNjY2OTkyIDguMTQ1IDAuNjY2OTkyIDE4LjEwMDVaIiBmaWxsPSIjMkE2N0RBIi8+CjwvZz4KPC9zdmc+Cg==",
+              "size": 24,
+              "color": "grey",
+              "text": "default-text text-medium mb-4 text-dark-grey",
+              "link": "social:facebook"
+            },
+            {
+              "type": "text-with-icon",
+              "content": {
+                "uk": "WhatsApp",
+                "en": "WhatsApp",
+                "de": "WhatsApp"
+              },
+              "class": "default-text text-medium mb-4",
+              "icon": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjUiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNSAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xOC4wODIgMTQuMzgyQzE3Ljc4NCAxNC4yMzMgMTYuMzIzIDEzLjUxNSAxNi4wNTEgMTMuNDE1QzE1Ljc3OSAxMy4zMTUgMTUuNTgxIDEzLjI2NyAxNS4zODIgMTMuNTY1QzE1LjE4NCAxMy44NjIgMTQuNjE1IDE0LjUzMSAxNC40NDIgMTQuNzI5QzE0LjI2OCAxNC45MjggMTQuMDk1IDE0Ljk1MiAxMy43OTggMTQuODA0QzEzLjUwMSAxNC42NTQgMTIuNTQzIDE0LjM0MSAxMS40MDggMTMuMzI5QzEwLjUyNSAxMi41NDEgOS45Mjc5OSAxMS41NjggOS43NTQ5OSAxMS4yN0M5LjU4MTk5IDEwLjk3MyA5LjczNTk5IDEwLjgxMiA5Ljg4NDk5IDEwLjY2NEMxMC4wMTkgMTAuNTMxIDEwLjE4MiAxMC4zMTcgMTAuMzMxIDEwLjE0NEMxMC40OCA5Ljk3MTAzIDEwLjUyOSA5Ljg0NjAzIDEwLjYyOCA5LjY0NzAzQzEwLjcyOCA5LjQ0OTAzIDEwLjY3OCA5LjI3NjAzIDEwLjYwMyA5LjEyNzAzQzEwLjUyOSA4Ljk3ODAzIDkuOTM0OTkgNy41MTUwMyA5LjY4Njk5IDYuOTIwMDNDOS40NDU5OSA2LjM0MTAzIDkuMjAwOTkgNi40MjAwMyA5LjAxODk5IDYuNDEwMDNDOC44NDQ5OSA2LjQwMjAzIDguNjQ2OTkgNi40MDAwMyA4LjQ0ODk5IDYuNDAwMDNDOC4yNTA5OSA2LjQwMDAzIDcuOTI4OTkgNi40NzQwMyA3LjY1Njk5IDYuNzcyMDNDNy4zODM5OSA3LjA2OTAzIDYuNjE2OTkgNy43ODgwMyA2LjYxNjk5IDkuMjUxMDNDNi42MTY5OSAxMC43MTMgNy42ODA5OSAxMi4xMjYgNy44Mjk5OSAxMi4zMjVDNy45Nzg5OSAxMi41MjQgOS45MjQ5OSAxNS41MjUgMTIuOTA2IDE2LjgxMkMxMy42MTYgMTcuMTE4IDE0LjE2OSAxNy4zMDEgMTQuNiAxNy40MzdDMTUuMzEyIDE3LjY2NCAxNS45NiAxNy42MzIgMTYuNDcyIDE3LjU1NUMxNy4wNDIgMTcuNDcgMTguMjMgMTYuODM2IDE4LjQ3OCAxNi4xNDJDMTguNzI2IDE1LjQ0OCAxOC43MjUgMTQuODUzIDE4LjY1MSAxNC43MjlDMTguNTc3IDE0LjYwNSAxOC4zNzkgMTQuNTMxIDE4LjA4MSAxNC4zODJNMTIuNjU5IDIxLjc4NUgxMi42NTVDMTAuODg0NCAyMS43ODU0IDkuMTQ2MzYgMjEuMzA5NCA3LjYyMjk5IDIwLjQwN0w3LjI2Mjk5IDIwLjE5M0wzLjUyMDk5IDIxLjE3NUw0LjUxOTk5IDE3LjUyN0w0LjI4NDk5IDE3LjE1M0MzLjI5NTA4IDE1LjU3NzQgMi43NzEyMyAxMy43NTM4IDIuNzczOTkgMTEuODkzQzIuNzc1OTkgNi40NDMwMyA3LjIwOTk5IDIuMDA5MDMgMTIuNjYzIDIuMDA5MDNDMTMuOTYxOCAyLjAwNTA5IDE1LjI0ODQgMi4yNTkzNCAxNi40NDggMi43NTcwMkMxNy42NDc3IDMuMjU0NyAxOC43MzY0IDMuOTg1ODcgMTkuNjUxIDQuOTA4MDNDMjAuNTcxNSA1LjgyNDMzIDIxLjMwMSA2LjkxNDEyIDIxLjc5NzUgOC4xMTQzMUMyMi4yOTM5IDkuMzE0NSAyMi41NDczIDEwLjYwMTIgMjIuNTQzIDExLjlDMjIuNTQxIDE3LjM1IDE4LjEwNyAyMS43ODUgMTIuNjU5IDIxLjc4NVpNMjEuMDcxIDMuNDg4MDNDMTkuOTY5MSAyLjM3OTMgMTguNjU4MyAxLjUwMDEzIDE3LjIxNDQgMC45MDE0MTNDMTUuNzcwNSAwLjMwMjY5NiAxNC4yMjIxIC0wLjAwMzY3NTMgMTIuNjU5IDMuMzI2OThlLTA1QzYuMTA0OTkgMy4zMjY5OGUtMDUgMC43Njg5OTIgNS4zMzUwMyAwLjc2Njk5MiAxMS44OTJDMC43NjM3NjYgMTMuOTc4OCAxLjMxMTE5IDE2LjAyOTUgMi4zNTM5OSAxNy44MzdMMC42NjY5OTIgMjRMNi45NzA5OSAyMi4zNDZDOC43MTUxNiAyMy4yOTU0IDEwLjY2OTIgMjMuNzkzMiAxMi42NTUgMjMuNzk0SDEyLjY2QzE5LjIxNCAyMy43OTQgMjQuNTUgMTguNDU5IDI0LjU1MiAxMS45MDFDMjQuNTU2OSAxMC4zMzgzIDI0LjI1MTggOC43OTAxMSAyMy42NTQ1IDcuMzQ2MDNDMjMuMDU3MiA1LjkwMTk2IDIyLjE3OTQgNC41OTA2NyAyMS4wNzIgMy40ODgwMyIgZmlsbD0iI0Q5RTBFRCIvPgo8L3N2Zz4K",
+              "size": 24,
+              "color": "grey",
+              "text": "default-text text-medium mb-4 text-dark-grey",
+              "link": "social:whatsApp"
+            },
+            {
+              "type": "text-with-icon",
+              "content": {
+                "uk": "Viber",
+                "en": "Viber",
+                "de": "Viber"
+              },
+              "class": "default-text text-medium mb-4",
+              "icon": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTIwLjg1NzUgMi4zMzY5MUMyMC4yNjI1IDEuNzkxOTEgMTcuODUyNSAwLjAzOTkwNTYgMTIuNDg1NSAwLjAxNjkwNTZDMTIuNDg1NSAwLjAxNjkwNTYgNi4xNTI0NyAtMC4zNjIwOTQgMy4wNjc0NyAyLjQ2ODkxQzEuMzUxNDcgNC4xODQ5MSAwLjc1MDQ3MSA2LjY5NzkxIDAuNjgxNDcxIDkuODE0OTFDMC42MTI0NzEgMTIuOTMxOSAwLjUzNTQ3MSAxOC43NzM5IDYuMTY2NDcgMjAuMzYxOUg2LjE3MTQ3TDYuMTY2NDcgMjIuNzgwOUM2LjE2NjQ3IDIyLjc4MDkgNi4xMjk0NyAyMy43NjA5IDYuNzczNDcgMjMuOTU3OUM3LjU1MTQ3IDI0LjIwMTkgOC4wMTE0NyAyMy40NTU5IDguNzU2NDcgMjIuNjUzOUM5LjE2NDQ3IDIyLjIxMjkgOS43MjY0NyAyMS41NjY5IDEwLjE1MzUgMjEuMDczOUMxMi42MDA1IDIxLjMwMSAxNS4wNjgzIDIxLjExMjcgMTcuNDUyNSAyMC41MTY5TDE3LjMwMjUgMjAuNTQ4OUMxOC4wODA1IDIwLjI5NTkgMjIuNDgyNSAxOS43MzI5IDIzLjE5NDUgMTMuODkxOUMyMy45Mzg1IDcuODYxOTEgMjIuODQwNSA0LjA1NzkxIDIwLjg1NzUgMi4zMzY5MVpNMjEuNTA5NSAxMy40NTE5QzIwLjkwMjUgMTguMzI2OSAxNy4zMzY1IDE4LjYzNjkgMTYuNjgwNSAxOC44NDY5QzE1LjI0ODUgMTkuMjEwOSAxMy42MDQ1IDE5LjQxODkgMTEuOTExNSAxOS40MTg5QzExLjQyNDggMTkuNDE4OSAxMC45NDMxIDE5LjQwMTkgMTAuNDY2NSAxOS4zNjc5TDEwLjUzMDUgMTkuMzcxOUMxMC41MzA1IDE5LjM3MTkgOC4wOTI0NyAyMi4zMTA5IDcuMzMzNDcgMjMuMDc0OUM3LjA4NTQ3IDIzLjMyMjkgNi44MTI0NyAyMy4zMDI5IDYuODE3NDcgMjIuODA3OUM2LjgxNzQ3IDIyLjQ4NDkgNi44MzY0NyAxOC43ODk5IDYuODM2NDcgMTguNzg5OUMyLjA2OTQ3IDE3LjQ2NzkgMi4zNDU0NyAxMi40OTE5IDIuNDAxNDcgOS44OTI5MUMyLjQ1NzQ3IDcuMjkzOTEgMi45NDU0NyA1LjE1NzkxIDQuMzk4NDcgMy43MjM5MUM3LjAxMDQ3IDEuMzU2OTEgMTIuMzg3NSAxLjcwNzkxIDEyLjM4NzUgMS43MDc5MUMxNi45MzA1IDEuNzI2OTEgMTkuMTA1NSAzLjA5NTkxIDE5LjYxMTUgMy41NTQ5MUMyMS4yODU1IDQuOTg5OTEgMjIuMTM4NSA4LjQyMjkgMjEuNTA5NSAxMy40NTE5Wk0xNC45OTg1IDkuNjYzOTFWOS42Nzc5MUMxNC45OTY0IDkuNzU1NzggMTQuOTY0NCA5LjgyOTg3IDE0LjkwOTMgOS44ODQ4OUMxNC44NTQxIDkuOTM5OTEgMTQuNzggOS45NzE2NiAxNC43MDIxIDkuOTczNTlDMTQuNjI0MiA5Ljk3NTUxIDE0LjU0ODYgOS45NDc0NiAxNC40OTA4IDkuODk1MjRDMTQuNDMzIDkuODQzMDEgMTQuMzk3NCA5Ljc3MDU4IDE0LjM5MTUgOS42OTI5MUMxNC40MTE4IDkuNDg0MTIgMTQuMzg2NiA5LjI3MjQgMTQuMzE3NyA5LjA3NDNDMTQuMjQ4NyA4Ljg3NjE5IDE0LjEzNzUgOC42OTU0MSAxMy45OTE5IDguNTQ0NDRDMTMuODQ2MiA4LjM5MzQ3IDEzLjY2OTUgOC4yNzU5IDEzLjQ3NCA4LjE5OTg0QzEzLjI3ODUgOC4xMjM3OCAxMy4wNjg5IDguMDkxMDUgMTIuODU5NSA4LjEwMzkxSDEyLjg2MzVDMTIuNzg1OCA4LjA5Nzg5IDEyLjcxMzMgOC4wNjIyNSAxMi42NjExIDguMDA0MzVDMTIuNjA5IDcuOTQ2NDUgMTIuNTgxIDcuODcwNzIgMTIuNTgzMSA3Ljc5MjhDMTIuNTg1MSA3LjcxNDg5IDEyLjYxNyA3LjY0MDczIDEyLjY3MjIgNy41ODU2N0MxMi43MjczIDcuNTMwNiAxMi44MDE1IDcuNDk4ODIgMTIuODc5NSA3LjQ5NjkxSDEyLjg5NjVIMTIuODk1NUwxMi45NjQ1IDcuNDk1OTFDMTMuMjQzNyA3LjQ5NTgxIDEzLjUxOTkgNy41NTMxMSAxMy43NzYgNy42NjQyNEMxNC4wMzIxIDcuNzc1MzcgMTQuMjYyNiA3LjkzNzk3IDE0LjQ1MzMgOC4xNDE5M0MxNC42NDM5IDguMzQ1ODkgMTQuNzkwNiA4LjU4Njg2IDE0Ljg4NDIgOC44NDk4OEMxNC45Nzc4IDkuMTEyOSAxNS4wMTY0IDkuMzkyMzYgMTQuOTk3NSA5LjY3MDkxTDE0Ljk5ODUgOS42NjM5MVpNMTUuOTQ5NSAxMC4xOTQ5QzE1Ljk5NjUgOC4yMDY5MSAxNC43NTQ1IDYuNjUwOTEgMTIuMzk2NSA2LjQ3NjkxQzEyLjM1NTYgNi40NzU2MyAxMi4zMTUzIDYuNDY2MSAxMi4yNzgyIDYuNDQ4ODlDMTIuMjQxIDYuNDMxNjggMTIuMjA3OCA2LjQwNzE1IDEyLjE4MDMgNi4zNzY3N0MxMi4xNTI5IDYuMzQ2MzggMTIuMTMxOSA2LjMxMDc3IDEyLjExODUgNi4yNzIwN0MxMi4xMDUyIDYuMjMzMzcgMTIuMDk5OCA2LjE5MjM3IDEyLjEwMjcgNi4xNTE1NEMxMi4xMDU2IDYuMTEwNyAxMi4xMTY3IDYuMDcwODggMTIuMTM1NCA2LjAzNDQ1QzEyLjE1NDEgNS45OTgwMSAxMi4xNzk5IDUuOTY1NzMgMTIuMjExMyA1LjkzOTUyQzEyLjI0MjggNS45MTMzMSAxMi4yNzkyIDUuODkzNzMgMTIuMzE4NCA1Ljg4MTk0QzEyLjM1NzYgNS44NzAxNSAxMi4zOTg4IDUuODY2MzkgMTIuNDM5NSA1Ljg3MDkxSDEyLjQzODVIMTIuNDU1NUMxMy4wMTUxIDUuODcwODkgMTMuNTY4OCA1Ljk4NTI2IDE0LjA4MjYgNi4yMDY5OUMxNC41OTY0IDYuNDI4NzMgMTUuMDU5NCA2Ljc1MzE1IDE1LjQ0MzMgNy4xNjAzM0MxNS44MjcxIDcuNTY3NTIgMTYuMTIzNyA4LjA0ODg3IDE2LjMxNDggOC41NzQ4NEMxNi41MDU5IDkuMTAwOCAxNi41ODc1IDkuNjYwMjggMTYuNTU0NSAxMC4yMTg5TDE2LjU1NTUgMTAuMjA3OUMxNi41NTAxIDEwLjI4NTQgMTYuNTE1MyAxMC4zNTc5IDE2LjQ1ODEgMTAuNDEwNkMxNi40MDEgMTAuNDYzMiAxNi4zMjU5IDEwLjQ5MTkgMTYuMjQ4MiAxMC40OTA5QzE2LjE3MDUgMTAuNDg5OSAxNi4wOTYyIDEwLjQ1OTIgMTYuMDQwNCAxMC40MDVDMTUuOTg0NyAxMC4zNTA5IDE1Ljk1MTggMTAuMjc3NSAxNS45NDg1IDEwLjE5OTlWMTAuMTkxOUwxNS45NDk1IDEwLjE5NDlaTTE4LjE0OTUgMTAuODIzOVYxMC44MjU5QzE4LjE0NTQgMTAuOTAzNCAxOC4xMTE5IDEwLjk3NjQgMTguMDU1NyAxMS4wM0MxNy45OTk1IDExLjA4MzYgMTcuOTI1IDExLjExMzcgMTcuODQ3NCAxMS4xMTRDMTcuNzY5OCAxMS4xMTQ0IDE3LjY5NDkgMTEuMDg1MSAxNy42MzgyIDExLjAzMjFDMTcuNTgxNiAxMC45NzkxIDE3LjU0NzMgMTAuOTA2NCAxNy41NDI1IDEwLjgyODlDMTcuNTE4NSA3LjAwNjkxIDE0Ljk2OTUgNC45MjU5MSAxMS44ODA1IDQuOTAzOTFDMTEuODAwMSA0LjkwMzkxIDExLjcyMyA0Ljg3MTk4IDExLjY2NjIgNC44MTUxNkMxMS42MDk0IDQuNzU4MzQgMTEuNTc3NSA0LjY4MTI3IDExLjU3NzUgNC42MDA5MUMxMS41Nzc1IDQuNTIwNTUgMTEuNjA5NCA0LjQ0MzQ4IDExLjY2NjIgNC4zODY2NUMxMS43MjMgNC4zMjk4MyAxMS44MDAxIDQuMjk3OTEgMTEuODgwNSA0LjI5NzkxQzE1LjMzOTUgNC4zMjE5MSAxOC4xMTk1IDYuNzA4OTEgMTguMTQ3NSAxMC44MjI5TDE4LjE0OTUgMTAuODIzOVpNMTcuNjI0NSAxNS40MjE5VjE1LjQzMDlDMTcuMTE4NSAxNi4zMjE5IDE2LjE3MTUgMTcuMzA1OSAxNS4xOTY1IDE2Ljk5MTlMMTUuMTg3NSAxNi45Nzc5QzEzLjQ0ODkgMTYuMzM4OCAxMS44MTk0IDE1LjQzNTIgMTAuMzU2NSAxNC4yOTg5TDEwLjM5NzUgMTQuMzI4OUM5LjY2OTYyIDEzLjc1MDUgOS4wMDkxNCAxMy4wOTIgOC40Mjg0NyAxMi4zNjU5TDguNDA5NDcgMTIuMzQwOUM3Ljg4MzY2IDExLjY3OTYgNy40MTQ2NiAxMC45NzUxIDcuMDA3NDcgMTAuMjM0OUw2Ljk2NzQ3IDEwLjE1NTlDNi40ODU1NyA5LjM2MDg5IDYuMDg1ODQgOC41MTg4OCA1Ljc3NDQ3IDcuNjQyOTFMNS43NDQ0NyA3LjU0NDkxQzUuNDMwNDcgNi41Njk5MSA2LjQwOTQ3IDUuNjIyOTEgNy4zMDU0NyA1LjExNjkxSDcuMzE0NDdDNy40OTA2OCA1LjAwMzg1IDcuNzAyNDEgNC45NTk4IDcuOTA5MDkgNC45OTMyQzguMTE1NzYgNS4wMjY2IDguMzAyODQgNS4xMzUxIDguNDM0NDcgNS4yOTc5MUw4LjQzNTQ3IDUuMjk5OTFDOC40MzU0NyA1LjI5OTkxIDkuMDE2NDcgNS45OTI5MSA5LjI2NTQ3IDYuMzM1OTFDOS40OTk0NyA2LjY1NDkxIDkuODE0NDcgNy4xNjU5MSA5Ljk3NzQ3IDcuNDUwOTFDMTAuMTAwMiA3LjY0NTY1IDEwLjE1MDEgNy44Nzc1IDEwLjExODUgOC4xMDU1QzEwLjA4NjggOC4zMzM0OSA5Ljk3NTYxIDguNTQyOTcgOS44MDQ0NyA4LjY5NjkxTDkuODAzNDcgOC42OTc5MUw5LjI0MTQ3IDkuMTQ3OTFDOS4xNTM3OSA5LjIzMjQ0IDkuMDg2MDMgOS4zMzU0NCA5LjA0MzE0IDkuNDQ5NDNDOS4wMDAyNCA5LjU2MzQyIDguOTgzMjcgOS42ODU1NCA4Ljk5MzQ3IDkuODA2OTFWOS44MDM5MUM5LjI3MTgzIDEwLjczMTIgOS43NzQxIDExLjU3NTcgMTAuNDU2IDEyLjI2M0MxMS4xMzc5IDEyLjk1MDMgMTEuOTc4NCAxMy40NTkyIDEyLjkwMzUgMTMuNzQ0OUwxMi45NDU1IDEzLjc1NTlDMTMuMDY2MiAxMy43NjUxIDEzLjE4NzUgMTMuNzQ3NyAxMy4zMDA4IDEzLjcwNTFDMTMuNDE0MSAxMy42NjI0IDEzLjUxNjggMTMuNTk1NCAxMy42MDE1IDEzLjUwODlMMTQuMDUxNSAxMi45NDY5QzE0LjIwNjQgMTIuNzc1NSAxNC40MTY5IDEyLjY2NDQgMTQuNjQ1OCAxMi42MzMxQzE0Ljg3NDcgMTIuNjAxOCAxNS4xMDcyIDEyLjY1MjQgMTUuMzAyNSAxMi43NzU5TDE1LjI5ODUgMTIuNzczOUMxNi4xMTE1IDEzLjIzNjkgMTYuODE0NSAxMy43NDU5IDE3LjQ1NTUgMTQuMzIyOUwxNy40NDQ1IDE0LjMxMjlDMTcuNjA3MSAxNC40NDI2IDE3LjcxNTMgMTQuNjI4NCAxNy43NDc5IDE0LjgzMzhDMTcuNzgwNCAxNS4wMzkyIDE3LjczNSAxNS4yNDkzIDE3LjYyMDUgMTUuNDIyOUwxNy42MjI1IDE1LjQxOTlMMTcuNjI0NSAxNS40MjE5WiIgZmlsbD0iI0Q5RTBFRCIvPgo8L3N2Zz4K",
+              "size": 24,
+              "color": "grey",
+              "text": "default-text text-medium mb-4 text-dark-grey",
+              "link": "social:viber"
+            },
+            {
+              "type": "text-with-icon",
+              "content": {
+                "uk": "Telegram",
+                "en": "Telegram",
+                "de": "Telegram"
+              },
+              "class": "default-text text-medium mb-4",
+              "icon": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTE2IDMyQzI0LjgzNjYgMzIgMzIgMjQuODM2NiAzMiAxNkMzMiA3LjE2MzQ0IDI0LjgzNjYgMCAxNiAwQzcuMTYzNDQgMCAwIDcuMTYzNDQgMCAxNkMwIDI0LjgzNjYgNy4xNjM0NCAzMiAxNiAzMloiIGZpbGw9InVybCgjcGFpbnQwX2xpbmVhcl8xNzdfNTkwNzYpIi8+CjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMTMuMDY3NCAyMy4zMzMxQzEyLjU0OSAyMy4zMzMxIDEyLjYzNjYgMjMuMTM3OSAxMi40NTgxIDIyLjY0MzhMMTAuOTMzNiAxNy42Mjc1TDIyLjY2NzQgMTAuNjY2OSIgZmlsbD0iI0M4REFFQSIvPgo8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTEzLjA2NjQgMjMuMzMzMUMxMy40NjY0IDIzLjMzMzEgMTMuNjQyNCAyMy4xNTA3IDEzLjg2NjQgMjIuOTMzMUwxNS45OTk1IDIwLjg1OTVMMTMuMzM4NCAxOS4yNTQ0IiBmaWxsPSIjQTlDOUREIi8+CjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMTMuMzM4NyAxOS4yNTQ0TDE5Ljc4NjcgMjQuMDE4NUMyMC41MjI3IDI0LjQyNDMgMjEuMDUzOSAyNC4yMTQ0IDIxLjIzNjMgMjMuMzM1N0wyMy44NjE2IDEwLjk2N0MyNC4xMzA0IDkuODg5OSAyMy40NTA3IDkuNDAwOTQgMjIuNzQ2NyA5LjcyMDNMNy4zMzQ4OCAxNS42NjMzQzYuMjgyNzIgMTYuMDg1NyA2LjI4OTEyIDE2LjY3MiA3LjE0Mjg4IDE2LjkzMzdMMTEuMDk4MSAxOC4xNjgzTDIwLjI1NDYgMTIuMzkxN0MyMC42ODY2IDEyLjEyOTMgMjEuMDgzNCAxMi4yNzAxIDIwLjc1NzYgMTIuNTU5MyIgZmlsbD0idXJsKCNwYWludDFfbGluZWFyXzE3N181OTA3NikiLz4KPGRlZnM+CjxsaW5lYXJHcmFkaWVudCBpZD0icGFpbnQwX2xpbmVhcl8xNzdfNTkwNzYiIHgxPSIyMTMzLjQ0IiB5MT0iNTMzLjQ0IiB4Mj0iMTMzMy40NCIgeTI9IjI0MDAiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj4KPHN0b3Agc3RvcC1jb2xvcj0iIzM3QUVFMiIvPgo8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMxRTk2QzgiLz4KPC9saW5lYXJHcmFkaWVudD4KPGxpbmVhckdyYWRpZW50IGlkPSJwYWludDFfbGluZWFyXzE3N181OTA3NiIgeDE9IjEwNzEuOTYiIHkxPSI2NzQuNTExIiB4Mj0iMTI0OC4xIiB5Mj0iMTA3NS4zMyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPgo8c3RvcCBzdG9wLWNvbG9yPSIjRUZGN0ZDIi8+CjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0id2hpdGUiLz4KPC9saW5lYXJHcmFkaWVudD4KPC9kZWZzPgo8L3N2Zz4K",
+              "size": 24,
+              "color": "grey",
+              "text": "default-text text-medium mb-4 text-dark-grey",
+              "link": "social:telegram"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "float",
+      "children": [
+        {
           "type": "section",
           "width": 360,
           "children": [
@@ -256,7 +512,7 @@
                 "en": "Viber",
                 "de": "Viber"
               },
-              "link": "viber://chat?number=+380440000101"
+              "link": "social:viber"
             },
             {
               "type": "text-with-icon",
@@ -269,7 +525,7 @@
                 "en": "WhatsApp",
                 "de": "WhatsApp"
               },
-              "link": "https://wa.me"
+              "link": "social:whatsApp"
             },
             {
               "type": "text-with-icon",
@@ -282,7 +538,7 @@
                 "en": "Telegram",
                 "de": "Telegram"
               },
-              "link": "https://t.me"
+              "link": "social:telegram"
             },
             {
               "type": "text-with-icon",
@@ -295,7 +551,7 @@
                 "en": "Facebook",
                 "de": "Facebook"
               },
-              "link": "https://www.facebook.com/virtuallineband/?locale=hr_HR"
+              "link": "social:facebook"
             },
             {
               "type": "text-with-icon",
@@ -308,7 +564,7 @@
                 "en": "Instagram",
                 "de": "Instagram"
               },
-              "link": "https://www.instagram.com/popular/virtualline/"
+              "link": "social:instagram"
             },
             {
               "type": "text-with-icon",
@@ -321,11 +577,12 @@
                 "en": "TikTok",
                 "de": "TikTok"
               },
-              "link": "https://www.tiktok.com/tag/virtualline"
+              "link": "social:tiktok"
             }
           ]
         }
-      ]
+      ],
+      "hidden": true
     },
     {
       "type": "image",
@@ -344,6 +601,24 @@
         "en": "/api/content/images/e7f06da776d054553524df9d7ad75efe234bda9bf3b0190ad17dbce9857392aa.png",
         "de": "/api/content/images/e7f06da776d054553524df9d7ad75efe234bda9bf3b0190ad17dbce9857392aa.png"
       }
+    },
+    {
+      "type": "component",
+      "content": "FeedbackForm",
+      "props": {
+        "type": "message",
+        "title": {
+          "uk": "Маєте питання або пропозицію?",
+          "en": "Do you have any questions or suggestions?",
+          "de": "Haben Sie Fragen oder Anregungen?"
+        },
+        "text": {
+          "uk": "Напишіть нам - відповімо якнайшвидше!",
+          "en": "Write to us - we will respond as soon as possible!",
+          "de": "Schreiben Sie uns - wir antworten so schnell wie möglich!"
+        }
+      },
+      "editorLabel": "contact-form"
     }
   ]
 }

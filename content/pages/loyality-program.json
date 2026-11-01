@@ -10,9 +10,9 @@
         {
           "type": "image",
           "content": {
-            "uk": "/api/content/images/4c4a82784e73dbd79b1bf361a15440396af6de0c1f9c8386207852214f775770.png",
-            "en": "/api/content/images/4c4a82784e73dbd79b1bf361a15440396af6de0c1f9c8386207852214f775770.png",
-            "de": "/api/content/images/4c4a82784e73dbd79b1bf361a15440396af6de0c1f9c8386207852214f775770.png"
+            "uk": "/api/content/images/loyality-program/03.jpg?v=9018cd0e",
+            "en": "/api/content/images/loyality-program/03.jpg?v=9018cd0e",
+            "de": "/api/content/images/loyality-program/03.jpg?v=9018cd0e"
           }
         },
         {
@@ -21,25 +21,26 @@
             {
               "type": "header",
               "content": {
-                "uk": "Програма лояльності",
-                "en": "Loyalty program",
-                "de": "Treueprogramm"
-              }
+                "uk": "Багатовимірний кешбек",
+                "en": "Multidimensional Cashback",
+                "de": "Mehrdimensionales Cashback"
+              },
+              "class": "mt-16 mb-8 text-center"
             },
             {
               "type": "text",
               "class": "h5 text-medium text-primary my-4",
               "content": {
-                "uk": "Працюйте з нами частіше — отримуйте більше",
-                "en": "Work with us more often — get more rewards",
-                "de": "Arbeiten Sie öfter mit uns — erhalten Sie mehr Vorteile"
+                "uk": "Наша лояльність безмежна, як і сам простір.",
+                "en": "Our loyalty is boundless, just like space itself.",
+                "de": "Unsere Treue ist grenzenlos, genau wie der Weltraum selbst."
               }
             },
             {
               "type": "text",
               "class": "h6 text-medium text-black",
               "content": {
-                "uk": "Ми цінуємо вашу довіру та вибір нашої компанії, тому розробили спеціальну Програму лояльності, яка винагороджує постійних клієнтів вигідними бонусами та знижками.",
+                "uk": "Замість нудних відсотків і балів наші клієнти накопичують рівні цифрового просвітлення",
                 "en": "We value your trust and choice, so we have developed a special Loyalty Program that rewards our regular customers with attractive bonuses and discounts.",
                 "de": "Wir schätzen Ihr Vertrauen und Ihre Wahl unserer Firma, daher haben wir ein spezielles Treueprogramm entwickelt, das unsere regelmäßigen Kunden mit attraktiven Boni und Rabatten belohnt."
               }
@@ -52,9 +53,9 @@
       "type": "title",
       "class": "text-left",
       "content": {
-        "uk": "Як працює програма лояльності?",
-        "en": "How does the loyalty program work?",
-        "de": "Wie funktioniert das Treueprogramm?"
+        "uk": "Рівні цифрової еволюції",
+        "en": "Levels of Digital Evolution",
+        "de": "Stufen der digitalen Evolution"
       }
     },
     {
@@ -78,18 +79,18 @@
               "type": "text",
               "class": "giga-text text-accent mt-n8",
               "content": {
-                "uk": "",
-                "en": "",
-                "de": ""
+                "uk": "1",
+                "en": "1",
+                "de": "1"
               }
             },
             {
               "type": "text",
               "class": "h6 text-medium text-black",
               "content": {
-                "uk": "",
-                "en": "",
-                "de": ""
+                "uk": "Ви вперше з’явилися в нашій галактиці, мова якої здається вам художнім свистом.",
+                "en": "You’ve just arrived in our galaxy, where the language sounds like artistic whistling to you.",
+                "de": "Du bist zum ersten Mal in unserer Galaxie aufgetaucht, deren Sprache dir wie kunstvolles Pfeifen vorkommt."
               }
             }
           ]
@@ -103,18 +104,18 @@
               "type": "text",
               "class": "giga-text text-accent mt-n8",
               "content": {
-                "uk": "",
-                "en": "",
-                "de": ""
+                "uk": "2",
+                "en": "2",
+                "de": "2"
               }
             },
             {
               "type": "text",
               "class": "h6 text-medium text-black",
               "content": {
-                "uk": "",
-                "en": "",
-                "de": ""
+                "uk": "Ви вивчили мову аборигенів нашої галактики настільки, що вам дали чашку кави замість стільця.",
+                "en": "You’ve learnt enough of the language of our galaxy’s natives to be given a cup of coffee instead of a chair.",
+                "de": "Du hast die Sprache der Ureinwohner unserer Galaxie so gut gelernt, dass man dir eine Tasse Kaffee statt eines Stuhls serviert."
               }
             }
           ]
@@ -128,18 +129,18 @@
               "type": "text",
               "class": "giga-text text-accent mt-n8",
               "content": {
-                "uk": "",
-                "en": "",
-                "de": ""
+                "uk": "3",
+                "en": "3",
+                "de": "3"
               }
             },
             {
               "type": "text",
               "class": "h6 text-medium text-black",
               "content": {
-                "uk": "",
-                "en": "",
-                "de": ""
+                "uk": "Ви настільки опанували мову, що аборигени починають побоюватися вашого впливу на міжпланетні відносини.",
+                "en": "You have mastered the language to such an extent that the natives are beginning to fear your influence on interplanetary relations.",
+                "de": "Sie haben die Sprache so gut gemeistert, dass die Ureinwohner beginnen, Ihren Einfluss auf die interplanetarischen Beziehungen zu fürchten."
               }
             }
           ]
@@ -153,18 +154,18 @@
               "type": "text",
               "class": "giga-text text-accent mt-n8",
               "content": {
-                "uk": "",
-                "en": "",
-                "de": ""
+                "uk": "4",
+                "en": "4",
+                "de": "4"
               }
             },
             {
               "type": "text",
               "class": "h6 text-medium text-black",
               "content": {
-                "uk": "",
-                "en": "",
-                "de": ""
+                "uk": "Ви вільно володієте мовою і можете сміливо балотуватися до парламенту нашої галактики.",
+                "en": "You are fluent in the language and can confidently stand for election to our galaxy’s parliament.",
+                "de": "Sie beherrschen die Sprache fließend und können sich getrost für das Parlament unserer Galaxie bewerben."
               }
             }
           ]
@@ -175,34 +176,25 @@
       "type": "baner",
       "class": "bright-grey pa-0",
       "dark": false,
-      "image": "/api/content/images/ea0895b5644f0139b203d3e9950c308edfa47e379c91b38cffaaff87a89dcfbd.png",
+      "image": "/api/content/images/loyality-program/03.jpeg?v=a41bb90f",
       "content": {
-        "uk": "/api/content/images/ea0895b5644f0139b203d3e9950c308edfa47e379c91b38cffaaff87a89dcfbd.png",
-        "en": "/api/content/images/ea0895b5644f0139b203d3e9950c308edfa47e379c91b38cffaaff87a89dcfbd.png",
-        "de": "/api/content/images/ea0895b5644f0139b203d3e9950c308edfa47e379c91b38cffaaff87a89dcfbd.png"
+        "uk": "/api/content/images/loyality-program/baner-desktop-2.jpg?v=ef67b50a",
+        "en": "/api/content/images/loyality-program/baner-desktop-2.jpg?v=ef67b50a",
+        "de": "/api/content/images/loyality-program/baner-desktop-2.jpg?v=ef67b50a"
       },
       "title": {
-        "uk": "",
-        "en": "",
-        "de": ""
+        "uk": "Кешбек нервових клітин",
+        "en": "Neuronal Cashback",
+        "de": "Cashback in Form von Nervenzellen"
       },
       "children": [
         {
           "type": "text",
-          "class": "h4 text-medium text-primary my-8",
+          "class": "h4 text-medium my-8 text-light-green",
           "content": {
-            "uk": "",
-            "en": "",
-            "de": ""
-          }
-        },
-        {
-          "type": "text",
-          "class": "h6 text-medium text-black",
-          "content": {
-            "uk": "",
-            "en": "",
-            "de": ""
+            "uk": "Залишаючи свої дані, ви погоджуєтеся з тим, що ваша карма покращується на 15%.",
+            "en": "By providing your details, you agree that your karma will improve by 15 per cent.",
+            "de": "Mit der Angabe Ihrer Daten erklären Sie sich damit einverstanden, dass sich Ihr Karma um 15 % verbessert."
           }
         }
       ]
@@ -215,6 +207,119 @@
         "en": "",
         "de": ""
       }
+    },
+    {
+      "type": "float",
+      "children": [
+        {
+          "type": "component",
+          "content": "CardWithHover",
+          "props": {
+            "card": {
+              "type": "card",
+              "children": [
+                {
+                  "type": "card",
+                  "icon": "mdi-numeric-1-box-multiple",
+                  "title": {
+                    "uk": "Випадковий перехожий",
+                    "en": "«Случайный прохожий»",
+                    "de": "Zufälliger Passant"
+                  },
+                  "content": {
+                    "uk": [
+                      "0–1 проєкт"
+                    ],
+                    "en": [
+                      "(0–1 проект)"
+                    ],
+                    "de": [
+                      "0–1 Projekt"
+                    ]
+                  }
+                },
+                {
+                  "type": "card",
+                  "icon": "mdi-numeric-1-box-multiple",
+                  "title": {
+                    "uk": "«Випадковий перехожий»",
+                    "en": "Casual Passer-by",
+                    "de": "Zufälliger Passant"
+                  },
+                  "content": {
+                    "uk": [
+                      "Ви зайшли, взяли рахунок без передоплати й не злякалися слів «монорепозиторій» та «асинхронність»."
+                    ],
+                    "en": [
+                      "You popped in, didn’t ask for an upfront payment, and weren’t put off by terms like ‘monorepository’ and ‘asynchronous’."
+                    ],
+                    "de": [
+                      "Sie sind hereingekommen, haben eine Rechnung ohne Vorauszahlung erhalten und sich nicht von Begriffen wie „Monorepository“ und „Asynchronität“ abschrecken lassen."
+                    ]
+                  },
+                  "titleClass": "text-medium text-center text-light-green",
+                  "contentClass": "default-text text-thin text-center text-light-grey-1",
+                  "color": "light-green"
+                }
+              ]
+            },
+            "hoverColor": "selected-date-first-fone-color",
+            "hoverImage": "/api/content/images/loyality-program/baner-desktop.webp?v=c7662035"
+          }
+        },
+        {
+          "type": "component",
+          "content": "CardWithHover",
+          "props": {
+            "card": {
+              "type": "card",
+              "children": [
+                {
+                  "type": "card",
+                  "icon": "mdi-numeric-2-box-multiple",
+                  "title": {
+                    "uk": "Повелитель комітів",
+                    "en": "Lord of Commits",
+                    "de": "Herr der Commits"
+                  },
+                  "content": {
+                    "uk": [
+                      "2–3 проєкти"
+                    ],
+                    "en": [
+                      "2–3 projects"
+                    ],
+                    "de": [
+                      "2–3 Projekte"
+                    ]
+                  }
+                },
+                {
+                  "type": "card",
+                  "icon": "mdi-numeric-2-box-multiple",
+                  "title": {
+                    "uk": "",
+                    "en": "",
+                    "de": ""
+                  },
+                  "content": {
+                    "uk": [
+                      "Ви затвердили макет з першого разу (ну добре, з другого)."
+                    ],
+                    "en": [
+                      "You approved the mock-up at the first attempt (well, okay, the second)."
+                    ],
+                    "de": [
+                      "Sie haben das Layout auf Anhieb genehmigt (na gut, beim zweiten Mal)."
+                    ]
+                  }
+                }
+              ]
+            },
+            "hoverColor": "blue"
+          }
+        }
+      ]
     }
   ],
   "title": {

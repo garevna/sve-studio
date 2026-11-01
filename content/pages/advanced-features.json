@@ -5,7 +5,7 @@
     "en": "Advanced Features",
     "de": "Erweiterte Funktionen"
   },
-  "visible": false,
+  "visible": true,
   "breadcrumbs": false,
   "backButton": false,
   "hero": false,
@@ -13,11 +13,20 @@
     {
       "type": "title",
       "content": {
-        "uk": "Virtual Dimension. Ми створюємо світи, бо в цьому реальність уже трохи підвисає.",
-        "en": "",
-        "de": ""
+        "uk": "Virtual Dimension",
+        "en": "Virtual Dimension",
+        "de": "Virtual Dimension"
       },
-      "class": "my-8 text-center"
+      "class": "my-8 text-center accent-font text-selected-date-first-fone-color text-thin h1"
+    },
+    {
+      "type": "title",
+      "content": {
+        "uk": "Ми створюємо світи, бо в цьому реальність уже трохи підвисає.",
+        "en": "We create worlds because reality’s already starting to fall a bit short.",
+        "de": "Wir erschaffen Welten, weil die Realität hier schon ein bisschen ins Stocken gerät."
+      },
+      "class": "my-8 text-center text-selected-date-first-fone-color accent-font-2"
     },
     {
       "type": "section",
@@ -121,11 +130,41 @@
     {
       "type": "text",
       "content": {
-        "uk": "Коли буденність стає занадто передбачуваною, а закони фізики — занадто нудними, ми відкриваємо портал у дев’ятий вимір. Ні, ми не продаємо VR-окуляри. Ми продаємо квитки в один кінець туди, де гравітація — це лише рекомендація.",
-        "en": "",
-        "de": ""
+        "uk": "Коли буденність стає занадто передбачуваною, а закони фізики — занадто нудними, ми відкриваємо портал у дев’ятий вимір.",
+        "en": "When everyday life becomes too predictable and the laws of physics too tedious, we open a portal to the ninth dimension.",
+        "de": "Wenn der Alltag zu vorhersehbar und die Gesetze der Physik zu langweilig werden, öffnen wir ein Portal in die neunte Dimension."
       },
       "class": "default-text text-medium mb-4"
+    },
+    {
+      "type": "slider-with-images",
+      "images": [
+        {
+          "src": "/api/content/images/advanced-features/01.jpg?v=d021a659"
+        },
+        {
+          "src": "/api/content/images/advanced-features/03-2.jpg?v=ef67b50a"
+        },
+        {
+          "src": "/api/content/images/advanced-features/04.webp?v=7f1a32fe"
+        },
+        {
+          "src": "/api/content/images/advanced-features/05.webp?v=950bc377"
+        },
+        {
+          "src": "/api/content/images/advanced-features/06.jpeg?v=f0a94ba0"
+        },
+        {
+          "src": "/api/content/images/advanced-features/08.jpg?v=797b88fd"
+        },
+        {
+          "src": "/api/content/images/advanced-features/09.webp?v=b612a2aa"
+        },
+        {
+          "src": "/api/content/images/advanced-features/12-2.webp?v=ea71a76d"
+        }
+      ],
+      "height": 300
     }
   ]
 }

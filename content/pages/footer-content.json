@@ -8,22 +8,44 @@
       "type": "section",
       "children": [
         {
-          "type": "component",
-          "content": "FeedbackCard",
-          "width": 470,
-          "props": {
-            "type": "call-request",
+          "type": "image",
+          "content": {
+            "uk": "/api/content/images/footer-content/06.jpeg?v=f0a94ba0",
+            "en": "/api/content/images/footer-content/06.jpeg?v=f0a94ba0",
+            "de": "/api/content/images/footer-content/06.jpeg?v=f0a94ba0"
+          }
+        },
+        {
+          "type": "button",
+          "content": {
+            "uk": "Зробити крок у невідоме",
+            "en": "Take a step into the unknown",
+            "de": "Wage den Schritt ins Ungewisse"
+          },
+          "class": "mt-8 mb-6 mb-6 mb-6 primary-button",
+          "form": {
+            "type": "question",
             "title": {
-              "uk": "Замовити зворотний дзвінок",
-              "en": "Request a callback",
-              "de": "Rückruf anfordern"
+              "uk": "Маєте питання або пропозицію?",
+              "en": "Do you have any questions or suggestions?",
+              "de": "Haben Sie Fragen oder Anregungen?"
             },
             "text": {
-              "uk": "Вкажіть свої контактні дані, і наш представник зв'яжеться з вами найближчим часом.",
-              "en": "Leave your contact details and our representative will reach out shortly.",
-              "de": "Hinterlassen Sie Ihre Kontaktdaten, und unser Vertreter meldet sich in Kürze."
+              "uk": "Напишіть нам - відповімо якнайшвидше!",
+              "en": "Write to us - we will respond as soon as possible!",
+              "de": "Schreiben Sie uns - wir antworten so schnell wie möglich!"
             }
-          }
+          },
+          "icon": "mdi-send-variant-outline",
+          "route": "dynamic-page",
+          "params": {
+            "pageId": "contacts-page"
+          },
+          "action": "form"
+        },
+        {
+          "type": "component",
+          "content": "FooterIcons"
         }
       ]
     },
@@ -116,20 +138,13 @@
           "children": [
             {
               "type": "text",
-              "class": "default-text text-medium mb-4",
+              "class": "default-text text-medium mb-4 text-white",
               "content": {
                 "uk": "Контакти",
                 "en": "Contact details",
                 "de": "Kontakt"
               },
               "id": "footer-contacts-heading"
-            },
-            {
-              "type": "component",
-              "content": "FooterIcons",
-              "props": {
-                "links": {}
-              }
             }
           ]
         },
@@ -140,9 +155,9 @@
             {
               "type": "text-with-icon",
               "size": 18,
-              "text": "default-text text-medium mb-4",
+              "text": "default-text text-medium mb-4 text-light-green",
               "content": {
-                "uk": "(+380) 44 000 01 01",
+                "uk": "(+380) 99 491 27 53",
                 "en": "(+380) 44 000 01 01",
                 "de": "(+380) 44 000 01 01"
               },
@@ -150,57 +165,42 @@
             },
             {
               "type": "text-with-icon",
-              "icon": "",
-              "text": "default-text text-medium mb-4",
               "content": {
-                "uk": "(+380) 44 000 01 02",
-                "en": "(+380) 44 000 01 02",
-                "de": "(+380) 44 000 01 02"
+                "uk": "(+380) 50 986 40 13",
+                "en": "(+380) 50 986 40 13",
+                "de": "(+380) 50 986 40 13"
               },
-              "size": 18
-            },
-            {
-              "type": "text-with-icon",
-              "icon": "",
-              "text": "default-text text-medium mb-4 text-light-grey-2",
-              "content": {
-                "uk": "(+380) 44 000 01 03",
-                "en": "(+380) 44 000 01 03",
-                "de": "(+380) 44 000 01 03"
-              },
-              "size": 18
-            },
-            {
-              "type": "text-with-icon",
+              "class": "default-text text-medium mb-4",
+              "icon": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjUiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNSAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXAwXzg3Ml80ODUzMCkiPgo8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTAuNTAwOTc3IDBIMjQuNTAxVjI0SDAuNTAwOTc3VjBaIiBmaWxsPSIjRkZENzAwIi8+CjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMC41MDA5NzcgMEgyNC41MDFWMTJIMC41MDA5NzdWMFoiIGZpbGw9IiMyQTY3REEiLz4KPC9nPgo8ZGVmcz4KPGNsaXBQYXRoIGlkPSJjbGlwMF84NzJfNDg1MzAiPgo8cmVjdCB4PSIwLjUiIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgcng9IjEyIiBmaWxsPSJ3aGl0ZSIvPgo8L2NsaXBQYXRoPgo8L2RlZnM+Cjwvc3ZnPgo=",
               "size": 18,
-              "text": "default-text text-medium mb-4",
-              "content": {
-                "uk": "(+39) 02 0000 0001",
-                "en": "(+39) 02 0000 0001",
-                "de": "(+39) 02 0000 0001"
-              },
-              "icon": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjUiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNSAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEuMTM3NyAxMS45OTkyQzEuMTM3NyAxNi45MTE3IDQuMjg3NyAyMS4wNzQyIDguNjM3NyAyMi42MTE3VjEuMzg2NzJDNC4yODc3IDIuOTI0MjIgMS4xMzc3IDcuMDg2NzIgMS4xMzc3IDExLjk5OTJaIiBmaWxsPSIjNzVBODQzIi8+CjxwYXRoIGQ9Ik0yMy42Mzc3IDExLjk5OTJDMjMuNjM3NyA3LjA4NjcyIDIwLjQ4NzcgMi45MjQyMiAxNi4xMzc3IDEuMzg2NzJWMjIuNjExN0MyMC41MjUyIDIxLjA3NDIgMjMuNjM3NyAxNi45MTE3IDIzLjYzNzcgMTEuOTk5MloiIGZpbGw9IiNFRDRDNUMiLz4KPHBhdGggZD0iTTguNjM3NyAyMi42MTI1QzkuODAwMiAyMy4wMjUgMTEuMDc1MiAyMy4yNSAxMi4zODc3IDIzLjI1QzEzLjcwMDIgMjMuMjUgMTQuOTc1MiAyMy4wMjUgMTYuMTM3NyAyMi42MTI1VjEuMzg3NUMxNC45NzUyIDAuOTc1IDEzLjcwMDIgMC43NSAxMi4zODc3IDAuNzVDMTEuMDc1MiAwLjc1IDkuODAwMiAwLjk3NSA4LjYzNzcgMS4zODc1VjIyLjYxMjVaIiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4K"
+              "color": "transparent",
+              "contact": "contact-2",
+              "text": "default-text text-medium text-light-green"
             },
             {
               "type": "text-with-icon",
-              "icon": "",
-              "text": "default-text text-medium mb-4",
               "content": {
-                "uk": "(+39) 02 0000 0002",
-                "en": "(+39) 02 0000 0002",
-                "de": "(+39) 02 0000 0002"
+                "uk": "irina.h.fylyppova@gmail.com",
+                "en": "irina.h.fylyppova@gmail.com",
+                "de": "irina.h.fylyppova@gmail.com"
               },
-              "size": 18
+              "class": "default-text text-medium mb-4",
+              "icon": "mdi-email-fast-outline",
+              "size": 22,
+              "color": "light-warning",
+              "contact": "contact-3",
+              "text": "default-text text-medium text-light-green"
             }
           ]
-        },
-        {
-          "type": "component",
-          "content": "FooterVisaLogo"
         }
       ]
     }
   ],
-  "background": "dark",
-  "ver": 2
+  "background": "primary",
+  "ver": 2,
+  "tiles": [
+    "black",
+    "primary",
+    "dark-grey"
+  ]
 }

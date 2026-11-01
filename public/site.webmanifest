@@ -1,6 +1,6 @@
 {
-  "name": "Site Visual Editor (SVE)",
-  "short_name": "SVE",
+  "name": "Pagewright",
+  "short_name": "Pagewright",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",

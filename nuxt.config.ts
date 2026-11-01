@@ -7,7 +7,7 @@ const contentDir = fileURLToPath(new URL('content', import.meta.url))
 // (set by the deploy workflow). Nuxt reads the same variable for its base.
 const root = process.env.NUXT_APP_BASE_URL || '/'
 
-// Nuxt app of the Site Visual Editor (SVE).
+// Nuxt app of Pagewright (the editor).
 //
 // The editor's code lives in src/; app/ holds only the Nuxt glue - root
 // component, plugins, route table. Rendering: the editor is client-only - it lives on IndexedDB
@@ -51,7 +51,7 @@ export default defineNuxtConfig({
 
   app: {
     head: {
-      title: 'Site Visual Editor (SVE)',
+      title: 'Pagewright',
       // A deep link opened on GitHub Pages comes back through 404.html as
       // ?__sve_path=... - the address is put back before the router starts.
       script: [{ innerHTML: String.raw`(function(){var p=new URLSearchParams(location.search).get('__sve_path');if(p!==null){history.replaceState(null,'',location.pathname+p.replace(/^\//,''))}})()`, tagPosition: 'head' }],

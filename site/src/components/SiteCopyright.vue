@@ -4,16 +4,16 @@
   import { useCommonStore } from '@/stores/common'
 
   // The last line of every page: the site owner's copyright, and - smaller -
-  // that the site is made with Site Visual Editor, whose author keeps the
+  // that the site is made with Pagewright, whose author keeps the
   // rights to it (see the repository's LICENSE).
   const { company, locale } = storeToRefs(useCommonStore())
 
   const year = new Date().getFullYear()
 
   const MADE_WITH: Record<string, string> = {
-    uk: 'Зроблено в Site Visual Editor',
-    en: 'Made with Site Visual Editor',
-    de: 'Erstellt mit Site Visual Editor',
+    uk: 'Зроблено в Pagewright',
+    en: 'Made with Pagewright',
+    de: 'Erstellt mit Pagewright',
   }
   const madeWith = computed(() => MADE_WITH[locale.value] ?? MADE_WITH.en)
 </script>

@@ -1,4 +1,4 @@
-# Site Visual Editor (SVE)
+# Pagewright
 
 **English** | [Українська](README.uk.md)
 

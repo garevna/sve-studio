@@ -16,7 +16,7 @@ const html = `<!doctype html>
 <html lang="uk">
 <head>
 <meta charset="utf-8">
-<title>Site Visual Editor</title>
+<title>Pagewright</title>
 <script>
   (function () {
     var root = ${JSON.stringify(root)}

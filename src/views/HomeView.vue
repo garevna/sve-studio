@@ -31,7 +31,7 @@
     <v-main>
       <!-- The same top bar as every other screen, the editor's language and
         colour scheme on it (EditorLocaleMenu, SveLookMenu). -->
-      <SveTopBar title="Site Visual Editor" />
+      <SveTopBar title="Pagewright" />
 
       <div class="sve-ui home">
         <header class="home__intro">

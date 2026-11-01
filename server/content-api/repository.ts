@@ -16,6 +16,9 @@ interface DocRecord {
   body?: string
   deleted?: boolean
   visible?: boolean
+  // Fingerprint (manifest.json hashes) of the starting file the saved body
+  // was made from - see read().
+  baseHash?: string
 }
 
 export interface PageListItem {
@@ -82,7 +85,15 @@ export function createContentRepository ({ seed, docs, images, followSeed = fals
       return null
     }
     if (typeof stored?.body === 'string') {
-      const fromFile = followSeed ? await seed.readText(seedPath(kind, name)) : null
+      // A saved copy is read unless its starting file has had a new
+      // release since the copy was made (or the copy is from before copies
+      // remembered that): the release wins then. In a built demo the owner's
+      // own browser otherwise kept showing pages saved there long after
+      // newer versions were published. A page that exists only here (no
+      // starting file) is always read from here.
+      const hash = (await manifest()).hashes?.[seedPath(kind, name)]
+      const newerRelease = !!hash && stored.baseHash !== hash
+      const fromFile = followSeed || newerRelease ? await seed.readText(seedPath(kind, name)) : null
       return fromFile ?? stored.body
     }
     return seed.readText(seedPath(kind, name))
@@ -90,7 +101,8 @@ export function createContentRepository ({ seed, docs, images, followSeed = fals
 
   async function write (kind: DocKind, name: string, body: string): Promise<void> {
     const stored = await record(kind, name)
-    await docs.setItem(key(kind, name), { ...stored, body, deleted: false } satisfies DocRecord)
+    const baseHash = (await manifest()).hashes?.[seedPath(kind, name)]
+    await docs.setItem(key(kind, name), { ...stored, body, deleted: false, baseHash } satisfies DocRecord)
   }
 
   async function remove (kind: DocKind, name: string): Promise<void> {

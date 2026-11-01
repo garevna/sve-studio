@@ -9,6 +9,9 @@ export interface SeedManifest {
   settings: string[]
   styles: string[]
   images: string[]
+  // Fingerprint of every file ("pages/home-page.json": "...") - tells
+  // whether a file changed since a copy of it was saved.
+  hashes?: Record<string, string>
 }
 
 export interface SeedSource {

@@ -8,9 +8,11 @@ declare const self: DedicatedWorkerGlobalScope
 // source/seedHash: where the record's content came from. 'seed' - a copy of
 // the starting file in content/, with that file's fingerprint (seedHash)
 // at the time; refreshed automatically when the file changes there.
-// 'edit' - saved by the editor (the user's work, or a copy read back from
-// the API); never touched by the refresh. Records from before this field
-// have neither and count as 'seed' unless they hold a draft.
+// 'edit' - saved by the editor, keeping the fingerprint of the file it was
+// made from (seedHash); a newer release of that file replaces it (see
+// refreshChangedSeedFiles), a draft never. Records from before this field
+// have neither and are replaced by the current release unless they hold a
+// draft.
 interface SeedOrigin { source?: 'seed' | 'edit', seedHash?: string }
 interface PageRecord extends SeedOrigin { pageId: string, content: unknown, updated?: boolean, visible?: boolean }
 interface SettingsRecord extends SeedOrigin { key: string, content: unknown, updated?: boolean }
@@ -355,25 +357,25 @@ function seedOrigin (manifest: ManifestModel, seedPath: string): SeedOrigin {
 
 // A starting file edited in content/ after this database was filled used
 // to stay stale here until the database was deleted - which also deleted
-// every unsaved draft. Runs on every start instead: each record still
-// holding a copy of a starting file (source 'seed', no draft) is compared
-// with the file's fingerprint in manifest.json and fetched again when they
-// differ. Anything the user saved or is still editing is left alone.
+// every unsaved draft. Runs on every start instead: each record (no draft)
+// is compared with its file's fingerprint in manifest.json and fetched
+// again when the file has changed since the version the record holds or
+// was saved from (seedHash - a save keeps the fingerprint it started from).
+// So a new release of a page replaces a copy saved in this browser from an
+// older one; a record saved before saves kept it has none, and a release
+// replaces it too. Drafts (`updated`) are never touched.
 async function refreshChangedSeedFiles (db: IDBDatabase): Promise<void> {
   const manifest = await (await fetch(fileUrl('manifest.json'), { cache: 'no-store' })).json() as ManifestModel
   const hashes = manifest.hashes
   if (!hashes) {
     return
   }
-  // A published record ('edit', not `updated`) is left alone in a built
-  // demo - there the browser is the only place a visitor's work lives. In
-  // dev, "Зберегти" also writes the file (server/routes/__editor-api__/
-  // public-file.ts), so the file IS the published version: it is followed,
-  // and a fix made in content/ by hand reaches the browser instead of being
-  // written back over by the next save. Drafts (`updated`) are never touched.
-  const followsFile = (record: SeedOrigin) => record.source !== 'edit' || import.meta.env.DEV
+  // Earlier a record published in the browser was never followed in a
+  // built demo, so the owner's own browser kept showing pages saved there
+  // long after newer versions were released. Now the release wins over a
+  // save made from an older version; drafts still win over everything.
   const stale = (record: (SeedOrigin & { updated?: boolean }) | undefined, seedPath: string) =>
-    !!record && !record.updated && followsFile(record) && !!hashes[seedPath] && record.seedHash !== hashes[seedPath]
+    !!record && !record.updated && !!hashes[seedPath] && record.seedHash !== hashes[seedPath]
 
   const tasks: Promise<unknown>[] = []
   for (const pageId of manifest.pages) {
@@ -457,7 +459,7 @@ async function handlePages (db: IDBDatabase, action: string, data: { pageId?: st
     // matching a real API's own PATCH .../visibility being separate from
     // PUT .../content), so it has to be read and carried forward here.
     const existing = await getRecord<PageRecord>(db, 'pages', data.pageId as string)
-    await putRecord(db, 'pages', { pageId: data.pageId as string, content: data.content, updated: !data.published, visible: existing?.visible ?? true, source: 'edit' } satisfies PageRecord)
+    await putRecord(db, 'pages', { pageId: data.pageId as string, content: data.content, updated: !data.published, visible: existing?.visible ?? true, source: 'edit', seedHash: existing?.seedHash } satisfies PageRecord)
     return { ok: true }
   }
   if (action === 'set-visible') {
@@ -465,7 +467,7 @@ async function handlePages (db: IDBDatabase, action: string, data: { pageId?: st
     // Also in the page's own content, so the next publish writes it to the
     // page's file and the site (which reads the content) knows it too.
     const content = existing?.content && typeof existing.content === 'object' ? { ...existing.content, visible: data.visible } : existing?.content
-    await putRecord(db, 'pages', { pageId: data.pageId as string, content, updated: existing?.updated, visible: data.visible } satisfies PageRecord)
+    await putRecord(db, 'pages', { pageId: data.pageId as string, content, updated: existing?.updated, visible: data.visible, source: existing?.source, seedHash: existing?.seedHash } satisfies PageRecord)
     return { ok: true }
   }
   if (action === 'status') {
@@ -497,7 +499,8 @@ async function handleSettings (db: IDBDatabase, action: string, data: { key?: st
     return record?.content ?? null
   }
   if (action === 'save') {
-    await putRecord(db, 'settings', { key: data.key as string, content: data.content, updated: !data.published, source: 'edit' } satisfies SettingsRecord)
+    const existing = await getRecord<SettingsRecord>(db, 'settings', data.key as string)
+    await putRecord(db, 'settings', { key: data.key as string, content: data.content, updated: !data.published, source: 'edit', seedHash: existing?.seedHash } satisfies SettingsRecord)
     return { ok: true }
   }
   if (action === 'status') {
@@ -518,7 +521,8 @@ async function handleStyles (db: IDBDatabase, action: string, data: { name?: str
     return record?.content ?? null
   }
   if (action === 'save') {
-    await putRecord(db, 'styles', { name: data.name as string, content: data.content as string, updated: !data.published, source: 'edit' } satisfies StyleRecord)
+    const existing = await getRecord<StyleRecord>(db, 'styles', data.name as string)
+    await putRecord(db, 'styles', { name: data.name as string, content: data.content as string, updated: !data.published, source: 'edit', seedHash: existing?.seedHash } satisfies StyleRecord)
     return { ok: true }
   }
   if (action === 'status') {

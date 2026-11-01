@@ -46,9 +46,9 @@
         {
           "type": "image",
           "content": {
-            "uk": "/api/content/images/products/01",
-            "en": "/api/content/images/products/02",
-            "de": "/api/content/images/products/03"
+            "uk": "/api/content/images/products/01.webp",
+            "en": "/api/content/images/products/02.webp",
+            "de": "/api/content/images/products/03.jpeg"
           }
         }
       ]

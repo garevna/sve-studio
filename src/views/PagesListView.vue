@@ -122,8 +122,11 @@
   // (utils/page-title.ts).
   const pageTitles = computed(() => Object.fromEntries(pages.value.map(page => [page.pageId, page.title])))
 
+  // In the site's main language - like the menu labels under each name.
+  // It used the language picked for editing content, which this page does
+  // not show: after editing a page in German the list read in German.
   function pageLabel (page: DynamicPageListItem | null | undefined): string {
-    return page ? (pageTitleText(page.title, useCommonStore().locale) || page.pageId) : ''
+    return page ? (pageTitleText(page.title, defaultSiteLocale()) || page.pageId) : ''
   }
 
   function linkedMenuLabel (page: DynamicPageListItem): string | null {

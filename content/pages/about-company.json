@@ -1,6 +1,10 @@
 {
   "id": "about-company",
-  "title": "Про компанію",
+  "title": {
+    "uk": "Про компанію",
+    "en": "",
+    "de": ""
+  },
   "breadcrumbs": false,
   "backButton": false,
   "blocks": [
@@ -18,10 +22,10 @@
         "button": "",
         "images": {
           "desktop": [
-            "/api/content/images/about-company/04-2.webp?v=7f1a32fe",
-            "/api/content/images/about-company/baner-desktop.jpg?v=ef67b50a",
-            "/api/content/images/about-company/baner-mobile.jpg?v=6c6a8d78",
-            "/api/content/images/about-company/01.webp?v=b612a2aa"
+            "/api/content/images/about-company/04.jpg?v=b5e27ce5",
+            "/api/content/images/about-company/08.jpg?v=efca0920",
+            "/api/content/images/about-company/12.webp?v=b612a2aa",
+            "/api/content/images/about-company/14.jpg?v=6c6a8d78"
           ],
           "mobile": [
             "",
@@ -70,7 +74,7 @@
         {
           "type": "image",
           "content": {
-            "uk": "/api/content/images/about-company/03-2.jpg?v=efca0920",
+            "uk": "/api/content/images/about-company/11.jpg?v=580eb84a",
             "en": "/api/content/images/about-company/02-2.jpg?v=b0a20518",
             "de": "/api/content/images/about-company/02-2.jpg?v=b0a20518"
           }
@@ -84,7 +88,7 @@
           "type": "image",
           "switchOrder": true,
           "content": {
-            "uk": "/api/content/images/about-company/01-2.jpg?v=179930cc",
+            "uk": "/api/content/images/about-company/05.jpg?v=22d86b2b",
             "en": "/api/content/images/about-company/05-2.jpg?v=580eb84a",
             "de": "/api/content/images/about-company/05-2.jpg?v=580eb84a"
           }

@@ -10,9 +10,9 @@
         {
           "type": "image",
           "content": {
-            "uk": "/api/content/images/loyality-program/03.jpg?v=9018cd0e",
-            "en": "/api/content/images/loyality-program/03.jpg?v=9018cd0e",
-            "de": "/api/content/images/loyality-program/03.jpg?v=9018cd0e"
+            "uk": "/api/content/images/loyality-program/cashback.jpg?v=9018cd0e",
+            "en": "/api/content/images/loyality-program/cashback.jpg?v=9018cd0e",
+            "de": "/api/content/images/loyality-program/cashback.jpg?v=9018cd0e"
           }
         },
         {
@@ -178,9 +178,9 @@
       "dark": false,
       "image": "/api/content/images/loyality-program/03.jpeg?v=a41bb90f",
       "content": {
-        "uk": "/api/content/images/loyality-program/baner-desktop-2.jpg?v=ef67b50a",
-        "en": "/api/content/images/loyality-program/baner-desktop-2.jpg?v=ef67b50a",
-        "de": "/api/content/images/loyality-program/baner-desktop-2.jpg?v=ef67b50a"
+        "uk": "/api/content/images/loyality-program/14.jpg?v=6c6a8d78",
+        "en": "/api/content/images/loyality-program/14.jpg?v=6c6a8d78",
+        "de": "/api/content/images/loyality-program/14.jpg?v=6c6a8d78"
       },
       "title": {
         "uk": "Кешбек нервових клітин",
@@ -317,6 +317,61 @@
               ]
             },
             "hoverColor": "blue"
+          }
+        },
+        {
+          "type": "component",
+          "content": "CardWithHover",
+          "props": {
+            "card": {
+              "type": "card",
+              "children": [
+                {
+                  "type": "card",
+                  "icon": "mdi-numeric-3-box-multiple",
+                  "title": {
+                    "uk": "",
+                    "en": "Bewohner der vierten Dimension",
+                    "de": "Bewohner der vierten Dimension"
+                  },
+                  "content": {
+                    "uk": [
+                      ""
+                    ],
+                    "en": [
+                      "Du bist Teil unseres Ökosystems geworden. Du kennst die Namen unserer Tester."
+                    ],
+                    "de": [
+                      ""
+                    ]
+                  },
+                  "titleClass": "text-medium text-center text-light-green",
+                  "contentClass": "default-text text-thin text-center text-available-date-fone-color",
+                  "color": "white"
+                },
+                {
+                  "type": "card",
+                  "icon": "mdi-star-outline",
+                  "title": {
+                    "uk": "",
+                    "en": "",
+                    "de": ""
+                  },
+                  "content": {
+                    "uk": [
+                      ""
+                    ],
+                    "en": [
+                      "4+ Projekte oder ein SEHR großes"
+                    ],
+                    "de": [
+                      ""
+                    ]
+                  }
+                }
+              ]
+            },
+            "backgroundColor": "dark"
           }
         }
       ]

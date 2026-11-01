@@ -25,7 +25,7 @@
           "type": "card-with-toolbar-image",
           "width": 390,
           "height": 200,
-          "image": "/api/content/images/contacts-page/11.webp?v=d78b100e",
+          "image": "/api/content/images/contacts-page/09.webp?v=c7662035",
           "children": [
             {
               "type": "title",
@@ -70,8 +70,7 @@
                 "en": "40181587",
                 "de": "40181587"
               },
-              "class": "default-text mb-4 text-bold text-dark",
-              "contact": "contact-5"
+              "class": "default-text mb-4 text-bold text-dark"
             },
             {
               "type": "text",
@@ -89,8 +88,7 @@
                 "en": "6A Kosmichna Street, Kharkiv",
                 "de": "Charkiw, Kosmicheskaja-Straße 6A"
               },
-              "class": "default-text mb-4 text-dark text-bold",
-              "contact": "contact-4"
+              "class": "default-text mb-4 text-dark text-bold"
             },
             {
               "type": "text",
@@ -116,7 +114,7 @@
           "type": "card-with-toolbar-image",
           "width": 390,
           "height": 200,
-          "image": "/api/content/images/contacts-page/01.jpg?v=d021a659",
+          "image": "/api/content/images/contacts-page/12.webp?v=b612a2aa",
           "children": [
             {
               "type": "title",
@@ -138,8 +136,7 @@
               "icon": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjUiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNSAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXAwXzg3Ml80ODUzMCkiPgo8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTAuNTAwOTc3IDBIMjQuNTAxVjI0SDAuNTAwOTc3VjBaIiBmaWxsPSIjRkZENzAwIi8+CjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMC41MDA5NzcgMEgyNC41MDFWMTJIMC41MDA5NzdWMFoiIGZpbGw9IiMyQTY3REEiLz4KPC9nPgo8ZGVmcz4KPGNsaXBQYXRoIGlkPSJjbGlwMF84NzJfNDg1MzAiPgo8cmVjdCB4PSIwLjUiIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgcng9IjEyIiBmaWxsPSJ3aGl0ZSIvPgo8L2NsaXBQYXRoPgo8L2RlZnM+Cjwvc3ZnPgo=",
               "size": 24,
               "color": "grey",
-              "text": "default-text text-medium mb-4 text-dark-grey",
-              "contact": "contact-1"
+              "text": "default-text text-medium mb-4 text-dark-grey"
             },
             {
               "type": "text-with-icon",
@@ -152,8 +149,7 @@
               "icon": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjUiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNSAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXAwXzg3Ml80ODUzMCkiPgo8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTAuNTAwOTc3IDBIMjQuNTAxVjI0SDAuNTAwOTc3VjBaIiBmaWxsPSIjRkZENzAwIi8+CjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMC41MDA5NzcgMEgyNC41MDFWMTJIMC41MDA5NzdWMFoiIGZpbGw9IiMyQTY3REEiLz4KPC9nPgo8ZGVmcz4KPGNsaXBQYXRoIGlkPSJjbGlwMF84NzJfNDg1MzAiPgo8cmVjdCB4PSIwLjUiIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgcng9IjEyIiBmaWxsPSJ3aGl0ZSIvPgo8L2NsaXBQYXRoPgo8L2RlZnM+Cjwvc3ZnPgo=",
               "size": 24,
               "color": "grey",
-              "text": "default-text text-medium mb-4 text-dark-grey",
-              "contact": "contact-2"
+              "text": "default-text text-medium mb-4 text-dark-grey"
             },
             {
               "type": "text-with-icon",
@@ -166,8 +162,7 @@
               "icon": "mdi-email-fast-outline",
               "size": 24,
               "color": "grey",
-              "text": "default-text text-medium mb-4 text-dark-grey",
-              "contact": "contact-3"
+              "text": "default-text text-medium mb-4 text-dark-grey"
             }
           ]
         },
@@ -175,7 +170,7 @@
           "type": "card-with-toolbar-image",
           "width": 390,
           "height": 200,
-          "image": "/api/content/images/contacts-page/06.webp?v=5a268b48",
+          "image": "/api/content/images/contacts-page/17.jpg?v=d021a659",
           "children": [
             {
               "type": "title",
@@ -585,40 +580,44 @@
       "hidden": true
     },
     {
-      "type": "image",
-      "class": "desktop-mode mt-12",
-      "content": {
-        "uk": "/api/content/images/159fa7ce8c865f9d8e58e1d607ed62fc9057d5467ab94dac7d412e4d919ea78e.png",
-        "en": "/api/content/images/159fa7ce8c865f9d8e58e1d607ed62fc9057d5467ab94dac7d412e4d919ea78e.png",
-        "de": "/api/content/images/159fa7ce8c865f9d8e58e1d607ed62fc9057d5467ab94dac7d412e4d919ea78e.png"
-      }
-    },
-    {
-      "type": "image",
-      "class": "mobile-mode mt-12",
-      "content": {
-        "uk": "/api/content/images/e7f06da776d054553524df9d7ad75efe234bda9bf3b0190ad17dbce9857392aa.png",
-        "en": "/api/content/images/e7f06da776d054553524df9d7ad75efe234bda9bf3b0190ad17dbce9857392aa.png",
-        "de": "/api/content/images/e7f06da776d054553524df9d7ad75efe234bda9bf3b0190ad17dbce9857392aa.png"
-      }
-    },
-    {
-      "type": "component",
-      "content": "FeedbackForm",
-      "props": {
-        "type": "message",
-        "title": {
-          "uk": "Маєте питання або пропозицію?",
-          "en": "Do you have any questions or suggestions?",
-          "de": "Haben Sie Fragen oder Anregungen?"
+      "type": "section",
+      "children": [
+        {
+          "type": "section-with-free-content",
+          "children": [
+            {
+              "type": "image",
+              "content": {
+                "uk": "/api/content/images/contacts-page/02.webp?v=d78b100e",
+                "en": "/api/content/images/contacts-page/02.webp?v=d78b100e",
+                "de": "/api/content/images/contacts-page/02.webp?v=d78b100e"
+              }
+            }
+          ]
         },
-        "text": {
-          "uk": "Напишіть нам - відповімо якнайшвидше!",
-          "en": "Write to us - we will respond as soon as possible!",
-          "de": "Schreiben Sie uns - wir antworten so schnell wie möglich!"
+        {
+          "type": "section-with-free-content",
+          "children": [
+            {
+              "type": "component",
+              "content": "FeedbackForm",
+              "props": {
+                "type": "message",
+                "title": {
+                  "uk": "Маєте питання або пропозицію?",
+                  "en": "Do you have any questions or suggestions?",
+                  "de": "Haben Sie Fragen oder Anregungen?"
+                },
+                "text": {
+                  "uk": "Напишіть нам - відповімо якнайшвидше!",
+                  "en": "Write to us - we will respond as soon as possible!",
+                  "de": "Schreiben Sie uns - wir antworten so schnell wie möglich!"
+                }
+              }
+            }
+          ]
         }
-      },
-      "editorLabel": "contact-form"
+      ]
     }
   ]
 }

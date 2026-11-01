@@ -10,9 +10,9 @@
         {
           "type": "image",
           "content": {
-            "uk": "/api/content/images/footer-content/06.jpeg?v=f0a94ba0",
-            "en": "/api/content/images/footer-content/06.jpeg?v=f0a94ba0",
-            "de": "/api/content/images/footer-content/06.jpeg?v=f0a94ba0"
+            "uk": "/api/content/images/footer-content/21.png?v=38f51c1a",
+            "en": "/api/content/images/footer-content/21.png?v=38f51c1a",
+            "de": "/api/content/images/footer-content/21.png?v=38f51c1a"
           }
         },
         {
@@ -145,6 +145,10 @@
                 "de": "Kontakt"
               },
               "id": "footer-contacts-heading"
+            },
+            {
+              "type": "component",
+              "content": "FooterIcons"
             }
           ]
         },

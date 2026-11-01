@@ -34,9 +34,9 @@
         {
           "type": "image",
           "content": {
-            "uk": "/api/content/images/785aa50544e4718453349f894fdaeb6c4b118be78b4dce04331da2c51625e3b8.jpg",
-            "en": "/api/content/images/785aa50544e4718453349f894fdaeb6c4b118be78b4dce04331da2c51625e3b8.jpg",
-            "de": "/api/content/images/785aa50544e4718453349f894fdaeb6c4b118be78b4dce04331da2c51625e3b8.jpg"
+            "uk": "/api/content/images/advanced-features/09.webp?v=c7662035",
+            "en": "/api/content/images/advanced-features/09.webp?v=c7662035",
+            "de": "/api/content/images/advanced-features/09.webp?v=c7662035"
           }
         },
         {
@@ -45,73 +45,64 @@
             {
               "type": "title",
               "content": {
-                "uk": "",
-                "en": "",
-                "de": ""
+                "uk": "Virtual Dimension",
+                "en": "Virtual Dimension",
+                "de": "Virtual Dimension"
               },
-              "class": "my-8 text-center"
+              "class": "my-8 text-center accent-font text-thin text-selected-date-first-fone-color h2"
             },
             {
               "type": "text",
-              "class": "default-text text-medium text-black",
+              "class": "text-medium accent-font-2 text-primary h5",
               "content": {
-                "uk": "",
-                "en": "",
-                "de": ""
+                "uk": "Вимір, де ідеї набувають вектора.",
+                "en": "A dimension where ideas take direction.",
+                "de": "Eine Dimension, in der Ideen Gestalt annehmen."
               }
             },
             {
               "type": "text",
               "class": "default-text text-medium text-black",
               "content": {
-                "uk": "",
-                "en": "",
-                "de": ""
+                "uk": "Проектуємо цифрові інтерфейси, які виглядають однаково круто як на темній, так і на світлій стороні браузера.",
+                "en": "We design digital interfaces that look equally cool on both the dark and light modes of the browser.",
+                "de": "Wir entwerfen digitale Benutzeroberflächen, die sowohl auf der dunklen als auch auf der hellen Seite des Browsers gleichermaßen cool aussehen."
               }
             },
             {
               "type": "text",
               "class": "default-text text-medium text-black",
               "content": {
-                "uk": "",
-                "en": "",
-                "de": ""
+                "uk": "Генеруємо ідеальні SVG-контури (з правильним розподілом товщини ліній).",
+                "en": "Generate perfect SVG outlines (with correct line weight distribution).",
+                "de": "Wir generieren perfekte SVG-Konturen (mit korrekter Verteilung der Linienstärke)."
               }
             },
             {
               "type": "text",
               "class": "default-text text-medium text-black",
               "content": {
-                "uk": "",
-                "en": "",
-                "de": ""
-              }
-            },
-            {
-              "type": "title",
-              "content": {
-                "uk": "",
-                "en": "",
-                "de": ""
-              },
-              "class": "my-8 text-center"
-            },
-            {
-              "type": "text",
-              "class": "default-text text-medium text-black",
-              "content": {
-                "uk": "",
-                "en": "",
-                "de": ""
+                "uk": "Керуємо глобальним станом додатків без паніки та витоків пам’яті.",
+                "en": "Manage global application state without panic or memory leaks.",
+                "de": "Wir verwalten den globalen Zustand von Anwendungen ohne Panik und ohne Speicherlecks."
               }
             },
             {
               "type": "text",
               "class": "default-text text-medium text-black",
               "content": {
-                "uk": "",
-                "en": "",
-                "de": ""
+                "uk": "Створюємо веб-архітектуру, яка витримає будь-який наплив користувачів.",
+                "en": "Build web architecture that can handle any surge in users.",
+                "de": "Wir erstellen eine Webarchitektur, die jedem Nutzeransturm standhält."
+              }
+            },
+            {
+              "type": "text",
+              "class": "text-medium accent-font-2 h4 text-primary",
+              "content": {
+                "uk": "Наш код не горить. Він просто ідеально рендериться.",
+                "en": "Our code doesn’t crash. It just renders perfectly.",
+                "de": "Unser Code brennt nicht. Er wird einfach perfekt gerendert."
               }
             },
             {
@@ -140,28 +131,52 @@
       "type": "slider-with-images",
       "images": [
         {
-          "src": "/api/content/images/advanced-features/01.jpg?v=d021a659"
+          "src": "/api/content/images/advanced-features/05.jpg?v=22d86b2b"
         },
         {
-          "src": "/api/content/images/advanced-features/03-2.jpg?v=ef67b50a"
+          "src": "/api/content/images/advanced-features/06.webp?v=5a268b48"
         },
         {
-          "src": "/api/content/images/advanced-features/04.webp?v=7f1a32fe"
+          "src": "/api/content/images/advanced-features/07.jpg?v=b0a20518"
         },
         {
-          "src": "/api/content/images/advanced-features/05.webp?v=950bc377"
+          "src": "/api/content/images/advanced-features/08.jpg?v=efca0920"
         },
         {
-          "src": "/api/content/images/advanced-features/06.jpeg?v=f0a94ba0"
+          "src": "/api/content/images/advanced-features/10.webp?v=c5ea48f6"
         },
         {
-          "src": "/api/content/images/advanced-features/08.jpg?v=797b88fd"
+          "src": "/api/content/images/advanced-features/11.jpg?v=580eb84a"
         },
         {
-          "src": "/api/content/images/advanced-features/09.webp?v=b612a2aa"
+          "src": "/api/content/images/advanced-features/12.webp?v=b612a2aa"
         },
         {
-          "src": "/api/content/images/advanced-features/12-2.webp?v=ea71a76d"
+          "src": "/api/content/images/advanced-features/15.jpg?v=ef67b50a"
+        },
+        {
+          "src": "/api/content/images/advanced-features/17.jpg?v=d021a659"
+        },
+        {
+          "src": "/api/content/images/advanced-features/19.webp?v=7f1a32fe"
+        },
+        {
+          "src": "/api/content/images/advanced-features/20.jpg?v=588c0533"
+        },
+        {
+          "src": "/api/content/images/advanced-features/22.avif?v=72df4e31"
+        },
+        {
+          "src": "/api/content/images/advanced-features/24.webp?v=c0d3486c"
+        },
+        {
+          "src": "/api/content/images/advanced-features/25.webp?v=905abe9e"
+        },
+        {
+          "src": "/api/content/images/advanced-features/26.webp?v=ea71a76d"
+        },
+        {
+          "src": "/api/content/images/advanced-features/29.webp?v=950bc377"
         }
       ],
       "height": 300

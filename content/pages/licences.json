@@ -12,20 +12,22 @@
     {
       "type": "parallax",
       "content": {
-        "uk": "/api/content/images/aac9af90a1a64eaf375895888ab37692ad7ea83bb9c00430787bf60876d7864e.jpg",
-        "en": "/api/content/images/aac9af90a1a64eaf375895888ab37692ad7ea83bb9c00430787bf60876d7864e.jpg",
-        "de": "/api/content/images/aac9af90a1a64eaf375895888ab37692ad7ea83bb9c00430787bf60876d7864e.jpg"
+        "uk": "/api/content/images/licences/04.avif?v=5c938a89",
+        "en": "/api/content/images/licences/04.avif?v=5c938a89",
+        "de": "/api/content/images/licences/04.avif?v=5c938a89"
       },
       "children": [
         {
           "type": "header",
           "content": {
-            "uk": "",
-            "en": "",
-            "de": ""
-          }
+            "uk": "Ми кодємо так, ніби документація справді існує.",
+            "en": "We’re coding as if the documentation actually exists.",
+            "de": "Wir tun so, als ob die Unterlagen tatsächlich existieren würden."
+          },
+          "class": "mt-16 mb-8 text-center"
         }
-      ]
+      ],
+      "dark": false
     },
     {
       "type": "section",

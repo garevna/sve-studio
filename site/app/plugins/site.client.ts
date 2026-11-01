@@ -3,6 +3,7 @@
 import { createPinia } from 'pinia'
 import { createVuetify } from 'vuetify'
 import { getPalette } from '../../src/services/site-data'
+import { probeContentApi } from '../../src/utils/content-api-state'
 import { sveRoot } from '../../src/utils/sve-root'
 
 // The editor's content API worker (service-worker/content-api-sw.ts) - it
@@ -11,9 +12,13 @@ import { sveRoot } from '../../src/utils/sve-root'
 // first; nothing waits for it.
 function startContentApi () {
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register(`${sveRoot()}content-api-sw.js`, { scope: sveRoot() }).catch(error => {
-      console.warn('Content API worker could not start', error)
-    })
+    navigator.serviceWorker.register(`${sveRoot()}content-api-sw.js`, { scope: sveRoot() })
+      .then(() => navigator.serviceWorker.ready)
+      // Does it actually answer? (see utils/content-api-state.ts)
+      .then(() => probeContentApi(sveRoot()))
+      .catch(error => {
+        console.warn('Content API worker could not start', error)
+      })
   }
 }
 

@@ -434,7 +434,7 @@ export const useAjaxStore = defineStore('ajax', () => {
     // all on a static host - a picture of the release is then read from the
     // published files (/_seed/images/...) instead. An uploaded one has to
     // wait for the API.
-    if (import.meta.env.PROD && imageId.startsWith('/api/content/images/') && !navigator.serviceWorker?.controller) {
+    if (import.meta.env.PROD && imageId.startsWith('/api/content/images/') && (API_REQUEST_MODE !== 'live' || !navigator.serviceWorker?.controller)) {
       return `${location.origin}${appBase()}_seed/images/${imageId.slice('/api/content/images/'.length)}`
     }
     return new URL(api.defaults.baseURL || location.origin, location.origin).origin + apiBase + imageId

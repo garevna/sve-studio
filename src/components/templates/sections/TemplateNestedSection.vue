@@ -101,6 +101,17 @@
                     @delete="removeTextItem(child, subchildIndex)"
                     @update:content="(value) => setText(subchild, value)"
                   />
+                  <!-- Anything else in the text half (a button, say) is the
+                    page's own block editor - it used to be skipped here, so
+                    a button showed in preview but not while editing. -->
+                  <template-item
+                    v-else
+                    v-model:blocks="child.children as TemplateBlockModel[]"
+                    :block-index="subchildIndex"
+                    :class="contentClass"
+                    :deletable="!dragActive"
+                    @delete="removeTextItem(child, subchildIndex)"
+                  />
                 </div>
               </template>
             </SortableList>

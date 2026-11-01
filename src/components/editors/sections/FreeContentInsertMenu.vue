@@ -1,5 +1,7 @@
 <script setup lang="ts">
   import type { TemplateBlockModel } from '@/types/TemplateBlockModel'
+  import { ref } from 'vue'
+  import SocialLinkMenu from '@/components/editors/SocialLinkMenu.vue'
   import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
   import { cardWithIconRowTemplate } from '@/configs/components/cards/card-with-icon'
   import { feedbackForm } from '@/configs/components/feedback-form'
@@ -11,6 +13,7 @@
   import { title } from '@/configs/components/simple/title'
   import { swiperWithImagesTemplate } from '@/configs/components/swiper-with-images'
   import { swiperWithThumbnailsTemplate } from '@/configs/components/swiper-with-thumbnails'
+  import { t } from '@/i18n'
 
   // Scoped insert menu for one half of a "Довільний контент" section -
   // deliberately NOT reusing InsertPageBlock.vue (that one is hardwired to
@@ -41,13 +44,20 @@
 
   const emit = defineEmits<{ insert: [block: TemplateBlockModel] }>()
 
+  // Stays open while the social-network submenu is picked from.
+  const open = ref(false)
   function selectItem (item: typeof menuItems[number]) {
     emit('insert', item.factory())
+    open.value = false
+  }
+  function insertSocial (block: TemplateBlockModel) {
+    emit('insert', block)
+    open.value = false
   }
 </script>
 
 <template>
-  <v-menu location="bottom center">
+  <v-menu v-model="open" :close-on-content-click="false" location="bottom center">
     <template #activator="{ props: menuProps }">
       <ToolbarIconButton v-bind="menuProps" icon="mdi-plus" tooltip="Додати елемент" />
     </template>
@@ -64,6 +74,16 @@
             <v-icon :icon="item.icon" size="x-small" />
           </template>
         </v-list-item>
+        <!-- A ready line: icon, name and the address from the settings. -->
+        <SocialLinkMenu @insert="insertSocial">
+          <template #activator="{ props: socialProps }">
+            <v-list-item v-bind="socialProps" link :title="t('socialLinks.menu')">
+              <template #append>
+                <v-icon icon="mdi-share-variant" size="x-small" />
+              </template>
+            </v-list-item>
+          </template>
+        </SocialLinkMenu>
       </v-list>
     </v-card>
   </v-menu>

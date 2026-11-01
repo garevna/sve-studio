@@ -1,6 +1,8 @@
 <script setup lang="ts">
   import { computed } from 'vue'
+  import { socialIconOf } from '../../configs/social-icons'
   import { getImageURL } from '../../services/get-image-url'
+  import SocialIconImage from './SocialIconImage.vue'
 
   const props = defineProps<{
     icon: string
@@ -22,6 +24,10 @@
   // block had one set). The editor's own copy of this component was fixed
   // long ago and carries the same comment; this is that fix, ported.
   const backColor = computed(() => props.background || null)
+  // A social network's icon (configs/social-icons.ts): `color` comes in
+  // resolved (var(--key)), the image wants the key.
+  const social = computed(() => socialIconOf(props.icon))
+  const socialColor = computed(() => props.color?.match(/^var\(--(.+)\)$/)?.[1] || props.color || 'grey')
   const alignment = computed(() => props.variant === 1 ? 'text-center' : 'text-left')
 </script>
 
@@ -34,6 +40,12 @@
       <template v-else>
         <v-icon :class="['icon', alignment]" :color="iconColor" :icon="props.icon" :size="iconSize" />
       </template>
+    </template>
+    <template v-else-if="social">
+      <div v-if="props.background" class="icon-fone">
+        <SocialIconImage :color="socialColor" :icon="props.icon" :size="props.size || 48" />
+      </div>
+      <SocialIconImage v-else :color="socialColor" :icon="props.icon" :size="props.size || 48" />
     </template>
     <template v-else>
       <div v-if="props.background" class="icon-fone">

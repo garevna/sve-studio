@@ -5,10 +5,11 @@
   import { computed } from 'vue'
 
   import IconVariant from '../../components/small/IconVariant.vue'
+  import { resolveLink } from '../../configs/social-networks'
   import { getImageURL } from '../../services/get-image-url'
   import { useCommonStore } from '../../stores/common'
 
-  const { locale } = storeToRefs(useCommonStore())
+  const { locale, company } = storeToRefs(useCommonStore())
 
   const lang = computed(() => locale.value as 'uk' | 'en' | 'de')
 
@@ -17,15 +18,17 @@
   const iconSize = computed(() => (props.item.size || 24) + 'px')
 
   // A line with a link (a social network, tel:, mailto:) is a real link;
-  // web addresses open in a new tab.
-  const external = computed(() => /^https?:/i.test(props.item.link || ''))
+  // web addresses open in a new tab. "social:<network>" is the network's
+  // address from global.json (configs/social-networks.ts).
+  const href = computed(() => resolveLink(props.item.link, company.value?.links as Record<string, string> | undefined))
+  const external = computed(() => /^https?:/i.test(href.value))
 </script>
 
 <template>
   <component
-    :is="props.item.link ? 'a' : 'div'"
-    :class="['text-with-icon', props.item.class, { 'text-with-icon--link': props.item.link }]"
-    :href="props.item.link || undefined"
+    :is="href ? 'a' : 'div'"
+    :class="['text-with-icon', props.item.class, { 'text-with-icon--link': href }]"
+    :href="href || undefined"
     :rel="external ? 'noopener' : undefined"
     :target="external ? '_blank' : undefined"
   >

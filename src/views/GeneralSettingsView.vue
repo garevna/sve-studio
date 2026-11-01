@@ -5,6 +5,7 @@
   import EditorPageHeader from '@/components/special/EditorPageHeader.vue'
   import EditorSaveBar from '@/components/special/EditorSaveBar.vue'
   import FontSpecField from '@/components/special/FontSpecField.vue'
+  import { SOCIAL_NETWORKS } from '@/configs/social-networks'
   import { t } from '@/i18n'
   import { useAjaxStore } from '@/stores/ajax'
   import { useCommonStore } from '@/stores/common'
@@ -24,8 +25,6 @@
   // wrong value there is exactly the kind of damage the role split exists to
   // prevent. See configs/editor-roles.ts.
   const advancedFields = computed(() => useCommonStore().roleConfig.generalSettingsScope === 'full')
-
-  const SOCIAL_NETWORKS = ['facebook', 'instagram', 'tiktok', 'whatsApp', 'viber', 'telegram'] as const
 
   const settings = ref<GlobalSettingsModel | null>(null)
   const loading = ref(true)

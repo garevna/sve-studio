@@ -3,9 +3,11 @@
   import { computed, nextTick, ref } from 'vue'
   import IconAppearance from '@/components/editors/icon/IconAppearance.vue'
   import IconPicker from '@/components/editors/icon/IconPicker.vue'
+  import SocialIconImage from '@/components/editors/icon/SocialIconImage.vue'
   import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
   import { useEditorMode } from '@/composables/useEditorMode'
   import { defaultIcon } from '@/configs/defaults/default-icon'
+  import { socialIconOf } from '@/configs/social-icons'
   import { useCommonStore } from '@/stores/common'
   import { resolveThemeAssetPath } from '@/utils/theme-asset-path'
 
@@ -29,7 +31,9 @@
   // rendered via v-html, no external picker/render component needed).
   const isMdiIcon = computed(() => (icon.value || '').startsWith('mdi-'))
   const isPathIcon = computed(() => /^(\/|data:|https?:|blob:)/.test(icon.value || ''))
-  const isRawSvg = computed(() => !isMdiIcon.value && !isPathIcon.value && !!icon.value)
+  // A social network's icon (configs/social-icons.ts) - drawn by SocialIconImage.
+  const socialIcon = computed(() => socialIconOf(icon.value))
+  const isRawSvg = computed(() => !isMdiIcon.value && !isPathIcon.value && !socialIcon.value && !!icon.value)
   const iconSrc = computed(() => resolveThemeAssetPath(icon.value, commonStore.activeTheme))
   const resolvedIconColor = computed(() => iconColor.value ? `var(--${iconColor.value})` : undefined)
   const backSize = computed(() => (iconSize.value || 52) + 32)
@@ -63,11 +67,13 @@
       }"
     >
       <v-icon v-if="isMdiIcon" :color="resolvedIconColor" :size="iconSize">{{ icon }}</v-icon>
+      <SocialIconImage v-else-if="socialIcon" :color="iconColor" :icon="icon" :size="iconSize" />
       <img v-else-if="isPathIcon" :src="iconSrc" :style="{ width: `${iconSize}px`, height: `${iconSize}px` }">
       <div v-else-if="isRawSvg" class="icon-editor-raw-svg" :style="{ width: `${iconSize}px`, height: `${iconSize}px` }" v-html="icon" />
     </div>
     <template v-else>
       <v-icon v-if="isMdiIcon" :color="resolvedIconColor" :size="iconSize">{{ icon }}</v-icon>
+      <SocialIconImage v-else-if="socialIcon" :color="iconColor" :icon="icon" :size="iconSize" />
       <img v-else-if="isPathIcon" :src="iconSrc" :style="{ width: `${iconSize}px`, height: `${iconSize}px`, display: 'block' }">
       <div v-else-if="isRawSvg" class="icon-editor-raw-svg" :style="{ width: `${iconSize}px`, height: `${iconSize}px` }" v-html="icon" />
     </template>
@@ -88,6 +94,7 @@
           @click="openMenu"
         >
           <v-icon v-if="isMdiIcon" :color="resolvedIconColor" :size="iconSize">{{ icon }}</v-icon>
+          <SocialIconImage v-else-if="socialIcon" :color="iconColor" :icon="icon" :size="iconSize" />
           <img v-else-if="isPathIcon" :src="iconSrc" :style="{ width: `${iconSize}px`, height: `${iconSize}px` }">
           <div v-else-if="isRawSvg" class="icon-editor-raw-svg" :style="{ width: `${iconSize}px`, height: `${iconSize}px` }" v-html="icon" />
           <v-icon v-else class="icon-editor-placeholder" color="#A9B4BF" :size="Math.round(iconSize * 0.7)">mdi-image-plus-outline</v-icon>
@@ -120,6 +127,7 @@
             ref="pickerRef"
             v-model:icon="icon"
             :preview-background="iconBackground"
+            :preview-color="iconColor"
           />
 
           <v-divider v-if="props.appearance" class="my-5" />
@@ -129,7 +137,7 @@
             v-model:icon-background="iconBackground"
             v-model:icon-color="iconColor"
             v-model:icon-size="iconSize"
-            :colorable="isMdiIcon"
+            :colorable="isMdiIcon || !!socialIcon?.tinted"
           />
         </v-card-text>
         <v-card-actions>

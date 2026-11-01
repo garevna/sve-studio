@@ -2,10 +2,12 @@
   import type { TemplateBlockModel } from '@/types/TemplateBlockModel'
   import { computed } from 'vue'
   import LocaleSwitcher from '@/components/editors/small/LocaleSwitcher.vue'
+  import SocialLinkMenu from '@/components/editors/SocialLinkMenu.vue'
   import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
   import { textWithIcon } from '@/configs/components/simple/text-with-icon'
   import { defaultTextClass } from '@/configs/defaults/default-classes'
   import { textPlaceholder } from '@/configs/defaults/text-placeholder'
+  import { t } from '@/i18n'
   import { useCommonStore } from '@/stores/common'
   import { useUiFeedbackStore } from '@/stores/ui-feedback'
   import { resolveLocaleText, setLocalizedContent, translationHint } from '@/utils/locale-text'
@@ -83,6 +85,10 @@
   function addText () {
     // eslint-disable-next-line vue/no-mutating-props
     props.children.push({ type: 'text', content: textPlaceholder(), class: props.newItemClass || 'default-text text-medium' })
+  }
+  function addSocialLink (block: TemplateBlockModel) {
+    // eslint-disable-next-line vue/no-mutating-props
+    props.children.push({ ...block, text: props.newItemClass || defaultTextClass })
   }
   function addTextWithIcon () {
     // eslint-disable-next-line vue/no-mutating-props
@@ -174,6 +180,15 @@
           >
             Текст з іконкою
           </v-btn>
+          <!-- A ready line for a social network: icon, name, address from
+            the general settings. -->
+          <SocialLinkMenu v-if="withIcons" @insert="addSocialLink">
+            <template #activator="{ props: socialProps }">
+              <v-btn v-bind="socialProps" class="mt-2" prepend-icon="mdi-share-variant" variant="outlined">
+                {{ t('socialLinks.menu') }}
+              </v-btn>
+            </template>
+          </SocialLinkMenu>
         </div>
       </v-card-text>
       <v-card-actions>

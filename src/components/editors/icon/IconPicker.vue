@@ -1,8 +1,13 @@
 <!-- eslint-disable unicorn/prefer-add-event-listener -->
 <script setup lang="ts">
+  import type { SocialNetwork } from '@/configs/social-networks'
   import { computed, ref, shallowRef } from 'vue'
+  import { SOCIAL_ICONS, type SocialIconLook, socialIconOf, socialIconRef } from '@/configs/social-icons'
+  import { SOCIAL_NETWORK_LABELS, SOCIAL_NETWORKS } from '@/configs/social-networks'
+  import { t } from '@/i18n'
   import { useCommonStore } from '@/stores/common'
   import { resolveThemeAssetPath } from '@/utils/theme-asset-path'
+  import SocialIconImage from './SocialIconImage.vue'
 
   // WHICH icon - and nothing about how it looks. The other half (colour,
   // size, background) is IconAppearance.vue.
@@ -22,6 +27,8 @@
     // Only for the uploaded-file preview below, so it's shown against the
     // background it will actually sit on.
     previewBackground?: string
+    // The colour the one-colour social icons are shown in.
+    previewColor?: string
   }>()
 
   const commonStore = useCommonStore()
@@ -30,7 +37,13 @@
   const isPathIcon = computed(() => /^(\/|data:|https?:|blob:)/.test(icon.value || ''))
   const iconSrc = computed(() => resolveThemeAssetPath(icon.value, commonStore.activeTheme))
 
-  const source = ref<'mdi' | 'upload'>(isMdiIcon.value ? 'mdi' : 'upload')
+  const source = ref<'mdi' | 'upload' | 'social'>(isMdiIcon.value ? 'mdi' : (socialIconOf(icon.value) ? 'social' : 'upload'))
+
+  // Every look of every network (configs/social-icons.ts).
+  const LOOKS: SocialIconLook[] = ['color', 'mono', 'circle']
+  function socialCells (network: SocialNetwork) {
+    return LOOKS.filter(look => SOCIAL_ICONS[network][look]).map(look => ({ look, ref: socialIconRef(network, look) }))
+  }
   const search = ref('')
 
   // The mdi webfont ships ~7500 icon names - bundled as a flat JSON list
@@ -74,8 +87,26 @@
   <div>
     <v-btn-toggle v-model="source" class="mb-5" density="comfortable" mandatory>
       <v-btn value="mdi">Бібліотека MDI</v-btn>
+      <v-btn value="social">{{ t('socialLinks.icons') }}</v-btn>
       <v-btn value="upload">Завантажити SVG</v-btn>
     </v-btn-toggle>
+
+    <!-- Social networks: their own colours, or one colour (set below, in
+      the icon's colour). -->
+    <div v-if="source === 'social'" class="icon-picker-social">
+      <template v-for="network of SOCIAL_NETWORKS" :key="network">
+        <span class="icon-picker-social-name">{{ SOCIAL_NETWORK_LABELS[network] }}</span>
+        <button
+          v-for="cell of socialCells(network)"
+          :key="cell.ref"
+          :class="['icon-picker-cell', { 'icon-picker-cell--active': cell.ref === icon }]"
+          :title="t(`socialLinks.look.${cell.look}`)"
+          @click="icon = cell.ref"
+        >
+          <SocialIconImage :color="props.previewColor" :icon="cell.ref" :size="28" />
+        </button>
+      </template>
+    </div>
 
     <template v-if="source === 'mdi'">
       <v-text-field
@@ -106,7 +137,7 @@
       </div>
     </template>
 
-    <template v-else>
+    <template v-else-if="source === 'upload'">
       <v-btn block prepend-icon="mdi-upload" variant="outlined" @click="fileInput?.click()">
         Завантажити SVG-файл
       </v-btn>
@@ -160,6 +191,16 @@
 .icon-picker-cell--active {
   border-color: #5C7A99;
   background: #E3E9EF;
+}
+.icon-picker-social {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) repeat(3, 48px);
+  align-items: center;
+  gap: 8px;
+}
+.icon-picker-social-name {
+  font-size: 0.9rem;
+  color: #3a4a58;
 }
 .icon-picker-upload-preview-back {
   margin-top: 16px;

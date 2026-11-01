@@ -4,6 +4,8 @@
   import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
   import { useEditorMode } from '@/composables/useEditorMode'
   import { defaultTextClass } from '@/configs/defaults/default-classes'
+  import { resolveLink, SOCIAL_NETWORK_LABELS, SOCIAL_NETWORKS, socialLink, type SocialNetwork, socialNetworkOf } from '@/configs/social-networks'
+  import { useAjaxStore } from '@/stores/ajax'
   import { linkHref } from '@/utils/link-href'
   import IconEditor from './IconEditor.vue'
   import TextEditor from './TextEditor.vue'
@@ -30,12 +32,38 @@
   const mode = useEditorMode()
   const linkOpen = ref(false)
   const linkDraft = ref('')
+  // A social network or messenger is not typed in: it is picked, and the
+  // line keeps only a reference ("social:viber") to its address in the
+  // general settings - one source, nothing left behind when it changes.
+  // See configs/social-networks.ts.
+  const networkDraft = ref<SocialNetwork | null>(null)
+  const globalLinks = ref<Record<string, string>>({})
+  const ajaxStore = useAjaxStore()
+  async function loadGlobalLinks () {
+    globalLinks.value = (await ajaxStore.getGlobalSettings())?.links || {}
+  }
+  const networks = computed(() => SOCIAL_NETWORKS.filter(name => globalLinks.value[name]))
+  const linkNetwork = computed(() => socialNetworkOf(link.value))
+  const linkTooltip = computed(() => {
+    if (linkNetwork.value) return t('textWithIcon.networkLink', { network: SOCIAL_NETWORK_LABELS[linkNetwork.value] })
+    return link.value || t('textWithIcon.link')
+  })
   function openLink () {
-    linkDraft.value = link.value || ''
+    loadGlobalLinks()
+    networkDraft.value = socialNetworkOf(link.value)
+    linkDraft.value = networkDraft.value ? '' : (link.value || '')
     linkOpen.value = true
   }
+  function pickNetwork (name: SocialNetwork) {
+    networkDraft.value = networkDraft.value === name ? null : name
+    if (networkDraft.value) linkDraft.value = ''
+  }
+  function onOwnAddress (value: string) {
+    linkDraft.value = value
+    if (value) networkDraft.value = null
+  }
   function saveLink () {
-    link.value = linkHref(linkDraft.value)
+    link.value = networkDraft.value ? socialLink(networkDraft.value) : linkHref(linkDraft.value)
     linkOpen.value = false
   }
   function removeLink () {
@@ -87,20 +115,36 @@
         :active="!!link"
         class="text-with-icon-link"
         icon="mdi-link-variant"
-        :tooltip="link || t('textWithIcon.link')"
+        :tooltip="linkTooltip"
         @click="openLink"
       />
       <v-dialog v-model="linkOpen" max-width="460">
         <v-card theme="editorTheme" :title="t('textWithIcon.link')">
           <v-card-text>
+            <p class="text-with-icon-link-label">{{ t('textWithIcon.fromSettings') }}</p>
+            <div v-if="networks.length > 0" class="text-with-icon-networks">
+              <v-chip
+                v-for="name of networks"
+                :key="name"
+                :color="networkDraft === name ? 'primary' : undefined"
+                :title="globalLinks[name]"
+                :variant="networkDraft === name ? 'flat' : 'tonal'"
+                @click="pickNetwork(name)"
+              >
+                {{ SOCIAL_NETWORK_LABELS[name] }}
+              </v-chip>
+            </div>
+            <p v-else class="text-with-icon-link-note">{{ t('textWithIcon.noNetworks') }}</p>
+            <p v-if="networkDraft" class="text-with-icon-link-note">{{ resolveLink(socialLink(networkDraft), globalLinks) }}</p>
+            <p class="text-with-icon-link-label mt-4">{{ t('textWithIcon.ownAddress') }}</p>
             <v-text-field
-              v-model="linkDraft"
-              autofocus
               :hint="t('textWithIcon.linkHint')"
+              :model-value="linkDraft"
               persistent-hint
-              placeholder="https://instagram.com/…"
+              placeholder="https://…"
               variant="outlined"
               @keyup.enter="saveLink"
+              @update:model-value="onOwnAddress"
             />
           </v-card-text>
           <v-card-actions>
@@ -116,6 +160,22 @@
 </template>
 
 <style scoped>
+.text-with-icon-link-label {
+  margin: 0 0 8px;
+  font-size: 0.85rem;
+  color: #3a4a58;
+}
+.text-with-icon-networks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.text-with-icon-link-note {
+  margin: 6px 0 0;
+  font-size: 12px;
+  color: #7a8699;
+  overflow-wrap: anywhere;
+}
 .text-with-icon {
   display: grid;
   grid-template-columns: v-bind(iconColumnWidth) 1fr;

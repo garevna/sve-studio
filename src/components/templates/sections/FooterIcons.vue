@@ -8,8 +8,7 @@
   // falls back to the bundled default SVGs when a network has no custom
   // glyph set.
   import { footerIcons } from '@/assets/footer-icons'
-
-  const SOCIAL_NETWORKS = ['facebook', 'instagram', 'tiktok', 'whatsApp', 'viber', 'telegram'] as const
+  import { SOCIAL_NETWORKS } from '@/configs/social-networks'
 
   type PropsModel = { links?: Record<string, string>, icons?: Record<string, string> }
 

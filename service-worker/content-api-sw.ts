@@ -44,6 +44,8 @@ const repo = createContentRepository({
   docs: createStorage({ driver: indexedbDriver({ dbName: 'content-api-docs', storeName: 'docs' }) }),
   images: createStorage({ driver: indexedbDriver({ dbName: 'content-api-images', storeName: 'images' }) }),
   followSeed: process.env.NODE_ENV === 'development',
+  // A published demo takes every new release whole.
+  resetOnRelease: process.env.NODE_ENV !== 'development',
 })
 
 const handle = toWebHandler(createContentApiHandler({ repo, access: 'open' }))

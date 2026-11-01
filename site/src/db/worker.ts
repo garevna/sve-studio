@@ -415,6 +415,57 @@ async function refreshChangedSeedFiles (db: IDBDatabase): Promise<void> {
   await Promise.all(tasks)
 }
 
+// A published demo takes every new release whole: when the repository's
+// content changes (the release signature - built from every file's
+// fingerprint in manifest.json - differs from the one this browser last
+// took), each page, settings file and stylesheet of the release overwrites
+// the local copy, drafts and saves included. A page that exists only in
+// this browser stays. Not in development: there "Зберегти" writes the
+// files themselves, and drafts must survive a manifest rebuild.
+function releaseSignature (manifest: ManifestModel): string {
+  const text = JSON.stringify(manifest.hashes ?? manifest)
+  let hash = 5381
+  for (let index = 0; index < text.length; index++) {
+    hash = ((hash * 33) ^ text.codePointAt(index)!) >>> 0
+  }
+  return hash.toString(16)
+}
+
+async function takeNewRelease (db: IDBDatabase): Promise<void> {
+  if (import.meta.env.DEV) {
+    return
+  }
+  const manifest = await (await fetch(fileUrl('manifest.json'), { cache: 'no-store' })).json() as ManifestModel
+  const signature = releaseSignature(manifest)
+  const taken = (await getRecord<{ key: string, value: string }>(db, 'meta', 'release'))?.value
+  if (taken === signature) {
+    return
+  }
+  const tasks: Promise<unknown>[] = []
+  for (const pageId of manifest.pages) {
+    const seedPath = `pages/${pageId}.json`
+    tasks.push(fetch(fileUrl(`dynamic-pages/${pageId}.json`), { cache: 'no-store' })
+      .then(response => response.json())
+      .then(content => putRecord(db, 'pages', { pageId, content, visible: (content as { visible?: boolean })?.visible !== false, ...seedOrigin(manifest, seedPath) } satisfies PageRecord))
+      .catch(error => console.warn(`takeNewRelease: page "${pageId}"`, error)))
+  }
+  for (const key of manifest.settings) {
+    tasks.push(fetch(fileUrl(settingsFileName(key)), { cache: 'no-store' })
+      .then(response => response.json())
+      .then(content => putRecord(db, 'settings', { key, content, ...seedOrigin(manifest, settingsSeedPath(key)) } satisfies SettingsRecord))
+      .catch(error => console.warn(`takeNewRelease: settings "${key}"`, error)))
+  }
+  for (const name of manifest.styles) {
+    const seedPath = `styles/${name}`
+    tasks.push(fetch(fileUrl(seedPath), { cache: 'no-store' })
+      .then(response => response.text())
+      .then(content => looksLikeHtml(content) ? undefined : putRecord(db, 'styles', { name, content, ...seedOrigin(manifest, seedPath) } satisfies StyleRecord))
+      .catch(error => console.warn(`takeNewRelease: style "${name}"`, error)))
+  }
+  await Promise.all(tasks)
+  await putRecord(db, 'meta', { key: 'release', value: signature })
+}
+
 // Palette keys of the removed booking wizard. A palette saved in a browser
 // before they left content/settings/palette.json still carries them (and
 // may lack keys added since): they are dropped and the missing ones taken
@@ -567,6 +618,7 @@ self.onmessage = async (event: MessageEvent<DbRequestMessage>) => {
         await seedMissingSettings(db)
         await seedMissingStyles(db)
         await refreshChangedSeedFiles(db)
+        await takeNewRelease(db).catch(error => console.warn('takeNewRelease', error))
         await dropRetiredPaletteKeys(db).catch(error => console.warn('dropRetiredPaletteKeys', error))
         return db
       })

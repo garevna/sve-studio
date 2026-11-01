@@ -36,6 +36,11 @@ export interface ContentRepositoryOptions {
   // saved version - a document that has one is read from it, and a fix made
   // in content/ by hand is not hidden by an older copy stored here.
   followSeed?: boolean
+  // A published demo: when the release changes (any file's fingerprint in
+  // manifest.json), every saved copy of a file the release has is dropped,
+  // so the browser shows the new release whole. Documents that exist only
+  // here, and images, stay.
+  resetOnRelease?: boolean
 }
 
 const IMAGE_EXTENSION_PRIORITY = ['webp', 'avif', 'png', 'jpg', 'jpeg', 'svg', 'gif']
@@ -61,7 +66,7 @@ function seedPath (kind: DocKind, name: string): string {
   return kind === 'styles' ? `styles/${name}` : `${kind}/${name}.json`
 }
 
-export function createContentRepository ({ seed, docs, images, followSeed = false }: ContentRepositoryOptions) {
+export function createContentRepository ({ seed, docs, images, followSeed = false, resetOnRelease = false }: ContentRepositoryOptions) {
   // The manifest rarely changes; re-read at most every few seconds.
   let manifestCache: { at: number, value: Promise<SeedManifest> } | null = null
   function manifest (): Promise<SeedManifest> {
@@ -73,7 +78,37 @@ export function createContentRepository ({ seed, docs, images, followSeed = fals
 
   const key = (kind: DocKind, name: string) => `${kind}:${name}`
 
+  // Checked once per run (see resetOnRelease).
+  let releaseChecked: Promise<void> | null = null
+  function takeNewRelease (): Promise<void> {
+    if (!resetOnRelease) {
+      return Promise.resolve()
+    }
+    releaseChecked ??= (async () => {
+      const hashes = (await manifest()).hashes
+      if (!hashes) {
+        return
+      }
+      const signature = JSON.stringify(hashes)
+      if (await docs.getItem<string>('meta:release') === signature) {
+        return
+      }
+      for (const storedKey of await docs.getKeys()) {
+        const [kind, ...rest] = storedKey.split(':')
+        const name = rest.join(':')
+        if (kind !== 'meta' && hashes[seedPath(kind as DocKind, name)]) {
+          await docs.removeItem(storedKey)
+        }
+      }
+      await docs.setItem('meta:release', signature)
+    })().catch(() => {
+      releaseChecked = null
+    })
+    return releaseChecked
+  }
+
   async function record (kind: DocKind, name: string): Promise<DocRecord | null> {
+    await takeNewRelease()
     return await docs.getItem<DocRecord>(key(kind, name))
   }
 

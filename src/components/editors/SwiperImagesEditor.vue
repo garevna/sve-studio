@@ -114,26 +114,26 @@
           resizable
         >
           <ResizableWrapper v-model:height="slideHeight" :min-height="120" resize>
-            <v-img class="swiper-images-slide" cover height="100%" :src="ajaxStore.getImageURL(image.src)" />
+            <img alt="" class="swiper-images-slide swiper-images-slide--fill" :src="ajaxStore.getImageURL(image.src)">
           </ResizableWrapper>
         </ResizableColumn>
-        <v-img
+        <img
           v-else
+          alt=""
           class="swiper-images-slide"
-          cover
           :src="ajaxStore.getImageURL(image.src)"
           :style="{ width: `${slideWidth}px`, height: `${slideHeight}px` }"
-        />
+        >
       </template>
     </div>
     <div v-else-if="images.length > 0" class="swiper-images-grid">
-      <v-img
+      <img
         v-for="(image, index) of images"
         :key="index"
+        alt=""
         class="swiper-images-thumb"
-        cover
         :src="ajaxStore.getImageURL(image.src)"
-      />
+      >
     </div>
     <div v-else class="swiper-images-empty">
       Немає завантажених фото
@@ -190,6 +190,17 @@
   z-index: 1;
 }
 
+/* Plain <img>, not v-img: in the built editor v-img stayed "booting" here
+   and never showed its picture. */
+.swiper-images-thumb,
+.swiper-images-slide {
+  display: block;
+  object-fit: cover;
+}
+.swiper-images-slide--fill {
+  width: 100%;
+  height: 100%;
+}
 .swiper-images-slide {
   flex: 0 0 auto;
   max-width: 100%;

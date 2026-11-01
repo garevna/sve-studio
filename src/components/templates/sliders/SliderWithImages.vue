@@ -62,7 +62,9 @@
     <template v-for="(image, index) of images" :key="index">
       <swiper-slide :style="{ width: `${image.width || width}px` }">
         <!-- <template-card :item="image" style="height: 100%" /> -->
-        <v-img cover :src="ajaxStore.getImageURL(image.src)" style="height: 100%; width: 100%" />
+        <!-- A plain <img>: in the built editor v-img inside the slider
+          stayed "booting" and never showed its picture. -->
+        <img alt="" class="slider-with-images-img" :src="ajaxStore.getImageURL(image.src)">
       </swiper-slide>
     </template>
     <template #container-end>
@@ -91,7 +93,11 @@
   cursor: grab;
 }
 
-.swiper-slide .v-img {
+.slider-with-images-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   border-radius: var(--default-border-radius) !important;
 }
 

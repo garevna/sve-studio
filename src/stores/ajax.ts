@@ -429,6 +429,14 @@ export const useAjaxStore = defineStore('ajax', () => {
     // The demo's API answers under the app's base ("/sve-studio/api/..." on
     // GitHub Pages), so a stored /api/... path gets that base in front.
     const apiBase = (REMOTE_API_DISABLED || import.meta.env.PROD) && imageId.startsWith('/api/') ? appBase().replace(/\/$/, '') : ''
+    // Without the in-browser API in control (the first moments of a new
+    // release, or "working on the local copy"), /api/... is not answered at
+    // all on a static host - a picture of the release is then read from the
+    // published files (/_seed/images/...) instead. An uploaded one has to
+    // wait for the API.
+    if (import.meta.env.PROD && imageId.startsWith('/api/content/images/') && !navigator.serviceWorker?.controller) {
+      return `${location.origin}${appBase()}_seed/images/${imageId.slice('/api/content/images/'.length)}`
+    }
     return new URL(api.defaults.baseURL || location.origin, location.origin).origin + apiBase + imageId
   }
 

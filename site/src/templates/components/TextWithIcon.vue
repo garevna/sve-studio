@@ -69,6 +69,7 @@
   color: inherit;
   text-decoration: none;
   cursor: pointer;
+  align-items: center;
 }
 .text-with-icon--link:hover p {
   text-decoration: underline;

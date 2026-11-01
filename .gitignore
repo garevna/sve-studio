@@ -42,3 +42,6 @@ public/images/theme_*/uploads/
 # Local only: words that must never reach the repository (see
 # server/routes/__editor-api__/public-file.ts)
 .private/
+
+# Pictures kept at hand for uploading in the editor - not site content.
+upload-images/

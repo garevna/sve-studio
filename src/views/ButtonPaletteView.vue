@@ -1,6 +1,6 @@
 <script lang="ts" setup>
   import type { ButtonEntry } from '@/utils/button-style-entry'
-  import { computed, onMounted, ref, watch } from 'vue'
+  import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
   import googleIcon from '@/assets/google-icon.svg'
   import ButtonStylePicker from '@/components/special/ButtonStylePicker.vue'
   import EditorSaveBar from '@/components/special/EditorSaveBar.vue'
@@ -93,8 +93,20 @@
 
   // Every edit lands in IndexedDB automatically (debounced) - same pattern
   // as PaletteView.vue/StyleFileView.vue.
+  // Buttons and tabs are two UI Kit tabs over the same stylesheet
+  // (buttons.css): `section` says which part this one shows. Only one of
+  // them is mounted at a time (UiKitListView.vue), and a pending draft is
+  // written out on leaving, so the other one starts from it.
+  const props = withDefaults(defineProps<{ section?: 'buttons' | 'tabs' }>(), { section: 'buttons' })
+
   let autoSaveTimer: ReturnType<typeof setTimeout> | null = null
   let skipNextAutoSave = false
+  onBeforeUnmount(() => {
+    if (!autoSaveTimer) return
+    clearTimeout(autoSaveTimer)
+    autoSaveTimer = null
+    void ajaxStore.saveStyleFile(FILE_NAME, serializeEntries(), { publish: false })
+  })
   watch(entries, () => {
     if (skipNextAutoSave) {
       skipNextAutoSave = false
@@ -283,7 +295,7 @@
     <v-progress-linear v-if="loading" color="primary" indeterminate />
 
     <template v-else>
-      <div class="button-palette-list">
+      <div v-if="props.section === 'buttons'" class="button-palette-list">
         <div v-for="entry of buttonEntries" :key="entry.className" class="button-palette-row">
           <div class="button-palette-row-head" @click="toggleExpanded(entry.className)">
             <!-- --v-default-border-radius etc are Vuetify THEME variables -
@@ -356,13 +368,11 @@
         </div>
       </div>
 
-      <!-- Tabs, last: their classes are in the same stylesheet but they are
-        a different thing, and showing them among the buttons meant showing
-        an "active tab" and a "backing plate" as if they were buttons
-        somebody could press. -->
-      <template v-if="tabButtonEntry">
-        <h2 class="editor-section-title mt-16">Таби</h2>
-
+      <!-- Tabs: their classes are in the same stylesheet but they are a
+        different thing - an "active tab" and a "backing plate" are not
+        buttons somebody could press - so they are a UI Kit tab of their own
+        (section="tabs"). -->
+      <template v-if="props.section === 'tabs' && tabButtonEntry">
         <h3 class="tabs-subtitle">Колір фону групи вкладок</h3>
         <p class="tabs-context-hint">
           Таби на сторінці авторизації та на решті сторінок можуть мати різний
@@ -430,7 +440,7 @@
       @click="save"
       @undo="undo"
     >
-      <template #prepend>
+      <template v-if="props.section === 'buttons'" #prepend>
         <v-btn
           color="secondary"
           prepend-icon="mdi-plus"

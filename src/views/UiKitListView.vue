@@ -16,7 +16,7 @@
   // editor: it's a design decision about the site's shape (how many
   // columns, how wide, what gap), set once as numbers, while the footer
   // editor is for the content that goes in them.
-  const tab = ref<'buttons' | 'cards' | 'footer' | 'spacing' | 'menu' | 'date'>('buttons')
+  const tab = ref<'buttons' | 'tabs' | 'cards' | 'footer' | 'spacing' | 'menu' | 'date'>('buttons')
 </script>
 
 <template>
@@ -33,6 +33,7 @@
         selected-class="editor-tab--active"
       >
         <v-tab value="buttons">Кнопки</v-tab>
+        <v-tab value="tabs">Таби</v-tab>
         <v-tab value="cards">{{ t('cardStyles.tab') }}</v-tab>
         <v-tab value="footer">Футер</v-tab>
         <v-tab value="spacing">Відступи</v-tab>
@@ -41,8 +42,13 @@
       </v-tabs>
 
       <v-tabs-window v-model="tab">
+        <!-- Buttons and tabs edit the same stylesheet: only the open one is
+          mounted, so neither works from the other's stale copy. -->
         <v-tabs-window-item value="buttons">
-          <ButtonPaletteView />
+          <ButtonPaletteView v-if="tab === 'buttons'" />
+        </v-tabs-window-item>
+        <v-tabs-window-item value="tabs">
+          <ButtonPaletteView v-if="tab === 'tabs'" section="tabs" />
         </v-tabs-window-item>
         <v-tabs-window-item value="cards">
           <CardStylesView />

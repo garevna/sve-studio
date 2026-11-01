@@ -58,6 +58,18 @@ function extensionOf (name: string): string {
   return (name.match(/\.([a-z0-9]+)$/i)?.[1] ?? '').toLowerCase()
 }
 
+// The type of a picture: by its extension - unless its bytes are SVG. The
+// starting content has grey placeholder SVGs saved under .jpg/.png names
+// (they stand in for pictures not shipped with the demo); sent as JPEG/PNG
+// a browser shows them as broken.
+function imageType (name: string, bytes: Uint8Array): string {
+  const head = new TextDecoder().decode(bytes.subarray(0, 64)).trimStart()
+  if (head.startsWith('<svg') || (head.startsWith('<?xml') && new TextDecoder().decode(bytes.subarray(0, 512)).includes('<svg'))) {
+    return 'image/svg+xml'
+  }
+  return IMAGE_TYPES[extensionOf(name)] ?? 'application/octet-stream'
+}
+
 function stem (name: string): string {
   return name.replace(/\.[a-z0-9]+$/i, '')
 }
@@ -208,7 +220,7 @@ export function createContentRepository ({ seed, docs, images, followSeed = fals
   async function readImage (name: string): Promise<{ bytes: Uint8Array, type: string } | null> {
     const uploaded = await images.getItemRaw<Uint8Array>(name)
     if (uploaded) {
-      return { bytes: uploaded, type: IMAGE_TYPES[extensionOf(name)] ?? 'application/octet-stream' }
+      return { bytes: uploaded, type: imageType(name, uploaded) }
     }
     // The exact file first - listed, or not in the (cached) manifest yet: a
     // picture the editor has just written into content/images in dev. Only
@@ -218,11 +230,11 @@ export function createContentRepository ({ seed, docs, images, followSeed = fals
     // different picture than the one uploaded.
     const exact = await seed.readBytes(`images/${name}`)
     if (exact) {
-      return { bytes: exact, type: IMAGE_TYPES[extensionOf(name)] ?? 'application/octet-stream' }
+      return { bytes: exact, type: imageType(name, exact) }
     }
     const bundled = await findSeedImage(name)
     const bytes = bundled ? await seed.readBytes(`images/${bundled}`) : null
-    return bundled && bytes ? { bytes, type: IMAGE_TYPES[extensionOf(bundled)] ?? 'application/octet-stream' } : null
+    return bundled && bytes ? { bytes, type: imageType(bundled, bytes) } : null
   }
 
   async function findSeedImage (name: string): Promise<string | null> {

@@ -52,7 +52,14 @@
 </script>
 <template>
   <template v-if="winSize.width > 994">
-    <v-card :class="['w-100 overflow-hidden', props.item.class]" color="light-blue" height="480" style="position: relative">
+    <!-- The fill set in the editor (a palette key or gradient), else the
+      light blue it always had. -->
+    <v-card
+      :class="['w-100 overflow-hidden', props.item.class]"
+      :color="props.item.background ? undefined : 'light-blue'"
+      height="480"
+      :style="{ position: 'relative', ...(props.item.background ? { background: `var(--${props.item.background})` } : {}) }"
+    >
       <div class="picture-fone-circle" />
       <div class="pa-5" style="max-width: 800px; width: 50%; margin-left: auto">
         <p class="title-of-card text-center">{{ title }}</p>

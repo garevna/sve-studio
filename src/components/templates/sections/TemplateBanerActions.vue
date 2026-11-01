@@ -1,6 +1,7 @@
 <script setup lang="ts">
   import type { TemplateBlockModel } from '@/types/TemplateBlockModel'
   import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
+  import PaletteSwatchPicker from '@/components/special/PaletteSwatchPicker.vue'
   import { emptyTranslatedModel } from '@/utils/locale-text'
 
   // Container-level actions for a "baner" block: add another line to its
@@ -15,6 +16,13 @@
   const emit = defineEmits<{ 'pick-image': [variant: 'desktop' | 'mobile'] }>()
 
   const dragActive = defineModel<boolean>('dragActive', { default: false })
+
+  // The banner card's fill (a palette key or gradient); unset is the light
+  // blue it always had.
+  function setBackground (value: string) {
+    /* eslint-disable-next-line vue/no-mutating-props */
+    props.block.background = value
+  }
 
   function addLine () {
     /* eslint-disable-next-line vue/no-mutating-props */
@@ -40,6 +48,11 @@
     tooltip="Зображення для вузького екрана (паралакс)"
     @click="emit('pick-image', 'mobile')"
   />
+  <PaletteSwatchPicker gradients :model-value="block.background || ''" no-transparent @update:model-value="setBackground">
+    <template #activator="{ menuProps }">
+      <ToolbarIconButton v-bind="menuProps" icon="mdi-format-color-fill" tooltip="Фон банера" />
+    </template>
+  </PaletteSwatchPicker>
   <ToolbarIconButton icon="mdi-playlist-plus" tooltip="Додати текстовий рядок" @click="addLine" />
   <ToolbarIconButton
     :active="dragActive"

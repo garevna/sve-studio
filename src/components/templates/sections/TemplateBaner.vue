@@ -91,11 +91,18 @@
     // The parallax half reads a per-locale value, like every other image
     // block - the same picture for every language unless it's changed per
     // language later.
-    const assign = (value: string) => {
-      if (desktop) block.image = value
-      else setLocalizedContent(block, commonStore.locale, value)
-    }
     const previous = desktop ? block.image : resolveLocaleText(block.content, commonStore.locale)
+    // While the two pictures are one (the same file, or the other slot still
+    // empty), a new picture replaces both - otherwise uploading one left the
+    // other on the old file, and the banner showed different (or missing)
+    // pictures on a wide and a narrow screen.
+    const other = desktop ? resolveLocaleText(block.content, commonStore.locale) : block.image
+    const sameFile = (a?: unknown, b?: unknown) => typeof a === 'string' && typeof b === 'string' && a.split('?')[0] === b.split('?')[0]
+    const linked = !other || sameFile(other, previous)
+    const assign = (value: string) => {
+      if (desktop || linked) block.image = value
+      if (!desktop || linked) setLocalizedContent(block, commonStore.locale, value)
+    }
     // Preview first: it also tells upload-image.ts which slot this is.
     const previewUrl = URL.createObjectURL(file)
     assign(previewUrl)
@@ -143,9 +150,10 @@
   <template v-if="winSize.width > 926">
     <v-card
       :class="['w-100 d-flex flex-nowrap justify-space-between my-16 overflow-hidden', { 'baner-card--editing': mode === 'edit' }]"
-      color="light-blue"
+      :color="target?.background ? undefined : 'light-blue'"
       :height="mode === 'edit' ? undefined : 480"
       min-height="480"
+      :style="target?.background ? { background: `var(--${target.background})` } : undefined"
     >
       <div class="picture-fone-circle" />
       <div class="w-50 pa-5">

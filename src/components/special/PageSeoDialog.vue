@@ -133,6 +133,7 @@
           class="mt-4"
           color="primary"
           hide-details
+          inset
           label="Приховати сторінку від пошукових систем (noindex)"
         />
       </v-card-text>

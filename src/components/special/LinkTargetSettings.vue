@@ -209,6 +209,7 @@
       color="primary"
       :disabled="!selectedPageId"
       hide-details
+      inset
       label="Перехід всередині сторінки"
     />
 

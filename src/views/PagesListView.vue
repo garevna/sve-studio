@@ -586,9 +586,27 @@
             Ідентифікатор (ім'я файлу): <strong>{{ slug || '—' }}</strong>
           </p>
 
-          <v-switch v-model="breadcrumbs" color="primary" hide-details label="Хлібні крихти" />
-          <v-switch v-model="backButton" color="primary" hide-details label="Кнопка «Назад»" />
-          <v-switch v-model="hero" color="primary" hide-details label="Hero-секція" />
+          <v-switch
+            v-model="breadcrumbs"
+            color="primary"
+            hide-details
+            inset
+            label="Хлібні крихти"
+          />
+          <v-switch
+            v-model="backButton"
+            color="primary"
+            hide-details
+            inset
+            label="Кнопка «Назад»"
+          />
+          <v-switch
+            v-model="hero"
+            color="primary"
+            hide-details
+            inset
+            label="Hero-секція"
+          />
 
           <v-alert
             v-if="errorText"
@@ -620,6 +638,7 @@
           <v-switch
             color="primary"
             hide-details
+            inset
             :label="insertIntoSection ? 'Вставити у розділ' : 'Окремий пункт (без підпунктів)'"
             :model-value="insertIntoSection"
             @update:model-value="insertIntoSection = !!$event"
@@ -649,6 +668,7 @@
             v-model="insertOwnLabel"
             color="primary"
             hide-details
+            inset
             label="Своя назва в меню"
           />
           <template v-if="insertOwnLabel">

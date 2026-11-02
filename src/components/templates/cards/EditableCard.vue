@@ -102,6 +102,12 @@
       iconStyleTarget.value.size = value
     },
   })
+  const iconMobileSize = computed({
+    get: () => iconStyleTarget.value.mobileSize,
+    set: (value: number | undefined) => {
+      iconStyleTarget.value.mobileSize = value
+    },
+  })
   const iconBackground = computed({
     get: () => iconStyleTarget.value.background || props.defaults?.background || '',
     set: (value: string) => {
@@ -179,8 +185,10 @@
         v-model:icon="icon"
         v-model:icon-background="iconBackground"
         v-model:icon-color="iconColor"
+        v-model:icon-mobile-size="iconMobileSize"
         v-model:icon-size="iconSize"
         :appearance="!blockTarget"
+        mobile-sizable
       />
     </component>
     <!-- With its own format (a card with hover): the editor's usual text

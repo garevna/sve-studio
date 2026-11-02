@@ -18,12 +18,14 @@
   // background). Off wherever those belong to something bigger than one
   // icon: a block of cards styles all of its icons at once from its own
   // toolbar, so each card is left with the choice of icon and nothing else.
-  const props = withDefaults(defineProps<{ appearance?: boolean }>(), { appearance: true })
+  // mobileSizable: also the icon's size on a phone (IconAppearance) - cards.
+  const props = withDefaults(defineProps<{ appearance?: boolean, mobileSizable?: boolean }>(), { appearance: true })
 
   const icon = defineModel<string>('icon', { default: defaultIcon })
   const iconColor = defineModel<string>('iconColor', { default: 'grey' })
   const iconSize = defineModel<number>('iconSize', { default: 52 })
   const iconBackground = defineModel<string>('iconBackground', { default: '' })
+  const iconMobileSize = defineModel<number | undefined>('iconMobileSize')
 
   // Icon values come in three shapes: an mdi-* name (rendered via the font),
   // a real file path/data URI (uploaded SVG or loaded page content, plain
@@ -136,8 +138,10 @@
             v-if="props.appearance"
             v-model:icon-background="iconBackground"
             v-model:icon-color="iconColor"
+            v-model:icon-mobile-size="iconMobileSize"
             v-model:icon-size="iconSize"
             :colorable="isMdiIcon || !!socialIcon?.tinted"
+            :mobile-sizable="props.mobileSizable"
           />
         </v-card-text>
         <v-card-actions>

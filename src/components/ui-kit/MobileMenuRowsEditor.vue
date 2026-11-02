@@ -105,6 +105,7 @@
               color="primary"
               density="compact"
               hide-details
+              inset
               :label="t('menuStyle.lightLogo')"
             />
 
@@ -127,6 +128,7 @@
                 color="primary"
                 density="compact"
                 hide-details
+                inset
                 :label="t('menuStyle.localeLabel')"
               />
             </template>

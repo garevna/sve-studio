@@ -55,7 +55,13 @@
   <div class="hover-card-side">
     <div class="hover-card-side-row">
       <span class="hover-card-side-row-label">Фон - зображення</span>
-      <v-switch density="compact" hide-details :model-value="useImage" @update:model-value="onToggle" />
+      <v-switch
+        density="compact"
+        hide-details
+        inset
+        :model-value="useImage"
+        @update:model-value="onToggle"
+      />
     </div>
 
     <template v-if="!useImage">

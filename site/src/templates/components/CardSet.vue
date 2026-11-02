@@ -23,6 +23,7 @@
   // const height = computed(() => (props.item.height || 360) + 'px')
   const width = computed(() => props.item.width || 320)
   const size = computed(() => props.item.size || 24)
+  const mobileSize = computed(() => props.item.mobileSize)
   const ver = computed(() => props.item.ver || 1)
 
   // const width = computed(() => (cards.value[0]?.width || 320) + 'px')
@@ -31,7 +32,7 @@
 <template>
   <div :id="id" :class="[props.item.class || '', 'card-set-wrapper d-flex flex-wrap justify-center align-stretch ga-4']">
     <template v-for="(card, index) of cards" :key="index">
-      <template-card :item="Object.assign(card, { width, height: props.item.height, size, ver, background, color, cardBackground, cardStyle, titleClass, contentClass })" />
+      <template-card :item="Object.assign(card, { width, height: props.item.height, size, mobileSize, ver, background, color, cardBackground, cardStyle, titleClass, contentClass })" />
     </template>
   </div>
 </template>

@@ -1,4 +1,6 @@
 <script setup lang="ts">
+  import { computed } from 'vue'
+  import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
   import PaletteSwatchPicker from '@/components/special/PaletteSwatchPicker.vue'
 
   // HOW an icon looks - colour, size, the circle behind it - and nothing
@@ -15,6 +17,21 @@
   const iconColor = defineModel<string>('iconColor', { default: 'grey' })
   const iconSize = defineModel<number>('iconSize', { default: 52 })
   const iconBackground = defineModel<string>('iconBackground', { default: '' })
+  // The size on a phone (a card's icon). Off by default - the same size as
+  // on a wide screen; the switch gives the phone a size of its own.
+  const iconMobileSize = defineModel<number | undefined>('iconMobileSize')
+  const ownMobileSize = computed({
+    get: () => !!iconMobileSize.value,
+    set: (on: boolean) => {
+      iconMobileSize.value = on ? (iconSize.value || 52) : undefined
+    },
+  })
+  const mobileSize = computed({
+    get: () => iconMobileSize.value || iconSize.value || 52,
+    set: (value: number) => {
+      iconMobileSize.value = value
+    },
+  })
 
   defineProps<{
     // Colour only reaches an mdi icon (it's a font glyph). An uploaded SVG
@@ -22,6 +39,8 @@
     // a control that does nothing - the same "don't show what has no
     // effect" rule the text format menu follows (configs/text-format-support.ts).
     colorable?: boolean
+    // Offer the size on a phone - only where the site uses it (cards).
+    mobileSizable?: boolean
   }>()
 </script>
 
@@ -36,12 +55,11 @@
       <span class="icon-appearance-label">Фон під іконкою</span>
       <div class="d-flex align-center ga-2">
         <PaletteSwatchPicker :model-value="iconBackground" @update:model-value="(value: string) => iconBackground = value" />
-        <v-btn
+        <ToolbarIconButton
           v-if="iconBackground"
-          density="comfortable"
           icon="mdi-close"
-          size="x-small"
-          variant="text"
+          size="small"
+          tooltip="Прибрати фон"
           @click="iconBackground = ''"
         />
       </div>
@@ -58,6 +76,30 @@
         step="2"
       />
     </div>
+
+    <template v-if="mobileSizable">
+      <div class="icon-appearance-row">
+        <span class="icon-appearance-label">Окремий розмір на телефоні</span>
+        <v-switch
+          v-model="ownMobileSize"
+          color="primary"
+          density="compact"
+          hide-details
+          inset
+        />
+      </div>
+      <div v-if="ownMobileSize" class="icon-appearance-row">
+        <span class="icon-appearance-label">На телефоні: {{ mobileSize }}px</span>
+        <v-slider
+          v-model="mobileSize"
+          class="icon-appearance-slider"
+          hide-details
+          max="120"
+          min="16"
+          step="2"
+        />
+      </div>
+    </template>
   </div>
 </template>
 

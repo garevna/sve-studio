@@ -93,6 +93,7 @@ export interface BaseBlock {
   switchOrder?: boolean /* section: switch left and right sides of section order in mobile mode (for type 'section') */
   dark?: boolean /* parallax */
   size: number /* text-with-icon: icon or image size */
+  mobileSize?: number /* card: its icon's size on a phone; unset = the same size */
   color: string /* text-with-icon: icon color */
   text: TranslatedModel | string /* text-with-icon: class name for content */
   background: string /* for footer-icons component and for the future updates */

@@ -18,7 +18,12 @@
   const cardWidth = computed(() => props.item.width && props.item.width > 0 ? props.item.width + 'px' : '100%')
   const cardHeight = computed(() => props.item.height && props.item.height > 0 ? props.item.height + 'px' : '100%')
 
-  const iconSize = computed(() => (props.item.size || 56) / (winSize.value.width > 600 ? 1 : 1.5))
+  // On a phone the icon keeps its size, unless the editor gave it one of
+  // its own there ("Окремий розмір на телефоні").
+  const iconSize = computed(() => {
+    const size = props.item.size || 56
+    return winSize.value.width > 600 ? size : (props.item.mobileSize || size)
+  })
 
   const iconColor = computed(() => {
     return props.item.color ? `var(--${props.item.color})` : (props.item.background ? 'var(--white)' : 'var(--primary)')

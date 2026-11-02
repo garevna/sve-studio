@@ -75,6 +75,13 @@
       props.block.size = value
     },
   })
+  // Its size on a phone - unset means the same size.
+  const iconMobileSize = computed({
+    get: () => props.block.mobileSize,
+    set: (value: number | undefined) => {
+      props.block.mobileSize = value
+    },
+  })
   // Colour only reaches an mdi icon - it is a font glyph. An uploaded SVG
   // carries its own colours, so the picker would be a control that does
   // nothing; IconEditor.vue already gates its own copy of this panel the
@@ -173,8 +180,10 @@
         <IconAppearance
           v-model:icon-background="iconBackground"
           v-model:icon-color="iconColor"
+          v-model:icon-mobile-size="iconMobileSize"
           v-model:icon-size="iconSize"
           :colorable="anyMdiIcon"
+          mobile-sizable
         />
       </v-card-text>
     </v-card>

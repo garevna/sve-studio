@@ -177,6 +177,7 @@
               <v-switch
                 color="primary"
                 hide-details
+                inset
                 label="Підпункти"
                 :model-value="!!item.submenu"
                 @update:model-value="toggleHasSubmenu(item, $event)"

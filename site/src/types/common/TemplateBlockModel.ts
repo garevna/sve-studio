@@ -118,6 +118,8 @@ export interface BaseBlock {
   // editor's card-block toolbar. Unset means the classes TemplateCard.vue
   // has always hardcoded.
   titleClass?: string
+  // baner: the fill of the plate under its headline (a palette key).
+  titleBackground?: string
   contentClass?: string
   // Footer root block only (footer-content.json) - whether the footer
   // renders at all. Default true when unset.

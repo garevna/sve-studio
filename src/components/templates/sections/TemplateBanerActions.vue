@@ -24,6 +24,12 @@
     props.block.background = value
   }
 
+  // The plate under the headline; unset is primary.
+  function setTitleBackground (value: string) {
+    /* eslint-disable-next-line vue/no-mutating-props */
+    props.block.titleBackground = value
+  }
+
   function addLine () {
     /* eslint-disable-next-line vue/no-mutating-props */
     const children = props.block.children ??= []
@@ -51,6 +57,11 @@
   <PaletteSwatchPicker gradients :model-value="block.background || ''" no-transparent @update:model-value="setBackground">
     <template #activator="{ menuProps }">
       <ToolbarIconButton v-bind="menuProps" icon="mdi-format-color-fill" tooltip="Фон банера" />
+    </template>
+  </PaletteSwatchPicker>
+  <PaletteSwatchPicker gradients :model-value="block.titleBackground || 'primary'" no-transparent @update:model-value="setTitleBackground">
+    <template #activator="{ menuProps }">
+      <ToolbarIconButton v-bind="menuProps" icon="mdi-format-color-highlight" tooltip="Підкладка заголовка" />
     </template>
   </PaletteSwatchPicker>
   <ToolbarIconButton icon="mdi-playlist-plus" tooltip="Додати текстовий рядок" @click="addLine" />

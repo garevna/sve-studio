@@ -155,6 +155,8 @@ export interface BaseBlock {
   // Per-CARD versions of these existed once and were removed: production
   // ignored them, so they styled the editor's preview and nothing else.
   titleClass?: string
+  // baner: the fill of the plate under its headline (a palette key).
+  titleBackground?: string
   contentClass?: string
 }
 

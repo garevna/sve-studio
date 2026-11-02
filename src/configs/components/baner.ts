@@ -12,9 +12,8 @@ import { textPlaceholder } from '../defaults/text-placeholder'
 // exactly as the existing real content does, and can be replaced separately
 // from the block's own toolbar.
 //
-// The headline lives on `title` rather than in a child block, because
-// TemplateBaner styles it with its own hardwired .title-of-card class -
-// which is also why it isn't formattable there.
+// The headline lives on `title` rather than in a child block: it sits on
+// its own plate (titleBackground) and has its own format (titleClass).
 export function banerTemplate (): TemplateBlockModel {
   return {
     type: 'baner',

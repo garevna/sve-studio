@@ -12,24 +12,15 @@
 
   const props = defineProps<{ item: TemplateBlockModel }>()
 
-  const containerBackground = computed(() => props.item.class)
   const picture = computed(() => `url(${getImageURL(props.item.image)})`)
   // No picture, or not found: the checkerboard (utils/image-fallback.ts).
   const pictureMissing = imageMissing(() => getImageURL(props.item.image))
 
-  const margin = computed(() => {
-    if (winSize.value.width >= 1264) {
-      return '-240px'
-    } else if (winSize.value.width > 1180) {
-      return '-280px'
-    } else if (winSize.value.width > 1136) {
-      return '-300px'
-    } else if (winSize.value.width > 1094) {
-      return '-340px'
-    } else {
-      return '-400px'
-    }
-  })
+  // The headline: its own format, else the look it always had (the same
+  // default as the editor's TemplateBaner.vue); the plate under it in the
+  // colour set in the editor.
+  const titleClass = computed(() => props.item.titleClass || 'h2 text-bold text-white text-center')
+  const titlePlate = computed(() => `var(--${props.item.titleBackground || 'primary'})`)
 
   const title = computed(() => props.item.title?.[locale.value as 'uk' | 'en' | 'de'] || '')
 
@@ -58,17 +49,20 @@
     <!-- The fill set in the editor (a palette key or gradient), else the
       light blue it always had. -->
     <v-card
-      :class="['w-100 overflow-hidden', props.item.class]"
+      :class="['baner-card', props.item.class]"
       :color="props.item.background ? undefined : 'light-blue'"
-      height="480"
-      :style="{ position: 'relative', ...(props.item.background ? { background: `var(--${props.item.background})` } : {}) }"
+      :style="props.item.background ? { background: `var(--${props.item.background})` } : undefined"
     >
-      <div class="picture-fone-circle" :style="pictureMissing ? CHECKER_STYLE : undefined" />
-      <div class="pa-5" style="max-width: 800px; width: 50%; margin-left: auto">
-        <p class="title-of-card text-center">{{ title }}</p>
-        <template v-for="(text, index) of props.item.children" :key="index">
-          <p :class="text.class">{{ text.content[locale as 'uk' | 'en' | 'de'] }}</p>
-        </template>
+      <div class="baner-picture" :style="pictureMissing ? CHECKER_STYLE : undefined" />
+      <div class="baner-body">
+        <div class="baner-title-plate" :style="{ background: titlePlate }">
+          <p :class="titleClass">{{ title }}</p>
+        </div>
+        <div class="baner-lines">
+          <template v-for="(text, index) of props.item.children" :key="index">
+            <p :class="text.class">{{ text.content[locale as 'uk' | 'en' | 'de'] }}</p>
+          </template>
+        </div>
       </div>
     </v-card>
   </template>
@@ -78,34 +72,47 @@
 </template>
 
 <style scoped>
-  .container {
-    border-radius: var(--default-border-radius);
-    background: v-bind(containerBackground);
-    height: 480px;
+  /* The same shape as the editor's TemplateBaner.vue: the picture takes the
+     left 45%, its right edge an arc; the headline's plate runs on under the
+     arc to the right edge, the text below it. */
+  .baner-card {
+    --baner-height: 420px;
+    --baner-split: 45%;
+    --baner-radius: calc(var(--baner-height) * 0.95);
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: var(--baner-height);
+    overflow: hidden;
   }
-  .picture-fone-circle {
+  .baner-picture {
     position: absolute;
-    left: v-bind(margin);
-    top: -180px;
-    border-radius: 50%;
-    width: 840px;
-    height: 840px;
-    display:flex;
-    justify-items: center;
-    align-items: center;
-    background: v-bind(picture);
-    background-size: 100%;
-    background-repeat: no-repeat;
-    background-position: center right;
+    z-index: 2;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: var(--baner-split);
+    background: v-bind(picture) center / cover no-repeat;
+    clip-path: circle(var(--baner-radius) at calc(100% - var(--baner-radius)) 50%);
   }
-
-  .title-of-card {
+  .baner-body {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    min-width: 0;
+    margin-left: calc(var(--baner-split) - 90px);
+    padding: 10px 10px 24px 0;
+  }
+  .baner-title-plate {
+    padding: 18px 24px 18px 110px;
     border-radius: var(--default-border-radius);
-    background: var(--primary);
-    padding: 8px 12px;
-    font-size: 44px;
-    font-weight: 700;
-    color: var(--white);
-    /* -webkit-text-stroke: var(--primary) 2px; */
+  }
+  .baner-title-plate p {
+    margin: 0;
+  }
+  .baner-lines {
+    padding: 32px 48px 0 140px;
   }
 </style>

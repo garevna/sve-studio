@@ -55,13 +55,19 @@
     },
   })
 
-  // Fixed: .title-of-card owns the headline's look, so there is nothing for
-  // the format menu to write. A computed with a no-op setter satisfies
-  // TextEditor's v-model:class without letting anything change it.
+  // The headline's format - its own (titleClass), formatted like any text.
+  // Unset: large, bold, white, centred - the look it always had, made of
+  // the format menu's own classes so every one of them can be changed.
+  // NOTE: the site's TemplateBaner.vue uses the same default.
+  const DEFAULT_TITLE_CLASS = 'h2 text-bold text-white text-center'
   const titleClass = computed({
-    get: () => 'title-of-card text-right',
-    set: () => {},
+    get: () => target.value?.titleClass || DEFAULT_TITLE_CLASS,
+    set: (value: string) => {
+      if (target.value) target.value.titleClass = value
+    },
   })
+  // The plate under it: the colour set on the banner's toolbar.
+  const titlePlate = computed(() => `var(--${target.value?.titleBackground || 'primary'})`)
 
   const dragActive = defineModel<boolean>('dragActive', { default: false })
 
@@ -124,24 +130,9 @@
   // already gives it - the same route FAQ.vue takes.
   const blockActionsTarget = useBlockActionsTarget()
 
-  const containerBackground = computed(() => target.value?.class)
   const picture = computed(() => `url(${ajaxStore.getImageURL(target.value?.image || '')})`)
   // No picture, or not found: the checkerboard (utils/image-fallback.ts).
   const pictureMissing = imageMissing(() => ajaxStore.getImageURL(target.value?.image || ''))
-
-  const margin = computed(() => {
-    if (winSize.value.width >= 1264) {
-      return '-240px'
-    } else if (winSize.value.width > 1180) {
-      return '-280px'
-    } else if (winSize.value.width > 1136) {
-      return '-300px'
-    } else if (winSize.value.width > 1094) {
-      return '-340px'
-    } else {
-      return '-400px'
-    }
-  })
 
   // const parallaxSection = computed(() => ({
   //   type: 'parallax',
@@ -151,19 +142,20 @@
 </script>
 <template>
   <template v-if="winSize.width > 926">
+    <!-- The picture fills the left part, cut by an arc on its right; the
+      headline sits on a plate that runs from under that arc to the right
+      edge, the text below it. NOTE: the site's TemplateBaner.vue draws the
+      same. -->
     <v-card
-      :class="['w-100 d-flex flex-nowrap justify-space-between my-16 overflow-hidden', { 'baner-card--editing': mode === 'edit' }]"
+      :class="['baner-card my-16', { 'baner-card--editing': mode === 'edit' }]"
       :color="target?.background ? undefined : 'light-blue'"
-      :height="mode === 'edit' ? undefined : 480"
-      min-height="480"
       :style="target?.background ? { background: `var(--${target.background})` } : undefined"
     >
-      <div class="picture-fone-circle" :style="pictureMissing ? CHECKER_STYLE : undefined" />
-      <div class="w-50 pa-5">
+      <div class="baner-picture" :style="pictureMissing ? CHECKER_STYLE : undefined" />
+      <div class="baner-body">
         <!-- Edit mode uses the same TextEditor every other text in this
           editor uses, so formatting and per-line delete work here the way
-          they do everywhere else - rather than a separate dialog listing
-          the same lines again. -->
+          they do everywhere else. -->
         <v-theme-provider v-if="mode === 'edit'" theme="editorTheme">
           <Teleport :disabled="!blockActionsTarget" :to="blockActionsTarget || 'body'">
             <TemplateBanerActions
@@ -180,37 +172,44 @@
             type="file"
             @change="onImageChange"
           >
-          <TextEditor
-            v-model:class="titleClass"
-            :content="title"
-            :formattable="false"
-            parent-type="usual"
-            type="text"
-            @update:content="value => title = value || ''"
-          />
-          <SortableList v-model:active="dragActive" :items="target?.children">
-            <template #item="{ item: line, index, dragClass, contentClass }">
-              <div :class="dragClass">
-                <TextEditor
-                  v-model:class="line.class"
-                  :class="contentClass"
-                  :content="text(line.content)"
-                  :deletable="!dragActive"
-                  parent-type="usual"
-                  type="text"
-                  @delete="removeLine(index)"
-                  @update:content="value => setText(line, value)"
-                />
-              </div>
-            </template>
-          </SortableList>
+          <div class="baner-title-plate" :style="{ background: titlePlate }">
+            <TextEditor
+              v-model:class="titleClass"
+              :content="title"
+              parent-type="usual"
+              type="text"
+              @update:content="value => title = value || ''"
+            />
+          </div>
+          <div class="baner-lines">
+            <SortableList v-model:active="dragActive" :items="target?.children">
+              <template #item="{ item: line, index, dragClass, contentClass }">
+                <div :class="dragClass">
+                  <TextEditor
+                    v-model:class="line.class"
+                    :class="contentClass"
+                    :content="text(line.content)"
+                    :deletable="!dragActive"
+                    parent-type="usual"
+                    type="text"
+                    @delete="removeLine(index)"
+                    @update:content="value => setText(line, value)"
+                  />
+                </div>
+              </template>
+            </SortableList>
+          </div>
         </v-theme-provider>
 
         <template v-else>
-          <p class="title-of-card text-right">{{ title }}</p>
-          <template v-for="(line, index) of target?.children" :key="index">
-            <p :class="line.class">{{ text(line.content) }}</p>
-          </template>
+          <div class="baner-title-plate" :style="{ background: titlePlate }">
+            <p :class="titleClass">{{ title }}</p>
+          </div>
+          <div class="baner-lines">
+            <template v-for="(line, index) of target?.children" :key="index">
+              <p :class="line.class">{{ text(line.content) }}</p>
+            </template>
+          </div>
         </template>
       </div>
     </v-card>
@@ -221,34 +220,60 @@
 </template>
 
 <style scoped>
-  .container {
-    border-radius: var(--v-default-border-radius);
-    background: v-bind(containerBackground);
-    height: 480px;
+  /* A fixed height (the editor lets it grow while lines are edited). The
+     picture takes the left 45%, its right edge an arc of a circle almost
+     twice the card's height across, centred on the card's middle; the text
+     column starts a little left of that line, so the headline's plate runs
+     on under the arc and its visible left edge follows it. */
+  .baner-card {
+    --baner-height: 420px;
+    --baner-split: 45%;
+    --baner-radius: calc(var(--baner-height) * 0.95);
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: var(--baner-height);
+    overflow: hidden;
   }
-  .picture-fone-circle {
-    border-radius: 50%;
-    width: 840px;
-    height: 840px;
-    margin-left: v-bind(margin);
-    margin-top: -180px;
-    display:flex;
-    justify-items: center;
-    align-items: center;
-    background: v-bind(picture);
-    background-size: 100%;
-    background-repeat: no-repeat;
-    background-position: center right;
+  .baner-card--editing {
+    height: auto;
+    min-height: var(--baner-height);
   }
-
-  :deep(.title-of-card) {
+  .baner-picture {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: var(--baner-split);
+    background: v-bind(picture) center / cover no-repeat;
+    clip-path: circle(var(--baner-radius) at calc(100% - var(--baner-radius)) 50%);
+  }
+  .baner-body {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    min-width: 0;
+    margin-left: calc(var(--baner-split) - 90px);
+    padding: 10px 10px 24px 0;
+  }
+  .baner-title-plate {
+    padding: 18px 24px 18px 110px;
     border-radius: var(--v-default-border-radius);
-    background: var(--primary);
-    padding: 8px 12px;
-    font-size: 44px;
-    font-weight: 700;
-    color: var(--white);
-    text-align: center;
-    /* -webkit-text-stroke: var(--primary) 2px; */
+  }
+  .baner-title-plate p {
+    margin: 0;
+  }
+  /* The plate is dark: the editor's format icon gets a light halo there. */
+  .baner-title-plate :deep(.toolbar-icon-button .v-icon) {
+    filter: drop-shadow(0 0 1px #fff) drop-shadow(0 0 2px #fff);
+  }
+  .baner-title-plate :deep(.text-format-panel .toolbar-icon-button .v-icon) {
+    filter: none;
+  }
+  .baner-lines {
+    padding: 32px 48px 0 140px;
   }
 </style>

@@ -2,7 +2,7 @@
   import type { EditorMode } from '@/composables/useEditorMode'
   import type { TemplateBlockModel } from '@/types/TemplateBlockModel'
   import { SveIconButton, SveMenu, SveMenuDivider, SveMenuItem } from '@sve/editor-ui'
-  import { computed, ref } from 'vue'
+  import { computed, onBeforeUnmount, ref, watch } from 'vue'
   import { provideEditorMode } from '@/composables/useEditorMode'
   import { usePageBlocks } from '@/composables/usePageBlocks'
   import { useCommonStore } from '@/stores/common'
@@ -33,12 +33,29 @@
   provideEditorMode(mode)
 
   const menuOpen = ref(false)
+
+  // A block with nothing in it yet (empty texts, no picture) draws nothing
+  // on the site - here it would be a 0px strip nobody can click. Its body is
+  // measured; while it is (almost) flat the frame keeps a visible, clickable
+  // place of its own with an edit button, so no block is ever out of reach.
+  const body = ref<HTMLElement | null>(null)
+  const empty = ref(false)
+  let observer: ResizeObserver | undefined
+  watch(body, element => {
+    observer?.disconnect()
+    if (!element) return
+    observer = new ResizeObserver(() => {
+      empty.value = element.offsetHeight < 24
+    })
+    observer.observe(element)
+  })
+  onBeforeUnmount(() => observer?.disconnect())
 </script>
 
 <template>
   <div
     v-if="editingPage"
-    :class="['sve-block', { 'sve-block--active': active, 'sve-block--flash': pageBlocks.isFlashing(block) }]"
+    :class="['sve-block', { 'sve-block--active': active, 'sve-block--empty': empty, 'sve-block--flash': pageBlocks.isFlashing(block) }]"
   >
     <div :class="['sve-ui sve-block__settings', { 'sve-block__settings--open': menuOpen }]">
       <SveMenu v-model="menuOpen">
@@ -56,7 +73,13 @@
         </template>
       </SveMenu>
     </div>
-    <slot :mode="mode" />
+    <div ref="body" class="sve-block__body">
+      <slot :mode="mode" />
+    </div>
+    <div v-if="empty && !active" class="sve-ui sve-block__empty">
+      <i class="sve-icon mdi mdi-pencil-outline" />
+      <span>Порожній блок — натисніть, щоб наповнити</span>
+    </div>
     <div v-if="!active" class="sve-block__shield" title="Редагувати блок" @click="pageBlocks.edit(block)" />
   </div>
   <slot v-else :mode="mode" />

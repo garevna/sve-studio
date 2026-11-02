@@ -111,6 +111,7 @@
 <template>
   <v-img
     v-if="naturalSize && mode !== 'edit'"
+    :aspect-ratio="!shownSrc || imageFailed ? 1.6 : undefined"
     class="rounded-border-image"
     :class="{ 'image-placeholder-bg': !shownSrc || imageFailed }"
     cover

@@ -481,6 +481,25 @@
   20%, 70% { outline-color: var(--sve-block-outline); box-shadow: 0 0 0 8px color-mix(in srgb, var(--sve-block-outline) 18%, transparent); }
 }
 
+/* A block with nothing to show yet (see PageBlockFrame.vue): it keeps a
+   dashed place of its own with an edit hint, so it can always be reached. */
+.sve-block--empty {
+  min-height: 64px;
+  outline: dashed 2px color-mix(in srgb, var(--sve-block-outline) 45%, transparent);
+}
+.sve-block--empty > .sve-block__settings { opacity: 1; }
+.sve-block__empty {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: var(--sve-text-muted, #7A8699);
+  font-size: 0.9rem;
+  pointer-events: none;
+}
+
 /* The settings button in the block's top right corner: shown on hover (and
    always on touch screens, which have no hover). */
 .sve-block__settings {

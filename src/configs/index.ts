@@ -1,6 +1,6 @@
 import { banerTemplate } from './components/baner'
 import { cardWithHoverGroupTemplate } from './components/cards/card-with-hover'
-import { cardWithIconLeftTemplate, cardWithIconTopTemplate } from './components/cards/card-with-icon'
+import { cardWithIconLeftTemplate, cardWithIconRowTemplate, cardWithIconTopTemplate } from './components/cards/card-with-icon'
 import { cardWithToolbarImageGroupTemplate } from './components/cards/card-with-toolbar-image'
 import { carouselWithCardsTemplate } from './components/carousel-with-cards'
 import { faq } from './components/faq'
@@ -33,6 +33,7 @@ export const components = {
   'card-with-hover': cardWithHoverGroupTemplate,
   'card-with-icon-top': cardWithIconTopTemplate,
   'card-with-icon-left': cardWithIconLeftTemplate,
+  'card-with-icon-row': cardWithIconRowTemplate,
   'carousel-with-cards': carouselWithCardsTemplate,
   'carousel-with-images': swiperWithImagesTemplate,
   'carousel-with-preview': swiperWithThumbnailsTemplate,

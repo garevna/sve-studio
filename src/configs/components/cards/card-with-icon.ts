@@ -28,6 +28,7 @@ export function cardWithIconLeftTemplate (): TemplateBlockModel {
 // wide as its column. Unlike ver 1/2 it is not a tile in a row of tiles but
 // a line in a list, which is what makes it the useful shape inside one
 // half of a "Довільний контент" block - see FreeContentInsertMenu.vue.
+// It is in the page's block menu too ("Списком, з іконкою").
 //
 // No fill of its own: variant 4 defaults to the UI Kit's "Заливка" card
 // style (configs/card-style.ts), which brings it. The block's toolbar can

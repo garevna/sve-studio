@@ -232,6 +232,7 @@ export const listOfComponents = [
         image: cardWithIconTop,
       },
       { id: 'card-with-icon-left', title: 'З іконкою ліворуч', icon: 'mdi-view-list', iconClass: 'mr-2', class: 'ml-12', image: cardWithIconLeft },
+      { id: 'card-with-icon-row', title: 'Списком, з іконкою', icon: 'mdi-format-list-bulleted-square', iconClass: 'mr-2', class: 'ml-12', image: null },
       // { id: 'card-ver-3', title: 'З іконкою ліворуч', icon: 'mdi-view-list', iconClass: 'mr-2', class: 'ml-12', image: null },
       { id: 'card-with-hover', title: 'з ховером', icon: 'mdi-format-text-wrapping-overflow', iconClass: 'rotate-left-90', class: 'ml-12', image: null },
     ],

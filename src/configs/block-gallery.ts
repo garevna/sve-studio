@@ -36,6 +36,7 @@ export const BLOCK_DESCRIPTIONS: Record<string, string> = {
   'baner': 'Широкий банер: фото і текст на кольоровому тлі.',
   'card-with-toolbar-image': 'Картки з фото зверху і текстом під ним.',
   'card-with-icon-top': 'Картки з іконкою над назвою.',
+  'card-with-icon-row': 'Картки списком: іконка ліворуч, текст поруч, на заливці.',
   'faq': 'Питання, що розгортаються у відповіді.',
   'popular-destinations': 'Популярні маршрути списком.',
   'transfer-services-steps': 'Кроки процесу в кружечках, один за одним.',

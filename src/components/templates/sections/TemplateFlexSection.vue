@@ -53,9 +53,18 @@
   // the dotted block border by 20px. Preview mode never wraps in
   // EditableBlockWrapper at all, so it needs no adjustment - it already
   // matches production's own unpadded width exactly.
+  // A card with hover keeps its width in its component props (the group's
+  // "Ширина карток"; 240 when unset) - its column is that wide, so the card
+  // fills it instead of sitting at the left of a 360px column.
+  // NOTE: the site's TemplateFlexSection.vue does the same.
+  function hoverCardWidth (block: TemplateBlockModel): number {
+    if (block.type !== 'component' || block.content !== 'CardWithHover') return 0
+    return Number((block.props as Record<string, unknown> | undefined)?.width) || 240
+  }
+
   function cardWrapperWidth (block: TemplateBlockModel): string {
-    const base = block.width || 360
-    const padded = mode.value === 'edit' && block.type === 'card-with-toolbar-image'
+    const base = block.width || hoverCardWidth(block) || 360
+    const padded = mode.value === 'edit' && isDraggableCard(block)
     return (padded ? base + 40 : base) + 'px'
   }
 

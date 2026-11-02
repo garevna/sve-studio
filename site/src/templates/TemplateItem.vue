@@ -13,10 +13,11 @@
   import { getImageURL } from '../services/get-image-url'
   import { useCommonStore } from '../stores/common'
   import { IMAGE_PLACEHOLDER_CLASS } from '../utils/image-fallback'
+  import { localeAsset } from '../utils/locale-asset'
   import ErrorComponent from './ErrorComponent.vue'
   import LoadingComponent from './LoadingComponent.vue'
 
-  const { locale } = storeToRefs(useCommonStore())
+  const { locale, defaultLocale } = storeToRefs(useCommonStore())
   const { linkPath, follow } = useSiteNavigation()
 
   const props = defineProps<{ item: TemplateBlockModel }>()
@@ -47,7 +48,7 @@
 
   const imageURL = computed(() => {
     if (props.item.type !== 'image') return null
-    const src = props.item.content[locale.value as 'uk' | 'en' | 'de']
+    const src = localeAsset(props.item.content, locale.value, defaultLocale.value)
     return getImageURL(src)
   })
 

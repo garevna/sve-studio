@@ -6,14 +6,15 @@
 
   import { getImageURL } from '../../services/get-image-url'
   import { useCommonStore } from '../../stores/common'
+  import { localeAsset } from '../../utils/locale-asset'
 
   import TemplateItem from '../TemplateItem.vue'
 
-  const { locale } = storeToRefs(useCommonStore())
+  const { locale, defaultLocale } = storeToRefs(useCommonStore())
 
   const props = defineProps<{ item?: TemplateBlockModel, background?: string | null }>()
   const background = computed(() => props.item && props.item.dark ? '#00000050' : '#ffffff40')
-  const imageURL = computed(() => getImageURL(props.item?.content?.[locale.value as 'uk' | 'en' | 'de']))
+  const imageURL = computed(() => getImageURL(localeAsset(props.item?.content, locale.value, defaultLocale.value)))
 </script>
 
 <template>

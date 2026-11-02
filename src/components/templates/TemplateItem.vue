@@ -9,7 +9,7 @@
   import { useSiteContacts } from '@/composables/useSiteContacts'
   import { defaultTextClass } from '@/configs/defaults/default-classes'
   import { useCommonStore } from '@/stores/common'
-  import { emptyTranslatedModel, isTranslatedModel, localeTextStrict, resolveLocaleAsset, resolveLocaleText, siteLocales, translationHint } from '@/utils/locale-text'
+  import { emptyTranslatedModel, fillEmptyLocaleSlots, isTranslatedModel, localeTextStrict, resolveLocaleAsset, translationHint } from '@/utils/locale-text'
   import { resolveThemeAssetPath } from '@/utils/theme-asset-path'
   // import { useAjaxStore } from '@/stores/ajax'
   import ButtonEditor from '../editors/ButtonEditor.vue'
@@ -160,16 +160,7 @@
   // a locale someone already gave its own distinct image) removes that
   // failure mode without ever clobbering intentional per-locale content.
   function fillEmptyLocales (path: string) {
-    if (!item.value) return
-    if (!isTranslatedModel(item.value.content)) {
-      item.value.content = emptyTranslatedModel()
-    }
-    const content = item.value.content as TranslatedModel
-    for (const locale of siteLocales()) {
-      if (locale !== commonStore.locale && !content[locale]) {
-        content[locale] = path
-      }
-    }
+    if (item.value) fillEmptyLocaleSlots(item.value, path)
   }
 
   // Production (TextWithIcon.vue) reads block.icon (mdi-name or path/data-URI,

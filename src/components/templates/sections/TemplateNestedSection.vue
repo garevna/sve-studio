@@ -10,7 +10,7 @@
   import { useEditorMode } from '@/composables/useEditorMode'
   import { useCommonStore } from '@/stores/common'
   import { useUiFeedbackStore } from '@/stores/ui-feedback'
-  import { resolveLocaleAsset, resolveLocaleText, setLocalizedContent, translationHint } from '@/utils/locale-text'
+  import { fillEmptyLocaleSlots, resolveLocaleAsset, resolveLocaleText, setLocalizedContent, translationHint } from '@/utils/locale-text'
   import { resolveThemeAssetPath } from '@/utils/theme-asset-path'
 
   const commonStore = useCommonStore()
@@ -72,7 +72,7 @@
       <template v-for="(child, num) of block.children" :key="num">
         <div :class="[num === 0 ? 'section-left' : 'section-right', child.class, child.switchOrder ? (num === 0 ? 'section-left-switched-order' : 'section-right-switched-order') : '']">
           <template v-if="child.type === 'image' && imageSection">
-            <image-editor v-model:src="localizedImageSrc" />
+            <image-editor v-model:src="localizedImageSrc" @uploaded="path => imageSection && fillEmptyLocaleSlots(imageSection, path)" />
           </template>
           <template v-else-if="child.type === 'section-with-free-content'">
             <section-with-free-content :block-index="props.blockIndex" :section-index="num" />

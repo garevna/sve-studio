@@ -29,6 +29,7 @@ import { popularTrips } from '../configs/popular-trips'
 // import { phonesToCall, phonesToShow, workSchedule } from '@/configs/provider'
 
 import { getImageURL } from '../services/get-image-url'
+import { localeAsset } from '../utils/locale-asset'
 // import { useAjaxStore } from './ajax'
 
 // import { getBanersForLocale } from '@/services/common'
@@ -148,7 +149,7 @@ export const useCommonStore = defineStore('common', () => {
   function setParallax (parallax: TemplateBlockModel) {
     const lang = locale.value as 'uk' | 'en' | 'de'
     // image: string, header: string, title: string, theme?: 'parallax-content-light' | 'parallax-content-dark'
-    parallaxImage.value = getImageURL(parallax.content[lang])
+    parallaxImage.value = getImageURL(localeAsset(parallax.content, lang, defaultLocale.value))
     const header: ContentModel = parallax.children ? parallax.children.find(child => child.type === 'header')?.content || null : null
     const title: ContentModel = parallax.children ? parallax.children.find(child => child.type === 'title')?.content || null : null
     parallaxHeader.value = header ? header[lang] : null

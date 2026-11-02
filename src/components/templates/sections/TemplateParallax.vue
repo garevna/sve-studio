@@ -1,12 +1,12 @@
 <!-- eslint-disable unicorn/prefer-add-event-listener -->
 <script setup lang="ts">
-  import type { TemplateBlockModel, TranslatedModel } from '@/types/TemplateBlockModel'
+  import type { TemplateBlockModel } from '@/types/TemplateBlockModel'
   import { computed, onBeforeMount, ref } from 'vue'
   import ImageEditor from '@/components/editors/ImageEditor.vue'
   import TemplateItem from '@/components/templates/TemplateItem.vue'
   import { useEditorMode } from '@/composables/useEditorMode'
   import { useCommonStore } from '@/stores/common'
-  import { emptyTranslatedModel, isTranslatedModel, resolveLocaleAsset, setLocalizedContent, siteLocales } from '@/utils/locale-text'
+  import { emptyTranslatedModel, fillEmptyLocaleSlots, resolveLocaleAsset, setLocalizedContent } from '@/utils/locale-text'
   import { resolveThemeAssetPath } from '@/utils/theme-asset-path'
   import ParallaxComponent from './ParallaxComponent.vue'
 
@@ -36,13 +36,7 @@
   // Only fills EMPTY slots, never overwrites a locale someone already gave
   // its own distinct image.
   function fillEmptyLocales (path: string) {
-    if (!target.value || !isTranslatedModel(target.value.content)) return
-    const content = target.value.content as TranslatedModel
-    for (const locale of siteLocales()) {
-      if (locale !== commonStore.locale && !content[locale]) {
-        content[locale] = path
-      }
-    }
+    if (target.value) fillEmptyLocaleSlots(target.value, path)
   }
 
   const fileInput = ref<HTMLInputElement | null>(null)

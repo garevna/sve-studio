@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import type { TemplateBlockModel, TranslatedModel } from '@/types/TemplateBlockModel'
+  import type { TemplateBlockModel } from '@/types/TemplateBlockModel'
   import { storeToRefs } from 'pinia'
   import { computed, ref, watch } from 'vue'
   import EditableBlockWrapper from '@/components/editors/EditableBlockWrapper.vue'
@@ -9,7 +9,7 @@
   import { useEditorMode } from '@/composables/useEditorMode'
   import { TEXT_FORMAT_SUPPORT } from '@/configs/text-format-support'
   import { useCommonStore } from '@/stores/common'
-  import { isTranslatedModel, resolveLocaleAsset, resolveLocaleText, setLocalizedContent, siteLocales } from '@/utils/locale-text'
+  import { fillEmptyLocaleSlots, resolveLocaleAsset, resolveLocaleText, setLocalizedContent } from '@/utils/locale-text'
   import { resolveThemeAssetPath } from '@/utils/theme-asset-path'
   import { uploadImage } from '@/utils/upload-image'
 
@@ -86,13 +86,7 @@
   // rationale. Only fills EMPTY slots, never overwrites a locale someone
   // already gave its own distinct image.
   function fillEmptyLocales (path: string) {
-    if (!block.value || !isTranslatedModel(block.value.content)) return
-    const content = block.value.content as TranslatedModel
-    for (const localeKey of siteLocales()) {
-      if (localeKey !== locale.value && !content[localeKey]) {
-        content[localeKey] = path
-      }
-    }
+    if (block.value) fillEmptyLocaleSlots(block.value, path)
   }
 
   async function onFileChange (event: Event) {

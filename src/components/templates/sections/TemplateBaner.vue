@@ -10,7 +10,7 @@
   import { useCommonStore } from '@/stores/common'
   import { useUiFeedbackStore } from '@/stores/ui-feedback'
   import { CHECKER_STYLE, imageMissing } from '@/utils/image-fallback'
-  import { resolveLocaleText, setLocalizedContent } from '@/utils/locale-text'
+  import { fillEmptyLocaleSlots, resolveLocaleText, setLocalizedContent } from '@/utils/locale-text'
   import { uploadImage } from '@/utils/upload-image'
   import TemplateBanerActions from './TemplateBanerActions.vue'
   import TemplateParallax from './TemplateParallax.vue'
@@ -114,7 +114,9 @@
     const previewUrl = URL.createObjectURL(file)
     assign(previewUrl)
     try {
-      assign(await uploadImage(file, { replaces: typeof previous === 'string' ? previous : undefined, preview: previewUrl }))
+      const path = await uploadImage(file, { replaces: typeof previous === 'string' ? previous : undefined, preview: previewUrl })
+      assign(path)
+      if (!desktop || linked) fillEmptyLocaleSlots(block, path)
     } catch (error) {
       assign(typeof previous === 'string' ? previous : '')
       throw error

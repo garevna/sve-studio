@@ -87,16 +87,24 @@ function pick (value: TranslatedModel, locale: LocaleModel): string | string[] {
 // one. That's what the site itself shows (an untranslated text is blank
 // there), and in an edit field a gap has to look like a gap.
 export function resolveLocaleText (value: TranslatedModel | string | undefined, locale: LocaleModel): string {
-  if (!value) return ''
-  if (typeof value === 'string') return value
+  if (!value) {
+    return ''
+  }
+  if (typeof value === 'string') {
+    return value
+  }
   const own = value[locale]
   return Array.isArray(own) ? own.join('\n') : (own ?? '')
 }
 
 /** Same as resolveLocaleText but keeps multi-line content as separate lines (dark-fone-section / card lists). */
 export function resolveLocaleLines (value: TranslatedModel | string | undefined, locale: LocaleModel): string[] {
-  if (!value) return []
-  if (typeof value === 'string') return value ? [value] : []
+  if (!value) {
+    return []
+  }
+  if (typeof value === 'string') {
+    return value ? [value] : []
+  }
   const own = value[locale]
   return Array.isArray(own) ? own : (own ? [own] : [])
 }
@@ -107,8 +115,12 @@ export const localeTextStrict = resolveLocaleText
 // Images and other per-language ASSETS: one picture usually serves every
 // language, so a language without its own falls back to the default one's.
 export function resolveLocaleAsset (value: TranslatedModel | string | undefined, locale: LocaleModel): string {
-  if (!value) return ''
-  if (typeof value === 'string') return value
+  if (!value) {
+    return ''
+  }
+  if (typeof value === 'string') {
+    return value
+  }
   const resolved = pick(value, locale)
   return Array.isArray(resolved) ? resolved.join('\n') : resolved
 }
@@ -116,11 +128,15 @@ export function resolveLocaleAsset (value: TranslatedModel | string | undefined,
 // When this language's text is empty but another language has one: that
 // other text (default language first), to show as a hint. Otherwise ''.
 export function translationHint (value: TranslatedModel | string | undefined, locale: LocaleModel): string {
-  if (!value || typeof value === 'string' || hasText(value[locale])) return ''
+  if (!value || typeof value === 'string' || hasText(value[locale])) {
+    return ''
+  }
   const source = hasText(value[defaultLocaleRef.value])
     ? value[defaultLocaleRef.value]
     : Object.values(value).find(text => hasText(text))
-  if (!source) return ''
+  if (!source) {
+    return ''
+  }
   return Array.isArray(source) ? source.join('\n') : source
 }
 
@@ -134,6 +150,25 @@ export function setLocalizedContent (block: { content?: TranslatedModel | string
     block.content = emptyTranslatedModel()
   }
   (block.content as TranslatedModel)[locale] = value
+}
+
+// A picture just uploaded for one language goes into every language that
+// has none yet - otherwise the site shows a hole in those languages. A
+// language that already has a picture of its own keeps it. Temporary
+// blob:/data: previews are never spread.
+export function fillEmptyLocaleSlots (block: { content?: TranslatedModel | string }, value: string): void {
+  if (!value || value.startsWith('blob:')) {
+    return
+  }
+  if (!isTranslatedModel(block.content)) {
+    block.content = emptyTranslatedModel()
+  }
+  const content = block.content as TranslatedModel
+  for (const locale of siteLocalesRef.value) {
+    if (!content[locale]) {
+      content[locale] = value
+    }
+  }
 }
 
 /**
@@ -158,7 +193,9 @@ export function normalizeTranslatedFields<T extends { type?: string, content?: u
     }
   }
   if (Array.isArray(block.children)) {
-    for (const child of block.children) normalizeTranslatedFields(child)
+    for (const child of block.children) {
+      normalizeTranslatedFields(child)
+    }
   }
   return block
 }
@@ -171,7 +208,9 @@ export function missingTranslations (root: unknown, locales: string[] = siteLoca
   const counts: Record<string, number> = Object.fromEntries(locales.map(locale => [locale, 0]))
   const visit = (node: unknown) => {
     if (Array.isArray(node)) {
-      for (const item of node) visit(item)
+      for (const item of node) {
+        visit(item)
+      }
       return
     }
     if (typeof node !== 'object' || node === null) {
@@ -186,12 +225,16 @@ export function missingTranslations (root: unknown, locales: string[] = siteLoca
       }
       if (filled.length > 0 && filled.length < locales.length) {
         for (const locale of locales) {
-          if (!filled.includes(locale)) counts[locale] = (counts[locale] ?? 0) + 1
+          if (!filled.includes(locale)) {
+            counts[locale] = (counts[locale] ?? 0) + 1
+          }
         }
       }
       return
     }
-    for (const value of Object.values(node)) visit(value)
+    for (const value of Object.values(node)) {
+      visit(value)
+    }
   }
   visit(root)
   return counts

@@ -11,6 +11,7 @@ import { i18n, t } from '@/i18n'
 import { useUiFeedbackStore } from '@/stores/ui-feedback'
 import { getActiveTheme } from '@/utils/active-theme'
 import { syncContentImages } from '@/utils/dev-content-images'
+import { installImageFallback } from '@/utils/image-fallback'
 import { EDITOR_THEME_NAME } from '@/utils/vuetify-theme-names'
 
 export default defineNuxtPlugin({
@@ -20,6 +21,9 @@ export default defineNuxtPlugin({
     if (!nuxtApp.$contentApiReady) {
       useLocalOnlyMode()
     }
+
+    // A picture not set or not found shows the checkerboard.
+    installImageFallback()
 
     const theme = getActiveTheme()
     const pinia = createPinia()

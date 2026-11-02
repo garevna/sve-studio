@@ -5,6 +5,7 @@
   import { computed } from 'vue'
   import { getImageURL } from '../../services/get-image-url'
   import { useCommonStore } from '../../stores/common'
+  import { CHECKER_STYLE, imageMissing } from '../../utils/image-fallback'
   import TemplateParallax from './TemplateParallax.vue'
 
   const { winSize, locale } = storeToRefs(useCommonStore())
@@ -13,6 +14,8 @@
 
   const containerBackground = computed(() => props.item.class)
   const picture = computed(() => `url(${getImageURL(props.item.image)})`)
+  // No picture, or not found: the checkerboard (utils/image-fallback.ts).
+  const pictureMissing = imageMissing(() => getImageURL(props.item.image))
 
   const margin = computed(() => {
     if (winSize.value.width >= 1264) {
@@ -60,7 +63,7 @@
       height="480"
       :style="{ position: 'relative', ...(props.item.background ? { background: `var(--${props.item.background})` } : {}) }"
     >
-      <div class="picture-fone-circle" />
+      <div class="picture-fone-circle" :style="pictureMissing ? CHECKER_STYLE : undefined" />
       <div class="pa-5" style="max-width: 800px; width: 50%; margin-left: auto">
         <p class="title-of-card text-center">{{ title }}</p>
         <template v-for="(text, index) of props.item.children" :key="index">

@@ -179,16 +179,16 @@
         "button": "",
         "images": {
           "desktop": [
-            "/api/content/images/0e9e0e76a4f31057979d2bb6d52bfbb60b91d210dbfbee3acb3722d0a321fdd3.png",
-            "/api/content/images/76ae1d423da47625e526328cc39bd8208f1d4e55f1198d4b4ec404c4be0ccca2.png",
-            "/api/content/images/9539e6adac2c92942231615cece93c028929fa3d48a3efe69443150c48bf2a1a.png",
-            "/api/content/images/ac27de0132083f207d9cb6d4d5ae39d27d34b7e867de90da1f982be095bed921.png"
+            "",
+            "",
+            "",
+            ""
           ],
           "mobile": [
-            "/api/content/images/35be08699cf5d448d4305d16bb9277986940f38e1615481b1f11e89b204a9d1a.png",
-            "/api/content/images/b47eb98545ad61d6c0ab21182b69a8f31d929d607c0f78f9280503f5a0fc072f.png",
-            "/api/content/images/af02528243dd63947ac74157fe651c3bd5b6b76129ab2e0e67f667b48c36b88d.png",
-            "/api/content/images/c27a36c8c822c3ebc53aac145a753877d1773f56749641e98f007bba4328657d.png"
+            "",
+            "",
+            "",
+            ""
           ]
         }
       },

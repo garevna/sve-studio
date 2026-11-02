@@ -67,9 +67,9 @@
         {
           "type": "image",
           "content": {
-            "uk": "/api/content/images/57c145288f383ad41d09ceb1442038edf0186ebd8a4ea5e80fdc622cb7912752.jpg",
-            "en": "/api/content/images/57c145288f383ad41d09ceb1442038edf0186ebd8a4ea5e80fdc622cb7912752.jpg",
-            "de": "/api/content/images/57c145288f383ad41d09ceb1442038edf0186ebd8a4ea5e80fdc622cb7912752.jpg"
+            "uk": "",
+            "en": "",
+            "de": ""
           }
         }
       ]
@@ -81,7 +81,7 @@
           "type": "card-with-toolbar-image",
           "width": 390,
           "height": 200,
-          "image": "/api/content/images/d56fbd9850eabeeeb0b3c0c86f40ec93b393b3384b1e42530ea4717db0409ce4.jpg",
+          "image": "",
           "children": [
             {
               "type": "title",
@@ -130,7 +130,7 @@
           "type": "card-with-toolbar-image",
           "width": 390,
           "height": 200,
-          "image": "/api/content/images/3a1e7949edc8775831992409f75dc37fada3b8989bb9e71f5c80a971a877b635.jpg",
+          "image": "",
           "children": [
             {
               "type": "title",
@@ -179,7 +179,7 @@
           "type": "card-with-toolbar-image",
           "width": 390,
           "height": 200,
-          "image": "/api/content/images/d1fab7567083afef337f435f7e7706f7af2783bc4773ad2ea3faa7d64a3dd6a0.jpg",
+          "image": "",
           "children": [
             {
               "type": "title",

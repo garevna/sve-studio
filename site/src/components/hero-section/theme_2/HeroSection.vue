@@ -3,7 +3,7 @@
 
   import { computed } from 'vue'
   import { useCommonStore } from '../../../stores/common'
-  import { sveRoot } from '../../../utils/sve-root'
+  import { IMAGE_PLACEHOLDER_CLASS } from '../../../utils/image-fallback'
   import BannerTexts from '../BannerTexts.vue'
 
   // Layout 1 of the top of the site: the menu bar on top (App.vue), the
@@ -24,7 +24,7 @@
     }))
     .filter(slide => slide.src))
 
-  const placeholder = computed(() => `${sveRoot()}images/baner-placeholder.png`)
+  // No banner picture: the checkerboard, as for any picture not set.
   const banerStyle = computed(() => ({ height: `${banerHeight.value}px` }))
 </script>
 
@@ -40,7 +40,13 @@
         <BannerTexts :texts="slide.texts" />
       </v-carousel-item>
     </v-carousel>
-    <v-img v-else cover :src="slides[0]?.src || placeholder" :style="banerStyle">
+    <v-img
+      v-else
+      :class="{ [IMAGE_PLACEHOLDER_CLASS]: !slides[0] }"
+      cover
+      :src="slides[0]?.src"
+      :style="banerStyle"
+    >
       <BannerTexts :texts="slides[0]?.texts" />
     </v-img>
   </div>

@@ -7,9 +7,9 @@
     {
       "type": "parallax",
       "content": {
-        "uk": "/api/content/images/3895b414aa80d4acc72cc27fb87fbc727210f1a75461b046ad7dbfbbdee5dd7a.jpg",
-        "en": "/api/content/images/3895b414aa80d4acc72cc27fb87fbc727210f1a75461b046ad7dbfbbdee5dd7a.jpg",
-        "de": "/api/content/images/3895b414aa80d4acc72cc27fb87fbc727210f1a75461b046ad7dbfbbdee5dd7a.jpg"
+        "uk": "",
+        "en": "",
+        "de": ""
       },
       "children": [
         {
@@ -68,9 +68,9 @@
         {
           "type": "image",
           "content": {
-            "uk": "/api/content/images/7f313a9c12f3e28bf2cd63ce6aad801af7475d0c8c868b063f5b3b5680dbc525.jpg",
-            "en": "/api/content/images/7f313a9c12f3e28bf2cd63ce6aad801af7475d0c8c868b063f5b3b5680dbc525.jpg",
-            "de": "/api/content/images/7f313a9c12f3e28bf2cd63ce6aad801af7475d0c8c868b063f5b3b5680dbc525.jpg"
+            "uk": "",
+            "en": "",
+            "de": ""
           }
         }
       ]
@@ -82,9 +82,9 @@
           "type": "image",
           "class": "my-25 my-md-0",
           "content": {
-            "uk": "/api/content/images/4265b3fa47a41ff78183e71a7cbc8555b6eb459572340d869b950c4273d5de3a.jpg",
-            "en": "/api/content/images/4265b3fa47a41ff78183e71a7cbc8555b6eb459572340d869b950c4273d5de3a.jpg",
-            "de": "/api/content/images/4265b3fa47a41ff78183e71a7cbc8555b6eb459572340d869b950c4273d5de3a.jpg"
+            "uk": "",
+            "en": "",
+            "de": ""
           }
         },
         {
@@ -291,9 +291,9 @@
     {
       "type": "image",
       "content": {
-        "uk": "/api/content/images/8e60c3055a9cafea699d48fd149ffc5aaa4ac0eff8d81244dc858a609456d8ee.png",
-        "en": "/api/content/images/8e60c3055a9cafea699d48fd149ffc5aaa4ac0eff8d81244dc858a609456d8ee.png",
-        "de": "/api/content/images/8e60c3055a9cafea699d48fd149ffc5aaa4ac0eff8d81244dc858a609456d8ee.png"
+        "uk": "",
+        "en": "",
+        "de": ""
       }
     }
   ],

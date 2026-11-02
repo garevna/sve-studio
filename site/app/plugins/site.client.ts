@@ -4,6 +4,7 @@ import { createPinia } from 'pinia'
 import { createVuetify } from 'vuetify'
 import { getPalette } from '../../src/services/site-data'
 import { probeContentApi } from '../../src/utils/content-api-state'
+import { installImageFallback } from '../../src/utils/image-fallback'
 import { sveRoot } from '../../src/utils/sve-root'
 
 // The editor's content API worker (service-worker/content-api-sw.ts) - it
@@ -26,6 +27,8 @@ export default defineNuxtPlugin({
   name: 'site',
   async setup (nuxtApp) {
     startContentApi()
+    // A picture not set or not found shows the checkerboard.
+    installImageFallback()
 
     const pinia = createPinia()
     nuxtApp.vueApp.use(pinia)

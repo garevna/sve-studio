@@ -13,9 +13,9 @@
       "type": "baner",
       "class": "bright-grey pa-0",
       "dark": false,
-      "image": "/api/content/images/c443c91e1166df4ea34c3b94549090b2672270006f70d15df4f26e9eb517fd15.jpg",
+      "image": "",
       "content": {
-        "uk": "/api/content/images/eff3e8010aa4ce81e95272026f81b32a36ecc257307dcd547225ac6b6d032c0a.jpg",
+        "uk": "",
         "en": "",
         "de": ""
       },

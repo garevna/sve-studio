@@ -9,6 +9,7 @@
   import { useAjaxStore } from '@/stores/ajax'
   import { useCommonStore } from '@/stores/common'
   import { useUiFeedbackStore } from '@/stores/ui-feedback'
+  import { CHECKER_STYLE, imageMissing } from '@/utils/image-fallback'
   import { resolveLocaleText, setLocalizedContent } from '@/utils/locale-text'
   import { uploadImage } from '@/utils/upload-image'
   import TemplateBanerActions from './TemplateBanerActions.vue'
@@ -125,6 +126,8 @@
 
   const containerBackground = computed(() => target.value?.class)
   const picture = computed(() => `url(${ajaxStore.getImageURL(target.value?.image || '')})`)
+  // No picture, or not found: the checkerboard (utils/image-fallback.ts).
+  const pictureMissing = imageMissing(() => ajaxStore.getImageURL(target.value?.image || ''))
 
   const margin = computed(() => {
     if (winSize.value.width >= 1264) {
@@ -155,7 +158,7 @@
       min-height="480"
       :style="target?.background ? { background: `var(--${target.background})` } : undefined"
     >
-      <div class="picture-fone-circle" />
+      <div class="picture-fone-circle" :style="pictureMissing ? CHECKER_STYLE : undefined" />
       <div class="w-50 pa-5">
         <!-- Edit mode uses the same TextEditor every other text in this
           editor uses, so formatting and per-line delete work here the way

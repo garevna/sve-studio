@@ -12,6 +12,7 @@
 
   import { getImageURL } from '../services/get-image-url'
   import { useCommonStore } from '../stores/common'
+  import { IMAGE_PLACEHOLDER_CLASS } from '../utils/image-fallback'
   import ErrorComponent from './ErrorComponent.vue'
   import LoadingComponent from './LoadingComponent.vue'
 
@@ -133,7 +134,8 @@
     <template v-if="props.item.type === 'image'">
       <v-img
         :id="item.id"
-        :class="[props.item.class, 'h-100 rounded']"
+        :aspect-ratio="imageURL ? undefined : 1.6"
+        :class="[props.item.class, 'h-100 rounded', { [IMAGE_PLACEHOLDER_CLASS]: !imageURL }]"
         cover
         :src="imageURL || ''"
         style="display: block"

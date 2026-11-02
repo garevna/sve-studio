@@ -4,6 +4,7 @@
   import { computed } from 'vue'
 
   import { getImageURL } from '../../services/get-image-url'
+  import { CHECKER_STYLE, imageMissing } from '../../utils/image-fallback'
   import TemplateCard from './TemplateCard.vue'
 
   const properties = defineProps<{
@@ -30,56 +31,76 @@
   const cardWidth = computed(() => properties.width ? properties.width + 'px' : '240px')
   const cardHeight = computed(() => properties.height ? properties.height + 'px' : '360px')
 
-  const background = computed(() => properties.backgroundColor ? `var(--${properties.backgroundColor})` : 'var(--light-grey-2)')
-  const backgroundImage = computed(() => properties.backgroundImage ? `url(${getImageURL(properties.backgroundImage)})` : null)
-  const hoverColor = computed(() => properties.hoverColor ? `var(--${properties.hoverColor})` : 'var(--primary)')
-  const hoverImage = computed(() => properties.hoverImage ? `url(${getImageURL(properties.hoverImage)})` : null)
+  // The fill and the picture go on the card itself, not on a box around
+  // it: the card's corners, border and shadow come from its UI Kit style,
+  // and a square box behind it showed a filled card with sharp corners.
+  // No fill of its own ("transparent") leaves the style's own fill.
+  // NOTE: the editor's HoverTemplate.vue does the same.
+  // A picture given but not found: the checkerboard, as everywhere.
+  function fill (color: string | undefined, image: string | undefined, missing: boolean): Record<string, string> | undefined {
+    if (image && missing) return { ...CHECKER_STYLE }
+    const style: Record<string, string> = {}
+    if (color && color !== 'transparent') style.backgroundColor = `var(--${color})`
+    if (image) {
+      style.backgroundImage = `url(${getImageURL(image)})`
+      style.backgroundSize = 'cover'
+      style.backgroundRepeat = 'no-repeat'
+      style.backgroundPosition = 'center'
+    }
+    return Object.keys(style).length > 0 ? style : undefined
+  }
+
+  const normalMissing = imageMissing(() => properties.backgroundImage ? getImageURL(properties.backgroundImage) : '')
+  const hoverMissing = imageMissing(() => properties.hoverImage ? getImageURL(properties.hoverImage) : '')
+  const normalFill = computed(() => fill(properties.backgroundColor, properties.backgroundImage, normalMissing.value))
+  const hoverFill = computed(() => fill(properties.hoverColor || 'primary', properties.hoverImage, hoverMissing.value))
 </script>
 
 <template>
-  <div style="position: relative">
+  <!-- A plain box outermost: what the parent passes down (the editor hands
+    blocks their model as modelValue) must not land on v-hover, where it
+    reads as "hovered" for good. -->
+  <div class="hover-card-box">
     <v-hover v-slot="{ isHovering, props }">
       <div
         class="card-normal-state"
         v-bind="props"
       >
-        <template-card :item="withVer(properties.items[0])" />
-        <v-expand-transition>
-          <div
-            v-if="isHovering"
-            class="d-flex v-card--reveal"
-          >
-            <template-card :item="withVer(properties.items[1])" />
-            <!-- <template-item :item="properties.items[1]" /> -->
-          </div>
-        </v-expand-transition>
+        <template-card :item="withVer(properties.items[0])" :style="normalFill" />
+        <template-card
+          :class="['v-card--reveal', { 'v-card--reveal--on': isHovering }]"
+          :item="withVer(properties.items[1])"
+          :style="hoverFill"
+        />
       </div>
     </v-hover>
   </div>
 </template>
 
 <style>
+  /* Both sides sit in one grid cell, both always drawn: the card is as tall
+     as the set height or the taller side, and the two sides are always the
+     same box - the hover side only slides open over the other. */
   .card-normal-state {
+    display: grid;
     width: v-bind(cardWidth);
-    height: v-bind(cardHeight);
-    background: v-bind(background);
-    background-image: v-bind(backgroundImage);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+    min-height: v-bind(cardHeight);
   }
-  .v-card--reveal {
-    align-items: center;
-    bottom: 0;
-    justify-content: center;
+  .card-normal-state > [class*="template-card-"] {
+    grid-area: 1 / 1;
+    box-sizing: border-box;
+    width: 100%;
+  }
+  .card-normal-state > .v-card--reveal {
+    opacity: 0;
+    clip-path: inset(100% 0 0 0);
+    pointer-events: none;
+    transition: clip-path 0.3s ease, opacity 0.3s ease;
+  }
+  /* Open: clipped wide enough for the card's own shadow. */
+  .card-normal-state > .v-card--reveal--on {
     opacity: v-bind(opacity);
-    position: absolute;
-    background: v-bind(hoverColor);
-    width: v-bind(cardWidth);
-    height: v-bind(cardHeight);
-    background-image: v-bind(hoverImage);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+    clip-path: inset(-24px);
+    pointer-events: auto;
   }
 </style>

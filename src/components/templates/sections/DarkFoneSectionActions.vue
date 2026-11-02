@@ -40,11 +40,7 @@
 <template>
   <PaletteSwatchPicker dark-only gradients :model-value="block.background || 'primary'" @update:model-value="setBackground">
     <template #activator="{ menuProps }">
-      <v-tooltip location="top" text="Фон секції" theme="editorTheme">
-        <template #activator="{ props: tooltipProps }">
-          <v-btn v-bind="{ ...tooltipProps, ...menuProps }" icon="mdi-format-color-fill" variant="text" />
-        </template>
-      </v-tooltip>
+      <ToolbarIconButton v-bind="menuProps" icon="mdi-format-color-fill" tooltip="Фон секції" />
     </template>
   </PaletteSwatchPicker>
   <ToolbarIconButton icon="mdi-plus" tooltip="Додати картку" @click="addCard" />

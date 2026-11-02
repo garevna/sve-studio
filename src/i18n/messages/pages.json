@@ -1,12 +1,12 @@
 {
   "hiddenNotice": {
     "uk": "Сторінка прихована: її немає в меню, а відвідувач, який відкриє її адресу, побачить «Сторінку не знайдено». У перегляді з редактора вона показується.",
-    "en": "",
-    "de": ""
+    "en": "The page is hidden: it does not appear in the menu, and a visitor who enters its URL will see a ‘Page not found’ message. It is visible when viewed from the editor.",
+    "de": "Die Seite ist ausgeblendet: Sie ist nicht im Menü zu finden, und ein Besucher, der die Adresse aufruft, erhält die Meldung „Seite nicht gefunden“. In der Vorschau des Editors wird sie jedoch angezeigt."
   },
   "showPage": {
     "uk": "Показати сторінку",
-    "en": "",
-    "de": ""
+    "en": "Show page",
+    "de": "Seite anzeigen"
   }
 }

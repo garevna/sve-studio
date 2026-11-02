@@ -1,86 +1,86 @@
 {
   "title": {
     "uk": "Контакти",
-    "en": "",
-    "de": ""
+    "en": "Contacts",
+    "de": "Kontakte"
   },
   "hint": {
     "uk": "Телефони, email, адреса та інші рядки (години роботи, код компанії). Саме звідси вони показуються на сторінках і у футері: змінений тут номер зміниться скрізь.",
-    "en": "",
-    "de": ""
+    "en": "Phones, email, address and other strings (working hours, company code). These are displayed on pages and in the footer: any changes made here will be reflected everywhere.",
+    "de": "Telefone, E-Mail, Adresse und andere Zeichenketten (Arbeitszeiten, Firmencode). Diese werden auf Seiten und im Footer angezeigt: Änderungen hier werden überall reflektiert."
   },
   "kind": {
     "phone": {
       "uk": "Телефон",
-      "en": "",
-      "de": ""
+      "en": "Phone",
+      "de": "Telefon"
     },
     "email": {
       "uk": "Email",
-      "en": "",
-      "de": ""
+      "en": "Email",
+      "de": "E-Mail"
     },
     "address": {
       "uk": "Адреса",
-      "en": "",
-      "de": ""
+      "en": "Address",
+      "de": "Adresse"
     },
     "text": {
       "uk": "Текст",
-      "en": "",
-      "de": ""
+      "en": "Text",
+      "de": "Text"
     }
   },
   "value": {
     "phone": {
       "uk": "Номер телефону",
-      "en": "",
-      "de": ""
+      "en": "Telephone number",
+      "de": "Telefonnummer"
     },
     "email": {
       "uk": "Адреса email",
-      "en": "",
-      "de": ""
+      "en": "Email address",
+      "de": "E-Mail-Adresse"
     }
   },
   "textIn": {
     "uk": "Текст ({locale})",
-    "en": "",
-    "de": ""
+    "en": "Text ({locale})",
+    "de": "Text ({locale})"
   },
   "add": {
     "uk": "Додати",
-    "en": "",
-    "de": ""
+    "en": "Add",
+    "de": "Hinzufügen"
   },
   "remove": {
     "uk": "Прибрати контакт",
-    "en": "",
-    "de": ""
+    "en": "Remove contact",
+    "de": "Kontakt entfernen"
   },
   "removeTitle": {
     "uk": "Прибрати контакт?",
-    "en": "",
-    "de": ""
+    "en": "Remove contact?",
+    "de": "Kontakt entfernen?"
   },
   "removeText": {
     "uk": "Рядки на сторінках і у футері, що показують цей контакт, стануть порожніми.",
-    "en": "",
-    "de": ""
+    "en": "Any fields on pages and in the footer displaying this contact will be left blank.",
+    "de": "Alle Felder auf Seiten und im Footer, die diesen Kontakt anzeigen, werden leer gelassen."
   },
   "menu": {
     "uk": "Контакт із налаштувань",
-    "en": "",
-    "de": ""
+    "en": "Contact from settings",
+    "de": "Kontakt aus den Einstellungen"
   },
   "none": {
     "uk": "У загальних налаштуваннях ще немає контактів.",
-    "en": "",
-    "de": ""
+    "en": "There are no contacts in the general settings yet.",
+    "de": "Es gibt noch keine Kontakte in den allgemeinen Einstellungen."
   },
   "fromSettings": {
-    "uk": "Текст контакту змінюється в загальних налаштуваннях",
-    "en": "",
-    "de": ""
+    "uk": "Текст контакту змінюється в загальних налаштуваннях.",
+    "en": "The contact text is changed in the general settings.",
+    "de": "Der Kontakttext wird in den allgemeinen Einstellungen geändert."
   }
 }

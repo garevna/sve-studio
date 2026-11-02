@@ -1,13 +1,13 @@
 {
   "title": {
     "uk": "Шрифти",
-    "en": "",
-    "de": ""
+    "en": "Fonts",
+    "de": "Schriften"
   },
   "hint": {
     "uk": "Шрифти з Google Fonts. Можна ввести назву або вставити те, що дає Google Fonts: рядок family=…, адресу чи весь код підключення — набір накреслень підхопиться сам.",
-    "en": "",
-    "de": ""
+    "en": "Fonts from Google Fonts. You can enter a name or paste what Google Fonts provides: a family=… string, an address, or the entire connection code — the set of font weights will be picked up automatically.",
+    "de": "Schriften von Google Fonts. Sie können einen Namen eingeben oder das eingefügen, was Google Fonts liefert: eine family=… Zeichenkette, eine Adresse oder der gesamte Verbindungscode — der Satz an Schriftarten wird automatisch übernommen."
   },
   "main": {
     "uk": "Основний шрифт",
@@ -16,52 +16,52 @@
   },
   "extra": {
     "uk": "Додатковий шрифт {n}",
-    "en": "",
-    "de": ""
+    "en": "Additional font {n}",
+    "de": "Zusätzliche Schrift {n}"
   },
   "add": {
     "uk": "Додати шрифт",
-    "en": "",
-    "de": ""
+    "en": "Add font",
+    "de": "Schrift hinzufügen"
   },
   "remove": {
     "uk": "Прибрати шрифт",
-    "en": "",
-    "de": ""
+    "en": "Remove font",
+    "de": "Schrift entfernen"
   },
   "sample": {
     "uk": "Швидка лисиця стрибає · Quick brown fox · 0123",
-    "en": "",
-    "de": ""
+    "en": "The quick brown fox jumps over the lazy dog · 0123",
+    "de": "Der schnelle braune Fuchs springt über den faulen Hund · 0123"
   },
   "weights": {
     "uk": "товщина {weights}",
-    "en": "",
-    "de": ""
+    "en": "weight {weights}",
+    "de": "Gewicht {weights}"
   },
   "italic": {
     "uk": "курсив",
-    "en": "",
-    "de": ""
+    "en": "italic",
+    "de": "kursiv"
   },
   "noItalic": {
     "uk": "без курсиву",
-    "en": "",
-    "de": ""
+    "en": "no italic",
+    "de": "ohne Kursiv"
   },
   "defaultSet": {
     "uk": "назва без набору накреслень — Google підбере наявні",
-    "en": "",
-    "de": ""
+    "en": "default set",
+    "de": "Standard-Satz"
   },
   "menuMain": {
     "uk": "основний",
-    "en": "",
-    "de": ""
+    "en": "Main",
+    "de": "Haupt"
   },
   "menuTitle": {
     "uk": "Шрифт",
-    "en": "",
-    "de": ""
+    "en": "Font",
+    "de": "Schrift"
   }
 }

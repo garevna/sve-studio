@@ -1,315 +1,315 @@
 {
   "dropdownTitle": {
     "uk": "Випадне меню",
-    "en": "",
-    "de": ""
+    "en": "Drop-down menu",
+    "de": "Dropdown-Menü"
   },
   "dropdownHint": {
     "uk": "Список, що випадає з пункту меню та з перемикача мов. Формат тексту пунктів змінюється кнопкою праворуч від пункту, як і скрізь у редакторі.",
-    "en": "",
-    "de": ""
+    "en": "A drop-down list from a menu item and from the language selector. The text format of the menu items can be changed using the button to the right of the item, as is the case throughout the editor.",
+    "de": "Eine Liste, die aus einem Menüpunkt und dem Sprachumschalter herausklappt. Das Textformat der Einträge lässt sich – wie überall im Editor – über die Schaltfläche rechts neben dem Eintrag ändern."
   },
   "radius": {
     "uk": "Заокруглення кутів",
-    "en": "",
-    "de": ""
+    "en": "Corner rounding",
+    "de": "Ecken abrunden"
   },
   "noRadius": {
     "uk": "Без заокруглення",
-    "en": "",
-    "de": ""
+    "en": "No corner rounding",
+    "de": "Ohne Abrundung"
   },
   "background": {
     "uk": "Фон",
-    "en": "",
-    "de": ""
+    "en": "Background",
+    "de": "Hintergrund"
   },
   "item": {
     "uk": "Пункт меню",
-    "en": "",
-    "de": ""
+    "en": "Menu Item",
+    "de": "Menüpunkt"
   },
   "activeItem": {
     "uk": "Активний пункт",
-    "en": "",
-    "de": ""
+    "en": "Active Menu Item",
+    "de": "Aktiver Menüpunkt"
   },
   "otherItem": {
     "uk": "Ще один пункт",
-    "en": "",
-    "de": ""
+    "en": "Other Menu Item",
+    "de": "Ein weiterer Punkt"
   },
   "itemLabel": {
     "uk": "Звичайний пункт",
-    "en": "",
-    "de": ""
+    "en": "Regular item",
+    "de": "Normaler Menüpunkt"
   },
   "activeLabel": {
     "uk": "Пункт сторінки, що відкрита",
-    "en": "",
-    "de": ""
+    "en": "Item on the currently open page",
+    "de": "Menüpunkt der geöffneten Seite"
   },
   "mobileTitle": {
     "uk": "Мобільне меню",
-    "en": "",
-    "de": ""
+    "en": "Mobile Menu",
+    "de": "Mobiles Menü"
   },
   "mobileHint": {
     "uk": "Меню, що відкривається кнопкою на телефоні. Воно складається з рядків: їх можна додавати, вимикати та переставляти, перетягуючи за ручку. У кожного рядка може бути свій фон — так виходить кольоровий верх чи низ. Формат текстів змінюється в самому зразку, кнопкою праворуч від тексту.",
-    "en": "",
-    "de": ""
+    "en": "A menu opened by a button on a mobile phone. It consists of rows: you can add, hide and reorder them by dragging the handle. Each row can have its own background colour — this creates a coloured top or bottom. The text format is changed within the template itself, using the button to the right of the text.",
+    "de": "Ein Menü, das durch eine Taste auf einem Mobiltelefon geöffnet wird. Es besteht aus Zeilen: Sie können hinzugefügt, verborgen und umsortiert werden, indem Sie die Griffe ziehen. Jede Zeile kann eine eigene Hintergrundfarbe haben — dadurch entsteht ein farbiger oberer oder unterer Bereich. Das Textformat wird innerhalb der Vorlage selbst geändert, indem die Taste rechts vom Text verwendet wird."
   },
   "presets": {
     "uk": "Почати з варіанту",
-    "en": "",
-    "de": ""
+    "en": "Start with a preset",
+    "de": "Mit einer Vorlage beginnen"
   },
   "presetConfirm": {
     "uk": "Поточне мобільне меню буде замінено вибраним варіантом. Продовжити?",
-    "en": "",
-    "de": ""
+    "en": "The current mobile menu will be replaced with the selected preset. Continue?",
+    "de": "Das aktuelle mobile Menü wird durch die ausgewählte Vorlage ersetzt. Fortfahren?"
   },
   "preset": {
     "current": {
       "uk": "Як було",
-      "en": "",
-      "de": ""
+      "en": "As it was",
+      "de": "Wie es war"
     },
     "brand": {
       "uk": "Бренд",
-      "en": "",
-      "de": ""
+      "en": "Brand",
+      "de": "Marke"
     },
     "coloredFoot": {
       "uk": "Кольоровий низ",
-      "en": "",
-      "de": ""
+      "en": "Colored Footer",
+      "de": "Farbiger Footer"
     },
     "side": {
       "uk": "Бічна панель",
-      "en": "",
-      "de": ""
+      "en": "Side Panel",
+      "de": "Seitenleiste"
     }
   },
   "placement": {
     "uk": "Звідки з’являється",
-    "en": "",
-    "de": ""
+    "en": "Where it comes from",
+    "de": "Woher es kommt"
   },
   "place": {
     "bottom": {
       "uk": "Знизу",
-      "en": "",
-      "de": ""
+      "en": "From the bottom",
+      "de": "Von unten"
     },
     "full": {
       "uk": "Весь екран",
-      "en": "",
-      "de": ""
+      "en": "Full screen",
+      "de": "Vollbild"
     },
     "left": {
       "uk": "Зліва",
-      "en": "",
-      "de": ""
+      "en": "From the left",
+      "de": "Von links"
     },
     "right": {
       "uk": "Справа",
-      "en": "",
-      "de": ""
+      "en": "From the right",
+      "de": "Von rechts"
     }
   },
   "width": {
     "uk": "Ширина панелі, px",
-    "en": "",
-    "de": ""
+    "en": "Panel width, px",
+    "de": "Panelbreite, px"
   },
   "rows": {
     "uk": "Рядки",
-    "en": "",
-    "de": ""
+    "en": "Rows",
+    "de": "Zeilen"
   },
   "addRow": {
     "uk": "Додати рядок",
-    "en": "",
-    "de": ""
+    "en": "Add Row",
+    "de": "Zeile hinzufügen"
   },
   "row": {
     "logo": {
       "uk": "Логотип",
-      "en": "",
-      "de": ""
+      "en": "Logo",
+      "de": "Logo"
     },
     "locales": {
       "uk": "Мови",
-      "en": "",
-      "de": ""
+      "en": "Languages",
+      "de": "Sprachen"
     },
     "menu": {
       "uk": "Меню",
-      "en": "",
-      "de": ""
+      "en": "Menu",
+      "de": "Menü"
     },
     "social": {
       "uk": "Соцмережі",
-      "en": "",
-      "de": ""
+      "en": "Social media",
+      "de": "Soziale Netzwerke"
     },
     "contact": {
       "uk": "Кнопка «Зв’язатися»",
-      "en": "",
-      "de": ""
+      "en": "‘Contact’ button",
+      "de": "Schaltfläche „Kontakt“"
     },
     "user": {
       "uk": "Користувач",
-      "en": "",
-      "de": ""
+      "en": "User",
+      "de": "Benutzer"
     },
     "divider": {
       "uk": "Розділювач",
-      "en": "",
-      "de": ""
+      "en": "Divider",
+      "de": "Trennzeichen"
     },
     "spacer": {
       "uk": "Вільне місце",
-      "en": "",
-      "de": ""
+      "en": "Empty space",
+      "de": "Freier Platz"
     }
   },
   "rowHint": {
     "user": {
       "uk": "Видно лише тому, хто увійшов на сайт; у зразку — приклад.",
-      "en": "",
-      "de": ""
+      "en": "Visible only to logged-in users; the template shows an example.",
+      "de": "Nur für angemeldete Nutzer sichtbar; im Beispiel – ein Beispiel."
     },
     "spacer": {
       "uk": "Розсуває рядки: те, що нижче, опиняється внизу панелі.",
-      "en": "",
-      "de": ""
+      "en": "Spaces out the rows: whatever is below ends up at the bottom of the panel.",
+      "de": "Vergrößert den Zeilenabstand: Was darunter steht, wird am unteren Rand des Bereichs angezeigt."
     },
     "menu": {
       "uk": "Пункти меню сайту.",
-      "en": "",
-      "de": ""
+      "en": "Website menu items.",
+      "de": "Menüpunkte der Website."
     },
     "social": {
       "uk": "Соцмережі, для яких у загальних налаштуваннях є адреса.",
-      "en": "",
-      "de": ""
+      "en": "Social media platforms for which an address is specified in the general settings.",
+      "de": "Soziale Netzwerke, für die in den allgemeinen Einstellungen eine Adresse hinterlegt ist."
     }
   },
   "rowBackground": {
     "uk": "Фон рядка",
-    "en": "",
-    "de": ""
+    "en": "Row background",
+    "de": "Hintergrund der Zeile"
   },
   "align": {
     "uk": "Вирівнювання",
-    "en": "",
-    "de": ""
+    "en": "Alignment",
+    "de": "Ausrichtung"
   },
   "alignStart": {
     "uk": "Ліворуч",
-    "en": "",
-    "de": ""
+    "en": "Left",
+    "de": "Links"
   },
   "alignCenter": {
     "uk": "По центру",
-    "en": "",
-    "de": ""
+    "en": "Centred",
+    "de": "Zentriert"
   },
   "alignEnd": {
     "uk": "Праворуч",
-    "en": "",
-    "de": ""
+    "en": "Right",
+    "de": "Rechts"
   },
   "lightLogo": {
     "uk": "Світлий логотип",
-    "en": "",
-    "de": ""
+    "en": "Light-coloured logo",
+    "de": "Helles Logo"
   },
   "localeLook": {
     "uk": "Вигляд",
-    "en": "",
-    "de": ""
+    "en": "Appearance",
+    "de": "Darstellung"
   },
   "localeChips": {
     "uk": "Кнопки",
-    "en": "",
-    "de": ""
+    "en": "Buttons",
+    "de": "Schaltflächen"
   },
   "localeDropdown": {
     "uk": "Список",
-    "en": "",
-    "de": ""
+    "en": "List",
+    "de": "Liste"
   },
   "localeLabel": {
     "uk": "Підпис «Мова»",
-    "en": "",
-    "de": ""
+    "en": "Caption ‘Language’",
+    "de": "Bezeichnung „Sprache“"
   },
   "iconLook": {
     "uk": "Іконки",
-    "en": "",
-    "de": ""
+    "en": "Icons",
+    "de": "Symbole"
   },
   "iconColor": {
     "uk": "Колір іконок",
-    "en": "",
-    "de": ""
+    "en": "Icon colour",
+    "de": "Farbe der Symbole"
   },
   "iconSize": {
     "uk": "Розмір: {size}px",
-    "en": "",
-    "de": ""
+    "en": "Size: {size}px",
+    "de": "Größe: {size}px"
   },
   "buttonLabel": {
     "uk": "Текст кнопки ({locale})",
-    "en": "",
-    "de": ""
+    "en": "Button text ({locale})",
+    "de": "Schaltflächentext ({locale})"
   },
   "formTexts": {
     "uk": "Форма",
-    "en": "",
-    "de": ""
+    "en": "Form",
+    "de": "Formular"
   },
   "dividerColor": {
     "uk": "Колір лінії",
-    "en": "",
-    "de": ""
+    "en": "Line colour",
+    "de": "Linienfarbe"
   },
   "removeRow": {
     "uk": "Прибрати рядок",
-    "en": "",
-    "de": ""
+    "en": "Hide row",
+    "de": "Zeile entfernen"
   },
   "sampleUser": {
     "uk": "Олена Коваль",
-    "en": "",
-    "de": ""
+    "en": "Olena Koval",
+    "de": "Olena Koval"
   },
   "sampleSub": {
     "uk": "Підпункт",
-    "en": "",
-    "de": ""
+    "en": "Sub-item",
+    "de": "Unterpunkt"
   },
   "sampleEntry": {
     "uk": "Пункт меню",
-    "en": "",
-    "de": ""
+    "en": "Menu item",
+    "de": "Menüpunkt"
   },
   "sampleActive": {
     "uk": "Активний пункт",
-    "en": "",
-    "de": ""
+    "en": "Active item",
+    "de": "Aktiver Punkt"
   },
   "sampleOther": {
     "uk": "Ще один пункт",
-    "en": "",
-    "de": ""
+    "en": "Another item",
+    "de": "Ein weiterer Punkt"
   },
   "presetApply": {
     "uk": "Застосувати",
-    "en": "",
-    "de": ""
+    "en": "Apply",
+    "de": "Übernehmen"
   }
 }

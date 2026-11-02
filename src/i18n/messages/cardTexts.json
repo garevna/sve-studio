@@ -1,17 +1,17 @@
 {
   "divider": {
     "uk": "Розділювач",
-    "en": "",
-    "de": ""
+    "en": "Divider",
+    "de": "Trennzeichen"
   },
   "dividerColor": {
     "uk": "Колір лінії",
-    "en": "",
-    "de": ""
+    "en": "Line colour",
+    "de": "Linienfarbe"
   },
   "spacingBelow": {
     "uk": "Відступ знизу",
-    "en": "",
-    "de": ""
+    "en": "Bottom margin",
+    "de": "Abstand nach unten"
   }
 }

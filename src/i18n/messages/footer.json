@@ -1,34 +1,34 @@
 {
   "tileSets": {
     "uk": "Заливка плиток",
-    "en": "",
-    "de": ""
+    "en": "Tile Sets",
+    "de": "Kachel-Sets"
   },
   "tileSetNames": {
     "classic": {
       "uk": "Класика",
-      "en": "",
-      "de": ""
+      "en": "Classic",
+      "de": "Klassisch"
     },
     "night": {
       "uk": "Ніч",
-      "en": "",
-      "de": ""
+      "en": "Night",
+      "de": "Nacht"
     },
     "contrast": {
       "uk": "Контраст",
-      "en": "",
-      "de": ""
+      "en": "Contrast",
+      "de": "Kontrast"
     },
     "mono": {
       "uk": "Один колір",
-      "en": "",
-      "de": ""
+      "en": "Monochrome",
+      "de": "Einfarbig"
     },
     "gradients": {
       "uk": "Градієнти",
-      "en": "",
-      "de": ""
+      "en": "Gradients",
+      "de": "Farbverläufe"
     }
   }
 }

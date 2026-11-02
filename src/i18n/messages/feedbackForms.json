@@ -1,81 +1,81 @@
 {
   "title": {
     "uk": "Форма зворотного зв’язку",
-    "en": "",
-    "de": ""
+    "en": "Feedback form",
+    "de": "Feedback-Formular"
   },
   "kind": {
     "uk": "Вид форми",
-    "en": "",
-    "de": ""
+    "en": "Form kind",
+    "de": "Formulartyp"
   },
   "kinds": {
     "call-request": {
       "uk": "Зворотний дзвінок",
-      "en": "",
-      "de": ""
+      "en": "Call request",
+      "de": "Anrufanfrage"
     },
     "message": {
       "uk": "Повідомлення",
-      "en": "",
-      "de": ""
+      "en": "Message",
+      "de": "Nachricht"
     },
     "question": {
       "uk": "Питання",
-      "en": "",
-      "de": ""
+      "en": "Question",
+      "de": "Frage"
     },
     "quote": {
       "uk": "Розрахунок вартості",
-      "en": "",
-      "de": ""
+      "en": "Quote",
+      "de": "Kostenvoranschlag"
     },
     "booking": {
       "uk": "Запис на консультацію",
-      "en": "",
-      "de": ""
+      "en": "Booking",
+      "de": "Terminvereinbarung"
     },
     "review": {
       "uk": "Відгук",
-      "en": "",
-      "de": ""
+      "en": "Review",
+      "de": "Bewertung"
     },
     "subscribe": {
       "uk": "Підписка на новини",
-      "en": "",
-      "de": ""
+      "en": "Subscribe",
+      "de": "Abonnieren"
     }
   },
   "fields": {
     "name": {
       "uk": "ім’я",
-      "en": "",
-      "de": ""
+      "en": "Name",
+      "de": "Name"
     },
     "phone": {
       "uk": "телефон",
-      "en": "",
-      "de": ""
+      "en": "Phone",
+      "de": "Telefon"
     },
     "email": {
       "uk": "email",
-      "en": "",
-      "de": ""
+      "en": "Email",
+      "de": "E-Mail"
     },
     "message": {
       "uk": "текст",
-      "en": "",
-      "de": ""
+      "en": "Message",
+      "de": "Nachricht"
     },
     "date": {
       "uk": "дата",
-      "en": "",
-      "de": ""
+      "en": "Date",
+      "de": "Datum"
     },
     "rating": {
       "uk": "оцінка",
-      "en": "",
-      "de": ""
+      "en": "Rating",
+      "de": "Bewertung"
     }
   }
 }

@@ -107,8 +107,8 @@
     },
     "paletteGradient": {
       "uk": "градієнт {name}",
-      "en": "",
-      "de": ""
+      "en": "gradient {name}",
+      "de": "Gradient {name}"
     }
   }
 }

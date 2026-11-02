@@ -1,6 +1,10 @@
 {
   "id": "home-page",
-  "title": "Головна сторінка",
+  "title": {
+    "uk": "Головна сторінка",
+    "en": "Home page",
+    "de": "Startseite"
+  },
   "breadcrumbs": false,
   "backButton": false,
   "hero": true,

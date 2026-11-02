@@ -1,57 +1,57 @@
 {
   "title": {
     "uk": "Тексти на банері",
-    "en": "",
-    "de": ""
+    "en": "Text on the banner",
+    "de": "Texte auf dem Banner"
   },
   "hint": {
     "uk": "Додайте текст і перетягніть його на потрібне місце; ширину змінює ручка праворуч. Розмір тексту залежить від ширини банера, тож на будь-якому екрані він лежить на картинці однаково. Для телефона місце й розмір налаштовуються окремо.",
-    "en": "",
-    "de": ""
+    "en": "Add text and drag it to the desired position; use the handle on the right to adjust the width. The text size depends on the width of the banner, so it fits the image equally well on any screen. For mobile devices, the position and size are configured separately.",
+    "de": "Fügen Sie Text hinzu und ziehen Sie ihn an die gewünschte Stelle; die Breite lässt sich mit dem Schieberegler auf der rechten Seite anpassen. Die Textgröße richtet sich nach der Breite des Banners, sodass der Text auf jedem Bildschirm gleich groß auf dem Bild erscheint. Für Smartphones lassen sich Position und Größe separat anpassen."
   },
   "add": {
     "uk": "Додати текст",
-    "en": "",
-    "de": ""
+    "en": "Add text",
+    "de": "Text hinzufügen"
   },
   "remove": {
     "uk": "Видалити текст",
-    "en": "",
-    "de": ""
+    "en": "Delete text",
+    "de": "Text löschen"
   },
   "size": {
     "uk": "Розмір",
-    "en": "",
-    "de": ""
+    "en": "Size",
+    "de": "Größe"
   },
   "smaller": {
     "uk": "Менше",
-    "en": "",
-    "de": ""
+    "en": "Smaller",
+    "de": "Kleiner"
   },
   "bigger": {
     "uk": "Більше",
-    "en": "",
-    "de": ""
+    "en": "Bigger",
+    "de": "Größer"
   },
   "width": {
     "uk": "Ширина тексту",
-    "en": "",
-    "de": ""
+    "en": "Text width",
+    "de": "Textbreite"
   },
   "pick": {
     "uk": "Натисніть на текст, щоб змінити його.",
-    "en": "",
-    "de": ""
+    "en": "Click on the text to edit it.",
+    "de": "Tippen Sie auf den Text, um ihn zu bearbeiten."
   },
   "done": {
     "uk": "Готово",
-    "en": "",
-    "de": ""
+    "en": "Done",
+    "de": "Fertig"
   },
   "sample": {
     "uk": "Новий текст",
-    "en": "",
-    "de": ""
+    "en": "New text",
+    "de": "Neuer Text"
   }
 }

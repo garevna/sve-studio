@@ -1,42 +1,42 @@
 {
   "slides": {
     "uk": "Ще банери — карусель",
-    "en": "",
-    "de": ""
+    "en": "More banners — carousel",
+    "de": "Weitere Banner — Karussell"
   },
   "slidesHint": {
     "uk": "Для макета «Банер під меню»: якщо банерів кілька, вони гортаються каруселлю. Натисніть на картинку, щоб замінити її.",
-    "en": "",
-    "de": ""
+    "en": "For the 'Banner under menu' layout: if there are multiple banners, they will be displayed in a carousel. Click on the image to replace it.",
+    "de": "Für das Layout 'Banner unter Menü': Wenn es mehrere Banner gibt, werden sie in einer Karussell-Anzeige dargestellt. Klicken Sie auf das Bild, um es zu ersetzen."
   },
   "slideDesktop": {
     "uk": "Десктоп",
-    "en": "",
-    "de": ""
+    "en": "Desktop",
+    "de": "Desktop"
   },
   "slidePhone": {
     "uk": "Телефон",
-    "en": "",
-    "de": ""
+    "en": "Phone",
+    "de": "Handy"
   },
   "slidePhoneAdd": {
     "uk": "Додати для телефона",
-    "en": "",
-    "de": ""
+    "en": "Add for Phone",
+    "de": "Für Handy hinzufügen"
   },
   "slideRemove": {
     "uk": "Видалити банер",
-    "en": "",
-    "de": ""
+    "en": "Remove banner",
+    "de": "Banner entfernen"
   },
   "slideAdd": {
     "uk": "Додати банер",
-    "en": "",
-    "de": ""
+    "en": "Add banner",
+    "de": "Banner hinzufügen"
   },
   "bannerTexts": {
     "uk": "Тексти на банері ({n})",
-    "en": "",
-    "de": ""
+    "en": "Banner texts ({n})",
+    "de": "Banner-Texte ({n})"
   }
 }

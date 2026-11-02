@@ -86,17 +86,18 @@
     "loyality-program/03.jpeg",
     "loyality-program/14.jpg",
     "loyality-program/31.webp",
-    "loyality-program/cashback.jpg"
+    "loyality-program/cashback.jpg",
+    "test/17.jpg"
   ],
   "hashes": {
     "pages/about-company.json": "d7e8f5f4213de32b",
     "pages/advanced-features.json": "c499c23cd32933af",
-    "pages/contacts-page.json": "db226c6ceef724db",
+    "pages/contacts-page.json": "05737da04a4213cf",
     "pages/expert-help.json": "ed6b8c833a9d968f",
     "pages/footer-content.json": "82ea4dd65bc5ceb9",
-    "pages/home-page.json": "61d381aa5f2ce18c",
+    "pages/home-page.json": "b045e1207c942453",
     "pages/licences.json": "fb738efd2094a44a",
-    "pages/loyality-program.json": "f393167dea624218",
+    "pages/loyality-program.json": "39047adb6ca35b1d",
     "pages/products.json": "adff82741362df28",
     "pages/test.json": "7ecda18806744780",
     "public/account-pages.json": "c24f4753c468a9cc",

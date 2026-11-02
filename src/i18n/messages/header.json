@@ -1,134 +1,134 @@
 {
   "title": {
     "uk": "Верхня частина сторінки",
-    "en": "",
-    "de": ""
+    "en": "Top of the page",
+    "de": "Obere Seite"
   },
   "intro": {
     "uk": "Макет верхньої частини сторінок, для яких її увімкнено в налаштуваннях сторінки. Назва компанії, логотип і банер беруться із загальних налаштувань, кольори й шрифти — з UI Kit.",
-    "en": "",
-    "de": ""
+    "en": "Layout for the top of the page, enabled in the page settings. Company name, logo and banner are taken from the general settings, colors and fonts — from the UI Kit.",
+    "de": "Layout für die obere Seite der Seite, aktiviert in den Seiteneinstellungen. Der Firmenname, das Logo und der Banner werden aus den allgemeinen Einstellungen übernommen, Farben und Schriftarten — aus dem UI Kit."
   },
   "variants": {
     "1": {
       "title": {
         "uk": "Банер під меню",
-        "en": "",
-        "de": ""
+        "en": "Banner under menu",
+        "de": "Banner unter Menü"
       },
       "description": {
         "uk": "Меню зверху, під ним банер на всю ширину. Кілька банерів стають каруселлю — їх додають у загальних налаштуваннях.",
-        "en": "",
-        "de": ""
+        "en": "The menu at the top, with a full-width banner below it. Several banners form a carousel — these can be added in the general settings.",
+        "de": "Das Menü oben, mit einem Banner in voller Breite darunter. Mehrere Banner bilden ein Karussell — diese können in den allgemeinen Einstellungen hinzugefügt werden."
       }
     },
     "2": {
       "title": {
         "uk": "Паралакс-банер з назвою компанії",
-        "en": "",
-        "de": ""
+        "en": "Parallax banner with company name",
+        "de": "Parallax-Banner mit Firmennamen"
       },
       "description": {
         "uk": "Банер на всю ширину з паралаксом і великою назвою компанії в одному з кутів. Меню — під банером, при прокручуванні тримається вгорі.",
-        "en": "",
-        "de": ""
+        "en": "A full-width banner with parallax effect and a large company name in one of the corners. The menu is below the banner, staying at the top when scrolling.",
+        "de": "Ein Banner in voller Breite mit Parallax-Effekt und einem großen Firmennamen in einer der Ecken. Das Menü ist unter dem Banner platziert und bleibt oben beim Scrollen."
       }
     },
     "3": {
       "title": {
         "uk": "Розділений банер",
-        "en": "",
-        "de": ""
+        "en": "Split banner",
+        "de": "Geteilte Banner"
       },
       "description": {
         "uk": "Меню зверху, під ним назва компанії й підпис поруч із банером, на кольорі з палітри.",
-        "en": "",
-        "de": ""
+        "en": "The menu at the top, with the company name and a caption next to the banner, in a color from the palette.",
+        "de": "Das Menü oben, mit dem Firmennamen und einer Beschriftung neben dem Banner, in einer Farbe aus der Palette."
       }
     }
   },
   "companyName": {
     "uk": "Назва компанії",
-    "en": "",
-    "de": ""
+    "en": "Company Name",
+    "de": "Firmenname"
   },
   "corners": {
     "top-left": {
       "uk": "Вгорі ліворуч",
-      "en": "",
-      "de": ""
+      "en": "Top Left",
+      "de": "Oben Links"
     },
     "top-right": {
       "uk": "Вгорі праворуч",
-      "en": "",
-      "de": ""
+      "en": "Top Right",
+      "de": "Oben Rechts"
     },
     "bottom-left": {
       "uk": "Внизу ліворуч",
-      "en": "",
-      "de": ""
+      "en": "Bottom Left",
+      "de": "Unten Links"
     },
     "bottom-right": {
       "uk": "Внизу праворуч",
-      "en": "",
-      "de": ""
+      "en": "Bottom Right",
+      "de": "Unten Rechts"
     }
   },
   "menuBar": {
     "uk": "Смуга меню",
-    "en": "",
-    "de": ""
+    "en": "Menu Bar",
+    "de": "Menüleiste"
   },
   "menuThemes": {
     "dark": {
       "uk": "Чорна",
-      "en": "",
-      "de": ""
+      "en": "Black",
+      "de": "Schwarz"
     },
     "light": {
       "uk": "Біла",
-      "en": "",
-      "de": ""
+      "en": "White",
+      "de": "Weiß"
     }
   },
   "menuBarHint": {
     "uk": "Тексти, рамки й іконки на смузі змінюють колір разом із нею.",
-    "en": "",
-    "de": ""
+    "en": "The text, borders and icons on the strip change colour along with it.",
+    "de": "Der Text, die Ränder und die Symbole auf der Leiste ändern ihre Farbe mit ihr."
   },
   "fill": {
     "uk": "Заливка",
-    "en": "",
-    "de": ""
+    "en": "Fill",
+    "de": "Füllung"
   },
   "fillHint": {
     "uk": "Темний колір: текст на ньому білий.",
-    "en": "",
-    "de": ""
+    "en": "Dark color: text on it is white.",
+    "de": "Dunkle Farbe: Text darauf ist weiß."
   },
   "tagline": {
     "uk": "Підпис під назвою",
-    "en": "",
-    "de": ""
+    "en": "Tagline",
+    "de": "Untertitel"
   },
   "preview": {
     "uk": "Превʼю головної сторінки",
-    "en": "",
-    "de": ""
+    "en": "Preview Home Page",
+    "de": "Vorschau Startseite"
   },
   "desktop": {
     "uk": "Десктоп",
-    "en": "",
-    "de": ""
+    "en": "Desktop",
+    "de": "Desktop"
   },
   "phone": {
     "uk": "Телефон",
-    "en": "",
-    "de": ""
+    "en": "Phone",
+    "de": "Telefon"
   },
   "openPreview": {
     "uk": "Відкрити превʼю",
-    "en": "",
-    "de": ""
+    "en": "Open Preview",
+    "de": "Vorschau öffnen"
   }
 }

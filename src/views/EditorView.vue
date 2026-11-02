@@ -1,14 +1,15 @@
 <script lang="ts" setup>
   // import { listOfComponents } from '@/configs/nav-panel-menu'
   import type { SeoSettingsModel } from '@/types/SeoSettingsModel'
-  import type { TemplateBlockModel } from '@/types/TemplateBlockModel'
-  import { SveBadge, SveButton, SveDock, SveDockItem, SveIconButton, SveMenu, SveMenuItem, SveMenuLabel, SveTopBar } from '@sve/editor-ui'
+  import type { TemplateBlockModel, TranslatedModel } from '@/types/TemplateBlockModel'
+  import { SveBadge, SveButton, SveDock, SveDockItem, SveIconButton, SveMenu, SveMenuDivider, SveMenuItem, SveMenuLabel, SveTopBar } from '@sve/editor-ui'
   import { computed, onBeforeMount, ref, watch } from 'vue'
   import { useRoute } from 'vue-router'
   import BlockGallery from '@/components/editors/BlockGallery.vue'
   import PageStructurePanel from '@/components/editors/PageStructurePanel.vue'
   import LocaleSwitcher from '@/components/editors/small/LocaleSwitcher.vue'
   import PageSeoDialog from '@/components/special/PageSeoDialog.vue'
+  import PageTitleDialog from '@/components/special/PageTitleDialog.vue'
   import SelectColorFromPalette from '@/components/special/SelectColorFromPalette.vue'
   import DynamicPageTemplate from '@/components/templates/DynamicPageTemplate.vue'
   import HeroParallax from '@/components/templates/sections/HeroParallax.vue'
@@ -23,7 +24,7 @@
   import { applySeoMeta } from '@/utils/apply-seo-meta'
   import { rememberEditedPage } from '@/utils/last-edited-page'
   import { localeDisplayName, missingTranslations } from '@/utils/locale-text'
-  import { type PageTitle, pageTitleText } from '@/utils/page-title'
+  import { type PageTitle, pageTitleText, translatedPageTitle } from '@/utils/page-title'
   import { openPreview, pagePreviewUrl, refreshPreviewIfOpen } from '@/utils/preview-window'
   import '@/common.css'
 
@@ -62,6 +63,21 @@
   const pageId = computed(() => route.params.pageId as string | undefined)
   // The page's name in the language being edited (utils/page-title.ts).
   const pageName = computed(() => pageTitleText((commonStore.dynamicPageContent as { title?: PageTitle } | null)?.title, commonStore.locale))
+
+  // The name is not on the page itself, so a language it is missing in was
+  // a gap nobody could find: the language menu names it, and the name in
+  // the top bar opens it (PageTitleDialog - the same one as the pages list).
+  // Saved with the page, like any of its texts.
+  const pageTitleModel = computed(() => translatedPageTitle((commonStore.dynamicPageContent as { title?: PageTitle } | null)?.title))
+  const titleGaps = computed(() => Object.entries(missingTranslations({ title: pageTitleModel.value }))
+    .filter(([, count]) => count > 0)
+    .map(([code]) => code.toUpperCase()))
+  const titleDialog = ref(false)
+  function saveTitle (title: TranslatedModel) {
+    const content = commonStore.dynamicPageContent as { title?: PageTitle } | null
+    if (content) content.title = { ...title }
+    titleDialog.value = false
+  }
 
   // Blocks: one edited at a time, hidden ones, their order (usePageBlocks).
   const pageBlocks = usePageBlocks()
@@ -364,12 +380,38 @@
         and opens for editing on its own (PageBlockFrame), and blocks are
         moved in the structure panel. -->
       <SveTopBar back="/pages" back-label="До списку сторінок" :subtitle="pageName ? pageId : 'Сторінка'" :title="pageName || pageId">
+        <template #start>
+          <div
+            v-if="pageId && !isFooterPseudoPage"
+            class="sve-topbar__titles editor-page-name"
+            role="button"
+            tabindex="0"
+            :title="titleGaps.length > 0 ? `Назва сторінки не перекладена: ${titleGaps.join(', ')}` : 'Назва сторінки'"
+            @click="titleDialog = true"
+            @keydown.enter="titleDialog = true"
+          >
+            <div class="sve-topbar__title">
+              {{ pageName || pageId }}
+              <i v-if="titleGaps.length > 0" class="sve-icon mdi mdi-alert-circle-outline editor-page-name__warn" />
+            </div>
+            <div class="sve-topbar__subtitle">{{ pageName ? pageId : 'Сторінка' }}</div>
+          </div>
+          <div v-else class="sve-topbar__titles">
+            <div class="sve-topbar__title">{{ pageName || pageId }}</div>
+            <div class="sve-topbar__subtitle">{{ pageName ? pageId : 'Сторінка' }}</div>
+          </div>
+        </template>
         <template #actions>
           <!-- The content language of this page; dialogs carry the same
             switch, so texts can be filled in every language without
             closing them. -->
           <div v-if="pageId" class="sve-wide-only" style="display: contents">
-            <LocaleSwitcher :scope="commonStore.dynamicPageContent" variant="menu" />
+            <LocaleSwitcher :scope="commonStore.dynamicPageContent" variant="menu">
+              <template v-if="titleGaps.length > 0 && !isFooterPseudoPage" #menu-extra>
+                <SveMenuDivider />
+                <SveMenuItem :hint="titleGaps.join(', ')" icon="mdi-alert-circle-outline" @click="titleDialog = true">Назва сторінки</SveMenuItem>
+              </template>
+            </LocaleSwitcher>
           </div>
           <!-- Only when there is something to bring back. -->
           <SveMenu v-if="pageBlocks.hiddenBlocks.value.length > 0" :min-width="240">
@@ -440,7 +482,12 @@
           <SveBadge v-if="pageBlocks.hiddenBlocks.value.length > 0">{{ pageBlocks.hiddenBlocks.value.length }}</SveBadge>
         </SveDockItem>
         <SveDockItem v-if="editable && !isFooterPseudoPage" icon="mdi-plus" label="Додати" @click="pageBlocks.openGallery(null)" />
-        <LocaleSwitcher :scope="commonStore.dynamicPageContent" variant="dock" />
+        <LocaleSwitcher :scope="commonStore.dynamicPageContent" variant="dock">
+          <template v-if="titleGaps.length > 0 && !isFooterPseudoPage" #menu-extra>
+            <SveMenuDivider />
+            <SveMenuItem :hint="titleGaps.join(', ')" icon="mdi-alert-circle-outline" @click="titleDialog = true">Назва сторінки</SveMenuItem>
+          </template>
+        </LocaleSwitcher>
         <template v-if="!isFooterPseudoPage">
           <SveDockItem icon="mdi-search-web" label="SEO" @click="openSeoDialog" />
           <SveDockItem icon="mdi-open-in-new" label="На сайті" @click="openPreviewWindow" />
@@ -492,6 +539,7 @@
     <!-- openSeoDialog() creates the seo object first if the page has none,
       so this only ever renders with a real one - same guard the inlined
       card carried before this moved into its own component. -->
+    <PageTitleDialog v-model="titleDialog" :title="pageTitleModel" @save="saveTitle" />
     <PageSeoDialog
       v-if="commonStore.dynamicPageContent.seo"
       v-model="seoDialogOpen"
@@ -506,6 +554,21 @@
 </template>
 
 <style lang="css" scoped>
+  /* The page's name in the top bar opens its dialog. */
+  .editor-page-name {
+    cursor: pointer;
+    border-radius: 6px;
+  }
+  .editor-page-name:hover .sve-topbar__title {
+    text-decoration: underline dotted;
+    text-underline-offset: 3px;
+  }
+  .editor-page-name__warn {
+    display: inline-flex;
+    vertical-align: -2px;
+    font-size: 16px;
+    color: var(--sve-warning);
+  }
   /*
     Mirrors production's own vuetify-components.css exactly (.v-layout /
     .v-main rules) - that file only loads *scoped* to previewed page content

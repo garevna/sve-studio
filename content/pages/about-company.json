@@ -1,9 +1,9 @@
 {
   "id": "about-company",
   "title": {
-    "uk": "Про компанію",
-    "en": "",
-    "de": ""
+    "uk": "Хто ми є",
+    "en": "Who we are",
+    "de": "Wer wir sind"
   },
   "breadcrumbs": false,
   "backButton": false,
@@ -44,20 +44,20 @@
           "children": [
             {
               "type": "header",
-              "class": "mb-8",
+              "class": "mb-8 accent-font text-thin text-selected-date-first-fone-color h2",
               "content": {
                 "uk": "Virtual Dimension",
-                "en": "About the company",
-                "de": "Über das Unternehmen"
+                "en": "Virtual Dimension",
+                "de": "Virtual Dimension"
               }
             },
             {
               "type": "title",
-              "class": "text-left mb-8 h6 text-bold text-dark",
+              "class": "text-left mb-8 text-dark accent-font-2 text-bold h5",
               "content": {
                 "uk": "Тут затишніше, ніж у реальному світі.",
-                "en": "Virtual Reality is a team of like-minded people who are shaping the future of the IT sector today.",
-                "de": "Virtual Reality ist ein Team von Gleichgesinnten, das schon heute die Zukunft der IT-Branche gestaltet."
+                "en": "It’s cosier here than in the real world.",
+                "de": "Hier ist es gemütlicher als in der realen Welt."
               }
             },
             {
@@ -65,8 +65,8 @@
               "class": "default-text text-thin mb-8 mb-md-0 text-black",
               "content": {
                 "uk": "Ласкаво просимо до Virtual Dimension — простору, де реальність втомилася від самої себе і пішла на перезавантаження. Ми не просто створюємо цифрові продукти, ми будуємо нові всесвіти.",
-                "en": "Welcome to Virtual Dimension — a space where reality got tired of itself and went for a reboot. We don’t just create digital products, we build new universes.",
-                "de": "Willkommen bei Virtual Dimension — einem Raum, in dem die Realität ihrer selbst müde wurde und sich einen Neustart gönnt. Wir entwickeln nicht einfach digitale Produkte, wir bauen neue Universen."
+                "en": "Welcome to Virtual Dimension — a space where reality grew tired of itself and went into reboot mode. We don’t just create digital products; we build new universes.",
+                "de": "Willkommen bei Virtual Dimension – einem Raum, in dem die Realität ihrer selbst überdrüssig wurde und einen Neustart gewagt hat. Wir entwickeln nicht einfach nur digitale Produkte, wir erschaffen neue Universen."
               }
             }
           ]
@@ -74,9 +74,9 @@
         {
           "type": "image",
           "content": {
-            "uk": "/api/content/images/about-company/11.jpg?v=580eb84a",
-            "en": "/api/content/images/about-company/02-2.jpg?v=b0a20518",
-            "de": "/api/content/images/about-company/02-2.jpg?v=b0a20518"
+            "uk": "/api/content/images/about-company/11.webp?v=5a268b48",
+            "en": "/api/content/images/about-company/07.webp?v=5a268b48",
+            "de": "/api/content/images/about-company/07.webp?v=5a268b48"
           }
         }
       ]
@@ -88,9 +88,9 @@
           "type": "image",
           "switchOrder": true,
           "content": {
-            "uk": "/api/content/images/about-company/05.jpg?v=22d86b2b",
-            "en": "/api/content/images/about-company/05-2.jpg?v=580eb84a",
-            "de": "/api/content/images/about-company/05-2.jpg?v=580eb84a"
+            "uk": "/api/content/images/about-company/05.jpg?v=b0a20518",
+            "en": "/api/content/images/about-company/07.jpg?v=b0a20518",
+            "de": "/api/content/images/about-company/07.jpg?v=b0a20518"
           }
         },
         {
@@ -99,21 +99,30 @@
           "children": [
             {
               "type": "title",
-              "class": "mb-6",
+              "class": "mb-6 text-thin accent-font h2 text-selected-date-first-fone-color",
               "content": {
-                "uk": "Virtual Dimension: Робимо складні штуки, щоб ви могли просто клікати.",
-                "en": "We combine cutting-edge technology, a creative approach and in-depth analytics to help our clients scale their businesses and achieve their ambitious goals.",
-                "de": "Wir verbinden modernste Technologien, einen kreativen Ansatz und fundierte Analysen, um unseren Kunden dabei zu helfen, ihr Geschäft auszubauen und ehrgeizige Ziele zu erreichen."
+                "uk": "Virtual Dimension",
+                "en": "Virtual Dimension",
+                "de": "Virtual Dimension"
               }
             },
             {
               "type": "text",
-              "class": "default-text text-thin my-3 text-black",
+              "class": "my-3 accent-font-2 h5 text-dark text-bold",
+              "content": {
+                "uk": "Робимо складні штуки, щоб ви могли просто клікати.",
+                "en": "We do the complex stuff so you can just click.",
+                "de": "Wir erledigen die komplizierten Dinge, damit Sie einfach nur klicken können."
+              }
+            },
+            {
+              "type": "text",
               "content": {
                 "uk": "Давайте чесно: ви тут, тому що шукаєте когось, хто вирішить ваші проблеми в цифровому просторі. Так от, ми — ті самі люди. Тільки ми живемо на два виміри попереду.",
-                "en": "What we do: We break down stereotypes and create bespoke solutions for every project.",
-                "de": "Was wir tun: Wir brechen mit Klischees und entwickeln maßgeschneiderte Lösungen für jedes Projekt."
-              }
+                "en": "Let’s be honest: you’re here because you’re looking for someone to solve your problems in the digital space. Well, we’re exactly those people. Only we’re two dimensions ahead.",
+                "de": "Seien wir ehrlich: Sie sind hier, weil Sie jemanden suchen, der Ihre Probleme im digitalen Raum löst. Nun, wir sind genau diese Leute. Nur dass wir zwei Dimensionen voraus sind."
+              },
+              "class": "default-text text-thin text-black"
             }
           ]
         }

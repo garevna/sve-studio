@@ -44,7 +44,7 @@
               "content": {
                 "uk": "Абсолютна адаптивність",
                 "en": "Абсолютна адаптивність",
-                "de": ""
+                "de": "Absolute Anpassungsfähigkeit"
               }
             },
             {
@@ -53,7 +53,7 @@
               "content": {
                 "uk": "Наші інтерфейси підлаштовуються під будь-які екрани — від розумних годинників до міжгалактичних терміналів.",
                 "en": "Наші інтерфейси підлаштовуються під будь-які екрани — від розумних годинників до міжгалактичних терміналів.",
-                "de": ""
+                "de": "Unsere Benutzeroberflächen passen sich an jeden Bildschirm an, von Smartwatches bis hin zu intergalaktischen Terminals."
               }
             },
             {
@@ -99,7 +99,7 @@
               "content": {
                 "uk": "Ідемпотентний підхід",
                 "en": "Ідемпотентний підхід",
-                "de": ""
+                "de": "Idempotenter Ansatz"
               }
             },
             {
@@ -108,7 +108,7 @@
               "content": {
                 "uk": "Робимо все красиво з першого разу. Повторні кліки по кнопках не зіпсують вашу карму (і базу даних).",
                 "en": "Робимо все красиво з першого разу. Повторні кліки по кнопках не зіпсують вашу карму (і базу даних).",
-                "de": ""
+                "de": "Wir machen es auf Anhieb schön. Wiederholte Klicks auf Schaltflächen werden Ihr Karma (und Ihre Datenbank) nicht ruinieren."
               }
             },
             {
@@ -214,7 +214,7 @@
               "content": {
                 "uk": "Чиста магія",
                 "en": "Чиста магія",
-                "de": ""
+                "de": "Pure Magie"
               },
               "class": "my-8 text-center accent-font text-thin text-selected-date-first-fone-color h2"
             },
@@ -223,7 +223,7 @@
               "content": {
                 "uk": "(під капотом): компілюємо хаос у структурований користувацький досвід.",
                 "en": "(під капотом): компілюємо хаос у структурований користувацький досвід.",
-                "de": ""
+                "de": "(unter der Haube): Wir verwandeln Chaos in ein strukturiertes Nutzererlebnis."
               },
               "class": "default-text text-medium mb-4"
             },

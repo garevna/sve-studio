@@ -8,6 +8,7 @@
   import ConfirmDialog from '@/components/special/ConfirmDialog.vue'
   import EditorPageHeader from '@/components/special/EditorPageHeader.vue'
   import PageSeoDialog from '@/components/special/PageSeoDialog.vue'
+  import PageTitleDialog from '@/components/special/PageTitleDialog.vue'
   import { API_REQUEST_MODE } from '@/configs/api-mode'
   import { t } from '@/i18n'
   import { useAjaxStore } from '@/stores/ajax'
@@ -155,16 +156,16 @@
     renameTitle.value = translatedPageTitle(page.title)
     renameDialog.value = true
   }
-  async function confirmRename () {
+  async function confirmRename (title: TranslatedModel) {
     const page = renamePage.value
     if (!page) return
     renaming.value = true
     try {
       const content = await ajaxStore.getDynamicPageContent(page.pageId)
       if (!content) return
-      content.title = { ...renameTitle.value }
+      content.title = { ...title }
       await ajaxStore.saveDynamicPage(page.pageId, content, { publish: true })
-      page.title = { ...renameTitle.value }
+      page.title = { ...title }
       renameDialog.value = false
     } finally {
       renaming.value = false
@@ -707,28 +708,7 @@
       </v-card>
     </v-dialog>
 
-    <v-dialog v-model="renameDialog" max-width="480">
-      <v-card title="Назва сторінки">
-        <v-card-text>
-          <p class="text-body-2 text-medium-emphasis mb-4">
-            Одна назва для всього: список сторінок, редактор і головне меню (якщо пункт меню не має своєї назви).
-          </p>
-          <v-text-field
-            v-for="(code, index) in siteLocales()"
-            :key="code"
-            v-model="renameTitle[code]"
-            :autofocus="index === 0"
-            :label="`${localeDisplayName(code)} (${code.toUpperCase()})`"
-            variant="outlined"
-          />
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer />
-          <v-btn variant="text" @click="renameDialog = false">Скасувати</v-btn>
-          <v-btn color="primary" :loading="renaming" variant="elevated" @click="confirmRename">Зберегти</v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
+    <PageTitleDialog v-model="renameDialog" :loading="renaming" :title="renameTitle" @save="confirmRename" />
 
     <ConfirmDialog
       v-model="deleteDialogOpen"

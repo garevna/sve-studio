@@ -46,8 +46,10 @@
   "images": [
     "about-company/04.jpg",
     "about-company/05.jpg",
+    "about-company/07.jpg",
+    "about-company/07.webp",
     "about-company/08.jpg",
-    "about-company/11.jpg",
+    "about-company/11.webp",
     "about-company/12.webp",
     "about-company/14.jpg",
     "advanced-features/05.jpg",
@@ -87,10 +89,10 @@
     "loyality-program/cashback.jpg"
   ],
   "hashes": {
-    "pages/about-company.json": "e8989cc62708ee0e",
+    "pages/about-company.json": "d7e8f5f4213de32b",
     "pages/advanced-features.json": "c499c23cd32933af",
-    "pages/contacts-page.json": "ae9d5bb3efcc799c",
-    "pages/expert-help.json": "996ffc3cd23c4d58",
+    "pages/contacts-page.json": "db226c6ceef724db",
+    "pages/expert-help.json": "ed6b8c833a9d968f",
     "pages/footer-content.json": "82ea4dd65bc5ceb9",
     "pages/home-page.json": "61d381aa5f2ce18c",
     "pages/licences.json": "fb738efd2094a44a",

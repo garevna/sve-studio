@@ -16,7 +16,8 @@
   //                       editor's top bar.
   //
   // `scope` is what the warning badges count missing texts in: the object
-  // the dialog edits. Left out, no counts are shown.
+  // the dialog edits. Left out, no counts are shown. The menu/dock drop-down
+  // takes more items through the #menu-extra slot.
   const props = withDefaults(defineProps<{
     scope?: unknown
     variant?: 'buttons' | 'menu' | 'dock'
@@ -97,6 +98,9 @@
       >
         {{ code.toUpperCase() }} · {{ localeDisplayName(code) }}
       </SveMenuItem>
+      <!-- The host's own items about this content (the editor: the page's
+        name when it is not translated). -->
+      <slot name="menu-extra" />
     </SveMenu>
   </template>
 </template>

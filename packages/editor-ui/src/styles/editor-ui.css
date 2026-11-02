@@ -500,15 +500,32 @@
   pointer-events: none;
 }
 
-/* The settings button in the block's top right corner: shown on hover (and
-   always on touch screens, which have no hover). */
+/* The settings button: OUTSIDE the block, so it never covers the block's
+   own controls in its top right corner (a text's format button, its save
+   tick). On a wide screen it sits in the margin beside the block's top
+   right corner - the left padding bridges the gap, so the pointer can
+   reach it without the hover dropping. On a narrow screen there is no
+   margin: it sits above that corner, in the row of the "+" insert gap.
+   Shown on hover (always on touch screens, which have no hover). */
 .sve-block__settings {
   position: absolute;
-  top: 8px;
-  right: 8px;
+  top: 0;
+  right: -48px;
   z-index: 6;
+  padding-left: 12px;
   opacity: 0;
   transition: opacity 0.12s ease;
+}
+@media (max-width: 720px) {
+  .sve-block__settings {
+    top: -38px;
+    right: -4px;
+    padding-left: 0;
+  }
+  /* That row is the insert gap's: only its "+" takes clicks there, the
+     rest lets them through to the settings button. */
+  .sve-insert-gap { pointer-events: none; }
+  .sve-insert-gap__button { pointer-events: auto; }
 }
 .sve-block:hover > .sve-block__settings,
 .sve-block--active > .sve-block__settings,

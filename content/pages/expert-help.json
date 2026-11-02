@@ -7,9 +7,9 @@
     {
       "type": "parallax",
       "content": {
-        "uk": "/api/content/images/expert-help/doctor-2.webp?v=d6b6de38",
-        "en": "/api/content/images/expert-help/doctor-2.webp?v=d6b6de38",
-        "de": "/api/content/images/expert-help/doctor-2.webp?v=d6b6de38"
+        "uk": "/api/content/images/expert-help/doctor-2.jpg?v=3e9ba038",
+        "en": "/api/content/images/expert-help/doctor-2.jpg?v=3e9ba038",
+        "de": "/api/content/images/expert-help/doctor-2.jpg?v=3e9ba038"
       },
       "children": [
         {
@@ -382,19 +382,19 @@
     },
     {
       "type": "text",
-      "class": "h6 text-medium text-black my-5 mb-md-0",
+      "class": "my-5 mb-md-0 accent-font text-thin text-center text-dark h2",
       "content": {
-        "uk": "",
-        "en": "",
-        "de": ""
+        "uk": "Ввімкнемо рок-н-рол у вашому бекенді!",
+        "en": "Let’s kick some rock ’n’ roll into your backend!",
+        "de": "Wir bringen Rock ’n’ Roll in Ihr Backend!"
       }
     },
     {
       "type": "image",
       "content": {
-        "uk": "",
-        "en": "",
-        "de": ""
+        "uk": "/api/content/images/expert-help/28.png?v=74143118",
+        "en": "/api/content/images/expert-help/28.png?v=74143118",
+        "de": "/api/content/images/expert-help/28.png?v=74143118"
       }
     }
   ],

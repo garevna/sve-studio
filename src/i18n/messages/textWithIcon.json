@@ -1,37 +1,37 @@
 {
   "link": {
     "uk": "Посилання",
-    "en": "",
-    "de": ""
+    "en": "Link",
+    "de": "Link"
   },
   "linkHint": {
     "uk": "Адреса сторінки (соцмережа, сайт), телефон або email - телефон і email стануть посиланням на дзвінок чи лист.",
-    "en": "",
-    "de": ""
+    "en": "Page address (social media, website), telephone number or email – the telephone number and email will become a link to make a call or send an email.",
+    "de": "Seitenadresse (soziales Netzwerk, Website), Telefonnummer oder E-Mail-Adresse – Telefonnummer und E-Mail-Adresse werden zu einem Link für einen Anruf oder eine E-Mail."
   },
   "removeLink": {
     "uk": "Прибрати посилання",
-    "en": "",
-    "de": ""
+    "en": "Remove link",
+    "de": "Link entfernen"
   },
   "fromSettings": {
     "uk": "Соцмережа або месенджер — адреса з загальних налаштувань",
-    "en": "",
-    "de": ""
+    "en": "Social media or messaging app — address from general settings",
+    "de": "Soziales Netzwerk oder Messenger – Adresse aus den allgemeinen Einstellungen"
   },
   "ownAddress": {
     "uk": "Або власна адреса",
-    "en": "",
-    "de": ""
+    "en": "Or your own address",
+    "de": "Oder eigene Adresse"
   },
   "noNetworks": {
     "uk": "У загальних налаштуваннях ще немає адрес соцмереж і месенджерів.",
-    "en": "",
-    "de": ""
+    "en": "There are no social media or messaging service addresses in the general settings yet.",
+    "de": "In den allgemeinen Einstellungen sind noch keine Adressen von sozialen Netzwerken und Messengern vorhanden."
   },
   "networkLink": {
     "uk": "{network}: адреса з загальних налаштувань",
-    "en": "",
-    "de": ""
+    "en": "{network}: address from general settings",
+    "de": "{network}: Adresse aus den allgemeinen Einstellungen"
   }
 }

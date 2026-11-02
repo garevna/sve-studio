@@ -11,8 +11,8 @@
   },
   "main": {
     "uk": "Основний шрифт",
-    "en": "",
-    "de": ""
+    "en": "Main font",
+    "de": "Hauptschrift"
   },
   "extra": {
     "uk": "Додатковий шрифт {n}",

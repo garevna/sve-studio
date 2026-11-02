@@ -1,34 +1,34 @@
 {
   "menu": {
     "uk": "Соцмережа або месенджер",
-    "en": "",
-    "de": ""
+    "en": "Social network or messaging app",
+    "de": "Soziales Netzwerk oder Messenger"
   },
   "noAddress": {
     "uk": "немає адреси в загальних налаштуваннях",
-    "en": "",
-    "de": ""
+    "en": "no address in general settings",
+    "de": "Keine Adresse in den allgemeinen Einstellungen"
   },
   "icons": {
     "uk": "Соцмережі",
-    "en": "",
-    "de": ""
+    "en": "Social media",
+    "de": "Soziale Netzwerke"
   },
   "look": {
     "color": {
       "uk": "Фірмові кольори",
-      "en": "",
-      "de": ""
+      "en": "Brand colours",
+      "de": "Markenfarben"
     },
     "mono": {
       "uk": "Знак, один колір",
-      "en": "",
-      "de": ""
+      "en": "Icon, single colour",
+      "de": "Symbol, einfarbig"
     },
     "circle": {
       "uk": "Знак у колі, один колір",
-      "en": "",
-      "de": ""
+      "en": "Icon in a circle, single colour",
+      "de": "Logo im Kreis, einfarbig"
     }
   }
 }

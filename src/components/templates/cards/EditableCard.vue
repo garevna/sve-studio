@@ -1,13 +1,16 @@
 <script setup lang="ts">
   import type { TemplateBlockModel, TranslatedModel } from '@/types/TemplateBlockModel'
-  import { computed } from 'vue'
+  import { computed, ref } from 'vue'
   import IconEditor from '@/components/editors/text/IconEditor.vue'
   import TextEditor from '@/components/editors/text/TextEditor.vue'
+  import TextFormatMenu from '@/components/editors/text/TextFormatMenu.vue'
   import TextOnBackground from '@/components/editors/text/TextOnBackground.vue'
+  import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
   import { useCommonStore } from '@/stores/common'
   import { useUiFeedbackStore } from '@/stores/ui-feedback'
   import { defaultCardContentClass, defaultCardTitleClass } from '@/utils/card-text-defaults'
   import { emptyTranslatedModel, isTranslatedModel, resolveLocaleLines, resolveLocaleText, siteLocales } from '@/utils/locale-text'
+  import { EDITOR_THEME_NAME, themeClass } from '@/utils/vuetify-theme-names'
 
   const commonStore = useCommonStore()
 
@@ -57,6 +60,10 @@
       props.card.contentClass = value
     },
   })
+
+  // Every paragraph shares one format (contentClass): one format button for
+  // all of them, next to the "Текст" label, its panel opening below it.
+  const contentFormatOpen = ref(false)
 
   const iconStyleTarget = computed(() => props.blockTarget || props.card)
 
@@ -210,17 +217,32 @@
       Додати текстовий контент
     </v-btn>
     <div v-else class="card-content-section mt-6">
-      <span class="card-content-label">Текст</span>
+      <div class="card-content-head">
+        <span class="card-content-label">Текст</span>
+        <ToolbarIconButton
+          v-if="formatVer !== undefined"
+          :active="contentFormatOpen"
+          icon="mdi-tune"
+          tooltip="Формат усіх пунктів"
+          @click="contentFormatOpen = !contentFormatOpen"
+        />
+      </div>
+      <v-expand-transition v-if="formatVer !== undefined">
+        <div v-if="contentFormatOpen" :class="['text-format-panel', 'editor-panel', themeClass(EDITOR_THEME_NAME)]">
+          <v-theme-provider theme="editorTheme">
+            <TextFormatMenu v-model:class="contentFormat" parent-type="usual" />
+          </v-theme-provider>
+        </div>
+      </v-expand-transition>
       <div class="card-content-list">
-        <!-- Every paragraph shares one format (contentClass): changing it
-          under any of them changes them all. -->
-        <TextOnBackground v-if="formatVer !== undefined" :background="background" :image="backgroundImage">
+        <TextOnBackground v-if="formatVer !== undefined" :background="background" class="card-content-lines" :image="backgroundImage">
           <TextEditor
             v-for="(line, index) of lines"
             :key="index"
-            v-model:class="contentFormat"
+            :class="contentFormat"
             :content="line"
             deletable
+            :formattable="false"
             parent-type="usual"
             type="text"
             @delete="removeLine(index)"
@@ -267,6 +289,13 @@
     border-radius: 4px;
   }
 
+  .card-content-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
   .card-content-label {
     font-size: 0.75rem;
     color: #3A4A58;
@@ -282,6 +311,13 @@
     display: flex;
     flex-direction: column;
     gap: 12px;
+  }
+
+  /* The paragraphs, one under another with a gap between them. */
+  .card-content-lines {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
   }
 
   .card-content-row {

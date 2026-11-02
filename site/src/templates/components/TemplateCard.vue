@@ -91,7 +91,7 @@
       <div v-if="Array.isArray(content)">
         <template v-for="(line, index) in content" :key="index">
           <p :class="contentClass" style="grid-area: content">
-            • {{ line }}
+            {{ line }}
           </p>
         </template>
       </div>

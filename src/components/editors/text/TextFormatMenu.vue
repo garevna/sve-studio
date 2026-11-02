@@ -1,11 +1,13 @@
 <script setup lang="ts">
-  import { computed } from 'vue'
+  import { SveSwipeRow } from '@sve/editor-ui'
+  import { computed, useSlots } from 'vue'
   import MarginBottomMenu from '@/components/editors/MarginBottomMenu.vue'
   import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
   import PaletteSwatchPicker from '@/components/special/PaletteSwatchPicker.vue'
   import { t } from '@/i18n'
   import { NON_COLOR_TEXT_CLASSES, SIZE_PIXELS, SIZE_SCALE, WEIGHT_SCALE } from '@/utils/text-format-scale'
   import { appliedThemeFonts, isFontClass } from '@/utils/theme-fonts'
+  import ControlColumn from './ControlColumn.vue'
 
   // The format controls themselves - size, alignment, colour, weight, plus
   // two optional caller-specific actions. Every multi-choice control shows
@@ -170,48 +172,72 @@
   function shows (control: 'size' | 'align' | 'color' | 'weight' | 'font'): boolean {
     return !props.only || props.only.includes(control)
   }
+
+  // The controls this panel shows, in order. In a row they sit in a
+  // SveSwipeRow: on a narrow screen (a phone) the row is swiped instead of
+  // spilling out or wrapping; in a column, one under another.
+  const slots = useSlots()
+  const controls = computed(() => [
+    shows('size') && 'size',
+    shows('align') && props.parentType !== 'icon' && 'align',
+    shows('color') && 'color',
+    shows('weight') && 'weight',
+    shows('font') && appliedThemeFonts.value.length > 1 && 'font',
+    props.spacing && 'spacing',
+    props.configurable && 'configure',
+    !!slots.actions && 'actions',
+  ].filter((control): control is string => !!control))
 </script>
 
 <template>
   <div
     :class="vertical
       ? 'd-flex flex-column align-center ga-2'
-      : 'd-flex align-center justify-space-between w-100'"
+      : 'd-flex align-center ga-2 w-100'"
   >
-    <div :class="vertical ? 'd-flex flex-column align-center ga-2' : 'd-flex align-center ga-2'">
-      <v-menu v-if="shows('size')" location="bottom center">
-        <template #activator="{ props: sizeProps }">
-          <ToolbarIconButton v-bind="sizeProps" icon="mdi-format-size" tooltip="Розмір шрифту" />
-        </template>
-        <v-card theme="editorTheme">
-          <v-list density="compact">
-            <v-list-item
-              v-for="(size, index) of SIZE_SCALE"
-              :key="size"
-              :active="index === sizeStepIndex"
-              :title="`${SIZE_PIXELS[size]}px`"
-              @click="setFontSize(size)"
-            />
-          </v-list>
-        </v-card>
-      </v-menu>
+    <component
+      :is="vertical ? ControlColumn : SveSwipeRow"
+      v-slot="{ item }"
+      :class="{ 'text-format-controls': !vertical }"
+      :items="controls"
+    >
+      <template v-if="item === 'size'">
+        <v-menu location="bottom center">
+          <template #activator="{ props: sizeProps }">
+            <ToolbarIconButton v-bind="sizeProps" icon="mdi-format-size" tooltip="Розмір шрифту" />
+          </template>
+          <v-card theme="editorTheme">
+            <v-list density="compact">
+              <v-list-item
+                v-for="(size, index) of SIZE_SCALE"
+                :key="size"
+                :active="index === sizeStepIndex"
+                :title="`${SIZE_PIXELS[size]}px`"
+                @click="setFontSize(size)"
+              />
+            </v-list>
+          </v-card>
+        </v-menu>
+      </template>
 
-      <v-menu v-if="shows('align') && parentType !== 'icon'" location="bottom center">
-        <template #activator="{ props: alignProps }">
-          <ToolbarIconButton v-bind="alignProps" :icon="ALIGN_ICONS[alignment]" tooltip="Вирівнювання тексту" />
-        </template>
-        <v-card theme="editorTheme">
-          <v-list density="compact">
-            <v-list-item
-              v-for="key of otherAlignments"
-              :key="key"
-              :prepend-icon="ALIGN_ICONS[key]"
-              :title="ALIGN_LABELS[key]"
-              @click="toggleAlign(ALIGN_CLASSES[key])"
-            />
-          </v-list>
-        </v-card>
-      </v-menu>
+      <template v-if="item === 'align'">
+        <v-menu location="bottom center">
+          <template #activator="{ props: alignProps }">
+            <ToolbarIconButton v-bind="alignProps" :icon="ALIGN_ICONS[alignment]" tooltip="Вирівнювання тексту" />
+          </template>
+          <v-card theme="editorTheme">
+            <v-list density="compact">
+              <v-list-item
+                v-for="key of otherAlignments"
+                :key="key"
+                :prepend-icon="ALIGN_ICONS[key]"
+                :title="ALIGN_LABELS[key]"
+                @click="toggleAlign(ALIGN_CLASSES[key])"
+              />
+            </v-list>
+          </v-card>
+        </v-menu>
+      </template>
 
       <!-- Restricted to the app's own configured palette. Always the TEXT's
         own color, regardless of parentType - a text-with-icon field's icon
@@ -220,55 +246,67 @@
         touch it (a real bug this once was: parentType==='icon' used to
         swap this to an icon-color picker instead, silently repainting the
         icon whenever someone picked a "text color" here). -->
-      <PaletteSwatchPicker v-if="shows('color')" :model-value="colorKey" @update:model-value="(key: string) => toggleColor(key)">
-        <template #activator="{ menuProps }">
-          <ToolbarIconButton v-bind="menuProps" :color="colorKey ? `var(--${colorKey})` : undefined" icon="mdi-format-color-fill" tooltip="Колір тексту" />
-        </template>
-      </PaletteSwatchPicker>
-
-      <v-menu v-if="shows('weight')" location="bottom center">
-        <template #activator="{ props: weightProps }">
-          <ToolbarIconButton v-bind="weightProps" icon="mdi-format-bold" tooltip="Товщина шрифту" />
-        </template>
-        <v-card theme="editorTheme">
-          <v-list density="compact">
-            <v-list-item
-              v-for="weight of WEIGHT_SCALE"
-              :key="weight"
-              :disabled="weight === weightKey"
-              :title="WEIGHT_LABELS[weight]"
-              @click="setWeight(weight)"
+      <template v-if="item === 'color'">
+        <PaletteSwatchPicker :model-value="colorKey" @update:model-value="(key: string) => toggleColor(key)">
+          <template #activator="{ menuProps }">
+            <ToolbarIconButton
+              v-bind="menuProps"
+              class="text-format-color"
+              :color="colorKey ? `var(--${colorKey})` : undefined"
+              icon="mdi-format-color-fill"
+              tooltip="Колір тексту"
             />
-          </v-list>
-        </v-card>
-      </v-menu>
+          </template>
+        </PaletteSwatchPicker>
+      </template>
 
-      <v-menu v-if="shows('font') && appliedThemeFonts.length > 1" location="bottom center">
-        <template #activator="{ props: fontProps }">
-          <ToolbarIconButton v-bind="fontProps" :color="fontClass ? 'primary' : undefined" icon="mdi-format-font" :tooltip="t('fonts.menuTitle')" />
-        </template>
-        <v-card theme="editorTheme">
-          <v-list density="compact">
-            <!-- Each font named and drawn in itself. -->
-            <v-list-item
-              v-for="font of appliedThemeFonts"
-              :key="font.className"
-              :active="font.className === fontClass"
-              @click="setFont(font.className)"
-            >
-              <v-list-item-title :style="{ fontFamily: `'${font.name}', sans-serif`, fontSize: '18px' }">
-                {{ font.name }}
-              </v-list-item-title>
-              <v-list-item-subtitle v-if="!font.className">{{ t('fonts.menuMain') }}</v-list-item-subtitle>
-            </v-list-item>
-          </v-list>
-        </v-card>
-      </v-menu>
+      <template v-if="item === 'weight'">
+        <v-menu location="bottom center">
+          <template #activator="{ props: weightProps }">
+            <ToolbarIconButton v-bind="weightProps" icon="mdi-format-bold" tooltip="Товщина шрифту" />
+          </template>
+          <v-card theme="editorTheme">
+            <v-list density="compact">
+              <v-list-item
+                v-for="weight of WEIGHT_SCALE"
+                :key="weight"
+                :disabled="weight === weightKey"
+                :title="WEIGHT_LABELS[weight]"
+                @click="setWeight(weight)"
+              />
+            </v-list>
+          </v-card>
+        </v-menu>
+      </template>
 
-      <MarginBottomMenu v-if="spacing" v-model:class="className" />
+      <template v-if="item === 'font'">
+        <v-menu location="bottom center">
+          <template #activator="{ props: fontProps }">
+            <ToolbarIconButton v-bind="fontProps" :color="fontClass ? 'primary' : undefined" icon="mdi-format-font" :tooltip="t('fonts.menuTitle')" />
+          </template>
+          <v-card theme="editorTheme">
+            <v-list density="compact">
+              <!-- Each font named and drawn in itself. -->
+              <v-list-item
+                v-for="font of appliedThemeFonts"
+                :key="font.className"
+                :active="font.className === fontClass"
+                @click="setFont(font.className)"
+              >
+                <v-list-item-title :style="{ fontFamily: `'${font.name}', sans-serif`, fontSize: '18px' }">
+                  {{ font.name }}
+                </v-list-item-title>
+                <v-list-item-subtitle v-if="!font.className">{{ t('fonts.menuMain') }}</v-list-item-subtitle>
+              </v-list-item>
+            </v-list>
+          </v-card>
+        </v-menu>
+      </template>
+
+      <MarginBottomMenu v-if="item === 'spacing'" v-model:class="className" />
 
       <ToolbarIconButton
-        v-if="configurable"
+        v-if="item === 'configure'"
         :icon="configureIcon || 'mdi-cog'"
         :tooltip="configureTooltip || 'Налаштувати'"
         @click="emit('configure')"
@@ -277,15 +315,34 @@
       <!-- Anything a caller needs beyond the standard set, kept on the LEFT
         with the everyday actions - the right-hand side belongs to delete
         alone, deliberately apart from them. -->
-      <slot name="actions" />
-    </div>
+      <slot v-if="item === 'actions'" name="actions" />
+    </component>
 
     <ToolbarIconButton
       v-if="deletable"
-      :class="vertical ? 'mt-4' : ''"
+      :class="vertical ? 'mt-4' : 'ml-auto'"
       icon="mdi-delete"
       :tooltip="deleteTooltip || 'Видалити блок'"
       @click="emit('delete')"
     />
   </div>
 </template>
+
+<style scoped>
+/* The row of controls takes the room left of delete, and no more. */
+.text-format-controls {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+/* Icons that fit spread over the whole row instead of hugging its left
+   edge; a row too long for its room is swiped and starts at the left.
+   Scoped to this panel - tab rows keep their own packing. */
+/* The colour icon is drawn in the chosen colour: a thin dark outline keeps
+   a white or pale one visible on the light panel. */
+.text-format-color :deep(.v-icon) {
+  filter: drop-shadow(0 0 1px rgb(0 0 0 / 0.55));
+}
+.text-format-controls :deep(.swiper-wrapper) {
+  justify-content: space-between;
+}
+</style>

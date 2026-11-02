@@ -28,10 +28,14 @@
   padding: 8px 12px;
   border-radius: 10px;
 }
-/* The format button sits on that colour, light or dark: a light chip of
-   its own keeps it visible on either. */
-.text-on-background :deep(.v-btn--icon) {
-  background: rgb(255 255 255 / 0.85);
-  color: #3a4a58;
+/* The editor's icons sit on that colour, light or dark: a light halo
+   around the icon's own outline keeps the dark icon visible on either,
+   without a white disc under it. The open format panel has its own
+   background, so its icons need none. */
+.text-on-background :deep(.toolbar-icon-button .v-icon) {
+  filter: drop-shadow(0 0 1px #fff) drop-shadow(0 0 2px #fff);
+}
+.text-on-background :deep(.text-format-panel .toolbar-icon-button .v-icon) {
+  filter: none;
 }
 </style>

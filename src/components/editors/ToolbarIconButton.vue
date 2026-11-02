@@ -1,104 +1,115 @@
 <script setup lang="ts">
-  // Shared icon/text button for every editable-block control panel - plain
-  // v-btn (not v-fab, which is meant for genuinely floating controls; this
-  // one sits inside a normal-flow toolbar) with a real Vuetify tooltip
-  // (same convention as IconEditor.vue's own activator: v-tooltip +
-  // theme="editorTheme", not the native title attribute) instead of just a
-  // native title tooltip. Works both as a plain toolbar button and as a
-  // v-speed-dial's own activator (v-bind="activatorProps" forwards
-  // straight through to the real v-btn via $attrs, alongside the
-  // tooltip's own activator props).
+  // The editor's control icon: a clickable icon, not a Vuetify button. A
+  // v-btn brings its own 48px round box, padding and overlay, which made
+  // every panel bulky - on a phone especially. This is the icon itself with
+  // a small hit area around it, a soft tint on hover and a tooltip.
   //
-  // `icon` is optional: omit it and pass a default-slot label instead for
-  // a plain text button - e.g. font-weight's "B+"/"B-" (TextFormatMenu.vue),
-  // where mdi-plus/mdi-minus would collide with this project's own
-  // established meaning for those icons ("add an item") and read as
-  // "add/remove something" rather than "bolder/thinner".
+  // A <span role="button">, not a <button>: the site's theme (buttons.css)
+  // styles every bare <button> with !important padding, radius and shadow.
+  // Keyboard: focusable, Enter/Space click it.
   //
-  // `active`: for mode-toggle buttons (drag mode, margin mode, uniform
-  // card format...) - a bare color tint read as unconvincing/easy to miss
-  // as an on/off state. An inset shadow reads as physically pushed in,
-  // which a flat color tint alone doesn't. The .toolbar-icon-button--active
-  // rule itself lives in editor-ui.css's own @layer app-content block, not
-  // here - a scoped style here is unlayered, and theme_2's own buttons.css
-  // matches the underlying <button> with an !important box-shadow:none that
-  // always wins over any unlayered rule regardless of specificity (see that
-  // file's own comment on the identical fight for border-radius/height).
+  // Works as a menu's or a tooltip's activator: whatever the caller binds
+  // (v-bind="menuProps", @click...) lands on the span via $attrs.
+  //
+  // No icon: the default slot is a text label ("Питання"), with an
+  // optional prependIcon before it.
+  //
+  // active: a mode toggle that is on (drag mode, uniform format...) - shown
+  // pressed in. On a page colour (TextOnBackground) the icon gets a light
+  // halo instead of a white disc under it (see TextOnBackground.vue).
   defineOptions({ inheritAttrs: false })
 
-  defineProps<{
+  const props = defineProps<{
     icon?: string
+    prependIcon?: string
     tooltip: string
     color?: string
     disabled?: boolean
+    loading?: boolean
     size?: string
     active?: boolean
-    // A raw CSS colour for the icon, for the rare caller that wants one
-    // outside the theme palette. `color` above stays the normal route (a
-    // Vuetify theme colour name); this simply feeds the scoped rule below.
+    // A raw CSS colour for the icon, outside the palette.
     iconColor?: string
   }>()
+
+  function onKey (event: KeyboardEvent) {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault()
+      ;(event.currentTarget as HTMLElement).click()
+    }
+  }
+
+  const small = () => props.size === 'small' || props.size === 'x-small'
 </script>
 
 <template>
   <v-tooltip location="top" :text="tooltip" theme="editorTheme">
     <template #activator="{ props: tooltipProps }">
-      <!-- Vuetify's own VBtn only auto-renders the icon prop when it has NO
-        default slot at all (`!slots.default`) - an unconditional <slot />
-        here would make every icon-only caller (nothing passed for the
-        slot) silently render blank, since Vue still generates a (content-
-        less) slot function for v-btn regardless of whether the CALLER of
-        ToolbarIconButton itself passed anything. Only forward the slot
-        when this instance actually received one. -->
-      <v-btn
-        v-if="$slots.default"
+      <span
         v-bind="{ ...tooltipProps, ...$attrs }"
-        :class="['toolbar-icon-button', { 'toolbar-icon-button--active': active }]"
-        :color="active ? 'primary' : color"
-        :disabled="disabled"
-        :icon="icon"
-        :size="size"
+        :aria-disabled="disabled || undefined"
+        :aria-label="tooltip"
+        :class="['toolbar-icon-button', {
+          'toolbar-icon-button--active': active,
+          'toolbar-icon-button--disabled': disabled || loading,
+          'toolbar-icon-button--small': small(),
+          'toolbar-icon-button--label': !icon && !!$slots.default,
+        }]"
+        role="button"
         :style="iconColor ? { '--toolbar-icon-color': iconColor } : undefined"
-        variant="text"
+        :tabindex="disabled ? -1 : 0"
+        @keydown="onKey"
       >
-        <slot />
-      </v-btn>
-      <v-btn
-        v-else
-        v-bind="{ ...tooltipProps, ...$attrs }"
-        :class="['toolbar-icon-button', { 'toolbar-icon-button--active': active }]"
-        :color="active ? 'primary' : color"
-        :disabled="disabled"
-        :icon="icon"
-        :size="size"
-        :style="iconColor ? { '--toolbar-icon-color': iconColor } : undefined"
-        variant="text"
-      />
+        <v-progress-circular v-if="loading" indeterminate :size="small() ? 16 : 20" width="2" />
+        <v-icon v-else-if="icon" :color="active ? 'primary' : color" :icon="icon" :size="small() ? 18 : 22" />
+        <template v-else>
+          <v-icon v-if="prependIcon" :color="color" :icon="prependIcon" size="18" />
+          <span class="toolbar-icon-button__text"><slot /></span>
+        </template>
+      </span>
     </template>
   </v-tooltip>
 </template>
 
 <style scoped>
-/*
- * Editor chrome must not take its colour from the app being edited.
- * Vuetify's `.v-btn--variant-text { color: inherit }` makes these buttons
- * pick up whatever colour the surrounding CONTENT sets - a v-card's own
- * `color` prop, a dark section - so the editor's icons changed colour with
- * the page (confirmed live: white format icons on the light banner card).
- *
- * This has to live HERE, in the component's own scoped block, rather than in
- * editor-ui.css: that file writes into `@layer app-content`, which
- * index.html declares BEFORE vuetify-components, so it loses to Vuetify's
- * rule. A scoped <style> is unlayered, and unlayered normal declarations
- * outrank every layered one - which is exactly what's needed, without the
- * !important that would also outrank the callers who legitimately set a
- * colour.
- *
- * Those callers still win: `color` renders Vuetify's own .text-{name}
- * utility, which is !important, and !important beats any normal
- * declaration whatever its layer.
- */
-.toolbar-icon-button.v-btn {
+.toolbar-icon-button {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  min-width: 32px;
+  height: 32px;
+  padding: 0 5px;
+  border-radius: 6px;
+  /* The editor's own colour, never the page's (a dark section's white). */
   color: var(--toolbar-icon-color, #3A4A58);
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.15s;
+}
+.toolbar-icon-button:hover {
+  background-color: rgb(58 74 88 / 0.08);
+}
+.toolbar-icon-button:focus-visible {
+  outline: 2px solid rgb(58 74 88 / 0.4);
+  outline-offset: 1px;
+}
+.toolbar-icon-button--small {
+  min-width: 26px;
+  height: 26px;
+  padding: 0 4px;
+}
+.toolbar-icon-button--label {
+  padding: 0 8px;
+  font-size: 0.85rem;
+}
+.toolbar-icon-button--active {
+  background-color: rgb(58 74 88 / 0.12);
+  box-shadow: inset 1px 1px 3px rgb(0 0 0 / 0.35);
+}
+.toolbar-icon-button--disabled {
+  opacity: 0.4;
+  pointer-events: none;
 }
 </style>

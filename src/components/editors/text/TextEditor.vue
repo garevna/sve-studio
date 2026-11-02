@@ -250,11 +250,10 @@
           :tooltip="props.panelTooltip || 'Налаштування'"
           @click="togglePanel"
         />
-        <v-btn
+        <ToolbarIconButton
           v-else-if="props.deletable"
-          icon="mdi-delete"
-          title="Видалити"
-          variant="text"
+          icon="mdi-delete-outline"
+          tooltip="Видалити"
           @click="emit('delete')"
         />
       </template>
@@ -327,8 +326,8 @@
   outline-offset: 2px;
 }
 .text-format-panel {
-  margin-top: 4px;
-  padding: 0;
+  margin-top: 6px;
+  padding: 8px 12px;
 }
 /* Stacked icons only need one icon's own width, not the full row width the
    horizontal variant relies on for justify-space-between - fits a narrow

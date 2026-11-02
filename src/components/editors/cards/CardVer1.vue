@@ -64,7 +64,7 @@
       <div v-if="Array.isArray(props.item.content)">
         <template v-for="(line, index) in props.item.content" :key="index">
           <p :class="[props.item.class || 'default-text text-medium text-black', alignClass]" style="grid-area: content">
-            • {{ line }}
+            {{ line }}
           </p>
         </template>
       </div>

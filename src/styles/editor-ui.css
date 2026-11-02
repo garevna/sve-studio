@@ -410,13 +410,6 @@
   }
 
   /*
-   * ToolbarIconButton.vue's "pressed" state for mode-toggle buttons (drag
-   * mode, uniform card format...) - same app-content fight as every other
-   * rule in this layer: theme_2's own buttons.css matches the underlying
-   * <button> element with `box-shadow: none !important`, which would
-   * otherwise always win over an unlayered rule regardless of specificity.
-   */
-  /*
    * The colour swatch is a plain square. theme_2's own buttons.css matches
    * every bare <button> with `border-radius: var(--default-border-radius)
    * !important` and `padding: 12px`, which turned this 28px control into a
@@ -428,11 +421,6 @@
     padding: 0 !important;
   }
 
-  .toolbar-icon-button--active {
-    box-shadow: inset 2px 2px 4px #0008 !important;
-    height: 48px !important;
-    border-radius: 8px !important;
-  }
   .v-btn-group .v-btn {
     min-height: 48px !important;
   }

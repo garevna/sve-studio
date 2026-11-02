@@ -308,8 +308,12 @@
   border-radius: 4px;
   padding: 0 8px;
 }
+/* An empty field (or one typed into but not yet saved): a frame, not a
+   fill - it sits on the text's own background, light or dark, and a fill
+   hid a light text on a dark card. A mid grey shows on both. */
 .text-before-edit {
-  background: #def;
+  min-height: 1.5em;
+  border: 1px dashed rgb(128 140 155 / 0.8);
 }
 .text-before-edit:focus,
 .editing-text:focus {

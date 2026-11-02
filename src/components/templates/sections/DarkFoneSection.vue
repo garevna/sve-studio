@@ -176,14 +176,12 @@
 
 <style scoped>
 /* TextEditor.vue's own header/title/text tags have no explicit color of
-   their own once there's real content (.editing-text - see that
-   component), so they fall back to Vuetify's default heading/paragraph
+   their own, so they fall back to Vuetify's default heading/paragraph
    color (near-black) instead of inheriting this section's white text color
-   - illegible against the dark background. Only .editing-text (content
-   exists), not .text-before-edit (the empty-field placeholder, which keeps
-   its own light-blue box + dark text on purpose, unaffected by this
-   section's own colors). */
-.dark-fone-section--edit :deep(.editing-text) {
+   - illegible against the dark background. That holds for an empty field
+   too (.text-before-edit): it is a frame now, no fill of its own. */
+.dark-fone-section--edit :deep(.editing-text),
+.dark-fone-section--edit :deep(.text-before-edit) {
   color: var(--white);
 }
 .dark-fone-editor-card {

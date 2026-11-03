@@ -15,6 +15,12 @@
   import TemplateBanerActions from './TemplateBanerActions.vue'
   import TemplateParallax from './TemplateParallax.vue'
 
+  // The block's own class (TemplateItem passes it) is not this banner's:
+  // the site draws the banner from the block alone and never applies it.
+  // The root is a v-if / v-else pair, so Vue could not pick an element for
+  // it anyway - and warned about it on every render.
+  defineOptions({ inheritAttrs: false })
+
   const commonStore = useCommonStore()
   const { winSize } = storeToRefs(commonStore)
   const mode = useEditorMode()

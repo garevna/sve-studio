@@ -1,6 +1,7 @@
 <script setup lang="ts">
   import { storeToRefs } from 'pinia'
   import { computed } from 'vue'
+  import { TITLE_SIZES } from '../../configs/header-layout'
   import { useCommonStore } from '../../stores/common'
 
   // Layout 3 of the top of the site: under the menu bar, the company name
@@ -22,7 +23,7 @@
   <section class="hero-split" :style="{ background: fill }">
     <div class="hero-split-inner">
       <div class="hero-split-text">
-        <h1 class="h1 text-white hero-split-name">{{ company?.name }}</h1>
+        <h1 v-if="headerSettings.showTitle" :class="['h1 text-white hero-split-name', headerSettings.titleFont, { 'title-font-own-weight': headerSettings.titleFont }]" :style="{ '--title-scale': TITLE_SIZES[headerSettings.titleSize] }">{{ company?.name }}</h1>
         <p v-if="tagline" class="hero-split-tagline">{{ tagline }}</p>
       </div>
       <div v-if="src" class="hero-split-picture">
@@ -52,6 +53,23 @@
   flex-direction: column;
   gap: 20px;
   min-width: 0;
+}
+/* A decorative font (Rubik Dirt and the like) usually has one weight: the
+   h1's bold would be faked by the browser, which fills in the very holes
+   that make the font. Its own weight, nothing synthesized. */
+/* The name's size (header.titleSize): a multiple of the h1's own 96px,
+   never wider than the screen allows - a big name wraps, it doesn't spill. */
+.hero-split-name {
+  font-size: min(calc(96px * var(--title-scale, 1)), 14vw);
+}
+@media screen and (max-width: 600px) {
+  .hero-split-name {
+    font-size: min(calc(68px * var(--title-scale, 1)), 14vw);
+  }
+}
+.hero-split-name.title-font-own-weight {
+  font-weight: 400;
+  font-synthesis: none;
 }
 .hero-split-name {
   margin: 0;

@@ -30,6 +30,7 @@ import { popularTrips } from '../configs/popular-trips'
 
 import { getImageURL } from '../services/get-image-url'
 import { localeAsset } from '../utils/locale-asset'
+import { PARALLAX_TEXT_DEFAULTS, parallaxTextClass as parallaxFormat } from '../utils/parallax-text-class'
 // import { useAjaxStore } from './ajax'
 
 // import { getBanersForLocale } from '@/services/common'
@@ -110,6 +111,10 @@ export const useCommonStore = defineStore('common', () => {
   const parallaxHeader = ref<string | null>(null)
   const parallaxTitle = ref<string | null>(null)
   const parallaxText = ref<string | null>(null)
+  // Their look (utils/parallax-text-class.ts).
+  const parallaxHeaderClass = ref<string>(PARALLAX_TEXT_DEFAULTS.header)
+  const parallaxTitleClass = ref<string>(PARALLAX_TEXT_DEFAULTS.title)
+  const parallaxTextClass = ref<string>(PARALLAX_TEXT_DEFAULTS.text)
 
   /* Computed (getters) */
 
@@ -158,6 +163,10 @@ export const useCommonStore = defineStore('common', () => {
     parallaxTitle.value = title ? title[lang] : null
     parallaxText.value = parallax.children ? parallax.children.find(child => child.type === 'text')?.content?.[lang] || null : null
     parallaxTheme.value = parallax.dark ? 'parallax-content-dark' : 'parallax-content-light'
+    const classOf = (type: string) => parallax.children?.find(child => child.type === type)?.class
+    parallaxHeaderClass.value = parallaxFormat(classOf('header'), PARALLAX_TEXT_DEFAULTS.header)
+    parallaxTitleClass.value = parallaxFormat(classOf('title'), PARALLAX_TEXT_DEFAULTS.title)
+    parallaxTextClass.value = parallaxFormat(classOf('text'), PARALLAX_TEXT_DEFAULTS.text)
   }
 
   function setLocale (val: LocaleModel) {
@@ -263,6 +272,9 @@ export const useCommonStore = defineStore('common', () => {
     menuStyle,
     contacts,
     feedbackEndpoint,
+    parallaxHeaderClass,
+    parallaxTitleClass,
+    parallaxTextClass,
     applyHeaderSettings,
     resetParallax,
     setParallax,

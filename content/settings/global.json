@@ -161,5 +161,18 @@
   },
   "feedback": {
     "endpoint": "https://pagewright-feedback.garevna.workers.dev"
+  },
+  "header": {
+    "titlePosition": "bottom-left",
+    "menuTheme": "dark",
+    "background": "primary",
+    "tagline": {
+      "uk": "",
+      "en": "",
+      "de": ""
+    },
+    "titleFont": "accent-font",
+    "showTitle": true,
+    "titleSize": "m"
   }
 }

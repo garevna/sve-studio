@@ -13,8 +13,10 @@ const IMAGE_EXTENSION_PATTERN = /\.(?:jpe?g|png|svg|webp|gif)$/i
 // An image uploaded through the content API, copied into content/images
 // under the same content-hash name the page JSON refers to
 // (/api/content/images/<name>), so the starting content carries the file
-// and not just a link to the browser's own storage.
-const SEED_IMAGE_PATTERN = /^_seed\/images\/[\w-]+\.(?:jpe?g|png|svg|webp|gif|avif)$/i
+// and not just a link to the browser's own storage. A page's pictures live
+// in a folder of their own (images/products/01.webp) - folders are allowed,
+// ".." never is (checked below, and the target must stay inside content/).
+const SEED_IMAGE_PATTERN = /^_seed\/images\/(?:[\w-]+\/)*[\w-]+\.(?:jpe?g|png|svg|webp|gif|avif)$/i
 
 function resolveTarget (relativePath: string): { target: string, base: string, prefix: string } {
   const root = process.cwd()
@@ -61,6 +63,7 @@ export default defineEventHandler(async event => {
   const isImageUpload = body?.encoding === 'base64' && IMAGE_UPLOAD_PATTERN.test(relativePath) && IMAGE_EXTENSION_PATTERN.test(relativePath)
   const isSeedImage = body?.encoding === 'base64' && SEED_IMAGE_PATTERN.test(relativePath)
   if (!relativePath || relativePath.includes('..') || !(isJson || isCss || isImageUpload || isSeedImage)) {
+    console.warn('[public-file] refused:', relativePath)
     throw createError({ statusCode: 400, statusMessage: 'Invalid path: must be a relative .json/.css path, or a base64 image upload, without ".."' })
   }
 

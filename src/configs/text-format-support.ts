@@ -6,10 +6,9 @@
 // `type` string - the same "header"/"title"/"text" type is genuinely
 // class-driven when rendered as a normal page block or nested-section half
 // (client-side/src/templates/TemplateText.vue reads item.class), but is
-// NOT when it's specifically the single hero parallax overlay
-// (client-side/src/App.vue hardcodes parallax-header/parallax-title/
-// parallax-text - confirmed HeroParallax.vue's own editor preview mirrors
-// that same hardcoding, so this isn't only a prod-vs-editor mismatch).
+// the hero parallax overlay reads it too now (utils/parallax-text-class.ts
+// in both apps: a formatted text keeps its format, an unformatted one the
+// panel's own look).
 export type TextFormatContext
   = | 'text-block'
     | 'nested-section'
@@ -25,10 +24,9 @@ export const TEXT_FORMAT_SUPPORT: Record<TextFormatContext, boolean> = {
   // TemplateNestedSection.vue's text half (section-image-left/right etc.) -
   // same TemplateText.vue render path as text-block above.
   'nested-section': true,
-  // HeroParallax.vue's header/title/text overlay - see the file-level
-  // comment above for why this is false despite reusing the same
-  // header/title/text leaf types as the two entries above.
-  'hero-parallax': false,
+  // HeroParallax.vue's header/title/text overlay - the site reads each
+  // text's format (utils/parallax-text-class.ts).
+  'hero-parallax': true,
   // "cards"/"carousel"/"card-with-hover" card title/content -
   // client-side/src/templates/components/TemplateCard.vue hardcodes its own
   // title/content classes and never reads any per-card field.

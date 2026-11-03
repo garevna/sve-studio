@@ -39,6 +39,9 @@
   const {
     parallaxImage,
     parallaxHeader,
+    parallaxHeaderClass,
+    parallaxTitleClass,
+    parallaxTextClass,
     parallaxTitle,
     parallaxText,
     parallaxTheme,
@@ -256,10 +259,10 @@
       (HeroWithTitle.vue). -->
     <div v-if="!heroWithTitle" id="parallax-placeholder" :class="{ 'parallax-placeholder--active': parallaxImage }">
       <v-parallax v-if="parallaxImage" eager :src="parallaxImage" width="100vw">
-        <div v-if="parallaxHeader || parallaxTitle" :class="parallaxTheme">
-          <h2 v-if="parallaxHeader" class="parallax-header">{{ parallaxHeader }}</h2>
-          <h4 class="parallax-title text-bold text-left">{{ parallaxTitle }}</h4>
-          <p v-if="parallaxText" class="parallax-text text-left">{{ parallaxText }}</p>
+        <div v-if="parallaxHeader || parallaxTitle" :class="[parallaxTheme, 'parallax-panel']">
+          <h2 v-if="parallaxHeader" :class="parallaxHeaderClass">{{ parallaxHeader }}</h2>
+          <h4 :class="parallaxTitleClass">{{ parallaxTitle }}</h4>
+          <p v-if="parallaxText" :class="parallaxTextClass">{{ parallaxText }}</p>
         </div>
       </v-parallax>
     </div>
@@ -325,6 +328,18 @@
 </template>
 
 <style scoped>
+/* A formatted panel text (utils/parallax-text-class.ts) may be set big,
+   and the panel is narrow on a phone: long words wrap instead of pushing
+   the page wider, and the big sizes shrink with the screen. */
+.parallax-panel > * {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+@media screen and (max-width: 960px) {
+  .parallax-panel > .h1 { font-size: clamp(28px, 10vw, 68px); }
+  .parallax-panel > .h2 { font-size: clamp(22px, 7vw, 36px); }
+  .parallax-panel > .h3 { font-size: clamp(20px, 6vw, 28px); }
+}
 .v-footer {
   /* background-color comes from footerBackground (inline style) now -
      footer-content.json's own background field, defaulting to --primary. */

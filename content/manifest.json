@@ -94,6 +94,7 @@
     "loyality-program/14.jpg",
     "loyality-program/31.webp",
     "loyality-program/cashback.jpg",
+    "products/08.jpg",
     "test/17.jpg"
   ],
   "hashes": {
@@ -106,10 +107,10 @@
     "pages/how-we-work.json": "4a12de62d2f91c1f",
     "pages/licences.json": "fb738efd2094a44a",
     "pages/loyality-program.json": "39047adb6ca35b1d",
-    "pages/products.json": "adff82741362df28",
+    "pages/products.json": "eb0a52be5b559292",
     "pages/test.json": "7ecda18806744780",
     "public/account-pages.json": "c24f4753c468a9cc",
-    "settings/global.json": "e49bbb9a2936f453",
+    "settings/global.json": "f0dd90cb70a02fd2",
     "settings/menu-content.json": "6c65d627954580cd",
     "settings/palette.json": "2fac014d32b3dfd0",
     "settings/seo.json": "30ca66019da035ef",

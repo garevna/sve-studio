@@ -1,9 +1,10 @@
 <script lang="ts" setup>
-  import type { HeaderTagline, MenuTheme, TitlePosition } from '@/configs/header-layout'
+  import type { HeaderSettingsModel, HeaderTagline, MenuTheme } from '@/configs/header-layout'
   import type { GlobalSettingsModel } from '@/types/GlobalSettingsModel'
   import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
   import EditorPageHeader from '@/components/special/EditorPageHeader.vue'
   import EditorSaveBar from '@/components/special/EditorSaveBar.vue'
+  import HeaderTitleControls from '@/components/special/HeaderTitleControls.vue'
   import PaletteSwatchPicker from '@/components/special/PaletteSwatchPicker.vue'
   import { resolveHeaderSettings } from '@/configs/header-layout'
   import { HERO_VARIANTS, resolveHeroVariant } from '@/configs/hero-variants'
@@ -12,6 +13,7 @@
   import { useCommonStore } from '@/stores/common'
   import { useUiFeedbackStore } from '@/stores/ui-feedback'
   import { openPreview, pagePreviewUrl, refreshPreviewIfOpen } from '@/utils/preview-window'
+  import { themeFonts } from '@/utils/theme-fonts'
 
   // "Верхня частина сторінки": which layout the top of the site uses
   // (global.json heroVariant), that layout's own settings (global.json
@@ -66,11 +68,6 @@
     void saveDraft()
   }
 
-  function setTitlePosition (value: TitlePosition) {
-    if (!settings.value || header.value.titlePosition === value) return
-    settings.value.header = { ...header.value, titlePosition: value }
-    void saveDraft()
-  }
   function setMenuTheme (value: MenuTheme) {
     if (!settings.value || header.value.menuTheme === value) return
     settings.value.header = { ...header.value, menuTheme: value }
@@ -81,6 +78,15 @@
     settings.value.header = { ...header.value, background: value }
     void saveDraft()
   }
+  // The name's look - shown or not, font, corner (HeaderTitleControls).
+  function updateHeader (changes: Partial<HeaderSettingsModel>) {
+    if (!settings.value) return
+    settings.value.header = { ...header.value, ...changes }
+    void saveDraft()
+  }
+  // The site's own fonts (General settings -> Fonts), each shown in itself.
+  const titleFonts = computed(() => themeFonts(settings.value))
+
   function setTagline (locale: keyof HeaderTagline, value: string) {
     if (!settings.value) return
     settings.value.header = { ...header.value, tagline: { ...header.value.tagline, [locale]: value } }
@@ -107,14 +113,7 @@
     feedback.notifySuccess(t('popups.undoDone'))
   }
 
-  // Corners of the banner, in the order they sit on screen (2 x 2 grid).
-  // Labels: header.corners.<value>, header.menuThemes.<value>.
-  const CORNERS: { value: TitlePosition, icon: string }[] = [
-    { value: 'top-left', icon: 'mdi-arrow-top-left' },
-    { value: 'top-right', icon: 'mdi-arrow-top-right' },
-    { value: 'bottom-left', icon: 'mdi-arrow-bottom-left' },
-    { value: 'bottom-right', icon: 'mdi-arrow-bottom-right' },
-  ]
+  // Labels: header.menuThemes.<value>.
   const MENU_THEMES: MenuTheme[] = ['dark', 'light']
 
   // --- live preview -------------------------------------------------------
@@ -205,24 +204,13 @@
 
         <!-- Settings of the chosen layout. -->
         <div class="hero-settings">
-          <div v-if="selectedVariant?.settings === 'title'">
-            <p class="hero-setting-label">{{ t('common.companyName') }}</p>
-            <div class="corner-picker">
-              <v-btn
-                v-for="corner of CORNERS"
-                :key="corner.value"
-                :active="header.titlePosition === corner.value"
-                :aria-label="t(`header.corners.${corner.value}`)"
-                color="primary"
-                size="small"
-                variant="outlined"
-                @click="setTitlePosition(corner.value)"
-              >
-                <v-icon>{{ corner.icon }}</v-icon>
-                <v-tooltip activator="parent" location="top">{{ t(`header.corners.${corner.value}`) }}</v-tooltip>
-              </v-btn>
-            </div>
-          </div>
+          <HeaderTitleControls
+            v-if="selectedVariant?.settings === 'title' || selectedVariant?.settings === 'split'"
+            :corners="selectedVariant?.settings === 'title'"
+            :fonts="titleFonts"
+            :header="header"
+            @update="updateHeader"
+          />
 
           <template v-if="selectedVariant?.settings === 'split'">
             <div>
@@ -367,11 +355,6 @@
   color: #7A8699;
   margin: 6px 0 0;
   max-width: 320px;
-}
-.corner-picker {
-  display: grid;
-  grid-template-columns: repeat(2, max-content);
-  gap: 8px;
 }
 .menu-theme-swatch {
   display: inline-block;

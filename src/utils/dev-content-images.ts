@@ -41,7 +41,10 @@ async function syncOnce (): Promise<void> {
   for (const name of data.missing) {
     try {
       const response = await fetch(`${location.origin}/api/content/images/${name}`)
-      if (!response.ok) {
+      // A picture nobody has comes back from the service worker as its grey
+      // stand-in (X-Placeholder), with a 200 - copied, that stand-in became
+      // a fake file under the real name.
+      if (!response.ok || response.headers.get('X-Placeholder') === '1') {
         console.warn(`Image ${name} is linked from content/ but this browser does not have it either`)
         continue
       }

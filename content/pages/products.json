@@ -46,9 +46,9 @@
         {
           "type": "image",
           "content": {
-            "uk": "/api/content/images/products/01.webp",
-            "en": "/api/content/images/products/02.webp",
-            "de": "/api/content/images/products/03.jpeg"
+            "uk": "/api/content/images/products/08.jpg?v=b5e27ce5",
+            "en": "/api/content/images/products/02",
+            "de": "/api/content/images/products/03"
           }
         }
       ]
@@ -284,9 +284,9 @@
     {
       "type": "image",
       "content": {
-        "uk": "",
-        "en": "",
-        "de": ""
+        "uk": "/api/content/images/d160f34291008b567b6f10c0d81581574436b89283e7f6d30067b59966242807.jpg",
+        "en": "/api/content/images/d160f34291008b567b6f10c0d81581574436b89283e7f6d30067b59966242807.jpg",
+        "de": "/api/content/images/d160f34291008b567b6f10c0d81581574436b89283e7f6d30067b59966242807.jpg"
       }
     },
     {

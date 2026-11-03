@@ -1,0 +1,27 @@
+{
+  "image": {
+    "uk": "Зображення",
+    "en": "Image",
+    "de": "Bild"
+  },
+  "add": {
+    "uk": "Додати елемент",
+    "en": "Add Element",
+    "de": "Element hinzufügen"
+  },
+  "cardsWithIcon": {
+    "uk": "Картки з іконкою",
+    "en": "Cards with Icon",
+    "de": "Karten mit Icon"
+  },
+  "imageCarousel": {
+    "uk": "Карусель зображень",
+    "en": "Image Carousel",
+    "de": "Bildkarusell"
+  },
+  "thumbsCarousel": {
+    "uk": "Карусель з ескізами",
+    "en": "Thumbs Carousel",
+    "de": "Miniaturkarusell"
+  }
+}

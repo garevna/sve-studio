@@ -2,6 +2,7 @@
   import { computed } from 'vue'
   import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
   import PaletteSwatchPicker from '@/components/special/PaletteSwatchPicker.vue'
+  import { t } from '@/i18n'
 
   // HOW an icon looks - colour, size, the circle behind it - and nothing
   // about which icon it is. The other half is IconPicker.vue; see its own
@@ -47,26 +48,26 @@
 <template>
   <div>
     <div v-if="colorable" class="icon-appearance-row">
-      <span class="icon-appearance-label">Колір іконки</span>
+      <span class="icon-appearance-label">{{ t('icons.color') }}</span>
       <PaletteSwatchPicker :model-value="iconColor" @update:model-value="(value: string) => iconColor = value" />
     </div>
 
     <div class="icon-appearance-row">
-      <span class="icon-appearance-label">Фон під іконкою</span>
+      <span class="icon-appearance-label">{{ t('icons.background') }}</span>
       <div class="d-flex align-center ga-2">
         <PaletteSwatchPicker :model-value="iconBackground" @update:model-value="(value: string) => iconBackground = value" />
         <ToolbarIconButton
           v-if="iconBackground"
           icon="mdi-close"
           size="small"
-          tooltip="Прибрати фон"
+          :tooltip="t('icons.removeBackground')"
           @click="iconBackground = ''"
         />
       </div>
     </div>
 
     <div class="icon-appearance-row">
-      <span class="icon-appearance-label">Розмір: {{ iconSize }}px</span>
+      <span class="icon-appearance-label">{{ t('icons.size', { iconSize }) }}</span>
       <v-slider
         v-model="iconSize"
         class="icon-appearance-slider"
@@ -79,7 +80,7 @@
 
     <template v-if="mobileSizable">
       <div class="icon-appearance-row">
-        <span class="icon-appearance-label">Окремий розмір на телефоні</span>
+        <span class="icon-appearance-label">{{ t('icons.mobileSizeToggle') }}</span>
         <v-switch
           v-model="ownMobileSize"
           color="primary"
@@ -89,7 +90,7 @@
         />
       </div>
       <div v-if="ownMobileSize" class="icon-appearance-row">
-        <span class="icon-appearance-label">На телефоні: {{ mobileSize }}px</span>
+        <span class="icon-appearance-label">{{ t('icons.mobileSize', { mobileSize }) }}</span>
         <v-slider
           v-model="mobileSize"
           class="icon-appearance-slider"

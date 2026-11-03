@@ -7,6 +7,7 @@
   import { faq } from '@/configs/components/faq'
   import { galery1 } from '@/configs/components/galery-1'
   import { galery2 } from '@/configs/components/galery-2'
+  import { t } from '@/i18n'
   import { useCommonStore } from '@/stores/common'
   import { cardDefaults } from '@/utils/card-defaults'
   import { EDITED_APP_SCOPE_CLASS } from '@/utils/edited-app-scope'
@@ -471,9 +472,9 @@
     <CardEditDialog :block-target="editingCard?.block" :card="editingCardModel" :defaults="editingCard?.defaults" @close="closeCardEditor" />
     <ConfirmDialog
       v-model="deleteDialogOpen"
-      confirm-text="Видалити"
-      text="Цю дію не можна скасувати."
-      title="Видалити блок?"
+      :confirm-text="t('common.delete')"
+      :text="t('confirm.irreversible')"
+      :title="t('block.deleteTitle')"
       @confirm="confirmDelete"
     />
   </div>

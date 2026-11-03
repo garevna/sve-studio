@@ -2,6 +2,7 @@
   import type { TemplateBlockModel } from '@/types/TemplateBlockModel'
   import { computed, ref, watch } from 'vue'
   import LocaleSwitcher from '@/components/editors/small/LocaleSwitcher.vue'
+  import { t } from '@/i18n'
   import HoverCardSideEditor from './HoverCardSideEditor.vue'
 
   // `block` is the whole type:'component' content:'CardWithHover' block
@@ -58,12 +59,12 @@
       <div class="card-with-hover-edit-dialog-head">
         <div class="card-with-hover-edit-dialog-toolbar">
           <LocaleSwitcher :scope="cardProps.card" />
-          <v-btn color="primary" variant="elevated" @click="emit('close')">ОК</v-btn>
+          <v-btn color="primary" variant="elevated" @click="emit('close')">{{ t('common.ok') }}</v-btn>
         </div>
 
         <v-tabs v-model="tab" color="primary">
-          <v-tab value="base">Базова картка</v-tab>
-          <v-tab value="hover">Ховер-картка</v-tab>
+          <v-tab value="base">{{ t('cards.hover.base') }}</v-tab>
+          <v-tab value="hover">{{ t('cards.hover.hover') }}</v-tab>
         </v-tabs>
       </div>
 

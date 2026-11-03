@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { API_REQUEST_MODE } from '@/configs/api-mode'
+import { t } from '@/i18n'
 import { useAjaxStore } from '@/stores/ajax'
 import { useCommonStore } from '@/stores/common'
 import { siteLocales } from '@/utils/locale-text'
@@ -138,7 +139,7 @@ export async function uploadImage (file: File, options: UploadImageOptions = {})
     return uploadToContent(file, options)
   }
   if (API_REQUEST_MODE === 'test') {
-    throw new Error('Завантаження зображень недоступне: локальний API не запустився. Перезавантажте сторінку.')
+    throw new Error(t('images.uploadUnavailable'))
   }
 
   // POST /content/images, matching docs/api-requirements.md.

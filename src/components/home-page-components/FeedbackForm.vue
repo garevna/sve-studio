@@ -6,6 +6,7 @@
   import FeedbackCardDialog from '@/components/templates/sections/FeedbackCardDialog.vue'
   import { useBlockActionsTarget } from '@/composables/useEditableBlockActions'
   import { useEditorMode } from '@/composables/useEditorMode'
+  import { t } from '@/i18n'
   import { useCommonStore } from '@/stores/common'
   import { resolveLocaleText } from '@/utils/locale-text'
 
@@ -31,7 +32,7 @@
   <div class="feedback-form-block">
     <template v-if="mode === 'edit'">
       <Teleport :disabled="!blockActionsTarget" :to="blockActionsTarget || 'body'">
-        <ToolbarIconButton icon="mdi-playlist-edit" tooltip="Редагувати форму" @click="dialogOpen = true" />
+        <ToolbarIconButton icon="mdi-playlist-edit" :tooltip="t('feedbackForms.edit')" @click="dialogOpen = true" />
       </Teleport>
       <FeedbackCardDialog v-model="dialogOpen" :card="model" />
     </template>

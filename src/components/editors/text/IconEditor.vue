@@ -8,6 +8,7 @@
   import { useEditorMode } from '@/composables/useEditorMode'
   import { defaultIcon } from '@/configs/defaults/default-icon'
   import { socialIconOf } from '@/configs/social-icons'
+  import { t } from '@/i18n'
   import { useCommonStore } from '@/stores/common'
   import { resolveThemeAssetPath } from '@/utils/theme-asset-path'
 
@@ -82,7 +83,7 @@
   </template>
 
   <div v-else class="icon-editor-wrap">
-    <v-tooltip location="top" text="Обрати іконку" theme="editorTheme">
+    <v-tooltip location="top" :text="t('icons.pick')" theme="editorTheme">
       <template #activator="{ props: tooltipProps }">
         <div
           v-bind="tooltipProps"
@@ -114,9 +115,9 @@
         bottom now, where every other dialog puts it. -->
       <v-card class="editor-dialog icon-picker-dialog" theme="editorTheme">
         <v-toolbar class="editor-panel" color="transparent" density="compact">
-          <v-toolbar-title class="icon-picker-title">Іконка</v-toolbar-title>
+          <v-toolbar-title class="icon-picker-title">{{ t('buttonEditor.icon') }}</v-toolbar-title>
           <v-spacer />
-          <ToolbarIconButton icon="mdi-close" tooltip="Закрити" @click="menuOpen = false" />
+          <ToolbarIconButton icon="mdi-close" :tooltip="t('common.close')" @click="menuOpen = false" />
         </v-toolbar>
 
         <v-card-text class="icon-picker-body">
@@ -146,7 +147,7 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer />
-          <v-btn color="primary" variant="elevated" @click="menuOpen = false">ОК</v-btn>
+          <v-btn color="primary" variant="elevated" @click="menuOpen = false">{{ t('common.ok') }}</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>

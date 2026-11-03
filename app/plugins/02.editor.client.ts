@@ -37,7 +37,7 @@ export default defineNuxtPlugin({
     // The interface language, on every top bar next to the colour scheme.
     addTopBarItem(EditorLocaleMenu)
     // The kit's own words (Back, Close...) in the interface language.
-    const kitTexts = () => setKitLabels({ back: t('kit.back'), close: t('kit.close'), look: t('kit.look'), pickColor: t('kit.pickColor'), tools: t('kit.tools'), systemFont: t('kit.systemFont') })
+    const kitTexts = () => setKitLabels({ back: t('common.back'), close: t('common.close'), look: t('kit.look'), pickColor: t('kit.pickColor'), tools: t('kit.tools'), systemFont: t('kit.systemFont') })
     kitTexts()
     watch(i18n.global.locale, kitTexts)
     startLook(look => Object.assign(vuetify.theme.themes.value[EDITOR_THEME_NAME]!.colors, vuetifyColors(look)))

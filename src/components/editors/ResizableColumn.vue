@@ -1,6 +1,7 @@
 <script setup lang="ts">
   import { useEditorMode } from '@/composables/useEditorMode'
   import { RESIZE_STEP, snapToStep, useHorizontalResize } from '@/composables/useHorizontalResize'
+  import { t } from '@/i18n'
 
   // A footer section that can be resized by dragging its own right edge -
   // the horizontal twin of ResizableWrapper.vue (image height), and the same
@@ -54,13 +55,13 @@
 
     <div
       v-if="mode === 'edit' && resizable"
-      aria-label="Змінити ширину колонки"
+      :aria-label="t('block.resizeColumn')"
       :aria-valuenow="width"
       class="resizable-column-handle"
       :class="{ 'resizable-column-handle--active': dragging }"
       role="separator"
       tabindex="0"
-      :title="`Ширина: ${width}px`"
+      :title="t('block.width', { width })"
       @keydown.left.prevent="nudge(-1)"
       @keydown.right.prevent="nudge(1)"
       @mousedown.prevent="startDrag($event, width)"

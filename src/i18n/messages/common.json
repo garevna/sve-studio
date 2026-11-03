@@ -23,5 +23,320 @@
     "uk": "Зрозуміло",
     "en": "Got it",
     "de": "Verstanden"
+  },
+  "save": {
+    "uk": "Зберегти",
+    "en": "Save",
+    "de": "Speichern"
+  },
+  "insert": {
+    "uk": "Вставити",
+    "en": "Insert",
+    "de": "Einfügen"
+  },
+  "create": {
+    "uk": "Створити",
+    "en": "Create",
+    "de": "Erstellen"
+  },
+  "configure": {
+    "uk": "Налаштувати",
+    "en": "Configure",
+    "de": "Konfigurieren"
+  },
+  "saving": {
+    "uk": "Збереження…",
+    "en": "Saving…",
+    "de": "Speichern…"
+  },
+  "upload": {
+    "uk": "Завантажити",
+    "en": "Upload",
+    "de": "Hochladen"
+  },
+  "ok": {
+    "uk": "ОК",
+    "en": "OK",
+    "de": "OK"
+  },
+  "move": {
+    "uk": "Переміщення",
+    "en": "Move",
+    "de": "Verschieben"
+  },
+  "inDevelopment": {
+    "uk": "Розділ у розробці",
+    "en": "In Development",
+    "de": "In Entwicklung"
+  },
+  "editText": {
+    "uk": "Редагувати текст",
+    "en": "Edit Text",
+    "de": "Text bearbeiten"
+  },
+  "back": {
+    "uk": "Назад",
+    "en": "Back",
+    "de": "Zurück"
+  },
+  "addText": {
+    "uk": "Додати текст",
+    "en": "Add text",
+    "de": "Text hinzufügen"
+  },
+  "size": {
+    "uk": "Розмір",
+    "en": "Size",
+    "de": "Größe"
+  },
+  "deleteBlock": {
+    "uk": "Видалити блок",
+    "en": "Delete block",
+    "de": "Block löschen"
+  },
+  "marginBottom": {
+    "uk": "Відступ знизу",
+    "en": "Margin bottom",
+    "de": "Unterer Rand"
+  },
+  "header": {
+    "uk": "Заголовок",
+    "en": "Header",
+    "de": "Header"
+  },
+  "subtitle": {
+    "uk": "Підзаголовок",
+    "en": "Subtitle",
+    "de": "Untertitel"
+  },
+  "text": {
+    "uk": "Текст",
+    "en": "Text",
+    "de": "Text"
+  },
+  "textWithIcon": {
+    "uk": "Текст з іконкою",
+    "en": "Text with Icon",
+    "de": "Text mit Icon"
+  },
+  "button": {
+    "uk": "Кнопка",
+    "en": "Button",
+    "de": "Schaltfläche"
+  },
+  "parallax": {
+    "uk": "Паралакс",
+    "en": "Parallax",
+    "de": "Parallax"
+  },
+  "variant1": {
+    "uk": "Варіант 1",
+    "en": "Variant 1",
+    "de": "Variante 1"
+  },
+  "variant2": {
+    "uk": "Варіант 2",
+    "en": "Variant 2",
+    "de": "Variante 2"
+  },
+  "arbitraryContent": {
+    "uk": "Довільний контент",
+    "en": "Arbitrary content",
+    "de": "Beliebiger Inhalt"
+  },
+  "darkSection": {
+    "uk": "Темна секція",
+    "en": "Dark section",
+    "de": "Dunkle Sektion"
+  },
+  "banner": {
+    "uk": "Банер",
+    "en": "Banner",
+    "de": "Banner"
+  },
+  "cards": {
+    "uk": "Картки",
+    "en": "Cards",
+    "de": "Karten"
+  },
+  "popularDestinations": {
+    "uk": "Популярні напрямки",
+    "en": "Popular destinations",
+    "de": "Beliebte Reiseziele"
+  },
+  "feedbackForm": {
+    "uk": "Форма зворотного зв’язку",
+    "en": "Feedback form",
+    "de": "Feedback-Formular"
+  },
+  "list": {
+    "uk": "Список",
+    "en": "List",
+    "de": "Liste"
+  },
+  "card": {
+    "uk": "Картка",
+    "en": "Card",
+    "de": "Karte"
+  },
+  "listOfLinks": {
+    "uk": "Список посилань",
+    "en": "List of links",
+    "de": "Seitenlinks"
+  },
+  "imagesGrid": {
+    "uk": "Сітка зображень",
+    "en": "Images grid",
+    "de": "Bildgitter"
+  },
+  "socialMediaIcons": {
+    "uk": "Іконки соцмереж",
+    "en": "Social media icons",
+    "de": "Symbole für soziale Netzwerke"
+  },
+  "visaMastercardLogo": {
+    "uk": "Логотип Visa/Mastercard",
+    "en": "Visa/Mastercard Logo",
+    "de": "Visa/Mastercard Logo"
+  },
+  "background": {
+    "uk": "Фон",
+    "en": "Background",
+    "de": "Hintergrund"
+  },
+  "squareCorners": {
+    "uk": "Без заокруглення",
+    "en": "Square corners",
+    "de": "Eckige Ecken"
+  },
+  "divider": {
+    "uk": "Розділювач",
+    "en": "Divider",
+    "de": "Trennzeichen"
+  },
+  "lineColour": {
+    "uk": "Колір лінії",
+    "en": "Line colour",
+    "de": "Linienfarbe"
+  },
+  "contacts": {
+    "uk": "Контакти",
+    "en": "Contacts",
+    "de": "Kontakte"
+  },
+  "topOfThePage": {
+    "uk": "Верхня частина сторінки",
+    "en": "Top of the page",
+    "de": "Seitenanfang"
+  },
+  "gradients": {
+    "uk": "Градієнти",
+    "en": "Gradients",
+    "de": "Farbverläufe"
+  },
+  "desktop": {
+    "uk": "Десктоп",
+    "en": "Desktop",
+    "de": "Desktop"
+  },
+  "generalSettings": {
+    "uk": "Загальні налаштування",
+    "en": "General settings",
+    "de": "Allgemeine Einstellungen"
+  },
+  "companyName": {
+    "uk": "Назва компанії",
+    "en": "Company name",
+    "de": "Firmenname"
+  },
+  "logo": {
+    "uk": "Логотип",
+    "en": "Logo",
+    "de": "Logo"
+  },
+  "look": {
+    "uk": "Вигляд",
+    "en": "Look",
+    "de": "Aussehen"
+  },
+  "settings": {
+    "uk": "Налаштування",
+    "en": "Settings",
+    "de": "Einstellungen"
+  },
+  "pages": {
+    "uk": "Сторінки",
+    "en": "Pages",
+    "de": "Seiten"
+  },
+  "menu": {
+    "uk": "Меню",
+    "en": "Menu",
+    "de": "Menü"
+  },
+  "palette": {
+    "uk": "Палітра",
+    "en": "Palette",
+    "de": "Palette"
+  },
+  "styles": {
+    "uk": "Стилі",
+    "en": "Styles",
+    "de": "Stile"
+  },
+  "buttons": {
+    "uk": "Кнопки",
+    "en": "Buttons",
+    "de": "Schaltflächen"
+  },
+  "footer": {
+    "uk": "Футер",
+    "en": "Footer",
+    "de": "Footer"
+  },
+  "datePicker": {
+    "uk": "Вибір дати",
+    "en": "Date Picker",
+    "de": "Datumsauswahl"
+  },
+  "menuItem": {
+    "uk": "Пункт меню",
+    "en": "Menu item",
+    "de": "Menüpunkt"
+  },
+  "activeItem": {
+    "uk": "Активний пункт",
+    "en": "Active item",
+    "de": "Aktiver Menüpunkt"
+  },
+  "anotherItem": {
+    "uk": "Ще один пункт",
+    "en": "Another item",
+    "de": "Ein weiterer Punkt"
+  },
+  "socialMedia": {
+    "uk": "Соцмережі",
+    "en": "Social media",
+    "de": "Soziale Netzwerke"
+  },
+  "apply": {
+    "uk": "Застосувати",
+    "en": "Apply",
+    "de": "Übernehmen"
+  },
+  "breadcrumbs": {
+    "uk": "Хлібні крихти",
+    "en": "Breadcrumbs",
+    "de": "Brotkrumen"
+  },
+  "colours": {
+    "uk": "Кольори",
+    "en": "Colours",
+    "de": "Farben"
+  },
+  "mainMenu": {
+    "uk": "Головне меню",
+    "en": "Main menu",
+    "de": "Hauptmenü"
   }
 }

@@ -1,0 +1,47 @@
+{
+  "page": {
+    "uk": "Сторінка",
+    "en": "Page",
+    "de": "Seite"
+  },
+  "backToPages": {
+    "uk": "До списку сторінок",
+    "en": "Back to Page List",
+    "de": "Zurück zu den Seiten"
+  },
+  "titleUntranslated": {
+    "uk": "Назва сторінки не перекладена: {locales}",
+    "en": "Page title not translated: {locales}",
+    "de": "Seitentitel nicht übersetzt: {locales}"
+  },
+  "hidden": {
+    "uk": "Приховані",
+    "en": "Hidden",
+    "de": "Versteckt"
+  },
+  "showOnPage": {
+    "uk": "Показати на сторінці",
+    "en": "Show on Page",
+    "de": "Auf Seite anzeigen"
+  },
+  "structure": {
+    "uk": "Структура",
+    "en": "Structure",
+    "de": "Struktur"
+  },
+  "openOnSite": {
+    "uk": "Відкрити сторінку на сайті",
+    "en": "Open on Site",
+    "de": "Auf Site öffnen"
+  },
+  "onSite": {
+    "uk": "На сайті",
+    "en": "On Site",
+    "de": "Auf Site"
+  },
+  "contentLanguage": {
+    "uk": "Мова контенту",
+    "en": "Content Language",
+    "de": "Inhalts Sprache"
+  }
+}

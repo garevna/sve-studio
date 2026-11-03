@@ -1,5 +1,6 @@
 <script setup lang="ts">
   import { ref, watch } from 'vue'
+  import { t } from '@/i18n'
 
   const open = defineModel('open', { default: false })
   const src = defineModel('src')
@@ -24,14 +25,14 @@
         v-model="src as File"
         class="file-upload"
         density="comfortable"
-        title="Виберіть зображення"
+        :title="t('images.choose')"
       >
         <template #item>
           <v-img v-if="imageData" :src="imageData as string" />
         </template>
       </v-file-upload>
       <v-btn class="primary-button mt-5" @click="open = false">
-        {{ updated ? 'Зберегти' : 'Закрити' }}
+        {{ updated ? t('common.save') : t('common.close') }}
       </v-btn>
     </v-card>
   </v-dialog>

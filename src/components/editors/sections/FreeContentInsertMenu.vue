@@ -31,16 +31,36 @@
   // configs/index.ts, where the cast also happens at the call site - see
   // EditorView.vue's `components[item.id]() as TemplateBlockModel`).
   const menuItems: { title: string, icon: string, factory: () => TemplateBlockModel }[] = [
-    { title: 'Заголовок', icon: 'mdi-page-layout-header', factory: () => header() as TemplateBlockModel },
-    { title: 'Підзаголовок', icon: 'mdi-subtitles-outline', factory: () => title() as TemplateBlockModel },
-    { title: 'Текст', icon: 'mdi-text-long', factory: () => text() as TemplateBlockModel },
-    { title: 'Текст з іконкою', icon: 'mdi-image-text', factory: () => textWithIcon() as TemplateBlockModel },
-    { title: 'Зображення', icon: 'mdi-image', factory: () => image() as TemplateBlockModel },
-    { title: 'Картки з іконкою', icon: 'mdi-card-text-outline', factory: cardWithIconRowTemplate },
-    { title: 'Кнопка', icon: 'mdi-button-pointer', factory: () => button() as TemplateBlockModel },
-    { title: 'Карусель зображень', icon: 'mdi-camera-burst', factory: swiperWithImagesTemplate },
-    { title: 'Карусель з ескізами', icon: 'mdi-view-gallery', factory: swiperWithThumbnailsTemplate },
-    { title: 'Форма зворотного зв’язку', icon: 'mdi-email-edit-outline', factory: () => feedbackForm() as TemplateBlockModel },
+    { get title () {
+      return t('common.header')
+    }, icon: 'mdi-page-layout-header', factory: () => header() as TemplateBlockModel },
+    { get title () {
+      return t('common.subtitle')
+    }, icon: 'mdi-subtitles-outline', factory: () => title() as TemplateBlockModel },
+    { get title () {
+      return t('common.text')
+    }, icon: 'mdi-text-long', factory: () => text() as TemplateBlockModel },
+    { get title () {
+      return t('common.textWithIcon')
+    }, icon: 'mdi-image-text', factory: () => textWithIcon() as TemplateBlockModel },
+    { get title () {
+      return t('elements.image')
+    }, icon: 'mdi-image', factory: () => image() as TemplateBlockModel },
+    { get title () {
+      return t('elements.cardsWithIcon')
+    }, icon: 'mdi-card-text-outline', factory: cardWithIconRowTemplate },
+    { get title () {
+      return t('common.button')
+    }, icon: 'mdi-button-pointer', factory: () => button() as TemplateBlockModel },
+    { get title () {
+      return t('elements.imageCarousel')
+    }, icon: 'mdi-camera-burst', factory: swiperWithImagesTemplate },
+    { get title () {
+      return t('elements.thumbsCarousel')
+    }, icon: 'mdi-view-gallery', factory: swiperWithThumbnailsTemplate },
+    { get title () {
+      return t('common.feedbackForm')
+    }, icon: 'mdi-email-edit-outline', factory: () => feedbackForm() as TemplateBlockModel },
   ]
 
   const emit = defineEmits<{ insert: [block: TemplateBlockModel] }>()
@@ -60,7 +80,7 @@
 <template>
   <v-menu v-model="open" :close-on-content-click="false" location="bottom center">
     <template #activator="{ props: menuProps }">
-      <ToolbarIconButton v-bind="menuProps" icon="mdi-plus" tooltip="Додати елемент" />
+      <ToolbarIconButton v-bind="menuProps" icon="mdi-plus" :tooltip="t('elements.add')" />
     </template>
     <v-card theme="editorTheme">
       <v-list>

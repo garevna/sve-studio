@@ -3,6 +3,7 @@
   import { computed } from 'vue'
   import NumberToggleButton from '@/components/editors/NumberToggleButton.vue'
   import { variantNumber, variantsOf } from '@/configs/component-variants'
+  import { t } from '@/i18n'
 
   // Picks which component draws a block that has several interchangeable
   // variants - the "1 / 2" toggle on the block's own toolbar, same shape as
@@ -35,7 +36,7 @@
     <NumberToggleButton
       v-for="(name, index) of variants"
       :key="name"
-      :tooltip="`Варіант ${index + 1}`"
+      :tooltip="t('block.variant', { value: index + 1 })"
       :value="index + 1"
       @click="select(index + 1)"
     />

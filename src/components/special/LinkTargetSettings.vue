@@ -2,6 +2,7 @@
   import type { LinkTarget } from '@/types/MenuItemModel'
   import type { DynamicPageListItem, TemplateBlockModel, TemplatePageModel } from '@/types/TemplateBlockModel'
   import { computed, ref, watch } from 'vue'
+  import { t } from '@/i18n'
   import { useAjaxStore } from '@/stores/ajax'
   import { useCommonStore } from '@/stores/common'
   import { getBlockLabel } from '@/utils/block-label'
@@ -199,7 +200,7 @@
       item-title="title"
       item-value="pageId"
       :items="visiblePages"
-      label="Сторінка"
+      :label="t('editor.page')"
       :loading="loadingPages"
       variant="outlined"
     />
@@ -210,7 +211,7 @@
       :disabled="!selectedPageId"
       hide-details
       inset
-      label="Перехід всередині сторінки"
+      :label="t('linkTarget.anchor')"
     />
 
     <template v-if="wantsBlockScroll">
@@ -218,7 +219,7 @@
       <v-radio-group v-else v-model="selectedBlockIndex" class="mt-2" hide-details>
         <!-- The two targets that are not blocks. Top first because it is the
           commonest of all, footer last because that is where it is. -->
-        <v-radio label="На початок сторінки" :value="TOP_TARGET" />
+        <v-radio :label="t('linkTarget.top')" :value="TOP_TARGET" />
 
         <v-radio
           v-for="(block, index) of pageBlocks"
@@ -227,15 +228,13 @@
           :value="index"
         />
 
-        <v-radio label="У футер сторінки" :value="FOOTER_TARGET" />
+        <v-radio :label="t('linkTarget.footer')" :value="FOOTER_TARGET" />
       </v-radio-group>
       <p class="text-caption text-medium-emphasis mt-2">
-        Блок без власної назви показано за його типом. Назвати блок можна на
-        ньому самому — кнопкою «Назвати блок для переходів» на його панелі
-        налаштувань.
+        {{ t('linkTarget.hint') }}
       </p>
       <p v-if="!loadingBlocks && pageBlocks.length === 0" class="text-caption text-medium-emphasis">
-        На цій сторінці ще немає блоків.
+        {{ t('linkTarget.noBlocks') }}
       </p>
     </template>
   </div>

@@ -1,6 +1,7 @@
 <script setup lang="ts">
   import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
   import PaletteSwatchPicker from '@/components/special/PaletteSwatchPicker.vue'
+  import { t } from '@/i18n'
 
   // Block-level actions for "Кроки в кружках": add a step, reorder them, and
   // the two colours every circle shares. Rendered into the block's own
@@ -23,11 +24,11 @@
 </script>
 
 <template>
-  <ToolbarIconButton icon="mdi-plus" tooltip="Додати крок" @click="emit('add')" />
+  <ToolbarIconButton icon="mdi-plus" :tooltip="t('transferSteps.add')" @click="emit('add')" />
   <ToolbarIconButton
     :active="dragActive"
     icon="mdi-cursor-move"
-    tooltip="Порядок кроків"
+    :tooltip="t('transferSteps.order')"
     @click="dragActive = !dragActive"
   />
 
@@ -39,7 +40,7 @@
       <ToolbarIconButton
         v-bind="menuProps"
         icon="mdi-circle"
-        tooltip="Колір кружків"
+        :tooltip="t('transferSteps.circleColor')"
       />
     </template>
   </PaletteSwatchPicker>
@@ -52,7 +53,7 @@
       <ToolbarIconButton
         v-bind="menuProps"
         icon="mdi-numeric"
-        tooltip="Колір кружків з номерами"
+        :tooltip="t('transferSteps.numberedCircleColor')"
       />
     </template>
   </PaletteSwatchPicker>

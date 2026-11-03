@@ -1,0 +1,157 @@
+{
+  "settings": {
+    "uk": "Налаштування блоку",
+    "en": "Block settings",
+    "de": "Block-Einstellungen"
+  },
+  "edit": {
+    "uk": "Редагувати блок",
+    "en": "Edit block",
+    "de": "Block bearbeiten"
+  },
+  "finishEditing": {
+    "uk": "Завершити редагування",
+    "en": "Finish editing",
+    "de": "Bearbeitung beenden"
+  },
+  "editShort": {
+    "uk": "Редагувати",
+    "en": "Edit",
+    "de": "Bearbeiten"
+  },
+  "up": {
+    "uk": "Вище",
+    "en": "Up",
+    "de": "Nach oben"
+  },
+  "down": {
+    "uk": "Нижче",
+    "en": "Down",
+    "de": "Nach unten"
+  },
+  "hide": {
+    "uk": "Приховати",
+    "en": "Hide",
+    "de": "Verstecken"
+  },
+  "empty": {
+    "uk": "Порожній блок — натисніть, щоб наповнити",
+    "en": "Empty block — click to fill",
+    "de": "Leerer Block — klicken zum Füllen"
+  },
+  "anchor": {
+    "uk": "Точка переходу: {editorLabel}",
+    "en": "Anchor point: {editorLabel}",
+    "de": "Ankerpunkt: {editorLabel}"
+  },
+  "anchorHint": {
+    "uk": "Дати назву блоку для включення до списку посилань для переходів усередині сторінки",
+    "en": "Give the block a name to include it in the list of links for internal page navigation",
+    "de": "Geben Sie dem Block einen Namen, um ihn in der Liste der Links für die interne Seitennavigation einzufügen"
+  },
+  "name": {
+    "uk": "Назва блоку",
+    "en": "Block name",
+    "de": "Blockname"
+  },
+  "namePlaceholder": {
+    "uk": "Наприклад: Питання та відповіді",
+    "en": "For example: Questions and Answers",
+    "de": "Zum Beispiel: Fragen und Antworten"
+  },
+  "nameHint": {
+    "uk": "Потрібна лише для того, щоб упізнати цей блок у списку переходів усередині сторінки. На сайті вона не показується, і якщо переходів на цей блок не планується, її можна не вводити.",
+    "en": "This is only needed to identify the block in the list of links for internal page navigation. It is not displayed on the website, and can be omitted if no internal links to this block are planned.",
+    "de": "Dies ist nur erforderlich, um den Block in der Liste der Links für die interne Seitennavigation zu identifizieren. Er wird nicht auf der Website angezeigt und kann weggelassen werden, wenn keine internen Links zu diesem Block geplant sind."
+  },
+  "count": {
+    "uk": "Блоків: {length}",
+    "en": "Blocks: {length}",
+    "de": "Blöcke: {length}"
+  },
+  "structureTitle": {
+    "uk": "Структура сторінки",
+    "en": "Page Structure",
+    "de": "Seitenstruktur"
+  },
+  "heroAlwaysTop": {
+    "uk": "Шапка сторінки завжди вгорі",
+    "en": "Page header always at the top",
+    "de": "Seitenkopf immer oben"
+  },
+  "drag": {
+    "uk": "Перетягнути",
+    "en": "Drag",
+    "de": "Ziehen"
+  },
+  "dragHint": {
+    "uk": "Перетягніть, щоб перемістити",
+    "en": "Drag to move",
+    "de": "Ziehen zum Verschieben"
+  },
+  "heroParallax": {
+    "uk": "Шапка сторінки (паралакс)",
+    "en": "Page header (parallax)",
+    "de": "Seitenkopf (Parallax)"
+  },
+  "addHere": {
+    "uk": "Додати блок сюди",
+    "en": "Add block here",
+    "de": "Block hier hinzufügen"
+  },
+  "deleteTitle": {
+    "uk": "Видалити блок?",
+    "en": "Delete block?",
+    "de": "Block löschen?"
+  },
+  "columnGap": {
+    "uk": "Проміжок між колонками: {current}px",
+    "en": "Column gap: {current}px",
+    "de": "Spaltenabstand: {current}px"
+  },
+  "width": {
+    "uk": "Ширина: {width}px",
+    "en": "Width: {width}px",
+    "de": "Breite: {width}px"
+  },
+  "resizeColumn": {
+    "uk": "Змінити ширину колонки",
+    "en": "Resize column",
+    "de": "Spaltegröße ändern"
+  },
+  "variant": {
+    "uk": "Варіант {value}",
+    "en": "Variant {value}",
+    "de": "Variante {value}"
+  },
+  "spaceUnderHeader": {
+    "uk": "Відступ під заголовком",
+    "en": "Space under header",
+    "de": "Platz unter Header"
+  },
+  "spaceUnderTitle": {
+    "uk": "Відступ під підзаголовком",
+    "en": "Space under title",
+    "de": "Platz unter Titel"
+  },
+  "dragElements": {
+    "uk": "Перетягування елементів",
+    "en": "Drag elements",
+    "de": "Elemente verschieben"
+  },
+  "spacingSettings": {
+    "uk": "Налаштування відступів",
+    "en": "Spacing settings",
+    "de": "Abstandseinstellungen"
+  },
+  "deleteElement": {
+    "uk": "Видалити елемент",
+    "en": "Delete element",
+    "de": "Element löschen"
+  },
+  "variantN": {
+    "uk": "Варіант {number}",
+    "en": "Variant {number}",
+    "de": "Variante {number}"
+  }
+}

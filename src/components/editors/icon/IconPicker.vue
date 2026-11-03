@@ -86,9 +86,9 @@
 <template>
   <div>
     <v-btn-toggle v-model="source" class="mb-5" density="comfortable" mandatory>
-      <v-btn value="mdi">Бібліотека MDI</v-btn>
-      <v-btn value="social">{{ t('socialLinks.icons') }}</v-btn>
-      <v-btn value="upload">Завантажити SVG</v-btn>
+      <v-btn value="mdi">{{ t('icons.library') }}</v-btn>
+      <v-btn value="social">{{ t('common.socialMedia') }}</v-btn>
+      <v-btn value="upload">{{ t('icons.uploadSvg') }}</v-btn>
     </v-btn-toggle>
 
     <!-- Social networks: their own colours, or one colour (set below, in
@@ -114,7 +114,7 @@
         clearable
         density="comfortable"
         hide-details
-        label="Пошук іконки (англ.)"
+        :label="t('icons.search')"
         prepend-inner-icon="mdi-magnify"
         variant="outlined"
       />
@@ -122,7 +122,7 @@
         Введіть слово для пошуку іконки (наприклад "bus", "phone", "star")
       </div>
       <div v-else-if="filteredNames.length === 0" class="icon-picker-hint">
-        Нічого не знайдено
+        {{ t('blockMenu.nothingFound') }}
       </div>
       <div v-else class="icon-picker-grid">
         <button
@@ -139,7 +139,7 @@
 
     <template v-else-if="source === 'upload'">
       <v-btn block prepend-icon="mdi-upload" variant="outlined" @click="fileInput?.click()">
-        Завантажити SVG-файл
+        {{ t('icons.uploadSvgFile') }}
       </v-btn>
       <div
         v-if="isPathIcon"

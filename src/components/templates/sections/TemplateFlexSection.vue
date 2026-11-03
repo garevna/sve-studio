@@ -7,6 +7,7 @@
   import TemplateItem from '@/components/templates/TemplateItem.vue'
   import { useEditorMode } from '@/composables/useEditorMode'
   import { useSortableList } from '@/composables/useSortableList'
+  import { t } from '@/i18n'
   import { readColumnGapPx } from '@/utils/column-gap-class'
   import { stableKey } from '@/utils/stable-key'
   import CardWithHoverEditDialog from '../cards/CardWithHoverEditDialog.vue'
@@ -124,10 +125,10 @@
             <!-- card-with-hover gets an edit action alongside delete; card-
               with-toolbar-image self-edits inline and only needs delete. -->
             <template v-if="!dragActive && isCardWithHover(block)" #actions>
-              <ToolbarIconButton icon="mdi-pencil" tooltip="Редагувати картку" @click="openHoverCardEditor(index)" />
+              <ToolbarIconButton icon="mdi-pencil" :tooltip="t('cards.edit')" @click="openHoverCardEditor(index)" />
             </template>
             <template v-if="!dragActive" #delete>
-              <ToolbarIconButton icon="mdi-delete" tooltip="Видалити картку" @click="requestDeleteCard(index)" />
+              <ToolbarIconButton icon="mdi-delete" :tooltip="t('cards.delete')" @click="requestDeleteCard(index)" />
             </template>
             <template-item
               :block-index="index"
@@ -146,9 +147,9 @@
 
   <ConfirmDialog
     v-model="deleteDialogOpen"
-    confirm-text="Видалити"
-    text="Цю дію не можна скасувати."
-    title="Видалити картку?"
+    :confirm-text="t('common.delete')"
+    :text="t('confirm.irreversible')"
+    :title="t('cards.deleteTitle')"
     @confirm="confirmDeleteCard"
   />
 

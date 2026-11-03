@@ -8,6 +8,7 @@
   import ConfirmDialog from '@/components/special/ConfirmDialog.vue'
   import { useEditorMode } from '@/composables/useEditorMode'
   import { TEXT_FORMAT_SUPPORT } from '@/configs/text-format-support'
+  import { t } from '@/i18n'
   import { useCommonStore } from '@/stores/common'
   import { fillEmptyLocaleSlots, resolveLocaleAsset, resolveLocaleText, setLocalizedContent } from '@/utils/locale-text'
   import { resolveThemeAssetPath } from '@/utils/theme-asset-path'
@@ -104,7 +105,7 @@
       fillEmptyLocales(path)
       URL.revokeObjectURL(previewUrl)
     } catch (error) {
-      uploadError.value = error instanceof Error ? error.message : 'Не вдалося завантажити зображення.'
+      uploadError.value = error instanceof Error ? error.message : t('images.uploadFailed')
     }
   }
 
@@ -158,11 +159,11 @@
     <template v-if="mode === 'edit'">
       <EditableBlockWrapper type="block">
         <template #actions>
-          <ToolbarIconButton :disabled="!isDark" icon="mdi-white-balance-sunny" tooltip="Світла тема" @click="isDark = false" />
-          <ToolbarIconButton :disabled="isDark" icon="mdi-weather-night" tooltip="Темна тема" @click="isDark = true" />
+          <ToolbarIconButton :disabled="!isDark" icon="mdi-white-balance-sunny" :tooltip="t('parallax.lightTheme')" @click="isDark = false" />
+          <ToolbarIconButton :disabled="isDark" icon="mdi-weather-night" :tooltip="t('parallax.darkTheme')" @click="isDark = true" />
         </template>
         <template #delete>
-          <ToolbarIconButton icon="mdi-delete" tooltip="Видалити паралакс" @click="deleteDialogOpen = true" />
+          <ToolbarIconButton icon="mdi-delete" :tooltip="t('parallax.delete')" @click="deleteDialogOpen = true" />
         </template>
         <div style="position: relative">
           <input
@@ -191,7 +192,7 @@
             icon="mdi-camera"
             location="bottom start"
             size="default"
-            title="Завантажити зображення"
+            :title="t('images.upload')"
             @click="triggerFileDialog"
           />
           <!-- Not wrapped in EditableBlockWrapper: its own "position:
@@ -212,7 +213,7 @@
             class="hero-parallax-text-edit-fab"
             icon="mdi-pencil"
             size="small"
-            title="Редагувати текст"
+            :title="t('common.editText')"
             @click="openTextDialog"
           />
         </div>
@@ -225,9 +226,9 @@
       />
       <ConfirmDialog
         v-model="deleteDialogOpen"
-        confirm-text="Видалити"
-        text="Цю дію не можна скасувати."
-        title="Видалити паралакс у шапці сторінки?"
+        :confirm-text="t('common.delete')"
+        :text="t('confirm.irreversible')"
+        :title="t('parallax.deleteTitle')"
         @confirm="removeHero"
       />
     </template>

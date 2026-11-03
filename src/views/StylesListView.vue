@@ -3,6 +3,7 @@
   import EditorPageHeader from '@/components/special/EditorPageHeader.vue'
   import { siteStyles, WIZARD_STYLES } from '@/configs/card-style'
   import { styleFileTitle } from '@/configs/style-file-titles'
+  import { t } from '@/i18n'
   import { useAjaxStore } from '@/stores/ajax'
 
   // The site's stylesheets - only the ones the site actually loads (see
@@ -43,15 +44,15 @@
   const isUsed = (file: StyleFile) => used.value ? used.value.has(file.name) : !WIZARD_STYLES.includes(file.name)
 
   const groups = computed(() => [
-    { title: 'Стилі сайту', files: files.value.filter(file => !isVuetify(file) && isUsed(file)).toSorted(byTitle) },
-    { title: 'Компоненти Vuetify', files: files.value.filter(file => isVuetify(file)).toSorted(byTitle) },
+    { title: t('styleFiles.groupSite'), files: files.value.filter(file => !isVuetify(file) && isUsed(file)).toSorted(byTitle) },
+    { title: t('styleFiles.groupVuetify'), files: files.value.filter(file => isVuetify(file)).toSorted(byTitle) },
   ].filter(group => group.files.length > 0))
 </script>
 
 <template>
   <v-app>
     <v-main class="editor-page">
-      <EditorPageHeader back-to="/" detail="Файли CSS, які використовує сайт" title="Стилі" />
+      <EditorPageHeader back-to="/" :detail="t('styleFiles.listDetail')" :title="t('common.styles')" />
 
       <v-progress-linear v-if="loading" color="primary" indeterminate />
 

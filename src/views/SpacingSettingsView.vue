@@ -2,9 +2,9 @@
   import type { GlobalSettingsModel } from '@/types/GlobalSettingsModel'
   import { computed, onMounted, ref, watch } from 'vue'
   import EditorSaveBar from '@/components/special/EditorSaveBar.vue'
+  import { t } from '@/i18n'
   import { useAjaxStore } from '@/stores/ajax'
   import { useUiFeedbackStore } from '@/stores/ui-feedback'
-  import { t } from '@/i18n'
 
   // Page spacing - the gap above a page's content and between its blocks -
   // moved here from "Загальні налаштування". It sits with the footer layout
@@ -93,16 +93,15 @@
 
     <template v-else-if="settings">
       <p class="text-body-2 text-medium-emphasis mb-6">
-        Вертикальний ритм сторінок: відступ контенту від верхнього краю та
-        проміжок між блоками. Значення в пікселях.
+        {{ t('spacing.intro') }}
       </p>
 
       <v-row>
         <v-col cols="12" md="4">
           <v-text-field
             v-model.number="pageContentMarginTopPx"
-            hint="px, відступ контенту сторінки від її верхнього краю"
-            label="Відступ контенту зверху"
+            :hint="t('spacing.topHint')"
+            :label="t('spacing.top')"
             persistent-hint
             type="number"
             variant="outlined"
@@ -110,8 +109,8 @@
         </v-col>
         <v-col cols="12" md="4">
           <v-text-field
-            hint="px, між блоками на сторінці (десктоп)"
-            label="Відступ між блоками (десктоп)"
+            :hint="t('spacing.gapDesktopHint')"
+            :label="t('spacing.gapDesktop')"
             :model-value="settings.blockSpacing.desktop"
             persistent-hint
             type="number"
@@ -121,8 +120,8 @@
         </v-col>
         <v-col cols="12" md="4">
           <v-text-field
-            hint="px, між блоками на сторінці (мобільна версія)"
-            label="Відступ між блоками (мобільна)"
+            :hint="t('spacing.gapMobileHint')"
+            :label="t('spacing.gapMobile')"
             :model-value="settings.blockSpacing.mobile"
             persistent-hint
             type="number"

@@ -2,6 +2,7 @@
   import type { TemplateBlockModel } from '@/types/TemplateBlockModel'
   import TextFormatMenu from '@/components/editors/text/TextFormatMenu.vue'
   import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
+  import { t } from '@/i18n'
   import { EDITOR_THEME_NAME, themeClass } from '@/utils/vuetify-theme-names'
 
   // Block-level actions for one footer contacts list - the same shape as
@@ -43,7 +44,7 @@
   <v-theme-provider theme="editorTheme">
     <ToolbarIconButton
       icon="mdi-playlist-edit"
-      tooltip="Редагувати контакти"
+      :tooltip="t('footer.contacts.edit')"
       @click="emit('edit')"
     />
 
@@ -52,7 +53,7 @@
         <ToolbarIconButton
           v-bind="menuProps"
           icon="mdi-format-font"
-          tooltip="Формат тексту всіх контактів"
+          :tooltip="t('footer.contacts.textFormatAll')"
         />
       </template>
       <div :class="['text-format-panel', 'editor-panel', themeClass(EDITOR_THEME_NAME)]">

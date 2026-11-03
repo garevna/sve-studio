@@ -9,6 +9,7 @@
   import FeedbackCardDialog from '@/components/templates/sections/FeedbackCardDialog.vue'
   import { useEditorMode } from '@/composables/useEditorMode'
   import { feedbackFormTexts } from '@/configs/components/feedback-form'
+  import { t } from '@/i18n'
   import { useUiFeedbackStore } from '@/stores/ui-feedback'
 
   // A button block: what it says, how it looks, whether it carries an icon,
@@ -74,13 +75,13 @@
 
   const linkSummary = computed(() => {
     if (props.block.action === 'form') {
-      return 'Відкриває форму зворотного зв’язку'
+      return t('buttonEditor.opensFeedbackForm')
     }
     if (props.block.route !== 'dynamic-page') {
-      return props.block.route ? `Сторінка «${props.block.route}»` : 'Перехід не налаштований'
+      return props.block.route ? t('buttonEditor.pageRoute', { route: props.block.route }) : t('buttonEditor.noTarget')
     }
     const pageId = (props.block.params as { pageId?: string } | undefined)?.pageId
-    return props.block.hash ? `Сторінка «${pageId}», блок ${props.block.hash}` : `Сторінка «${pageId}»`
+    return props.block.hash ? t('menuSettings.pageBlock', { pageId, hash: props.block.hash }) : t('menuSettings.page', { pageId })
   })
 </script>
 
@@ -111,7 +112,7 @@
         :active="panelOpen"
         class="button-editor-action"
         icon="mdi-cog"
-        tooltip="Налаштування кнопки"
+        :tooltip="t('buttonEditor.settings')"
         @click="panelOpen = !panelOpen"
       />
     </div>
@@ -128,15 +129,15 @@
     <v-dialog v-model="panelOpen" max-width="560">
       <v-card class="editor-dialog" theme="editorTheme">
         <v-toolbar class="editor-panel" color="transparent" density="compact">
-          <v-toolbar-title class="button-editor-dialog-title">Налаштування кнопки</v-toolbar-title>
+          <v-toolbar-title class="button-editor-dialog-title">{{ t('buttonEditor.settings') }}</v-toolbar-title>
           <v-spacer />
           <ToolbarIconButton
             v-if="deletable"
             icon="mdi-delete"
-            tooltip="Видалити кнопку"
+            :tooltip="t('buttonEditor.delete')"
             @click="requestDelete"
           />
-          <ToolbarIconButton icon="mdi-close" tooltip="Закрити" @click="panelOpen = false" />
+          <ToolbarIconButton icon="mdi-close" :tooltip="t('common.close')" @click="panelOpen = false" />
         </v-toolbar>
 
         <v-card-text>
@@ -150,7 +151,7 @@
             class="mb-6"
             density="compact"
             hide-details
-            label="Текст кнопки"
+            :label="t('buttonEditor.text')"
             variant="outlined"
           />
 
@@ -166,12 +167,12 @@
             appearance=false: a button's icon takes its size and colour from
             the button, so there is nothing of that kind to set. -->
           <div class="button-editor-icon-row mb-6">
-            <span class="button-editor-field-label">Іконка</span>
+            <span class="button-editor-field-label">{{ t('buttonEditor.icon') }}</span>
             <IconEditor v-model:icon="icon" :appearance="false" :icon-size="24" />
-            <v-btn v-if="icon" size="small" variant="text" @click="icon = ''">Прибрати</v-btn>
+            <v-btn v-if="icon" size="small" variant="text" @click="icon = ''">{{ t('buttonEditor.remove') }}</v-btn>
           </div>
 
-          <p class="button-editor-field-label mb-2">Що робить кнопка</p>
+          <p class="button-editor-field-label mb-2">{{ t('buttonEditor.action') }}</p>
           <v-btn-toggle
             v-model="action"
             class="mb-6 button-editor-action-toggle"
@@ -180,16 +181,16 @@
             mandatory
             variant="outlined"
           >
-            <v-btn prepend-icon="mdi-link-variant" value="link">Веде на сторінку</v-btn>
-            <v-btn prepend-icon="mdi-message-text-outline" value="form">Відкриває форму</v-btn>
+            <v-btn prepend-icon="mdi-link-variant" value="link">{{ t('buttonEditor.toPage') }}</v-btn>
+            <v-btn prepend-icon="mdi-message-text-outline" value="form">{{ t('buttonEditor.opensForm') }}</v-btn>
           </v-btn-toggle>
 
           <!-- The same three fields the menu and the footer's links use -
             a page, and optionally one block on it to scroll to. -->
           <LinkTargetSettings v-if="action === 'link'" :active="panelOpen" auto :item="block" />
           <template v-else-if="block.form">
-            <p class="text-body-2 mb-3">Форма відкриється у вікні поверх сторінки.</p>
-            <v-btn prepend-icon="mdi-playlist-edit" variant="tonal" @click="formOpen = true">Тексти форми</v-btn>
+            <p class="text-body-2 mb-3">{{ t('buttonEditor.formHint') }}</p>
+            <v-btn prepend-icon="mdi-playlist-edit" variant="tonal" @click="formOpen = true">{{ t('buttonEditor.formTexts') }}</v-btn>
             <FeedbackCardDialog v-model="formOpen" :card="block.form" />
           </template>
         </v-card-text>
@@ -197,7 +198,7 @@
         <v-card-actions>
           <LocaleSwitcher />
           <v-spacer />
-          <v-btn color="primary" variant="elevated" @click="panelOpen = false">ОК</v-btn>
+          <v-btn color="primary" variant="elevated" @click="panelOpen = false">{{ t('common.ok') }}</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>

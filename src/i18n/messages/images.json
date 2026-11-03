@@ -8,5 +8,50 @@
     "uk": "Браузер не зміг показати файл «{name}» як зображення",
     "en": "The browser could not display “{name}” as an image",
     "de": "Der Browser konnte „{name}“ nicht als Bild anzeigen"
+  },
+  "dropHere": {
+    "uk": "Перетягніть зображення сюди або натисніть",
+    "en": "Drag the image here or click",
+    "de": "Ziehen Sie das Bild hierher oder klicken Sie"
+  },
+  "upload": {
+    "uk": "Завантажити зображення",
+    "en": "Upload Image",
+    "de": "Bild hochladen"
+  },
+  "uploadFailed": {
+    "uk": "Не вдалося завантажити зображення.",
+    "en": "Failed to upload image.",
+    "de": "Fehler beim Hochladen des Bildes."
+  },
+  "change": {
+    "uk": "Змінити зображення",
+    "en": "Change Image",
+    "de": "Bild ändern"
+  },
+  "choose": {
+    "uk": "Виберіть зображення",
+    "en": "Choose Image",
+    "de": "Bild auswählen"
+  },
+  "uploadSeries": {
+    "uk": "Завантажити серію фото",
+    "en": "Upload Photo Series",
+    "de": "Foto-Serie hochladen"
+  },
+  "nonePhotos": {
+    "uk": "Немає завантажених фото",
+    "en": "No photos uploaded",
+    "de": "Keine Fotos hochgeladen"
+  },
+  "mobile": {
+    "uk": "Мобільна",
+    "en": "Mobile",
+    "de": "Mobil"
+  },
+  "uploadUnavailable": {
+    "uk": "Завантаження зображень недоступне: локальний API не запустився. Перезавантажте сторінку.",
+    "en": "Uploading images is unavailable: the local API did not start. Please reload the page.",
+    "de": "Das Hochladen von Bildern ist nicht verfügbar: die lokale API wurde nicht gestartet. Bitte laden Sie die Seite neu."
   }
 }

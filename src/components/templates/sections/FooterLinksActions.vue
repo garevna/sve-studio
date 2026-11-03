@@ -2,6 +2,7 @@
   import type { TemplateBlockModel } from '@/types/TemplateBlockModel'
   import TextFormatMenu from '@/components/editors/text/TextFormatMenu.vue'
   import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
+  import { t } from '@/i18n'
   import { EDITOR_THEME_NAME, themeClass } from '@/utils/vuetify-theme-names'
 
   // Block-level actions for one footer links list, rendered into the block's
@@ -44,7 +45,7 @@
   <v-theme-provider theme="editorTheme">
     <ToolbarIconButton
       icon="mdi-playlist-edit"
-      tooltip="Редагувати пункти списку"
+      :tooltip="t('footer.links.edit')"
       @click="emit('edit')"
     />
 
@@ -53,7 +54,7 @@
         <ToolbarIconButton
           v-bind="menuProps"
           icon="mdi-format-font"
-          tooltip="Формат тексту всіх пунктів"
+          :tooltip="t('footer.links.textFormatAll')"
         />
       </template>
       <div :class="['text-format-panel', 'editor-panel', themeClass(EDITOR_THEME_NAME)]">
@@ -70,7 +71,7 @@
     <ToolbarIconButton
       :active="dragActive"
       icon="mdi-cursor-move"
-      tooltip="Перетягування пунктів"
+      :tooltip="t('footer.links.drag')"
       @click="dragActive = !dragActive"
     />
   </v-theme-provider>

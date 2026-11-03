@@ -64,8 +64,8 @@
     "header": {
       "title": {
         "uk": "Верхня частина сторінки",
-        "en": "Page header",
-        "de": "Seitenkopf"
+        "en": "Top of the page",
+        "de": "Seitenanfang"
       },
       "description": {
         "uk": "Меню й банер угорі кожної сторінки",

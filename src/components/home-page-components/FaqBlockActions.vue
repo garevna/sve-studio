@@ -1,6 +1,7 @@
 <script setup lang="ts">
   import TextFormatMenu from '@/components/editors/text/TextFormatMenu.vue'
   import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
+  import { t } from '@/i18n'
   import { FAQ_EXPAND_ICON_PAIRS, type FaqExpandIconPair, toolbarIconFor } from '@/utils/faq-expand-icons'
   import { EDITOR_THEME_NAME, themeClass } from '@/utils/vuetify-theme-names'
 
@@ -75,11 +76,11 @@
     <!-- mdi-playlist-plus, not a bare mdi-plus: mdi-plus is also one of the
       expand-icon choices next door, and two plus signs on one toolbar read
       as two ways to add something. -->
-    <ToolbarIconButton icon="mdi-playlist-plus" tooltip="Додати питання" @click="emit('add')" />
+    <ToolbarIconButton icon="mdi-playlist-plus" :tooltip="t('faq.add')" @click="emit('add')" />
     <ToolbarIconButton
       :active="dragActive"
       icon="mdi-cursor-move"
-      tooltip="Перетягування питань"
+      :tooltip="t('faq.drag')"
       @click="dragActive = !dragActive"
     />
 
@@ -88,7 +89,7 @@
         <ToolbarIconButton
           v-bind="menuProps"
           :icon="toolbarIconFor(model.expandIcon)"
-          tooltip="Іконка розкриття відповіді"
+          :tooltip="t('faq.expandIcon')"
         />
       </template>
       <v-card theme="editorTheme">
@@ -120,9 +121,9 @@
           v-bind="menuProps"
           prepend-icon="mdi-format-font"
           size="small"
-          tooltip="Формат тексту всіх питань"
+          :tooltip="t('faq.questionsFormat')"
         >
-          Питання
+          {{ t('faq.questions') }}
         </ToolbarIconButton>
       </template>
       <div :class="['text-format-panel', 'editor-panel', themeClass(EDITOR_THEME_NAME)]">
@@ -142,9 +143,9 @@
           v-bind="menuProps"
           prepend-icon="mdi-format-font"
           size="small"
-          tooltip="Формат тексту всіх відповідей"
+          :tooltip="t('faq.answersFormat')"
         >
-          Відповіді
+          {{ t('faq.answers') }}
         </ToolbarIconButton>
       </template>
       <div :class="['text-format-panel', 'editor-panel', themeClass(EDITOR_THEME_NAME)]">

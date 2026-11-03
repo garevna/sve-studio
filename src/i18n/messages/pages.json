@@ -8,5 +8,175 @@
     "uk": "Показати сторінку",
     "en": "Show page",
     "de": "Seite anzeigen"
+  },
+  "enterName": {
+    "uk": "Введіть назву сторінки",
+    "en": "Enter the page title",
+    "de": "Seitentitel eingeben"
+  },
+  "idExists": {
+    "uk": "Сторінка з таким ідентифікатором вже існує",
+    "en": "A page with this identifier already exists",
+    "de": "Eine Seite mit dieser Kennung existiert bereits"
+  },
+  "createFailed": {
+    "uk": "Не вдалося створити сторінку.",
+    "en": "Failed to create page.",
+    "de": "Fehler beim Erstellen der Seite."
+  },
+  "syncWithServer": {
+    "uk": "Синхронізувати з сервером",
+    "en": "Sync with Server",
+    "de": "Mit Server synchronisieren"
+  },
+  "add": {
+    "uk": "Додати сторінку",
+    "en": "Add Page",
+    "de": "Seite hinzufügen"
+  },
+  "menuItem": {
+    "uk": "Пункт меню: {label}",
+    "en": "Menu Item: {label}",
+    "de": "Menüeintrag: {label}"
+  },
+  "openInNewTab": {
+    "uk": "Переглянути сторінку в новій вкладці",
+    "en": "Open in New Tab",
+    "de": "In neuem Tab öffnen"
+  },
+  "seoOfPage": {
+    "uk": "SEO цієї сторінки",
+    "en": "SEO of this page",
+    "de": "SEO dieser Seite"
+  },
+  "renameTooltip": {
+    "uk": "Назва сторінки (вона ж - у меню)",
+    "en": "Page Title (appears in the menu)",
+    "de": "Seitentitel (erscheint im Menü)"
+  },
+  "menuLinkTooltip": {
+    "uk": "Посилання на сторінку в головному меню",
+    "en": "Link to Page in Main Menu",
+    "de": "Link zur Seite im Hauptmenü"
+  },
+  "insertMenuLinkTooltip": {
+    "uk": "Вставити посилання на сторінку в головне меню",
+    "en": "Add a link to the page in the main menu",
+    "de": "Einen Link zur Seite im Hauptmenü hinzufügen"
+  },
+  "hidePage": {
+    "uk": "Приховати сторінку",
+    "en": "Hide Page",
+    "de": "Seite ausblenden"
+  },
+  "delete": {
+    "uk": "Видалити сторінку",
+    "en": "Delete Page",
+    "de": "Seite löschen"
+  },
+  "empty": {
+    "uk": "Сторінок поки немає",
+    "en": "No pages yet",
+    "de": "Noch keine Seiten"
+  },
+  "newPage": {
+    "uk": "Нова сторінка",
+    "en": "New Page",
+    "de": "Neue Seite"
+  },
+  "name": {
+    "uk": "Назва сторінки",
+    "en": "Page Name",
+    "de": "Seitenname"
+  },
+  "fileId": {
+    "uk": "Ідентифікатор (ім'я файлу):",
+    "en": "Identifier (File Name):",
+    "de": "Kennung (Dateiname):"
+  },
+  "backButton": {
+    "uk": "Кнопка «Назад»",
+    "en": "Back Button",
+    "de": "Zurück-Button"
+  },
+  "hero": {
+    "uk": "Hero-секція",
+    "en": "Hero Section",
+    "de": "Hero-Bereich"
+  },
+  "menuLinkTitle": {
+    "uk": "Посилання на сторінку в меню",
+    "en": "Menu Link Title",
+    "de": "Menü-Link-Titel"
+  },
+  "insertMenuLinkTitle": {
+    "uk": "Вставити посилання в меню",
+    "en": "Insert Menu Link",
+    "de": "Menü-Link einfügen"
+  },
+  "nowInMenu": {
+    "uk": "Зараз у меню:",
+    "en": "Currently on the menu:",
+    "de": "Derzeit im Menü:"
+  },
+  "insertIntoSection": {
+    "uk": "Вставити у розділ",
+    "en": "Insert into Section",
+    "de": "In Abschnitt einfügen"
+  },
+  "standaloneItem": {
+    "uk": "Окремий пункт (без підпунктів)",
+    "en": "Standalone Item (No Subitems)",
+    "de": "Eigenständiges Element (keine Unterpunkte)"
+  },
+  "menuSection": {
+    "uk": "Розділ меню",
+    "en": "Menu Section",
+    "de": "Menü-Bereich"
+  },
+  "noMenuSections": {
+    "uk": "У меню поки немає розділів з підпунктами - оберіть «Окремий пункт».",
+    "en": "No menu sections with subitems yet - choose 'Standalone Item'.",
+    "de": "Noch keine Menübereiche mit Unterpunkten - wählen Sie 'Eigenständiges Element'."
+  },
+  "inMenu": {
+    "uk": "У меню:",
+    "en": "On the menu:",
+    "de": "Im Menü:"
+  },
+  "pageNameNote": {
+    "uk": "назва сторінки",
+    "en": "Page Name",
+    "de": "Seitenname"
+  },
+  "ownMenuName": {
+    "uk": "Своя назва в меню",
+    "en": "Own Menu Name",
+    "de": "Eigener Menü-Name"
+  },
+  "itemName": {
+    "uk": "Назва пункту ({code})",
+    "en": "Item Name ({code})",
+    "de": "Elementname ({code})"
+  },
+  "removeFromMenu": {
+    "uk": "Прибрати з меню",
+    "en": "Remove from Menu",
+    "de": "Aus Menü entfernen"
+  },
+  "deleteText": {
+    "uk": "Сторінку «{name}» буде видалено безповоротно.",
+    "en": "The page '{name}' will be deleted irreversibly.",
+    "de": "Die Seite '{name}' wird unwiderruflich gelöscht."
+  },
+  "deleteTitle": {
+    "uk": "Видалити сторінку?",
+    "en": "Delete Page?",
+    "de": "Seite löschen?"
+  },
+  "nameHint": {
+    "uk": "Одна назва для всього: список сторінок, редактор і головне меню (якщо пункт меню не має своєї назви).",
+    "en": "One name for everything: page list, editor, and main menu (if the menu item doesn't have its own name).",
+    "de": "Ein Name für alles: Seitenliste, Editor und Hauptmenü (wenn das Menüelement keinen eigenen Namen hat)."
   }
 }

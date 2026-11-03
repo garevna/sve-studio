@@ -1,0 +1,62 @@
+{
+  "untranslated": {
+    "uk": "Без перекладу",
+    "en": "Untranslated",
+    "de": "Keine Übersetzung"
+  },
+  "all": {
+    "uk": "Усі тексти",
+    "en": "All Texts",
+    "de": "Alle Texte"
+  },
+  "changed": {
+    "uk": "Змінено: {value}",
+    "en": "Changed: {value}",
+    "de": "Geändert: {value}"
+  },
+  "search": {
+    "uk": "Пошук за ключем або текстом",
+    "en": "Search by key or text",
+    "de": "Nach Schlüssel oder Text suchen"
+  },
+  "title": {
+    "uk": "Тексти інтерфейсу",
+    "en": "Interface Texts",
+    "de": "Schnittstellen-Texte"
+  },
+  "intro": {
+    "uk": "Кожен текст редактора трьома мовами. Порожнє поле EN чи DE - в інтерфейсі буде український текст (він видний у полі підказкою). «Зберегти» записує файли в src/i18n/messages і одразу показує нові тексти.",
+    "en": "Each editor text in three languages. An empty EN or DE field means that the Ukrainian text will be shown in the interface (it is visible as a tooltip in the field). The 'Save' button writes the files to src/i18n/messages and immediately shows the new texts.",
+    "de": "Jeder Editor-Text in drei Sprachen. Ein leeres EN- oder DE-Feld bedeutet, dass der ukrainische Text in der Schnittstelle angezeigt wird (er ist als Tooltip im Feld sichtbar). Die Schaltfläche 'Speichern' schreibt die Dateien in src/i18n/messages und zeigt umgehend die neuen Texte an."
+  },
+  "allTranslated": {
+    "uk": "Тут усе перекладено.",
+    "en": "All texts are translated.",
+    "de": "Alle Texte sind übersetzt."
+  },
+  "lostPlaceholder": {
+    "uk": "немає {placeholder}",
+    "en": "missing {placeholder}",
+    "de": "fehlt {placeholder}"
+  },
+  "showMore": {
+    "uk": "Показати ще ({value})",
+    "en": "Show More ({value})",
+    "de": "Mehr anzeigen ({value})"
+  },
+  "reset": {
+    "uk": "Скасувати зміни",
+    "en": "Reset updates",
+    "de": "Zurücksetzen"
+  },
+  "savedTo": {
+    "uk": "Збережено в src/i18n/messages: {value}",
+    "en": "Saved to src/i18n/messages: {value}",
+    "de": "Gespeichert in src/i18n/messages: {value}"
+  },
+  "saveFailed": {
+    "uk": "Не вдалося зберегти: {value}",
+    "en": "Failed to save: {value}",
+    "de": "Fehler beim Speichern: {value}"
+  }
+}

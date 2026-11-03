@@ -111,13 +111,13 @@
   }
 
   const radiusItems = computed(() => [
-    { title: t('menuStyle.noRadius'), value: '0' },
+    { title: t('common.squareCorners'), value: '0' },
     ...radii.value.map(key => ({ title: key, value: key })),
   ])
 
   // The sample's texts - never saved, only there to be formatted.
-  const sampleItem = ref(t('menuStyle.item'))
-  const sampleActive = ref(t('menuStyle.activeItem'))
+  const sampleItem = ref(t('common.menuItem'))
+  const sampleActive = ref(t('common.activeItem'))
 
   const sampleClass = [EDITED_APP_SCOPE_CLASS, themeClass(APP_THEME_NAME), 'menu-style-dropdown']
 </script>
@@ -155,7 +155,7 @@
             <span class="menu-style-item-caption">{{ t('menuStyle.activeLabel') }}</span>
           </div>
           <div class="menu-style-dropdown-item">
-            <p :class="dropdown.itemClass">{{ t('menuStyle.otherItem') }}</p>
+            <p :class="dropdown.itemClass">{{ t('common.anotherItem') }}</p>
           </div>
         </div>
 
@@ -170,7 +170,7 @@
             @update:model-value="(value: string) => setDropdown('radius', value)"
           />
           <div class="menu-style-field">
-            <span>{{ t('menuStyle.background') }}</span>
+            <span>{{ t('common.background') }}</span>
             <PaletteSwatchPicker
               gradients
               :model-value="dropdown.background"
@@ -241,7 +241,7 @@
               @update:model-value="(value: string) => setMobile('radius', value)"
             />
             <div class="menu-style-field">
-              <span>{{ t('menuStyle.background') }}</span>
+              <span>{{ t('common.background') }}</span>
               <PaletteSwatchPicker
                 gradients
                 :model-value="mobile.background"
@@ -258,7 +258,7 @@
         <ConfirmDialog
           v-model="presetConfirmOpen"
           confirm-color="primary"
-          :confirm-text="t('menuStyle.presetApply')"
+          :confirm-text="t('common.apply')"
           :text="t('menuStyle.presetConfirm')"
           :title="pendingPreset ? t(`menuStyle.preset.${pendingPreset}`) : ''"
           @confirm="applyPreset"

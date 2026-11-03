@@ -4,11 +4,11 @@ import cardWithIconTop from '@/configs/menu-images/card-with-icon-top.svg'
 export const listOfComponents = [
   {
     id: 'simple',
-    title: 'Прості блоки',
+    title: 'blockMenu.simple',
     children: [
       {
         id: 'header',
-        title: 'Заголовок',
+        title: 'common.header',
         icon: 'mdi-subtitles-outline',
         class: 'ml-12',
         iconClass: 'mr-2',
@@ -16,7 +16,7 @@ export const listOfComponents = [
       },
       {
         id: 'title',
-        title: 'Підзаголовок',
+        title: 'common.subtitle',
         icon: 'mdi-subtitles-outline',
         class: 'ml-12',
         iconClass: 'mr-2',
@@ -24,7 +24,7 @@ export const listOfComponents = [
       },
       {
         id: 'text',
-        title: 'Текст',
+        title: 'common.text',
         icon: 'mdi-sticker-text-outline',
         class: 'ml-12',
         iconClass: 'mr-2',
@@ -32,7 +32,7 @@ export const listOfComponents = [
       },
       {
         id: 'text-with-icon',
-        title: 'Текст з іконкою',
+        title: 'common.textWithIcon',
         icon: 'mdi-image-text',
         class: 'ml-12',
         iconClass: 'mr-2',
@@ -40,7 +40,7 @@ export const listOfComponents = [
       },
       {
         id: 'button',
-        title: 'Кнопка',
+        title: 'common.button',
         icon: 'mdi-button-pointer',
         class: 'ml-12',
         iconClass: 'mr-2',
@@ -50,11 +50,11 @@ export const listOfComponents = [
   },
   {
     id: 'image-group',
-    title: 'Зображення',
+    title: 'blockMenu.imageGroup',
     children: [
       {
         id: 'image-universal',
-        title: 'Універсальне',
+        title: 'blockMenu.imageUniversal',
         icon: 'mdi-image',
         class: 'ml-12',
         iconClass: 'mr-2',
@@ -72,11 +72,11 @@ export const listOfComponents = [
   },
   {
     id: 'parallax-group',
-    title: 'Паралакс',
+    title: 'common.parallax',
     children: [
       {
         id: 'parallax',
-        title: 'У шапці сторінки',
+        title: 'blockMenu.parallax',
         icon: 'mdi-page-layout-header',
         class: 'ml-12',
         iconClass: 'mr-2',
@@ -84,7 +84,7 @@ export const listOfComponents = [
       },
       {
         id: 'parallax-inside',
-        title: 'Всередині сторінки',
+        title: 'blockMenu.parallaxInside',
         icon: 'mdi-image-frame',
         class: 'ml-12',
         iconClass: 'mr-2',
@@ -94,12 +94,12 @@ export const listOfComponents = [
   },
   {
     id: 'galery',
-    title: 'Галерея зображень',
+    title: 'blockMenu.galery',
     children: [
       {
         id: 'galery1',
         icon: 'mdi-facebook-gaming',
-        title: 'Варіант 1',
+        title: 'common.variant1',
         class: 'ml-12',
         iconClass: 'mr-2',
         image: null,
@@ -107,7 +107,7 @@ export const listOfComponents = [
       {
         id: 'galery2',
         icon: 'mdi-facebook-gaming',
-        title: 'Варіант 2',
+        title: 'common.variant2',
         class: 'ml-12',
         iconClass: 'mr-2',
         image: null,
@@ -116,12 +116,12 @@ export const listOfComponents = [
   },
   {
     id: 'carousel',
-    title: 'Карусель',
+    title: 'blockMenu.carousel',
     children: [
       {
         id: 'carousel-with-images',
         icon: 'mdi-camera-burst',
-        title: 'Зображень',
+        title: 'blockMenu.carouselWithImages',
         class: 'ml-12',
         iconClass: 'mr-2',
         image: null,
@@ -129,7 +129,7 @@ export const listOfComponents = [
       {
         id: 'carousel-with-cards',
         icon: 'mdi-view-carousel-outline',
-        title: 'Карток',
+        title: 'blockMenu.carouselWithCards',
         class: 'ml-12',
         iconClass: 'mr-2',
         image: null,
@@ -137,7 +137,7 @@ export const listOfComponents = [
       {
         id: 'carousel-with-preview',
         icon: 'mdi-view-gallery',
-        title: 'Зображень з ескізами',
+        title: 'blockMenu.carouselWithPreview',
         class: 'ml-12',
         iconClass: 'mr-2',
         image: null,
@@ -146,11 +146,11 @@ export const listOfComponents = [
   },
   {
     id: 'sections',
-    title: 'Дві колонки',
+    title: 'blockMenu.sections',
     children: [
       {
         id: 'section-image-left',
-        title: 'Зображення ліворуч',
+        title: 'blockMenu.sectionImageLeft',
         icon: 'mdi-page-layout-sidebar-left',
         class: 'ml-12',
         iconClass: 'mr-2',
@@ -158,7 +158,7 @@ export const listOfComponents = [
       },
       {
         id: 'section-image-right',
-        title: 'Зображення праворуч',
+        title: 'blockMenu.sectionImageRight',
         icon: 'mdi-page-layout-sidebar-right',
         iconClass: 'mr-2',
         class: 'ml-12',
@@ -166,7 +166,7 @@ export const listOfComponents = [
       },
       {
         id: 'section-two-images',
-        title: 'Дві картинки',
+        title: 'blockMenu.sectionTwoImages',
         icon: 'mdi-image-multiple-outline',
         iconClass: 'mr-2',
         class: 'ml-12',
@@ -174,7 +174,7 @@ export const listOfComponents = [
       },
       {
         id: 'sections-with-free-content',
-        title: 'Довільний контент',
+        title: 'common.arbitraryContent',
         icon: 'mdi-format-columns',
         iconClass: 'mr-2',
         class: 'ml-12',
@@ -184,11 +184,11 @@ export const listOfComponents = [
   },
   {
     id: 'dark-fone-group',
-    title: 'Темна секція',
+    title: 'common.darkSection',
     children: [
       {
         id: 'dark-fone-section',
-        title: 'З картками',
+        title: 'blockMenu.darkFoneSection',
         icon: 'mdi-card-multiple-outline',
         class: 'ml-12',
         iconClass: 'mr-2',
@@ -198,11 +198,11 @@ export const listOfComponents = [
   },
   {
     id: 'baner-group',
-    title: 'Банер',
+    title: 'common.banner',
     children: [
       {
         id: 'baner',
-        title: 'З картинкою і текстом',
+        title: 'blockMenu.baner',
         icon: 'mdi-image-text',
         class: 'ml-12',
         iconClass: 'mr-2',
@@ -212,11 +212,11 @@ export const listOfComponents = [
   },
   {
     id: 'cards',
-    title: 'Картки',
+    title: 'common.cards',
     children: [
       {
         id: 'card-with-toolbar-image',
-        title: 'З зображенням зверху',
+        title: 'blockMenu.cardWithToolbarImage',
         icon: 'mdi-id-card',
         class: 'ml-12',
         iconClass: 'mr-2',
@@ -225,25 +225,25 @@ export const listOfComponents = [
       // { id: 'card-ver-1', title: 'З іконкою зверху', icon: 'mdi-view-grid-outline', iconClass: 'mr-2', class: 'ml-12', image: null },
       {
         id: 'card-with-icon-top',
-        title: 'З іконкою зверху',
+        title: 'blockMenu.cardWithIconTop',
         icon: 'mdi-view-grid-outline',
         iconClass: 'mr-2',
         class: 'ml-12',
         image: cardWithIconTop,
       },
-      { id: 'card-with-icon-left', title: 'З іконкою ліворуч', icon: 'mdi-view-list', iconClass: 'mr-2', class: 'ml-12', image: cardWithIconLeft },
-      { id: 'card-with-icon-row', title: 'Списком, з іконкою', icon: 'mdi-format-list-bulleted-square', iconClass: 'mr-2', class: 'ml-12', image: null },
+      { id: 'card-with-icon-left', title: 'blockMenu.cardWithIconLeft', icon: 'mdi-view-list', iconClass: 'mr-2', class: 'ml-12', image: cardWithIconLeft },
+      { id: 'card-with-icon-row', title: 'blockMenu.cardWithIconRow', icon: 'mdi-format-list-bulleted-square', iconClass: 'mr-2', class: 'ml-12', image: null },
       // { id: 'card-ver-3', title: 'З іконкою ліворуч', icon: 'mdi-view-list', iconClass: 'mr-2', class: 'ml-12', image: null },
-      { id: 'card-with-hover', title: 'з ховером', icon: 'mdi-format-text-wrapping-overflow', iconClass: 'rotate-left-90', class: 'ml-12', image: null },
+      { id: 'card-with-hover', title: 'blockMenu.cardWithHover', icon: 'mdi-format-text-wrapping-overflow', iconClass: 'rotate-left-90', class: 'ml-12', image: null },
     ],
   },
   {
     id: 'special',
-    title: 'Спеціальні блоки',
+    title: 'blockMenu.special',
     children: [
       {
         id: 'faq',
-        title: 'Часті запитання',
+        title: 'blockMenu.faq',
         icon: 'mdi-frequently-asked-questions',
         class: 'ml-12',
         iconClass: 'mr-2',
@@ -251,7 +251,7 @@ export const listOfComponents = [
       },
       {
         id: 'popular-destinations',
-        title: 'Популярні напрямки',
+        title: 'common.popularDestinations',
         icon: 'mdi-map-marker-path',
         class: 'ml-12',
         iconClass: 'mr-2',
@@ -259,7 +259,7 @@ export const listOfComponents = [
       },
       {
         id: 'transfer-services-steps',
-        title: 'Кроки в кружках',
+        title: 'blockMenu.transferServicesSteps',
         icon: 'mdi-numeric-1-circle-outline',
         class: 'ml-12',
         iconClass: 'mr-2',
@@ -267,7 +267,7 @@ export const listOfComponents = [
       },
       {
         id: 'feedback-form',
-        title: 'Форма зворотного зв’язку',
+        title: 'common.feedbackForm',
         icon: 'mdi-email-edit-outline',
         class: 'ml-12',
         iconClass: 'mr-2',

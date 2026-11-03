@@ -30,5 +30,236 @@
       "en": "Gradients",
       "de": "Farbverläufe"
     }
+  },
+  "layout": {
+    "widthHint": {
+      "uk": "Порожньо — за вмістом. Мінімум {FOOTER_MIN_COLUMN_WIDTH}px",
+      "en": "Empty — based on content. Minimum {FOOTER_MIN_COLUMN_WIDTH}px",
+      "de": "Leer – je nach Inhalt. Mindestens {FOOTER_MIN_COLUMN_WIDTH}px"
+    },
+    "column": {
+      "uk": "Колонка {index}, px",
+      "en": "Column {index}, px",
+      "de": "Spalte {index}, px"
+    },
+    "gapValue": {
+      "uk": "Проміжок: {gap}px",
+      "en": "Gap: {gap}px",
+      "de": "Abstand: {gap}px"
+    },
+    "gapAdaptive": {
+      "uk": "Проміжок: адаптивний — 32 / 48 / 64px",
+      "en": "Gap: adaptive — 32 / 48 / 64px",
+      "de": "Abstand: adaptiv — 32 / 48 / 64px"
+    },
+    "gapHint": {
+      "uk": "Порожньо — адаптивний проміжок 32 / 48 / 64px",
+      "en": "Empty — adaptive gap 32 / 48 / 64px",
+      "de": "Leer – adaptiver Abstand 32 / 48 / 64px"
+    },
+    "gap": {
+      "uk": "Проміжок між колонками, px",
+      "en": "Gap between columns, px",
+      "de": "Abstand zwischen Spalten, px"
+    },
+    "adaptive": {
+      "uk": "адаптивний",
+      "en": "adaptive",
+      "de": "adaptiv"
+    },
+    "byContent": {
+      "uk": "за вмістом",
+      "en": "by content",
+      "de": "je nach Inhalt"
+    },
+    "columns": {
+      "uk": "Кількість колонок",
+      "en": "Number of columns",
+      "de": "Spaltenanzahl"
+    },
+    "widths": {
+      "uk": "Ширина колонок",
+      "en": "Column widths",
+      "de": "Spaltenbreiten"
+    },
+    "intro": {
+      "uk": "Розмітка футера: скільки колонок, якої ширини й з яким проміжком. Значення в пікселях, кратні {FOOTER_STEP} — введене число округлюється до найближчого допустимого. Порожня ширина означає, що колонка займає рівно стільки місця, скільки потребує її вміст — саме тоді проміжки між усіма колонками виглядають однаковими. Порожній проміжок означає адаптивний: він зростає разом з шириною екрана.",
+      "en": "Footer layout: the number of columns, their widths and the spacing between them. Values in pixels must be multiples of {FOOTER_STEP} — the entered number is rounded to the nearest valid value. An empty width means that a column takes up exactly as much space as its content requires — this is when the gaps between all columns appear uniform. An empty spacing value means it is responsive: it increases in line with the screen width.",
+      "de": "Footer-Layout: Wie viele Spalten, welche Breite und welcher Abstand. Werte in Pixeln, Vielfache von {FOOTER_STEP} — eingegebene Zahl wird auf nächstliegende zulässige Zahl gerundet. Leere Breite bedeutet, dass die Spalte denselben Platz einnimmt wie ihr Inhalt — dann sehen alle Abstände zwischen den Spalten gleich aus. Leerer Abstand bedeutet adaptiv: er wächst mit der Bildschirmbreite."
+    }
+  },
+  "insert": {
+    "addToColumn": {
+      "uk": "Додати блок у колонку",
+      "en": "Add block to column",
+      "de": "Block in Spalte hinzufügen"
+    },
+    "feedbackCard": {
+      "uk": "Картка зворотного зв'язку",
+      "en": "Feedback card",
+      "de": "Feedback-Karte"
+    },
+    "contacts": {
+      "uk": "Список контактів",
+      "en": "Contacts",
+      "de": "Kontaktliste"
+    }
+  },
+  "contacts": {
+    "delete": {
+      "uk": "Видалити блок контактів",
+      "en": "Delete contacts block",
+      "de": "Kontaktblock löschen"
+    },
+    "removeIcon": {
+      "uk": "Прибрати іконку",
+      "en": "Remove icon",
+      "de": "Icon entfernen"
+    },
+    "deleteText": {
+      "uk": "Усі пункти контактів буде видалено. Цю дію не можна скасувати.",
+      "en": "All contact items will be deleted. This action cannot be undone.",
+      "de": "Alle Kontaktzeilen werden gelöscht. Diese Aktion kann nicht rückgängig gemacht werden."
+    },
+    "deleteTitle": {
+      "uk": "Видалити блок контактів?",
+      "en": "Delete contacts block?",
+      "de": "Kontaktblock löschen?"
+    },
+    "textColor": {
+      "uk": "Колір тексту всіх пунктів",
+      "en": "Text color for all items",
+      "de": "Textfarbe aller Punkte"
+    },
+    "edit": {
+      "uk": "Редагувати контакти",
+      "en": "Edit contacts",
+      "de": "Kontakte bearbeiten"
+    },
+    "textFormatAll": {
+      "uk": "Формат тексту всіх контактів",
+      "en": "Text format for all items",
+      "de": "Textformat aller Kontakte"
+    }
+  },
+  "size": {
+    "small": {
+      "uk": "Маленький",
+      "en": "Small",
+      "de": "Klein"
+    },
+    "medium": {
+      "uk": "Середній",
+      "en": "Medium",
+      "de": "Mittel"
+    },
+    "large": {
+      "uk": "Великий",
+      "en": "Large",
+      "de": "Groß"
+    },
+    "xlarge": {
+      "uk": "Дуже великий",
+      "en": "Extra Large",
+      "de": "Extra Groß"
+    }
+  },
+  "variant": {
+    "classic": {
+      "uk": "Класичний",
+      "en": "Classic",
+      "de": "Klassisch"
+    },
+    "horizon": {
+      "uk": "Горизонт",
+      "en": "Horizon",
+      "de": "Horizont"
+    },
+    "finalFrame": {
+      "uk": "Фінальний кадр",
+      "en": "Final Frame",
+      "de": "Finale Frame"
+    }
+  },
+  "links": {
+    "title": {
+      "uk": "Посилання на сторінки",
+      "en": "Links to Pages",
+      "de": "Links zu Seiten"
+    },
+    "add": {
+      "uk": "Додати посилання",
+      "en": "Add link",
+      "de": "Link hinzufügen"
+    },
+    "edit": {
+      "uk": "Редагувати пункти списку",
+      "en": "Edit list items",
+      "de": "Listenpunkte bearbeiten"
+    },
+    "textFormatAll": {
+      "uk": "Формат тексту всіх пунктів",
+      "en": "Text format for all items",
+      "de": "Textformat für alle Punkte"
+    },
+    "drag": {
+      "uk": "Перетягування пунктів",
+      "en": "Drag items",
+      "de": "Punkte verschieben"
+    }
+  },
+  "iconLink": {
+    "title": {
+      "uk": "Посилання: {iconName}",
+      "en": "Link: {iconName}",
+      "de": "Link: {iconName}"
+    },
+    "hint": {
+      "uk": "Це загальне налаштування сайту (global.json) - редагується так само в «Загальні налаштування → Соціальні мережі».",
+      "en": "This is a global site setting (global.json) – it can be edited in the same way under ‘General Settings → Social Networks’.",
+      "de": "Dies ist eine allgemeine Website-Einstellung (global.json) – sie wird ebenfalls unter „Allgemeine Einstellungen → Soziale Netzwerke“ bearbeitet."
+    }
+  },
+  "look": {
+    "uk": "Вигляд футера: {title}",
+    "en": "Footer appearance: {title}",
+    "de": "Darstellung der Fußzeile: {title}"
+  },
+  "background": {
+    "uk": "Фон футера",
+    "en": "Footer background",
+    "de": "Fußzeilen-Hintergrund"
+  },
+  "show": {
+    "uk": "Показувати футер",
+    "en": "Show footer",
+    "de": "Fußzeile anzeigen"
+  },
+  "dragColumns": {
+    "uk": "Перетягування колонок (буде доступне після переходу на конструктор)",
+    "en": "Drag columns (will be available after switching to the builder)",
+    "de": "Spalten verschieben (wird nach dem Wechsel zum Builder verfügbar)"
+  },
+  "finalFrame": {
+    "title": {
+      "uk": "Заголовок футера - клацніть, щоб змінити",
+      "en": "Footer title – click to edit",
+      "de": "Titel der Fußzeile – zum Ändern anklicken"
+    },
+    "text": {
+      "uk": "Текст під заголовком - клацніть, щоб змінити",
+      "en": "Footer text – click to edit",
+      "de": "Fußzeilen-Text – zum Ändern anklicken"
+    }
+  },
+  "dragBlocks": {
+    "uk": "Перетягування блоків у колонці",
+    "en": "Drag blocks in the column",
+    "de": "Blöcke in der Spalte verschieben"
+  },
+  "deleteColumn": {
+    "uk": "Видалити колонку",
+    "en": "Delete column",
+    "de": "Spalte löschen"
   }
 }

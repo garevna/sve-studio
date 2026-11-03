@@ -4,6 +4,7 @@
   import Sortable from 'sortablejs'
   import { onBeforeUnmount, ref, watch } from 'vue'
   import { usePageBlocks } from '@/composables/usePageBlocks'
+  import { t } from '@/i18n'
   import { stableKey } from '@/utils/stable-key'
 
   // The page as a list of its blocks, by name: drag a row by its handle to
@@ -86,11 +87,11 @@
 </script>
 
 <template>
-  <SveSheet v-model="open" :subtitle="`Блоків: ${units.length}`" title="Структура сторінки">
+  <SveSheet v-model="open" :subtitle="t('block.count', { length: units.length })" :title="t('block.structureTitle')">
     <div class="sve-outline">
-      <div v-if="heroBlock" class="sve-outline__row sve-outline__row--fixed" title="Шапка сторінки завжди вгорі">
+      <div v-if="heroBlock" class="sve-outline__row sve-outline__row--fixed" :title="t('block.heroAlwaysTop')">
         <span class="sve-outline__handle sve-outline__handle--none"><i class="sve-icon mdi mdi-pin-outline" /></span>
-        <span class="sve-outline__label">Шапка сторінки (паралакс)</span>
+        <span class="sve-outline__label">{{ t('block.heroParallax') }}</span>
       </div>
       <div ref="list" class="sve-outline">
         <div
@@ -101,14 +102,14 @@
             'sve-outline__row--active': pageBlocks.isActive(unit.block),
           }]"
         >
-          <span aria-label="Перетягнути" class="sve-outline__handle" title="Перетягніть, щоб перемістити">
+          <span :aria-label="t('block.drag')" class="sve-outline__handle" :title="t('block.dragHint')">
             <i class="sve-icon mdi mdi-drag-vertical" />
           </span>
           <span class="sve-outline__label" :title="unit.label" @click="show(unit)">{{ unit.label }}</span>
-          <SveIconButton icon="mdi-pencil-outline" label="Редагувати" size="sm" @click="edit(unit)" />
+          <SveIconButton icon="mdi-pencil-outline" :label="t('block.editShort')" size="sm" @click="edit(unit)" />
           <SveIconButton
             :icon="unit.block.hidden ? 'mdi-eye-off-outline' : 'mdi-eye-outline'"
-            :label="unit.block.hidden ? 'Показати на сторінці' : 'Приховати'"
+            :label="unit.block.hidden ? t('editor.showOnPage') : t('block.hide')"
             size="sm"
             @click="toggleHidden(unit)"
           />
@@ -116,7 +117,7 @@
       </div>
     </div>
     <template v-if="canAdd" #footer>
-      <SveButton block icon="mdi-plus" variant="primary" @click="emit('add')">Додати блок</SveButton>
+      <SveButton block icon="mdi-plus" variant="primary" @click="emit('add')">{{ t('blockMenu.addBlock') }}</SveButton>
     </template>
   </SveSheet>
 </template>

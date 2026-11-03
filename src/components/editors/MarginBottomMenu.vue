@@ -1,6 +1,7 @@
 <script setup lang="ts">
   import { computed } from 'vue'
   import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
+  import { t } from '@/i18n'
   import { readMarginBottomPx, writeMarginBottomPx } from '@/utils/margin-bottom-class'
 
   // The gap below a text, as a pick from a short list - the same shape
@@ -14,7 +15,7 @@
   // a page block with an edge of its own.
   const classString = defineModel<string | undefined>('class', { default: '' })
 
-  withDefaults(defineProps<{ tooltip?: string }>(), { tooltip: 'Відступ знизу' })
+  const props = defineProps<{ tooltip?: string }>()
 
   // Vuetify's spacer scale, in the steps a designer actually reaches for.
   const OPTIONS = [0, 4, 8, 12, 16, 20, 24, 32, 40, 48, 64]
@@ -32,7 +33,7 @@
       <ToolbarIconButton
         v-bind="menuProps"
         icon="mdi-arrow-expand-vertical"
-        :tooltip="`${tooltip}: ${current}px`"
+        :tooltip="`${props.tooltip ?? t('common.marginBottom')}: ${current}px`"
       />
     </template>
     <v-card theme="editorTheme">

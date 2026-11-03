@@ -379,14 +379,14 @@
         (below). There is no mode switch: every block looks as on the site
         and opens for editing on its own (PageBlockFrame), and blocks are
         moved in the structure panel. -->
-      <SveTopBar back="/pages" back-label="До списку сторінок" :subtitle="pageName ? pageId : 'Сторінка'" :title="pageName || pageId">
+      <SveTopBar back="/pages" :back-label="t('editor.backToPages')" :subtitle="pageName ? pageId : t('editor.page')" :title="pageName || pageId">
         <template #start>
           <div
             v-if="pageId && !isFooterPseudoPage"
             class="sve-topbar__titles editor-page-name"
             role="button"
             tabindex="0"
-            :title="titleGaps.length > 0 ? `Назва сторінки не перекладена: ${titleGaps.join(', ')}` : 'Назва сторінки'"
+            :title="titleGaps.length > 0 ? t('editor.titleUntranslated', { locales: titleGaps.join(', ') }) : t('pages.name')"
             @click="titleDialog = true"
             @keydown.enter="titleDialog = true"
           >
@@ -394,11 +394,11 @@
               {{ pageName || pageId }}
               <i v-if="titleGaps.length > 0" class="sve-icon mdi mdi-alert-circle-outline editor-page-name__warn" />
             </div>
-            <div class="sve-topbar__subtitle">{{ pageName ? pageId : 'Сторінка' }}</div>
+            <div class="sve-topbar__subtitle">{{ pageName ? pageId : t('editor.page') }}</div>
           </div>
           <div v-else class="sve-topbar__titles">
             <div class="sve-topbar__title">{{ pageName || pageId }}</div>
-            <div class="sve-topbar__subtitle">{{ pageName ? pageId : 'Сторінка' }}</div>
+            <div class="sve-topbar__subtitle">{{ pageName ? pageId : t('editor.page') }}</div>
           </div>
         </template>
         <template #actions>
@@ -409,7 +409,7 @@
             <LocaleSwitcher :scope="commonStore.dynamicPageContent" variant="menu">
               <template v-if="titleGaps.length > 0 && !isFooterPseudoPage" #menu-extra>
                 <SveMenuDivider />
-                <SveMenuItem :hint="titleGaps.join(', ')" icon="mdi-alert-circle-outline" @click="titleDialog = true">Назва сторінки</SveMenuItem>
+                <SveMenuItem :hint="titleGaps.join(', ')" icon="mdi-alert-circle-outline" @click="titleDialog = true">{{ t('pages.name') }}</SveMenuItem>
               </template>
             </LocaleSwitcher>
           </div>
@@ -417,10 +417,10 @@
           <SveMenu v-if="pageBlocks.hiddenBlocks.value.length > 0" :min-width="240">
             <template #activator="{ props: activator }">
               <SveButton class="sve-wide-only" icon="mdi-eye-off-outline" variant="ghost" v-bind="activator">
-                Приховані <SveBadge>{{ pageBlocks.hiddenBlocks.value.length }}</SveBadge>
+                {{ t('editor.hidden') }} <SveBadge>{{ pageBlocks.hiddenBlocks.value.length }}</SveBadge>
               </SveButton>
             </template>
-            <SveMenuLabel>Показати на сторінці</SveMenuLabel>
+            <SveMenuLabel>{{ t('editor.showOnPage') }}</SveMenuLabel>
             <SveMenuItem
               v-for="item of pageBlocks.hiddenBlocks.value"
               :key="item.index"
@@ -437,15 +437,15 @@
               variant="ghost"
               @click="structureOpen = !structureOpen"
             >
-              Структура
+              {{ t('editor.structure') }}
             </SveButton>
             <SveButton class="sve-wide-only" icon="mdi-plus" variant="ghost" @click="pageBlocks.openGallery(null)">
-              Додати блок
+              {{ t('blockMenu.addBlock') }}
             </SveButton>
           </template>
           <template v-if="pageId && !isFooterPseudoPage">
-            <SveIconButton class="sve-wide-only" icon="mdi-search-web" label="SEO цієї сторінки" @click="openSeoDialog" />
-            <SveIconButton class="sve-wide-only" icon="mdi-open-in-new" label="Відкрити сторінку на сайті" @click="openPreviewWindow" />
+            <SveIconButton class="sve-wide-only" icon="mdi-search-web" :label="t('pages.seoOfPage')" @click="openSeoDialog" />
+            <SveIconButton class="sve-wide-only" icon="mdi-open-in-new" :label="t('editor.openOnSite')" @click="openPreviewWindow" />
           </template>
           <template v-if="pageId && canEditContent">
             <SveButton
@@ -455,7 +455,7 @@
               :loading="undoing"
               @click="undoPage"
             >
-              Скасувати
+              {{ t('common.cancel') }}
             </SveButton>
             <SveButton
               collapsible
@@ -464,7 +464,7 @@
               variant="primary"
               @click="savePage()"
             >
-              Зберегти
+              {{ t('common.save') }}
             </SveButton>
           </template>
         </template>
@@ -476,23 +476,23 @@
           v-if="editable && !isFooterPseudoPage"
           :active="structureOpen"
           icon="mdi-format-list-bulleted-square"
-          label="Структура"
+          :label="t('editor.structure')"
           @click="structureOpen = !structureOpen"
         >
           <SveBadge v-if="pageBlocks.hiddenBlocks.value.length > 0">{{ pageBlocks.hiddenBlocks.value.length }}</SveBadge>
         </SveDockItem>
-        <SveDockItem v-if="editable && !isFooterPseudoPage" icon="mdi-plus" label="Додати" @click="pageBlocks.openGallery(null)" />
+        <SveDockItem v-if="editable && !isFooterPseudoPage" icon="mdi-plus" :label="t('common.add')" @click="pageBlocks.openGallery(null)" />
         <LocaleSwitcher :scope="commonStore.dynamicPageContent" variant="dock">
           <template v-if="titleGaps.length > 0 && !isFooterPseudoPage" #menu-extra>
             <SveMenuDivider />
-            <SveMenuItem :hint="titleGaps.join(', ')" icon="mdi-alert-circle-outline" @click="titleDialog = true">Назва сторінки</SveMenuItem>
+            <SveMenuItem :hint="titleGaps.join(', ')" icon="mdi-alert-circle-outline" @click="titleDialog = true">{{ t('pages.name') }}</SveMenuItem>
           </template>
         </LocaleSwitcher>
         <template v-if="!isFooterPseudoPage">
           <SveDockItem icon="mdi-search-web" label="SEO" @click="openSeoDialog" />
-          <SveDockItem icon="mdi-open-in-new" label="На сайті" @click="openPreviewWindow" />
+          <SveDockItem icon="mdi-open-in-new" :label="t('editor.onSite')" @click="openPreviewWindow" />
         </template>
-        <SveDockItem v-if="canEditContent && dirty" icon="mdi-undo-variant" label="Скасувати" @click="undoPage" />
+        <SveDockItem v-if="canEditContent && dirty" icon="mdi-undo-variant" :label="t('common.cancel')" @click="undoPage" />
       </SveDock>
 
       <PageStructurePanel

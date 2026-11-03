@@ -2,6 +2,7 @@
   import type { TemplateBlockModel } from '@/types/TemplateBlockModel'
   import { computed, ref } from 'vue'
   import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
+  import { t } from '@/i18n'
 
   // Names this block as a destination for in-page links.
   //
@@ -41,16 +42,16 @@
   <ToolbarIconButton
     :active="hasName"
     icon="mdi-map-marker-outline"
-    :tooltip="hasName ? `Точка переходу: ${block.editorLabel}` : 'Дати назву блоку для включення до списку посилань для переходів усередині сторінки'"
+    :tooltip="hasName ? t('block.anchor', { editorLabel: block.editorLabel }) : t('block.anchorHint')"
     @click="openDialog"
   />
 
   <v-dialog v-model="open" max-width="520">
     <v-card class="editor-dialog" theme="editorTheme">
       <v-toolbar class="editor-panel" color="transparent" density="compact">
-        <v-toolbar-title class="block-anchor-title">Назва блоку</v-toolbar-title>
+        <v-toolbar-title class="block-anchor-title">{{ t('block.name') }}</v-toolbar-title>
         <v-spacer />
-        <ToolbarIconButton icon="mdi-close" tooltip="Закрити" @click="open = false" />
+        <ToolbarIconButton icon="mdi-close" :tooltip="t('common.close')" @click="open = false" />
       </v-toolbar>
 
       <v-card-text>
@@ -59,21 +60,19 @@
           autofocus
           density="compact"
           hide-details
-          label="Назва блоку"
-          placeholder="Наприклад: Питання та відповіді"
+          :label="t('block.name')"
+          :placeholder="t('block.namePlaceholder')"
           variant="outlined"
           @keyup.enter="confirm"
         />
         <p class="text-caption text-medium-emphasis mt-3">
-          Потрібна лише для того, щоб упізнати цей блок у списку переходів
-          усередині сторінки. На сайті вона не показується, і якщо переходів
-          на цей блок не планується, її можна не вводити.
+          {{ t('block.nameHint') }}
         </p>
       </v-card-text>
 
       <v-card-actions>
         <v-spacer />
-        <v-btn color="primary" variant="elevated" @click="confirm">ОК</v-btn>
+        <v-btn color="primary" variant="elevated" @click="confirm">{{ t('common.ok') }}</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>

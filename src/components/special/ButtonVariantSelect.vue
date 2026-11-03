@@ -1,6 +1,7 @@
 <script setup lang="ts">
   import { computed, onMounted } from 'vue'
   import { useButtonVariants } from '@/composables/useButtonVariants'
+  import { t } from '@/i18n'
 
   // Which of the UI Kit's buttons this is. A component of its own because
   // the question comes up wherever content can carry a button - a page
@@ -17,11 +18,10 @@
   // this.
   const className = defineModel<string>('class', { default: '' })
 
-  withDefaults(defineProps<{
+  const props = withDefaults(defineProps<{
     label?: string
     density?: 'default' | 'comfortable' | 'compact'
   }>(), {
-    label: 'Вигляд кнопки',
     density: 'compact',
   })
 
@@ -48,7 +48,7 @@
     :density="density"
     hide-details
     :items="variants"
-    :label="label"
+    :label="props.label ?? t('buttonEditor.look')"
     :model-value="current"
     variant="outlined"
     @update:model-value="select"

@@ -1,0 +1,37 @@
+{
+  "imageWide": {
+    "uk": "Зображення для широкого екрана",
+    "en": "Image for wide screen",
+    "de": "Bild für breiten Bildschirm"
+  },
+  "imageNarrow": {
+    "uk": "Зображення для вузького екрана (паралакс)",
+    "en": "Image for narrow screens (parallax)",
+    "de": "Bild für schmale Bildschirme (Parallax)"
+  },
+  "background": {
+    "uk": "Фон банера",
+    "en": "Banner background",
+    "de": "Hintergrund des Banners"
+  },
+  "titlePlate": {
+    "uk": "Підкладка заголовка",
+    "en": "Title plate",
+    "de": "Titelhintergrund"
+  },
+  "addTextRow": {
+    "uk": "Додати текстовий рядок",
+    "en": "Add text row",
+    "de": "Textzeile hinzufügen"
+  },
+  "dragTextRows": {
+    "uk": "Перетягування текстових рядків",
+    "en": "Drag text rows",
+    "de": "Textzeilen verschieben"
+  },
+  "newTextRow": {
+    "uk": "Новий текстовий рядок",
+    "en": "New text row",
+    "de": "Neue Textzeile"
+  }
+}

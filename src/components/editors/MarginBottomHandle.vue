@@ -1,6 +1,7 @@
 <script setup lang="ts">
   import { computed, onBeforeUnmount } from 'vue'
   import { useEditorMode } from '@/composables/useEditorMode'
+  import { t } from '@/i18n'
   import { readMarginBottomPx, writeMarginBottomPx } from '@/utils/margin-bottom-class'
 
   // Margin is trailing empty space after an item, not clipped content - so
@@ -70,7 +71,7 @@
     v-if="mode === 'edit'"
     class="margin-bottom-handle"
     :style="{ height: Math.max(8, px) + 'px' }"
-    title="Відступ знизу"
+    :title="t('common.marginBottom')"
     @mousedown.prevent="startDrag"
     @touchstart.prevent="startDrag"
   >

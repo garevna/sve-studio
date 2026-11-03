@@ -1,0 +1,22 @@
+{
+  "lightTheme": {
+    "uk": "Світла тема",
+    "en": "Light Theme",
+    "de": "Helles Design"
+  },
+  "darkTheme": {
+    "uk": "Темна тема",
+    "en": "Dark Theme",
+    "de": "Dunkles Design"
+  },
+  "delete": {
+    "uk": "Видалити паралакс",
+    "en": "Delete Parallax",
+    "de": "Parallax löschen"
+  },
+  "deleteTitle": {
+    "uk": "Видалити паралакс у шапці сторінки?",
+    "en": "Delete Parallax from Page Header?",
+    "de": "Parallax aus der Seitenüberschrift löschen?"
+  }
+}

@@ -1,18 +1,8 @@
 {
-  "tab": {
-    "uk": "Картки",
-    "en": "Cards",
-    "de": "Karten"
-  },
   "hint": {
     "uk": "Стиль задається тут один раз. Блоки карток на сторінках посилаються на нього — змініть стиль, і зміняться всі картки з ним.",
     "en": "A style is set here once. Card blocks on the pages refer to it - change the style and every card using it changes.",
     "de": "Ein Stil wird hier einmal festgelegt. Kartenblöcke auf den Seiten verweisen darauf - ändern Sie den Stil, ändern sich alle Karten damit."
-  },
-  "background": {
-    "uk": "Фон",
-    "en": "Background",
-    "de": "Hintergrund"
   },
   "border": {
     "uk": "Рамка",
@@ -28,11 +18,6 @@
     "uk": "Заокруглення",
     "en": "Corner radius",
     "de": "Eckenradius"
-  },
-  "noRadius": {
-    "uk": "Без заокруглення",
-    "en": "Square corners",
-    "de": "Eckige Ecken"
   },
   "shadow": {
     "uk": "Тінь",

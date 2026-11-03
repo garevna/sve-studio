@@ -14,31 +14,6 @@
     "en": "Corner rounding",
     "de": "Ecken abrunden"
   },
-  "noRadius": {
-    "uk": "Без заокруглення",
-    "en": "No corner rounding",
-    "de": "Ohne Abrundung"
-  },
-  "background": {
-    "uk": "Фон",
-    "en": "Background",
-    "de": "Hintergrund"
-  },
-  "item": {
-    "uk": "Пункт меню",
-    "en": "Menu Item",
-    "de": "Menüpunkt"
-  },
-  "activeItem": {
-    "uk": "Активний пункт",
-    "en": "Active Menu Item",
-    "de": "Aktiver Menüpunkt"
-  },
-  "otherItem": {
-    "uk": "Ще один пункт",
-    "en": "Other Menu Item",
-    "de": "Ein weiterer Punkt"
-  },
   "itemLabel": {
     "uk": "Звичайний пункт",
     "en": "Regular item",
@@ -227,21 +202,6 @@
     "en": "Light-coloured logo",
     "de": "Helles Logo"
   },
-  "localeLook": {
-    "uk": "Вигляд",
-    "en": "Appearance",
-    "de": "Darstellung"
-  },
-  "localeChips": {
-    "uk": "Кнопки",
-    "en": "Buttons",
-    "de": "Schaltflächen"
-  },
-  "localeDropdown": {
-    "uk": "Список",
-    "en": "List",
-    "de": "Liste"
-  },
   "localeLabel": {
     "uk": "Підпис «Мова»",
     "en": "Caption ‘Language’",
@@ -272,11 +232,6 @@
     "en": "Form",
     "de": "Formular"
   },
-  "dividerColor": {
-    "uk": "Колір лінії",
-    "en": "Line colour",
-    "de": "Linienfarbe"
-  },
   "removeRow": {
     "uk": "Прибрати рядок",
     "en": "Hide row",
@@ -291,25 +246,5 @@
     "uk": "Підпункт",
     "en": "Sub-item",
     "de": "Unterpunkt"
-  },
-  "sampleEntry": {
-    "uk": "Пункт меню",
-    "en": "Menu item",
-    "de": "Menüpunkt"
-  },
-  "sampleActive": {
-    "uk": "Активний пункт",
-    "en": "Active item",
-    "de": "Aktiver Punkt"
-  },
-  "sampleOther": {
-    "uk": "Ще один пункт",
-    "en": "Another item",
-    "de": "Ein weiterer Punkt"
-  },
-  "presetApply": {
-    "uk": "Застосувати",
-    "en": "Apply",
-    "de": "Übernehmen"
   }
 }

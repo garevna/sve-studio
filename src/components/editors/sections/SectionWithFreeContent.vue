@@ -9,6 +9,7 @@
   import EditableCardsBlock from '@/components/templates/cards/EditableCardsBlock.vue'
   import TemplateItem from '@/components/templates/TemplateItem.vue'
   import { useEditorMode } from '@/composables/useEditorMode'
+  import { t } from '@/i18n'
   import { useCommonStore } from '@/stores/common'
   import { useUiFeedbackStore } from '@/stores/ui-feedback'
   import { cardDefaults } from '@/utils/card-defaults'
@@ -118,13 +119,13 @@
       <ToolbarIconButton
         :active="dragActive"
         icon="mdi-cursor-move"
-        tooltip="Перетягування елементів"
+        :tooltip="t('block.dragElements')"
         @click="toggleDrag"
       />
       <ToolbarIconButton
         :active="marginActive"
         icon="mdi-arrow-split-horizontal"
-        tooltip="Налаштування відступів"
+        :tooltip="t('block.spacingSettings')"
         @click="toggleMargin"
       />
     </template>
@@ -158,7 +159,7 @@
         />
         <EditableBlockWrapper v-else :class="dragClass" type="card">
           <template v-if="!dragActive && !marginActive" #delete>
-            <ToolbarIconButton icon="mdi-delete" tooltip="Видалити елемент" @click="removeChild(num)" />
+            <ToolbarIconButton icon="mdi-delete" :tooltip="t('block.deleteElement')" @click="removeChild(num)" />
           </template>
           <div :class="contentClass">
             <template-item

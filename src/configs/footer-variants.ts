@@ -1,12 +1,19 @@
+import { t } from '@/i18n'
 // The footer's look, chosen in the footer editor and kept on the footer
 // block itself (`ver`), next to the content it shows - like the hero, the
 // variant names the component, not the content. Same file in both apps.
 export const FOOTER_VARIANTS = [
-  { id: 1, title: 'Класичний', icon: 'mdi-view-column-outline' },
+  { id: 1, get title () {
+    return t('footer.variant.classic')
+  }, icon: 'mdi-view-column-outline' },
   // A wave for its top edge, the company's name across the bottom.
-  { id: 2, title: 'Горизонт', icon: 'mdi-waves' },
+  { id: 2, get title () {
+    return t('footer.variant.horizon')
+  }, icon: 'mdi-waves' },
   // A big invitation to get in touch over the columns, which line up below.
-  { id: 3, title: 'Фінальний кадр', icon: 'mdi-movie-open-outline' },
+  { id: 3, get title () {
+    return t('footer.variant.finalFrame')
+  }, icon: 'mdi-movie-open-outline' },
   // The columns as tiles of different sizes in an asymmetric grid.
   { id: 4, title: 'Bento', icon: 'mdi-view-dashboard-outline' },
 ] as const

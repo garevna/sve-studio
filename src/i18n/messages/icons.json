@@ -1,0 +1,57 @@
+{
+  "search": {
+    "uk": "Пошук іконки (англ.)",
+    "en": "Search for an icon (English)",
+    "de": "Suche nach einem Symbol (Englisch)"
+  },
+  "library": {
+    "uk": "Бібліотека MDI",
+    "en": "MDI Library",
+    "de": "MDI-Bibliothek"
+  },
+  "uploadSvg": {
+    "uk": "Завантажити SVG",
+    "en": "Upload SVG",
+    "de": "SVG hochladen"
+  },
+  "uploadSvgFile": {
+    "uk": "Завантажити SVG-файл",
+    "en": "Upload SVG File",
+    "de": "SVG-Datei hochladen"
+  },
+  "removeBackground": {
+    "uk": "Прибрати фон",
+    "en": "Remove Background",
+    "de": "Hintergrund entfernen"
+  },
+  "color": {
+    "uk": "Колір іконки",
+    "en": "Icon Color",
+    "de": "Icon-Farbe"
+  },
+  "background": {
+    "uk": "Фон під іконкою",
+    "en": "Icon background",
+    "de": "Icon-Hintergrund"
+  },
+  "size": {
+    "uk": "Розмір: {iconSize}px",
+    "en": "Size: {iconSize}px",
+    "de": "Größe: {iconSize}px"
+  },
+  "mobileSizeToggle": {
+    "uk": "Окремий розмір на телефоні",
+    "en": "Separate size for phone",
+    "de": "Separate Größe für Handy"
+  },
+  "mobileSize": {
+    "uk": "На телефоні: {mobileSize}px",
+    "en": "Phone size: {mobileSize}px",
+    "de": "Handy-Größe: {mobileSize}px"
+  },
+  "pick": {
+    "uk": "Обрати іконку",
+    "en": "Pick Icon",
+    "de": "Icon auswählen"
+  }
+}

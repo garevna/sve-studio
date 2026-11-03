@@ -7,6 +7,7 @@
   import { BLOCK_DESCRIPTIONS, BLOCK_EXAMPLES } from '@/configs/block-gallery'
   import { image } from '@/configs/components/simple/image'
   import { listOfComponents } from '@/configs/nav-panel-menu'
+  import { t } from '@/i18n'
   import { useCommonStore } from '@/stores/common'
   import { gallerySample } from '@/utils/block-gallery-sample'
   import BlockGalleryThumb from './BlockGalleryThumb.vue'
@@ -29,18 +30,25 @@
   const open = pageBlocks.galleryOpen
 
   type GalleryItem = { id: string, title: string, icon: string, description: string, group: string, groupId: string, implemented?: boolean }
-  const ITEMS: GalleryItem[] = listOfComponents.flatMap(group => (group.children ?? []).map(child => ({
-    id: String(child.id),
-    title: String(child.title ?? ''),
-    icon: String(child.icon ?? 'mdi-shape-outline'),
-    description: BLOCK_DESCRIPTIONS[String(child.id)] ?? '',
-    group: group.title,
-    groupId: group.id,
-    implemented: (child as { implemented?: boolean }).implemented,
+  // Names and descriptions are interface texts: made again when the
+  // editor's language changes.
+  const ITEMS = computed<GalleryItem[]>(() => listOfComponents.flatMap(group => (group.children ?? []).map(child => {
+    const about = BLOCK_DESCRIPTIONS[String(child.id)]
+    return {
+      id: String(child.id),
+      title: t(String(child.title ?? '')),
+      icon: String(child.icon ?? 'mdi-shape-outline'),
+      description: about ? t(about) : '',
+      group: t(group.title),
+      groupId: group.id,
+      implemented: (child as { implemented?: boolean }).implemented,
+    }
   })))
-  const GROUPS = listOfComponents.map(group => ({ value: group.id, label: group.title }))
   // "Усі" first, then the kinds - one swiped row of tabs.
-  const TABS: { value: string | null, label: string }[] = [{ value: null, label: 'Усі' }, ...GROUPS]
+  const TABS = computed<{ value: string | null, label: string }[]>(() => [
+    { value: null, label: t('blockMenu.all') },
+    ...listOfComponents.map(group => ({ value: group.id, label: t(group.title) })),
+  ])
 
   type View = 'previews' | 'list'
   const VIEW_KEY = 'sve-block-gallery-view'
@@ -70,7 +78,7 @@
 
   const shown = computed(() => {
     const text = query.value.trim().toLowerCase()
-    return ITEMS.filter(item => (group.value === null || item.groupId === group.value)
+    return ITEMS.value.filter(item => (group.value === null || item.groupId === group.value)
       && (!text || `${item.group} ${item.title} ${item.description}`.toLowerCase().includes(text)))
   })
 
@@ -94,10 +102,10 @@
     return commonStore.dynamicPageContent?.blocks.some(block => test(block)) ?? false
   }
   function unavailable (item: GalleryItem): string | null {
-    if (item.implemented === false) return 'Ще в розробці'
-    if (item.id === 'parallax' && onPage(block => block.type === 'parallax')) return 'Вже є на сторінці'
-    if (item.id === 'faq' && onPage(block => block.type === 'component' && block.content === 'FAQ')) return 'Вже є на сторінці'
-    if (item.id === 'popular-destinations' && onPage(block => block.type === 'component' && block.content === 'PopularDestinationsTheme2')) return 'Вже є на сторінці'
+    if (item.implemented === false) return t('blockMenu.inDevelopment')
+    if (item.id === 'parallax' && onPage(block => block.type === 'parallax')) return t('blockMenu.alreadyOnPage')
+    if (item.id === 'faq' && onPage(block => block.type === 'component' && block.content === 'FAQ')) return t('blockMenu.alreadyOnPage')
+    if (item.id === 'popular-destinations' && onPage(block => block.type === 'component' && block.content === 'PopularDestinationsTheme2')) return t('blockMenu.alreadyOnPage')
     return null
   }
 
@@ -109,21 +117,21 @@
 
   const where = computed(() => {
     const before = pageBlocks.insertBefore.value
-    if (pageBlocks.insertPosition.value === null || !before) return 'У кінець сторінки'
-    return `Перед «${before.label.replace(/^\d+\.\s*/, '')}»`
+    if (pageBlocks.insertPosition.value === null || !before) return t('blockMenu.atPageEnd')
+    return t('blockMenu.before', { label: before.label.replace(/^\d+\.\s*/, '') })
   })
 </script>
 
 <template>
-  <SveSheet v-model="open" size="lg" :subtitle="where" title="Додати блок">
+  <SveSheet v-model="open" size="lg" :subtitle="where" :title="t('blockMenu.addBlock')">
     <div class="block-gallery">
       <div class="block-gallery__search">
-        <SveTextField v-model="query" placeholder="Пошук: картки, галерея, текст…" />
+        <SveTextField v-model="query" :placeholder="t('blockMenu.search')" />
         <SveSegmented
           v-model="view"
           :options="[
-            { value: 'previews', icon: 'mdi-view-agenda-outline', title: 'Превʼю' },
-            { value: 'list', icon: 'mdi-format-list-bulleted', title: 'Список' },
+            { value: 'previews', icon: 'mdi-view-agenda-outline', title: t('blockMenu.viewPreviews') },
+            { value: 'list', icon: 'mdi-format-list-bulleted', title: t('common.list') },
           ]"
         />
       </div>
@@ -154,7 +162,7 @@
           :class="['block-gallery__card', { 'block-gallery__card--off': unavailable(item) }]"
           role="button"
           tabindex="0"
-          :title="unavailable(item) || `Додати: ${item.group} · ${item.title}`"
+          :title="unavailable(item) || t('blockMenu.addItem', { group: item.group, title: item.title })"
           @click="pick(item)"
           @keydown.enter.prevent="pick(item)"
         >
@@ -180,7 +188,7 @@
           :class="['block-gallery__row', { 'block-gallery__row--off': unavailable(item) }]"
           role="button"
           tabindex="0"
-          :title="unavailable(item) || `Додати: ${item.group} · ${item.title}`"
+          :title="unavailable(item) || t('blockMenu.addItem', { group: item.group, title: item.title })"
           @click="pick(item)"
           @keydown.enter.prevent="pick(item)"
         >
@@ -194,7 +202,7 @@
           </span>
         </div>
       </div>
-      <p v-else class="block-gallery__empty">Нічого не знайдено</p>
+      <p v-else class="block-gallery__empty">{{ t('blockMenu.nothingFound') }}</p>
     </div>
   </SveSheet>
 </template>

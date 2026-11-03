@@ -8,6 +8,7 @@
   import { useBlockActionsTarget } from '@/composables/useEditableBlockActions'
   import { useEditorMode } from '@/composables/useEditorMode'
   import { useSiteContacts } from '@/composables/useSiteContacts'
+  import { t } from '@/i18n'
   import { useAjaxStore } from '@/stores/ajax'
   import { useCommonStore } from '@/stores/common'
   import { applyHeightToGroup, applyTextClassToGroup, applyTitleClassToGroup } from '@/utils/card-with-toolbar-image-format-sync'
@@ -160,7 +161,7 @@
     </v-card-text>
     <template v-if="mode === 'edit'">
       <Teleport v-if="blockActionsTarget" :to="blockActionsTarget">
-        <ToolbarIconButton icon="mdi-pencil" tooltip="Редагувати тексти картки" @click="openTextDialog" />
+        <ToolbarIconButton icon="mdi-pencil" :tooltip="t('cards.editTexts')" @click="openTextDialog" />
       </Teleport>
       <v-fab
         v-else
@@ -170,7 +171,7 @@
         icon="mdi-pencil"
         location="bottom end"
         size="default"
-        title="Редагувати текст"
+        :title="t('common.editText')"
         @click="openTextDialog"
       />
     </template>

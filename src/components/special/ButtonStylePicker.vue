@@ -1,6 +1,7 @@
 <script setup lang="ts">
   import type { ButtonBorder, ButtonEntry, ButtonState, ButtonStateStyle } from '@/utils/button-style-entry'
   import { computed, ref } from 'vue'
+  import { t } from '@/i18n'
   import { resolveCssVarValue } from '@/utils/css-var-value'
   import { BORDER_STYLES, resolveSwatchValue } from '@/utils/palette-entry'
   import PaletteSwatchPicker from './PaletteSwatchPicker.vue'
@@ -44,7 +45,9 @@
     base: 'normal',
     hover: 'hover',
     disabled: 'disabled',
-    active: 'активна',
+    get active () {
+      return t('buttonPalette.style.active')
+    },
   }
   const activeState = ref<PickerState>('base')
   // The state object being WRITTEN to - editing a field here always writes
@@ -160,10 +163,10 @@
   // changed.
   const radiusValueLabel = computed(() => {
     if (!hasVisibleBox.value) {
-      return 'потрібен фон або бордер'
+      return t('buttonPalette.style.needsFill')
     }
     const value = resolveCssVarValue(shownRadius.value)
-    return radiusIsInherited.value && value ? `${value} (успадковано)` : value
+    return radiusIsInherited.value && value ? t('buttonPalette.style.inherited', { value }) : value
   })
 
   function setRadiusOption (value: string) {
@@ -196,7 +199,7 @@
     </v-btn-toggle>
 
     <div class="button-style-picker-row d-flex flex-wrap ga-5">
-      <span class="button-style-picker-label">Фон</span>
+      <span class="button-style-picker-label">{{ t('common.background') }}</span>
       <PaletteSwatchPicker :model-value="effectiveStyle.background || ''" @update:model-value="(key: string) => activeStyle.background = key">
         <template #activator="{ menuProps }">
           <button class="button-style-picker-swatch" v-bind="menuProps" :style="{ background: effectiveStyle.background ? resolveSwatchValue(effectiveStyle.background) : 'transparent' }" />
@@ -213,7 +216,7 @@
     </div>
 
     <div class="button-style-picker-row">
-      <span class="button-style-picker-label">Колір тексту</span>
+      <span class="button-style-picker-label">{{ t('textFormat.color') }}</span>
       <PaletteSwatchPicker :model-value="effectiveStyle.color || ''" @update:model-value="(key: string) => activeStyle.color = key">
         <template #activator="{ menuProps }">
           <button class="button-style-picker-swatch" v-bind="menuProps" :style="{ background: effectiveStyle.color ? resolveSwatchValue(effectiveStyle.color) : 'transparent' }" />
@@ -230,7 +233,7 @@
     </div>
 
     <div class="button-style-picker-row">
-      <span class="button-style-picker-label">Радіус кутів</span>
+      <span class="button-style-picker-label">{{ t('buttonPalette.style.radius') }}</span>
       <div class="button-style-picker-radius">
         <v-select
           density="compact"
@@ -249,7 +252,7 @@
     </div>
 
     <div class="button-style-picker-row">
-      <span class="button-style-picker-label">Бордер</span>
+      <span class="button-style-picker-label">{{ t('buttonPalette.style.border') }}</span>
       <div class="button-style-picker-border-row">
         <v-select
           density="compact"
@@ -281,7 +284,7 @@
     </div>
 
     <div class="button-style-picker-row">
-      <span class="button-style-picker-label">Тінь (CSS)</span>
+      <span class="button-style-picker-label">{{ t('buttonPalette.style.shadow') }}</span>
       <v-text-field
         density="compact"
         hide-details
@@ -294,7 +297,7 @@
     </div>
 
     <div class="button-style-picker-row">
-      <span class="button-style-picker-label">Прозорість: {{ effectiveStyle.opacity ?? 100 }}%</span>
+      <span class="button-style-picker-label">{{ t('buttonPalette.style.opacity', { value: effectiveStyle.opacity ?? 100 }) }}</span>
       <v-slider
         hide-details
         :max="100"
@@ -314,7 +317,7 @@
     </div>
 
     <div class="button-style-picker-raw" :class="{ 'button-style-picker-raw--hidden': effectiveStyle.raw.length === 0 }">
-      Інші властивості (лише перегляд): {{ effectiveStyle.raw.map(item => `${item.property}: ${item.value}`).join('; ') }}
+      {{ t('buttonPalette.style.otherProperties', { list: effectiveStyle.raw.map(item => `${item.property}: ${item.value}`).join('; ') }) }}
     </div>
   </div>
 </template>

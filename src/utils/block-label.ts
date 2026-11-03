@@ -1,5 +1,6 @@
 import type { LocaleModel } from './locale-text'
 import type { TemplateBlockModel } from '@/types/TemplateBlockModel'
+import { t } from '@/i18n'
 import { resolveLocaleText } from './locale-text'
 
 const CONTENT_LABEL_TYPES = new Set(['header', 'title', 'text'])
@@ -9,24 +10,24 @@ const CONTENT_LABEL_TYPES = new Set(['header', 'title', 'text'])
 // (component)", and three of those in a row are indistinguishable: the user
 // had to count blocks on the page to find the one they meant.
 const TYPE_LABELS: Record<string, string> = {
-  'baner': 'Банер',
-  'button': 'Кнопка',
-  'card': 'Картка',
-  'cards': 'Картки',
-  'card-with-toolbar-image': 'Картка із зображенням',
-  'carousel': 'Карусель карток',
-  'dark-fone-section': 'Темна секція',
-  'float': 'Плаваюча секція',
-  'image': 'Зображення',
-  'page-links': 'Список посилань',
-  'parallax': 'Паралакс',
-  'parallax-inside': 'Паралакс',
-  'route': 'Посилання',
-  'section': 'Секція',
-  'section-with-free-content': 'Довільний контент',
-  'slider-with-images': 'Слайдер зображень',
-  'swiper': 'Слайдер із прев’ю',
-  'text-with-icon': 'Текст з іконкою',
+  'baner': 'common.banner',
+  'button': 'common.button',
+  'card': 'common.card',
+  'cards': 'common.cards',
+  'card-with-toolbar-image': 'blockTypes.cardWithToolbarImage',
+  'carousel': 'blockTypes.carousel',
+  'dark-fone-section': 'common.darkSection',
+  'float': 'blockTypes.float',
+  'image': 'blockTypes.image',
+  'page-links': 'common.listOfLinks',
+  'parallax': 'common.parallax',
+  'parallax-inside': 'common.parallax',
+  'route': 'blockTypes.route',
+  'section': 'blockTypes.section',
+  'section-with-free-content': 'common.arbitraryContent',
+  'slider-with-images': 'blockTypes.sliderWithImages',
+  'swiper': 'blockTypes.swiper',
+  'text-with-icon': 'common.textWithIcon',
 }
 
 // A component block says which component it is in its own `content`, and
@@ -35,25 +36,27 @@ const TYPE_LABELS: Record<string, string> = {
 // translated; anything else falls back to the component's own name, which
 // is still better than nothing.
 const COMPONENT_LABELS: Record<string, string> = {
-  FAQ: 'FAQ (питання та відповіді)',
-  ImagesGridVer1: 'Сітка зображень',
-  ImagesGridVer2: 'Сітка зображень',
-  PopularDestinationsTheme1: 'Популярні напрямки',
-  PopularDestinationsTheme2: 'Популярні напрямки',
-  PopularDestinationsTheme3: 'Популярні напрямки',
-  CardWithHover: 'Картки з ефектом наведення',
-  FeedbackCard: 'Картка зворотного зв’язку',
-  FeedbackForm: 'Форма зворотного зв’язку',
-  FooterIcons: 'Іконки соцмереж',
-  FooterVisaLogo: 'Логотип Visa/Mastercard',
+  FAQ: 'blockTypes.component.FAQ',
+  ImagesGridVer1: 'common.imagesGrid',
+  ImagesGridVer2: 'common.imagesGrid',
+  PopularDestinationsTheme1: 'common.popularDestinations',
+  PopularDestinationsTheme2: 'common.popularDestinations',
+  PopularDestinationsTheme3: 'common.popularDestinations',
+  CardWithHover: 'blockTypes.component.CardWithHover',
+  FeedbackCard: 'blockTypes.component.FeedbackCard',
+  FeedbackForm: 'common.feedbackForm',
+  FooterIcons: 'common.socialMediaIcons',
+  FooterVisaLogo: 'common.visaMastercardLogo',
 }
 
 function typeLabel (block: TemplateBlockModel): string {
   if (block.type === 'component') {
     const name = typeof block.content === 'string' ? block.content : ''
-    return COMPONENT_LABELS[name] || name || 'Компонент'
+    const key = COMPONENT_LABELS[name]
+    return key ? t(key) : (name || t('blockTypes.componentFallback'))
   }
-  return TYPE_LABELS[block.type] || block.type
+  const key = TYPE_LABELS[block.type]
+  return key ? t(key) : block.type
 }
 
 /**

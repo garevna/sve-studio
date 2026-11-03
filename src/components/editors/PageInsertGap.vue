@@ -1,5 +1,6 @@
 <script setup lang="ts">
   import { usePageBlocks } from '@/composables/usePageBlocks'
+  import { t } from '@/i18n'
 
   // A place on the page a new block can go: a thin line with "+" that shows
   // in the space between two blocks when pointed at (always visible on a
@@ -24,7 +25,7 @@
     @keydown.enter.prevent="pageBlocks.openGallery(null)"
   >
     <i class="sve-icon mdi mdi-plus" />
-    Додати блок
+    {{ t('blockMenu.addBlock') }}
   </div>
   <div
     v-else
@@ -36,12 +37,12 @@
       class="sve-insert-gap__button"
       role="button"
       tabindex="0"
-      title="Додати блок сюди"
+      :title="t('block.addHere')"
       @click="pageBlocks.openGallery(props.position)"
       @keydown.enter.prevent="pageBlocks.openGallery(props.position)"
     >
       <i class="sve-icon mdi mdi-plus" />
-      <span class="sve-insert-gap__label">Додати блок</span>
+      <span class="sve-insert-gap__label">{{ t('blockMenu.addBlock') }}</span>
     </span>
     <span class="sve-insert-gap__line" />
   </div>

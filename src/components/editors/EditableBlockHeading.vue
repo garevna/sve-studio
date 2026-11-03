@@ -5,6 +5,7 @@
   import MarginBottomMenu from '@/components/editors/MarginBottomMenu.vue'
   import TextEditor from '@/components/editors/text/TextEditor.vue'
   import { useEditorMode } from '@/composables/useEditorMode'
+  import { t } from '@/i18n'
   import { useCommonStore } from '@/stores/common'
   import { emptyTranslatedModel, isTranslatedModel, resolveLocaleText, translationHint } from '@/utils/locale-text'
 
@@ -70,7 +71,7 @@
         type="text"
         @update:content="value => setHeadingText('title', value)"
       />
-      <MarginBottomMenu v-model:class="titleClass" tooltip="Відступ під заголовком" />
+      <MarginBottomMenu v-model:class="titleClass" :tooltip="t('block.spaceUnderHeader')" />
     </div>
     <div class="block-heading-row">
       <TextEditor
@@ -82,7 +83,7 @@
         type="text"
         @update:content="value => setHeadingText('subtitle', value)"
       />
-      <MarginBottomMenu v-model:class="subtitleClass" tooltip="Відступ під підзаголовком" />
+      <MarginBottomMenu v-model:class="subtitleClass" :tooltip="t('block.spaceUnderTitle')" />
     </div>
   </template>
   <template v-else>

@@ -1,0 +1,64 @@
+{
+  "cardWithToolbarImage": {
+    "uk": "Картка із зображенням",
+    "en": "Card with Toolbar Image",
+    "de": "Karte mit Symbolleiste und Bild"
+  },
+  "carousel": {
+    "uk": "Карусель карток",
+    "en": "Card carousel",
+    "de": "Karussell von Karten"
+  },
+  "float": {
+    "uk": "Плаваюча секція",
+    "en": "Floating section",
+    "de": "Schwebender Abschnitt"
+  },
+  "image": {
+    "uk": "Зображення",
+    "en": "Image",
+    "de": "Bild"
+  },
+  "route": {
+    "uk": "Посилання",
+    "en": "Route",
+    "de": "Route"
+  },
+  "section": {
+    "uk": "Секція",
+    "en": "Section",
+    "de": "Abschnitt"
+  },
+  "sliderWithImages": {
+    "uk": "Слайдер зображень",
+    "en": "Slider with images",
+    "de": "Bild-Slider"
+  },
+  "swiper": {
+    "uk": "Слайдер із прев’ю",
+    "en": "Slider with previews",
+    "de": "Slider mit Vorschau"
+  },
+  "component": {
+    "FAQ": {
+      "uk": "FAQ (питання та відповіді)",
+      "en": "FAQ (frequently asked questions)",
+      "de": "FAQ (Fragen und Antworten)"
+    },
+    "CardWithHover": {
+      "uk": "Картки з ефектом наведення",
+      "en": "Card with hover effect",
+      "de": "Karte mit Hover-Effekt"
+    },
+    "FeedbackCard": {
+      "uk": "Картка зворотного зв’язку",
+      "en": "Feedback card",
+      "de": "Feedback-Karte"
+    }
+  },
+  "componentFallback": {
+    "uk": "Компонент",
+    "en": "Component",
+    "de": "Komponente"
+  }
+}

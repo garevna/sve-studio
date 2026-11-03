@@ -5,6 +5,7 @@
   import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
   import { useEditorMode } from '@/composables/useEditorMode'
   import { useSiteContacts } from '@/composables/useSiteContacts'
+  import { t } from '@/i18n'
   import { useCommonStore } from '@/stores/common'
   import { resolveLocaleText } from '@/utils/locale-text'
   import FooterContactsActions from './FooterContactsActions.vue'
@@ -75,7 +76,7 @@
       <FooterContactsActions :block="section" @edit="dialogOpen = true" />
     </template>
     <template #delete>
-      <ToolbarIconButton icon="mdi-delete" tooltip="Видалити блок" @click="emit('delete-section')" />
+      <ToolbarIconButton icon="mdi-delete" :tooltip="t('common.deleteBlock')" @click="emit('delete-section')" />
     </template>
 
     <!-- Edited in a dialog, not inline: at this column's width, on a dark

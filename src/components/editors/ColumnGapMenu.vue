@@ -1,6 +1,7 @@
 <script setup lang="ts">
   import { computed } from 'vue'
   import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
+  import { t } from '@/i18n'
   import { COLUMN_GAP_OPTIONS, readColumnGapPx, writeColumnGapPx } from '@/utils/column-gap-class'
 
   // The gap between columns of any block that has columns, as a toolbar
@@ -32,7 +33,7 @@
       <ToolbarIconButton
         v-bind="menuProps"
         icon="mdi-arrow-expand-horizontal"
-        :tooltip="`Проміжок між колонками: ${current}px`"
+        :tooltip="t('block.columnGap', { current })"
       />
     </template>
     <v-card theme="editorTheme">

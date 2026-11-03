@@ -1,5 +1,6 @@
 <script lang="ts" setup>
   import { SveTopBar } from '@sve/editor-ui'
+  import { t } from '@/i18n'
 
   // The top bar of an editor section (settings, palette, pages list...) -
   // the kit's SveTopBar, the same bar the page editor has. It sits inside
@@ -19,7 +20,7 @@
 <template>
   <SveTopBar
     :back="backTo"
-    back-label="Назад"
+    :back-label="t('common.back')"
     :class="['editor-page-header', { 'editor-page-header--inset': !standalone }]"
     :subtitle="detail"
     :title="title"

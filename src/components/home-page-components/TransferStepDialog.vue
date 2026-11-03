@@ -3,6 +3,7 @@
   import { computed } from 'vue'
   import LocaleSwitcher from '@/components/editors/small/LocaleSwitcher.vue'
   import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
+  import { t } from '@/i18n'
   import { useCommonStore } from '@/stores/common'
   import { emptyTranslatedModel, isTranslatedModel, resolveLocaleText } from '@/utils/locale-text'
 
@@ -55,10 +56,10 @@
       theme="editorTheme"
     >
       <v-toolbar class="editor-panel" color="transparent" density="compact">
-        <v-toolbar-title class="transfer-step-dialog-title">Крок {{ index + 1 }}</v-toolbar-title>
+        <v-toolbar-title class="transfer-step-dialog-title">{{ t('transferSteps.step', { value: index + 1 }) }}</v-toolbar-title>
         <v-spacer />
-        <ToolbarIconButton icon="mdi-delete" tooltip="Видалити цей крок" @click="emit('delete')" />
-        <ToolbarIconButton icon="mdi-close" tooltip="Закрити" @click="emit('close')" />
+        <ToolbarIconButton icon="mdi-delete" :tooltip="t('transferSteps.delete')" @click="emit('delete')" />
+        <ToolbarIconButton icon="mdi-close" :tooltip="t('common.close')" @click="emit('close')" />
       </v-toolbar>
 
       <v-card-text>
@@ -66,7 +67,7 @@
           v-model="text"
           auto-grow
           hide-details
-          label="Текст"
+          :label="t('common.text')"
           rows="3"
           variant="outlined"
         />
@@ -78,7 +79,7 @@
           auto-grow
           class="mt-6"
           hide-details
-          label="Виділена частина"
+          :label="t('transferSteps.highlight')"
           rows="1"
           variant="outlined"
         />
@@ -87,7 +88,7 @@
       <v-card-actions>
         <LocaleSwitcher :scope="step" />
         <v-spacer />
-        <v-btn color="primary" variant="elevated" @click="emit('close')">ОК</v-btn>
+        <v-btn color="primary" variant="elevated" @click="emit('close')">{{ t('common.ok') }}</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>

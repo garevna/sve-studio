@@ -1,5 +1,6 @@
 <script lang="ts" setup>
   import { ref, watch } from 'vue'
+  import { t } from '@/i18n'
 
   const props = defineProps<{ modelValue: string }>()
   const emit = defineEmits<{ 'update:modelValue': [value: string] }>()
@@ -34,14 +35,14 @@
         class="mt-3"
         density="compact"
         hide-details
-        label="HEX-код кольору"
+        :label="t('palette.hexCode')"
         placeholder="#RRGGBB"
         prepend-inner-icon="mdi-pound"
         variant="outlined"
       />
 
       <v-btn block class="mt-3" color="primary" @click="apply">
-        Застосувати
+        {{ t('common.apply') }}
       </v-btn>
     </v-card>
   </v-menu>

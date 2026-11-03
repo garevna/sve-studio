@@ -413,11 +413,11 @@
 
   async function createPage () {
     if (!slug.value) {
-      errorText.value = 'Введіть назву сторінки'
+      errorText.value = t('pages.enterName')
       return
     }
     if (pages.value.some(page => page.pageId === slug.value)) {
-      errorText.value = 'Сторінка з таким ідентифікатором вже існує'
+      errorText.value = t('pages.idExists')
       return
     }
 
@@ -441,7 +441,7 @@
       dialog.value = false
       router.push(`/editor/${slug.value}`)
     } catch {
-      errorText.value = 'Не вдалося створити сторінку.'
+      errorText.value = t('pages.createFailed')
     } finally {
       creating.value = false
     }
@@ -451,7 +451,7 @@
 <template>
   <v-app>
     <v-main class="editor-page">
-      <EditorPageHeader back-to="/" detail="dynamic-pages" title="Сторінки">
+      <EditorPageHeader back-to="/" detail="dynamic-pages" :title="t('common.pages')">
         <template #actions>
           <SveButton
             v-if="isLiveMode && canEditContent"
@@ -460,7 +460,7 @@
             :loading="publishing"
             @click="publishAllToServer"
           >
-            {{ publishing ? publishProgress : 'Синхронізувати з сервером' }}
+            {{ publishing ? publishProgress : t('pages.syncWithServer') }}
           </SveButton>
           <SveButton
             v-if="canEditContent"
@@ -469,7 +469,7 @@
             variant="primary"
             @click="openDialog"
           >
-            Додати сторінку
+            {{ t('pages.add') }}
           </SveButton>
         </template>
       </EditorPageHeader>
@@ -495,7 +495,7 @@
             :key="page.pageId"
             :class="{ 'text-medium-emphasis': page.visible === false }"
             prepend-icon="mdi-file-document-outline"
-            :subtitle="linkedMenuLabel(page) ? `Пункт меню: ${linkedMenuLabel(page)}` : undefined"
+            :subtitle="linkedMenuLabel(page) ? t('pages.menuItem', { label: linkedMenuLabel(page) }) : undefined"
             :title="pageLabel(page)"
             :to="canEditContent ? `/editor/${page.pageId}` : undefined"
             @click="canEditContent ? undefined : openSeoDialog(page)"
@@ -517,46 +517,46 @@
               <ToolbarIconButton
                 v-if="!canEditContent"
                 icon="mdi-open-in-new"
-                tooltip="Переглянути сторінку в новій вкладці"
+                :tooltip="t('pages.openInNewTab')"
                 @click.stop.prevent="openPageInPreview(page.pageId)"
               />
               <ToolbarIconButton
                 v-if="!canEditContent"
                 icon="mdi-pencil"
-                tooltip="SEO цієї сторінки"
+                :tooltip="t('pages.seoOfPage')"
                 @click.stop.prevent="openSeoDialog(page)"
               />
               <ToolbarIconButton
                 v-if="canEditContent"
                 icon="mdi-rename-outline"
-                tooltip="Назва сторінки (вона ж - у меню)"
+                :tooltip="t('pages.renameTooltip')"
                 @click.stop.prevent="openRenameDialog(page)"
               />
               <ToolbarIconButton
                 v-if="canEditContent && page.pageId !== HOME_PAGE_ID"
                 icon="mdi-link-edit"
                 :tooltip="linkedMenuLabel(page)
-                  ? 'Посилання на сторінку в головному меню'
-                  : 'Вставити посилання на сторінку в головне меню'"
+                  ? t('pages.menuLinkTooltip')
+                  : t('pages.insertMenuLinkTooltip')"
                 @click.stop.prevent="openInsertMenuDialog(page)"
               />
               <ToolbarIconButton
                 v-if="canEditContent && page.pageId !== HOME_PAGE_ID"
                 :icon="page.visible === false ? 'mdi-eye-off-outline' : 'mdi-eye-outline'"
                 :loading="togglingVisibility === page.pageId"
-                :tooltip="page.visible === false ? 'Показати сторінку' : 'Приховати сторінку'"
+                :tooltip="page.visible === false ? t('pages.showPage') : t('pages.hidePage')"
                 @click.stop.prevent="toggleVisibility(page)"
               />
               <ToolbarIconButton
                 v-if="canEditContent && page.pageId !== HOME_PAGE_ID"
                 icon="mdi-delete"
-                tooltip="Видалити сторінку"
+                :tooltip="t('pages.delete')"
                 @click.stop.prevent="requestDeletePage(page)"
               />
             </template>
           </v-list-item>
         </v-list>
-        <p v-else class="text-body-2 text-medium-emphasis mb-4">Сторінок поки немає</p>
+        <p v-else class="text-body-2 text-medium-emphasis mb-4">{{ t('pages.empty') }}</p>
 
         <!-- <v-btn color="primary" prepend-icon="mdi-plus" variant="elevated" @click="openDialog">
           Додати сторінку
@@ -575,16 +575,16 @@
     />
 
     <v-dialog v-model="dialog" max-width="480">
-      <v-card title="Нова сторінка">
+      <v-card :title="t('pages.newPage')">
         <v-card-text>
           <v-text-field
             v-model="name"
             autofocus
-            label="Назва сторінки"
+            :label="t('pages.name')"
             variant="outlined"
           />
           <p class="text-caption text-medium-emphasis mb-4">
-            Ідентифікатор (ім'я файлу): <strong>{{ slug || '—' }}</strong>
+            {{ t('pages.fileId') }} <strong>{{ slug || '—' }}</strong>
           </p>
 
           <v-switch
@@ -592,21 +592,21 @@
             color="primary"
             hide-details
             inset
-            label="Хлібні крихти"
+            :label="t('common.breadcrumbs')"
           />
           <v-switch
             v-model="backButton"
             color="primary"
             hide-details
             inset
-            label="Кнопка «Назад»"
+            :label="t('pages.backButton')"
           />
           <v-switch
             v-model="hero"
             color="primary"
             hide-details
             inset
-            label="Hero-секція"
+            :label="t('pages.hero')"
           />
 
           <v-alert
@@ -621,26 +621,26 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer />
-          <v-btn variant="text" @click="dialog = false">Скасувати</v-btn>
-          <v-btn color="primary" :loading="creating" variant="elevated" @click="createPage">Створити</v-btn>
+          <v-btn variant="text" @click="dialog = false">{{ t('common.cancel') }}</v-btn>
+          <v-btn color="primary" :loading="creating" variant="elevated" @click="createPage">{{ t('common.create') }}</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
 
     <v-dialog v-model="insertMenuDialog" max-width="480">
-      <v-card :title="existingMenuLink ? 'Посилання на сторінку в меню' : 'Вставити посилання в меню'">
+      <v-card :title="existingMenuLink ? t('pages.menuLinkTitle') : t('pages.insertMenuLinkTitle')">
         <v-card-text>
           <!-- Where the link is right now. Without it the dialog looked
             identical for a page that is in the menu and one that is not. -->
           <p v-if="existingMenuLabel" class="text-body-2 mb-4">
-            Зараз у меню: <strong>{{ existingMenuLabel }}</strong>
+            {{ t('pages.nowInMenu') }} <strong>{{ existingMenuLabel }}</strong>
           </p>
 
           <v-switch
             color="primary"
             hide-details
             inset
-            :label="insertIntoSection ? 'Вставити у розділ' : 'Окремий пункт (без підпунктів)'"
+            :label="insertIntoSection ? t('pages.insertIntoSection') : t('pages.standaloneItem')"
             :model-value="insertIntoSection"
             @update:model-value="insertIntoSection = !!$event"
           />
@@ -652,32 +652,32 @@
             item-title="title"
             item-value="index"
             :items="sectionOptions"
-            label="Розділ меню"
+            :label="t('pages.menuSection')"
             variant="outlined"
           />
           <p v-if="insertIntoSection && sectionOptions.length === 0" class="text-caption text-medium-emphasis">
-            У меню поки немає розділів з підпунктами - оберіть «Окремий пункт».
+            {{ t('pages.noMenuSections') }}
           </p>
 
           <!-- The menu shows the page's name; a text of its own only as an
             exception, one per site language (global.json "locales"). -->
           <p class="text-body-2 mt-3 mb-1">
-            У меню: <strong>{{ insertOwnLabel ? '' : pageLabel(insertMenuPage) }}</strong>
-            <span v-if="!insertOwnLabel" class="text-medium-emphasis">(назва сторінки)</span>
+            {{ t('pages.inMenu') }} <strong>{{ insertOwnLabel ? '' : pageLabel(insertMenuPage) }}</strong>
+            <span v-if="!insertOwnLabel" class="text-medium-emphasis">({{ t('pages.pageNameNote') }})</span>
           </p>
           <v-switch
             v-model="insertOwnLabel"
             color="primary"
             hide-details
             inset
-            label="Своя назва в меню"
+            :label="t('pages.ownMenuName')"
           />
           <template v-if="insertOwnLabel">
             <v-text-field
               v-for="code in siteLocales()"
               :key="code"
               v-model="insertTitle[code]"
-              :label="`Назва пункту (${code.toUpperCase()})`"
+              :label="t('pages.itemName', { code: code.toUpperCase() })"
               :placeholder="pageTitleText(insertMenuPage?.title, code)"
               variant="outlined"
             />
@@ -691,10 +691,10 @@
             variant="text"
             @click="removeMenuLink"
           >
-            Прибрати з меню
+            {{ t('pages.removeFromMenu') }}
           </v-btn>
           <v-spacer />
-          <v-btn variant="text" @click="insertMenuDialog = false">Скасувати</v-btn>
+          <v-btn variant="text" @click="insertMenuDialog = false">{{ t('common.cancel') }}</v-btn>
           <v-btn
             color="primary"
             :disabled="insertIntoSection && insertSectionIndex === null"
@@ -702,7 +702,7 @@
             variant="elevated"
             @click="confirmInsertMenuLink"
           >
-            {{ existingMenuLink ? 'Зберегти' : 'Вставити' }}
+            {{ existingMenuLink ? t('common.save') : t('common.insert') }}
           </v-btn>
         </v-card-actions>
       </v-card>
@@ -712,10 +712,10 @@
 
     <ConfirmDialog
       v-model="deleteDialogOpen"
-      confirm-text="Видалити"
+      :confirm-text="t('common.delete')"
       :loading="deleting"
-      :text="`Сторінку «${pageLabel(pageToDelete)}» буде видалено безповоротно.`"
-      title="Видалити сторінку?"
+      :text="t('pages.deleteText', { name: pageLabel(pageToDelete) })"
+      :title="t('pages.deleteTitle')"
       @confirm="confirmDeletePage"
     />
 

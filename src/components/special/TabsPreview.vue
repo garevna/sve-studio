@@ -2,6 +2,7 @@
   import type { ButtonEntry } from '@/utils/button-style-entry'
   import { computed, ref } from 'vue'
   import { TAB_STYLE_CLASS } from '@/configs/tab-classes'
+  import { t } from '@/i18n'
   import { buttonPreviewVars } from '@/utils/button-preview-vars'
   import { APP_THEME_NAME, themeClass } from '@/utils/vuetify-theme-names'
 
@@ -31,8 +32,7 @@
     tabs?: readonly string[]
   }>()
 
-  const DEFAULT_TABS = ['Вхід', 'Реєстрація', 'Профіль']
-  const tabLabels = computed(() => props.tabs || DEFAULT_TABS)
+  const tabLabels = computed(() => props.tabs || [t('buttonPalette.previewLogin'), t('buttonPalette.previewRegister'), t('buttonPalette.previewProfile')])
 
   const activeIndex = ref(0)
 
@@ -71,7 +71,7 @@
           {{ label }}
         </button>
         <button class="tabs-preview-tab" disabled :style="idleVars">
-          Недоступна
+          {{ t('buttonPalette.stateDisabled') }}
         </button>
       </div>
     </div>

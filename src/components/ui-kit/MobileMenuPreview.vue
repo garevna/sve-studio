@@ -38,8 +38,8 @@
   }
 
   // Never saved - only there to be formatted.
-  const sampleEntry = ref(t('menuStyle.sampleEntry'))
-  const sampleActive = ref(t('menuStyle.sampleActive'))
+  const sampleEntry = ref(t('common.menuItem'))
+  const sampleActive = ref(t('common.activeItem'))
   const sampleSub = ref(t('menuStyle.sampleSub'))
   const sampleUser = ref(t('menuStyle.sampleUser'))
 </script>
@@ -107,7 +107,7 @@
                   <p :class="look.subItemClass">{{ t('menuStyle.sampleSub') }}</p>
                 </div>
                 <div class="mobile-preview-entry">
-                  <p :class="look.itemClass">{{ t('menuStyle.sampleOther') }}</p>
+                  <p :class="look.itemClass">{{ t('common.anotherItem') }}</p>
                 </div>
               </div>
 

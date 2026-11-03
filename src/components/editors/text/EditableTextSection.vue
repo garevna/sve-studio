@@ -135,18 +135,18 @@
     <v-card class="editor-dialog editable-text-section-dialog" theme="editorTheme">
       <v-toolbar color="#ddd">
         <v-toolbar-title class="editable-text-section-dialog-title">
-          Редагування тексту
+          {{ t('textSection.editing') }}
         </v-toolbar-title>
         <v-spacer />
         <ToolbarIconButton
           :active="dragActive"
           icon="mdi-cursor-move"
-          tooltip="Переміщення"
+          :tooltip="t('common.move')"
           @click="dragActive = !dragActive"
         />
-        <ToolbarIconButton icon="mdi-close" tooltip="Закрити" @click="emit('update:modelValue', false)" />
+        <ToolbarIconButton icon="mdi-close" :tooltip="t('common.close')" @click="emit('update:modelValue', false)" />
       </v-toolbar>
-      <!-- <v-card-title class="editable-text-section-dialog-title">Редагування тексту</v-card-title> -->
+      <!-- <v-card-title class="editable-text-section-dialog-title">{{ t('textSection.editing') }}</v-card-title> -->
       <v-card-text>
         <v-checkbox
           v-if="showSyncCheckbox"
@@ -154,7 +154,7 @@
           class="mb-2"
           density="compact"
           hide-details
-          label="Однаковий формат для всіх пунктів"
+          :label="t('textSection.sameFormat')"
         />
         <SortableList v-model:active="dragActive" :items="children">
           <template #item="{ item: child, index, dragClass, contentClass }">
@@ -199,8 +199,8 @@
                     no-transparent
                     @update:model-value="(value: string) => child.color = value"
                   />
-                  <MarginBottomMenu v-model:class="child.class" :tooltip="t('cardTexts.spacingBelow')" />
-                  <ToolbarIconButton icon="mdi-delete" tooltip="Видалити" @click="removeText(index)" />
+                  <MarginBottomMenu v-model:class="child.class" :tooltip="t('common.marginBottom')" />
+                  <ToolbarIconButton icon="mdi-delete" :tooltip="t('common.delete')" @click="removeText(index)" />
                 </div>
               </div>
             </div>
@@ -213,7 +213,7 @@
             variant="outlined"
             @click="addText"
           >
-            Додати текст
+            {{ t('common.addText') }}
           </v-btn>
           <v-btn
             v-if="withIcons"
@@ -222,7 +222,7 @@
             variant="outlined"
             @click="addTextWithIcon"
           >
-            Текст з іконкою
+            {{ t('common.textWithIcon') }}
           </v-btn>
           <!-- A ready line for a social network: icon, name, address from
             the general settings. -->
@@ -233,7 +233,7 @@
             variant="outlined"
             @click="addDivider"
           >
-            {{ t('cardTexts.divider') }}
+            {{ t('common.divider') }}
           </v-btn>
           <ContactLineMenu v-if="withIcons" @insert="addSocialLink">
             <template #activator="{ props: contactProps }">
@@ -254,7 +254,7 @@
       <v-card-actions>
         <LocaleSwitcher :scope="children" />
         <v-spacer />
-        <v-btn color="primary" variant="elevated" @click="emit('update:modelValue', false)">ОК</v-btn>
+        <v-btn color="primary" variant="elevated" @click="emit('update:modelValue', false)">{{ t('common.ok') }}</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>

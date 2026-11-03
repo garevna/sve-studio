@@ -1,0 +1,37 @@
+{
+  "cardIcons": {
+    "uk": "Іконки картки",
+    "en": "Card Icons",
+    "de": "Kartensymbole"
+  },
+  "cityFrom": {
+    "uk": "Місто відправлення",
+    "en": "City of Departure",
+    "de": "Abreiseort"
+  },
+  "cityTo": {
+    "uk": "Місто призначення",
+    "en": "City of Arrival",
+    "de": "Ankunftsort"
+  },
+  "carrier": {
+    "uk": "Перевізник",
+    "en": "Carrier",
+    "de": "Träger"
+  },
+  "duration": {
+    "uk": "Тривалість поїздки",
+    "en": "Duration",
+    "de": "Dauer"
+  },
+  "rowLine": {
+    "uk": "Колір лінії під рядком",
+    "en": "Row Line Color",
+    "de": "Reihe Linie Farbe"
+  },
+  "rowHover": {
+    "uk": "Колір рядка під курсором",
+    "en": "Row Hover Color",
+    "de": "Reihe Hover Farbe"
+  }
+}

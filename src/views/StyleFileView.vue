@@ -101,7 +101,7 @@
 
         <v-progress-linear v-if="loading" color="primary" indeterminate />
         <v-alert v-else-if="error" type="error" variant="tonal">
-          Не вдалося завантажити файл.
+          {{ t('styleFiles.loadFailed') }}
         </v-alert>
         <CssEditor v-else v-model="content" />
 

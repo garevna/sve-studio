@@ -1,14 +1,4 @@
 {
-  "title": {
-    "uk": "Палітра",
-    "en": "Palette",
-    "de": "Palette"
-  },
-  "colors": {
-    "uk": "Кольори",
-    "en": "Colours",
-    "de": "Farben"
-  },
   "borders": {
     "uk": "Рамки (border)",
     "en": "Borders",
@@ -18,11 +8,6 @@
     "uk": "Радіуси заокруглення",
     "en": "Corner radii",
     "de": "Eckenradien"
-  },
-  "gradients": {
-    "uk": "Градієнти",
-    "en": "Gradients",
-    "de": "Verläufe"
   },
   "other": {
     "uk": "Інше (складні значення, редагування поки недоступне)",
@@ -99,11 +84,6 @@
     "en": "Angle",
     "de": "Winkel"
   },
-  "stops": {
-    "uk": "Кольори",
-    "en": "Colours",
-    "de": "Farben"
-  },
   "addStop": {
     "uk": "Додати колір",
     "en": "Add colour",
@@ -118,5 +98,10 @@
     "uk": "Позиція",
     "en": "Position",
     "de": "Position"
+  },
+  "hexCode": {
+    "uk": "HEX-код кольору",
+    "en": "HEX colour code",
+    "de": "HEX-Farbcodes"
   }
 }

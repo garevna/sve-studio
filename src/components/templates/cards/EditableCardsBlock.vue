@@ -4,6 +4,7 @@
   import EditableBlockWrapper from '@/components/editors/EditableBlockWrapper.vue'
   import SortableList from '@/components/editors/SortableList.vue'
   import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
+  import { t } from '@/i18n'
   import TemplateItem from '../TemplateItem.vue'
   import CardContainerActions from './CardContainerActions.vue'
 
@@ -43,10 +44,10 @@
       <template #item="{ index: num, dragClass, contentClass, dragging }">
         <EditableBlockWrapper :class="dragClass" type="card">
           <template v-if="!dragging" #actions>
-            <ToolbarIconButton icon="mdi-pencil" tooltip="Редагувати картку" @click="emit('edit-card', num)" />
+            <ToolbarIconButton icon="mdi-pencil" :tooltip="t('cards.edit')" @click="emit('edit-card', num)" />
           </template>
           <template v-if="!dragging" #delete>
-            <ToolbarIconButton icon="mdi-delete" tooltip="Видалити картку" @click="emit('delete-card', num)" />
+            <ToolbarIconButton icon="mdi-delete" :tooltip="t('cards.delete')" @click="emit('delete-card', num)" />
           </template>
           <template-item
             :block-index="num"

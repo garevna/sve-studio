@@ -11,6 +11,7 @@
   import { collectFooterKinds, isLegacyLinksSection, normalisePageLinks } from '@/configs/footer-blocks'
   import { FOOTER_RESPONSIVE_GAP_CLASS } from '@/configs/footer-layout'
   import { bentoTile, FOOTER_FINAL_FRAME, FOOTER_HORIZON, resolveFooterVariant } from '@/configs/footer-variants'
+  import { t } from '@/i18n'
   import { useAjaxStore } from '@/stores/ajax'
   import { useCommonStore } from '@/stores/common'
   import { useUiFeedbackStore } from '@/stores/ui-feedback'
@@ -418,12 +419,12 @@
             <ToolbarIconButton
               :active="blockDragActive(item)"
               icon="mdi-cursor-move"
-              tooltip="Перетягування блоків у колонці"
+              :tooltip="t('footer.dragBlocks')"
               @click="toggleBlockDrag(item)"
             />
           </template>
           <template #delete>
-            <ToolbarIconButton icon="mdi-delete" tooltip="Видалити колонку" @click="removeColumn(index)" />
+            <ToolbarIconButton icon="mdi-delete" :tooltip="t('footer.deleteColumn')" @click="removeColumn(index)" />
           </template>
           <div :class="contentClass">
             <FooterColumn

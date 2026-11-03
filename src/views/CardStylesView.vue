@@ -115,7 +115,7 @@
     ...paletteBorders.value.map(key => ({ title: key, value: key })),
   ])
   const radiusItems = computed(() => [
-    { title: t('cardStyles.noRadius'), value: '0' },
+    { title: t('common.squareCorners'), value: '0' },
     ...paletteRadii.value.map(key => ({ title: key, value: key })),
   ])
   const shadowItems = computed(() => Object.keys(CARD_SHADOWS).map(key => ({
@@ -190,7 +190,7 @@
                 variant="outlined"
               />
               <div class="card-styles-field">
-                <span>{{ t('cardStyles.background') }}</span>
+                <span>{{ t('common.background') }}</span>
                 <PaletteSwatchPicker v-model="entry.background" gradients />
               </div>
               <v-select

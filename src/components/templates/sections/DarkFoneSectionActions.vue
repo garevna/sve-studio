@@ -3,6 +3,7 @@
   import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
   import PaletteSwatchPicker from '@/components/special/PaletteSwatchPicker.vue'
   import { darkFoneSectionCard } from '@/configs/components/sections/dark-fone-section'
+  import { t } from '@/i18n'
 
   // Container-level actions for a dark-fone-section block, rendered into
   // EditableBlockWrapper's #actions slot by DynamicPageTemplate.vue - same
@@ -40,13 +41,13 @@
 <template>
   <PaletteSwatchPicker dark-only gradients :model-value="block.background || 'primary'" @update:model-value="setBackground">
     <template #activator="{ menuProps }">
-      <ToolbarIconButton v-bind="menuProps" icon="mdi-format-color-fill" tooltip="Фон секції" />
+      <ToolbarIconButton v-bind="menuProps" icon="mdi-format-color-fill" :tooltip="t('cards.sectionBackground')" />
     </template>
   </PaletteSwatchPicker>
-  <ToolbarIconButton icon="mdi-plus" tooltip="Додати картку" @click="addCard" />
+  <ToolbarIconButton icon="mdi-plus" :tooltip="t('cards.add')" @click="addCard" />
   <v-menu location="bottom center">
     <template #activator="{ props: menuProps }">
-      <ToolbarIconButton v-bind="menuProps" icon="mdi-arrow-expand-horizontal" :tooltip="`Ширина карток: ${block.cardWidth || 240}px`" />
+      <ToolbarIconButton v-bind="menuProps" icon="mdi-arrow-expand-horizontal" :tooltip="t('cards.width', { value: block.cardWidth || 240 })" />
     </template>
     <v-card theme="editorTheme">
       <v-list density="compact">
@@ -64,7 +65,7 @@
   <ToolbarIconButton
     :active="dragActive"
     icon="mdi-cursor-move"
-    tooltip="Перетягування карток"
+    :tooltip="t('cards.drag')"
     @click="dragActive = !dragActive"
   />
 </template>

@@ -69,6 +69,10 @@ export const i18n = createI18n<[MessageSchema], EditorUiLocale, false>({
   legacy: false,
   locale: initialLocale(),
   fallbackLocale: 'uk',
+  // An untranslated text showing in Ukrainian is the intended behaviour,
+  // not a fault: no console warning for every one of them.
+  missingWarn: false,
+  fallbackWarn: false,
   messages: { uk, en, de },
 })
 

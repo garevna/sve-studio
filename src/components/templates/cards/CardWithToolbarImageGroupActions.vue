@@ -3,6 +3,7 @@
   import ColumnGapMenu from '@/components/editors/ColumnGapMenu.vue'
   import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
   import { cardWithToolbarImageTemplate } from '@/configs/components/cards/card-with-toolbar-image'
+  import { t } from '@/i18n'
   import { snapGroupToReference } from '@/utils/card-with-toolbar-image-format-sync'
 
   // Container-level actions for a "float" block whose children are all
@@ -51,7 +52,7 @@
 </script>
 
 <template>
-  <ToolbarIconButton icon="mdi-plus" tooltip="Додати картку" @click="addCard" />
+  <ToolbarIconButton icon="mdi-plus" :tooltip="t('cards.add')" @click="addCard" />
   <!-- The gap between this group's columns, picked from Vuetify's own 4px
     scale and stored as a gc-N class on the block - see
     utils/column-gap-class.ts. Writing straight into block.class is the same
@@ -61,13 +62,13 @@
   <ToolbarIconButton
     :active="dragActive"
     icon="mdi-cursor-move"
-    tooltip="Перетягування карток"
+    :tooltip="t('cards.drag')"
     @click="dragActive = !dragActive"
   />
   <ToolbarIconButton
     :active="block.uniformCardFormat !== false"
     icon="mdi-content-duplicate"
-    tooltip="Однаковий формат тексту для всіх карток"
+    :tooltip="t('cards.sameTextFormat')"
     @click="toggleUniformFormat"
   />
 </template>

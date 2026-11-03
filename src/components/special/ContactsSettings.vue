@@ -74,7 +74,7 @@
     </div>
 
     <div class="contacts-settings-add">
-      <span>{{ t('contacts.add') }}:</span>
+      <span>{{ t('common.add') }}:</span>
       <v-btn
         v-for="kind of CONTACT_KINDS"
         :key="kind"

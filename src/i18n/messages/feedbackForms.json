@@ -1,9 +1,4 @@
 {
-  "title": {
-    "uk": "Форма зворотного зв’язку",
-    "en": "Feedback form",
-    "de": "Feedback-Formular"
-  },
   "kind": {
     "uk": "Вид форми",
     "en": "Form kind",
@@ -77,5 +72,10 @@
       "en": "Rating",
       "de": "Bewertung"
     }
+  },
+  "edit": {
+    "uk": "Редагувати форму",
+    "en": "Edit Form",
+    "de": "Formular bearbeiten"
   }
 }

@@ -1,5 +1,6 @@
 <script setup lang="ts">
   import PaletteSwatchPicker from '@/components/special/PaletteSwatchPicker.vue'
+  import { t } from '@/i18n'
 
   // The two colours variant 1 of "Популярні напрямки" builds its rows from,
   // offered on the block's own toolbar - the same shape DarkFoneSectionActions
@@ -24,7 +25,7 @@
     @update:model-value="value => emit('update', { rowBorder: value })"
   >
     <template #activator="{ menuProps }">
-      <v-tooltip location="top" text="Колір лінії під рядком" theme="editorTheme">
+      <v-tooltip location="top" :text="t('popularDestinations.rowLine')" theme="editorTheme">
         <template #activator="{ props: tooltipProps }">
           <v-btn v-bind="{ ...tooltipProps, ...menuProps }" icon="mdi-border-bottom-variant" variant="text" />
         </template>
@@ -37,7 +38,7 @@
     @update:model-value="value => emit('update', { rowHover: value })"
   >
     <template #activator="{ menuProps }">
-      <v-tooltip location="top" text="Колір рядка під курсором" theme="editorTheme">
+      <v-tooltip location="top" :text="t('popularDestinations.rowHover')" theme="editorTheme">
         <template #activator="{ props: tooltipProps }">
           <v-btn v-bind="{ ...tooltipProps, ...menuProps }" icon="mdi-format-color-fill" variant="text" />
         </template>

@@ -1,0 +1,22 @@
+{
+  "detail": {
+    "uk": "сторінки особистого кабінету",
+    "en": "personal account pages",
+    "de": "Seiten des persönlichen Bereichs"
+  },
+  "title": {
+    "uk": "Особистий кабінет",
+    "en": "Personal account",
+    "de": "Persönlicher Bereich"
+  },
+  "openInNewWindow": {
+    "uk": "Переглянути в новому вікні",
+    "en": "View in a new window",
+    "de": "In einem neuen Fenster anzeigen"
+  },
+  "pickVariant": {
+    "uk": "Обрати цей варіант",
+    "en": "Select this option",
+    "de": "Diese Option auswählen"
+  }
+}

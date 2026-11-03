@@ -9,6 +9,7 @@
   import TransferStepsActions from '@/components/home-page-components/TransferStepsActions.vue'
   import { useBlockActionsTarget } from '@/composables/useEditableBlockActions'
   import { useEditorMode } from '@/composables/useEditorMode'
+  import { t } from '@/i18n'
   import { useCommonStore } from '@/stores/common'
   import { useUiFeedbackStore } from '@/stores/ui-feedback'
   import { emptyTranslatedModel, resolveLocaleText } from '@/utils/locale-text'
@@ -177,7 +178,7 @@
             Delete lives inside the dialog rather than as a second button
             here: five overlapping circles with two fabs each is a thicket. -->
           <div v-if="mode === 'edit' && !dragActive" class="transfer-steps-edit">
-            <ToolbarIconButton icon="mdi-pencil" tooltip="Редагувати крок" @click="editingIndex = index" />
+            <ToolbarIconButton icon="mdi-pencil" :tooltip="t('transferSteps.edit')" @click="editingIndex = index" />
           </div>
         </div>
       </template>

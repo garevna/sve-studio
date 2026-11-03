@@ -1,9 +1,4 @@
 {
-  "title": {
-    "uk": "Контакти",
-    "en": "Contacts",
-    "de": "Kontakte"
-  },
   "hint": {
     "uk": "Телефони, email, адреса та інші рядки (години роботи, код компанії). Саме звідси вони показуються на сторінках і у футері: змінений тут номер зміниться скрізь.",
     "en": "Phones, email, address and other strings (working hours, company code). These are displayed on pages and in the footer: any changes made here will be reflected everywhere.",
@@ -47,11 +42,6 @@
     "uk": "Текст ({locale})",
     "en": "Text ({locale})",
     "de": "Text ({locale})"
-  },
-  "add": {
-    "uk": "Додати",
-    "en": "Add",
-    "de": "Hinzufügen"
   },
   "remove": {
     "uk": "Прибрати контакт",

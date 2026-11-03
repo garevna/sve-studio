@@ -1,9 +1,4 @@
 {
-  "globalSettings": {
-    "uk": "Загальні налаштування",
-    "en": "General settings",
-    "de": "Allgemeine Einstellungen"
-  },
   "seoSettings": {
     "uk": "SEO-налаштування",
     "en": "SEO settings",
@@ -14,20 +9,10 @@
     "en": "File {name}",
     "de": "Datei {name}"
   },
-  "mainMenu": {
-    "uk": "Головне меню",
-    "en": "Main menu",
-    "de": "Hauptmenü"
-  },
   "page": {
     "uk": "Сторінку",
     "en": "Page",
     "de": "Seite"
-  },
-  "footer": {
-    "uk": "Футер",
-    "en": "Footer",
-    "de": "Fußzeile"
   },
   "palette": {
     "uk": "Палітру",

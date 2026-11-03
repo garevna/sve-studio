@@ -1,0 +1,309 @@
+{
+  "simple": {
+    "uk": "Прості блоки",
+    "en": "Simple blocks",
+    "de": "Einfache Blöcke"
+  },
+  "imageGroup": {
+    "uk": "Зображення",
+    "en": "Images",
+    "de": "Bilder"
+  },
+  "imageUniversal": {
+    "uk": "Універсальне",
+    "en": "Universal",
+    "de": "Universell"
+  },
+  "parallax": {
+    "uk": "У шапці сторінки",
+    "en": "In the page header",
+    "de": "Im Seitenkopf"
+  },
+  "parallaxInside": {
+    "uk": "Всередині сторінки",
+    "en": "Inside the page",
+    "de": "Innerhalb der Seite"
+  },
+  "galery": {
+    "uk": "Галерея зображень",
+    "en": "Image gallery",
+    "de": "Bildergalerie"
+  },
+  "carousel": {
+    "uk": "Карусель",
+    "en": "Carousel",
+    "de": "Karussell"
+  },
+  "carouselWithImages": {
+    "uk": "Зображень",
+    "en": "Images",
+    "de": "Bilder"
+  },
+  "carouselWithCards": {
+    "uk": "Карток",
+    "en": "Cards",
+    "de": "Karten"
+  },
+  "carouselWithPreview": {
+    "uk": "Зображень з ескізами",
+    "en": "Images with Preview",
+    "de": "Bilder mit Vorschau"
+  },
+  "sections": {
+    "uk": "Дві колонки",
+    "en": "Two columns",
+    "de": "Zwei Spalten"
+  },
+  "sectionImageLeft": {
+    "uk": "Зображення ліворуч",
+    "en": "Image on the left",
+    "de": "Bild links"
+  },
+  "sectionImageRight": {
+    "uk": "Зображення праворуч",
+    "en": "Image on the right",
+    "de": "Bild rechts"
+  },
+  "sectionTwoImages": {
+    "uk": "Дві картинки",
+    "en": "Two images",
+    "de": "Zwei Bilder"
+  },
+  "darkFoneSection": {
+    "uk": "З картками",
+    "en": "With cards",
+    "de": "Mit Karten"
+  },
+  "baner": {
+    "uk": "З картинкою і текстом",
+    "en": "With image and text",
+    "de": "Mit Bild und Text"
+  },
+  "cardWithToolbarImage": {
+    "uk": "З зображенням зверху",
+    "en": "With toolbar image",
+    "de": "Mit Toolbar-Bild"
+  },
+  "cardWithIconTop": {
+    "uk": "З іконкою зверху",
+    "en": "With icon on top",
+    "de": "Mit Icon oben"
+  },
+  "cardWithIconLeft": {
+    "uk": "З іконкою ліворуч",
+    "en": "With icon on the left",
+    "de": "Mit Icon links"
+  },
+  "cardWithIconRow": {
+    "uk": "Списком, з іконкою",
+    "en": "With icon in a row",
+    "de": "Mit Icon in einer Reihe"
+  },
+  "cardWithHover": {
+    "uk": "з ховером",
+    "en": "With hover effect",
+    "de": "Mit Hover-Effekt"
+  },
+  "special": {
+    "uk": "Спеціальні блоки",
+    "en": "Special blocks",
+    "de": "Spezialblöcke"
+  },
+  "faq": {
+    "uk": "Часті запитання",
+    "en": "Frequently Asked Questions",
+    "de": "Häufig gestellte Fragen"
+  },
+  "transferServicesSteps": {
+    "uk": "Кроки в кружках",
+    "en": "Transfer Services Steps",
+    "de": "Schritte der Transferdienste in Kreisen"
+  },
+  "about": {
+    "header": {
+      "uk": "Великий заголовок розділу сторінки.",
+      "en": "Large section heading on the page.",
+      "de": "Große Überschrift des Seitenabschnitts."
+    },
+    "title": {
+      "uk": "Менший заголовок під основним.",
+      "en": "Smaller title under the main heading.",
+      "de": "Kleinere Überschrift unter der Hauptüberschrift."
+    },
+    "text": {
+      "uk": "Абзац тексту з форматуванням.",
+      "en": "Paragraph of text with formatting.",
+      "de": "Absatz mit Formatierung."
+    },
+    "textWithIcon": {
+      "uk": "Короткий текст з іконкою поруч.",
+      "en": "Short text with an icon next to it.",
+      "de": "Kurzer Text mit einem Icon daneben."
+    },
+    "button": {
+      "uk": "Кнопка: веде на сторінку чи її розділ або відкриває форму зворотного зв’язку.",
+      "en": "Button: leads to a page or its section or opens a feedback form.",
+      "de": "Schaltfläche: führt zu einer Seite oder ihrem Abschnitt oder öffnet ein Feedback-Formular."
+    },
+    "imageUniversal": {
+      "uk": "Одне зображення для всіх екранів.",
+      "en": "Single image for all screens.",
+      "de": "Einzelnes Bild für alle Bildschirme."
+    },
+    "imageDesktopMobile": {
+      "uk": "Окремі зображення для комп’ютера й для телефона.",
+      "en": "Separate images for desktop and mobile.",
+      "de": "Trennungsbilder für Desktop und Mobile."
+    },
+    "parallax": {
+      "uk": "Велике фото вгорі сторінки, заголовок поверх нього.",
+      "en": "Large photo at the top of the page, heading on top of it.",
+      "de": "Großes Foto am Anfang der Seite, Überschrift darüber."
+    },
+    "parallaxInside": {
+      "uk": "Фото з ефектом глибини посеред сторінки, текст поверх.",
+      "en": "Photo with depth effect in the middle of the page, text on top.",
+      "de": "Foto mit Tiefeneffekt in der Mitte der Seite, Text darüber."
+    },
+    "galery1": {
+      "uk": "Сітка фото із заголовком і текстом.",
+      "en": "Grid of photos with a heading and text.",
+      "de": "Gitter aus Fotos mit einer Überschrift und Text."
+    },
+    "galery2": {
+      "uk": "Фото різного розміру з текстом поруч.",
+      "en": "Photos of different sizes with text next to them.",
+      "de": "Fotos unterschiedlicher Größe mit Text daneben."
+    },
+    "carouselWithImages": {
+      "uk": "Фото, що гортаються одне за одним.",
+      "en": "Photos that rotate one after another.",
+      "de": "Fotos, die sich nacheinander drehen."
+    },
+    "carouselWithCards": {
+      "uk": "Картки, що гортаються стрічкою.",
+      "en": "Cards that rotate in a carousel.",
+      "de": "Karten, die in einer Karussell-Anordnung rotieren."
+    },
+    "carouselWithPreview": {
+      "uk": "Велике фото і стрічка ескізів під ним.",
+      "en": "Large photo and a row of previews below it.",
+      "de": "Großes Foto und eine Reihe von Vorschauen darunter."
+    },
+    "sectionImageLeft": {
+      "uk": "Фото ліворуч, текст праворуч.",
+      "en": "Image on the left, text on the right.",
+      "de": "Bild links, Text rechts."
+    },
+    "sectionImageRight": {
+      "uk": "Текст ліворуч, фото праворуч.",
+      "en": "Text on the left, image on the right.",
+      "de": "Text links, Bild rechts."
+    },
+    "sectionTwoImages": {
+      "uk": "Два фото поруч.",
+      "en": "Two images side by side.",
+      "de": "Zwei Bilder nebeneinander."
+    },
+    "sectionsWithFreeContent": {
+      "uk": "Дві колонки, у кожну - що завгодно: текст, фото, картки, кнопки, карусель.",
+      "en": "Two columns with free content: text, images, cards, buttons, carousel.",
+      "de": "Zwei Spalten mit freiem Inhalt: Text, Bilder, Karten, Schaltflächen, Karussell."
+    },
+    "darkFoneSection": {
+      "uk": "Темне тло із заголовком і картками.",
+      "en": "Dark section with a heading and cards.",
+      "de": "Dunkler Abschnitt mit einer Überschrift und Karten."
+    },
+    "baner": {
+      "uk": "Широкий банер: фото і текст на кольоровому тлі.",
+      "en": "Wide banner: photo and text on a colored background.",
+      "de": "Breiter Banner: Foto und Text auf einem farbigen Hintergrund."
+    },
+    "cardWithToolbarImage": {
+      "uk": "Картки з фото зверху і текстом під ним.",
+      "en": "Cards with an image at the top and text below.",
+      "de": "Karten mit einem Bild oben und Text darunter."
+    },
+    "cardWithIconTop": {
+      "uk": "Картки з іконкою над назвою.",
+      "en": "Cards with an icon above the title.",
+      "de": "Karten mit einem Icon über dem Titel."
+    },
+    "cardWithIconRow": {
+      "uk": "Картки списком: іконка ліворуч, текст поруч, на заливці.",
+      "en": "Cards in a row: icon on the left, text next to it, on a background.",
+      "de": "Karten in einer Reihe: Icon links, Text daneben, auf einem Hintergrund."
+    },
+    "faq": {
+      "uk": "Питання, що розгортаються у відповіді.",
+      "en": "Questions that expand to show answers.",
+      "de": "Fragen, die sich erweitern, um Antworten anzuzeigen."
+    },
+    "popularDestinations": {
+      "uk": "Популярні маршрути списком.",
+      "en": "Popular destinations in a list.",
+      "de": "Beliebte Reiseziele in einer Liste."
+    },
+    "transferServicesSteps": {
+      "uk": "Кроки процесу в кружечках, один за одним.",
+      "en": "Steps of the transfer service process in circles, one after another.",
+      "de": "Schritte des Transfer-Service-Prozesses in Kreisen, einer nach dem anderen."
+    },
+    "feedbackForm": {
+      "uk": "Форма, де відвідувач лишає ім’я, телефон і повідомлення. На неї може вести кнопка.",
+      "en": "Form where visitors can leave their name, phone number, and message. Can be linked to by a button.",
+      "de": "Formular, in dem Besucher ihren Namen, ihre Telefonnummer und ihre Nachricht hinterlassen können. Kann über eine Schaltfläche verknüpft werden."
+    }
+  },
+  "all": {
+    "uk": "Усі",
+    "en": "All",
+    "de": "Alle"
+  },
+  "inDevelopment": {
+    "uk": "Ще в розробці",
+    "en": "In Development",
+    "de": "In Entwicklung"
+  },
+  "alreadyOnPage": {
+    "uk": "Вже є на сторінці",
+    "en": "Already on Page",
+    "de": "Bereits auf der Seite"
+  },
+  "atPageEnd": {
+    "uk": "У кінець сторінки",
+    "en": "At Page End",
+    "de": "Am Ende der Seite"
+  },
+  "before": {
+    "uk": "Перед «{label}»",
+    "en": "Before «{label}»",
+    "de": "Vor «{label}»"
+  },
+  "addBlock": {
+    "uk": "Додати блок",
+    "en": "Add Block",
+    "de": "Block hinzufügen"
+  },
+  "search": {
+    "uk": "Пошук: картки, галерея, текст…",
+    "en": "Search: cards, gallery, text…",
+    "de": "Suche: Karten, Galerie, Text…"
+  },
+  "viewPreviews": {
+    "uk": "Превʼю",
+    "en": "Previews",
+    "de": "Vorschauen"
+  },
+  "addItem": {
+    "uk": "Додати: {group} · {title}",
+    "en": "Add: {group} · {title}",
+    "de": "Hinzufügen: {group} · {title}"
+  },
+  "nothingFound": {
+    "uk": "Нічого не знайдено",
+    "en": "Nothing found",
+    "de": "Nichts gefunden"
+  }
+}

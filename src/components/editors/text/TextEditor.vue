@@ -222,7 +222,7 @@
           uses v-menu's own native open state. -->
         <v-menu v-else-if="panelAvailable && props.vertical" :close-on-content-click="false" location="bottom end">
           <template #activator="{ props: menuProps }">
-            <ToolbarIconButton v-bind="menuProps" :icon="props.panelIcon || 'mdi-tune'" :tooltip="props.panelTooltip || 'Налаштування'" />
+            <ToolbarIconButton v-bind="menuProps" :icon="props.panelIcon || 'mdi-tune'" :tooltip="props.panelTooltip || t('common.settings')" />
           </template>
           <div :class="['text-format-panel', 'text-format-panel--vertical', 'editor-panel', themeClass(EDITOR_THEME_NAME)]">
             <v-theme-provider theme="editorTheme">
@@ -247,13 +247,13 @@
         <ToolbarIconButton
           v-else-if="panelAvailable"
           :icon="props.panelIcon || 'mdi-tune'"
-          :tooltip="props.panelTooltip || 'Налаштування'"
+          :tooltip="props.panelTooltip || t('common.settings')"
           @click="togglePanel"
         />
         <ToolbarIconButton
           v-else-if="props.deletable"
           icon="mdi-delete-outline"
-          tooltip="Видалити"
+          :tooltip="t('common.delete')"
           @click="emit('delete')"
         />
       </template>

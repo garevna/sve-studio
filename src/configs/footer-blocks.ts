@@ -1,4 +1,5 @@
 import type { TemplateBlockModel } from '@/types/TemplateBlockModel'
+import { t } from '@/i18n'
 
 // The footer's list of links to pages and in-page anchors, as a block type
 // of its own.
@@ -60,10 +61,18 @@ export const VISA_LOGO_NATURAL_WIDTH = 160
 export const VISA_LOGO_NATURAL_HEIGHT = 41
 
 export const VISA_LOGO_SIZES: { label: string, width: number }[] = [
-  { label: 'Маленький', width: 120 },
-  { label: 'Середній', width: 160 },
-  { label: 'Великий', width: 200 },
-  { label: 'Дуже великий', width: 240 },
+  { get label () {
+    return t('footer.size.small')
+  }, width: 120 },
+  { get label () {
+    return t('footer.size.medium')
+  }, width: 160 },
+  { get label () {
+    return t('footer.size.large')
+  }, width: 200 },
+  { get label () {
+    return t('footer.size.xlarge')
+  }, width: 240 },
 ]
 
 export function visaLogoHeight (width: number): number {

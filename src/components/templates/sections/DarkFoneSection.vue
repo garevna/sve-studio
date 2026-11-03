@@ -5,6 +5,7 @@
   import TextEditor from '@/components/editors/text/TextEditor.vue'
   import { useEditorMode } from '@/composables/useEditorMode'
   import { useSortableList } from '@/composables/useSortableList'
+  import { t } from '@/i18n'
   import { useCommonStore } from '@/stores/common'
   import { useUiFeedbackStore } from '@/stores/ui-feedback'
   import { emptyTranslatedModel, isTranslatedModel, resolveLocaleText } from '@/utils/locale-text'
@@ -93,7 +94,7 @@
             density="comfortable"
             icon="mdi-delete"
             size="small"
-            title="Видалити картку"
+            :title="t('cards.delete')"
             variant="flat"
             @click="removeCard(index)"
           />

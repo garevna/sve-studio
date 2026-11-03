@@ -4,6 +4,7 @@
   import TextEditor from '@/components/editors/text/TextEditor.vue'
   import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
   import LinkTargetSettings from '@/components/special/LinkTargetSettings.vue'
+  import { t } from '@/i18n'
   import { useCommonStore } from '@/stores/common'
   import { resolveLocaleText, setLocalizedContent } from '@/utils/locale-text'
 
@@ -69,10 +70,10 @@
   // the panel is opened.
   const summary = computed(() => {
     if (props.block.route !== 'dynamic-page') {
-      return props.block.route ? `Маршрут: ${props.block.route}` : 'Посилання не налаштоване'
+      return props.block.route ? t('menuSettings.route', { route: props.block.route }) : t('menuSettings.noLink')
     }
     const pageId = (props.block.params as { pageId?: string } | undefined)?.pageId
-    return props.block.hash ? `Сторінка «${pageId}», блок ${props.block.hash}` : `Сторінка «${pageId}»`
+    return props.block.hash ? t('menuSettings.pageBlock', { pageId, hash: props.block.hash }) : t('menuSettings.page', { pageId })
   })
 
   function setPanelOpen (value: boolean) {
@@ -92,7 +93,7 @@
       :formattable="formattable"
       panel-icon="mdi-link-edit"
       :panel-open="isPanelOpen"
-      panel-tooltip="Налаштування переходу"
+      :panel-tooltip="t('linkTarget.settings')"
       parent-type="usual"
       type="text"
       @update:panel-open="setPanelOpen($event ?? false)"
@@ -102,7 +103,7 @@
           <div v-if="deletable" class="d-flex justify-end">
             <ToolbarIconButton
               icon="mdi-delete"
-              :tooltip="deleteTooltip || 'Видалити цей пункт'"
+              :tooltip="deleteTooltip || t('linkTarget.deleteItem')"
               @click="emit('delete')"
             />
           </div>

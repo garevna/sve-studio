@@ -160,12 +160,12 @@
 <template>
   <v-app>
     <v-main class="editor-page">
-      <EditorPageHeader back-to="/" detail="palette.json" :title="t('palette.title')" />
+      <EditorPageHeader back-to="/" detail="palette.json" :title="t('common.palette')" />
 
       <v-progress-linear v-if="loading" color="primary" indeterminate />
 
       <template v-else>
-        <h2 class="text-h6 mb-3">{{ t('palette.colors') }}</h2>
+        <h2 class="text-h6 mb-3">{{ t('common.colours') }}</h2>
         <div class="color-grid mb-8">
           <PaletteColorPicker v-for="entry in colorEntries" :key="entry.key" v-model="entry.color">
             {{ entry.key }}
@@ -243,7 +243,7 @@
           </div>
         </div>
 
-        <h2 class="text-h6 mb-3">{{ t('palette.gradients') }}</h2>
+        <h2 class="text-h6 mb-3">{{ t('common.gradients') }}</h2>
         <p class="palette-hint">{{ t('palette.gradientsHint') }}</p>
         <div class="gradient-list mb-4">
           <div v-for="entry in gradientEntries" :key="entry.key" class="gradient-card">

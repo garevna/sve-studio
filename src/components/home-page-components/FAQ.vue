@@ -6,6 +6,7 @@
   import { useBlockActionsTarget } from '@/composables/useEditableBlockActions'
   import { useEditorMode } from '@/composables/useEditorMode'
   import { useSortableList } from '@/composables/useSortableList'
+  import { t } from '@/i18n'
   import { useCommonStore } from '@/stores/common'
   import { useUiFeedbackStore } from '@/stores/ui-feedback'
   import { resolveIconPair } from '@/utils/faq-expand-icons'
@@ -247,7 +248,7 @@
             doing that - naming the two icons here makes the accordion's
             open/closed glyphs explicit and greppable). -->
           <template v-if="!dragActive" #actions="{ expanded, expandIcon: openIcon, collapseIcon: closeIcon }">
-            <v-tooltip location="top" text="Редагувати це питання" theme="editorTheme">
+            <v-tooltip location="top" :text="t('faq.edit')" theme="editorTheme">
               <template #activator="{ props: tooltipProps }">
                 <v-icon
                   v-bind="tooltipProps"

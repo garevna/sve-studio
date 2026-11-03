@@ -1,9 +1,10 @@
 <script setup lang="ts">
   import type { TemplateBlockModel } from '@/types/TemplateBlockModel'
   import { computed } from 'vue'
-  import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
-  import EditableCard from './EditableCard.vue'
   import LocaleSwitcher from '@/components/editors/small/LocaleSwitcher.vue'
+  import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
+  import { t } from '@/i18n'
+  import EditableCard from './EditableCard.vue'
 
   // Shared card-edit dialog - every card (top-level "cards" blocks and
   // carousel cards alike) opens this same dialog via a pencil fab instead of
@@ -16,7 +17,7 @@
 
   const comment = computed<string>(() => {
     return props.blockTarget
-      ? 'Розмір, колір та підложка іконки застосовуються до всіх карток блоку'
+      ? t('cards.iconAppliesToAll')
       : ''
   })
 
@@ -39,9 +40,9 @@
         else. The toolbar carries what belongs to the whole dialog - here
         the note that icon styling is shared by every card in the block. -->
       <v-toolbar class="editor-panel" color="transparent" density="compact">
-        <v-toolbar-title class="card-edit-dialog-title">Картка</v-toolbar-title>
+        <v-toolbar-title class="card-edit-dialog-title">{{ t('common.card') }}</v-toolbar-title>
         <v-spacer />
-        <ToolbarIconButton icon="mdi-close" tooltip="Закрити" @click="emit('close')" />
+        <ToolbarIconButton icon="mdi-close" :tooltip="t('common.close')" @click="emit('close')" />
       </v-toolbar>
 
       <p v-if="comment" class="card-toolbar-comment px-4 pt-2">
@@ -59,7 +60,7 @@
       <v-card-actions>
         <LocaleSwitcher :scope="card" />
         <v-spacer />
-        <v-btn color="primary" variant="elevated" @click="emit('close')">ОК</v-btn>
+        <v-btn color="primary" variant="elevated" @click="emit('close')">{{ t('common.ok') }}</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>

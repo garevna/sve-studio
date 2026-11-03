@@ -1,0 +1,52 @@
+{
+  "fontSize": {
+    "uk": "Розмір шрифту",
+    "en": "Font Size",
+    "de": "Schriftgröße"
+  },
+  "align": {
+    "uk": "Вирівнювання тексту",
+    "en": "Text Alignment",
+    "de": "Textausrichtung"
+  },
+  "color": {
+    "uk": "Колір тексту",
+    "en": "Text Color",
+    "de": "Textfarbe"
+  },
+  "weight": {
+    "uk": "Товщина шрифту",
+    "en": "Font Weight",
+    "de": "Schriftstärke"
+  },
+  "weightLight": {
+    "uk": "Тонкий",
+    "en": "Light",
+    "de": "Light"
+  },
+  "weightRegular": {
+    "uk": "Звичайний",
+    "en": "Regular",
+    "de": "Regular"
+  },
+  "weightBold": {
+    "uk": "Жирний",
+    "en": "Bold",
+    "de": "Bold"
+  },
+  "alignLeft": {
+    "uk": "Ліворуч",
+    "en": "Align Left",
+    "de": "Linksbündig"
+  },
+  "alignCenter": {
+    "uk": "По центру",
+    "en": "Align Center",
+    "de": "Zentriert"
+  },
+  "alignRight": {
+    "uk": "Праворуч",
+    "en": "Align Right",
+    "de": "Rechtsbündig"
+  }
+}

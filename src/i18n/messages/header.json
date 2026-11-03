@@ -1,9 +1,4 @@
 {
-  "title": {
-    "uk": "Верхня частина сторінки",
-    "en": "Top of the page",
-    "de": "Obere Seite"
-  },
   "intro": {
     "uk": "Макет верхньої частини сторінок, для яких її увімкнено в налаштуваннях сторінки. Назва компанії, логотип і банер беруться із загальних налаштувань, кольори й шрифти — з UI Kit.",
     "en": "Layout for the top of the page, enabled in the page settings. Company name, logo and banner are taken from the general settings, colors and fonts — from the UI Kit.",
@@ -46,11 +41,6 @@
         "de": "Das Menü oben, mit dem Firmennamen und einer Beschriftung neben dem Banner, in einer Farbe aus der Palette."
       }
     }
-  },
-  "companyName": {
-    "uk": "Назва компанії",
-    "en": "Company Name",
-    "de": "Firmenname"
   },
   "corners": {
     "top-left": {
@@ -115,11 +105,6 @@
     "uk": "Превʼю головної сторінки",
     "en": "Preview Home Page",
     "de": "Vorschau Startseite"
-  },
-  "desktop": {
-    "uk": "Десктоп",
-    "en": "Desktop",
-    "de": "Desktop"
   },
   "phone": {
     "uk": "Телефон",

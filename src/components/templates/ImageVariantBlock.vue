@@ -1,6 +1,7 @@
 <script setup lang="ts">
   import type { TemplateBlockModel } from '@/types/TemplateBlockModel'
   import { computed, ref } from 'vue'
+  import { t } from '@/i18n'
   import TemplateItem from './TemplateItem.vue'
 
   // Renders a desktop/mobile image pair (see image-variant.ts) as one unit
@@ -31,8 +32,8 @@
       divided
       mandatory
     >
-      <v-btn value="desktop">Десктоп</v-btn>
-      <v-btn value="mobile">Мобільна</v-btn>
+      <v-btn value="desktop">{{ t('common.desktop') }}</v-btn>
+      <v-btn value="mobile">{{ t('images.mobile') }}</v-btn>
     </v-btn-toggle>
     <!-- Force a clean remount on tab switch (:key) - desktop and mobile are
       genuinely different underlying blocks, not the same one with a new

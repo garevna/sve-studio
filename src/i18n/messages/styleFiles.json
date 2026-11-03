@@ -1,0 +1,132 @@
+{
+  "listDetail": {
+    "uk": "Файли CSS, які використовує сайт",
+    "en": "CSS files used by the site",
+    "de": "CSS-Dateien, die von der Website verwendet werden"
+  },
+  "groupSite": {
+    "uk": "Стилі сайту",
+    "en": "Site Styles",
+    "de": "Website-Stile"
+  },
+  "groupVuetify": {
+    "uk": "Компоненти Vuetify",
+    "en": "Vuetify Components",
+    "de": "Vuetify-Komponenten"
+  },
+  "loadFailed": {
+    "uk": "Не вдалося завантажити файл.",
+    "en": "Failed to load file.",
+    "de": "Datei konnte nicht geladen werden."
+  },
+  "alertBlocksCss": {
+    "uk": "Блоки-сповіщення",
+    "en": "Alert Blocks",
+    "de": "Warnblöcke"
+  },
+  "cardsCss": {
+    "uk": "Картки (UI Kit)",
+    "en": "Cards",
+    "de": "Karten"
+  },
+  "commonCss": {
+    "uk": "Загальні стилі",
+    "en": "Common Styles",
+    "de": "Allgemeine Stile"
+  },
+  "faqCss": {
+    "uk": "Питання та відповіді (FAQ)",
+    "en": "FAQ",
+    "de": "Häufig gestellte Fragen"
+  },
+  "homeCss": {
+    "uk": "Головна сторінка",
+    "en": "Home",
+    "de": "Startseite"
+  },
+  "inputsCss": {
+    "uk": "Поля вводу",
+    "en": "Inputs",
+    "de": "Eingabefelder"
+  },
+  "localeAndCurrencySwitcherCss": {
+    "uk": "Перемикач мови та валюти",
+    "en": "Locale and Currency Switcher",
+    "de": "Gebiet und Währung Wechsel"
+  },
+  "mainCss": {
+    "uk": "Основні стилі",
+    "en": "Main Styles",
+    "de": "Hauptstile"
+  },
+  "parallaxCss": {
+    "uk": "Паралакс-секції",
+    "en": "Parallax Sections",
+    "de": "Parallax-Sektionen"
+  },
+  "popupsCss": {
+    "uk": "Спливаючі вікна",
+    "en": "Popups",
+    "de": "Popups"
+  },
+  "rootCss": {
+    "uk": "Кольори та змінні",
+    "en": "Root Variables",
+    "de": "Wurzelvariablen"
+  },
+  "searchForTripCss": {
+    "uk": "Пошук поїздки",
+    "en": "Search for Trip",
+    "de": "Reise suchen"
+  },
+  "typographicsCss": {
+    "uk": "Типографіка",
+    "en": "Typographics",
+    "de": "Typografie"
+  },
+  "userDashboardCss": {
+    "uk": "Особистий кабінет",
+    "en": "User Dashboard",
+    "de": "Benutzer-Dashboard"
+  },
+  "vuetifyButtonsCss": {
+    "uk": "Кнопки (Vuetify)",
+    "en": "Buttons (Vuetify)",
+    "de": "Schaltflächen (Vuetify)"
+  },
+  "vuetifyCardCss": {
+    "uk": "Картки (Vuetify)",
+    "en": "Cards (Vuetify)",
+    "de": "Karten (Vuetify)"
+  },
+  "vuetifyComponentsCss": {
+    "uk": "Компоненти (Vuetify)",
+    "en": "Components (Vuetify)",
+    "de": "Komponenten (Vuetify)"
+  },
+  "vuetifyExpansionPanelCss": {
+    "uk": "Розгортні панелі (Vuetify)",
+    "en": "Expansion Panels (Vuetify)",
+    "de": "Ausklappbare Panels (Vuetify)"
+  },
+  "vuetifyOverlayContentCss": {
+    "uk": "Спливаючий контент (Vuetify)",
+    "en": "Overlay Content (Vuetify)",
+    "de": "Overlay-Inhalt (Vuetify)"
+  },
+  "vuetifySlideGroupCss": {
+    "uk": "Групи слайдів (Vuetify)",
+    "en": "Slide Groups (Vuetify)",
+    "de": "Slide-Gruppen"
+  },
+  "vuetifyTablesCss": {
+    "uk": "Таблиці (Vuetify)",
+    "en": "Tables (Vuetify)",
+    "de": "Tabellen (Vuetify)"
+  },
+  "vuetifyTextFieldCss": {
+    "uk": "Текстові поля (Vuetify)",
+    "en": "Text Fields (Vuetify)",
+    "de": "Textfelder (Vuetify)"
+  }
+}

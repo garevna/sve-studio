@@ -1,0 +1,37 @@
+{
+  "anchor": {
+    "uk": "Перехід всередині сторінки",
+    "en": "Intra-page navigation",
+    "de": "Intra-Seiten-Navigation"
+  },
+  "top": {
+    "uk": "На початок сторінки",
+    "en": "To Top of Page",
+    "de": "Zum Anfang der Seite"
+  },
+  "footer": {
+    "uk": "У футер сторінки",
+    "en": "To Footer",
+    "de": "Zum Footer"
+  },
+  "hint": {
+    "uk": "Блок без власної назви показано за його типом. Назвати блок можна на ньому самому — кнопкою «Назвати блок для переходів» на його панелі налаштувань.",
+    "en": "A block without a custom name is displayed by its type. You can name a block on the block itself — using the «Name Block for Navigation» button on its settings panel.",
+    "de": "Ein Block ohne benutzerdefinierten Namen wird nach seinem Typ angezeigt. Sie können einen Block benennen, indem Sie auf dem Block selbst die Schaltfläche „Block für Navigation benennen“ auf seiner Einstellungsleiste verwenden."
+  },
+  "noBlocks": {
+    "uk": "На цій сторінці ще немає блоків.",
+    "en": "There are no blocks on this page.",
+    "de": "Es gibt keine Blöcke auf dieser Seite."
+  },
+  "deleteItem": {
+    "uk": "Видалити цей пункт",
+    "en": "Delete this item",
+    "de": "Diesen Artikel löschen"
+  },
+  "settings": {
+    "uk": "Налаштування переходу",
+    "en": "Navigation Settings",
+    "de": "Navigations-Einstellungen"
+  }
+}

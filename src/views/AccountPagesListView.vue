@@ -2,6 +2,7 @@
   import { onMounted, ref } from 'vue'
   import { useRouter } from 'vue-router'
   import EditorPageHeader from '@/components/special/EditorPageHeader.vue'
+  import { t } from '@/i18n'
   import { useAjaxStore } from '@/stores/ajax'
 
   interface AccountPageVariant {
@@ -24,7 +25,9 @@
   // router entry used only to resolve the preview href below.
   const pages: AccountPage[] = [
     {
-      title: 'Сторінка авторизації',
+      get title () {
+        return t('buttonPalette.authPage')
+      },
       routeName: 'auth',
       icon: 'mdi-login-variant',
       variants: [
@@ -72,7 +75,7 @@
 <template>
   <v-app>
     <v-main class="editor-page">
-      <EditorPageHeader back-to="/" detail="сторінки особистого кабінету" title="Особистий кабінет" />
+      <EditorPageHeader back-to="/" :detail="t('accountPages.detail')" :title="t('accountPages.title')" />
 
       <v-progress-linear v-if="loading" color="primary" indeterminate />
 
@@ -93,19 +96,19 @@
               class="wizard-variant-block pa-4"
               :class="{ 'wizard-variant-block--selected': isSelected(page.routeName, variant.number) }"
             >
-              <p class="wizard-variant-title mb-4">Варіант {{ variant.number }}</p>
+              <p class="wizard-variant-title mb-4">{{ t('block.variantN', { number: variant.number }) }}</p>
               <div class="d-flex ga-4">
                 <v-btn
                   :href="variantHref(variant.routeName)"
                   icon="mdi-open-in-new"
                   target="_blank"
-                  title="Переглянути в новому вікні"
+                  :title="t('accountPages.openInNewWindow')"
                   variant="text"
                 />
                 <v-btn
                   :icon="isSelected(page.routeName, variant.number) ? 'mdi-check-bold' : 'mdi-checkbox-blank-off-outline'"
                   :loading="savingRouteName === page.routeName"
-                  title="Обрати цей варіант"
+                  :title="t('accountPages.pickVariant')"
                   variant="text"
                   @click="selectVariant(page.routeName, variant.number)"
                 />

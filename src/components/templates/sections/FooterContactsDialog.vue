@@ -124,11 +124,11 @@
 
 <template>
   <v-dialog max-width="640" :model-value="modelValue" @update:model-value="emit('update:modelValue', $event)">
-    <v-card theme="editorTheme" title="Контакти">
+    <v-card theme="editorTheme" :title="t('common.contacts')">
       <v-card-text>
         <div class="d-flex flex-wrap align-center ga-2 mb-4">
           <v-btn prepend-icon="mdi-plus" size="small" variant="outlined" @click="addItem">
-            Додати пункт
+            {{ t('cards.addItem') }}
           </v-btn>
           <ContactLineMenu @insert="addContact">
             <template #activator="{ props: contactProps }">
@@ -140,13 +140,13 @@
           <ToolbarIconButton
             :active="dragActive"
             icon="mdi-cursor-move"
-            tooltip="Переміщення"
+            :tooltip="t('common.move')"
             @click="dragActive = !dragActive"
           />
           <v-spacer />
-          <span class="text-body-2">Колір тексту всіх пунктів</span>
+          <span class="text-body-2">{{ t('footer.contacts.textColor') }}</span>
           <PaletteSwatchPicker :model-value="sharedColor" no-transparent @update:model-value="setColorForAll" />
-          <ToolbarIconButton color="error" icon="mdi-delete" tooltip="Видалити блок контактів" @click="deleteConfirmOpen = true" />
+          <ToolbarIconButton color="error" icon="mdi-delete" :tooltip="t('footer.contacts.delete')" @click="deleteConfirmOpen = true" />
         </div>
 
         <div ref="container">
@@ -177,24 +177,24 @@
               icon="mdi-close"
               size="small"
               :style="{ visibility: item.icon ? 'visible' : 'hidden' }"
-              tooltip="Прибрати іконку"
+              :tooltip="t('footer.contacts.removeIcon')"
               @click="clearIcon(item)"
             />
-            <ToolbarIconButton v-if="!dragActive" icon="mdi-delete" tooltip="Видалити" @click="removeItem(index)" />
+            <ToolbarIconButton v-if="!dragActive" icon="mdi-delete" :tooltip="t('common.delete')" @click="removeItem(index)" />
           </div>
         </div>
       </v-card-text>
       <v-card-actions>
         <LocaleSwitcher :scope="section" />
         <v-spacer />
-        <v-btn color="primary" variant="elevated" @click="emit('update:modelValue', false)">ОК</v-btn>
+        <v-btn color="primary" variant="elevated" @click="emit('update:modelValue', false)">{{ t('common.ok') }}</v-btn>
       </v-card-actions>
     </v-card>
 
     <ConfirmDialog
       v-model="deleteConfirmOpen"
-      text="Усі пункти контактів буде видалено. Цю дію не можна скасувати."
-      title="Видалити блок контактів?"
+      :text="t('footer.contacts.deleteText')"
+      :title="t('footer.contacts.deleteTitle')"
       @confirm="confirmDeleteSection"
     />
   </v-dialog>

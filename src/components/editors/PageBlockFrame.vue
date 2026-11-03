@@ -5,6 +5,7 @@
   import { computed, onBeforeUnmount, ref, watch } from 'vue'
   import { provideEditorMode } from '@/composables/useEditorMode'
   import { usePageBlocks } from '@/composables/usePageBlocks'
+  import { t } from '@/i18n'
   import { useCommonStore } from '@/stores/common'
 
   // One top-level block of the page being edited.
@@ -60,16 +61,16 @@
     <div :class="['sve-ui sve-block__settings', { 'sve-block__settings--open': menuOpen }]">
       <SveMenu v-model="menuOpen">
         <template #activator="{ props: activator }">
-          <SveIconButton icon="mdi-cog-outline" label="Налаштування блоку" variant="soft" v-bind="activator" />
+          <SveIconButton icon="mdi-cog-outline" :label="t('block.settings')" variant="soft" v-bind="activator" />
         </template>
-        <SveMenuItem v-if="active" icon="mdi-check" @click="pageBlocks.finishEditing()">Завершити редагування</SveMenuItem>
-        <SveMenuItem v-else icon="mdi-pencil-outline" @click="pageBlocks.edit(block)">Редагувати</SveMenuItem>
-        <SveMenuItem :disabled="!pageBlocks.canMove(block, -1)" icon="mdi-arrow-up" @click="pageBlocks.move(block, -1)">Вище</SveMenuItem>
-        <SveMenuItem :disabled="!pageBlocks.canMove(block, 1)" icon="mdi-arrow-down" @click="pageBlocks.move(block, 1)">Нижче</SveMenuItem>
-        <SveMenuItem icon="mdi-eye-off-outline" @click="pageBlocks.hide(block)">Приховати</SveMenuItem>
+        <SveMenuItem v-if="active" icon="mdi-check" @click="pageBlocks.finishEditing()">{{ t('block.finishEditing') }}</SveMenuItem>
+        <SveMenuItem v-else icon="mdi-pencil-outline" @click="pageBlocks.edit(block)">{{ t('block.editShort') }}</SveMenuItem>
+        <SveMenuItem :disabled="!pageBlocks.canMove(block, -1)" icon="mdi-arrow-up" @click="pageBlocks.move(block, -1)">{{ t('block.up') }}</SveMenuItem>
+        <SveMenuItem :disabled="!pageBlocks.canMove(block, 1)" icon="mdi-arrow-down" @click="pageBlocks.move(block, 1)">{{ t('block.down') }}</SveMenuItem>
+        <SveMenuItem icon="mdi-eye-off-outline" @click="pageBlocks.hide(block)">{{ t('block.hide') }}</SveMenuItem>
         <template v-if="deletable">
           <SveMenuDivider />
-          <SveMenuItem danger icon="mdi-delete-outline" @click="emit('delete')">Видалити</SveMenuItem>
+          <SveMenuItem danger icon="mdi-delete-outline" @click="emit('delete')">{{ t('common.delete') }}</SveMenuItem>
         </template>
       </SveMenu>
     </div>
@@ -78,9 +79,9 @@
     </div>
     <div v-if="empty && !active" class="sve-ui sve-block__empty">
       <i class="sve-icon mdi mdi-pencil-outline" />
-      <span>Порожній блок — натисніть, щоб наповнити</span>
+      <span>{{ t('block.empty') }}</span>
     </div>
-    <div v-if="!active" class="sve-block__shield" title="Редагувати блок" @click="pageBlocks.edit(block)" />
+    <div v-if="!active" class="sve-block__shield" :title="t('block.edit')" @click="pageBlocks.edit(block)" />
   </div>
   <slot v-else :mode="mode" />
 </template>

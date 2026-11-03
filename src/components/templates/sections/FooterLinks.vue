@@ -5,6 +5,7 @@
   import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
   import { useEditorMode } from '@/composables/useEditorMode'
   import { useSortableList } from '@/composables/useSortableList'
+  import { t } from '@/i18n'
   import { useCommonStore } from '@/stores/common'
   import { resolveLocaleText } from '@/utils/locale-text'
   import { stableKey } from '@/utils/stable-key'
@@ -67,7 +68,7 @@
       />
     </template>
     <template #delete>
-      <ToolbarIconButton icon="mdi-delete" tooltip="Видалити блок" @click="emit('delete')" />
+      <ToolbarIconButton icon="mdi-delete" :tooltip="t('common.deleteBlock')" @click="emit('delete')" />
     </template>
 
     <!-- One list, drawn the same way in every mode. The only difference edit

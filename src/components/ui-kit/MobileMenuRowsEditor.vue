@@ -111,7 +111,7 @@
 
             <template v-if="row.type === 'locales'">
               <div class="mobile-rows-field">
-                <span>{{ t('menuStyle.localeLook') }}</span>
+                <span>{{ t('common.look') }}</span>
                 <v-btn-toggle
                   density="compact"
                   mandatory
@@ -119,8 +119,8 @@
                   variant="outlined"
                   @update:model-value="(value: 'chips' | 'dropdown') => row.localeLook = value"
                 >
-                  <v-btn value="chips">{{ t('menuStyle.localeChips') }}</v-btn>
-                  <v-btn value="dropdown">{{ t('menuStyle.localeDropdown') }}</v-btn>
+                  <v-btn value="chips">{{ t('common.buttons') }}</v-btn>
+                  <v-btn value="dropdown">{{ t('common.list') }}</v-btn>
                 </v-btn-toggle>
               </div>
               <v-switch
@@ -180,7 +180,7 @@
             </template>
 
             <div v-if="row.type === 'divider'" class="mobile-rows-field">
-              <span>{{ t('menuStyle.dividerColor') }}</span>
+              <span>{{ t('common.lineColour') }}</span>
               <PaletteSwatchPicker :model-value="row.color || 'light-grey-1'" no-transparent @update:model-value="(value: string) => row.color = value" />
             </div>
           </div>

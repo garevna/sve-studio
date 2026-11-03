@@ -1,0 +1,82 @@
+{
+  "ownName": {
+    "uk": "Своя назва (необов’язково)",
+    "en": "Custom Name (Optional)",
+    "de": "Benutzerdefinierter Name (Optional)"
+  },
+  "itemName": {
+    "uk": "Назва пункту меню",
+    "en": "Menu Item Name",
+    "de": "Name des Menüeintrags"
+  },
+  "subitemName": {
+    "uk": "Назва підпункту",
+    "en": "Subitem Name",
+    "de": "Name des Untereintrags"
+  },
+  "subitems": {
+    "uk": "Підпункти",
+    "en": "Subitems",
+    "de": "Untereinträge"
+  },
+  "deleteItem": {
+    "uk": "Видалити пункт меню",
+    "en": "Delete Menu Item",
+    "de": "Menüeintrag löschen"
+  },
+  "deleteSubitem": {
+    "uk": "Видалити підпункт",
+    "en": "Delete Subitem",
+    "de": "Untereintrag löschen"
+  },
+  "ownNameNotPage": {
+    "uk": "своя назва, не як у сторінки -",
+    "en": "Custom Name (Not Like Page)",
+    "de": "Benutzerdefinierter Name (Nicht wie Seite)"
+  },
+  "likePage": {
+    "uk": "як у сторінки",
+    "en": "Like Page",
+    "de": "Wie Seite"
+  },
+  "nameLikePage": {
+    "uk": "назва - як у сторінки",
+    "en": "Name Like Page",
+    "de": "Name Wie Seite"
+  },
+  "addSubitem": {
+    "uk": "Додати підпункт",
+    "en": "Add Subitem",
+    "de": "Untereintrag hinzufügen"
+  },
+  "ownNameShort": {
+    "uk": "своя назва -",
+    "en": "Custom Name -",
+    "de": "Benutzerdefinierter Name -"
+  },
+  "addItem": {
+    "uk": "Додати пункт меню",
+    "en": "Add Menu Item",
+    "de": "Menüeintrag hinzufügen"
+  },
+  "route": {
+    "uk": "Маршрут: {route}",
+    "en": "Route: {route}",
+    "de": "Route: {route}"
+  },
+  "noLink": {
+    "uk": "Посилання не налаштоване",
+    "en": "Link not configured",
+    "de": "Link nicht konfiguriert"
+  },
+  "pageBlock": {
+    "uk": "Сторінка «{pageId}», блок {hash}",
+    "en": "Page «{pageId}», Block {hash}",
+    "de": "Seite «{pageId}», Block {hash}"
+  },
+  "page": {
+    "uk": "Сторінка «{pageId}»",
+    "en": "Page «{pageId}»",
+    "de": "Seite «{pageId}»"
+  }
+}

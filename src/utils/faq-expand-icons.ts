@@ -1,3 +1,4 @@
+import { t } from '@/i18n'
 // The FAQ accordion's expand/collapse chevron, as a small fixed set of
 // PAIRS rather than a free icon search. Vuetify's v-expansion-panel-title
 // takes two separate icons (expand-icon shown while collapsed, collapse-icon
@@ -20,11 +21,21 @@ export type FaqExpandIconPair = {
 // Chevron first: it's Vuetify's own default, so it's what an FAQ block that
 // has never had this set actually renders.
 export const FAQ_EXPAND_ICON_PAIRS: FaqExpandIconPair[] = [
-  { expand: 'mdi-chevron-down', collapse: 'mdi-chevron-up', label: 'Шеврон (типово)' },
-  { expand: 'mdi-plus', collapse: 'mdi-minus', label: 'Плюс / мінус', toolbarIcon: 'mdi-plus-minus-box' },
-  { expand: 'mdi-menu-down', collapse: 'mdi-menu-up', label: 'Трикутник' },
-  { expand: 'mdi-arrow-down-drop-circle', collapse: 'mdi-arrow-up-drop-circle', label: 'Стрілка в колі' },
-  { expand: 'mdi-arrow-down-drop-circle-outline', collapse: 'mdi-arrow-up-drop-circle-outline', label: 'Стрілка в колі (контур)' },
+  { expand: 'mdi-chevron-down', collapse: 'mdi-chevron-up', get label () {
+    return t('faq.icon.chevron')
+  } },
+  { expand: 'mdi-plus', collapse: 'mdi-minus', get label () {
+    return t('faq.icon.plusMinus')
+  }, toolbarIcon: 'mdi-plus-minus-box' },
+  { expand: 'mdi-menu-down', collapse: 'mdi-menu-up', get label () {
+    return t('faq.icon.triangle')
+  } },
+  { expand: 'mdi-arrow-down-drop-circle', collapse: 'mdi-arrow-up-drop-circle', get label () {
+    return t('faq.icon.circleArrow')
+  } },
+  { expand: 'mdi-arrow-down-drop-circle-outline', collapse: 'mdi-arrow-up-drop-circle-outline', get label () {
+    return t('faq.icon.circleArrowOutline')
+  } },
 ]
 
 // Resolves what the accordion should actually render, as a COMPLETE pair.

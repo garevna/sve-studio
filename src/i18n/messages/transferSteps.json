@@ -1,0 +1,42 @@
+{
+  "delete": {
+    "uk": "Видалити цей крок",
+    "en": "Delete This Step",
+    "de": "Diesen Schritt löschen"
+  },
+  "highlight": {
+    "uk": "Виділена частина",
+    "en": "Highlighted Section",
+    "de": "Hervorgehobener Abschnitt"
+  },
+  "step": {
+    "uk": "Крок {value}",
+    "en": "Step {value}",
+    "de": "Schritt {value}"
+  },
+  "add": {
+    "uk": "Додати крок",
+    "en": "Add Step",
+    "de": "Schritt hinzufügen"
+  },
+  "order": {
+    "uk": "Порядок кроків",
+    "en": "Step Order",
+    "de": "Schritt-Reihenfolge"
+  },
+  "circleColor": {
+    "uk": "Колір кружків",
+    "en": "Circle Color",
+    "de": "Kreisfarbe"
+  },
+  "numberedCircleColor": {
+    "uk": "Колір кружків з номерами",
+    "en": "Numbered Circle Color",
+    "de": "Nummerierte Kreisfarbe"
+  },
+  "edit": {
+    "uk": "Редагувати крок",
+    "en": "Edit Step",
+    "de": "Schritt bearbeiten"
+  }
+}

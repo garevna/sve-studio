@@ -4,6 +4,7 @@
   import LocaleSwitcher from '@/components/editors/small/LocaleSwitcher.vue'
   import TextEditor from '@/components/editors/text/TextEditor.vue'
   import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
+  import { t } from '@/i18n'
   import { useCommonStore } from '@/stores/common'
   import { emptyTranslatedModel, setLocalizedContent } from '@/utils/locale-text'
 
@@ -59,23 +60,23 @@
   <ToolbarIconButton
     v-if="textSection"
     icon="mdi-playlist-plus"
-    tooltip="Додати текстовий рядок"
+    :tooltip="t('banner.addTextRow')"
     @click="openDialog"
   />
   <ToolbarIconButton
     v-if="textSection"
     :active="dragActive"
     icon="mdi-cursor-move"
-    tooltip="Перетягування текстових рядків"
+    :tooltip="t('banner.dragTextRows')"
     @click="dragActive = !dragActive"
   />
 
   <v-dialog v-model="dialogOpen" max-width="640">
     <v-card class="editor-dialog" theme="editorTheme">
       <v-toolbar class="editor-panel" color="transparent" density="compact">
-        <v-toolbar-title class="nested-section-dialog-title">Новий текстовий рядок</v-toolbar-title>
+        <v-toolbar-title class="nested-section-dialog-title">{{ t('banner.newTextRow') }}</v-toolbar-title>
         <v-spacer />
-        <ToolbarIconButton icon="mdi-close" tooltip="Закрити" @click="dialogOpen = false" />
+        <ToolbarIconButton icon="mdi-close" :tooltip="t('common.close')" @click="dialogOpen = false" />
       </v-toolbar>
 
       <v-card-text>
@@ -93,7 +94,7 @@
       <v-card-actions>
         <LocaleSwitcher :scope="draft" />
         <v-spacer />
-        <v-btn color="primary" variant="elevated" @click="addLine">ОК</v-btn>
+        <v-btn color="primary" variant="elevated" @click="addLine">{{ t('common.ok') }}</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>

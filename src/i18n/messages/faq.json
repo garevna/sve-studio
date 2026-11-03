@@ -1,0 +1,89 @@
+{
+  "add": {
+    "uk": "Додати питання",
+    "en": "Add Question",
+    "de": "Frage hinzufügen"
+  },
+  "drag": {
+    "uk": "Перетягування питань",
+    "en": "Drag Questions",
+    "de": "Fragen verschieben"
+  },
+  "expandIcon": {
+    "uk": "Іконка розкриття відповіді",
+    "en": "Expand Answer Icon",
+    "de": "Erweiterungssymbol für Antwort"
+  },
+  "questionsFormat": {
+    "uk": "Формат тексту всіх питань",
+    "en": "Format of all questions",
+    "de": "Format aller Fragen"
+  },
+  "answersFormat": {
+    "uk": "Формат тексту всіх відповідей",
+    "en": "Format of all answers",
+    "de": "Format aller Antworten"
+  },
+  "questions": {
+    "uk": "Питання",
+    "en": "Questions",
+    "de": "Fragen"
+  },
+  "answers": {
+    "uk": "Відповіді",
+    "en": "Answers",
+    "de": "Antworten"
+  },
+  "dialogTitle": {
+    "uk": "Питання та відповідь",
+    "en": "Question and Answer",
+    "de": "Frage und Antwort"
+  },
+  "delete": {
+    "uk": "Видалити це питання",
+    "en": "Delete Question",
+    "de": "Frage löschen"
+  },
+  "question": {
+    "uk": "Питання",
+    "en": "Question",
+    "de": "Frage"
+  },
+  "answer": {
+    "uk": "Відповідь",
+    "en": "Answer",
+    "de": "Antwort"
+  },
+  "edit": {
+    "uk": "Редагувати це питання",
+    "en": "Edit Question",
+    "de": "Frage bearbeiten"
+  },
+  "icon": {
+    "chevron": {
+      "uk": "Шеврон (типово)",
+      "en": "Chevron (default)",
+      "de": "Chevron (Standard)"
+    },
+    "plusMinus": {
+      "uk": "Плюс / мінус",
+      "en": "Plus / Minus",
+      "de": "Plus / Minus"
+    },
+    "triangle": {
+      "uk": "Трикутник",
+      "en": "Triangle",
+      "de": "Dreieck"
+    },
+    "circleArrow": {
+      "uk": "Стрілка в колі",
+      "en": "Circle Arrow",
+      "de": "Kreis-Pfeil"
+    },
+    "circleArrowOutline": {
+      "uk": "Стрілка в колі (контур)",
+      "en": "Circle Arrow Outline",
+      "de": "Kreis-Pfeil (Umriss)"
+    }
+  }
+}

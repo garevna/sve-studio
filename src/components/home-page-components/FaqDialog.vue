@@ -4,6 +4,7 @@
   import LocaleSwitcher from '@/components/editors/small/LocaleSwitcher.vue'
   import TextEditor from '@/components/editors/text/TextEditor.vue'
   import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
+  import { t } from '@/i18n'
   import { useCommonStore } from '@/stores/common'
   import { emptyTranslatedModel, isTranslatedModel, resolveLocaleText } from '@/utils/locale-text'
 
@@ -52,13 +53,13 @@
 
 <template>
   <v-dialog v-model="open" max-width="640">
-    <v-card theme="editorTheme" title="Питання та відповідь">
+    <v-card theme="editorTheme" :title="t('faq.dialogTitle')">
       <v-card-text v-if="item">
         <!-- :formattable="false" on both: question/answer styling is
           block-level (one format for all questions, one for all answers -
           see FaqBlockActions.vue), so a per-pair format menu here would
           offer a setting that doesn't exist. -->
-        <p class="faq-dialog-label">Питання</p>
+        <p class="faq-dialog-label">{{ t('faq.question') }}</p>
         <TextEditor
           :content="getText('question')"
           :formattable="false"
@@ -66,7 +67,7 @@
           type="title"
           @update:content="value => setText('question', value)"
         />
-        <p class="faq-dialog-label mt-6">Відповідь</p>
+        <p class="faq-dialog-label mt-6">{{ t('faq.answer') }}</p>
         <TextEditor
           :content="getText('answer')"
           :formattable="false"
@@ -76,10 +77,10 @@
         />
       </v-card-text>
       <v-card-actions>
-        <ToolbarIconButton icon="mdi-delete" tooltip="Видалити це питання" @click="requestDelete" />
+        <ToolbarIconButton icon="mdi-delete" :tooltip="t('faq.delete')" @click="requestDelete" />
         <LocaleSwitcher :scope="item" />
         <v-spacer />
-        <v-btn color="primary" variant="elevated" @click="open = false">ОК</v-btn>
+        <v-btn color="primary" variant="elevated" @click="open = false">{{ t('common.ok') }}</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>

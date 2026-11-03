@@ -237,7 +237,7 @@
 <template>
   <v-app>
     <v-main class="editor-page">
-      <EditorPageHeader back-to="/" detail="global.json" title="Загальні налаштування" />
+      <EditorPageHeader back-to="/" detail="global.json" :title="t('common.generalSettings')" />
 
       <v-progress-linear v-if="loading" color="primary" indeterminate />
 
@@ -246,7 +246,7 @@
           <v-col cols="12">
             <v-text-field
               v-model="settings.provider"
-              label="Назва компанії"
+              :label="t('common.companyName')"
               variant="outlined"
             />
           </v-col>
@@ -304,7 +304,7 @@
           </v-col>
         </v-row>
 
-        <h2 class="editor-section-title">Логотип</h2>
+        <h2 class="editor-section-title">{{ t('common.logo') }}</h2>
         <v-row align="center">
           <v-col cols="12" md="auto">
             <div class="settings-logo">
@@ -316,7 +316,7 @@
               v-model.number="settings.logo.width"
               density="compact"
               hide-details
-              label="Ширина, px"
+              :label="t('generalSettings.width')"
               style="max-width: 140px;"
               type="number"
               variant="outlined"
@@ -325,7 +325,7 @@
               v-model.number="settings.logo.height"
               density="compact"
               hide-details
-              label="Висота, px"
+              :label="t('generalSettings.height')"
               style="max-width: 140px;"
               type="number"
               variant="outlined"
@@ -333,17 +333,16 @@
           </v-col>
         </v-row>
 
-        <h2 class="editor-section-title">{{ t('contacts.title') }}</h2>
+        <h2 class="editor-section-title">{{ t('common.contacts') }}</h2>
         <p class="editor-section-hint">{{ t('contacts.hint') }}</p>
         <ContactsSettings v-model="contactsModel" class="mb-4" />
 
-        <h2 class="editor-section-title">Соціальні мережі</h2>
+        <h2 class="editor-section-title">{{ t('generalSettings.social') }}</h2>
         <!-- <p class="editor-section-hint">
-          Посилання показуються в іконках соцмереж у футері (і будь-де ще, де вони використовуються) -
-          єдине місце редагування для всього сайту, а не для окремого варіанту футера.
+          {{ t('generalSettings.socialHint') }}
         </p> -->
         <p class="editor-section-hint">
-          Посилання використовуються для переходу при натисканні на іконки соціальних мереж або месенджерів
+          {{ t('generalSettings.socialHint2') }}
         </p>
         <v-row>
           <v-col v-for="name in SOCIAL_NETWORKS" :key="name" cols="12" md="4">
@@ -358,14 +357,14 @@
           </v-col>
         </v-row>
 
-        <h2 class="editor-section-title">Банер hero-секції</h2>
+        <h2 class="editor-section-title">{{ t('generalSettings.heroBanner') }}</h2>
         <v-row>
           <v-col cols="12" md="6">
-            <p class="settings-image-label">Банер (десктоп)</p>
+            <p class="settings-image-label">{{ t('generalSettings.bannerDesktop') }}</p>
             <ImageEditor v-model:height="bannerBox" v-model:src="settings.baner.desktop" :read="readBanner" />
           </v-col>
           <v-col cols="12" md="6">
-            <p class="settings-image-label">Банер (мобільна версія)</p>
+            <p class="settings-image-label">{{ t('generalSettings.bannerMobile') }}</p>
             <ImageEditor v-model:height="bannerBox" v-model:src="settings.baner.mobile" :read="readBanner" />
           </v-col>
         </v-row>
@@ -380,7 +379,7 @@
             <div class="banner-slide-pictures">
               <label class="banner-slide-picture">
                 <img v-if="slide.desktop" alt="" :src="slide.desktop">
-                <span class="banner-slide-caption"><v-icon size="16">mdi-monitor</v-icon> {{ t('generalSettings.slideDesktop') }}</span>
+                <span class="banner-slide-caption"><v-icon size="16">mdi-monitor</v-icon> {{ t('common.desktop') }}</span>
                 <input accept="image/*" hidden type="file" @change="replaceSlide(index, 'desktop', $event)">
               </label>
               <label class="banner-slide-picture banner-slide-picture--phone">

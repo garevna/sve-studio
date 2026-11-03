@@ -5,6 +5,7 @@
   import { useBlockActionsTarget } from '@/composables/useEditableBlockActions'
   import { useEditorMode } from '@/composables/useEditorMode'
   import { defaultImage } from '@/configs/defaults/default-image'
+  import { t } from '@/i18n'
   import { useAjaxStore } from '@/stores/ajax'
   import { uploadImage } from '@/utils/upload-image'
   import ResizableWrapper from './ResizableWrapper.vue'
@@ -95,7 +96,7 @@
       emit('uploaded', path)
       URL.revokeObjectURL(previewUrl)
     } catch (error) {
-      uploadError.value = error instanceof Error ? error.message : 'Не вдалося завантажити зображення.'
+      uploadError.value = error instanceof Error ? error.message : t('images.uploadFailed')
       // A file read locally (read) has no upload to retry - the old picture
       // comes back rather than a preview that is gone after a reload.
       if (props.read) {
@@ -136,7 +137,7 @@
       />
       <template v-if="mode === 'edit'">
         <Teleport v-if="blockActionsTarget" :to="blockActionsTarget">
-          <ToolbarIconButton icon="mdi-camera" tooltip="Завантажити зображення" @click="triggerFileDialog" />
+          <ToolbarIconButton icon="mdi-camera" :tooltip="t('images.upload')" @click="triggerFileDialog" />
         </Teleport>
         <v-fab
           v-else

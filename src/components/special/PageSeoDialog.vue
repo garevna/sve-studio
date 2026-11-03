@@ -7,6 +7,7 @@
      an extra round of emits. */
   import type { PageSeoModel } from '@/types/TemplateBlockModel'
   import { ref, toRaw, watch } from 'vue'
+  import { t } from '@/i18n'
   import { useAjaxStore } from '@/stores/ajax'
   import { uploadImage } from '@/utils/upload-image'
 
@@ -79,17 +80,17 @@
 
 <template>
   <v-dialog v-model="open" max-width="560">
-    <v-card theme="editorTheme" title="SEO цієї сторінки">
+    <v-card theme="editorTheme" :title="t('pages.seoOfPage')">
       <v-card-text>
         <p class="text-body-2 text-medium-emphasis mb-4">
-          Порожнє поле - береться типове значення з розділу «SEO» головного меню.
+          {{ t('seo.pageIntro') }}
         </p>
         <v-text-field
           v-model="seo.title"
           class="mb-2"
           :counter="60"
-          hint="Заголовок вкладки браузера й посилання в пошуку"
-          label="Заголовок сторінки"
+          :hint="t('seo.pageTitleHint')"
+          :label="t('seo.pageTitle')"
           persistent-hint
           variant="outlined"
         />
@@ -97,13 +98,13 @@
           v-model="seo.description"
           class="mt-4 mb-2"
           :counter="160"
-          hint="Короткий опис під заголовком у видачі пошуку"
-          label="Опис (meta description)"
+          :hint="t('seo.pageDescriptionHint')"
+          :label="t('seo.pageDescription')"
           persistent-hint
           variant="outlined"
         />
 
-        <p class="seo-field-label mt-4 mb-2">Зображення для соцмереж</p>
+        <p class="seo-field-label mt-4 mb-2">{{ t('seo.pageImage') }}</p>
         <div class="d-flex align-center ga-4">
           <img
             v-if="seo.ogImage"
@@ -117,7 +118,7 @@
             variant="outlined"
             @click="ogImageInput?.click()"
           >
-            Завантажити
+            {{ t('common.upload') }}
           </v-btn>
           <input
             ref="ogImageInput"
@@ -134,7 +135,7 @@
           color="primary"
           hide-details
           inset
-          label="Приховати сторінку від пошукових систем (noindex)"
+          :label="t('seo.noindex')"
         />
       </v-card-text>
 
@@ -157,7 +158,7 @@
           variant="text"
           @click="cancel"
         >
-          Скасувати
+          {{ t('common.cancel') }}
         </v-btn>
         <v-btn
           v-if="saveable"
@@ -167,9 +168,9 @@
           variant="elevated"
           @click="emit('save')"
         >
-          {{ saving ? 'Збереження…' : 'Зберегти' }}
+          {{ saving ? t('common.saving') : t('common.save') }}
         </v-btn>
-        <v-btn v-else color="primary" variant="elevated" @click="open = false">ОК</v-btn>
+        <v-btn v-else color="primary" variant="elevated" @click="open = false">{{ t('common.ok') }}</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>

@@ -2,6 +2,7 @@
   import { ref } from 'vue'
   import IconEditor from '@/components/editors/text/IconEditor.vue'
   import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
+  import { t } from '@/i18n'
 
   // Block-level settings for a "Популярні напрямки" block: the four icons a
   // card draws. Rendered into the block's own EditableBlockWrapper toolbar,
@@ -28,10 +29,18 @@
   // The four rows, in the order they appear on a card: the two city markers,
   // then the two caption icons under them.
   const ROWS = [
-    { key: 'cityFrom', label: 'Місто відправлення' },
-    { key: 'cityTo', label: 'Місто призначення' },
-    { key: 'carrier', label: 'Перевізник' },
-    { key: 'duration', label: 'Тривалість поїздки' },
+    { key: 'cityFrom', get label () {
+      return t('popularDestinations.cityFrom')
+    } },
+    { key: 'cityTo', get label () {
+      return t('popularDestinations.cityTo')
+    } },
+    { key: 'carrier', get label () {
+      return t('popularDestinations.carrier')
+    } },
+    { key: 'duration', get label () {
+      return t('popularDestinations.duration')
+    } },
   ] as const
 
   function setIcon (key: keyof typeof props.icons, value: string) {
@@ -42,14 +51,14 @@
 </script>
 
 <template>
-  <ToolbarIconButton icon="mdi-cog" tooltip="Іконки картки" @click="open = true" />
+  <ToolbarIconButton icon="mdi-cog" :tooltip="t('popularDestinations.cardIcons')" @click="open = true" />
 
   <v-dialog v-model="open" max-width="460">
     <v-card class="editor-dialog" theme="editorTheme">
       <v-toolbar class="editor-panel" color="transparent" density="compact">
-        <v-toolbar-title class="popular-actions-title">Іконки картки</v-toolbar-title>
+        <v-toolbar-title class="popular-actions-title">{{ t('popularDestinations.cardIcons') }}</v-toolbar-title>
         <v-spacer />
-        <ToolbarIconButton icon="mdi-close" tooltip="Закрити" @click="open = false" />
+        <ToolbarIconButton icon="mdi-close" :tooltip="t('common.close')" @click="open = false" />
       </v-toolbar>
 
       <v-card-text>

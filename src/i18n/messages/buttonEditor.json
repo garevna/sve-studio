@@ -1,0 +1,72 @@
+{
+  "settings": {
+    "uk": "Налаштування кнопки",
+    "en": "Button settings",
+    "de": "Schaltflächeneinstellungen"
+  },
+  "delete": {
+    "uk": "Видалити кнопку",
+    "en": "Delete button",
+    "de": "Schaltfläche löschen"
+  },
+  "text": {
+    "uk": "Текст кнопки",
+    "en": "Button text",
+    "de": "Schaltflächentext"
+  },
+  "icon": {
+    "uk": "Іконка",
+    "en": "Icon",
+    "de": "Symbol"
+  },
+  "remove": {
+    "uk": "Прибрати",
+    "en": "Remove",
+    "de": "Entfernen"
+  },
+  "action": {
+    "uk": "Що робить кнопка",
+    "en": "Action",
+    "de": "Aktion"
+  },
+  "toPage": {
+    "uk": "Веде на сторінку",
+    "en": "Go to page",
+    "de": "Zur Seite gehen"
+  },
+  "opensForm": {
+    "uk": "Відкриває форму",
+    "en": "Open form",
+    "de": "Formular öffnen"
+  },
+  "formHint": {
+    "uk": "Форма відкриється у вікні поверх сторінки.",
+    "en": "The form will open in a window over the page.",
+    "de": "Das Formular wird in einem Fenster über der Seite geöffnet."
+  },
+  "formTexts": {
+    "uk": "Тексти форми",
+    "en": "Form texts",
+    "de": "Formulartexte"
+  },
+  "opensFeedbackForm": {
+    "uk": "Відкриває форму зворотного зв’язку",
+    "en": "Open feedback form",
+    "de": "Feedback-Formular öffnen"
+  },
+  "pageRoute": {
+    "uk": "Сторінка «{route}»",
+    "en": "Page «{route}»",
+    "de": "Seite «{route}»"
+  },
+  "noTarget": {
+    "uk": "Перехід не налаштований",
+    "en": "No target configured",
+    "de": "Kein Ziel konfiguriert"
+  },
+  "look": {
+    "uk": "Вигляд кнопки",
+    "en": "Button look",
+    "de": "Schaltflächenaussehen"
+  }
+}

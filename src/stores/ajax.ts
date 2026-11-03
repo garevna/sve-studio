@@ -265,7 +265,7 @@ export const useAjaxStore = defineStore('ajax', () => {
         // (network, 5xx) is treated as temporary - the pause above already
         // stops it from being retried in a burst.
         if (axios.isAxiosError(refreshError) && refreshError.response?.status === 401) {
-          endSession('Термін дії сеансу вичерпано. Відкрийте редактор заново з адмінпанелі — незбережені зміни залишилися на місці.')
+          endSession(t('popups.sessionExpired'))
         }
         throw refreshError
       })
@@ -307,7 +307,7 @@ export const useAjaxStore = defineStore('ajax', () => {
       // The admin panel removes this key on logout, so its disappearance is
       // a logout that happened in another tab - the editor follows it out
       // rather than carrying on with a token whose session has ended.
-      endSession('Ви вийшли з адмінпанелі. Відкрийте редактор заново — незбережені зміни залишилися на місці.')
+      endSession(t('popups.loggedOut'))
     })
   }
 
@@ -692,7 +692,7 @@ export const useAjaxStore = defineStore('ajax', () => {
           // Refused by the denylist guard (server/routes/__editor-api__/
           // public-file.ts): the file keeps its clean version - say so.
           if ((mirrorError as { response?: { status?: number } })?.response?.status === 409) {
-            useUiFeedbackStore().notifyError('Файл не записано', 'У вмісті є заборонені дані (див. .private/denylist.txt). Збережено лише в браузері.')
+            useUiFeedbackStore().notifyError(t('popups.fileNotWritten'), t('popups.denylisted'))
           }
         }
       }
@@ -830,7 +830,7 @@ export const useAjaxStore = defineStore('ajax', () => {
   }
 
   async function saveGlobalSettings (settings: GlobalSettingsModel, options: { publish?: boolean } = {}) {
-    await saveDynamicFileData('global.json', settings, '/content/settings/global', { what: t('saveTargets.globalSettings'), ...options })
+    await saveDynamicFileData('global.json', settings, '/content/settings/global', { what: t('common.generalSettings'), ...options })
   }
 
   async function isGlobalSettingsUpdated () {
@@ -1064,7 +1064,7 @@ export const useAjaxStore = defineStore('ajax', () => {
     if (mode === 'test' || !publish) {
       await saveDynamicFileDataLocal('menu-content.json', items, publish)
       if (publish) {
-        reportSaved(t('saveTargets.mainMenu'))
+        reportSaved(t('common.mainMenu'))
       }
       return
     }
@@ -1074,12 +1074,12 @@ export const useAjaxStore = defineStore('ajax', () => {
       // saveDynamicFileData's own comment on why.
       await saveDynamicFileDataLocal('menu-content.json', items, publish)
       if (publish) {
-        reportSaved(t('saveTargets.mainMenu'))
+        reportSaved(t('common.mainMenu'))
       }
     } catch (error_) {
       if (publish) {
         logApiFallback('/content/settings/menu-content', error_)
-        reportSaveFailed(t('saveTargets.mainMenu'), error_)
+        reportSaveFailed(t('common.mainMenu'), error_)
       } else {
         warnApiFallback('/content/settings/menu-content', error_)
       }
@@ -1327,7 +1327,7 @@ export const useAjaxStore = defineStore('ajax', () => {
   }
 
   async function saveFooterContentDraft (slug: string, content: TemplateBlockModel, options: { publish?: boolean } = {}) {
-    await saveDynamicFileData(`dynamic-pages/${slug}.json`, content, `/content/pages/${slug}`, { what: t('saveTargets.footer'), ...options })
+    await saveDynamicFileData(`dynamic-pages/${slug}.json`, content, `/content/pages/${slug}`, { what: t('common.footer'), ...options })
   }
 
   async function isFooterContentDraftUpdated (slug: string) {

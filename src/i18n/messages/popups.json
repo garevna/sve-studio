@@ -178,5 +178,25 @@
     "uk": "Показані розділи для ролі «{role}». Роль можна змінити внизу екрана.",
     "en": "Showing the sections for the “{role}” role. You can change the role at the bottom of the screen.",
     "de": "Angezeigt werden die Bereiche für die Rolle „{role}“. Die Rolle lässt sich unten auf dem Bildschirm ändern."
+  },
+  "sessionExpired": {
+    "uk": "Термін дії сеансу вичерпано. Відкрийте редактор заново з адмінпанелі — незбережені зміни залишилися на місці.",
+    "en": "Your session has expired. Please open the editor again from the admin panel — unsaved changes will remain in place.",
+    "de": "Ihre Sitzung ist abgelaufen. Bitte öffnen Sie den Editor erneut über das Admin-Panel — ungespeicherte Änderungen bleiben erhalten."
+  },
+  "loggedOut": {
+    "uk": "Ви вийшли з адмінпанелі. Відкрийте редактор заново — незбережені зміни залишилися на місці.",
+    "en": "You have been logged out of the admin panel. Please open the editor again — unsaved changes will remain in place.",
+    "de": "Sie haben sich aus dem Admin-Panel ausgeloggt. Bitte öffnen Sie den Editor erneut — ungespeicherte Änderungen bleiben erhalten."
+  },
+  "fileNotWritten": {
+    "uk": "Файл не записано",
+    "en": "File not written",
+    "de": "Datei nicht geschrieben"
+  },
+  "denylisted": {
+    "uk": "У вмісті є заборонені дані (див. .private/denylist.txt). Збережено лише в браузері.",
+    "en": "The content contains blocked data (see .private/denylist.txt). Only saved in the browser.",
+    "de": "Der Inhalt enthält blockierte Daten (siehe .private/denylist.txt). Nur im Browser gespeichert."
   }
 }

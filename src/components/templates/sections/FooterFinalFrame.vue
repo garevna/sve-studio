@@ -2,6 +2,7 @@
   import type { TemplateBlockModel } from '@/types/TemplateBlockModel'
   import { computed } from 'vue'
   import { FOOTER_CTA_DEFAULTS } from '@/configs/footer-variants'
+  import { t } from '@/i18n'
   import { useCommonStore } from '@/stores/common'
   import { emptyTranslatedModel } from '@/utils/locale-text'
 
@@ -31,14 +32,14 @@
     <h2
       :class="['footer-final-frame__title', { 'footer-final-frame__editable': editing }]"
       :contenteditable="editing"
-      title="Заголовок футера - клацніть, щоб змінити"
+      :title="t('footer.finalFrame.title')"
       @blur="save('ctaTitle', $event)"
     >{{ title }}</h2>
     <p class="footer-final-frame__text">
       <span
         :class="{ 'footer-final-frame__editable': editing }"
         :contenteditable="editing"
-        title="Текст під заголовком - клацніть, щоб змінити"
+        :title="t('footer.finalFrame.text')"
         @blur="save('ctaText', $event)"
       >{{ text }}</span>
       <i aria-hidden="true" class="mdi mdi-arrow-down footer-final-frame__arrow" />

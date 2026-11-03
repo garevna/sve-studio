@@ -117,9 +117,9 @@
   }
 
   function linkSummary (item: MenuItemModel | SubmenuItemModel): string {
-    if (item.route !== 'dynamic-page') return item.route ? `Маршрут: ${item.route}` : 'Посилання не налаштоване'
+    if (item.route !== 'dynamic-page') return item.route ? t('menuSettings.route', { route: item.route }) : t('menuSettings.noLink')
     const pageId = (item.params as { pageId?: string } | undefined)?.pageId
-    return item.hash ? `Сторінка «${pageId}», блок ${item.hash}` : `Сторінка «${pageId}»`
+    return item.hash ? t('menuSettings.pageBlock', { pageId, hash: item.hash }) : t('menuSettings.page', { pageId })
   }
 
   async function save () {
@@ -152,7 +152,7 @@
 <template>
   <v-app>
     <v-main class="editor-page">
-      <EditorPageHeader back-to="/" detail="menu-content.json" title="Меню" />
+      <EditorPageHeader back-to="/" detail="menu-content.json" :title="t('common.menu')" />
 
       <v-progress-linear v-if="loading" color="primary" indeterminate />
 
@@ -167,7 +167,7 @@
               <v-text-field
                 density="compact"
                 hide-details
-                :label="linkedPageId(item) ? 'Своя назва (необов’язково)' : 'Назва пункту меню'"
+                :label="linkedPageId(item) ? t('menuSettings.ownName') : t('menuSettings.itemName')"
                 :model-value="getTitle(item)"
                 persistent-placeholder
                 :placeholder="pageName(item)"
@@ -178,11 +178,11 @@
                 color="primary"
                 hide-details
                 inset
-                label="Підпункти"
+                :label="t('menuSettings.subitems')"
                 :model-value="!!item.submenu"
                 @update:model-value="toggleHasSubmenu(item, $event)"
               />
-              <ToolbarIconButton icon="mdi-delete" tooltip="Видалити пункт меню" @click="removeTopItem(index)" />
+              <ToolbarIconButton icon="mdi-delete" :tooltip="t('menuSettings.deleteItem')" @click="removeTopItem(index)" />
             </div>
 
             <template v-if="item.submenu">
@@ -192,44 +192,44 @@
                     <v-text-field
                       density="compact"
                       hide-details
-                      :label="linkedPageId(subItem) ? 'Своя назва (необов’язково)' : 'Назва підпункту'"
+                      :label="linkedPageId(subItem) ? t('menuSettings.ownName') : t('menuSettings.subitemName')"
                       :model-value="getTitle(subItem)"
                       persistent-placeholder
                       :placeholder="pageName(subItem)"
                       variant="outlined"
                       @update:model-value="setTitle(subItem, $event)"
                     />
-                    <v-btn prepend-icon="mdi-link-edit" variant="tonal" @click="openLinkDialog(subItem)">Налаштувати</v-btn>
-                    <ToolbarIconButton icon="mdi-delete" tooltip="Видалити підпункт" @click="removeSubmenuItem(item, subIndex)" />
+                    <v-btn prepend-icon="mdi-link-edit" variant="tonal" @click="openLinkDialog(subItem)">{{ t('common.configure') }}</v-btn>
+                    <ToolbarIconButton icon="mdi-delete" :tooltip="t('menuSettings.deleteSubitem')" @click="removeSubmenuItem(item, subIndex)" />
                   </div>
                   <p class="text-caption text-medium-emphasis mt-1 mb-0">
                     {{ linkSummary(subItem) }}
                     <template v-if="linkedPageId(subItem)">
                       ·
                       <template v-if="hasOwnLabel(subItem)">
-                        своя назва, не як у сторінки -
-                        <a class="menu-follow-page" href="#" @click.prevent="followPage(subItem)">як у сторінки</a>
+                        {{ t('menuSettings.ownNameNotPage') }}
+                        <a class="menu-follow-page" href="#" @click.prevent="followPage(subItem)">{{ t('menuSettings.likePage') }}</a>
                       </template>
-                      <template v-else>назва - як у сторінки</template>
+                      <template v-else>{{ t('menuSettings.nameLikePage') }}</template>
                     </template>
                   </p>
                 </div>
               </div>
-              <v-btn prepend-icon="mdi-plus" variant="outlined" @click="addSubmenuItem(item)">Додати підпункт</v-btn>
+              <v-btn prepend-icon="mdi-plus" variant="outlined" @click="addSubmenuItem(item)">{{ t('menuSettings.addSubitem') }}</v-btn>
             </template>
 
             <template v-else>
               <div class="d-flex align-center ga-3">
-                <v-btn prepend-icon="mdi-link-edit" variant="tonal" @click="openLinkDialog(item)">Налаштувати</v-btn>
+                <v-btn prepend-icon="mdi-link-edit" variant="tonal" @click="openLinkDialog(item)">{{ t('common.configure') }}</v-btn>
                 <span class="text-caption text-medium-emphasis">
                   {{ linkSummary(item) }}
                   <template v-if="linkedPageId(item)">
                     ·
                     <template v-if="hasOwnLabel(item)">
-                      своя назва -
-                      <a class="menu-follow-page" href="#" @click.prevent="followPage(item)">як у сторінки</a>
+                      {{ t('menuSettings.ownNameShort') }}
+                      <a class="menu-follow-page" href="#" @click.prevent="followPage(item)">{{ t('menuSettings.likePage') }}</a>
                     </template>
-                    <template v-else>назва - як у сторінки</template>
+                    <template v-else>{{ t('menuSettings.nameLikePage') }}</template>
                   </template>
                 </span>
               </div>
@@ -237,7 +237,7 @@
           </div>
         </div>
 
-        <v-btn class="mt-4" prepend-icon="mdi-plus" variant="outlined" @click="addTopItem">Додати пункт меню</v-btn>
+        <v-btn class="mt-4" prepend-icon="mdi-plus" variant="outlined" @click="addTopItem">{{ t('menuSettings.addItem') }}</v-btn>
 
         <EditorSaveBar
           :dirty="dirty"

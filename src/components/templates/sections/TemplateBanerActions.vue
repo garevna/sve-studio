@@ -2,6 +2,7 @@
   import type { TemplateBlockModel } from '@/types/TemplateBlockModel'
   import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
   import PaletteSwatchPicker from '@/components/special/PaletteSwatchPicker.vue'
+  import { t } from '@/i18n'
   import { emptyTranslatedModel } from '@/utils/locale-text'
 
   // Container-level actions for a "baner" block: add another line to its
@@ -46,29 +47,29 @@
     input itself stays in TemplateBaner, which owns the block. -->
   <ToolbarIconButton
     icon="mdi-monitor"
-    tooltip="Зображення для широкого екрана"
+    :tooltip="t('banner.imageWide')"
     @click="emit('pick-image', 'desktop')"
   />
   <ToolbarIconButton
     icon="mdi-cellphone"
-    tooltip="Зображення для вузького екрана (паралакс)"
+    :tooltip="t('banner.imageNarrow')"
     @click="emit('pick-image', 'mobile')"
   />
   <PaletteSwatchPicker gradients :model-value="block.background || ''" no-transparent @update:model-value="setBackground">
     <template #activator="{ menuProps }">
-      <ToolbarIconButton v-bind="menuProps" icon="mdi-format-color-fill" tooltip="Фон банера" />
+      <ToolbarIconButton v-bind="menuProps" icon="mdi-format-color-fill" :tooltip="t('banner.background')" />
     </template>
   </PaletteSwatchPicker>
   <PaletteSwatchPicker gradients :model-value="block.titleBackground || 'primary'" no-transparent @update:model-value="setTitleBackground">
     <template #activator="{ menuProps }">
-      <ToolbarIconButton v-bind="menuProps" icon="mdi-format-color-highlight" tooltip="Підкладка заголовка" />
+      <ToolbarIconButton v-bind="menuProps" icon="mdi-format-color-highlight" :tooltip="t('banner.titlePlate')" />
     </template>
   </PaletteSwatchPicker>
-  <ToolbarIconButton icon="mdi-playlist-plus" tooltip="Додати текстовий рядок" @click="addLine" />
+  <ToolbarIconButton icon="mdi-playlist-plus" :tooltip="t('banner.addTextRow')" @click="addLine" />
   <ToolbarIconButton
     :active="dragActive"
     icon="mdi-cursor-move"
-    tooltip="Перетягування текстових рядків"
+    :tooltip="t('banner.dragTextRows')"
     @click="dragActive = !dragActive"
   />
 </template>

@@ -177,7 +177,7 @@
 <template>
   <v-app>
     <v-main class="editor-page">
-      <EditorPageHeader back-to="/" :title="t('header.title')" />
+      <EditorPageHeader back-to="/" :title="t('common.topOfThePage')" />
 
       <p class="text-body-2 text-medium-emphasis mb-6">{{ t('header.intro') }}</p>
 
@@ -206,7 +206,7 @@
         <!-- Settings of the chosen layout. -->
         <div class="hero-settings">
           <div v-if="selectedVariant?.settings === 'title'">
-            <p class="hero-setting-label">{{ t('header.companyName') }}</p>
+            <p class="hero-setting-label">{{ t('common.companyName') }}</p>
             <div class="corner-picker">
               <v-btn
                 v-for="corner of CORNERS"
@@ -275,7 +275,7 @@
             mandatory
             variant="outlined"
           >
-            <v-btn prepend-icon="mdi-monitor" size="small" value="desktop">{{ t('header.desktop') }}</v-btn>
+            <v-btn prepend-icon="mdi-monitor" size="small" value="desktop">{{ t('common.desktop') }}</v-btn>
             <v-btn prepend-icon="mdi-cellphone" size="small" value="phone">{{ t('header.phone') }}</v-btn>
           </v-btn-toggle>
         </div>

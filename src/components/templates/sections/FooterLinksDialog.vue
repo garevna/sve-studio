@@ -2,8 +2,9 @@
   import type { TemplateBlockModel } from '@/types/TemplateBlockModel'
   import { ref } from 'vue'
   import RouteEditor from '@/components/editors/RouteEditor.vue'
-  import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
   import LocaleSwitcher from '@/components/editors/small/LocaleSwitcher.vue'
+  import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
+  import { t } from '@/i18n'
   import { useUiFeedbackStore } from '@/stores/ui-feedback'
   import { emptyTranslatedModel } from '@/utils/locale-text'
   import { stableKey } from '@/utils/stable-key'
@@ -66,9 +67,9 @@
   <v-dialog v-model="open" max-width="720">
     <v-card class="editor-dialog" theme="editorTheme">
       <v-toolbar class="editor-panel" color="transparent" density="compact">
-        <v-toolbar-title class="footer-links-dialog-title">Посилання на сторінки</v-toolbar-title>
+        <v-toolbar-title class="footer-links-dialog-title">{{ t('footer.links.title') }}</v-toolbar-title>
         <v-spacer />
-        <ToolbarIconButton icon="mdi-close" tooltip="Закрити" @click="open = false" />
+        <ToolbarIconButton icon="mdi-close" :tooltip="t('common.close')" @click="open = false" />
       </v-toolbar>
 
       <v-card-text>
@@ -95,13 +96,13 @@
           size="small"
           variant="outlined"
           @click="addLink"
-        >Додати посилання</v-btn>
+        >{{ t('footer.links.add') }}</v-btn>
       </v-card-text>
 
       <v-card-actions>
         <LocaleSwitcher :scope="block" />
         <v-spacer />
-        <v-btn color="primary" variant="elevated" @click="open = false">ОК</v-btn>
+        <v-btn color="primary" variant="elevated" @click="open = false">{{ t('common.ok') }}</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>

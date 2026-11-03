@@ -6,6 +6,7 @@
   import TextFormatMenu from '@/components/editors/text/TextFormatMenu.vue'
   import TextOnBackground from '@/components/editors/text/TextOnBackground.vue'
   import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
+  import { t } from '@/i18n'
   import { useCommonStore } from '@/stores/common'
   import { useUiFeedbackStore } from '@/stores/ui-feedback'
   import { defaultCardContentClass, defaultCardTitleClass } from '@/utils/card-text-defaults'
@@ -166,10 +167,10 @@
       v-model="iconVisible"
       density="compact"
       hide-details
-      label="Показувати іконку"
+      :label="t('cards.showIcon')"
     />
     <!-- <div v-if="blockTarget" class="card-icon-shared-hint">
-      Розмір, колір та підложка іконки застосовуються до всіх карток блоку
+      {{ t('cards.iconAppliesToAll') }}
     </div> -->
     <!-- With a blockTarget, colour/size/background belong to the whole block
       and are set once from its own toolbar (CardContainerActions ->
@@ -194,7 +195,7 @@
     <!-- With its own format (a card with hover): the editor's usual text
       field - the format button on its right, the panel opening under it. -->
     <div v-if="formatVer !== undefined" class="mt-6">
-      <span class="card-content-label">Заголовок</span>
+      <span class="card-content-label">{{ t('common.header') }}</span>
       <TextOnBackground :background="background" :image="backgroundImage">
         <TextEditor
           v-model:class="titleFormat"
@@ -210,7 +211,7 @@
       auto-grow
       class="mt-6"
       hide-details
-      label="Заголовок"
+      :label="t('common.header')"
       rows="1"
       variant="outlined"
     />
@@ -222,16 +223,16 @@
       variant="outlined"
       @click="addLine"
     >
-      Додати текстовий контент
+      {{ t('cards.addText') }}
     </v-btn>
     <div v-else class="card-content-section mt-6">
       <div class="card-content-head">
-        <span class="card-content-label">Текст</span>
+        <span class="card-content-label">{{ t('common.text') }}</span>
         <ToolbarIconButton
           v-if="formatVer !== undefined"
           :active="contentFormatOpen"
           icon="mdi-tune"
-          tooltip="Формат усіх пунктів"
+          :tooltip="t('cards.itemsFormat')"
           @click="contentFormatOpen = !contentFormatOpen"
         />
       </div>
@@ -261,13 +262,13 @@
           <v-textarea
             auto-grow
             hide-details
-            :label="`Пункт ${index + 1}`"
+            :label="t('cards.item', { value: index + 1 })"
             :model-value="line"
             rows="1"
             variant="outlined"
             @update:model-value="(value: string) => setLine(index, value)"
           />
-          <v-btn icon="mdi-delete" title="Видалити пункт" variant="text" @click="removeLine(index)" />
+          <v-btn icon="mdi-delete" :title="t('cards.deleteItem')" variant="text" @click="removeLine(index)" />
         </div>
         <v-btn
           block
@@ -276,7 +277,7 @@
           variant="outlined"
           @click="addLine"
         >
-          Додати пункт
+          {{ t('cards.addItem') }}
         </v-btn>
       </div>
     </div>

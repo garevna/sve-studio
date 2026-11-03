@@ -4,6 +4,7 @@
   import ColumnGapMenu from '@/components/editors/ColumnGapMenu.vue'
   import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
   import { cardWithHoverTemplate } from '@/configs/components/cards/card-with-hover'
+  import { t } from '@/i18n'
 
   // Container-level actions for a "float" block whose children are all
   // card-with-hover cards (see DynamicPageTemplate.vue's isCardWithHoverGroup) -
@@ -59,7 +60,7 @@
 </script>
 
 <template>
-  <ToolbarIconButton icon="mdi-plus" tooltip="Додати картку" @click="addCard" />
+  <ToolbarIconButton icon="mdi-plus" :tooltip="t('cards.add')" @click="addCard" />
   <!-- The gap between this group's columns, picked from Vuetify's own 4px
     scale and stored as a gc-N class on the block - see
     utils/column-gap-class.ts. Writing straight into block.class is the same
@@ -68,7 +69,7 @@
   <ColumnGapMenu v-model:class="block.class" />
   <v-menu location="bottom center">
     <template #activator="{ props: menuProps }">
-      <ToolbarIconButton v-bind="menuProps" icon="mdi-arrow-expand-horizontal" :tooltip="`Ширина карток: ${cardWidth}px`" />
+      <ToolbarIconButton v-bind="menuProps" icon="mdi-arrow-expand-horizontal" :tooltip="t('cards.hover.width', { cardWidth })" />
     </template>
     <v-card theme="editorTheme">
       <v-list density="compact">
@@ -85,7 +86,7 @@
   </v-menu>
   <v-menu location="bottom center">
     <template #activator="{ props: menuProps }">
-      <ToolbarIconButton v-bind="menuProps" icon="mdi-arrow-expand-vertical" :tooltip="`Висота карток: ${cardHeight}px`" />
+      <ToolbarIconButton v-bind="menuProps" icon="mdi-arrow-expand-vertical" :tooltip="t('cards.hover.height', { cardHeight })" />
     </template>
     <v-card theme="editorTheme">
       <v-list density="compact">
@@ -103,7 +104,7 @@
   <ToolbarIconButton
     :active="dragActive"
     icon="mdi-cursor-move"
-    tooltip="Перетягування карток"
+    :tooltip="t('cards.drag')"
     @click="dragActive = !dragActive"
   />
 </template>

@@ -88,7 +88,7 @@
           <SveBadge v-if="missingTotal > 0" tone="warning">{{ missingTotal }}</SveBadge>
         </SveButton>
       </template>
-      <SveMenuLabel>Мова контенту</SveMenuLabel>
+      <SveMenuLabel>{{ t('editor.contentLanguage') }}</SveMenuLabel>
       <SveMenuItem
         v-for="code in locales"
         :key="code"

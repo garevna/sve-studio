@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+  import { t } from '@/i18n'
   const props = withDefaults(defineProps<{
     loading?: boolean
     dirty?: boolean
@@ -37,7 +38,7 @@
       variant="outlined"
       @click="$emit('undo')"
     >
-      Скасувати
+      {{ t('common.cancel') }}
     </v-btn>
     <v-btn
       color="primary"
@@ -47,7 +48,7 @@
       variant="elevated"
       @click="$emit('click')"
     >
-      Зберегти
+      {{ t('common.save') }}
     </v-btn>
   </div>
 </template>

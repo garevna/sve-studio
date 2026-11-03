@@ -32,13 +32,13 @@
         hide-slider
         selected-class="editor-tab--active"
       >
-        <v-tab value="buttons">Кнопки</v-tab>
-        <v-tab value="tabs">Таби</v-tab>
-        <v-tab value="cards">{{ t('cardStyles.tab') }}</v-tab>
-        <v-tab value="footer">Футер</v-tab>
-        <v-tab value="spacing">Відступи</v-tab>
-        <v-tab value="menu">Меню</v-tab>
-        <v-tab value="date">Вибір дати</v-tab>
+        <v-tab value="buttons">{{ t('common.buttons') }}</v-tab>
+        <v-tab value="tabs">{{ t('kit.tabs') }}</v-tab>
+        <v-tab value="cards">{{ t('common.cards') }}</v-tab>
+        <v-tab value="footer">{{ t('common.footer') }}</v-tab>
+        <v-tab value="spacing">{{ t('kit.spacing') }}</v-tab>
+        <v-tab value="menu">{{ t('common.menu') }}</v-tab>
+        <v-tab value="date">{{ t('common.datePicker') }}</v-tab>
       </v-tabs>
 
       <v-tabs-window v-model="tab">
@@ -63,7 +63,7 @@
           <MenuStyleView />
         </v-tabs-window-item>
         <v-tabs-window-item value="date">
-          <p class="text-body-1 text-medium-emphasis mt-4">Розділ у розробці</p>
+          <p class="text-body-1 text-medium-emphasis mt-4">{{ t('common.inDevelopment') }}</p>
         </v-tabs-window-item>
       </v-tabs-window>
     </v-main>

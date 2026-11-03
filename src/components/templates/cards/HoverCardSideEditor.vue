@@ -2,6 +2,7 @@
   import type { TemplateBlockModel } from '@/types/TemplateBlockModel'
   import { ref } from 'vue'
   import PaletteSwatchPicker from '@/components/special/PaletteSwatchPicker.vue'
+  import { t } from '@/i18n'
   import { uploadImage } from '@/utils/upload-image'
   import EditableCard from './EditableCard.vue'
 
@@ -45,7 +46,7 @@
       image.value = path
       URL.revokeObjectURL(previewUrl)
     } catch (error) {
-      uploadError.value = error instanceof Error ? error.message : 'Не вдалося завантажити зображення.'
+      uploadError.value = error instanceof Error ? error.message : t('images.uploadFailed')
       // Keep the blob: preview so editing isn't blocked - matches ImageEditor.vue's own retry convention.
     }
   }
@@ -54,7 +55,7 @@
 <template>
   <div class="hover-card-side">
     <div class="hover-card-side-row">
-      <span class="hover-card-side-row-label">Фон - зображення</span>
+      <span class="hover-card-side-row-label">{{ t('cards.hover.imageBackground') }}</span>
       <v-switch
         density="compact"
         hide-details
@@ -66,7 +67,7 @@
 
     <template v-if="!useImage">
       <div class="hover-card-side-row">
-        <span class="hover-card-side-row-label">Колір фону</span>
+        <span class="hover-card-side-row-label">{{ t('cards.hover.backgroundColor') }}</span>
         <PaletteSwatchPicker :model-value="color" @update:model-value="(value: string) => color = value" />
       </div>
     </template>
@@ -86,7 +87,7 @@
         variant="outlined"
         @click="triggerUpload"
       >
-        {{ image ? 'Змінити зображення' : 'Завантажити зображення' }}
+        {{ image ? t('images.change') : t('images.upload') }}
       </v-btn>
       <div v-if="uploadError" class="hover-card-side-upload-error">{{ uploadError }}</div>
     </template>

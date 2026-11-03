@@ -123,7 +123,7 @@
         />
       </div>
       <template v-if="gradientSwatches.length > 0">
-        <div class="palette-swatch-label">{{ t('palette.gradients') }}</div>
+        <div class="palette-swatch-label">{{ t('common.gradients') }}</div>
         <div class="palette-swatch-grid palette-swatch-grid--gradients">
           <button
             v-for="[key, value] of gradientSwatches"

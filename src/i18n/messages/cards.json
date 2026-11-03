@@ -1,0 +1,149 @@
+{
+  "add": {
+    "uk": "Додати картку",
+    "en": "Add a card",
+    "de": "Karte hinzufügen"
+  },
+  "drag": {
+    "uk": "Перетягування карток",
+    "en": "Drag cards",
+    "de": "Karten verschieben"
+  },
+  "iconFormatAll": {
+    "uk": "Однаковий формат іконки для всіх карток",
+    "en": "Consistent icon format for all cards",
+    "de": "Einheitliches Icon-Format für alle Karten"
+  },
+  "iconLookAll": {
+    "uk": "Колір, розмір і фон іконок усіх карток",
+    "en": "Consistent icon look for all cards",
+    "de": "Farbe, Größe und Hintergrund der Symbole aller Karten"
+  },
+  "titleFormatAll": {
+    "uk": "Формат заголовків усіх карток",
+    "en": "Consistent title format for all cards",
+    "de": "Format der Überschriften aller Karten"
+  },
+  "textFormatAll": {
+    "uk": "Формат тексту всіх карток",
+    "en": "Consistent text format for all cards",
+    "de": "Textformat aller Karten"
+  },
+  "background": {
+    "uk": "Фон карток",
+    "en": "Background for cards",
+    "de": "Hintergrund der Karten"
+  },
+  "variant3": {
+    "uk": "Варіант 3",
+    "en": "Variant 3",
+    "de": "Variante 3"
+  },
+  "variant4": {
+    "uk": "Варіант 4",
+    "en": "Variant 4",
+    "de": "Variante 4"
+  },
+  "item": {
+    "uk": "Пункт {value}",
+    "en": "Item {value}",
+    "de": "Punkt {value}"
+  },
+  "showIcon": {
+    "uk": "Показувати іконку",
+    "en": "Show icon",
+    "de": "Symbol anzeigen"
+  },
+  "itemsFormat": {
+    "uk": "Формат усіх пунктів",
+    "en": "Format of all items",
+    "de": "Format aller Einträge"
+  },
+  "deleteItem": {
+    "uk": "Видалити пункт",
+    "en": "Delete item",
+    "de": "Eintrag löschen"
+  },
+  "iconAppliesToAll": {
+    "uk": "Розмір, колір та підложка іконки застосовуються до всіх карток блоку",
+    "en": "Icon size, colour and background apply to all cards in the block",
+    "de": "Größe, Farbe und Hintergrund des Symbols werden auf alle Karten des Blocks angewendet"
+  },
+  "addText": {
+    "uk": "Додати текстовий контент",
+    "en": "Add text content",
+    "de": " Textinhalt hinzufügen"
+  },
+  "addItem": {
+    "uk": "Додати пункт",
+    "en": "Add item",
+    "de": "Eintrag hinzufügen"
+  },
+  "edit": {
+    "uk": "Редагувати картку",
+    "en": "Edit card",
+    "de": "Karte bearbeiten"
+  },
+  "delete": {
+    "uk": "Видалити картку",
+    "en": "Delete card",
+    "de": "Karte löschen"
+  },
+  "deleteTitle": {
+    "uk": "Видалити картку?",
+    "en": "Delete card?",
+    "de": "Karte löschen?"
+  },
+  "width": {
+    "uk": "Ширина карток: {value}px",
+    "en": "Width of cards: {value}px",
+    "de": "Kartenbreite: {value}px"
+  },
+  "sectionBackground": {
+    "uk": "Фон секції",
+    "en": "Section background",
+    "de": "Abschnittshintergrund"
+  },
+  "hover": {
+    "imageBackground": {
+      "uk": "Фон - зображення",
+      "en": "Background – image",
+      "de": "Hintergrund - Bild"
+    },
+    "backgroundColor": {
+      "uk": "Колір фону",
+      "en": "Background color",
+      "de": "Hintergrundfarbe"
+    },
+    "width": {
+      "uk": "Ширина карток: {cardWidth}px",
+      "en": "Width of cards: {cardWidth}px",
+      "de": "Breite der Karten: {cardWidth}px"
+    },
+    "height": {
+      "uk": "Висота карток: {cardHeight}px",
+      "en": "Height of cards: {cardHeight}px",
+      "de": "Höhe der Karten: {cardHeight}px"
+    },
+    "base": {
+      "uk": "Базова картка",
+      "en": "Base card",
+      "de": "Basis-Karte"
+    },
+    "hover": {
+      "uk": "Ховер-картка",
+      "en": "Hover card",
+      "de": "Hover-Karte"
+    }
+  },
+  "sameTextFormat": {
+    "uk": "Однаковий формат тексту для всіх карток",
+    "en": "Same text format for all cards",
+    "de": "Gleicher Textformat für alle Karten"
+  },
+  "editTexts": {
+    "uk": "Редагувати тексти картки",
+    "en": "Edit card texts",
+    "de": "Kartentexte bearbeiten"
+  }
+}

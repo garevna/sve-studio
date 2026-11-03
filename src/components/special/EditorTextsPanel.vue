@@ -2,7 +2,7 @@
   import type { Translated } from '@/i18n/schema'
   import { SveBadge, SveButton, SveSegmented, SveTextField } from '@sve/editor-ui'
   import { computed, ref, toRaw, watch } from 'vue'
-  import { applyMessages } from '@/i18n'
+  import { applyMessages, t } from '@/i18n'
   import { MESSAGES } from '@/i18n/messages'
 
   // The editor's interface texts (src/i18n/messages/*.json), every one in
@@ -96,9 +96,9 @@
       saved.value = clone(draft.value)
       refresh()
       applyMessages(clone(draft.value) as unknown as typeof MESSAGES)
-      message.value = `Збережено в src/i18n/messages: ${Object.keys(body.sections).join(', ')}`
+      message.value = t('editorTexts.savedTo', { value: Object.keys(body.sections).join(', ') })
     } catch (error) {
-      message.value = `Не вдалося зберегти: ${error instanceof Error ? error.message : String(error)}`
+      message.value = t('editorTexts.saveFailed', { value: error instanceof Error ? error.message : String(error) })
     } finally {
       saving.value = false
     }
@@ -112,15 +112,14 @@
 
 <template>
   <section class="texts">
-    <div class="showcase-heading">Тексти інтерфейсу</div>
+    <div class="showcase-heading">{{ t('editorTexts.title') }}</div>
     <p class="showcase-text">
-      Кожен текст редактора трьома мовами. Порожнє поле EN чи DE - в інтерфейсі буде український текст (він видний у полі підказкою).
-      «Зберегти» записує файли в src/i18n/messages і одразу показує нові тексти.
+      {{ t('editorTexts.intro') }}
     </p>
 
     <div class="texts__sections">
       <button :class="['texts__section', { 'texts__section--active': section === 'all' }]" type="button" @click="section = 'all'; shown = PAGE">
-        Усі <SveBadge v-if="totalOpen" tone="warning">{{ totalOpen }}</SveBadge>
+        {{ t('blockMenu.all') }} <SveBadge v-if="totalOpen" tone="warning">{{ totalOpen }}</SveBadge>
       </button>
       <button
         v-for="item of sections"
@@ -136,12 +135,12 @@
     <div class="texts__tools">
       <SveSegmented
         v-model="filter"
-        :options="[{ value: 'untranslated', label: 'Без перекладу' }, { value: 'all', label: 'Усі тексти' }]"
+        :options="[{ value: 'untranslated', label: t('editorTexts.untranslated') }, { value: 'all', label: t('editorTexts.all') }]"
       />
-      <SveTextField v-model="search" class="texts__search" placeholder="Пошук за ключем або текстом" />
+      <SveTextField v-model="search" class="texts__search" :placeholder="t('editorTexts.search')" />
     </div>
 
-    <p v-if="rows.length === 0" class="showcase-text">Тут усе перекладено.</p>
+    <p v-if="rows.length === 0" class="showcase-text">{{ t('editorTexts.allTranslated') }}</p>
 
     <div v-for="row of visibleRows" :key="`${row.section}.${row.key}`" class="texts__row">
       <div class="texts__key">{{ row.section }}.{{ row.key }}</div>
@@ -154,20 +153,20 @@
             :rows="rowsFor(row.text.uk)"
           />
           <SveBadge v-for="placeholder of lostPlaceholders(row, locale)" :key="placeholder" tone="warning">
-            немає {{ placeholder }}
+            {{ t('editorTexts.lostPlaceholder', { placeholder }) }}
           </SveBadge>
         </div>
       </div>
     </div>
 
     <SveButton v-if="rows.length > shown" class="texts__more" @click="shown += PAGE">
-      Показати ще ({{ rows.length - shown }})
+      {{ t('editorTexts.showMore', { value: rows.length - shown }) }}
     </SveButton>
 
     <div class="texts__bar">
-      <span class="texts__message">{{ message || (dirtySections.length > 0 ? `Змінено: ${dirtySections.join(', ')}` : '') }}</span>
-      <SveButton :disabled="dirtySections.length === 0 || saving" @click="reset">Скасувати зміни</SveButton>
-      <SveButton :disabled="dirtySections.length === 0 || saving" variant="primary" @click="save">Зберегти</SveButton>
+      <span class="texts__message">{{ message || (dirtySections.length > 0 ? t('editorTexts.changed', { value: dirtySections.join(', ') }) : '') }}</span>
+      <SveButton :disabled="dirtySections.length === 0 || saving" @click="reset">{{ t('editorTexts.reset') }}</SveButton>
+      <SveButton :disabled="dirtySections.length === 0 || saving" variant="primary" @click="save">{{ t('common.save') }}</SveButton>
     </div>
   </section>
 </template>

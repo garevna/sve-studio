@@ -7,6 +7,7 @@
   import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
   import PaletteSwatchPicker from '@/components/special/PaletteSwatchPicker.vue'
   import CardStyleMenu from '@/components/templates/cards/CardStyleMenu.vue'
+  import { t } from '@/i18n'
   import { defaultCardContentClass, defaultCardTitleClass } from '@/utils/card-text-defaults'
   import { emptyTranslatedModel } from '@/utils/locale-text'
   import { EDITOR_THEME_NAME, themeClass } from '@/utils/vuetify-theme-names'
@@ -153,17 +154,17 @@
 </script>
 
 <template>
-  <ToolbarIconButton icon="mdi-plus" tooltip="Додати картку" @click="addCard" />
+  <ToolbarIconButton icon="mdi-plus" :tooltip="t('cards.add')" @click="addCard" />
   <ToolbarIconButton
     :active="dragActive"
     icon="mdi-cursor-move"
-    tooltip="Перетягування карток"
+    :tooltip="t('cards.drag')"
     @click="dragActive = !dragActive"
   />
   <ToolbarIconButton
     :active="block.uniformCardIcon !== false"
     icon="mdi-content-duplicate"
-    tooltip="Однаковий формат іконки для всіх карток"
+    :tooltip="t('cards.iconFormatAll')"
     @click="toggleUniformIcon"
   />
 
@@ -172,7 +173,7 @@
       <ToolbarIconButton
         v-bind="menuProps"
         icon="mdi-cog-box"
-        tooltip="Колір, розмір і фон іконок усіх карток"
+        :tooltip="t('cards.iconLookAll')"
       />
     </template>
     <v-card class="card-icon-appearance" theme="editorTheme">
@@ -194,7 +195,7 @@
       <ToolbarIconButton
         v-bind="menuProps"
         icon="mdi-format-font"
-        tooltip="Формат заголовків усіх карток"
+        :tooltip="t('cards.titleFormatAll')"
       />
     </template>
     <div :class="['text-format-panel', 'editor-panel', themeClass(EDITOR_THEME_NAME)]">
@@ -209,7 +210,7 @@
       <ToolbarIconButton
         v-bind="menuProps"
         icon="mdi-format-letter-case"
-        tooltip="Формат тексту всіх карток"
+        :tooltip="t('cards.textFormatAll')"
       />
     </template>
     <div :class="['text-format-panel', 'editor-panel', themeClass(EDITOR_THEME_NAME)]">
@@ -226,7 +227,7 @@
       <ToolbarIconButton
         v-bind="menuProps"
         icon="mdi-format-color-fill"
-        tooltip="Фон карток"
+        :tooltip="t('cards.background')"
       />
     </template>
   </PaletteSwatchPicker>
@@ -236,10 +237,10 @@
     design, which breaks a swiper slide's own width - only offered outside
     a carousel. -->
   <v-btn-toggle density="compact" :model-value="block.ver || 2" variant="text">
-    <NumberToggleButton tooltip="Варіант 1" :value="1" @click="setVer(1)" />
-    <NumberToggleButton tooltip="Варіант 2" :value="2" @click="setVer(2)" />
-    <NumberToggleButton v-if="block.type !== 'carousel'" tooltip="Варіант 3" :value="3" @click="setVer(3)" />
-    <NumberToggleButton v-if="block.type !== 'carousel'" tooltip="Варіант 4" :value="4" @click="setVer(4)" />
+    <NumberToggleButton :tooltip="t('common.variant1')" :value="1" @click="setVer(1)" />
+    <NumberToggleButton :tooltip="t('common.variant2')" :value="2" @click="setVer(2)" />
+    <NumberToggleButton v-if="block.type !== 'carousel'" :tooltip="t('cards.variant3')" :value="3" @click="setVer(3)" />
+    <NumberToggleButton v-if="block.type !== 'carousel'" :tooltip="t('cards.variant4')" :value="4" @click="setVer(4)" />
   </v-btn-toggle>
 </template>
 

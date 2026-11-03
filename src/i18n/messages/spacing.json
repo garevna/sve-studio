@@ -1,0 +1,37 @@
+{
+  "topHint": {
+    "uk": "px, відступ контенту сторінки від її верхнього краю",
+    "en": "px, margin of the page content from the top edge",
+    "de": "px, Abstand des Seiteninhalts vom oberen Rand der Seite"
+  },
+  "top": {
+    "uk": "Відступ контенту зверху",
+    "en": "Top Margin",
+    "de": "Oberer Abstand"
+  },
+  "gapDesktopHint": {
+    "uk": "px, між блоками на сторінці (десктоп)",
+    "en": "px, gap between blocks on the page (desktop)",
+    "de": "px, Abstand zwischen Blöcken auf der Seite (Desktop)"
+  },
+  "gapDesktop": {
+    "uk": "Відступ між блоками (десктоп)",
+    "en": "Gap between blocks (desktop)",
+    "de": "Abstand zwischen Blöcken (Desktop)"
+  },
+  "gapMobileHint": {
+    "uk": "px, між блоками на сторінці (мобільна версія)",
+    "en": "px, gap between blocks on the page (mobile)",
+    "de": "px, Abstand zwischen Blöcken auf der Seite (Mobil)"
+  },
+  "gapMobile": {
+    "uk": "Відступ між блоками (мобільна)",
+    "en": "Gap between blocks (mobile)",
+    "de": "Abstand zwischen Blöcken (Mobil)"
+  },
+  "intro": {
+    "uk": "Вертикальний ритм сторінок: відступ контенту від верхнього краю та проміжок між блоками. Значення в пікселях.",
+    "en": "Vertical rhythm of pages: margin of the page content from the top edge and gap between blocks. Values in pixels.",
+    "de": "Vertikaler Rhythmus von Seiten: Abstand des Seiteninhalts vom oberen Rand und Abstand zwischen Blöcken. Werte in Pixeln."
+  }
+}

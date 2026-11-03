@@ -6,6 +6,7 @@
   import ResizableWrapper from '@/components/editors/ResizableWrapper.vue'
   import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
   import { useBlockActionsTarget } from '@/composables/useEditableBlockActions'
+  import { t } from '@/i18n'
   import { useAjaxStore } from '@/stores/ajax'
   import { uploadImage } from '@/utils/upload-image'
 
@@ -136,13 +137,13 @@
       >
     </div>
     <div v-else class="swiper-images-empty">
-      Немає завантажених фото
+      {{ t('images.nonePhotos') }}
     </div>
     <Teleport :disabled="!blockActionsTarget" :to="blockActionsTarget">
       <ToolbarIconButton
         :class="{ 'swiper-images-upload-btn': !blockActionsTarget }"
         icon="mdi-image-multiple-outline"
-        tooltip="Завантажити серію фото"
+        :tooltip="t('images.uploadSeries')"
         @click="triggerFileDialog"
       />
     </Teleport>

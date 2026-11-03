@@ -1,0 +1,107 @@
+{
+  "siteNameHint": {
+    "uk": "Назва сайту для соцмереж (og:site_name) - як буде підписана сторінка при пересиланні посилання",
+    "en": "Site name for social media (og:site_name) - how the page will be signed when sharing the link",
+    "de": "Name der Website für soziale Netzwerke (og:site_name) – so wird die Seite beim Weiterleiten eines Links bezeichnet"
+  },
+  "siteName": {
+    "uk": "Назва сайту",
+    "en": "Site Name",
+    "de": "Website-Name"
+  },
+  "titleTemplateHint": {
+    "uk": "%s замінюється на заголовок конкретної сторінки. Наприклад: «%s — Virtual Dimension»",
+    "en": "%s is replaced with the title of the specific page. For example: \"%s — Virtual Dimension\"",
+    "de": "%s wird durch den Titel der jeweiligen Seite ersetzt. Beispiel: „%s – Virtual Dimension“"
+  },
+  "titleTemplate": {
+    "uk": "Шаблон заголовка вкладки (<title>)",
+    "en": "Tab Title Template",
+    "de": "Tab-Titel-Vorlage"
+  },
+  "defaultTitleHint": {
+    "uk": "Заголовок для сторінок, у яких немає власного (наприклад, головна)",
+    "en": "Default title for pages without their own title (e.g., homepage)",
+    "de": "Standard-Titel für Seiten ohne eigenen Titel (z.B. Homepage)"
+  },
+  "defaultTitle": {
+    "uk": "Заголовок за замовчуванням",
+    "en": "Default Title",
+    "de": "Standard-Titel"
+  },
+  "defaultDescriptionHint": {
+    "uk": "Опис за замовчуванням для сторінок без власного. Оптимально - до 155-160 символів",
+    "en": "Default description for pages without their own description. Optimal length: 155-160 characters",
+    "de": "Standard-Beschreibung für Seiten ohne eigene Beschreibung. Optimale Länge: 155-160 Zeichen"
+  },
+  "defaultDescription": {
+    "uk": "Опис за замовчуванням (meta description)",
+    "en": "Default Description",
+    "de": "Standard-Beschreibung"
+  },
+  "verificationHint": {
+    "uk": "Код підтвердження власності сайту з Google Search Console (метод «HTML-тег»). Порожнє поле - тег не додається",
+    "en": "Verification code for site ownership with Google Search Console (method: \"HTML tag\"). Empty field - tag is not added",
+    "de": "Verifizierungscode für Website-Eigentum mit Google Search Console (Methode: \"HTML-Tag\"). Leeres Feld - Tag wird nicht hinzugefügt"
+  },
+  "verification": {
+    "uk": "Код підтвердження (google-site-verification)",
+    "en": "Verification Code (google-site-verification)",
+    "de": "Verifizierungscode (google-site-verification)"
+  },
+  "intro": {
+    "uk": "Ці налаштування — типові значення для всього сайту. Для окремої сторінки їх можна перевизначити прямо в її редакторі (кнопка «SEO» у верхній панелі).",
+    "en": "These settings are the default values for the entire site. For a specific page, you can override them directly in its editor (the \"SEO\" button in the top panel).",
+    "de": "Diese Einstellungen sind die Standardwerte für die gesamte Website. Für eine bestimmte Seite können Sie sie direkt in ihrem Editor überschreiben (die Schaltfläche \"SEO\" in der oberen Leiste)."
+  },
+  "defaultImage": {
+    "uk": "Зображення для соцмереж за замовчуванням",
+    "en": "Default Image for Social Media",
+    "de": "Standardbild für soziale Medien"
+  },
+  "defaultImageHint": {
+    "uk": "Показується при пересиланні посилання на сторінку, у якої немає власного зображення. Оптимальний розмір - 1200×630px.",
+    "en": "Shown when sharing a link to a page that doesn't have its own image. Optimal size: 1200×630px.",
+    "de": "Wird angezeigt, wenn ein Link zu einer Seite geteilt wird, die kein eigenes Bild hat. Optimale Größe: 1200×630px."
+  },
+  "loadFailed": {
+    "uk": "Не вдалося завантажити налаштування SEO.",
+    "en": "Failed to load SEO settings.",
+    "de": "Fehler beim Laden der SEO-Einstellungen."
+  },
+  "pageTitleHint": {
+    "uk": "Заголовок вкладки браузера й посилання в пошуку",
+    "en": "Title of the browser tab and link in search results",
+    "de": "Titel des Browser-Tabs und Link in den Suchergebnissen"
+  },
+  "pageTitle": {
+    "uk": "Заголовок сторінки",
+    "en": "Page Title",
+    "de": "Seitentitel"
+  },
+  "pageDescriptionHint": {
+    "uk": "Короткий опис під заголовком у видачі пошуку",
+    "en": "Short description under the title in search results",
+    "de": "Kurze Beschreibung unter dem Titel in den Suchergebnissen"
+  },
+  "pageDescription": {
+    "uk": "Опис (meta description)",
+    "en": "Page Description",
+    "de": "Seitenbeschreibung"
+  },
+  "noindex": {
+    "uk": "Приховати сторінку від пошукових систем (noindex)",
+    "en": "Hide page from search engines (noindex)",
+    "de": "Seite vor Suchmaschinen verstecken (noindex)"
+  },
+  "pageIntro": {
+    "uk": "Порожнє поле - береться типове значення з розділу «SEO» головного меню.",
+    "en": "Empty field - takes the default value from the \"SEO\" section of the main menu.",
+    "de": "Leeres Feld - nimmt den Standardwert aus dem \"SEO\"-Bereich des Hauptmenüs."
+  },
+  "pageImage": {
+    "uk": "Зображення для соцмереж",
+    "en": "Image for Social Media",
+    "de": "Bild für soziale Medien"
+  }
+}

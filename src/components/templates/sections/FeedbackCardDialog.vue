@@ -49,7 +49,7 @@
 
 <template>
   <v-dialog v-model="open" max-width="560">
-    <v-card theme="editorTheme" :title="t('feedbackForms.title')">
+    <v-card theme="editorTheme" :title="t('common.feedbackForm')">
       <v-card-text>
         <!-- The kind decides which fields the form asks for
           (configs/feedback-forms.ts). -->
@@ -73,7 +73,7 @@
         <!-- The card's own heading and lead paragraph, edited with the same
           controls every other text in this editor uses (so the format menu
           works here too, not just the words). -->
-        <p class="feedback-card-dialog-label">Заголовок</p>
+        <p class="feedback-card-dialog-label">{{ t('common.header') }}</p>
         <TextEditor
           :content="text('title')"
           parent-type="usual"
@@ -81,7 +81,7 @@
           @update:content="value => setText('title', value)"
         />
 
-        <p class="feedback-card-dialog-label mt-6">Текст</p>
+        <p class="feedback-card-dialog-label mt-6">{{ t('common.text') }}</p>
         <TextEditor
           :content="text('text')"
           parent-type="usual"
@@ -92,7 +92,7 @@
       <v-card-actions>
         <LocaleSwitcher :scope="card" />
         <v-spacer />
-        <v-btn color="primary" variant="elevated" @click="open = false">ОК</v-btn>
+        <v-btn color="primary" variant="elevated" @click="open = false">{{ t('common.ok') }}</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>

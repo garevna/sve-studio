@@ -121,7 +121,7 @@
           mandatory
           variant="outlined"
         >
-          <v-btn prepend-icon="mdi-monitor" size="small" value="desktop">{{ t('header.desktop') }}</v-btn>
+          <v-btn prepend-icon="mdi-monitor" size="small" value="desktop">{{ t('common.desktop') }}</v-btn>
           <v-btn prepend-icon="mdi-cellphone" size="small" value="mobile">{{ t('header.phone') }}</v-btn>
         </v-btn-toggle>
       </v-card-title>
@@ -130,7 +130,7 @@
         <p class="text-body-2 text-medium-emphasis mb-3">{{ t('bannerTexts.hint') }}</p>
 
         <div class="banner-tools">
-          <v-btn color="primary" prepend-icon="mdi-format-text" variant="tonal" @click="addText">{{ t('bannerTexts.add') }}</v-btn>
+          <v-btn color="primary" prepend-icon="mdi-format-text" variant="tonal" @click="addText">{{ t('common.addText') }}</v-btn>
           <template v-if="selected">
             <TextFormatMenu
               v-model:class="selected.class"
@@ -148,7 +148,7 @@
                 variant="text"
                 @click="resize(-1)"
               />
-              <span>{{ t('bannerTexts.size') }} {{ sizeLabel }}</span>
+              <span>{{ t('common.size') }} {{ sizeLabel }}</span>
               <v-btn
                 :aria-label="t('bannerTexts.bigger')"
                 icon="mdi-plus"

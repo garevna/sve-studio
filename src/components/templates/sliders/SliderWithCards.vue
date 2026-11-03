@@ -12,6 +12,7 @@
   import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
   import { useEditorMode } from '@/composables/useEditorMode'
   import { useSortableList } from '@/composables/useSortableList'
+  import { t } from '@/i18n'
   import { useCommonStore } from '@/stores/common'
   import { stableKey } from '@/utils/stable-key'
   import CardContainerActions from '../cards/CardContainerActions.vue'
@@ -163,7 +164,7 @@
       <CardContainerActions v-model:drag-active="dragActive" :block="block" />
     </template>
     <template v-if="block" #delete>
-      <ToolbarIconButton icon="mdi-delete" tooltip="Видалити блок" @click="emit('delete')" />
+      <ToolbarIconButton icon="mdi-delete" :tooltip="t('common.deleteBlock')" @click="emit('delete')" />
     </template>
     <div ref="cardsContainer" class="editable-cards-grid">
       <!-- Keyed on the card object, not its index - see EditableCardsBlock.vue's
@@ -173,7 +174,7 @@
       <template v-for="(card, index) of props.cards" :key="stableKey(card)">
         <EditableBlockWrapper :class="{ 'card-drag-cursor': dragActive }" type="card">
           <template v-if="!dragActive" #actions>
-            <ToolbarIconButton icon="mdi-pencil" tooltip="Редагувати картку" @click="openCardEditor(index)" />
+            <ToolbarIconButton icon="mdi-pencil" :tooltip="t('cards.edit')" @click="openCardEditor(index)" />
           </template>
           <div :style="{ width: (cardDefaults.width || 320) + 'px', height: '100%' }">
             <template-card :class="{ 'card-drag-active': dragActive }" :defaults="cardDefaults" :item="card" style="height: 100%" />

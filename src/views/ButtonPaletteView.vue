@@ -7,6 +7,7 @@
   import PaletteSwatchPicker from '@/components/special/PaletteSwatchPicker.vue'
   import TabsPreview from '@/components/special/TabsPreview.vue'
   import { isTabClass, TAB_STRIP_CLASS, TAB_STYLE_CLASS } from '@/configs/tab-classes'
+  import { t } from '@/i18n'
   import { useAjaxStore } from '@/stores/ajax'
   import { useUiFeedbackStore } from '@/stores/ui-feedback'
   import { buttonPreviewVars } from '@/utils/button-preview-vars'
@@ -146,11 +147,11 @@
   function confirmAdd () {
     const className = newClassName.value.trim()
     if (!CLASS_NAME_RE.test(className)) {
-      addError.value = 'Назва класу має містити лише латинські літери, цифри та дефіс.'
+      addError.value = t('buttonPalette.classNameInvalid')
       return
     }
     if (entries.value.some(entry => entry.className === className)) {
-      addError.value = 'Такий клас вже є в палітрі.'
+      addError.value = t('buttonPalette.classExists')
       return
     }
     entries.value.push({
@@ -247,22 +248,22 @@
   // the one thing that can differ by place, so both plates are offered
   // side by side rather than behind a switch - two colours is not enough to
   // hide one of them.
-  const PLATE_CONTEXTS = [
-    { className: TAB_STRIP_CLASS.auth, label: 'Сторінка авторизації' },
-    { className: TAB_STRIP_CLASS.page, label: 'Інші сторінки' },
-  ]
+  const PLATE_CONTEXTS = computed(() => [
+    { className: TAB_STRIP_CLASS.auth, label: t('buttonPalette.authPage') },
+    { className: TAB_STRIP_CLASS.page, label: t('buttonPalette.otherPages') },
+  ])
 
   // What the states preview stands on. The login page's plate, because it
   // is the one with something to see - a transparent plate would show the
   // states just as well but say nothing about the plate itself.
   const PREVIEW_PLATE = TAB_STRIP_CLASS.auth
-  const PREVIEW_TABS = ['Вхід', 'Реєстрація', 'Профіль']
+  const PREVIEW_TABS = computed(() => [t('buttonPalette.previewLogin'), t('buttonPalette.previewRegister'), t('buttonPalette.previewProfile')])
 
-  const TAB_STATE_LABELS = {
-    base: 'Неактивна',
-    disabled: 'Недоступна',
-    active: 'Активна',
-  }
+  const TAB_STATE_LABELS = computed(() => ({
+    base: t('buttonPalette.stateBase'),
+    disabled: t('buttonPalette.stateDisabled'),
+    active: t('buttonPalette.stateActive'),
+  }))
 
   // Both plates are set the same way, right next to the tabs they sit
   // under - the colour is the one thing a designer will actually reach for
@@ -327,7 +328,7 @@
                     class="button-palette-preview-icon"
                     :src="PREVIEW_ICONS[entry.className]"
                   >
-                  Кнопка
+                  {{ t('common.button') }}
                 </button>
                 <label class="button-palette-preview-disabled" @click.stop>
                   <input
@@ -347,7 +348,7 @@
                     type="checkbox"
                     @change="togglePreviewIcon(entry.className, ($event.target as HTMLInputElement).checked)"
                   >
-                  іконка
+                  {{ t('buttonPalette.icon') }}
                 </label>
               </div>
             </v-theme-provider>
@@ -373,10 +374,9 @@
         buttons somebody could press - so they are a UI Kit tab of their own
         (section="tabs"). -->
       <template v-if="props.section === 'tabs' && tabButtonEntry">
-        <h3 class="tabs-subtitle">Колір фону групи вкладок</h3>
+        <h3 class="tabs-subtitle">{{ t('buttonPalette.tabsBackground') }}</h3>
         <p class="tabs-context-hint">
-          Таби на сторінці авторизації та на решті сторінок можуть мати різний
-          фон. Самі вкладки скрізь однакові — їхні стани налаштовуються нижче.
+          {{ t('buttonPalette.tabsBackgroundHint') }}
         </p>
         <div class="tabs-plates">
           <div v-for="plate of PLATE_CONTEXTS" :key="plate.className" class="tabs-plate-row">
@@ -390,11 +390,9 @@
 
         <v-divider class="my-8" />
 
-        <h3 class="tabs-subtitle">Стани вкладки</h3>
+        <h3 class="tabs-subtitle">{{ t('buttonPalette.tabStates') }}</h3>
         <p class="tabs-context-hint">
-          Клікніть по вкладці, щоб побачити активний стан. Наведення діє лише
-          на неактивну й доступну вкладку — активна та недоступна на нього не
-          реагують, як і на сайті.
+          {{ t('buttonPalette.tabStatesHint') }}
         </p>
 
         <TabsPreview
@@ -415,9 +413,9 @@
         </div>
 
         <template v-if="tabEntries.length > 0">
-          <h3 class="tabs-subtitle">Застарілі класи</h3>
+          <h3 class="tabs-subtitle">{{ t('buttonPalette.obsolete') }}</h3>
           <p class="tabs-context-hint">
-            Ці класи більше ніде не використовуються — їх можна видалити.
+            {{ t('buttonPalette.obsoleteHint') }}
           </p>
           <div class="button-palette-list">
             <div v-for="entry of tabEntries" :key="entry.className" class="button-palette-row">
@@ -448,20 +446,20 @@
           variant="outlined"
           @click="openAddDialog"
         >
-          Додати кнопку
+          {{ t('buttonPalette.addButton') }}
         </v-btn>
       </template>
     </EditorSaveBar>
 
     <v-dialog v-model="addDialogOpen" max-width="420">
       <v-card theme="editorTheme">
-        <v-card-title>Нова кнопка</v-card-title>
+        <v-card-title>{{ t('buttonPalette.newButton') }}</v-card-title>
         <v-card-text>
           <v-text-field
             v-model="newClassName"
             autofocus
             :error-messages="addError ? [addError] : []"
-            label="Назва класу"
+            :label="t('buttonPalette.className')"
             placeholder="my-button"
             variant="outlined"
             @keyup.enter="confirmAdd"
@@ -469,8 +467,8 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer />
-          <v-btn variant="text" @click="addDialogOpen = false">Скасувати</v-btn>
-          <v-btn color="primary" variant="flat" @click="confirmAdd">Додати</v-btn>
+          <v-btn variant="text" @click="addDialogOpen = false">{{ t('common.cancel') }}</v-btn>
+          <v-btn color="primary" variant="flat" @click="confirmAdd">{{ t('common.add') }}</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>

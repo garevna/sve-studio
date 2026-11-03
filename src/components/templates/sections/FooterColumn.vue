@@ -8,6 +8,7 @@
   import TemplateItem from '@/components/templates/TemplateItem.vue'
   import { useSortableList } from '@/composables/useSortableList'
   import { isLegacyLinksSection, isPageLinks, VISA_LOGO_NATURAL_WIDTH, VISA_LOGO_SIZES } from '@/configs/footer-blocks'
+  import { t } from '@/i18n'
   import { useCommonStore } from '@/stores/common'
   import { useUiFeedbackStore } from '@/stores/ui-feedback'
   import { resolveLocaleText } from '@/utils/locale-text'
@@ -137,7 +138,7 @@
           v-if="editing && !SELF_CHROMED.has(kindOf(block))"
           class="footer-column-block-delete"
           icon="mdi-delete"
-          tooltip="Видалити блок"
+          :tooltip="t('common.deleteBlock')"
           @click="removeBlock(column.children!, index)"
         />
 
@@ -150,14 +151,14 @@
             <template #actions>
               <ToolbarIconButton
                 icon="mdi-playlist-edit"
-                tooltip="Редагувати картку"
+                :tooltip="t('cards.edit')"
                 @click="cardDialogIndex = index"
               />
             </template>
             <template #delete>
               <ToolbarIconButton
                 icon="mdi-delete"
-                tooltip="Видалити блок"
+                :tooltip="t('common.deleteBlock')"
                 @click="removeBlock(column.children!, index)"
               />
             </template>
@@ -210,7 +211,7 @@
             <template #delete>
               <ToolbarIconButton
                 icon="mdi-delete"
-                tooltip="Видалити блок"
+                :tooltip="t('common.deleteBlock')"
                 @click="removeBlock(column.children!, index)"
               />
             </template>
@@ -233,7 +234,7 @@
                 item-title="label"
                 item-value="width"
                 :items="VISA_LOGO_SIZES"
-                label="Розмір"
+                :label="t('common.size')"
                 :model-value="visaWidth(block)"
                 variant="outlined"
                 @update:model-value="setVisaWidth(block, $event)"
@@ -242,7 +243,7 @@
             <template #delete>
               <ToolbarIconButton
                 icon="mdi-delete"
-                tooltip="Видалити блок"
+                :tooltip="t('common.deleteBlock')"
                 @click="removeBlock(column.children!, index)"
               />
             </template>
@@ -286,7 +287,7 @@
           <template #delete>
             <ToolbarIconButton
               icon="mdi-delete"
-              tooltip="Видалити блок"
+              :tooltip="t('common.deleteBlock')"
               @click="removeBlock(column.children!, index)"
             />
           </template>

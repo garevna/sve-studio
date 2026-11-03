@@ -2,6 +2,7 @@
   import type { LinkTarget } from '@/types/MenuItemModel'
   import { computed, ref } from 'vue'
   import LinkTargetSettings from '@/components/special/LinkTargetSettings.vue'
+  import { t } from '@/i18n'
 
   // "Налаштування переходу" as a modal - the shell around
   // LinkTargetSettings.vue, which holds the three fields themselves and is
@@ -34,20 +35,20 @@
 
 <template>
   <v-dialog max-width="480" :model-value="modelValue" @update:model-value="emit('update:modelValue', $event)">
-    <v-card theme="editorTheme" title="Налаштування переходу">
+    <v-card theme="editorTheme" :title="t('linkTarget.settings')">
       <v-card-text>
         <LinkTargetSettings ref="settings" :active="modelValue" :item="item" />
       </v-card-text>
       <v-card-actions>
         <v-spacer />
-        <v-btn variant="text" @click="emit('update:modelValue', false)">Скасувати</v-btn>
+        <v-btn variant="text" @click="emit('update:modelValue', false)">{{ t('common.cancel') }}</v-btn>
         <v-btn
           color="primary"
           :disabled="!canApply"
           :loading="saving"
           variant="elevated"
           @click="confirm"
-        >ОК</v-btn>
+        >{{ t('common.ok') }}</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>

@@ -9,9 +9,9 @@
     resolveFooterLayout,
     snapFooterValue,
   } from '@/configs/footer-layout'
+  import { t } from '@/i18n'
   import { useAjaxStore } from '@/stores/ajax'
   import { useUiFeedbackStore } from '@/stores/ui-feedback'
-  import { t } from '@/i18n'
 
   // The footer's column layout, as the DESIGNER sets it: how many columns,
   // how wide each one is, and the gap between them. It lives in the UI Kit
@@ -150,7 +150,7 @@
     // a fixed sample width; what it is demonstrating here is the gap and
     // the proportions of the columns that DO have a width.
     return widths.map(w => (w === null
-      ? { flex: '0 0 auto', width: '160px', label: 'за вмістом' }
+      ? { flex: '0 0 auto', width: '160px', label: t('footer.layout.byContent') }
       : { flex: '0 0 auto', width: `${w}px`, label: `${w}px` }))
   })
 
@@ -162,12 +162,7 @@
 
     <template v-else-if="settings">
       <p class="text-body-2 text-medium-emphasis mb-6">
-        Розмітка футера: скільки колонок, якої ширини й з яким проміжком.
-        Значення в пікселях, кратні {{ FOOTER_STEP }} — введене число округлюється
-        до найближчого допустимого. Порожня ширина означає, що колонка займає
-        рівно стільки місця, скільки потребує її вміст — саме тоді проміжки
-        між усіма колонками виглядають однаковими. Порожній проміжок означає
-        адаптивний: він зростає разом з шириною екрана.
+        {{ t('footer.layout.intro', { FOOTER_STEP }) }}
       </p>
 
       <div class="footer-layout-preview" :style="{ gap: previewGap + 'px' }">
@@ -181,12 +176,12 @@
         </div>
       </div>
       <p class="footer-layout-gap-caption">
-        {{ layout.gapSet ? `Проміжок: ${layout.gap}px` : 'Проміжок: адаптивний — 32 / 48 / 64px' }}
+        {{ layout.gapSet ? t('footer.layout.gapValue', { gap: layout.gap }) : t('footer.layout.gapAdaptive') }}
       </p>
 
       <v-row class="mt-6">
         <v-col cols="12" md="4">
-          <p class="footer-layout-label">Кількість колонок</p>
+          <p class="footer-layout-label">{{ t('footer.layout.columns') }}</p>
           <v-btn-toggle
             density="compact"
             mandatory
@@ -199,11 +194,11 @@
         </v-col>
         <v-col cols="12" md="4">
           <v-text-field
-            hint="Порожньо — адаптивний проміжок 32 / 48 / 64px"
-            label="Проміжок між колонками, px"
+            :hint="t('footer.layout.gapHint')"
+            :label="t('footer.layout.gap')"
             :model-value="gapField()"
             persistent-hint
-            placeholder="адаптивний"
+            :placeholder="t('footer.layout.adaptive')"
             type="number"
             variant="outlined"
             @update:model-value="setGap($event)"
@@ -211,16 +206,16 @@
         </v-col>
       </v-row>
 
-      <h2 class="editor-section-title">Ширина колонок</h2>
+      <h2 class="editor-section-title">{{ t('footer.layout.widths') }}</h2>
       <v-row>
         <v-col v-for="index of layout.columns" :key="index" cols="12" md="4">
           <v-text-field
             hide-details
-            :hint="`Порожньо — за вмістом. Мінімум ${FOOTER_MIN_COLUMN_WIDTH}px`"
-            :label="`Колонка ${index}, px`"
+            :hint="t('footer.layout.widthHint', { FOOTER_MIN_COLUMN_WIDTH })"
+            :label="t('footer.layout.column', { index })"
             :model-value="widthField(index - 1)"
             persistent-hint
-            placeholder="за вмістом"
+            :placeholder="t('footer.layout.byContent')"
             type="number"
             variant="outlined"
             @update:model-value="setWidth(index - 1, $event)"

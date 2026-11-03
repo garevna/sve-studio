@@ -9,11 +9,6 @@
     "en": "For the 'Banner under menu' layout: if there are multiple banners, they will be displayed in a carousel. Click on the image to replace it.",
     "de": "Für das Layout 'Banner unter Menü': Wenn es mehrere Banner gibt, werden sie in einer Karussell-Anzeige dargestellt. Klicken Sie auf das Bild, um es zu ersetzen."
   },
-  "slideDesktop": {
-    "uk": "Десктоп",
-    "en": "Desktop",
-    "de": "Desktop"
-  },
   "slidePhone": {
     "uk": "Телефон",
     "en": "Phone",
@@ -38,5 +33,45 @@
     "uk": "Тексти на банері ({n})",
     "en": "Banner texts ({n})",
     "de": "Banner-Texte ({n})"
+  },
+  "width": {
+    "uk": "Ширина, px",
+    "en": "Width, px",
+    "de": "Breite, px"
+  },
+  "height": {
+    "uk": "Висота, px",
+    "en": "Height, px",
+    "de": "Höhe, px"
+  },
+  "social": {
+    "uk": "Соціальні мережі",
+    "en": "Social Networks",
+    "de": "Soziale Netzwerke"
+  },
+  "socialHint": {
+    "uk": "Посилання показуються в іконках соцмереж у футері (і будь-де ще, де вони використовуються) - єдине місце редагування для всього сайту, а не для окремого варіанту футера.",
+    "en": "Links are displayed in the social media icons in the footer (and elsewhere where they are used) - this is the single place to edit for the entire site, not for each footer variant.",
+    "de": "Links werden in den Social-Media-Icons in der Fußzeile (und sonst wo sie verwendet werden) angezeigt - dies ist der einzige Ort zum Bearbeiten für die gesamte Website, nicht für jeden Footer-Variant."
+  },
+  "socialHint2": {
+    "uk": "Посилання використовуються для переходу при натисканні на іконки соціальних мереж або месенджерів",
+    "en": "Links are used to navigate when clicking on the social media icons or messengers.",
+    "de": "Links werden verwendet, um zu navigieren, wenn auf die Social-Media-Icons oder Messenger geklickt wird."
+  },
+  "heroBanner": {
+    "uk": "Банер hero-секції",
+    "en": "Hero Banner",
+    "de": "Helden-Banner"
+  },
+  "bannerDesktop": {
+    "uk": "Банер (десктоп)",
+    "en": "Banner (Desktop)",
+    "de": "Banner (Desktop)"
+  },
+  "bannerMobile": {
+    "uk": "Банер (мобільна версія)",
+    "en": "Banner (Mobile)",
+    "de": "Banner (Mobil)"
   }
 }

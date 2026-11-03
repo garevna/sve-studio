@@ -46,7 +46,7 @@ export const editorRoutes: RouteRecordRaw[] = [
     path: '/header',
     name: 'header',
     component: () => import('@/views/HeaderSectionView.vue'),
-    meta: { title: 'Верхня частина сторінки' },
+    meta: { title: 'common.topOfThePage' },
   },
   {
     // No variant picker any more: the footer is one constructor now

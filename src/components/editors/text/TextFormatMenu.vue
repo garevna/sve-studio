@@ -129,9 +129,15 @@
   })
 
   const WEIGHT_LABELS: Record<string, string> = {
-    'text-thin': 'Тонкий',
-    'text-medium': 'Звичайний',
-    'text-bold': 'Жирний',
+    get 'text-thin' () {
+      return t('textFormat.weightLight')
+    },
+    get 'text-medium' () {
+      return t('textFormat.weightRegular')
+    },
+    get 'text-bold' () {
+      return t('textFormat.weightBold')
+    },
   }
   const weightKey = computed(() => WEIGHT_SCALE.find(weight => (className.value || '').includes(weight)) || 'text-medium')
 
@@ -141,9 +147,15 @@
     right: 'mdi-format-align-right',
   }
   const ALIGN_LABELS: Record<'left' | 'center' | 'right', string> = {
-    left: 'Ліворуч',
-    center: 'По центру',
-    right: 'Праворуч',
+    get left () {
+      return t('textFormat.alignLeft')
+    },
+    get center () {
+      return t('textFormat.alignCenter')
+    },
+    get right () {
+      return t('textFormat.alignRight')
+    },
   }
   const ALIGN_CLASSES: Record<'left' | 'center' | 'right', 'text-left' | 'text-center' | 'text-right'> = {
     left: 'text-left',
@@ -204,7 +216,7 @@
       <template v-if="item === 'size'">
         <v-menu location="bottom center">
           <template #activator="{ props: sizeProps }">
-            <ToolbarIconButton v-bind="sizeProps" icon="mdi-format-size" tooltip="Розмір шрифту" />
+            <ToolbarIconButton v-bind="sizeProps" icon="mdi-format-size" :tooltip="t('textFormat.fontSize')" />
           </template>
           <v-card theme="editorTheme">
             <v-list density="compact">
@@ -223,7 +235,7 @@
       <template v-if="item === 'align'">
         <v-menu location="bottom center">
           <template #activator="{ props: alignProps }">
-            <ToolbarIconButton v-bind="alignProps" :icon="ALIGN_ICONS[alignment]" tooltip="Вирівнювання тексту" />
+            <ToolbarIconButton v-bind="alignProps" :icon="ALIGN_ICONS[alignment]" :tooltip="t('textFormat.align')" />
           </template>
           <v-card theme="editorTheme">
             <v-list density="compact">
@@ -254,7 +266,7 @@
               class="text-format-color"
               :color="colorKey ? `var(--${colorKey})` : undefined"
               icon="mdi-format-color-fill"
-              tooltip="Колір тексту"
+              :tooltip="t('textFormat.color')"
             />
           </template>
         </PaletteSwatchPicker>
@@ -263,7 +275,7 @@
       <template v-if="item === 'weight'">
         <v-menu location="bottom center">
           <template #activator="{ props: weightProps }">
-            <ToolbarIconButton v-bind="weightProps" icon="mdi-format-bold" tooltip="Товщина шрифту" />
+            <ToolbarIconButton v-bind="weightProps" icon="mdi-format-bold" :tooltip="t('textFormat.weight')" />
           </template>
           <v-card theme="editorTheme">
             <v-list density="compact">
@@ -308,7 +320,7 @@
       <ToolbarIconButton
         v-if="item === 'configure'"
         :icon="configureIcon || 'mdi-cog'"
-        :tooltip="configureTooltip || 'Налаштувати'"
+        :tooltip="configureTooltip || t('common.configure')"
         @click="emit('configure')"
       />
 
@@ -322,7 +334,7 @@
       v-if="deletable"
       :class="vertical ? 'mt-4' : 'ml-auto'"
       icon="mdi-delete"
-      :tooltip="deleteTooltip || 'Видалити блок'"
+      :tooltip="deleteTooltip || t('common.deleteBlock')"
       @click="emit('delete')"
     />
   </div>

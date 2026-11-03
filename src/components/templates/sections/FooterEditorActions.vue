@@ -70,7 +70,7 @@
     :key="item.id"
     :active="variant === item.id"
     :icon="item.icon"
-    :tooltip="`Вигляд футера: ${item.title}`"
+    :tooltip="t('footer.look', { title: item.title })"
     @click="setVariant(item.id)"
   />
   <v-menu v-if="variant === FOOTER_BENTO" location="bottom">
@@ -101,14 +101,14 @@
   </v-menu>
   <PaletteSwatchPicker v-else dark-only :model-value="block.background || 'primary'" @update:model-value="setBackground">
     <template #activator="{ menuProps }">
-      <v-tooltip location="top" text="Фон футера" theme="editorTheme">
+      <v-tooltip location="top" :text="t('footer.background')" theme="editorTheme">
         <template #activator="{ props: tooltipProps }">
           <v-btn v-bind="{ ...tooltipProps, ...menuProps }" icon="mdi-format-color-fill" variant="text" />
         </template>
       </v-tooltip>
     </template>
   </PaletteSwatchPicker>
-  <v-tooltip location="top" text="Показувати футер" theme="editorTheme">
+  <v-tooltip location="top" :text="t('footer.show')" theme="editorTheme">
     <template #activator="{ props: tooltipProps }">
       <v-btn
         v-bind="tooltipProps"
@@ -130,7 +130,7 @@
     :active="dragActive"
     disabled
     icon="mdi-cursor-move"
-    tooltip="Перетягування колонок (буде доступне після переходу на конструктор)"
+    :tooltip="t('footer.dragColumns')"
     @click="toggleDrag"
   />
 

@@ -8,6 +8,7 @@
   import { textWithIcon } from '@/configs/components/simple/text-with-icon'
   import { title } from '@/configs/components/simple/title'
   import { PAGE_LINKS_TYPE } from '@/configs/footer-blocks'
+  import { t } from '@/i18n'
   import { emptyTranslatedModel } from '@/utils/locale-text'
 
   // What can go into a footer column. Same shape as FreeContentInsertMenu -
@@ -29,13 +30,17 @@
   // number of them is perfectly reasonable.
   const menuItems: { title: string, icon: string, kind?: string, factory: () => TemplateBlockModel }[] = [
     {
-      title: 'Картка зворотного зв\'язку',
+      get title () {
+        return t('footer.insert.feedbackCard')
+      },
       kind: 'feedback',
       icon: 'mdi-phone-in-talk',
       factory: () => ({ type: 'component', content: 'FeedbackCard', props: { type: 'call-request', title: emptyTranslatedModel(), text: emptyTranslatedModel() } }) as TemplateBlockModel,
     },
     {
-      title: 'Список посилань',
+      get title () {
+        return t('common.listOfLinks')
+      },
       kind: 'links',
       icon: 'mdi-link-variant',
       // Its own type - an empty type:'section' was never recognised as a
@@ -45,13 +50,17 @@
       factory: () => ({ type: PAGE_LINKS_TYPE, children: [] }) as TemplateBlockModel,
     },
     {
-      title: 'Іконки соцмереж',
+      get title () {
+        return t('common.socialMediaIcons')
+      },
       kind: 'icons',
       icon: 'mdi-share-variant',
       factory: () => ({ type: 'component', content: 'FooterIcons' }) as TemplateBlockModel,
     },
     {
-      title: 'Список контактів',
+      get title () {
+        return t('footer.insert.contacts')
+      },
       kind: 'contacts',
       icon: 'mdi-card-account-phone',
       // The id is what marks this section as the contacts list - see
@@ -59,18 +68,30 @@
       factory: () => ({ type: 'section', id: 'footer-contacts-list', children: [] }) as TemplateBlockModel,
     },
     {
-      title: 'Логотип Visa/Mastercard',
+      get title () {
+        return t('common.visaMastercardLogo')
+      },
       kind: 'visa',
       icon: 'mdi-credit-card-outline',
       factory: () => ({ type: 'component', content: 'FooterVisaLogo' }) as TemplateBlockModel,
     },
-    { title: 'Підзаголовок', icon: 'mdi-subtitles-outline', factory: () => title() as TemplateBlockModel },
-    { title: 'Текст', icon: 'mdi-text-long', factory: () => text() as TemplateBlockModel },
-    { title: 'Текст з іконкою', icon: 'mdi-image-text', factory: () => textWithIcon() as TemplateBlockModel },
-    { title: 'Зображення', icon: 'mdi-image', factory: () => image() as TemplateBlockModel },
+    { get title () {
+      return t('common.subtitle')
+    }, icon: 'mdi-subtitles-outline', factory: () => title() as TemplateBlockModel },
+    { get title () {
+      return t('common.text')
+    }, icon: 'mdi-text-long', factory: () => text() as TemplateBlockModel },
+    { get title () {
+      return t('common.textWithIcon')
+    }, icon: 'mdi-image-text', factory: () => textWithIcon() as TemplateBlockModel },
+    { get title () {
+      return t('elements.image')
+    }, icon: 'mdi-image', factory: () => image() as TemplateBlockModel },
     // A button leads to a page (or a block on it - the form on the contacts
     // page, say) or opens the feedback form in a popup (ButtonEditor.vue).
-    { title: 'Кнопка', icon: 'mdi-button-pointer', factory: () => button() as TemplateBlockModel },
+    { get title () {
+      return t('common.button')
+    }, icon: 'mdi-button-pointer', factory: () => button() as TemplateBlockModel },
   ]
 
   const props = defineProps<{
@@ -90,7 +111,7 @@
 <template>
   <v-menu location="bottom center">
     <template #activator="{ props: menuProps }">
-      <ToolbarIconButton v-bind="menuProps" icon="mdi-plus" tooltip="Додати блок у колонку" />
+      <ToolbarIconButton v-bind="menuProps" icon="mdi-plus" :tooltip="t('footer.insert.addToColumn')" />
     </template>
     <v-card theme="editorTheme">
       <v-list>

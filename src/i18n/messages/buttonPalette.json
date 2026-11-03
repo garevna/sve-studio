@@ -1,0 +1,144 @@
+{
+  "className": {
+    "uk": "Назва класу",
+    "en": "Class name",
+    "de": "Klassenname"
+  },
+  "icon": {
+    "uk": "іконка",
+    "en": "Icon",
+    "de": "Symbol"
+  },
+  "tabsBackground": {
+    "uk": "Колір фону групи вкладок",
+    "en": "Tab group background colour",
+    "de": "Hintergrundfarbe der Tab-Gruppe"
+  },
+  "tabsBackgroundHint": {
+    "uk": "Таби на сторінці авторизації та на решті сторінок можуть мати різний фон. Самі вкладки скрізь однакові — їхні стани налаштовуються нижче.",
+    "en": "Tabs on the login page and other pages may have different backgrounds. The tabs themselves are consistent everywhere — their states are configured below.",
+    "de": "Hintergründe der Registerkarten auf der Anmeldeseite und anderen Seiten können unterschiedlich sein. Die Registerkarten selbst sind überall konsistent — ihre Zustände werden unten konfiguriert."
+  },
+  "tabStates": {
+    "uk": "Стани вкладки",
+    "en": "Tab states",
+    "de": "Registerkartenzustände"
+  },
+  "tabStatesHint": {
+    "uk": "Клікніть по вкладці, щоб побачити активний стан. Наведення діє лише на неактивну й доступну вкладку — активна та недоступна на нього не реагують, як і на сайті.",
+    "en": "Click on a tab to see its active state. Hovering only affects the inactive and enabled tab — the active and disabled tabs do not respond to hovering, just like on the website.",
+    "de": "Klicken Sie auf eine Registerkarte, um den aktiven Zustand anzuzeigen. Der Mauszeiger wirkt nur auf inaktive und verfügbare Registerkarten – aktive und nicht verfügbare reagieren darauf nicht, genau wie auf der Website."
+  },
+  "obsolete": {
+    "uk": "Застарілі класи",
+    "en": "Obsolete classes",
+    "de": "Veraltete Klassen"
+  },
+  "obsoleteHint": {
+    "uk": "Ці класи більше ніде не використовуються — їх можна видалити.",
+    "en": "These classes are no longer used anywhere — they can be deleted.",
+    "de": "Diese Klassen werden nirgendwo mehr verwendet – sie können gelöscht werden."
+  },
+  "addButton": {
+    "uk": "Додати кнопку",
+    "en": "Add button",
+    "de": "Schaltfläche hinzufügen"
+  },
+  "newButton": {
+    "uk": "Нова кнопка",
+    "en": "New button",
+    "de": "Neue Schaltfläche"
+  },
+  "classNameInvalid": {
+    "uk": "Назва класу має містити лише латинські літери, цифри та дефіс.",
+    "en": "Class name must contain only Latin letters, digits, and hyphens.",
+    "de": "Klassenname darf nur lateinische Buchstaben, Zahlen und Bindestriche enthalten."
+  },
+  "classExists": {
+    "uk": "Такий клас вже є в палітрі.",
+    "en": "This class already exists in the palette.",
+    "de": "Diese Klasse existiert bereits in der Palette."
+  },
+  "authPage": {
+    "uk": "Сторінка авторизації",
+    "en": "Login page",
+    "de": "Anmeldeseite"
+  },
+  "otherPages": {
+    "uk": "Інші сторінки",
+    "en": "Other pages",
+    "de": "Andere Seiten"
+  },
+  "previewLogin": {
+    "uk": "Вхід",
+    "en": "Login",
+    "de": "Anmeldung"
+  },
+  "previewRegister": {
+    "uk": "Реєстрація",
+    "en": "Register",
+    "de": "Registrierung"
+  },
+  "previewProfile": {
+    "uk": "Профіль",
+    "en": "Profile",
+    "de": "Profil"
+  },
+  "stateBase": {
+    "uk": "Неактивна",
+    "en": "Inactive",
+    "de": "Inaktiv"
+  },
+  "stateDisabled": {
+    "uk": "Недоступна",
+    "en": "Disabled",
+    "de": "Deaktiviert"
+  },
+  "stateActive": {
+    "uk": "Активна",
+    "en": "Active",
+    "de": "Aktiv"
+  },
+  "style": {
+    "radius": {
+      "uk": "Радіус кутів",
+      "en": "Corner radius",
+      "de": "Eckenradius"
+    },
+    "border": {
+      "uk": "Бордер",
+      "en": "Border",
+      "de": "Rand"
+    },
+    "shadow": {
+      "uk": "Тінь (CSS)",
+      "en": "Shadow",
+      "de": "Schatten"
+    },
+    "opacity": {
+      "uk": "Прозорість: {value}%",
+      "en": "Opacity: {value}%",
+      "de": "Opazität: {value}%"
+    },
+    "active": {
+      "uk": "активна",
+      "en": "Active",
+      "de": "Aktiv"
+    },
+    "needsFill": {
+      "uk": "потрібен фон або бордер",
+      "en": "Needs fill or border",
+      "de": "Benötigt Füllung oder Rand"
+    },
+    "inherited": {
+      "uk": "{value} (успадковано)",
+      "en": "{value} (inherited)",
+      "de": "{value} (geerbt)"
+    },
+    "otherProperties": {
+      "uk": "Інші властивості (лише перегляд): {list}",
+      "en": "Other properties (read-only): {list}",
+      "de": "Andere Eigenschaften (nur lesbar): {list}"
+    }
+  }
+}

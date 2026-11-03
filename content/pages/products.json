@@ -284,9 +284,9 @@
     {
       "type": "image",
       "content": {
-        "uk": "/api/content/images/d160f34291008b567b6f10c0d81581574436b89283e7f6d30067b59966242807.jpg",
-        "en": "/api/content/images/d160f34291008b567b6f10c0d81581574436b89283e7f6d30067b59966242807.jpg",
-        "de": "/api/content/images/d160f34291008b567b6f10c0d81581574436b89283e7f6d30067b59966242807.jpg"
+        "uk": "/api/content/images/products/31.webp?v=83dfd397",
+        "en": "/api/content/images/products/31.webp?v=83dfd397",
+        "de": "/api/content/images/products/31.webp?v=83dfd397"
       }
     },
     {
@@ -297,28 +297,28 @@
           "switchOrder": true,
           "images": [
             {
-              "src": "/api/content/images/products/01.webp?v=d6b6de38"
+              "src": "/api/content/images/products/07.jpg?v=b0a20518"
             },
             {
-              "src": "/api/content/images/products/02.webp?v=d78b100e"
+              "src": "/api/content/images/products/09.webp?v=c7662035"
             },
             {
-              "src": "/api/content/images/products/03.jpeg?v=a41bb90f"
+              "src": "/api/content/images/products/10.webp?v=c5ea48f6"
             },
             {
-              "src": "/api/content/images/products/04.jpg?v=b5e27ce5"
+              "src": "/api/content/images/products/11.jpg?v=580eb84a"
             },
             {
-              "src": "/api/content/images/products/05.jpg?v=22d86b2b"
+              "src": "/api/content/images/products/12.webp?v=b612a2aa"
             },
             {
-              "src": "/api/content/images/products/06.webp?v=5a268b48"
+              "src": "/api/content/images/products/15.jpg?v=ef67b50a"
             },
             {
-              "src": "/api/content/images/products/baner-desktop.png?v=04949532"
+              "src": "/api/content/images/products/16.jpg?v=05d6af55"
             },
             {
-              "src": "/api/content/images/products/baner-desktop-1.png?v=74143118"
+              "src": "/api/content/images/products/17.jpg?v=d021a659"
             }
           ]
         },

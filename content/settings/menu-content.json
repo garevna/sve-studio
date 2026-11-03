@@ -73,14 +73,9 @@
         }
       },
       {
-        "title": {
-          "uk": "Ліцензії",
-          "en": "Licences",
-          "de": "Lizenzen"
-        },
         "route": "dynamic-page",
         "params": {
-          "pageId": "licences"
+          "pageId": "how-we-work"
         }
       },
       {

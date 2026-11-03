@@ -1,9 +1,13 @@
-<!-- Ported verbatim from production's own client-side
-  components/main-page-sections/TransferServicesCircle.vue - only the import path
-  differs. This app's whole job is to show what actually ships. -->
+<!-- Production's own TransferServicesCircle at heart: the same disc, sizes and
+  offsets. Added on top: the number badge's shape (StepBadge) and an optional
+  hover effect - waves rolling out of the disc. The same file lives in the
+  editor (src/components/home-page-components/TransferServicesCircle.vue) -
+  keep the two in step. -->
 <script setup lang="ts">
+  import type { StepBadgeShape } from './StepBadge.vue'
   import { computed } from 'vue'
 
+  import StepBadge from './StepBadge.vue'
   import TextInCircle from './TextInCircle.vue'
 
   const props = defineProps<{
@@ -16,6 +20,8 @@
     // is invalid and renders as nothing at all.
     circleColor?: string
     numberColor?: string
+    badge?: StepBadgeShape
+    waves?: boolean
   }>()
 
   // The theme's own two variables stay the default, so a caller that passes
@@ -25,14 +31,22 @@
 </script>
 
 <template>
-  <div class="transfer-services-circle">
-    <div class="mobile-mode" :style="{ width: '248px', height: '248px', marginLeft: index % 2 === 0 ? '144px' : '0px', marginTop: index % 2 !== 0 ? '-44px' : '-12px' }">
+  <div :class="['transfer-services-circle', { 'transfer-services-circle--waves': waves }]" :style="{ '--step-wave-color': numberBackground }">
+    <div class="mobile-mode step-disc-box" :style="{ width: '248px', height: '248px', marginLeft: index % 2 === 0 ? '144px' : '0px', marginTop: index % 2 !== 0 ? '-44px' : '-12px' }">
+      <span
+        v-for="ring of 3"
+        :key="ring"
+        aria-hidden="true"
+        class="step-wave"
+        :style="{ top: '12px', left: '16px', width: '220px', height: '220px', '--step-wave-delay': `${(ring - 1) * 0.6}s` }"
+      />
       <TextInCircle
-        :size="220"
         :background="background"
+        class="step-disc"
         font-color="var(--black)"
         :font-size="16"
         :font-weight="500"
+        :size="220"
         style="margin-top: 12px; margin-left: 16px"
       >
         {{ props.text }}
@@ -40,26 +54,33 @@
           <b>{{ props.bold }}</b>
         </template>
       </TextInCircle>
-      <TextInCircle
-        :size="60"
-        :background="numberBackground"
-        font-color="var(--white)"
+      <StepBadge
+        class="step-disc"
+        :color="numberBackground"
         :font-size="40"
         :font-weight="500"
-        :text="(props.index + 1).toString()"
+        :number="props.index + 1"
+        :shape="badge"
+        :size="60"
         style="margin-top: -230px !important; margin-left: 16px !important"
-      >
-        {{ props.index + 1 }}
-      </TextInCircle>
+      />
     </div>
 
-    <div class="desktop-mode" :style="{ width: '302px', height: '302px' }">
+    <div class="desktop-mode step-disc-box" :style="{ width: '302px', height: '302px' }">
+      <span
+        v-for="ring of 3"
+        :key="ring"
+        aria-hidden="true"
+        class="step-wave"
+        :style="{ top: '16px', left: '16px', width: '272px', height: '272px', '--step-wave-delay': `${(ring - 1) * 0.6}s` }"
+      />
       <TextInCircle
-        :size="272"
         :background="background"
+        class="step-disc"
         font-color="var(--black)"
         :font-size="18"
         :font-weight="500"
+        :size="272"
         style="margin-top: 16px; margin-left: 16px"
       >
         {{ props.text }}
@@ -67,17 +88,60 @@
           <b>{{ props.bold }}</b>
         </template>
       </TextInCircle>
-      <TextInCircle
-        :size="76"
-        :background="numberBackground"
-        font-color="var(--white)"
+      <StepBadge
+        class="step-disc"
+        :color="numberBackground"
         :font-size="64"
         :font-weight="600"
-        :text="index.toString()"
+        :number="props.index + 1"
+        :shape="badge"
+        :size="76"
         style="margin-top: -300px !important; margin-left: 16px !important"
-      >
-        {{ props.index + 1 }}
-      </TextInCircle>
+      />
     </div>
   </div>
 </template>
+
+<style>
+/* Not scoped: the hover belongs to the parent's .transfer-steps-lift.
+   Every class is step-prefixed, so nothing else is caught. */
+.step-disc-box {
+  position: relative;
+}
+.step-disc {
+  position: relative;
+  z-index: 1;
+}
+/* Waves: three rings the size of the disc, sitting under it, that grow and
+   fade one after another while the step is hovered. */
+.step-wave {
+  position: absolute;
+  z-index: 0;
+  box-sizing: border-box;
+  border: 3px solid var(--step-wave-color);
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+}
+.transfer-services-circle--waves:hover .step-wave,
+.transfer-steps-lift:hover .transfer-services-circle--waves .step-wave {
+  animation: step-wave 1.8s ease-out infinite;
+  animation-delay: var(--step-wave-delay, 0s);
+}
+@keyframes step-wave {
+  from {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1.45);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .transfer-services-circle--waves:hover .step-wave,
+  .transfer-steps-lift:hover .transfer-services-circle--waves .step-wave {
+    animation: none;
+  }
+}
+</style>

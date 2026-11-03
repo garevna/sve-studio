@@ -4,15 +4,16 @@
   import { storeToRefs } from 'pinia'
   import { computed, ref } from 'vue'
 
-  import { FEEDBACK_FIELD_LABELS, feedbackFormKind } from '../../configs/feedback-forms'
+  import { FEEDBACK_FIELD_LABELS, FEEDBACK_STATUS, feedbackFormKind } from '../../configs/feedback-forms'
   import { useCommonStore } from '../../stores/common'
+  import { sendFeedback } from '../../utils/feedback-transport'
   import PhoneNumberInput from '../inputs/PhoneNumberInput.vue'
 
   // The feedback form - in the footer, as a block on a page and in a
   // button's popup. Which fields it asks for depends on its kind (callback,
   // message, question, quote, booking, review, subscription - see
   // configs/feedback-forms.ts).
-  const { locale } = storeToRefs(useCommonStore())
+  const { locale, feedbackEndpoint } = storeToRefs(useCommonStore())
 
   type PropsModel = {
     type?: string
@@ -38,6 +39,45 @@
   const userDate = ref('')
   const userRating = ref(0)
   const userMessage = ref('')
+  const website = ref('')
+
+  // Sent through whatever the site's settings name (utils/feedback-transport.ts);
+  // the form itself doesn't know who receives it.
+  type Status = 'idle' | 'sending' | 'sent' | 'failed' | 'notConfigured' | 'empty'
+  const status = ref<Status>('idle')
+  const statusText = computed(() => (status.value === 'idle' ? '' : FEEDBACK_STATUS[status.value][lang.value]))
+
+  async function submit () {
+    const phone = (userPhone.value.match(/\d/g) || []).length >= 7 ? userPhone.value : ''
+    if (!userMessage.value.trim() && !phone && !userEmail.value.trim()) {
+      status.value = 'empty'
+      return
+    }
+    status.value = 'sending'
+    const result = await sendFeedback(feedbackEndpoint.value, {
+      kind: kind.value.id,
+      locale: lang.value,
+      page: typeof location === 'undefined' ? '' : location.pathname,
+      fields: {
+        name: has('name') ? userName.value : undefined,
+        phone: has('phone') ? phone : undefined,
+        email: has('email') ? userEmail.value : undefined,
+        date: has('date') ? userDate.value : undefined,
+        rating: has('rating') ? userRating.value : undefined,
+        message: has('message') ? userMessage.value : undefined,
+      },
+      website: website.value,
+    })
+    status.value = result === 'sent' ? 'sent' : (result === 'not-configured' ? 'notConfigured' : 'failed')
+    if (result === 'sent') {
+      userName.value = ''
+      userPhone.value = '(+380)'
+      userEmail.value = ''
+      userDate.value = ''
+      userRating.value = 0
+      userMessage.value = ''
+    }
+  }
 </script>
 
 <template>
@@ -101,11 +141,37 @@
         variant="plain"
       />
     </div>
-    <v-btn class="primary-button mt-6" :text="kind.button[lang]" />
+    <!-- Hidden from people (and from screen readers); a bot fills it in. -->
+    <input
+      v-model="website"
+      aria-hidden="true"
+      autocomplete="off"
+      class="feedback-trap"
+      name="website"
+      tabindex="-1"
+      type="text"
+    >
+    <v-btn
+      class="primary-button mt-6"
+      :disabled="status === 'sending'"
+      :loading="status === 'sending'"
+      :text="kind.button[lang]"
+      @click="submit"
+    />
+    <p v-if="statusText && status !== 'sending'" :class="['small-text mt-3', status === 'sent' ? 'text-success' : 'text-error']" role="status">
+      {{ statusText }}
+    </p>
   </div>
 </template>
 
 <style scoped>
+.feedback-trap {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
 .feedback-fields {
   display: flex;
   flex-direction: column;

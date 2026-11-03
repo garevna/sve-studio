@@ -1,4 +1,5 @@
 <script setup lang="ts">
+  import type { StepBadgeShape } from '@/components/home-page-components/StepBadge.vue'
   import type { TranslatedModel } from '@/types/TemplateBlockModel'
   import { computed, nextTick, onMounted, onUnmounted, ref } from 'vue'
   import EditableBlockHeading from '@/components/editors/EditableBlockHeading.vue'
@@ -38,6 +39,10 @@
     circles?: StepModel[]
     circleColor?: string
     numberColor?: string
+    // The number's shape and what a hovered step does - one look for the
+    // whole diagram. Absent: the disc and the lift it has always had.
+    badge?: StepBadgeShape
+    hover?: 'lift' | 'waves'
   }
 
   const model = defineModel<PropsModel>({ default: () => ({}) })
@@ -147,7 +152,9 @@
       <Teleport :disabled="!blockActionsTarget" :to="blockActionsTarget || 'body'">
         <TransferStepsActions
           v-model:drag-active="dragActive"
+          :badge="model.badge"
           :colors="colors"
+          :hover="model.hover"
           @add="addStep"
           @update="patch"
         />
@@ -164,13 +171,15 @@
           :class="['transfer-steps-item', dragClass]"
           :style="{ '--step-index': index }"
         >
-          <div :class="['transfer-steps-lift', contentClass]">
+          <div :class="['transfer-steps-lift', contentClass, { 'transfer-steps-lift--still': model.hover === 'waves' }]">
             <TransferServicesCircle
+              :badge="model.badge"
               :bold="localized((step as StepModel).bold)"
               :circle-color="circleBackground"
               :index="index"
               :number-color="numberBackground"
               :text="localized((step as StepModel).text)"
+              :waves="model.hover === 'waves'"
             />
           </div>
           <!-- The circle is round and its number badge already occupies the
@@ -197,6 +206,7 @@
         :style="{ '--step-index': index }"
       >
         <TransferServicesCircle
+          :badge="model.badge"
           :bold="localized(step.bold)"
           :circle-color="circleBackground"
           :index="index"
@@ -357,6 +367,10 @@
 }
 .transfer-steps-lift:hover {
   transform: translateY(-8px);
+}
+/* Waves are the hover effect instead of the lift, not on top of it. */
+.transfer-steps-lift--still:hover {
+  transform: none;
 }
 
 @media (prefers-reduced-motion: reduce) {

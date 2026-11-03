@@ -1,0 +1,455 @@
+{
+  "id": "how-we-work",
+  "title": {
+    "uk": "Як ми працюємо",
+    "en": "How we work",
+    "de": "So arbeiten wir"
+  },
+  "breadcrumbs": false,
+  "backButton": false,
+  "hero": false,
+  "blocks": [
+    {
+      "type": "parallax",
+      "content": {
+        "uk": "/api/content/images/how-we-work/hero-portal.svg",
+        "en": "/api/content/images/how-we-work/hero-portal.svg",
+        "de": "/api/content/images/how-we-work/hero-portal.svg"
+      },
+      "children": [
+        {
+          "type": "header",
+          "class": "mt-16 mb-8 text-center text-white",
+          "content": {
+            "uk": "Ласкаво просимо в інший вимір",
+            "en": "Welcome to another dimension",
+            "de": "Willkommen in einer anderen Dimension"
+          }
+        },
+        {
+          "type": "title",
+          "class": "my-8 text-center text-white",
+          "content": {
+            "uk": "Тут ідеї проходять код-рев’ю і виходять у прод",
+            "en": "Where ideas pass code review and ship to prod",
+            "de": "Hier bestehen Ideen das Code-Review und gehen live"
+          }
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "children": [
+        {
+          "type": "section",
+          "children": [
+            {
+              "type": "header",
+              "class": "mb-5 text-left accent-font text-thin text-primary",
+              "content": {
+                "uk": "Ваш тімлід у віртуальному вимірі",
+                "en": "Your team lead in the virtual dimension",
+                "de": "Ihr Teamlead in der virtuellen Dimension"
+              }
+            },
+            {
+              "type": "text",
+              "class": "default-text text-medium text-black",
+              "content": {
+                "uk": "Знайомтеся: наш талісман. Обличчя в цей реліз не завезли — зате є бандана, VR-шолом і стовідсоткове покриття тестами оптимізму. Він проведе вас нашим пайплайном: від першого брифу до деплою в прод.",
+                "en": "Meet our mascot. A face didn’t make it into this release — but he ships with a bandana, a VR headset and 100% test coverage of optimism. He’ll walk you through our pipeline: from the first brief to the deploy to prod.",
+                "de": "Darf ich vorstellen: unser Maskottchen. Ein Gesicht hat es nicht ins Release geschafft – dafür gibt es ein Bandana, eine VR-Brille und 100 % Testabdeckung an Optimismus. Er führt Sie durch unsere Pipeline: vom ersten Briefing bis zum Deploy in Prod."
+              }
+            },
+            {
+              "type": "button",
+              "class": "primary-button my-8",
+              "content": {
+                "uk": "Запушити ідею",
+                "en": "Push your idea",
+                "de": "Idee pushen"
+              },
+              "route": "dynamic-page",
+              "params": {
+                "pageId": "contacts-page"
+              }
+            }
+          ]
+        },
+        {
+          "type": "image",
+          "content": {
+            "uk": "/api/content/images/how-we-work/card-vr-hello.svg",
+            "en": "/api/content/images/how-we-work/card-vr-hello.svg",
+            "de": "/api/content/images/how-we-work/card-vr-hello.svg"
+          }
+        }
+      ]
+    },
+    {
+      "type": "component",
+      "content": "TransferServicesSteps",
+      "props": {
+        "badge": "gear",
+        "hover": "waves",
+        "circleColor": "light-grey-1",
+        "numberColor": "secondary",
+        "title": {
+          "uk": "Наш пайплайн",
+          "en": "Our pipeline",
+          "de": "Unsere Pipeline"
+        },
+        "subtitle": {
+          "uk": "П’ять стейджів, нуль чорних ящиків",
+          "en": "Five stages, zero black boxes",
+          "de": "Fünf Stages, null Blackboxes"
+        },
+        "circles": [
+          {
+            "bold": {
+              "uk": "Бриф",
+              "en": "Brief",
+              "de": "Briefing"
+            },
+            "text": {
+              "uk": "слухаємо, доки не зрозуміємо, що вам насправді треба",
+              "en": "we listen until we get what you really need",
+              "de": "wir hören zu, bis wir verstehen, was Sie wirklich brauchen"
+            }
+          },
+          {
+            "bold": {
+              "uk": "Дизайн",
+              "en": "Design",
+              "de": "Design"
+            },
+            "text": {
+              "uk": "макет, який верстальник не прокляне",
+              "en": "a mock-up the front-end dev won’t curse",
+              "de": "ein Layout, das der Frontendler nicht verflucht"
+            }
+          },
+          {
+            "bold": {
+              "uk": "Розробка",
+              "en": "Development",
+              "de": "Entwicklung"
+            },
+            "text": {
+              "uk": "збираємо сайт із блоків і комітимо щодня",
+              "en": "we build the site from blocks and commit daily",
+              "de": "wir bauen die Website aus Blöcken und committen täglich"
+            }
+          },
+          {
+            "bold": {
+              "uk": "QA",
+              "en": "QA",
+              "de": "QA"
+            },
+            "text": {
+              "uk": "ловимо баги, поки вони ще личинки",
+              "en": "we catch bugs while they’re still larvae",
+              "de": "wir fangen Bugs, solange sie noch Larven sind"
+            }
+          },
+          {
+            "bold": {
+              "uk": "Деплой",
+              "en": "Deploy",
+              "de": "Deploy"
+            },
+            "text": {
+              "uk": "реліз без п’ятничної паніки",
+              "en": "a release without Friday-night panic",
+              "de": "ein Release ohne Freitagabend-Panik"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "section",
+      "children": [
+        {
+          "type": "image",
+          "content": {
+            "uk": "/api/content/images/how-we-work/card-builder.svg",
+            "en": "/api/content/images/how-we-work/card-builder.svg",
+            "de": "/api/content/images/how-we-work/card-builder.svg"
+          }
+        },
+        {
+          "type": "section",
+          "class": "ml-md-5",
+          "children": [
+            {
+              "type": "title",
+              "class": "h3 text-bold text-primary my-6",
+              "content": {
+                "uk": "CMS без болю",
+                "en": "A CMS without the pain",
+                "de": "Ein CMS ohne Schmerzen"
+              }
+            },
+            {
+              "type": "text",
+              "class": "default-text text-medium text-black",
+              "content": {
+                "uk": "Ми не залишаємо вас наодинці з кодом. Кожна сторінка — це набір блоків: тексти, картинки, картки, каруселі, форми. Потрібен новий розділ — drag, drop, «Зберегти». Жодних тікетів у Jira й очікування до наступного спринту.",
+                "en": "We don’t leave you alone with the code. Every page is a set of blocks: text, pictures, cards, carousels, forms. Need a new section? Drag, drop, ‘Save’. No Jira tickets, no waiting for the next sprint.",
+                "de": "Wir lassen Sie mit dem Code nicht allein. Jede Seite ist ein Satz von Blöcken: Texte, Bilder, Karten, Karussells, Formulare. Neuer Abschnitt nötig? Drag, Drop, „Speichern“. Keine Jira-Tickets, kein Warten auf den nächsten Sprint."
+              }
+            },
+            {
+              "type": "text",
+              "class": "default-text text-medium text-secondary mt-4",
+              "content": {
+                "uk": "Спойлер: цю сторінку зібрано саме так.",
+                "en": "Spoiler: this very page was built that way.",
+                "de": "Spoiler: Genau so ist diese Seite entstanden."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "dark-fone-section",
+      "title": {
+        "uk": "Наш стек суперсил",
+        "en": "Our stack of superpowers",
+        "de": "Unser Stack an Superkräften"
+      },
+      "background": "primary",
+      "cardWidth": 320,
+      "children": [
+        {
+          "type": "card",
+          "class": "header-primary",
+          "ver": 2,
+          "icon": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTYgMjU2IiB3aWR0aD0iMjU2IiBoZWlnaHQ9IjI1NiI+DQo8cGF0aCBkPSJNIDQwIDExOCBRIDMwIDcwIDgwIDcwIiBzdHJva2U9IiMxQzZFQTUiIHN0cm9rZS13aWR0aD0iMTgiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPg0KPHBhdGggZD0iTSAyMTYgMTE4IFEgMjI2IDcwIDE3NiA3MCIgc3Ryb2tlPSIjMUM2RUE1IiBzdHJva2Utd2lkdGg9IjE4IiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4NCjxyZWN0IHg9IjI4IiB5PSI4NiIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIxMDQiIHJ4PSIzOCIgZmlsbD0iIzFDNkVBNSIvPg0KPHJlY3QgeD0iNDQiIHk9IjEwMCIgd2lkdGg9IjE2OCIgaGVpZ2h0PSI3NiIgcng9IjI4IiBmaWxsPSIjNDQ5MENCIi8+DQo8cGF0aCBkPSJNIDEyOCAxNzYgUSAxMjggMTUwIDExMiAxNTAgUSAxMjggMTUwIDE0NCAxNTAgUSAxMjggMTUwIDEyOCAxNzYiIGZpbGw9IiMxQzZFQTUiLz4NCjxwYXRoIGQ9Ik0gNjQgMTIwIEwgMTIwIDEyMCIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjkiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgb3BhY2l0eT0iLjgiLz4NCjxwYXRoIGQ9Ik0gNjQgMTQwIEwgOTIgMTQwIiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iNiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBvcGFjaXR5PSIuNTUiLz4NCjxjaXJjbGUgY3g9IjE5NiIgY3k9IjE2MCIgcj0iNyIgZmlsbD0iIzdDRjdDNSIvPg0KPHBhdGggZD0iTSAyMTQgMjIgUSAyMTguODQgMzkuMTYgMjM2IDQ0IFEgMjE4Ljg0IDQ4Ljg0IDIxNCA2NiBRIDIwOS4xNiA0OC44NCAxOTIgNDQgUSAyMDkuMTYgMzkuMTYgMjE0IDIyIFoiIGZpbGw9IiNGQ0Q0MDMiLz48L3N2Zz4NCg==",
+          "size": 110,
+          "color": "white",
+          "title": {
+            "uk": "VR без морської хвороби",
+            "en": "VR without seasickness",
+            "de": "VR ohne Seekrankheit"
+          },
+          "text": {
+            "uk": "Віртуальні тури, 3D-презентації та ігри з FPS, від якого не нудить.",
+            "en": "Virtual tours, 3D presentations and games with a frame rate that won’t make you queasy.",
+            "de": "Virtuelle Touren, 3D-Präsentationen und Spiele mit einer Framerate, bei der niemandem schlecht wird."
+          }
+        },
+        {
+          "type": "card",
+          "class": "header-primary",
+          "ver": 2,
+          "icon": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTYgMjU2IiB3aWR0aD0iMjU2IiBoZWlnaHQ9IjI1NiI+PGcgdHJhbnNmb3JtPSJyb3RhdGUoLTYgMTI4IDEyOCkiPg0KICA8cmVjdCB4PSIyMiIgeT0iNDYiIHdpZHRoPSIyMTIiIGhlaWdodD0iMTY0IiByeD0iMTEiIGZpbGw9IiMxNTJBNjgiLz4NCiAgPHBhdGggZD0iTSAyMiA1NyBRIDIyIDQ2IDMzIDQ2IEwgMjIzIDQ2IFEgMjM0IDQ2IDIzNCA1NyBMIDIzNCA2OSBMIDIyIDY5IFoiIGZpbGw9IiMzMDUwQjEiLz4NCiAgPGNpcmNsZSBjeD0iMzgiIGN5PSI1NyIgcj0iNSIgZmlsbD0iI0UzMkMyRSIvPjxjaXJjbGUgY3g9IjU1IiBjeT0iNTciIHI9IjUiIGZpbGw9IiNDMzg0MEYiLz48Y2lyY2xlIGN4PSI3MyIgY3k9IjU3IiByPSI1IiBmaWxsPSIjMTdBNDczIi8+PGxpbmUgeDE9IjM1IiB5MT0iODUiIHgyPSI4NiIgeTI9Ijg1IiBzdHJva2U9IiNGRjdBQjIiIHN0cm9rZS13aWR0aD0iNiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PGxpbmUgeDE9IjEwNyIgeTE9IjEwMCIgeDI9IjE3MCIgeTI9IjEwMCIgc3Ryb2tlPSIjN0NGN0M1IiBzdHJva2Utd2lkdGg9IjYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjxsaW5lIHgxPSI0NyIgeTE9IjExNSIgeDI9IjExMSIgeTI9IjExNSIgc3Ryb2tlPSIjRkNENDAzIiBzdHJva2Utd2lkdGg9IjYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjxsaW5lIHgxPSI0NyIgeTE9IjEzMCIgeDI9IjE1MyIgeTI9IjEzMCIgc3Ryb2tlPSIjNEE5QkRDIiBzdHJva2Utd2lkdGg9IjYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjxsaW5lIHgxPSI2NCIgeTE9IjE0NSIgeDI9IjEyOCIgeTI9IjE0NSIgc3Ryb2tlPSIjRkY3QUIyIiBzdHJva2Utd2lkdGg9IjYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjxsaW5lIHgxPSI2NCIgeTE9IjE2MCIgeDI9IjE4NyIgeTI9IjE2MCIgc3Ryb2tlPSIjRDREQkYwIiBzdHJva2Utd2lkdGg9IjYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjxsaW5lIHgxPSI0NyIgeTE9IjE3NCIgeDI9Ijk0IiB5Mj0iMTc0IiBzdHJva2U9IiNGQ0Q0MDMiIHN0cm9rZS13aWR0aD0iNiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PGxpbmUgeDE9IjM1IiB5MT0iMTg5IiB4Mj0iNjQiIHkyPSIxODkiIHN0cm9rZT0iIzdDRjdDNSIgc3Ryb2tlLXdpZHRoPSI2IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4NCjwvZz48cGF0aCBkPSJNIDIyMiAxNiBRIDIyNi40IDMxLjYgMjQyIDM2IFEgMjI2LjQgNDAuNCAyMjIgNTYgUSAyMTcuNiA0MC40IDIwMiAzNiBRIDIxNy42IDMxLjYgMjIyIDE2IFoiIGZpbGw9IiNGQ0Q0MDMiLz48L3N2Zz4NCg==",
+          "size": 110,
+          "color": "white",
+          "title": {
+            "uk": "Код без легасі",
+            "en": "Code without legacy",
+            "de": "Code ohne Legacy"
+          },
+          "text": {
+            "uk": "Vue, Nuxt, TypeScript — і тести, що ловлять баги раніше за ваших юзерів.",
+            "en": "Vue, Nuxt, TypeScript — and tests that catch bugs before your users do.",
+            "de": "Vue, Nuxt, TypeScript – und Tests, die Bugs vor Ihren Usern finden."
+          }
+        },
+        {
+          "type": "card",
+          "class": "header-primary",
+          "ver": 2,
+          "icon": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTYgMjU2IiB3aWR0aD0iMjU2IiBoZWlnaHQ9IjI1NiI+PGcgdHJhbnNmb3JtPSJyb3RhdGUoMzUgMTI4IDExOCkiPg0KICA8cGF0aCBkPSJNIDExMCAyMDAgUSAxMjggMjk2IDE0NiAyMDAgWiIgZmlsbD0iI0MzODQwRiIvPg0KICA8cGF0aCBkPSJNIDExOCAyMDMgUSAxMjggMjYxIDEzOCAyMDMgWiIgZmlsbD0iI0ZDRDQwMyIvPg0KICA8cGF0aCBkPSJNIDk3IDE2MCBMIDcwIDIxMiBMIDk3IDIwMCBaIiBmaWxsPSIjQjYxQjFBIi8+DQogIDxwYXRoIGQ9Ik0gMTU5IDE2MCBMIDE4NiAyMTIgTCAxNTkgMjAwIFoiIGZpbGw9IiNCNjFCMUEiLz4NCiAgPHBhdGggZD0iTSAxMjggMzMgQyAxNzQgNjQgMTU5IDE2MCAxNTkgMjAzIEwgOTcgMjAzIEMgOTcgMTYwIDgyIDY0IDEyOCAzMyBaIiBmaWxsPSIjRkZGRkZGIiBzdHJva2U9IiNENERCRjAiIHN0cm9rZS13aWR0aD0iMyIvPg0KICA8cGF0aCBkPSJNIDEyOCAzMyBDIDE1NCA0NyAxNTkgNjAgMTYyIDcwIEwgOTQgNzAgQyA5NyA2MCAxMDIgNDcgMTI4IDMzIFoiIGZpbGw9IiNFMzJDMkUiLz4NCiAgPGNpcmNsZSBjeD0iMTI4IiBjeT0iMTA0IiByPSIxNSIgZmlsbD0iIzFDNkVBNSIgc3Ryb2tlPSIjRDREQkYwIiBzdHJva2Utd2lkdGg9IjQiLz4NCiAgPGNpcmNsZSBjeD0iMTI0IiBjeT0iMTAxIiByPSI0IiBmaWxsPSIjRkZGRkZGIiBvcGFjaXR5PSIuNyIvPg0KPC9nPjxwYXRoIGQ9Ik0gNDIgMzYgUSA0NS45NiA1MC4wNCA2MCA1NCBRIDQ1Ljk2IDU3Ljk2IDQyIDcyIFEgMzguMDQgNTcuOTYgMjQgNTQgUSAzOC4wNCA1MC4wNCA0MiAzNiBaIiBmaWxsPSIjRkNENDAzIi8+PHBhdGggZD0iTSAyMjAgMTgyIFEgMjIzLjA4IDE5Mi45MiAyMzQgMTk2IFEgMjIzLjA4IDE5OS4wOCAyMjAgMjEwIFEgMjE2LjkyIDE5OS4wOCAyMDYgMTk2IFEgMjE2LjkyIDE5Mi45MiAyMjAgMTgyIFoiIGZpbGw9IiM0QTlCREMiLz48L3N2Zz4NCg==",
+          "size": 110,
+          "color": "white",
+          "title": {
+            "uk": "Lighthouse на сотку",
+            "en": "A Lighthouse score of 100",
+            "de": "Lighthouse-Score 100"
+          },
+          "text": {
+            "uk": "Сайти вантажаться швидше, ніж ви встигнете сказати «кеш».",
+            "en": "Sites load faster than you can say ‘cache’.",
+            "de": "Websites laden schneller, als Sie „Cache“ sagen können."
+          }
+        },
+        {
+          "type": "card",
+          "class": "header-primary",
+          "ver": 2,
+          "icon": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTYgMjU2IiB3aWR0aD0iMjU2IiBoZWlnaHQ9IjI1NiI+DQo8cmVjdCB4PSIzNCIgeT0iMzAiIHdpZHRoPSIxNjAiIGhlaWdodD0iMTk2IiByeD0iMjAiIGZpbGw9IiNGRkZGRkYiIHN0cm9rZT0iI0Q0REJGMCIgc3Ryb2tlLXdpZHRoPSI2Ii8+DQo8cmVjdCB4PSI1MiIgeT0iNTIiIHdpZHRoPSIxMjQiIGhlaWdodD0iNDQiIHJ4PSIxMCIgZmlsbD0iIzQ0OTBDQiIvPg0KPHJlY3QgeD0iNTIiIHk9IjEwOCIgd2lkdGg9IjU2IiBoZWlnaHQ9IjQ0IiByeD0iMTAiIGZpbGw9IiNENERCRjAiLz4NCjxyZWN0IHg9IjEyMCIgeT0iMTA4IiB3aWR0aD0iNTYiIGhlaWdodD0iNDQiIHJ4PSIxMCIgZmlsbD0iI0Q0REJGMCIvPg0KPHJlY3QgeD0iNTIiIHk9IjE2NCIgd2lkdGg9IjEyNCIgaGVpZ2h0PSI0MCIgcng9IjEwIiBmaWxsPSJub25lIiBzdHJva2U9IiM0NDkwQ0IiIHN0cm9rZS13aWR0aD0iNSIgc3Ryb2tlLWRhc2hhcnJheT0iMTAgNyIvPg0KPGcgdHJhbnNmb3JtPSJyb3RhdGUoLTEwIDE5NiAxNzYpIj48cmVjdCB4PSIxNDAiIHk9IjE1MCIgd2lkdGg9IjEwNCIgaGVpZ2h0PSI0NCIgcng9IjEwIiBmaWxsPSIjRkNENDAzIi8+PGNpcmNsZSBjeD0iMTYyIiBjeT0iMTcyIiByPSIxMCIgZmlsbD0iI0UzMkMyRSIvPjwvZz48L3N2Zz4NCg==",
+          "size": 110,
+          "color": "white",
+          "title": {
+            "uk": "Редактор із коробки",
+            "en": "An editor out of the box",
+            "de": "Ein Editor out of the box"
+          },
+          "text": {
+            "uk": "Тексти, картинки й переклади правите самі — без жодного рядка коду.",
+            "en": "You edit texts, pictures and translations yourself — without a single line of code.",
+            "de": "Texte, Bilder und Übersetzungen bearbeiten Sie selbst – ohne eine einzige Codezeile."
+          }
+        }
+      ]
+    },
+    {
+      "type": "baner",
+      "class": "bright-grey pa-0",
+      "dark": false,
+      "image": "/api/content/images/how-we-work/scene-studio.svg",
+      "content": {
+        "uk": "/api/content/images/how-we-work/banner-studio-mobile.svg",
+        "en": "/api/content/images/how-we-work/banner-studio-mobile.svg",
+        "de": "/api/content/images/how-we-work/banner-studio-mobile.svg"
+      },
+      "title": {
+        "uk": "Сайт — як конструктор",
+        "en": "Your site, like a construction kit",
+        "de": "Ihre Website als Baukasten"
+      },
+      "titleClass": "h2 text-white text-center accent-font-2 text-bold",
+      "titleBackground": "primary",
+      "background": "light-grey-2",
+      "children": [
+        {
+          "type": "text",
+          "class": "h4 text-medium my-8 text-primary",
+          "content": {
+            "uk": "Блоки, кольори, шрифти й переклади — в одному редакторі. WYSIWYG, як і обіцяли: що бачите, те й задеплоїться.",
+            "en": "Blocks, colours, fonts and translations — all in one editor. WYSIWYG, as promised: what you see is what gets deployed.",
+            "de": "Blöcke, Farben, Schriften und Übersetzungen – alles in einem Editor. WYSIWYG, wie versprochen: Was Sie sehen, wird auch deployt."
+          }
+        }
+      ]
+    },
+    {
+      "type": "component",
+      "id": "faq-how-we-work",
+      "content": "FAQ",
+      "props": {
+        "title": {
+          "uk": "FAQ, або Часті баг-репорти",
+          "en": "FAQ, aka frequent bug reports",
+          "de": "FAQ, oder: häufige Bugreports"
+        },
+        "subtitle": {
+          "uk": "Не знайшли свій кейс — відкривайте тікет через форму внизу.",
+          "en": "Can’t find your case? Open a ticket with the form below.",
+          "de": "Ihren Fall nicht gefunden? Eröffnen Sie ein Ticket über das Formular unten."
+        },
+        "questionClass": "h4 text-medium text-black text-left",
+        "answerClass": "h6 text-thin text-black text-left",
+        "expandIcon": "mdi-plus",
+        "collapseIcon": "mdi-minus",
+        "questions": [
+          {
+            "question": {
+              "uk": "Талісман справді не знімає VR-шолом?",
+              "en": "Does the mascot really never take off his VR headset?",
+              "de": "Nimmt das Maskottchen die VR-Brille wirklich nie ab?"
+            },
+            "answer": {
+              "uk": "Тільки на час оновлення прошивки. Решту часу він працює в режимі always-on.",
+              "en": "Only during firmware updates. The rest of the time he runs in always-on mode.",
+              "de": "Nur während Firmware-Updates. Den Rest der Zeit läuft er im Always-on-Modus."
+            }
+          },
+          {
+            "question": {
+              "uk": "Скільки коштує сайт?",
+              "en": "How much does a website cost?",
+              "de": "Was kostet eine Website?"
+            },
+            "answer": {
+              "uk": "Залежить від скоупу. Лендинг — це один спринт, складний сервіс — ціла сага з епіками. Чесний естімейт дамо після першого дзвінка, без «ну десь два тижні».",
+              "en": "It depends on the scope. A landing page is one sprint; a complex service is a saga full of epics. We’ll give you an honest estimate after the first call — no ‘oh, about two weeks’.",
+              "de": "Kommt auf den Scope an. Eine Landingpage ist ein Sprint, ein komplexer Dienst eine Saga voller Epics. Eine ehrliche Schätzung gibt es nach dem ersten Call – ohne „so ungefähr zwei Wochen“."
+            }
+          },
+          {
+            "question": {
+              "uk": "Чи зможу я змінювати сайт без вас?",
+              "en": "Can I change the site without you?",
+              "de": "Kann ich die Website ohne Sie ändern?"
+            },
+            "answer": {
+              "uk": "Так. Наш редактор — це no-code для людей: тексти, картинки й цілі сторінки ви правите самі, трьома мовами. Розробники потрібні лише для нових фіч.",
+              "en": "Yes. Our editor is no-code for humans: you edit the texts, pictures and whole pages yourself, in three languages. You only need developers for new features.",
+              "de": "Ja. Unser Editor ist No-Code für Menschen: Texte, Bilder und ganze Seiten bearbeiten Sie selbst, in drei Sprachen. Entwickler brauchen Sie nur für neue Features."
+            }
+          },
+          {
+            "question": {
+              "uk": "А якщо мені потрібен VR, а не сайт?",
+              "en": "What if I need VR rather than a website?",
+              "de": "Und wenn ich VR statt einer Website brauche?"
+            },
+            "answer": {
+              "uk": "Тоді шолом на голову — і в продакшн. Віртуальні тури, 3D-презентації та інтерактивні сцени ми робимо так само охоче, як і сайти.",
+              "en": "Then on goes the headset and off to production. We build virtual tours, 3D presentations and interactive scenes just as happily as websites.",
+              "de": "Dann Brille auf und ab in die Produktion. Virtuelle Touren, 3D-Präsentationen und interaktive Szenen bauen wir genauso gern wie Websites."
+            }
+          },
+          {
+            "question": {
+              "uk": "Ви деплоїте в п’ятницю ввечері?",
+              "en": "Do you deploy on Friday evenings?",
+              "de": "Deployen Sie am Freitagabend?"
+            },
+            "answer": {
+              "uk": "Тільки якщо хотфікс чергує поруч, а кава вже зварена. Але зазвичай ми не граємо в рулетку з продом.",
+              "en": "Only with a hotfix on standby and the coffee already brewed. As a rule, though, we don’t play roulette with prod.",
+              "de": "Nur mit einem Hotfix in Bereitschaft und frisch gebrühtem Kaffee. In der Regel spielen wir aber kein Roulette mit Prod."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "section",
+      "children": [
+        {
+          "type": "section-with-free-content",
+          "children": [
+            {
+              "type": "image",
+              "content": {
+                "uk": "/api/content/images/how-we-work/card-launch.svg",
+                "en": "/api/content/images/how-we-work/card-launch.svg",
+                "de": "/api/content/images/how-we-work/card-launch.svg"
+              }
+            }
+          ]
+        },
+        {
+          "type": "section-with-free-content",
+          "children": [
+            {
+              "type": "component",
+              "content": "FeedbackForm",
+              "props": {
+                "type": "message",
+                "title": {
+                  "uk": "Готові до деплою в інший вимір?",
+                  "en": "Ready to deploy into another dimension?",
+                  "de": "Bereit für den Deploy in eine andere Dimension?"
+                },
+                "text": {
+                  "uk": "Опишіть задачу — відповімо швидше, ніж пройде білд.",
+                  "en": "Describe your task — we’ll reply faster than the build finishes.",
+                  "de": "Beschreiben Sie Ihre Aufgabe – wir antworten schneller, als der Build durchläuft."
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

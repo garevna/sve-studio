@@ -1,0 +1,19 @@
+# Pagewright demo's own feedback relay (see src/index.js). Not used by a
+# client's site - that points global.json feedback.endpoint at its own API.
+name = "pagewright-feedback"
+main = "src/index.js"
+compatibility_date = "2025-01-01"
+# The worker's address is the one the site uses; no preview addresses.
+preview_urls = false
+
+# Logs in the dashboard (Observability) - where a refused message says why.
+[observability]
+enabled = true
+
+[vars]
+# The sites allowed to send the form: the published demo and local dev.
+ALLOWED_ORIGINS = "https://garevna.github.io,http://localhost:3006,http://localhost:3007"
+
+# Secrets are never written here - set them in the Cloudflare dashboard
+# (Settings -> Variables and Secrets) or with `npx wrangler secret put`:
+#   TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID

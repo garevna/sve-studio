@@ -158,5 +158,8 @@
       "itemClass": "default-text text-medium text-special",
       "activeClass": "default-text text-medium text-primary"
     }
+  },
+  "feedback": {
+    "endpoint": "https://pagewright-feedback.garevna.workers.dev"
   }
 }

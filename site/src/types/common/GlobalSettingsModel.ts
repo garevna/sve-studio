@@ -14,6 +14,9 @@ export type GlobalSettingsModel = {
   // Phones, emails, the address... - one source for every page and the
   // footer (see configs/site-contacts.ts).
   contacts?: SiteContact[]
+  // Where the feedback forms send (utils/feedback-transport.ts). Absent:
+  // the form says sending isn't set up.
+  feedback?: { endpoint?: string }
   menuStyle?: { dropdown?: Partial<DropdownStyle>, mobile?: Partial<MobileMenuStyle> }
   provider: string
   logo: {

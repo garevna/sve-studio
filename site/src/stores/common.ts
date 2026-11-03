@@ -80,6 +80,8 @@ export const useCommonStore = defineStore('common', () => {
   const menuStyle = ref<MenuStyleModel>(resolveMenuStyle())
   // Phones, emails, the address (global.json contacts).
   const contacts = ref<SiteContact[]>([])
+  // Where the feedback forms send (global.json feedback.endpoint).
+  const feedbackEndpoint = ref('')
 
   const company = ref<{
     name: string
@@ -185,6 +187,7 @@ export const useCommonStore = defineStore('common', () => {
     applyHeaderSettings(response)
     menuStyle.value = resolveMenuStyle(response.menuStyle)
     contacts.value = Array.isArray(response.contacts) ? response.contacts : []
+    feedbackEndpoint.value = response.feedback?.endpoint || ''
     baners.value = response.baner
     banerSlides.value = Array.isArray(response.banerSlides) ? response.banerSlides : []
     if (Array.isArray(response.locales) && response.locales.length > 0) {
@@ -259,6 +262,7 @@ export const useCommonStore = defineStore('common', () => {
     headerSettings,
     menuStyle,
     contacts,
+    feedbackEndpoint,
     applyHeaderSettings,
     resetParallax,
     setParallax,

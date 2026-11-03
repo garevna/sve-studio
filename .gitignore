@@ -43,3 +43,7 @@ public/images/theme_*/uploads/
 # server/routes/__editor-api__/public-file.ts)
 .private/
 
+
+# Cloudflare Worker secrets for local runs - never committed
+.dev.vars
+.wrangler/

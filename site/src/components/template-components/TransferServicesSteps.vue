@@ -1,8 +1,10 @@
 <script setup lang="ts">
-  import { storeToRefs } from 'pinia'
-  import { computed, onMounted, onUnmounted, ref } from 'vue'
-
+  import type { StepBadgeShape } from '../main-page-sections/StepBadge.vue'
   import type { TranslatedModel } from '@/types/common/TemplateBlockModel'
+
+  import { storeToRefs } from 'pinia'
+
+  import { computed, onMounted, onUnmounted, ref } from 'vue'
 
   import { useCommonStore } from '@/stores/common'
 
@@ -29,6 +31,10 @@
     // renders unchanged.
     circleColor?: string
     numberColor?: string
+    // The number's shape and what a hovered step does (set in the editor).
+    // Absent: the disc and the lift it has always had.
+    badge?: StepBadgeShape
+    hover?: 'lift' | 'waves'
   }>()
 
   const circleBackground = computed(() => `var(--${props.circleColor || 'light-grey-1'})`)
@@ -84,13 +90,15 @@
         class="transfer-steps-item"
         :style="{ '--step-index': index }"
       >
-        <div class="transfer-steps-lift">
+        <div :class="['transfer-steps-lift', { 'transfer-steps-lift--still': props.hover === 'waves' }]">
           <TransferServicesCircle
+            :badge="props.badge"
             :bold="circle.bold[lang]"
             :circle-color="circleBackground"
             :index="index"
             :number-color="numberBackground"
             :text="circle.text[lang]"
+            :waves="props.hover === 'waves'"
           />
         </div>
       </div>
@@ -104,6 +112,7 @@
         :style="{ '--step-index': index }"
       >
         <TransferServicesCircle
+          :badge="props.badge"
           :bold="circle.bold[lang]"
           :circle-color="circleBackground"
           :index="index"
@@ -249,6 +258,10 @@
 }
 .transfer-steps-lift:hover {
   transform: translateY(-8px);
+}
+/* Waves are the hover effect instead of the lift, not on top of it. */
+.transfer-steps-lift--still:hover {
+  transform: none;
 }
 
 @media (prefers-reduced-motion: reduce) {

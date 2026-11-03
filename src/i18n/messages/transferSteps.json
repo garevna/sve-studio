@@ -38,5 +38,45 @@
     "uk": "Редагувати крок",
     "en": "Edit Step",
     "de": "Schritt bearbeiten"
+  },
+  "badge": {
+    "uk": "Форма номера",
+    "en": "",
+    "de": ""
+  },
+  "badgeCircle": {
+    "uk": "Кружок",
+    "en": "",
+    "de": ""
+  },
+  "badgeGear": {
+    "uk": "Шестерня",
+    "en": "",
+    "de": ""
+  },
+  "badgeHexagon": {
+    "uk": "Шестикутник",
+    "en": "",
+    "de": ""
+  },
+  "badgeBurst": {
+    "uk": "Зірка-сплеск",
+    "en": "",
+    "de": ""
+  },
+  "hover": {
+    "uk": "Ефект при наведенні",
+    "en": "",
+    "de": ""
+  },
+  "hoverLift": {
+    "uk": "Підйом",
+    "en": "",
+    "de": ""
+  },
+  "hoverWaves": {
+    "uk": "Хвилі",
+    "en": "",
+    "de": ""
   }
 }

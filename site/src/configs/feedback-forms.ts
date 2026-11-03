@@ -75,6 +75,15 @@ export const FEEDBACK_FIELD_LABELS: Record<Exclude<FeedbackField, 'message' | 'r
   date: { uk: 'Бажана дата', en: 'Preferred date', de: 'Wunschtermin' },
 }
 
+// What the form says after the button is pressed.
+export const FEEDBACK_STATUS: Record<'sending' | 'sent' | 'failed' | 'notConfigured' | 'empty', Words> = {
+  sending: { uk: 'Надсилаємо…', en: 'Sending…', de: 'Wird gesendet…' },
+  sent: { uk: 'Дякуємо! Повідомлення надіслано — відповімо найближчим часом.', en: 'Thank you! Your message has been sent — we’ll get back to you soon.', de: 'Danke! Ihre Nachricht wurde gesendet – wir melden uns in Kürze.' },
+  failed: { uk: 'Не вдалося надіслати. Спробуйте ще раз трохи згодом.', en: 'Couldn’t send it. Please try again a little later.', de: 'Senden fehlgeschlagen. Bitte versuchen Sie es etwas später noch einmal.' },
+  notConfigured: { uk: 'Надсилання форм на цьому сайті ще не налаштоване.', en: 'Sending forms isn’t set up on this site yet.', de: 'Das Senden von Formularen ist auf dieser Website noch nicht eingerichtet.' },
+  empty: { uk: 'Залиште, будь ласка, повідомлення, телефон або email.', en: 'Please leave a message, a phone number or an email.', de: 'Bitte hinterlassen Sie eine Nachricht, eine Telefonnummer oder eine E-Mail.' },
+}
+
 // A form saved before a kind was chosen is a callback form - that is what
 // the footer card always was.
 export function feedbackFormKind (id: string | undefined): FeedbackFormKind {

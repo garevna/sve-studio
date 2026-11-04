@@ -31,6 +31,7 @@ import { popularTrips } from '../configs/popular-trips'
 import { getImageURL } from '../services/get-image-url'
 import { localeAsset } from '../utils/locale-asset'
 import { PARALLAX_TEXT_DEFAULTS, parallaxTextClass as parallaxFormat } from '../utils/parallax-text-class'
+import { useAuthStore } from './auth'
 // import { useAjaxStore } from './ajax'
 
 // import { getBanersForLocale } from '@/services/common'
@@ -197,6 +198,7 @@ export const useCommonStore = defineStore('common', () => {
     menuStyle.value = resolveMenuStyle(response.menuStyle)
     contacts.value = Array.isArray(response.contacts) ? response.contacts : []
     feedbackEndpoint.value = response.feedback?.endpoint || ''
+    void useAuthStore().configure(response.auth)
     baners.value = response.baner
     banerSlides.value = Array.isArray(response.banerSlides) ? response.banerSlides : []
     if (Array.isArray(response.locales) && response.locales.length > 0) {

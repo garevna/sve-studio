@@ -20,6 +20,11 @@
     "de": "Weiter: {page}"
   },
   "groups": {
+    "visitors": {
+      "uk": "Відвідувачі",
+      "en": "",
+      "de": ""
+    },
     "content": {
       "uk": "Контент",
       "en": "Content",
@@ -155,6 +160,18 @@
         "uk": "Сторінки кабінету клієнта",
         "en": "Pages of the customer's account",
         "de": "Seiten des Kundenkontos"
+      }
+    },
+    "messages": {
+      "title": {
+        "uk": "Повідомлення",
+        "en": "",
+        "de": ""
+      },
+      "description": {
+        "uk": "Що пишуть відвідувачі, і відповіді їм",
+        "en": "",
+        "de": ""
       }
     }
   },

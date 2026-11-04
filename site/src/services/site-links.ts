@@ -10,9 +10,23 @@
 
 export const HOME_PAGE_ID = 'home-page'
 
-// Parts of the original booking site the demo does not have (accounts,
-// trips); a link to one of them is not shown at all.
-const MISSING_ROUTES = new Set(['user-dashboard', 'sign-in', 'sign-up', 'auth', 'buyer', 'direct-trip', 'back-trip', 'direct-route-variants', 'back-route-variants'])
+// The site's own pages, not content: signing in and the visitor's account
+// (templates/AuthPage.vue, AccountPage.vue). Their addresses are reserved.
+export const AUTH_PAGE_ID = 'auth'
+export const ACCOUNT_PAGE_ID = 'account'
+
+// Links of the original booking site's account pages, stored in older
+// content ("Особистий кабінет" -> user-dashboard), lead to these.
+const ACCOUNT_ROUTES: Record<string, string> = {
+  'user-dashboard': ACCOUNT_PAGE_ID,
+  'auth': AUTH_PAGE_ID,
+  'sign-in': AUTH_PAGE_ID,
+  'sign-up': AUTH_PAGE_ID,
+}
+
+// Parts of the original booking site the demo does not have (trips); a
+// link to one of them is not shown at all.
+const MISSING_ROUTES = new Set(['buyer', 'direct-trip', 'back-trip', 'direct-route-variants', 'back-route-variants'])
 
 export type LinkSource = {
   route?: string
@@ -56,6 +70,9 @@ export function linkedPageId (source: LinkSource): string | null {
   }
   if (route === 'home' || route === 'main') {
     return HOME_PAGE_ID
+  }
+  if (ACCOUNT_ROUTES[route]) {
+    return ACCOUNT_ROUTES[route]!
   }
   return MISSING_ROUTES.has(route) ? null : route
 }

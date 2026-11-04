@@ -11,6 +11,7 @@
     title?: Record<string, string> | string
     text?: Record<string, string> | string
   }>()
+  const emit = defineEmits<{ sent: [] }>()
 </script>
 
 <template>
@@ -28,6 +29,7 @@
         :text="(text as TranslatedModel) || ''"
         :title="(title as TranslatedModel) || ''"
         :type="type || 'message'"
+        @sent="emit('sent')"
       />
     </div>
   </v-dialog>

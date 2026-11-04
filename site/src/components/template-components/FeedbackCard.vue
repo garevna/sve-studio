@@ -1,11 +1,14 @@
 <script setup lang="ts">
+  import type { ContactVia } from '../../services/messages/types'
+
   import type { TranslatedModel } from '../../types/common'
-
   import { storeToRefs } from 'pinia'
-  import { computed, ref } from 'vue'
 
-  import { FEEDBACK_FIELD_LABELS, FEEDBACK_STATUS, feedbackFormKind } from '../../configs/feedback-forms'
+  import { computed, ref } from 'vue'
+  import { FEEDBACK_CONTACT, FEEDBACK_FIELD_LABELS, FEEDBACK_STATUS, feedbackFormKind } from '../../configs/feedback-forms'
+  import { useAuthStore } from '../../stores/auth'
   import { useCommonStore } from '../../stores/common'
+  import { useMessagesStore } from '../../stores/messages'
   import { sendFeedback } from '../../utils/feedback-transport'
   import PhoneNumberInput from '../inputs/PhoneNumberInput.vue'
 
@@ -14,6 +17,10 @@
   // message, question, quote, booking, review, subscription - see
   // configs/feedback-forms.ts).
   const { locale, feedbackEndpoint } = storeToRefs(useCommonStore())
+  // A signed-in visitor's message is kept in their account, and the reply
+  // comes back there (stores/messages).
+  const auth = useAuthStore()
+  const messages = useMessagesStore()
 
   type PropsModel = {
     type?: string
@@ -24,6 +31,8 @@
   }
 
   const props = defineProps<PropsModel>()
+  // Sent and accepted - a popup closes itself on it.
+  const emit = defineEmits<{ sent: [] }>()
 
   type Lang = 'uk' | 'en' | 'de'
   const lang = computed(() => locale.value as Lang)
@@ -32,6 +41,14 @@
 
   const kind = computed(() => feedbackFormKind(props.type))
   const has = (field: string) => kind.value.fields.includes(field as never)
+  // A way back to the visitor, a messenger first - people answer those.
+  // It takes the place of the e-mail and, in a form with a message, of the
+  // phone too. A subscription stays about e-mail, a call request about the
+  // phone.
+  const asksContact = computed(() => (has('email') && kind.value.id !== 'subscribe') || (has('phone') && has('message')))
+  const contactVia = ref<ContactVia>('telegram')
+  const contactValue = ref('')
+  const contactWay = computed(() => FEEDBACK_CONTACT.ways.find(way => way.via === contactVia.value)!)
 
   const userName = ref('')
   const userPhone = ref('(+380)')
@@ -43,36 +60,55 @@
 
   // Sent through whatever the site's settings name (utils/feedback-transport.ts);
   // the form itself doesn't know who receives it.
-  type Status = 'idle' | 'sending' | 'sent' | 'failed' | 'notConfigured' | 'empty'
+  type Status = 'idle' | 'sending' | 'sent' | 'sentToAccount' | 'failed' | 'notConfigured' | 'empty'
   const status = ref<Status>('idle')
   const statusText = computed(() => (status.value === 'idle' ? '' : FEEDBACK_STATUS[status.value][lang.value]))
 
   async function submit () {
-    const phone = (userPhone.value.match(/\d/g) || []).length >= 7 ? userPhone.value : ''
-    if (!userMessage.value.trim() && !phone && !userEmail.value.trim()) {
+    const phone = has('phone') && !asksContact.value && (userPhone.value.match(/\d/g) || []).length >= 7 ? userPhone.value : ''
+    const contact = asksContact.value && contactValue.value.trim() ? { via: contactVia.value, value: contactValue.value.trim() } : null
+    const email = has('email') && !asksContact.value ? userEmail.value.trim() : (contact?.via === 'email' ? contact.value : '')
+    if (!userMessage.value.trim() && !phone && !email && !contact) {
       status.value = 'empty'
       return
     }
     status.value = 'sending'
+    const name = userName.value.trim() || auth.user?.name || ''
+    // Signed in: kept in the account first, so a reply finds its way back.
+    const messageId = auth.user && has('message') && userMessage.value.trim()
+      ? await messages.create({
+        name,
+        email: auth.user.email,
+        contact,
+        kind: kind.value.id,
+        text: userMessage.value.trim(),
+        page: typeof location === 'undefined' ? '' : location.pathname,
+        locale: lang.value,
+      })
+      : null
     const result = await sendFeedback(feedbackEndpoint.value, {
+      messageId: messageId ?? undefined,
       kind: kind.value.id,
       locale: lang.value,
       page: typeof location === 'undefined' ? '' : location.pathname,
       fields: {
-        name: has('name') ? userName.value : undefined,
+        name: has('name') ? name : undefined,
         phone: has('phone') ? phone : undefined,
-        email: has('email') ? userEmail.value : undefined,
+        email: email || (auth.user?.email ?? undefined),
+        contact: contact ?? undefined,
         date: has('date') ? userDate.value : undefined,
         rating: has('rating') ? userRating.value : undefined,
         message: has('message') ? userMessage.value : undefined,
       },
       website: website.value,
     })
-    status.value = result === 'sent' ? 'sent' : (result === 'not-configured' ? 'notConfigured' : 'failed')
+    status.value = result === 'sent' ? (messageId ? 'sentToAccount' : 'sent') : (result === 'not-configured' ? 'notConfigured' : 'failed')
     if (result === 'sent') {
+      emit('sent')
       userName.value = ''
       userPhone.value = '(+380)'
       userEmail.value = ''
+      contactValue.value = ''
       userDate.value = ''
       userRating.value = 0
       userMessage.value = ''
@@ -90,7 +126,7 @@
     </p>
     <div class="feedback-fields">
       <v-text-field
-        v-if="has('name')"
+        v-if="has('name') && !auth.user"
         v-model="userName"
         hide-details
         icon-color="primary"
@@ -99,12 +135,37 @@
         variant="plain"
       />
       <phone-number-input
-        v-if="has('phone')"
+        v-if="has('phone') && !asksContact"
         v-model="userPhone"
         :valid-phone-number="true"
       />
+      <div v-if="asksContact" class="feedback-contact">
+        <p class="small-text text-grey">{{ auth.user ? FEEDBACK_CONTACT.signedIn[lang] : FEEDBACK_CONTACT.label[lang] }}</p>
+        <div class="feedback-contact-ways" role="radiogroup">
+          <button
+            v-for="way of FEEDBACK_CONTACT.ways"
+            :key="way.via"
+            :aria-checked="contactVia === way.via"
+            :class="['feedback-contact-way', { 'feedback-contact-way--on': contactVia === way.via }]"
+            role="radio"
+            type="button"
+            @click="contactVia = way.via"
+          >
+            {{ way.name }}
+          </button>
+        </div>
+        <v-text-field
+          v-model="contactValue"
+          hide-details
+          icon-color="primary"
+          :placeholder="contactWay.placeholder[lang]"
+          :prepend-icon="contactVia === 'email' ? 'mdi-email-outline' : 'mdi-message-reply-text-outline'"
+          :type="contactVia === 'email' ? 'email' : 'text'"
+          variant="plain"
+        />
+      </div>
       <v-text-field
-        v-if="has('email')"
+        v-if="has('email') && !asksContact"
         v-model="userEmail"
         hide-details
         icon-color="primary"
@@ -171,6 +232,28 @@
   width: 1px;
   height: 1px;
   opacity: 0;
+}
+.feedback-contact {
+  display: grid;
+  gap: 8px;
+}
+.feedback-contact-ways {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.feedback-contact-way {
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--light-grey-1);
+  font-size: 14px;
+  color: var(--dark-grey);
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+.feedback-contact-way--on {
+  border-color: var(--secondary);
+  background: var(--secondary);
+  color: var(--white);
 }
 .feedback-fields {
   display: flex;

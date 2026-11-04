@@ -28,6 +28,7 @@ import header from './header.json'
 import home from './home.json'
 import icons from './icons.json'
 import images from './images.json'
+import inbox from './inbox.json'
 import kit from './kit.json'
 import linkTarget from './linkTarget.json'
 import menuSettings from './menuSettings.json'
@@ -76,6 +77,7 @@ export const MESSAGES = {
   home,
   icons,
   images,
+  inbox,
   kit,
   linkTarget,
   menuSettings,

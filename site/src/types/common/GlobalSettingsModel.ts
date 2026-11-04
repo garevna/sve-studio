@@ -1,4 +1,5 @@
 import type { HeaderSettingsModel } from '../../configs/header-layout'
+import type { AuthSettings } from '../../services/auth/types'
 import type { IconSetModel } from './IconSetModel'
 import type { LinksModel } from './LinksModel'
 import type { DropdownStyle, MobileMenuStyle } from '@/configs/menu-style'
@@ -17,6 +18,9 @@ export type GlobalSettingsModel = {
   // Where the feedback forms send (utils/feedback-transport.ts). Absent:
   // the form says sending isn't set up.
   feedback?: { endpoint?: string }
+  // Signing in on the site (services/auth): which service, and its
+  // settings. Absent: no sign-in.
+  auth?: AuthSettings
   menuStyle?: { dropdown?: Partial<DropdownStyle>, mobile?: Partial<MobileMenuStyle> }
   provider: string
   logo: {

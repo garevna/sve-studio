@@ -28,6 +28,7 @@
     "@sve/editor-ui": "workspace:*",
     "axios": "^1.13.6",
     "codemirror": "^6.0.2",
+    "firebase": "^12.19.0",
     "h3": "^1.15.11",
     "idb-keyval": "^6.3.0",
     "nuxt": "4.6.3",

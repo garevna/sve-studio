@@ -174,5 +174,21 @@
     "titleFont": "accent-font",
     "showTitle": true,
     "titleSize": "m"
+  },
+  "auth": {
+    "provider": "firebase",
+    "methods": [
+      "password",
+      "google",
+      "github"
+    ],
+    "firebase": {
+      "apiKey": "AIzaSyCyduEibHkZboxPrSY24j-hVqRb3LtRExA",
+      "authDomain": "pagewright-d9c8c.firebaseapp.com",
+      "projectId": "pagewright-d9c8c",
+      "storageBucket": "pagewright-d9c8c.firebasestorage.app",
+      "messagingSenderId": "979553165197",
+      "appId": "1:979553165197:web:756b2f0fc660e4ff30a7c4"
+    }
   }
 }

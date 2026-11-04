@@ -22,8 +22,10 @@
   import { HERO_SPLIT_VARIANT, HERO_WITH_TITLE_VARIANT } from './configs/header-layout'
   import { loadCountryList } from './services/load-country-list'
   import { getFooter, getMenu, getPage, getPageTitles, getPalette, getSeoSettings, getSiteSettings } from './services/site-data'
-  import { parseSitePath } from './services/site-links'
+  import { ACCOUNT_PAGE_ID, AUTH_PAGE_ID, parseSitePath } from './services/site-links'
   import { useCommonStore } from './stores/common'
+  import AccountPage from './templates/AccountPage.vue'
+  import AuthPage from './templates/AuthPage.vue'
   import DynamicPageTemplate from './templates/DynamicPageTemplate.vue'
   import FooterTemplate from './templates/FooterTemplate.vue'
   import PageNotFound from './templates/PageNotFound.vue'
@@ -72,7 +74,7 @@
   ])
 
   // 'loading' until the site's settings are in; then per page.
-  const status = ref<'loading' | 'ready' | 'not-found'>('loading')
+  const status = ref<'loading' | 'ready' | 'not-found' | 'auth' | 'account'>('loading')
   const seo = ref<SeoSettingsModel | null>(null)
 
   // --- the site, once ---------------------------------------------------------
@@ -142,6 +144,16 @@
     const languageChanged = target.locale !== locale.value
     commonStore.setLocale(target.locale as LocaleModel)
     commonStore.currentPageId = target.pageId
+    // Signing in and the account are the site's own pages, not content.
+    if (target.pageId === AUTH_PAGE_ID || target.pageId === ACCOUNT_PAGE_ID) {
+      commonStore.dynamicPageContent = null
+      pageHidden.value = false
+      commonStore.resetParallax()
+      status.value = target.pageId === AUTH_PAGE_ID ? 'auth' : 'account'
+      await nextTick()
+      window.scrollTo({ top: 0 })
+      return
+    }
     // footer-content is stored like a page, but it is not one.
     const page = target.pageId === 'footer-content' ? null : await getPage(target.pageId, { includeHidden: editorPreview() })
     if (request !== pageRequest) {
@@ -284,7 +296,9 @@
         <i aria-hidden="true" class="mdi mdi-eye-off-outline" />
         {{ HIDDEN_NOTE[locale as keyof typeof HIDDEN_NOTE] || HIDDEN_NOTE.uk }}
       </div>
-      <PageNotFound v-if="status === 'not-found'" />
+      <AuthPage v-if="status === 'auth'" />
+      <AccountPage v-else-if="status === 'account'" />
+      <PageNotFound v-else-if="status === 'not-found'" />
       <DynamicPageTemplate v-else />
     </v-main>
 

@@ -15,7 +15,12 @@ export interface FeedbackPayload {
     date?: string
     rating?: number
     message?: string
+    // How to get back to the visitor - a messenger first.
+    contact?: { via: string, value: string }
   }
+  // A signed-in visitor's message, saved in their account: a reply to it
+  // comes back there (services/messages).
+  messageId?: string
   // Left empty by people; bots fill every field they find.
   website?: string
 }

@@ -32,10 +32,12 @@ export type EditorSectionKey
     | 'pages'
     | 'menu'
     | 'account'
+    | 'messages'
 
 // group: where the section sits on the start screen - what is on the
-// site, how it looks, how it is set up.
-export type EditorSectionGroup = 'content' | 'look' | 'settings'
+// site, how it looks, how it is set up - and, apart from all of that, the
+// people who write in through the site.
+export type EditorSectionGroup = 'visitors' | 'content' | 'look' | 'settings'
 
 export type EditorSection = {
   key: EditorSectionKey
@@ -47,12 +49,14 @@ export type EditorSection = {
 // The texts (titles, descriptions, role hints) are in
 // src/i18n/messages/home.json, under these same keys.
 export const EDITOR_SECTION_GROUPS: { key: EditorSectionGroup }[] = [
+  { key: 'visitors' },
   { key: 'content' },
   { key: 'look' },
   { key: 'settings' },
 ]
 
 export const EDITOR_SECTIONS: EditorSection[] = [
+  { key: 'messages', icon: 'mdi-message-text-outline', to: '/messages', group: 'visitors' },
   { key: 'pages', icon: 'mdi-file-multiple-outline', to: '/pages', group: 'content' },
   { key: 'menu', icon: 'mdi-menu', to: '/menu', group: 'content' },
   { key: 'header', icon: 'mdi-page-layout-header', to: '/header', group: 'content' },
@@ -89,7 +93,7 @@ export const EDITOR_ROLES: EditorRole[] = [
     icon: 'mdi-account-edit',
     // 'menu' is here provisionally - the project owner wasn't sure whether
     // main-menu editing belongs to this role; drop the key to take it away.
-    sections: ['pages', 'menu', 'header', 'footer', 'general-settings'],
+    sections: ['messages', 'pages', 'menu', 'header', 'footer', 'general-settings'],
     canEditPageContent: true,
     generalSettingsScope: 'basic',
   },

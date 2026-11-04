@@ -7,6 +7,8 @@
   import { LOCALE_LABEL, rowStyle, translated } from '../../configs/menu-style'
   import { defaultSocialIcon, socialIconRef } from '../../configs/social-icons'
   import { SOCIAL_NETWORK_LABELS, SOCIAL_NETWORKS } from '../../configs/social-networks'
+  import { ACCOUNT_PAGE_ID } from '../../services/site-links'
+  import { useAuthStore } from '../../stores/auth'
   import { useCommonStore } from '../../stores/common'
   import SocialIconImage from '../small/SocialIconImage.vue'
   import FeedbackPopup from '../template-components/FeedbackPopup.vue'
@@ -20,7 +22,7 @@
   const emit = defineEmits<{ navigate: [] }>()
 
   const { company, locale, siteLocales } = storeToRefs(useCommonStore())
-  const { switchLocale } = useSiteNavigation()
+  const { pagePath, switchLocale } = useSiteNavigation()
 
   const textAlign = computed(() => props.row.align === 'end' ? 'right' : (props.row.align === 'center' ? 'center' : 'left'))
   const logoSrc = computed(() => (props.row.lightLogo && company.value?.logoWhite) || company.value?.logo.src)
@@ -32,9 +34,11 @@
 
   const formOpen = ref(false)
 
-  // There are no accounts on this site, so the user row never shows here -
-  // it is for a site where people sign in (the UI Kit shows a sample).
-  const signedInUser = computed<{ name: string, avatar?: string } | null>(() => null)
+  // The signed-in visitor (stores/auth); a tap opens their account.
+  const auth = useAuthStore()
+  const signedInUser = computed<{ name: string, avatar?: string } | null>(() => auth.user
+    ? { name: auth.user.name || auth.user.email.split('@')[0] || '', avatar: auth.user.photo || undefined }
+    : null)
 </script>
 
 <template>
@@ -94,10 +98,10 @@
       <FeedbackPopup v-model="formOpen" :text="row.form?.text" :title="row.form?.title" :type="row.form?.type" />
     </template>
 
-    <div v-else-if="row.type === 'user' && signedInUser" class="mobile-menu-user">
+    <RouterLink v-else-if="row.type === 'user' && signedInUser" class="mobile-menu-user" :to="pagePath(ACCOUNT_PAGE_ID)">
       <v-avatar :image="signedInUser.avatar" size="40" />
       <span :class="look.userNameClass">{{ signedInUser.name }}</span>
-    </div>
+    </RouterLink>
   </div>
 </template>
 

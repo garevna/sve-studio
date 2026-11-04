@@ -75,6 +75,16 @@ export interface GlobalSettingsModel {
   // Settings of the layout heroVariant picks (company-name corner, menu bar
   // colour) - see configs/header-layout.ts.
   header?: Partial<HeaderSettingsModel>
+  // Where the site's feedback forms send (the site reads it too).
+  feedback?: { endpoint?: string }
+  // Visitors' sign-in (the site's account pages). The editor's
+  // "Повідомлення" section signs its admin in with the same - see
+  // services/inbox.
+  auth?: {
+    provider?: string
+    methods?: string[]
+    firebase?: { apiKey: string, authDomain?: string, projectId?: string, storageBucket?: string, messagingSenderId?: string, appId?: string }
+  }
 }
 
 // A text laid over a banner (layout 1 of the top of the site): its words in

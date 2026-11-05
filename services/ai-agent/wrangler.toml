@@ -1,0 +1,53 @@
+# Pagewright's AI assistant (see src/index.js). Not used by a client's site -
+# that gets its own copy of this worker, on its own Cloudflare account, so
+# that its usage is counted and paid on its own account and never on ours.
+name = "pagewright-ai"
+main = "src/index.js"
+compatibility_date = "2025-01-01"
+# The worker's address is the one the editor uses; no preview addresses.
+preview_urls = false
+
+# Logs in the dashboard (Observability) - where a refused call says why.
+[observability]
+enabled = true
+
+# Workers AI. Reached through the binding, so there is no API key anywhere -
+# nothing to leak and nothing to rotate.
+[ai]
+binding = "AI"
+
+# The day's counters. Create it once and put its id here:
+#   npx wrangler kv namespace create BUDGET
+[[kv_namespaces]]
+binding = "BUDGET"
+id = "03b6d5d3c8914da98cd1e9c97767b5c3"
+
+[vars]
+# The sites allowed to call: the published demo and local dev.
+ALLOWED_ORIGINS = "https://garevna.github.io,http://localhost:3006,http://localhost:3007"
+
+# The model every task runs on. Check what the ACCOUNT actually has before
+# changing it - `npx wrangler ai models`, not the documentation: the
+# catalogue is not the same list everywhere. Two things found that way on
+# 5 Nov 2026 -
+#   @cf/meta/llama-3.1-8b-instruct      is not in it at all (only -fp8),
+#   @cf/utter-project/eurollm-9b-it     is in it and answers with an error.
+# Both show up as a 502 'upstream' in about 60 ms, which is the shape of a
+# wrong model id: too fast to have been a model.
+# This one is checked on Ukrainian, German and English, and returns valid
+# JSON for the tasks that ask for it.
+MODEL = "@cf/meta/llama-3.1-8b-instruct-fp8"
+
+# The ceilings. A free Cloudflare account gets 10,000 Neurons a day, reset at
+# 00:00 UTC; these sit under that on purpose, because the worker's own count
+# is an estimate with a margin (see ESTIMATE in src/index.js). Raise them
+# after watching a day of real figures in the dashboard - not before.
+DAILY_NEURONS = "7000"
+DAILY_REQUESTS = "250"
+
+# One address's share of the day, so that a single visitor playing with the
+# demo cannot finish the budget before anybody else arrives.
+VISITOR_REQUESTS = "12"
+
+# No secrets. Workers AI needs none; if a client later wants a different
+# provider, the key goes in with `npx wrangler secret put`, never here.

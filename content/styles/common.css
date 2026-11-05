@@ -179,3 +179,60 @@ input {
     display: none !important;
   }
 }
+
+/* The feedback form on the commercial-offer page (pagewright-offer).
+
+   The card is bounded to 336-360px in main.css, which is right in the
+   footer column it was drawn for: there it is a callback box, a name and a
+   phone. On that page it asks the visitor to describe their business, and
+   360px is a column too narrow to write a paragraph in.
+
+   Scoped to .offer-form - the class the page's block carries - so the
+   footer's card and the forms on contacts-page and how-we-work keep the
+   width they were designed with. Widen those by moving these rules onto
+   .feedback-form-block instead. */
+.offer-form .footer-feedback-card {
+  min-width: 0;
+  max-width: 680px;
+  width: 100%;
+}
+
+/* Room to actually write in. The field still grows as it is filled
+   (auto-grow), this is only where it starts. */
+.offer-form .feedback-fields .v-textarea textarea {
+  min-height: 132px;
+}
+
+@media screen and (max-width: 760px) {
+  .offer-form .footer-feedback-card {
+    max-width: 100%;
+  }
+}
+
+/* The character beside the text on the commercial-offer page.
+
+   An "image" block renders a v-img with `cover` and `h-100`, which is right
+   for a photograph filling a column and wrong for a drawing on a
+   transparent background: it would crop the figure and round its corners.
+   These three are illustrations, so they keep their whole shape and their
+   own size.
+
+   A block's class lands on both halves of the pair - the column that holds
+   the image and the image itself - so the size is pinned to the image. */
+.v-img.offer-figure {
+  max-width: 340px;
+  margin-inline: auto;
+  border-radius: 0 !important;
+}
+.offer-figure .v-img__img {
+  object-fit: contain !important;
+}
+
+/* The page's name, as large as the screen allows and no larger. The h1
+   class is a fixed 96px (68px below 600px), and "Pagewright" at 68px is
+   wider than a phone - it was pushing the whole page sideways. */
+.offer-title {
+  font-size: clamp(40px, 11vw, 96px);
+  font-weight: 700;
+  line-height: 1.05;
+}

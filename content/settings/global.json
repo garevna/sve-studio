@@ -190,5 +190,16 @@
       "messagingSenderId": "979553165197",
       "appId": "1:979553165197:web:756b2f0fc660e4ff30a7c4"
     }
+  },
+  "ai": {
+    "endpoint": "",
+    "tasks": [
+      "translate",
+      "rewrite",
+      "seo",
+      "alt",
+      "reply",
+      "page"
+    ]
   }
 }

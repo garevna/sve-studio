@@ -1,0 +1,813 @@
+{
+  "id": "pagewright-offer",
+  "title": {
+    "uk": "Зробити такий сайт",
+    "en": "Build a site like this",
+    "de": "So eine Website bauen"
+  },
+  "visible": true,
+  "breadcrumbs": false,
+  "backButton": false,
+  "hero": false,
+  "blocks": [
+    {
+      "type": "title",
+      "content": {
+        "uk": "Pagewright",
+        "en": "Pagewright",
+        "de": "Pagewright"
+      },
+      "class": "my-8 text-center text-thin text-primary offer-title"
+    },
+    {
+      "type": "title",
+      "content": {
+        "uk": "Ваші клієнти пишуть вам. Ви відповідаєте з Telegram.",
+        "en": "Your customers write to you. You answer from Telegram.",
+        "de": "Ihre Kunden schreiben Ihnen. Sie antworten aus Telegram."
+      },
+      "class": "my-8 text-center text-secondary text-medium h2"
+    },
+    {
+      "type": "section",
+      "class": "mt-8",
+      "children": [
+        {
+          "type": "section",
+          "children": [
+            {
+              "type": "text",
+              "content": {
+                "uk": [
+                  "Хтось залишає повідомлення на вашому сайті. Воно приходить у ваш Telegram — у застосунок, який і так відкритий у вас на телефоні. Ви відповідаєте там, так само, як відповідаєте на будь-що інше. Ваша відповідь з'являється в особистому кабінеті клієнта за кілька секунд.",
+                  "Жодної адмінки, в яку треба заходити. Жодного «подивлюся на сайті пізніше». Нічого, що треба тримати в голові.",
+                  "Цього не робить більше ніхто. Решта — те, чого ви й очікуєте, але зроблене як слід."
+                ],
+                "en": [
+                  "Someone leaves a message on your website. It lands in your Telegram — the app already open on your phone. You reply there, the way you reply to anything else. Your answer appears in their account on your site within seconds.",
+                  "No admin panel to log into. No \"I'll check the website later.\" Nothing to remember.",
+                  "That is the part nobody else does. The rest is what you would expect, done properly."
+                ],
+                "de": [
+                  "Jemand hinterlässt eine Nachricht auf Ihrer Website. Sie landet in Ihrem Telegram — in der App, die auf Ihrem Handy sowieso offen ist. Sie antworten dort, so wie Sie auf alles andere antworten. Ihre Antwort erscheint innerhalb von Sekunden im persönlichen Bereich des Kunden.",
+                  "Kein Adminbereich, in den man sich einloggen muss. Kein „Ich schaue später auf der Website nach.“ Nichts, was man sich merken muss.",
+                  "Das macht sonst niemand. Der Rest ist, was Sie erwarten — nur richtig gemacht."
+                ]
+              },
+              "class": "default-text text-thin text-black py-3"
+            }
+          ]
+        },
+        {
+          "type": "image",
+          "content": {
+            "uk": "/api/content/images/pagewright-offer/with-speach-baloon-2.svg",
+            "en": "/api/content/images/pagewright-offer/with-speach-baloon-2.svg",
+            "de": "/api/content/images/pagewright-offer/with-speach-baloon-2.svg"
+          },
+          "class": "offer-figure"
+        }
+      ]
+    },
+    {
+      "type": "dark-fone-section",
+      "id": "offer-what-you-get",
+      "background": "primary",
+      "cardWidth": 300,
+      "title": {
+        "uk": "Що отримує ваш бізнес",
+        "en": "What your business gets",
+        "de": "Was Ihr Unternehmen bekommt"
+      },
+      "children": [
+        {
+          "type": "card",
+          "ver": 1,
+          "icon": "mdi-send-circle-outline",
+          "size": 56,
+          "color": "white",
+          "title": {
+            "uk": "Відповідь з Telegram",
+            "en": "Answers from Telegram",
+            "de": "Antworten aus Telegram"
+          },
+          "text": {
+            "uk": "Повідомлення з сайту приходить у ваш приватний канал. Ви відповідаєте в ньому — відповідь з'являється в кабінеті клієнта.",
+            "en": "A message from the site lands in your private channel. You reply there, and the answer appears in the customer's account.",
+            "de": "Eine Nachricht von der Website landet in Ihrem privaten Kanal. Sie antworten dort — die Antwort erscheint im Kundenkonto."
+          }
+        },
+        {
+          "type": "card",
+          "ver": 1,
+          "icon": "mdi-cursor-default-click-outline",
+          "size": 56,
+          "color": "white",
+          "title": {
+            "uk": "Правки без розробника",
+            "en": "Edits without a developer",
+            "de": "Änderungen ohne Entwickler"
+          },
+          "text": {
+            "uk": "Ціна, фото, новий розділ, виправлена помилка — одним клацанням, о десятій вечора, нікого не питаючи.",
+            "en": "A price, a photo, a new section, a typo fixed — one click, at ten at night, without asking anyone.",
+            "de": "Ein Preis, ein Foto, ein neuer Abschnitt, ein Tippfehler — ein Klick, um zehn Uhr abends, ohne jemanden zu fragen."
+          }
+        },
+        {
+          "type": "card",
+          "ver": 1,
+          "icon": "mdi-translate",
+          "size": 56,
+          "color": "white",
+          "title": {
+            "uk": "Усі мови, якими ви продаєте",
+            "en": "Every language you sell in",
+            "de": "Jede Sprache, in der Sie verkaufen"
+          },
+          "text": {
+            "uk": "Не плагін перекладу: кожен текст, назва сторінки й пункт меню існують повноцінно кожною мовою.",
+            "en": "Not a translation plugin: every text, page name and menu entry exists properly in each language.",
+            "de": "Kein Übersetzungs-Plugin: jeder Text, jeder Seitenname und jeder Menüpunkt existiert vollständig in jeder Sprache."
+          }
+        },
+        {
+          "type": "card",
+          "ver": 1,
+          "icon": "mdi-shield-account-outline",
+          "size": 56,
+          "color": "white",
+          "title": {
+            "uk": "Доступ лише до потрібного",
+            "en": "Access only to what is needed",
+            "de": "Zugriff nur auf das Nötige"
+          },
+          "text": {
+            "uk": "Той, хто пише тексти, не отримує палітри, шрифтів і стилів. Ніхто не перефарбує ваш сайт випадково.",
+            "en": "Whoever writes your texts does not get the palette, the fonts or the stylesheets. Nobody restyles your site by accident.",
+            "de": "Wer Ihre Texte schreibt, erhält keine Farbpalette, keine Schriften und keine Stylesheets. Niemand gestaltet Ihre Website versehentlich um."
+          }
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": {
+        "uk": "Чотири способи працювати разом",
+        "en": "Four ways to work together",
+        "de": "Vier Wege der Zusammenarbeit"
+      },
+      "class": "text-center my-12 h2 text-primary"
+    },
+    {
+      "type": "cards",
+      "id": "offer-options",
+      "ver": 1,
+      "width": 300,
+      "size": 56,
+      "children": [
+        {
+          "type": "card",
+          "icon": "mdi-rocket-launch-outline",
+          "title": {
+            "uk": "Сайт під ключ",
+            "en": "A site, turnkey",
+            "de": "Website, schlüsselfertig"
+          },
+          "content": {
+            "uk": [
+              "Вам потрібен новий сайт, і потрібен він зараз.",
+              "Дизайн, блоки, контент і мови — під ваш бізнес.",
+              "2–4 тижні.",
+              "Від $4 000.",
+              "Далі ви правите його самі."
+            ],
+            "en": [
+              "You need a new site, and you need it now.",
+              "Design, blocks, content and languages — built around your business.",
+              "2–4 weeks.",
+              "From $4,000.",
+              "After that you edit it yourself."
+            ],
+            "de": [
+              "Sie brauchen eine neue Website, und zwar jetzt.",
+              "Design, Blöcke, Inhalte und Sprachen — auf Ihr Unternehmen zugeschnitten.",
+              "2–4 Wochen.",
+              "Ab 4.000 $.",
+              "Danach pflegen Sie sie selbst."
+            ]
+          }
+        },
+        {
+          "type": "card",
+          "icon": "mdi-infinity",
+          "title": {
+            "uk": "Сайт із ліцензією та підтримкою",
+            "en": "A site with licence and support",
+            "de": "Website mit Lizenz und Support"
+          },
+          "content": {
+            "uk": [
+              "Сайт має жити й змінюватися роками, а не бути проєктом, що закінчився.",
+              "Налаштування $2 000–5 000, далі $150 на місяць.",
+              "Ліцензія, хостинг, оновлення, підтримка.",
+              "Сайт, контент і домен залишаються вашими.",
+              "Я рекомендую саме цей варіант."
+            ],
+            "en": [
+              "The site should live and change for years, not be a project that ended.",
+              "Setup $2,000–5,000, then $150 a month.",
+              "Licence, hosting, updates, support.",
+              "The site, the content and the domain stay yours.",
+              "This is the option I recommend."
+            ],
+            "de": [
+              "Die Website soll über Jahre leben und sich verändern, kein abgeschlossenes Projekt sein.",
+              "Einrichtung 2.000–5.000 $, danach 150 $ pro Monat.",
+              "Lizenz, Hosting, Updates, Support.",
+              "Website, Inhalte und Domain bleiben Ihre.",
+              "Diese Variante empfehle ich."
+            ]
+          }
+        },
+        {
+          "type": "card",
+          "icon": "mdi-swap-horizontal",
+          "title": {
+            "uk": "У вас уже є сайт",
+            "en": "You already have a site",
+            "de": "Sie haben schon eine Website"
+          },
+          "content": {
+            "uk": [
+              "Сайт є, але кожна правка йде через розробника й чекає до понеділка.",
+              "Переносимо контент, зберігаємо ваш дизайн і ваші адреси сторінок.",
+              "Додаємо мови, яких не було.",
+              "Ціна залежить від обсягу контенту — оцінюю окремо після того, як подивлюся сайт."
+            ],
+            "en": [
+              "The site exists, but every change goes through a developer and waits until Monday.",
+              "We move the content across, keeping your design and your page addresses.",
+              "We add the languages that were missing.",
+              "The price depends on how much content there is — quoted separately once I have looked at the site."
+            ],
+            "de": [
+              "Die Website existiert, aber jede Änderung läuft über einen Entwickler und wartet bis Montag.",
+              "Wir übernehmen die Inhalte und behalten Ihr Design und Ihre Seitenadressen.",
+              "Wir ergänzen die Sprachen, die gefehlt haben.",
+              "Der Preis hängt vom Umfang der Inhalte ab — Angebot separat, nachdem ich die Website gesehen habe."
+            ]
+          }
+        },
+        {
+          "type": "card",
+          "icon": "mdi-briefcase-outline",
+          "title": {
+            "uk": "Агенціям і веб-студіям",
+            "en": "For agencies and studios",
+            "de": "Für Agenturen und Studios"
+          },
+          "content": {
+            "uk": [
+              "Ви робите сайти клієнтам і постійно відмовляєтеся від багатомовних проєктів.",
+              "Ліцензія під вашим ім'ям, без згадки про мене.",
+              "Фіксована плата на місяць, скільки клієнтських сайтів забажаєте.",
+              "$300–800 на місяць.",
+              "Документація, щоб ваш розробник не питав мене."
+            ],
+            "en": [
+              "You build sites for clients and keep turning down multilingual work.",
+              "Licence it under your own name, with no mention of me.",
+              "Flat monthly fee, as many client sites as you like.",
+              "$300–800 a month.",
+              "Documentation, so your developer does not have to ask me."
+            ],
+            "de": [
+              "Sie bauen Websites für Kunden und lehnen mehrsprachige Projekte immer wieder ab.",
+              "Lizenz unter Ihrem eigenen Namen, ohne Hinweis auf mich.",
+              "Monatliche Pauschale, so viele Kundenwebsites wie Sie möchten.",
+              "300–800 $ pro Monat.",
+              "Dokumentation, damit Ihr Entwickler mich nicht fragen muss."
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": {
+        "uk": "AI-помічник — окремою опцією",
+        "en": "An AI assistant, as a separate option",
+        "de": "KI-Assistent als separate Option"
+      },
+      "class": "text-center my-12 h2 text-primary"
+    },
+    {
+      "type": "text",
+      "content": {
+        "uk": [
+          "Місце для AI-помічника закладене в продукт, але вимкнене. Він вмикається для вашого сайту окремо, працює на вашому ключі й має межу витрат, яку ставимо на сервері, — тож рахунок не може вирости несподівано, і ви можете вимкнути його будь-коли.",
+          "У цьому демо він показаний, але не активний: інакше за чужі експерименти платила б я. Нижче — місця, куди він вмикається."
+        ],
+        "en": [
+          "The place for an AI assistant is built into the product and switched off. It is enabled for your site separately, runs on your own key, and has a spending limit set on the server — so the bill cannot grow unexpectedly, and you can switch it off at any time.",
+          "On this demo it is shown but not active: otherwise I would be paying for other people's experiments. Below are the places it plugs into."
+        ],
+        "de": [
+          "Der Platz für einen KI-Assistenten ist im Produkt angelegt und abgeschaltet. Er wird für Ihre Website separat aktiviert, läuft mit Ihrem eigenen Schlüssel und hat ein serverseitig gesetztes Ausgabenlimit — die Rechnung kann also nicht unerwartet wachsen, und Sie können ihn jederzeit abschalten.",
+          "In dieser Demo wird er gezeigt, ist aber nicht aktiv: sonst würde ich die Experimente anderer Leute bezahlen. Unten stehen die Stellen, an denen er ansetzt."
+        ]
+      },
+      "class": "default-text text-thin text-black py-2"
+    },
+    {
+      "type": "cards",
+      "id": "offer-ai",
+      "ver": 2,
+      "width": 400,
+      "size": 44,
+      "children": [
+        {
+          "type": "card",
+          "icon": "mdi-translate-variant",
+          "title": {
+            "uk": "Переклад сторінки",
+            "en": "Translating a page",
+            "de": "Seite übersetzen"
+          },
+          "content": {
+            "uk": "Готова сторінка однією мовою перекладається на решту мов сайту. Ви вичитуєте й публікуєте — переклад ніколи не йде наживо повз вас.",
+            "en": "A finished page in one language is translated into the site's other languages. You read it over and publish — a translation never goes live past you.",
+            "de": "Eine fertige Seite in einer Sprache wird in die übrigen Sprachen der Website übersetzt. Sie lesen gegen und veröffentlichen — eine Übersetzung geht nie ungeprüft live."
+          }
+        },
+        {
+          "type": "card",
+          "icon": "mdi-text-box-edit-outline",
+          "title": {
+            "uk": "Тексти блоків",
+            "en": "The text in a block",
+            "de": "Texte in den Blöcken"
+          },
+          "content": {
+            "uk": "Коротше, довше, іншим тоном, під інший ринок. Чернетка за секунди, рішення — за вами.",
+            "en": "Shorter, longer, a different tone, aimed at a different market. A draft in seconds, the decision stays yours.",
+            "de": "Kürzer, länger, anderer Ton, auf einen anderen Markt zugeschnitten. Ein Entwurf in Sekunden, die Entscheidung bleibt bei Ihnen."
+          }
+        },
+        {
+          "type": "card",
+          "icon": "mdi-reply-outline",
+          "title": {
+            "uk": "Чернетка відповіді клієнту",
+            "en": "A draft reply to a customer",
+            "de": "Antwortentwurf für Kunden"
+          },
+          "content": {
+            "uk": "Разом із повідомленням у Telegram приходить варіант відповіді. Виправили одним рухом — і надіслали. Нічого не йде клієнтові без вашого дотику.",
+            "en": "A suggested reply arrives in Telegram next to the message itself. Fix a word, send it. Nothing reaches the customer without you touching it.",
+            "de": "Zusammen mit der Nachricht kommt in Telegram ein Antwortvorschlag. Ein Wort ändern, absenden. Nichts erreicht den Kunden, ohne dass Sie es angefasst haben."
+          }
+        },
+        {
+          "type": "card",
+          "icon": "mdi-magnify",
+          "title": {
+            "uk": "Заголовки й описи для пошуку",
+            "en": "Titles and descriptions for search",
+            "de": "Titel und Beschreibungen für Suchmaschinen"
+          },
+          "content": {
+            "uk": "Для кожної сторінки й кожної мови окремо — те, що зазвичай пишуть останнім і абияк.",
+            "en": "For each page and each language separately — the thing usually written last and badly.",
+            "de": "Für jede Seite und jede Sprache einzeln — das, was sonst zuletzt und nachlässig geschrieben wird."
+          }
+        },
+        {
+          "type": "card",
+          "icon": "mdi-image-text",
+          "title": {
+            "uk": "Описи зображень",
+            "en": "Descriptions for images",
+            "de": "Bildbeschreibungen"
+          },
+          "content": {
+            "uk": "Підпис до кожної завантаженої картинки: для тих, хто читає сайт із голосу, і для пошуку.",
+            "en": "A caption for every picture you upload: for people who hear the site read aloud, and for search.",
+            "de": "Eine Bildunterschrift für jedes hochgeladene Bild: für Menschen, die sich die Seite vorlesen lassen, und für die Suche."
+          }
+        },
+        {
+          "type": "card",
+          "icon": "mdi-file-tree-outline",
+          "title": {
+            "uk": "Каркас нової сторінки",
+            "en": "The skeleton of a new page",
+            "de": "Gerüst einer neuen Seite"
+          },
+          "content": {
+            "uk": "Опишіть у двох реченнях, що за сторінка потрібна, і отримайте готовий набір блоків, який лишається наповнити.",
+            "en": "Describe in two sentences what the page is for and get a set of blocks ready to fill in.",
+            "de": "Beschreiben Sie in zwei Sätzen, wofür die Seite da ist, und erhalten Sie einen fertigen Satz Blöcke zum Ausfüllen."
+          }
+        }
+      ]
+    },
+    {
+      "type": "component",
+      "id": "offer-ai-examples",
+      "content": "FAQ",
+      "props": {
+        "title": {
+          "uk": "Приклади, зроблені заздалегідь",
+          "en": "Examples, made in advance",
+          "de": "Vorab erstellte Beispiele"
+        },
+        "subtitle": {
+          "uk": "Нічого з цього не рахується зараз: це результат, збережений наперед, щоб ви побачили якість, а помічник лишався вимкненим. Відкрийте будь-який.",
+          "en": "None of this is being computed right now: it is output saved in advance, so that you can see the quality while the assistant stays switched off. Open any of them.",
+          "de": "Nichts davon wird gerade berechnet: es sind vorab gespeicherte Ergebnisse, damit Sie die Qualität sehen und der Assistent abgeschaltet bleibt. Öffnen Sie eines davon."
+        },
+        "titleClass": "faq-title h2 my-8 text-center text-primary",
+        "subtitleClass": "h6 text-thin text-black subtitle my-6 text-center",
+        "questionClass": "h4 text-medium text-black text-left",
+        "answerClass": "h6 text-thin text-black text-left",
+        "expandIcon": "mdi-plus",
+        "collapseIcon": "mdi-minus",
+        "questions": [
+          {
+            "question": {
+              "uk": "Переклад: українською → німецькою",
+              "en": "Translation: Ukrainian → German",
+              "de": "Übersetzung: Ukrainisch → Deutsch"
+            },
+            "answer": {
+              "uk": "Було:\n«Ми відкриваємо портал у дев'ятий вимір, коли буденність стає занадто передбачуваною.»\n\nСтало:\n«Wir öffnen ein Portal in die neunte Dimension, wenn der Alltag zu vorhersehbar wird.»\n\nМаркетинговий текст перекладено як маркетинговий, а не дослівно. Ви вичитуєте й публікуєте — переклад ніколи не йде на сайт повз вас.",
+              "en": "Before:\n«Ми відкриваємо портал у дев'ятий вимір, коли буденність стає занадто передбачуваною.»\n\nAfter:\n«Wir öffnen ein Portal in die neunte Dimension, wenn der Alltag zu vorhersehbar wird.»\n\nMarketing copy translated as marketing copy, not word for word. You read it over and publish — a translation never reaches the site past you.",
+              "de": "Vorher:\n«Ми відкриваємо портал у дев'ятий вимір, коли буденність стає занадто передбачуваною.»\n\nNachher:\n«Wir öffnen ein Portal in die neunte Dimension, wenn der Alltag zu vorhersehbar wird.»\n\nWerbetext als Werbetext übersetzt, nicht Wort für Wort. Sie lesen gegen und veröffentlichen — eine Übersetzung erreicht die Website nie ungeprüft."
+            }
+          },
+          {
+            "question": {
+              "uk": "Текст блоку: зробити коротше",
+              "en": "The text in a block: make it shorter",
+              "de": "Text im Block: kürzer machen"
+            },
+            "answer": {
+              "uk": "Було:\n«Ми, як компанія, що працює на ринку віртуальної реальності вже не перший рік, пропонуємо нашим клієнтам широкий спектр різноманітних рішень, які допоможуть вашому бізнесу вийти на принципово новий рівень взаємодії з аудиторією.»\n\nСтало:\n«Ми робимо VR-рішення для бізнесу. Подивіться, що з цього виходить.»\n\nЖодного факту не втрачено, бо фактів у першому варіанті й не було.",
+              "en": "Before:\n«As a company that has been working in the virtual reality market for several years now, we offer our clients a wide range of diverse solutions that will help your business reach a fundamentally new level of engagement with its audience.»\n\nAfter:\n«We build VR for business. Have a look at what comes out of it.»\n\nNot one fact was lost, because there were no facts in the first version.",
+              "de": "Vorher:\n«Als Unternehmen, das seit mehreren Jahren im Bereich der virtuellen Realität tätig ist, bieten wir unseren Kunden ein breites Spektrum unterschiedlichster Lösungen, die Ihrem Unternehmen helfen werden, eine grundlegend neue Ebene der Interaktion mit seinem Publikum zu erreichen.»\n\nNachher:\n«Wir bauen VR für Unternehmen. Sehen Sie sich an, was dabei herauskommt.»\n\nEs ging keine einzige Tatsache verloren, weil in der ersten Fassung keine stand."
+            }
+          },
+          {
+            "question": {
+              "uk": "Чернетка відповіді клієнту — у Telegram",
+              "en": "A draft reply to a customer, in Telegram",
+              "de": "Antwortentwurf für einen Kunden, in Telegram"
+            },
+            "answer": {
+              "uk": "Написав клієнт:\n«Доброго дня! Цікавить оренда VR-обладнання на корпоратив 20 грудня, 30 осіб. Чи є у вас такі пакети і скільки це коштує?»\n\nЧернетка, що приходить вам поруч із повідомленням:\n«Доброго дня! Так, на 30 осіб ми зазвичай ставимо дві зони, і 20 грудня ще вільне. Щоб назвати точну суму, скажіть, будь ласка, скільки годин триватиме захід і чи потрібен наш оператор на місці — підготую розрахунок того ж дня.»\n\nЗверніть увагу, чого тут немає: ціни. Модель її не вигадала, а запитала те, без чого її не назвати. Ви виправляєте одне слово й надсилаєте.",
+              "en": "The customer wrote:\n«Hello! We're interested in renting VR equipment for a company party on 20 December, 30 people. Do you have packages for that, and what does it cost?»\n\nThe draft that arrives next to the message:\n«Hello! Yes — for 30 people we usually set up two zones, and 20 December is still free. To give you an exact figure, could you tell me how many hours the event runs and whether you want our operator on site? I'll have a quote for you the same day.»\n\nNotice what is missing: a price. The model did not invent one — it asked for the thing without which there is no price. You fix a word and send it.",
+              "de": "Der Kunde schrieb:\n«Guten Tag! Wir interessieren uns für die Miete von VR-Ausrüstung für eine Firmenfeier am 20. Dezember, 30 Personen. Haben Sie dafür Pakete, und was kostet das?»\n\nDer Entwurf, der neben der Nachricht ankommt:\n«Guten Tag! Ja — für 30 Personen richten wir üblicherweise zwei Zonen ein, und der 20. Dezember ist noch frei. Für eine genaue Summe sagen Sie mir bitte, wie viele Stunden die Veranstaltung dauert und ob Sie unseren Operator vor Ort möchten — das Angebot bekommen Sie noch am selben Tag.»\n\nBeachten Sie, was fehlt: ein Preis. Das Modell hat keinen erfunden, sondern nach dem gefragt, ohne das es keinen gibt. Sie ändern ein Wort und senden."
+            }
+          },
+          {
+            "question": {
+              "uk": "Заголовок і опис для пошуку",
+              "en": "A title and description for search",
+              "de": "Titel und Beschreibung für Suchmaschinen"
+            },
+            "answer": {
+              "uk": "Сторінка: «Асортимент»\n\nЗаголовок (59 символів):\n«VR-обладнання в оренду та під ключ — Virtual Dimension»\n\nОпис (134 символи):\n«Шоломи, трекери й готові VR-зони для заходів і шоурумів. Підбираємо комплект під задачу, привозимо й налаштовуємо на місці.»\n\nОкремо для кожної мови сайту — те, що зазвичай пишуть останнім і абияк.",
+              "en": "Page: «Product range»\n\nTitle (58 characters):\n«VR equipment to rent or turnkey — Virtual Dimension»\n\nDescription (139 characters):\n«Headsets, trackers and ready-made VR zones for events and showrooms. We pick the kit for the job, bring it and set it up on site.»\n\nSeparately for each language of the site — the thing usually written last and badly.",
+              "de": "Seite: «Sortiment»\n\nTitel (57 Zeichen):\n«VR-Ausrüstung mieten oder schlüsselfertig — Virtual Dimension»\n\nBeschreibung (141 Zeichen):\n«Headsets, Tracker und fertige VR-Zonen für Events und Showrooms. Wir stellen das Set passend zur Aufgabe zusammen, bringen und richten es ein.»\n\nFür jede Sprache der Website einzeln — das, was sonst zuletzt und nachlässig geschrieben wird."
+            }
+          },
+          {
+            "question": {
+              "uk": "Опис зображення для тих, хто його не бачить",
+              "en": "A description of an image, for people who cannot see it",
+              "de": "Bildbeschreibung für alle, die das Bild nicht sehen"
+            },
+            "answer": {
+              "uk": "Ви завантажили картинку й написали:\n«дівчина у VR-шоломі тягнеться рукою до синьої світлової кулі»\n\nПідпис, що піде в сайт:\n«Дівчина у VR-шоломі тягнеться рукою до світлової кулі, що висить перед нею в повітрі.»\n\nЦе читають вголос екранні читачі — і це читає пошук. Зазвичай цього поля не заповнює ніхто.",
+              "en": "You uploaded a picture and typed:\n«woman in a VR headset reaching for a blue ball of light»\n\nThe caption that goes into the site:\n«A woman in a VR headset reaches for a ball of light hanging in the air in front of her.»\n\nScreen readers read this out loud, and search engines read it too. Usually nobody fills this field in at all.",
+              "de": "Sie haben ein Bild hochgeladen und geschrieben:\n«Frau mit VR-Brille greift nach einer blauen Lichtkugel»\n\nDie Bildunterschrift, die auf die Website geht:\n«Eine Frau mit VR-Brille greift nach einer Lichtkugel, die vor ihr in der Luft schwebt.»\n\nScreenreader lesen das vor, und Suchmaschinen lesen es ebenfalls. Normalerweise füllt dieses Feld niemand aus."
+            }
+          },
+          {
+            "question": {
+              "uk": "Каркас нової сторінки з двох речень",
+              "en": "The skeleton of a new page, from two sentences",
+              "de": "Gerüst einer neuen Seite aus zwei Sätzen"
+            },
+            "answer": {
+              "uk": "Ви написали:\n«Сторінка для стоматологічної клініки: послуги, ціни, лікарі, запис на прийом.»\n\nГотовий набір блоків, який лишається наповнити:\n1. Заголовок — «Стоматологія, до якої не страшно йти»\n2. Текст — два абзаци про те, як проходить перший візит\n3. Картки — чотири напрями з цінами «від»\n4. Дві колонки — фото кабінету й що входить у консультацію\n5. Картки — лікарі з фото й спеціалізацією\n6. Форма — запис на прийом\n\nТексти ви пишете самі або просите помічника — але структура вже стоїть.",
+              "en": "You wrote:\n«A page for a dental clinic: services, prices, the dentists, booking an appointment.»\n\nA set of blocks ready to fill in:\n1. Heading — «Dentistry you are not afraid to walk into»\n2. Text — two paragraphs on how a first visit goes\n3. Cards — four kinds of treatment with prices «from»\n4. Two columns — a photo of the room, and what a consultation includes\n5. Cards — the dentists, with photographs and specialities\n6. Form — book an appointment\n\nYou write the texts yourself, or ask the assistant — but the structure is already standing.",
+              "de": "Sie haben geschrieben:\n«Eine Seite für eine Zahnarztpraxis: Leistungen, Preise, die Ärzte, Terminbuchung.»\n\nEin fertiger Satz Blöcke zum Ausfüllen:\n1. Überschrift — «Zahnmedizin, vor der man keine Angst hat»\n2. Text — zwei Absätze darüber, wie der erste Besuch abläuft\n3. Karten — vier Behandlungsbereiche mit Preisen «ab»\n4. Zwei Spalten — ein Foto der Praxis und was die Beratung umfasst\n5. Karten — die Ärzte mit Foto und Fachgebiet\n6. Formular — Termin buchen\n\nDie Texte schreiben Sie selbst oder lassen sie sich vorschlagen — aber das Gerüst steht schon."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "text",
+      "content": {
+        "uk": "Як це оплачується: налаштування — разово, далі або ви платите постачальнику напряму за власним ключем і бачите кожну копійку, або це входить у місячну плату з узгодженою межею. Вмикається помісячно й вимикається так само.",
+        "en": "How it is paid for: setup is a one-off, and after that either you pay the provider directly on your own key and see every cent, or it goes into the monthly fee with an agreed ceiling. Switched on by the month, and off the same way.",
+        "de": "Wie es abgerechnet wird: die Einrichtung einmalig, danach zahlen Sie entweder direkt beim Anbieter mit Ihrem eigenen Schlüssel und sehen jeden Cent, oder es läuft über die monatliche Gebühr mit einer vereinbarten Obergrenze. Monatlich zuschaltbar und ebenso abschaltbar."
+      },
+      "class": "default-text text-medium text-primary text-center py-4"
+    },
+    {
+      "type": "header",
+      "content": {
+        "uk": "Що впливає на ціну",
+        "en": "What moves the price",
+        "de": "Was den Preis beeinflusst"
+      },
+      "class": "text-center my-12 h2 text-primary"
+    },
+    {
+      "type": "section",
+      "children": [
+        {
+          "type": "image",
+          "content": {
+            "uk": "/api/content/images/pagewright-offer/with-diagram.svg",
+            "en": "/api/content/images/pagewright-offer/with-diagram.svg",
+            "de": "/api/content/images/pagewright-offer/with-diagram.svg"
+          },
+          "class": "offer-figure",
+          "switchOrder": true
+        },
+        {
+          "type": "text",
+          "content": {
+            "uk": [
+              "Скільки мов.",
+              "Скільки потрібно розділів, яких немає в галереї готових блоків.",
+              "Чи треба переносити контент із наявного сайту.",
+              "Чи потрібні кабінети відвідувачів і відповіді з Telegram.",
+              "Де живе сайт: статика, ваш власний хостинг, Cloudflare або моя інфраструктура.",
+              "Чи вмикаємо AI-помічника і на чиєму він ключі.",
+              "Пів години розмови — і я даю фіксовану ціну, а не «від» і «приблизно»."
+            ],
+            "en": [
+              "How many languages.",
+              "How many sections you need that are not in the library of ready-made blocks.",
+              "Whether content has to be moved across from an existing site.",
+              "Whether you want visitor accounts and answers from Telegram.",
+              "Where the site lives: static, your own hosting, Cloudflare, or my infrastructure.",
+              "Whether an AI assistant is switched on, and whose key it runs on.",
+              "Half an hour on a call and I give you a fixed price, not a \"from\" and a \"roughly\"."
+            ],
+            "de": [
+              "Wie viele Sprachen.",
+              "Wie viele Abschnitte Sie brauchen, die es in der Bibliothek fertiger Blöcke nicht gibt.",
+              "Ob Inhalte von einer bestehenden Website übernommen werden müssen.",
+              "Ob Sie Besucherkonten und Antworten aus Telegram möchten.",
+              "Wo die Website läuft: statisch, Ihr eigenes Hosting, Cloudflare oder meine Infrastruktur.",
+              "Ob ein KI-Assistent aktiviert wird und auf wessen Schlüssel er läuft.",
+              "Eine halbe Stunde Gespräch, und Sie bekommen einen Festpreis — kein „ab“ und kein „ungefähr“."
+            ]
+          },
+          "class": "default-text text-thin text-black py-2",
+          "switchOrder": true
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": {
+        "uk": "Документи й оплата",
+        "en": "Paperwork and payment",
+        "de": "Unterlagen und Zahlung"
+      },
+      "class": "text-center my-12 h2 text-primary"
+    },
+    {
+      "type": "cards",
+      "id": "offer-paperwork",
+      "ver": 2,
+      "width": 400,
+      "size": 44,
+      "children": [
+        {
+          "type": "card",
+          "icon": "mdi-file-document-edit-outline",
+          "title": {
+            "uk": "Договір і закриваючі",
+            "en": "Contract and closing documents",
+            "de": "Vertrag und Abschlussdokumente"
+          },
+          "content": {
+            "uk": "Договір, рахунок, акт виконаних робіт. Підписую кваліфікованим електронним підписом, тож нічого не треба пересилати поштою.",
+            "en": "Contract, invoice, completion certificate. I sign with a qualified electronic signature, so nothing has to travel by post.",
+            "de": "Vertrag, Rechnung, Abnahmeprotokoll. Ich unterschreibe mit qualifizierter elektronischer Signatur — es muss nichts per Post verschickt werden."
+          }
+        },
+        {
+          "type": "card",
+          "icon": "mdi-bank-outline",
+          "title": {
+            "uk": "Безготівкова оплата",
+            "en": "Bank transfer",
+            "de": "Überweisung"
+          },
+          "content": {
+            "uk": "Я зареєстрована як ФОП. Оплата на рахунок — за договором і рахунком, із усіма документами для вашої бухгалтерії.",
+            "en": "I am a registered sole trader. Payment goes to a business account against a contract and an invoice, with the documents your accountant needs.",
+            "de": "Ich bin als Einzelunternehmerin registriert. Zahlung auf ein Geschäftskonto gegen Vertrag und Rechnung, mit allen Unterlagen für Ihre Buchhaltung."
+          }
+        },
+        {
+          "type": "card",
+          "icon": "mdi-shield-check-outline",
+          "title": {
+            "uk": "Ваші дані — ваші",
+            "en": "Your data stays yours",
+            "de": "Ihre Daten bleiben Ihre"
+          },
+          "content": {
+            "uk": "Базу даних і Telegram-канал оформляємо на вас. Повідомлення ваших клієнтів не проходять через мій акаунт, і ви нічого не питаєте в мене, щоб їх видалити.",
+            "en": "The database and the Telegram channel are registered in your name. Your customers' messages do not pass through my account, and you do not need me to delete them.",
+            "de": "Datenbank und Telegram-Kanal laufen auf Ihren Namen. Die Nachrichten Ihrer Kunden gehen nicht über mein Konto, und zum Löschen brauchen Sie mich nicht."
+          }
+        }
+      ]
+    },
+    {
+      "type": "component",
+      "id": "offer-faq",
+      "content": "FAQ",
+      "props": {
+        "title": {
+          "uk": "Питання, які ставлять першими",
+          "en": "The questions people ask first",
+          "de": "Die Fragen, die zuerst kommen"
+        },
+        "subtitle": {
+          "uk": "Не знайшли свого — напишіть у формі внизу.",
+          "en": "Can't find yours? Write to me with the form below.",
+          "de": "Ihre Frage fehlt? Schreiben Sie mir über das Formular unten."
+        },
+        "titleClass": "faq-title h2 my-8 text-center text-primary",
+        "subtitleClass": "h6 text-thin text-black subtitle my-6 text-center",
+        "questionClass": "h4 text-medium text-black text-left",
+        "answerClass": "h6 text-thin text-black text-left",
+        "expandIcon": "mdi-plus",
+        "collapseIcon": "mdi-minus",
+        "questions": [
+          {
+            "question": {
+              "uk": "Чий це сайт після того, як ви його зробили?",
+              "en": "Whose site is it once you have built it?",
+              "de": "Wem gehört die Website, nachdem Sie sie gebaut haben?"
+            },
+            "answer": {
+              "uk": "Ваш. Домен, контент і сам сайт — ваші. Сайт — окремий застосунок від редактора, тож його можна розгорнути й віддавати відвідувачам зовсім без редактора. Якщо ви колись захочете піти, вам немає чого в мене забирати.",
+              "en": "Yours. The domain, the content and the site itself. The site is a separate application from the editor, so it can be deployed and served to visitors with the editor nowhere near it. If you ever want to leave, there is nothing of yours for me to hold.",
+              "de": "Ihnen. Die Domain, die Inhalte und die Website selbst. Die Website ist eine eigene Anwendung, getrennt vom Editor — sie kann ohne den Editor ausgeliefert werden. Wenn Sie irgendwann gehen möchten, halte ich nichts von Ihnen zurück."
+            }
+          },
+          {
+            "question": {
+              "uk": "Я справді зможу правити сайт сам?",
+              "en": "Will I really be able to edit the site myself?",
+              "de": "Kann ich die Website wirklich selbst pflegen?"
+            },
+            "answer": {
+              "uk": "Так, і ви можете перевірити це зараз, не питаючи мене: ви вже на сайті, зробленому в Pagewright. Кожен блок відкривається на клік і виглядає точно так, як його побачить відвідувач, бо це і є справжній сайт, а не попередній перегляд. Навчання вашої людини — півдня, і воно входить у налаштування.",
+              "en": "Yes, and you can check that right now without asking me: you are already on a site built with Pagewright. Every block opens with a click and looks exactly as a visitor will see it, because it is the real thing, not a preview. Training your content person takes half a day, and it is included in the setup.",
+              "de": "Ja, und Sie können es sofort selbst prüfen: Sie sind bereits auf einer Website, die mit Pagewright gebaut wurde. Jeder Block öffnet sich mit einem Klick und sieht genau so aus, wie ihn der Besucher sehen wird — es ist die echte Seite, keine Vorschau. Die Einarbeitung Ihrer Person dauert einen halben Tag und ist in der Einrichtung enthalten."
+            }
+          },
+          {
+            "question": {
+              "uk": "Хто бачить повідомлення моїх клієнтів?",
+              "en": "Who can see my customers' messages?",
+              "de": "Wer sieht die Nachrichten meiner Kunden?"
+            },
+            "answer": {
+              "uk": "Ви. Повідомлення лежать у базі даних, оформленій на вас, і приходять у ваш приватний Telegram-канал. Кожен відвідувач читає лише свою переписку — це не налаштування, а правило в самій базі. Якщо ви з ЄС, цей розподіл важливий і для GDPR, і я прошу оформити проєкт саме на вас, а не на мене.",
+              "en": "You do. The messages sit in a database registered in your name and arrive in your own private Telegram channel. Each visitor can read only their own thread — that is not a setting but a rule inside the database itself. If you are in the EU this split matters for GDPR too, which is why I ask for the project to be in your name rather than mine.",
+              "de": "Sie. Die Nachrichten liegen in einer Datenbank, die auf Ihren Namen läuft, und kommen in Ihrem eigenen privaten Telegram-Kanal an. Jeder Besucher kann nur seinen eigenen Verlauf lesen — das ist keine Einstellung, sondern eine Regel in der Datenbank selbst. Innerhalb der EU ist diese Trennung auch für die DSGVO wichtig; deshalb bitte ich darum, das Projekt auf Ihren Namen zu registrieren und nicht auf meinen."
+            }
+          },
+          {
+            "question": {
+              "uk": "Чи знайде мій сайт Google?",
+              "en": "Will Google find my site?",
+              "de": "Wird Google meine Website finden?"
+            },
+            "answer": {
+              "uk": "Так. Справжній сайт рендериться на сервері: пошуковик отримує готову сторінку з текстом, заголовком і описом — для кожної мови окремо. Демо, в якому ви зараз, працює інакше (воно збирається у вашому браузері, щоб ви могли все спробувати, нічого не зберігаючи) — це особливість демо, а не сайту, який ви отримаєте.",
+              "en": "Yes. A real site renders on the server: a crawler receives a finished page with its text, title and description — separately for each language. The demo you are in right now works differently (it is assembled in your browser so that you can try everything without saving anything) — that is a property of the demo, not of the site you would get.",
+              "de": "Ja. Eine echte Website wird auf dem Server gerendert: ein Crawler erhält eine fertige Seite mit Text, Titel und Beschreibung — für jede Sprache einzeln. Die Demo, in der Sie sich gerade befinden, funktioniert anders (sie wird in Ihrem Browser zusammengebaut, damit Sie alles ausprobieren können, ohne etwas zu speichern) — das ist eine Eigenschaft der Demo, nicht der Website, die Sie bekommen."
+            }
+          },
+          {
+            "question": {
+              "uk": "Скільком мовам ви можете навчити сайт?",
+              "en": "How many languages can the site speak?",
+              "de": "Wie viele Sprachen kann die Website sprechen?"
+            },
+            "answer": {
+              "uk": "Скільком потрібно. Це демо говорить українською, англійською та німецькою — перемкніть мову в шапці й подивіться, що зміниться. Мова — не переклад, накручений поверх: кожен текст, назва сторінки й пункт меню існують у ній самостійно, тож можна мати різні тексти для різних ринків, а не один переказаний.",
+              "en": "As many as you need. This demo speaks Ukrainian, English and German — switch the language in the header and see what changes. A language is not a translation bolted on top: every text, page name and menu entry exists in it in its own right, so you can have different copy for different markets, not one text retold.",
+              "de": "So viele, wie Sie brauchen. Diese Demo spricht Ukrainisch, Englisch und Deutsch — wechseln Sie die Sprache oben und sehen Sie, was sich ändert. Eine Sprache ist keine nachträglich aufgesetzte Übersetzung: jeder Text, jeder Seitenname und jeder Menüpunkt existiert eigenständig in ihr, sodass Sie für verschiedene Märkte verschiedene Texte haben können und nicht einen nachgesprochenen."
+            }
+          },
+          {
+            "question": {
+              "uk": "Як ми починаємо і як оформлюємо?",
+              "en": "How do we start, and how is it set up formally?",
+              "de": "Wie fangen wir an, und wie wird es formal geregelt?"
+            },
+            "answer": {
+              "uk": "Пів години розмови про ваш бізнес — і я даю фіксовану ціну та строк. Далі договір, рахунок, оплата на рахунок ФОП, робота, акт. Договір і акт підписую електронним підписом. Відповідаю протягом двох робочих днів — обіцяю те, що справді витримую.",
+              "en": "Half an hour about your business, and I give you a fixed price and a date. Then a contract, an invoice, a bank transfer, the work, and a completion certificate. I sign the contract and the certificate with an electronic signature. I answer within two business days — I promise what I can actually keep.",
+              "de": "Eine halbe Stunde über Ihr Unternehmen, dann nenne ich Ihnen Festpreis und Termin. Danach Vertrag, Rechnung, Überweisung, die Arbeit und das Abnahmeprotokoll. Vertrag und Protokoll unterschreibe ich elektronisch. Ich antworte innerhalb von zwei Werktagen — ich verspreche, was ich wirklich einhalte."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "title",
+      "content": {
+        "uk": "Подивіться самі, зараз",
+        "en": "See it yourself, now",
+        "de": "Sehen Sie es sich selbst an"
+      },
+      "class": "text-center my-12 h2 text-primary"
+    },
+    {
+      "type": "section",
+      "children": [
+        {
+          "type": "section",
+          "children": [
+            {
+              "type": "text",
+              "content": {
+                "uk": [
+                  "Ви вже на сайті, зробленому в Pagewright. Перемкніть мову в шапці, походіть по сторінках, відкрийте редактор на рівень вище цієї адреси й перетягніть блок.",
+                  "Нічого не треба встановлювати, ніякої реєстрації, ніякої картки. Усе, що ви зміните, залишається у вашому браузері й зникає, коли ви закриєте вкладку, — тож пробуйте що завгодно."
+                ],
+                "en": [
+                  "You are already on a site built with Pagewright. Switch the language in the header, walk through the pages, open the editor one level above this address and drag a block.",
+                  "Nothing to install, no account, no card. Everything you change stays in your own browser and is gone when you close the tab — so try whatever you like."
+                ],
+                "de": [
+                  "Sie sind bereits auf einer Website, die mit Pagewright gebaut wurde. Wechseln Sie oben die Sprache, gehen Sie durch die Seiten, öffnen Sie den Editor eine Ebene über dieser Adresse und ziehen Sie einen Block an eine andere Stelle.",
+                  "Nichts zu installieren, keine Registrierung, keine Kreditkarte. Alles, was Sie ändern, bleibt in Ihrem Browser und ist weg, sobald Sie den Tab schließen — probieren Sie also ruhig alles aus."
+                ]
+              },
+              "class": "default-text text-thin text-black py-3"
+            }
+          ]
+        },
+        {
+          "type": "image",
+          "content": {
+            "uk": "/api/content/images/pagewright-offer/pushes-dash-buttons.svg",
+            "en": "/api/content/images/pagewright-offer/pushes-dash-buttons.svg",
+            "de": "/api/content/images/pagewright-offer/pushes-dash-buttons.svg"
+          },
+          "class": "offer-figure"
+        }
+      ]
+    },
+    {
+      "type": "component",
+      "id": "offer-contact-form",
+      "content": "FeedbackForm",
+      "class": "offer-form",
+      "props": {
+        "type": "quote",
+        "title": {
+          "uk": "Розкажіть про свій бізнес",
+          "en": "Tell me about your business",
+          "de": "Erzählen Sie mir von Ihrem Unternehmen"
+        },
+        "text": {
+          "uk": "Кілька рядків: що за бізнес, якими мовами ви продаєте, чи є сайт зараз. Відповім протягом двох робочих днів — і, звісно, з Telegram.",
+          "en": "A few lines: what the business is, which languages you sell in, whether you have a site today. I answer within two business days — from Telegram, of course.",
+          "de": "Ein paar Zeilen: was Ihr Unternehmen macht, in welchen Sprachen Sie verkaufen, ob Sie heute eine Website haben. Ich antworte innerhalb von zwei Werktagen — aus Telegram, natürlich."
+        }
+      }
+    },
+    {
+      "type": "text",
+      "contact": "contact-3",
+      "content": {
+        "uk": "irina.h.fylyppova@gmail.com",
+        "en": "irina.h.fylyppova@gmail.com",
+        "de": "irina.h.fylyppova@gmail.com"
+      },
+      "class": "default-text text-medium text-primary text-center py-3"
+    }
+  ]
+}

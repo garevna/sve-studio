@@ -1,9 +1,9 @@
 [
   {
     "title": {
-      "uk": "Хто ми є",
-      "en": "Who we are",
-      "de": "Wer wir sind"
+      "uk": "Про нас",
+      "en": "About us",
+      "de": "Über uns"
     },
     "submenu": [
       {
@@ -26,6 +26,17 @@
         "route": "dynamic-page",
         "params": {
           "pageId": "products"
+        }
+      },
+      {
+        "title": {
+          "uk": "Зробити такий сайт",
+          "en": "Build a site like this",
+          "de": "So eine Website bauen"
+        },
+        "route": "dynamic-page",
+        "params": {
+          "pageId": "pagewright-offer"
         }
       }
     ],

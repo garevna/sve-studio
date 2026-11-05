@@ -111,8 +111,17 @@
 .template-card-1, .template-card-2, .template-card-21, .template-card-3, .template-card-4 {
   display: grid;
   width: v-bind(cardWidth);
+  /* The width set on the block is what the card wants, not more than it has.
+     A card wider than its column is centred by the set around it, so it hung
+     over BOTH edges by half the difference - visible as the whole page
+     scrolling sideways on a phone, with nothing apparently sticking out on
+     the right. */
+  max-width: 100%;
   min-height: v-bind(cardHeight);
   padding: 20px;
+  /* A word longer than the card breaks rather than hanging over its edge.
+     Only words with nowhere else to go are broken. */
+  overflow-wrap: break-word;
 }
 /* Layout only from here on - fill, border, corners and shadow come from
    the card style (cards.css). */
@@ -131,8 +140,15 @@
   text-shadow: 0 0 8px #0008;
 } */
 
+/* minmax(0, 1fr), not 1fr: a grid track's automatic minimum is the widest
+   thing in it, so a title with one long word (German compounds reach it
+   first - "Abschlussdokumente") made the track wider than the card, and
+   both the title and the body below it hung over the card's edge. The
+   track may now be narrower than its content, and the title wraps inside
+   the word instead. The editor's copy carries the same fix
+   (src/components/templates/cards/TemplateCard.vue). */
 .template-card-2, .template-card-21 {
-  grid-template-columns: auto 12px 1fr;
+  grid-template-columns: auto 12px minmax(0, 1fr);
   grid-template-areas:
         "icon . title"
         "content content content";

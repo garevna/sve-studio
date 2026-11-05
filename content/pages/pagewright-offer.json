@@ -17,7 +17,7 @@
         "en": "Pagewright",
         "de": "Pagewright"
       },
-      "class": "my-8 text-center text-thin text-primary offer-title"
+      "class": "my-8 text-center text-thin offer-title accent-font text-blue"
     },
     {
       "type": "title",
@@ -26,7 +26,7 @@
         "en": "Your customers write to you. You answer from Telegram.",
         "de": "Ihre Kunden schreiben Ihnen. Sie antworten aus Telegram."
       },
-      "class": "my-8 text-center text-secondary text-medium h2"
+      "class": "my-8 text-center h3 text-bold text-special"
     },
     {
       "type": "section",
@@ -291,7 +291,9 @@
             ]
           }
         }
-      ]
+      ],
+      "color": "blue",
+      "background": "light-grey-1"
     },
     {
       "type": "header",
@@ -411,7 +413,9 @@
             "de": "Beschreiben Sie in zwei Sätzen, wofür die Seite da ist, und erhalten Sie einen fertigen Satz Blöcke zum Ausfüllen."
           }
         }
-      ]
+      ],
+      "color": "green",
+      "background": "light-green"
     },
     {
       "type": "component",

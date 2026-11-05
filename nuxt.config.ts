@@ -97,8 +97,18 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     contentApi: {
-      // 'read-only' | 'open' - override with NUXT_CONTENT_API_ACCESS.
+      // 'read-only' | 'open' | 'auth' - override with NUXT_CONTENT_API_ACCESS.
+      // 'auth' is what a real deployment uses: the caller's Firebase token
+      // decides what they may write, per path (server/content-api).
       access: 'read-only',
+      // Only read when access is 'auth'.
+      //   NUXT_CONTENT_API_FIREBASE_PROJECT_ID - whose tokens are accepted
+      //   NUXT_CONTENT_API_OWNERS - user ids and verified e-mails, comma
+      //     separated: every right, invisible in the user list, and the
+      //     list cannot change or remove them. Set at least one, or nobody
+      //     can ever give anybody a role.
+      firebaseProjectId: '',
+      owners: '',
     },
   },
 
@@ -111,10 +121,15 @@ export default defineNuxtConfig({
     storage: {
       'content-docs': { driver: 'memory' },
       'content-images': { driver: 'memory' },
+      // Who has signed in and what each may do (access 'auth'). A real
+      // deployment points all three at something that survives a restart -
+      // cloudflare-kv-binding, fs, s3... - and nothing else changes.
+      'content-users': { driver: 'memory' },
     },
     devStorage: {
       'content-docs': { driver: 'fs', base: './.data/content-docs' },
       'content-images': { driver: 'fs', base: './.data/content-images' },
+      'content-users': { driver: 'fs', base: './.data/content-users' },
     },
   },
 

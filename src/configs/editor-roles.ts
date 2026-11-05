@@ -158,3 +158,60 @@ export function sectionsForRole (value: EditorRoleModel): EditorSection[] {
   const allowed = new Set<EditorSectionKey>(sections)
   return EDITOR_SECTIONS.filter(section => allowed.has(section.key))
 }
+
+// ---------------------------------------------------------------------------
+// The same lists, as the server reads them.
+//
+// Everything above decides which buttons a person is shown. Below is the
+// other half of the same decision: which content a person may WRITE. It is
+// derived from the very same `sections` lists on purpose - two tables of
+// permissions always drift apart, and the only question is when. Adding a
+// section above gives it a path here, or it is writable by nobody.
+//
+// Imported by server/content-api/middleware.ts. Keep it free of anything
+// browser-only: it runs on the Nitro server too.
+
+// Which section owns a content path. The paths are the content API's own
+// (server/content-api/routes.ts), after its /api/content prefix.
+export function sectionForContentPath (path: string): EditorSectionKey | null {
+  const clean = path.split('?')[0]!.replace(/\/+$/, '')
+  if (clean.startsWith('/pages')) {
+    return 'pages'
+  }
+  if (clean.startsWith('/images')) {
+    return 'pages'
+  }
+  // account-pages: the visitor's own account, edited with the pages
+  if (clean.startsWith('/public')) {
+    return 'pages'
+  }
+  if (clean.startsWith('/styles')) {
+    return 'styles'
+  }
+  if (clean.startsWith('/settings/palette')) {
+    return 'palette'
+  }
+  if (clean.startsWith('/settings/menu-content')) {
+    return 'menu'
+  }
+  if (clean.startsWith('/settings/seo')) {
+    return 'seo'
+  }
+  if (clean.startsWith('/settings/global')) {
+    return 'general-settings'
+  }
+  // An unknown path belongs to no section, so nobody below supervisor
+  // writes it - a new route is closed until it is placed here.
+  return null
+}
+
+// May this role write that path? A supervisor (sections: null) may write
+// anything; an owner never reaches here, the server lets them through first.
+export function mayWriteContent (role: EditorRoleModel, path: string): boolean {
+  const { sections } = editorRole(role)
+  if (!sections) {
+    return true
+  }
+  const section = sectionForContentPath(path)
+  return section !== null && sections.includes(section)
+}

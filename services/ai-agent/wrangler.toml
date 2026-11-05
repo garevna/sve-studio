@@ -26,27 +26,41 @@ id = "03b6d5d3c8914da98cd1e9c97767b5c3"
 # The sites allowed to call: the published demo and local dev.
 ALLOWED_ORIGINS = "https://garevna.github.io,http://localhost:3006,http://localhost:3007"
 
+# Whose Firebase ID tokens are accepted. Not a secret - the project id is in
+# the site's own global.json and in every page that signs anybody in.
+FIREBASE_PROJECT_ID = "pagewright-d9c8c"
+
 # The model every task runs on. Check what the ACCOUNT actually has before
 # changing it - `npx wrangler ai models`, not the documentation: the
 # catalogue is not the same list everywhere. Two things found that way on
 # 5 Nov 2026 -
 #   @cf/meta/llama-3.1-8b-instruct      is not in it at all (only -fp8),
-#   @cf/utter-project/eurollm-9b-it     is in it and answers with an error.
-# Both show up as a 502 'upstream' in about 60 ms, which is the shape of a
-# wrong model id: too fast to have been a model.
-# This one is checked on Ukrainian, German and English, and returns valid
-# JSON for the tasks that ask for it.
-MODEL = "@cf/meta/llama-3.1-8b-instruct-fp8"
+#   @cf/utter-project/eurollm-9b-it     is in it and answers with an error,
+#   @cf/openai/gpt-oss-120b             is in it and answers with an error.
+# A wrong or unusable id is not an error at deploy time: it deploys happily
+# and every call then answers 502 'upstream'.
+#
+# This one was picked by comparing four models on the same Ukrainian quote,
+# which is the language that separates them: it was the only one that read
+# as fluent Ukrainian rather than as a translation. llama-3.1-8b-instruct-fp8
+# is the cheap alternative - acceptable Ukrainian, and roughly four times as
+# many calls a day inside the free allowance. Changing back is one line here
+# and the ESTIMATE table in src/index.js.
+MODEL = "@cf/meta/llama-3.3-70b-instruct-fp8-fast"
 
 # The ceilings. A free Cloudflare account gets 10,000 Neurons a day, reset at
 # 00:00 UTC; these sit under that on purpose, because the worker's own count
-# is an estimate with a margin (see ESTIMATE in src/index.js). Raise them
-# after watching a day of real figures in the dashboard - not before.
-DAILY_NEURONS = "7000"
+# is an estimate with a margin (see ESTIMATE in src/index.js). With the 70B
+# model above and its deliberately pessimistic estimates this is about
+# fifteen pieces of work a day before the budget says come back tomorrow -
+# which the page handles, showing the figure and saying the words are
+# missing. Raise it after watching a day of real figures in the dashboard,
+# not before.
+DAILY_NEURONS = "6000"
 DAILY_REQUESTS = "250"
 
-# One address's share of the day, so that a single visitor playing with the
-# demo cannot finish the budget before anybody else arrives.
+# One ACCOUNT's share of the day. Every call needs a signed-in visitor, so
+# this is the limit that holds: a new address is free, a new account is not.
 VISITOR_REQUESTS = "12"
 
 # No secrets. Workers AI needs none; if a client later wants a different

@@ -582,6 +582,11 @@
       ]
     },
     {
+      "type": "component",
+      "id": "offer-calculator",
+      "content": "PriceCalculator"
+    },
+    {
       "type": "header",
       "content": {
         "uk": "Документи й оплата",

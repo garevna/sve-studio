@@ -76,6 +76,10 @@ export const useAuthStore = defineStore('auth', () => {
     error,
     methods,
     configure,
+    // For a service of ours that has to know who is asking - the AI
+    // assistant. '' when nobody is signed in, which is the caller's cue not
+    // to ask at all.
+    idToken: () => adapter?.idToken() ?? Promise.resolve(''),
     signIn: (email: string, password: string) => run(auth => auth.signIn(email.trim(), password)),
     signUp: (email: string, password: string, name: string) => run(auth => auth.signUp(email.trim(), password, name.trim())),
     signInWithGoogle: () => run(auth => auth.signInWithGoogle()),

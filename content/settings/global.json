@@ -192,14 +192,15 @@
     }
   },
   "ai": {
-    "endpoint": "",
+    "endpoint": "https://pagewright-ai.garevna.workers.dev",
     "tasks": [
       "translate",
       "rewrite",
       "seo",
       "alt",
       "reply",
-      "page"
+      "page",
+      "quote"
     ]
   }
 }

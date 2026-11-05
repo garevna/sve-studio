@@ -67,6 +67,10 @@ export async function firebaseAuth (config: NonNullable<AuthSettings['firebase']
       listener = callback
       return fb.onAuthStateChanged(auth, user => callback(toUser(user)))
     },
+    // Firebase refreshes it on its own when it is close to expiring, so this
+    // is asked for per call rather than held: a token kept for an hour is a
+    // token that has expired.
+    idToken: () => auth.currentUser?.getIdToken() ?? Promise.resolve(''),
     signIn: (email, password) => guarded(() => fb.signInWithEmailAndPassword(auth, email, password)),
     signUp: (email, password, name) => guarded(async () => {
       const created = await fb.createUserWithEmailAndPassword(auth, email, password)

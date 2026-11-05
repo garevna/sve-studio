@@ -84,6 +84,10 @@ export const useCommonStore = defineStore('common', () => {
   const contacts = ref<SiteContact[]>([])
   // Where the feedback forms send (global.json feedback.endpoint).
   const feedbackEndpoint = ref('')
+  // Where the AI assistant lives (global.json ai.endpoint). Empty means it is
+  // switched off, which is how the demo ships: a block that offers it then
+  // shows what it would do instead of calling anything.
+  const aiEndpoint = ref('')
 
   const company = ref<{
     name: string
@@ -198,6 +202,7 @@ export const useCommonStore = defineStore('common', () => {
     menuStyle.value = resolveMenuStyle(response.menuStyle)
     contacts.value = Array.isArray(response.contacts) ? response.contacts : []
     feedbackEndpoint.value = response.feedback?.endpoint || ''
+    aiEndpoint.value = response.ai?.endpoint || ''
     void useAuthStore().configure(response.auth)
     baners.value = response.baner
     banerSlides.value = Array.isArray(response.banerSlides) ? response.banerSlides : []
@@ -274,6 +279,7 @@ export const useCommonStore = defineStore('common', () => {
     menuStyle,
     contacts,
     feedbackEndpoint,
+    aiEndpoint,
     parallaxHeaderClass,
     parallaxTitleClass,
     parallaxTextClass,

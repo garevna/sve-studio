@@ -18,6 +18,10 @@ export type GlobalSettingsModel = {
   // Where the feedback forms send (utils/feedback-transport.ts). Absent:
   // the form says sending isn't set up.
   feedback?: { endpoint?: string }
+  // The AI assistant (utils/ai-transport.ts). An absent or empty endpoint
+  // is the switched-off state the demo ships with; `tasks` says which of
+  // the assistant's jobs this site paid for.
+  ai?: { endpoint?: string, tasks?: string[] }
   // Signing in on the site (services/auth): which service, and its
   // settings. Absent: no sign-in.
   auth?: AuthSettings

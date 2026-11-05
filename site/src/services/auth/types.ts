@@ -17,6 +17,11 @@ export interface AuthUser {
 export interface AuthAdapter {
   // Called with the signed-in user (or null) now and on every change.
   onChange: (callback: (user: AuthUser | null) => void) => () => void
+  // Proof of who is signed in, for a service of our own to check: the AI
+  // assistant takes it as a Bearer token and counts its budget per account
+  // (services/ai-agent). '' when nobody is signed in. Short-lived, so it is
+  // asked for per call and never kept.
+  idToken: () => Promise<string>
   signIn: (email: string, password: string) => Promise<void>
   signUp: (email: string, password: string, name: string) => Promise<void>
   signInWithGoogle: () => Promise<void>

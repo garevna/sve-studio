@@ -153,9 +153,9 @@
     {
       "type": "header",
       "content": {
-        "uk": "Чотири способи працювати разом",
-        "en": "Four ways to work together",
-        "de": "Vier Wege der Zusammenarbeit"
+        "uk": "Що саме ви купуєте",
+        "en": "What you are actually buying",
+        "de": "Was Sie genau kaufen"
       },
       "class": "text-center my-12 h2 text-primary"
     },
@@ -163,137 +163,180 @@
       "type": "cards",
       "id": "offer-options",
       "ver": 1,
-      "width": 300,
+      "width": 320,
       "size": 56,
       "children": [
         {
           "type": "card",
+          "icon": "mdi-domain",
+          "title": {
+            "uk": "Веб-студіям і агенціям",
+            "en": "For studios and agencies",
+            "de": "Für Studios und Agenturen"
+          },
+          "content": {
+            "uk": [
+              "Ліцензія на Pagewright під вашим ім’ям.",
+              "Скільки завгодно клієнтських сайтів.",
+              "Документація: як підключити власний бекенд — своє API, Cloudflare Worker або Firebase.",
+              "Інструкції: Telegram-бот і закритий канал для клієнта, підключення AI-помічника.",
+              "$390 на місяць, або $3 900 на рік."
+            ],
+            "en": [
+              "A Pagewright licence under your own name.",
+              "As many client sites as you like.",
+              "Documentation: how to connect a back end of your own — your API, a Cloudflare Worker or Firebase.",
+              "Step by step: the Telegram bot and the private channel for your client, and switching the AI assistant on.",
+              "$390 a month, or $3,900 a year."
+            ],
+            "de": [
+              "Eine Pagewright-Lizenz unter Ihrem eigenen Namen.",
+              "So viele Kundenwebsites, wie Sie möchten.",
+              "Dokumentation: wie Sie ein eigenes Backend anbinden — Ihre API, einen Cloudflare Worker oder Firebase.",
+              "Schritt für Schritt: Telegram-Bot und privater Kanal für Ihren Kunden, und wie der KI-Assistent aktiviert wird.",
+              "390 $ pro Monat oder 3.900 $ pro Jahr."
+            ]
+          }
+        },
+        {
+          "type": "card",
           "icon": "mdi-rocket-launch-outline",
           "title": {
-            "uk": "Сайт під ключ",
-            "en": "A site, turnkey",
-            "de": "Website, schlüsselfertig"
+            "uk": "Власникам сайту — налаштовано",
+            "en": "For site owners — set up for you",
+            "de": "Für Website-Inhaber — eingerichtet"
           },
           "content": {
             "uk": [
-              "Вам потрібен новий сайт, і потрібен він зараз.",
-              "Дизайн, блоки, контент і мови — під ваш бізнес.",
-              "2–4 тижні.",
-              "Від $4 000.",
-              "Далі ви правите його самі."
+              "Редактор і порожнє веб-застосування, готові до роботи.",
+              "Бекенд, Telegram-бот і закритий канал налаштовую я — вам не треба підключати нічого.",
+              "На старті — головна сторінка й порожнє меню. Решту сторінок ви створюєте самі, у редакторі.",
+              "$900 одноразово, далі $90 на місяць."
             ],
             "en": [
-              "You need a new site, and you need it now.",
-              "Design, blocks, content and languages — built around your business.",
-              "2–4 weeks.",
-              "From $4,000.",
-              "After that you edit it yourself."
+              "The editor and an empty web application, ready to work in.",
+              "The back end, the Telegram bot and the private channel are set up by me — there is nothing for you to connect.",
+              "You start with a home page and an empty menu. Every other page you make yourself, in the editor.",
+              "$900 once, then $90 a month."
             ],
             "de": [
-              "Sie brauchen eine neue Website, und zwar jetzt.",
-              "Design, Blöcke, Inhalte und Sprachen — auf Ihr Unternehmen zugeschnitten.",
-              "2–4 Wochen.",
-              "Ab 4.000 $.",
-              "Danach pflegen Sie sie selbst."
+              "Der Editor und eine leere Webanwendung, einsatzbereit.",
+              "Backend, Telegram-Bot und privater Kanal werden von mir eingerichtet — Sie müssen nichts anbinden.",
+              "Sie starten mit einer Startseite und einem leeren Menü. Alle weiteren Seiten erstellen Sie selbst im Editor.",
+              "900 $ einmalig, danach 90 $ pro Monat."
             ]
           }
         },
         {
           "type": "card",
-          "icon": "mdi-infinity",
+          "icon": "mdi-robot-outline",
           "title": {
-            "uk": "Сайт із ліцензією та підтримкою",
-            "en": "A site with licence and support",
-            "de": "Website mit Lizenz und Support"
+            "uk": "Те саме, з AI-помічником",
+            "en": "The same, with the AI assistant",
+            "de": "Dasselbe, mit KI-Assistent"
           },
           "content": {
             "uk": [
-              "Сайт має жити й змінюватися роками, а не бути проєктом, що закінчився.",
-              "Налаштування $2 000–5 000, далі $150 на місяць.",
-              "Ліцензія, хостинг, оновлення, підтримка.",
-              "Сайт, контент і домен залишаються вашими.",
-              "Я рекомендую саме цей варіант."
+              "Усе з попереднього пакета.",
+              "Плюс підключений AI-помічник: переклад сторінок, тексти, заголовки для пошуку, чернетки відповідей клієнтам.",
+              "Працює на вашому ключі, з денною межею витрат, яку ви бачите й міняєте.",
+              "$1 200 одноразово, далі $120 на місяць."
             ],
             "en": [
-              "The site should live and change for years, not be a project that ended.",
-              "Setup $2,000–5,000, then $150 a month.",
-              "Licence, hosting, updates, support.",
-              "The site, the content and the domain stay yours.",
-              "This is the option I recommend."
+              "Everything in the package above.",
+              "Plus the AI assistant, connected: translating pages, writing copy, titles for search, draft replies to customers.",
+              "It runs on your own key, with a daily spending limit you can see and change.",
+              "$1,200 once, then $120 a month."
             ],
             "de": [
-              "Die Website soll über Jahre leben und sich verändern, kein abgeschlossenes Projekt sein.",
-              "Einrichtung 2.000–5.000 $, danach 150 $ pro Monat.",
-              "Lizenz, Hosting, Updates, Support.",
-              "Website, Inhalte und Domain bleiben Ihre.",
-              "Diese Variante empfehle ich."
+              "Alles aus dem Paket darüber.",
+              "Dazu der angebundene KI-Assistent: Seiten übersetzen, Texte schreiben, Titel für die Suche, Antwortentwürfe für Kunden.",
+              "Er läuft mit Ihrem eigenen Schlüssel und einem Tageslimit, das Sie sehen und ändern können.",
+              "1.200 $ einmalig, danach 120 $ pro Monat."
             ]
           }
         },
         {
           "type": "card",
-          "icon": "mdi-swap-horizontal",
+          "icon": "mdi-tag-off-outline",
           "title": {
-            "uk": "У вас уже є сайт",
-            "en": "You already have a site",
-            "de": "Sie haben schon eine Website"
+            "uk": "Без згадки про Pagewright",
+            "en": "Without the Pagewright line",
+            "de": "Ohne den Pagewright-Hinweis"
           },
           "content": {
             "uk": [
-              "Сайт є, але кожна правка йде через розробника й чекає до понеділка.",
-              "Переносимо контент, зберігаємо ваш дизайн і ваші адреси сторінок.",
-              "Додаємо мови, яких не було.",
-              "Ціна залежить від обсягу контенту — оцінюю окремо після того, як подивлюся сайт."
+              "Рядок «Made with Pagewright» у підвалі знімається.",
+              "Для студій, які віддають сайт клієнтові під власним брендом.",
+              "Додається до будь-якого пакета вище.",
+              "$500 одноразово."
             ],
             "en": [
-              "The site exists, but every change goes through a developer and waits until Monday.",
-              "We move the content across, keeping your design and your page addresses.",
-              "We add the languages that were missing.",
-              "The price depends on how much content there is — quoted separately once I have looked at the site."
+              "The \"Made with Pagewright\" line in the footer comes off.",
+              "For studios handing the site to a client under their own brand.",
+              "Added to any of the packages above.",
+              "$500 once."
             ],
             "de": [
-              "Die Website existiert, aber jede Änderung läuft über einen Entwickler und wartet bis Montag.",
-              "Wir übernehmen die Inhalte und behalten Ihr Design und Ihre Seitenadressen.",
-              "Wir ergänzen die Sprachen, die gefehlt haben.",
-              "Der Preis hängt vom Umfang der Inhalte ab — Angebot separat, nachdem ich die Website gesehen habe."
-            ]
-          }
-        },
-        {
-          "type": "card",
-          "icon": "mdi-briefcase-outline",
-          "title": {
-            "uk": "Агенціям і веб-студіям",
-            "en": "For agencies and studios",
-            "de": "Für Agenturen und Studios"
-          },
-          "content": {
-            "uk": [
-              "Ви робите сайти клієнтам і постійно відмовляєтеся від багатомовних проєктів.",
-              "Ліцензія під вашим ім'ям, без згадки про мене.",
-              "Фіксована плата на місяць, скільки клієнтських сайтів забажаєте.",
-              "$300–800 на місяць.",
-              "Документація, щоб ваш розробник не питав мене."
-            ],
-            "en": [
-              "You build sites for clients and keep turning down multilingual work.",
-              "Licence it under your own name, with no mention of me.",
-              "Flat monthly fee, as many client sites as you like.",
-              "$300–800 a month.",
-              "Documentation, so your developer does not have to ask me."
-            ],
-            "de": [
-              "Sie bauen Websites für Kunden und lehnen mehrsprachige Projekte immer wieder ab.",
-              "Lizenz unter Ihrem eigenen Namen, ohne Hinweis auf mich.",
-              "Monatliche Pauschale, so viele Kundenwebsites wie Sie möchten.",
-              "300–800 $ pro Monat.",
-              "Dokumentation, damit Ihr Entwickler mich nicht fragen muss."
+              "Die Zeile „Made with Pagewright“ in der Fußzeile entfällt.",
+              "Für Studios, die die Website unter eigener Marke übergeben.",
+              "Zu jedem Paket oben hinzubuchbar.",
+              "500 $ einmalig."
             ]
           }
         }
       ],
       "color": "blue",
       "background": "light-grey-1"
+    },
+    {
+      "type": "header",
+      "content": {
+        "uk": "Що входить, а що лишається вашим",
+        "en": "What is included, and what stays yours",
+        "de": "Was enthalten ist und was Ihre Sache bleibt"
+      },
+      "class": "text-center my-12 h2 text-primary"
+    },
+    {
+      "type": "section",
+      "children": [
+        {
+          "type": "image",
+          "content": {
+            "uk": "/api/content/images/pagewright-offer/with-diagram.svg",
+            "en": "/api/content/images/pagewright-offer/with-diagram.svg",
+            "de": "/api/content/images/pagewright-offer/with-diagram.svg"
+          },
+          "class": "offer-figure",
+          "switchOrder": true
+        },
+        {
+          "type": "text",
+          "content": {
+            "uk": [
+              "Я розробниця, а не студія. Я даю інструмент і запускаю його — а дизайн, тексти, фотографії та просування лишаються вашими.",
+              "Входить: редактор, порожнє веб-застосування, бекенд, Telegram-бот і закритий канал, оновлення та підтримка самого інструмента.",
+              "Не входить: наповнення сторінок, написання текстів, фотозйомка, SEO-просування.",
+              "Якщо вам потрібна людина, яка зробить сайт замість вас, — це веб-студія. Можливо, Pagewright у неї вже є."
+            ],
+            "en": [
+              "I am a developer, not a studio. I give you the tool and get it running — the design, the words, the photographs and the marketing stay yours.",
+              "Included: the editor, an empty web application, the back end, the Telegram bot and the private channel, and updates and support for the tool itself.",
+              "Not included: filling the pages, writing the copy, photography, SEO.",
+              "If what you want is somebody to build the site instead of you, that is a web studio. It may well already have Pagewright."
+            ],
+            "de": [
+              "Ich bin Entwicklerin, kein Studio. Ich liefere das Werkzeug und bringe es zum Laufen — Design, Texte, Fotos und Marketing bleiben bei Ihnen.",
+              "Enthalten: der Editor, eine leere Webanwendung, das Backend, der Telegram-Bot und der private Kanal sowie Updates und Support für das Werkzeug selbst.",
+              "Nicht enthalten: Seiten befüllen, Texte schreiben, Fotografie, SEO.",
+              "Wenn Sie jemanden suchen, der die Website an Ihrer Stelle baut, ist das ein Webstudio. Gut möglich, dass es Pagewright schon hat."
+            ]
+          },
+          "class": "default-text text-thin text-black py-2",
+          "switchOrder": true
+        }
+      ]
     },
     {
       "type": "header",
@@ -517,74 +560,11 @@
     {
       "type": "text",
       "content": {
-        "uk": "Як це оплачується: налаштування — разово, далі або ви платите постачальнику напряму за власним ключем і бачите кожну копійку, або це входить у місячну плату з узгодженою межею. Вмикається помісячно й вимикається так само.",
-        "en": "How it is paid for: setup is a one-off, and after that either you pay the provider directly on your own key and see every cent, or it goes into the monthly fee with an agreed ceiling. Switched on by the month, and off the same way.",
-        "de": "Wie es abgerechnet wird: die Einrichtung einmalig, danach zahlen Sie entweder direkt beim Anbieter mit Ihrem eigenen Schlüssel und sehen jeden Cent, oder es läuft über die monatliche Gebühr mit einer vereinbarten Obergrenze. Monatlich zuschaltbar und ebenso abschaltbar."
+        "uk": "Помічник входить у третій пакет вище — ціна фіксована, окремо рахувати нічого не треба. Ключ ваш, денна межа витрат ваша, вимкнути можна будь-коли.",
+        "en": "The assistant is the third package above — a fixed price, with nothing to calculate separately. The key is yours, the daily spending limit is yours, and it can be switched off at any time.",
+        "de": "Der Assistent ist das dritte Paket oben — ein Festpreis, nichts separat zu berechnen. Der Schlüssel gehört Ihnen, das Tageslimit gehört Ihnen, und abschalten können Sie jederzeit."
       },
       "class": "default-text text-medium text-primary text-center py-4"
-    },
-    {
-      "type": "header",
-      "content": {
-        "uk": "Що впливає на ціну",
-        "en": "What moves the price",
-        "de": "Was den Preis beeinflusst"
-      },
-      "class": "text-center my-12 h2 text-primary"
-    },
-    {
-      "type": "section",
-      "children": [
-        {
-          "type": "image",
-          "content": {
-            "uk": "/api/content/images/pagewright-offer/with-diagram.svg",
-            "en": "/api/content/images/pagewright-offer/with-diagram.svg",
-            "de": "/api/content/images/pagewright-offer/with-diagram.svg"
-          },
-          "class": "offer-figure",
-          "switchOrder": true
-        },
-        {
-          "type": "text",
-          "content": {
-            "uk": [
-              "Скільки мов.",
-              "Скільки потрібно розділів, яких немає в галереї готових блоків.",
-              "Чи треба переносити контент із наявного сайту.",
-              "Чи потрібні кабінети відвідувачів і відповіді з Telegram.",
-              "Де живе сайт: статика, ваш власний хостинг, Cloudflare або моя інфраструктура.",
-              "Чи вмикаємо AI-помічника і на чиєму він ключі.",
-              "Пів години розмови — і я даю фіксовану ціну, а не «від» і «приблизно»."
-            ],
-            "en": [
-              "How many languages.",
-              "How many sections you need that are not in the library of ready-made blocks.",
-              "Whether content has to be moved across from an existing site.",
-              "Whether you want visitor accounts and answers from Telegram.",
-              "Where the site lives: static, your own hosting, Cloudflare, or my infrastructure.",
-              "Whether an AI assistant is switched on, and whose key it runs on.",
-              "Half an hour on a call and I give you a fixed price, not a \"from\" and a \"roughly\"."
-            ],
-            "de": [
-              "Wie viele Sprachen.",
-              "Wie viele Abschnitte Sie brauchen, die es in der Bibliothek fertiger Blöcke nicht gibt.",
-              "Ob Inhalte von einer bestehenden Website übernommen werden müssen.",
-              "Ob Sie Besucherkonten und Antworten aus Telegram möchten.",
-              "Wo die Website läuft: statisch, Ihr eigenes Hosting, Cloudflare oder meine Infrastruktur.",
-              "Ob ein KI-Assistent aktiviert wird und auf wessen Schlüssel er läuft.",
-              "Eine halbe Stunde Gespräch, und Sie bekommen einen Festpreis — kein „ab“ und kein „ungefähr“."
-            ]
-          },
-          "class": "default-text text-thin text-black py-2",
-          "switchOrder": true
-        }
-      ]
-    },
-    {
-      "type": "component",
-      "id": "offer-calculator",
-      "content": "PriceCalculator"
     },
     {
       "type": "header",
@@ -670,6 +650,18 @@
         "questions": [
           {
             "question": {
+              "uk": "Що робите ви, а що я?",
+              "en": "What do you do, and what do I do?",
+              "de": "Was machen Sie, und was mache ich?"
+            },
+            "answer": {
+              "uk": "Я роблю так, щоб машина працювала: редактор, порожнє веб-застосування, бекенд, Telegram-бот і закритий канал, куди приходитимуть повідомлення ваших клієнтів. На старті ви отримуєте головну сторінку й порожнє меню.\n\nДалі сторінки, тексти й картинки — ваші. Не тому, що це складно, а тому, що ви знаєте свій бізнес, а я ні: редактор і зроблено для того, щоб це не вимагало розробника.\n\nЯ розробниця й лишаюся нею — мій час іде в нові можливості редактора, а не в чужі тексти.",
+              "en": "I make the machine work: the editor, an empty web application, the back end, the Telegram bot and the private channel your customers’ messages arrive in. You start with a home page and an empty menu.\n\nAfter that the pages, the words and the pictures are yours. Not because it is hard, but because you know your business and I do not — the editor exists precisely so that this needs no developer.\n\nI am a developer and I intend to stay one: my time goes into new things the editor can do, not into somebody else’s copy.",
+              "de": "Ich sorge dafür, dass die Maschine läuft: der Editor, eine leere Webanwendung, das Backend, der Telegram-Bot und der private Kanal, in dem die Nachrichten Ihrer Kunden ankommen. Sie starten mit einer Startseite und einem leeren Menü.\n\nDanach gehören Seiten, Texte und Bilder Ihnen. Nicht weil es schwierig wäre, sondern weil Sie Ihr Geschäft kennen und ich nicht — genau dafür gibt es den Editor, damit das keinen Entwickler braucht.\n\nIch bin Entwicklerin und bleibe es: meine Zeit fließt in neue Funktionen des Editors, nicht in fremde Texte."
+            }
+          },
+          {
+            "question": {
               "uk": "Чий це сайт після того, як ви його зробили?",
               "en": "Whose site is it once you have built it?",
               "de": "Wem gehört die Website, nachdem Sie sie gebaut haben?"
@@ -735,9 +727,9 @@
               "de": "Wie fangen wir an, und wie wird es formal geregelt?"
             },
             "answer": {
-              "uk": "Пів години розмови про ваш бізнес — і я даю фіксовану ціну та строк. Далі договір, рахунок, оплата на рахунок ФОП, робота, акт. Договір і акт підписую електронним підписом. Відповідаю протягом двох робочих днів — обіцяю те, що справді витримую.",
-              "en": "Half an hour about your business, and I give you a fixed price and a date. Then a contract, an invoice, a bank transfer, the work, and a completion certificate. I sign the contract and the certificate with an electronic signature. I answer within two business days — I promise what I can actually keep.",
-              "de": "Eine halbe Stunde über Ihr Unternehmen, dann nenne ich Ihnen Festpreis und Termin. Danach Vertrag, Rechnung, Überweisung, die Arbeit und das Abnahmeprotokoll. Vertrag und Protokoll unterschreibe ich elektronisch. Ich antworte innerhalb von zwei Werktagen — ich verspreche, was ich wirklich einhalte."
+              "uk": "Ви пишете мені, який пакет вам потрібен. Ціни на цій сторінці фіксовані — рахувати нічого не треба, і торгуватися теж.\n\nДалі договір, рахунок, оплата на рахунок ФОП, налаштування, акт. Договір і акт підписую електронним підписом. Налаштування займає день-два; відповідаю протягом двох робочих днів.",
+              "en": "You tell me which package you want. The prices on this page are fixed — there is nothing to calculate and nothing to haggle over.\n\nThen a contract, an invoice, a bank transfer, the setup, and a completion certificate. I sign the contract and the certificate electronically. Setting up takes a day or two; I answer within two business days.",
+              "de": "Sie sagen mir, welches Paket Sie möchten. Die Preise auf dieser Seite sind fest — es gibt nichts zu rechnen und nichts zu verhandeln.\n\nDanach Vertrag, Rechnung, Überweisung, Einrichtung und Abnahmeprotokoll. Vertrag und Protokoll unterschreibe ich elektronisch. Die Einrichtung dauert ein bis zwei Tage; ich antworte innerhalb von zwei Werktagen."
             }
           }
         ]

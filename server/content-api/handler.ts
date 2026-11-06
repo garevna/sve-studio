@@ -33,7 +33,11 @@ export function defineApiHandler<T> (handler: (event: H3Event, context: ApiConte
     } catch (error) {
       if (isError(error)) {
         setResponseStatus(event, error.statusCode)
-        return { error: error.statusMessage || error.message }
+        // `code` is there when the refusal has a name of its own - the
+        // editor shows a different sentence for each (see apiError).
+        const named = (error.data as { code?: string } | undefined)?.code
+        const answer = { error: error.statusMessage || error.message }
+        return named ? { ...answer, code: named } : answer
       }
       console.error('[content-api]', error)
       setResponseStatus(event, 500)
@@ -42,8 +46,11 @@ export function defineApiHandler<T> (handler: (event: H3Event, context: ApiConte
   })
 }
 
-export function apiError (statusCode: number, message: string) {
-  return createError({ statusCode, statusMessage: message })
+// `code` names the refusal for the caller: the status alone cannot tell
+// "you may not" from "nobody may change their own role", and both are 403
+// or 409 with a sentence that only a human reads.
+export function apiError (statusCode: number, message: string, code?: string) {
+  return createError({ statusCode, statusMessage: message, data: code ? { code } : undefined })
 }
 
 // --- request helpers -------------------------------------------------------

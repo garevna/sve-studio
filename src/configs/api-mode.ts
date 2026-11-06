@@ -1,9 +1,11 @@
-// Demo build: the only API is the in-browser mock (public/mock-api-sw.js),
-// served at this site's own /api. Nothing here is read from .env, so a stray
-// .env.local can never point the editor at a real backend.
+// Which API the editor talks to. Nothing here is read from .env, so a stray
+// .env.local can never point the editor at a remote backend.
 //
-// 'live'  - talk to /api on this origin (answered by the mock API).
-// 'test'  - the mock API could not start; read/write IndexedDB directly.
+// 'live'  - talk to /api on THIS origin. In the demo that is the in-browser
+//           API (service-worker/content-api-sw.ts); on a real deployment it
+//           is the server, and the choice between them is made once at start
+//           by app/plugins/01.content-api.client.ts.
+// 'test'  - neither could be reached; read/write IndexedDB directly.
 //
 // `let` on purpose: main.ts downgrades to 'test' before the app mounts if
 // the service worker is unavailable. Imports see the change (ES live binding).

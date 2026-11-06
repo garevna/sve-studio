@@ -22,8 +22,17 @@ async function signingKeys (): Promise<JsonWebKey[]> {
   return keys
 }
 
-function fromBase64url (part: string): Uint8Array {
-  return Uint8Array.from(atob(part.replaceAll('-', '+').replaceAll('_', '/')), char => char.codePointAt(0)!)
+// Uint8Array<ArrayBuffer>, not plain Uint8Array: crypto.subtle.verify takes
+// a BufferSource, and a typed array over an ArrayBufferLike (which is what
+// Uint8Array.from gives) is not one of those as far as the checker is
+// concerned - the buffer could be shared.
+function fromBase64url (part: string): Uint8Array<ArrayBuffer> {
+  const raw = atob(part.replaceAll('-', '+').replaceAll('_', '/'))
+  const bytes = new Uint8Array(new ArrayBuffer(raw.length))
+  for (const [index, char] of [...raw].entries()) {
+    bytes[index] = char.codePointAt(0)!
+  }
+  return bytes
 }
 
 function jsonPart (part: string): Record<string, unknown> {

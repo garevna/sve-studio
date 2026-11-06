@@ -27,7 +27,7 @@ interface CallerContext {
 function caller (event: { context: Record<string, unknown> }): CallerContext {
   const found = event.context.caller as CallerContext | undefined
   if (!found) {
-    throw apiError(401, 'Sign in first')
+    throw apiError(401, 'Sign in first', 'sign-in')
   }
   return found
 }
@@ -37,7 +37,7 @@ function caller (event: { context: Record<string, unknown> }): CallerContext {
 function requireSupervisor (event: { context: Record<string, unknown> }): CallerContext {
   const who = caller(event)
   if (who.role !== 'supervisor' && who.role !== 'owner') {
-    throw apiError(403, 'Only a supervisor manages people')
+    throw apiError(403, 'Only a supervisor manages people', 'forbidden')
   }
   return who
 }
@@ -73,7 +73,7 @@ export function createUsersRouter ({ owners, users }: AuthAccessOptions) {
     const body = await readBody(event).catch(() => null) as { role?: string } | null
     const role = String(body?.role || '')
     if (!ROLES.has(role)) {
-      throw apiError(422, 'Unknown role')
+      throw apiError(422, 'Unknown role', 'unknown-role')
     }
     try {
       return { user: await setRole(users, owners, who.uid, uid, role as StoredRole) }
@@ -102,10 +102,10 @@ function roleError (error: unknown) {
     return error
   }
   if (error.code === 'self') {
-    return apiError(409, 'Nobody changes their own role - ask another supervisor')
+    return apiError(409, 'Nobody changes their own role - ask another supervisor', 'self')
   }
   if (error.code === 'owner') {
-    return apiError(403, 'This account is set in the deployment and cannot be changed here')
+    return apiError(403, 'This account is set in the deployment and cannot be changed here', 'owner')
   }
-  return apiError(404, 'No such user')
+  return apiError(404, 'No such user', 'not-found')
 }

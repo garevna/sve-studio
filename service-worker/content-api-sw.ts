@@ -79,6 +79,15 @@ self.addEventListener('fetch', event => {
   if (url.origin !== self.location.origin || !url.pathname.startsWith(`${scopePath}api/`)) {
     return
   }
+  // /api/users/* is the one thing this worker must NOT answer: it is how the
+  // editor finds out whether there is a real server behind /api at all
+  // (app/plugins/01.content-api.client.ts). Answering it with this API's own
+  // 404 would hide a server from the editor for as long as a worker left
+  // over from a demo visit at this address stayed registered - and every
+  // save would go on landing in this browser instead of on the server.
+  if (url.pathname.startsWith(`${scopePath}api/users`)) {
+    return
+  }
   const apiUrl = new URL(url)
   apiUrl.pathname = url.pathname.slice(scopePath.length - 1)
   event.respondWith(respond(new Request(apiUrl, event.request), apiUrl))

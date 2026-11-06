@@ -42,7 +42,9 @@ export default defineNuxtPlugin({
     watch(i18n.global.locale, kitTexts)
     startLook(look => Object.assign(vuetify.theme.themes.value[EDITOR_THEME_NAME]!.colors, vuetifyColors(look)))
     // Dev: catch up on uploaded pictures that content/ links to but lacks.
-    if (import.meta.dev && nuxtApp.$contentApiReady) {
+    // Only against the in-browser API: a real server has its own storage and
+    // nothing of this editor's to catch up with.
+    if (import.meta.dev && nuxtApp.$contentApiKind === 'service-worker') {
       void syncContentImages()
     }
     // Said out loud: otherwise the only sign is that the editor quietly

@@ -1,19 +1,28 @@
-// Who is sitting in front of the editor, and therefore which of its sections
-// they see on the home screen. This is a "don't hand someone eleven buttons
-// when five of them can only get them into trouble" filter, NOT a security
-// boundary: the role is chosen right in the UI, nothing on the backend knows
-// about it (the API hands over an access token with no role/scope of any
-// kind - see docs/api-requirements.md), and a typed-in URL still reaches any
-// section. Real enforcement would have to come from the token.
+// Who is sitting in front of the editor: which of its sections they see on
+// the home screen, and - on a deployment that signs people in - which
+// content they may actually write.
 //
-// Where this is going (agreed as direction, not yet with the backend): the
-// role will arrive from the backend at startup - either parsed out of the
-// access token, or handed over in the address bar the same way the token
-// already is. A supervisor-only "Ролі" section, where roles are created and
-// their access configured, is a possibility further out. None of that can be
-// specified properly until the editor itself is finished, so the lists below
-// stay a deliberate first cut: they encode the intent, and setRole() is the
-// single place a backend-supplied role would later be fed in.
+// The lists below are read twice, and that is the point of keeping them
+// here rather than in the views:
+//   - the home screen filters its tiles through sectionsForRole();
+//   - the content API refuses writes through mayWriteContent() at the
+//     bottom of this file (server/content-api/middleware.ts).
+// Two tables of permissions always drift apart; this is one table.
+//
+// How much weight the role carries depends on the deployment:
+//   - the in-browser demo and the old host-system path have no sign-in in
+//     front of the API. The role is chosen in the interface and is a
+//     "don't hand someone eleven buttons when five of them can only get
+//     them into trouble" filter - a typed-in URL still reaches any section.
+//   - NUXT_CONTENT_API_ACCESS=auth: the role comes from the server
+//     (/api/users/me - stores/users.ts), the switcher on the home screen
+//     turns into a label, and every save is checked against the same list
+//     the tiles were filtered by. That is the enforcement this comment used
+//     to say was still missing.
+//
+// Roles are given out in the "Користувачі" section (supervisor and owner
+// only); an owner is set in the deployment itself and gets the supervisor's
+// sections, which is all of them.
 
 export type EditorRoleModel = 'content-manager' | 'seo' | 'designer' | 'developer' | 'supervisor'
 
@@ -33,6 +42,7 @@ export type EditorSectionKey
     | 'menu'
     | 'account'
     | 'messages'
+    | 'users'
 
 // group: where the section sits on the start screen - what is on the
 // site, how it looks, how it is set up - and, apart from all of that, the
@@ -67,6 +77,10 @@ export const EDITOR_SECTIONS: EditorSection[] = [
   { key: 'general-settings', icon: 'mdi-cog-outline', to: '/general-settings', group: 'settings' },
   { key: 'seo', icon: 'mdi-magnify', to: '/seo', group: 'settings' },
   { key: 'account', icon: 'mdi-account-circle-outline', to: '/account', group: 'settings' },
+  // Not in any role's list below, so only a supervisor (sections: null) and
+  // an owner ever see it: handing out roles is the one thing a role cannot
+  // be given.
+  { key: 'users', icon: 'mdi-account-multiple-outline', to: '/users', group: 'settings' },
 ]
 
 export type EditorRole = {

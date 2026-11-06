@@ -74,7 +74,36 @@ export const useCommonStore = defineStore('common', () => {
     roleHintPending.value = false
   }
   const roleConfig = computed(() => editorRole(role.value))
+
+  // The role as the SERVER gave it (stores/users.ts asked /api/users/me),
+  // or null where there is no such server - the demo, and the old
+  // host-system path. This is the point configs/editor-roles.ts set aside
+  // for "a backend-supplied role would later be fed in here".
+  //
+  // 'none': signed in, no role given yet - nothing to work with, and the
+  // home screen says so instead of showing an empty board.
+  // 'owner': set in the deployment itself, above the list of people; it
+  // gets the supervisor's sections, which is every one of them.
+  const serverRole = ref<EditorRoleModel | 'none' | 'owner' | null>(null)
+  // Whoever the server named cannot switch to another role in the interface
+  // - the switcher becomes a label.
+  const roleLocked = computed(() => serverRole.value !== null)
+  const roleless = computed(() => serverRole.value === 'none')
+
+  function applyServerRole (value: EditorRoleModel | 'none' | 'owner' | null) {
+    serverRole.value = value
+    if (value && value !== 'none') {
+      role.value = value === 'owner' ? 'supervisor' : editorRole(value).value
+    }
+  }
+
   function setRole (value: EditorRoleModel) {
+    // A server-given role is not the interface's to change: every section it
+    // would open is refused at the API anyway, so letting it be switched
+    // here would only promise access that does not exist.
+    if (roleLocked.value) {
+      return
+    }
     role.value = editorRole(value).value
     try {
       localStorage.setItem(ROLE_STORAGE_KEY, role.value)
@@ -364,6 +393,10 @@ export const useCommonStore = defineStore('common', () => {
     role,
     roleConfig,
     setRole,
+    serverRole,
+    roleLocked,
+    roleless,
+    applyServerRole,
     roleHintPending,
     dismissRoleHint,
     activeTheme,

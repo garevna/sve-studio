@@ -1,9 +1,10 @@
 <script lang="ts" setup>
   import { SveButton, SveMenu, SveMenuItem, SveMenuLabel, SveTopBar } from '@sve/editor-ui'
-  import { computed } from 'vue'
+  import { computed, onMounted } from 'vue'
   import { useI18n } from 'vue-i18n'
   import { EDITOR_ROLES, EDITOR_SECTION_GROUPS, sectionsForRole } from '@/configs/editor-roles'
   import { useCommonStore } from '@/stores/common'
+  import { useUsersStore } from '@/stores/users'
   import { lastEditedPage } from '@/utils/last-edited-page'
 
   // The start screen: who you work as (the role, switched right here), the
@@ -12,6 +13,13 @@
   // line about what is in it. The sections and their groups live in
   // configs/editor-roles.ts, next to the roles that filter them.
   const commonStore = useCommonStore()
+  // Does this deployment keep the roles on the server? Until the answer is
+  // in, neither the sections nor a sign-in are shown - the screen does not
+  // yet know which of the two it is. See stores/users.ts.
+  const users = useUsersStore()
+  onMounted(() => {
+    void users.start()
+  })
 
   const groups = computed(() => {
     const sections = sectionsForRole(commonStore.role)
@@ -38,9 +46,20 @@
           <h1 class="home__greeting">{{ t('home.greeting') }}</h1>
           <!-- The role decides which sections are here. Switched in place:
             it used to be a bar along the bottom that nothing pointed to. -->
-          <div class="home__role">
+          <!-- Nobody is signed in yet on a deployment that signs people in:
+            there is no role to show, and offering to switch one would be a
+            promise of access that the sign-in has not granted. -->
+          <div v-if="!users.needsSignIn" class="home__role">
             <span>{{ t('home.workingAs') }}</span>
-            <SveMenu location="bottom start" :min-width="320">
+            <!-- A role the SERVER gave cannot be switched here: every
+              section it would open is refused at the API anyway, so the
+              switcher would only promise access that does not exist. -->
+            <span v-if="commonStore.roleLocked" class="home__role-given">
+              <i :class="['sve-icon mdi', role.icon]" />
+              {{ t(`home.roles.${role.value}.title`) }}
+              <span class="home__role-source">{{ t('home.roleFromServer') }}</span>
+            </span>
+            <SveMenu v-else location="bottom start" :min-width="320">
               <template #activator="{ props: activator }">
                 <SveButton :icon="role.icon" icon-end="mdi-chevron-down" size="sm" v-bind="activator">
                   {{ t(`home.roles.${role.value}.title`) }}
@@ -60,9 +79,9 @@
               </SveMenuItem>
             </SveMenu>
           </div>
-          <p class="home__hint">{{ t(`home.roles.${role.value}.hint`) }}</p>
+          <p v-if="!commonStore.roleless && !users.needsSignIn" class="home__hint">{{ t(`home.roles.${role.value}.hint`) }}</p>
           <SveButton
-            v-if="lastPage"
+            v-if="lastPage && !users.needsSignIn && !commonStore.roleless"
             class="home__resume"
             icon="mdi-pencil-outline"
             :to="`/editor/${lastPage}`"
@@ -72,7 +91,26 @@
           </SveButton>
         </header>
 
-        <section v-for="group of groups" :key="group.key" class="home__group">
+        <!-- Signed out on a deployment that signs people in: there is
+          nothing to show until we know who this is. -->
+        <section v-if="users.needsSignIn" class="home__gate">
+          <i class="sve-icon mdi mdi-shield-account-outline home__gate-icon" />
+          <h2 class="home__gate-title">{{ t('home.signInTitle') }}</h2>
+          <p>{{ t('home.signInText') }}</p>
+          <SveButton icon="mdi-google" variant="primary" @click="users.signIn()">
+            {{ t('home.signInGoogle') }}
+          </SveButton>
+        </section>
+
+        <!-- Signed in, no role given yet. An empty board would read as a
+          broken editor, so it says what is being waited for. -->
+        <section v-else-if="commonStore.roleless && users.user" class="home__gate">
+          <i class="sve-icon mdi mdi-account-clock-outline home__gate-icon" />
+          <h2 class="home__gate-title">{{ t('home.norole.title') }}</h2>
+          <p>{{ t('home.norole.text', { email: users.user.email }) }}</p>
+        </section>
+
+        <section v-for="group of (users.needsSignIn || commonStore.roleless ? [] : groups)" :key="group.key" class="home__group">
           <h2 class="home__group-title">{{ t(`home.groups.${group.key}`) }}</h2>
           <div class="home__grid">
             <RouterLink
@@ -117,6 +155,24 @@
 .home__role { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; color: var(--sve-text-muted); font-size: 15px; }
 .home__hint { max-width: 640px; margin: 0; color: var(--sve-text-subtle); font-size: 14px; line-height: 1.5; }
 .home__resume { margin-top: 8px; }
+.home__role-given { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 6px; color: var(--sve-text); font-weight: 600; }
+.home__role-source { color: var(--sve-text-subtle); font-size: 13px; font-weight: 400; }
+
+.home__gate {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  max-width: 520px;
+  margin: clamp(8px, 4vh, 40px) auto 0;
+  color: var(--sve-text-muted);
+  text-align: center;
+  line-height: 1.5;
+}
+.home__gate p { margin: 0; }
+.home__gate-icon { color: var(--sve-text-subtle); font-size: 44px; }
+.home__gate-title { margin: 0; color: var(--sve-text); font-size: 20px; font-weight: 700; }
+
 .home__role-option { display: flex; flex-direction: column; gap: 2px; padding: 2px 0; white-space: normal; }
 .home__role-title { font-weight: 600; }
 .home__role-hint { color: var(--sve-text-subtle); font-size: 12px; line-height: 1.4; }

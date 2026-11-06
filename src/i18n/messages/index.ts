@@ -50,6 +50,7 @@ import textWithIcon from './textWithIcon.json'
 import transferSteps from './transferSteps.json'
 import translations from './translations.json'
 import ui from './ui.json'
+import users from './users.json'
 
 export const MESSAGES = {
   accountPages,
@@ -99,4 +100,5 @@ export const MESSAGES = {
   transferSteps,
   translations,
   ui,
+  users,
 }

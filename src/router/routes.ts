@@ -73,6 +73,11 @@ export const editorRoutes: RouteRecordRaw[] = [
     component: () => import('@/views/AccountPagesListView.vue'),
   },
   {
+    path: '/users',
+    name: 'users',
+    component: () => import('@/views/UsersView.vue'),
+  },
+  {
     path: '/messages',
     name: 'messages',
     component: () => import('@/views/MessagesView.vue'),

@@ -6,12 +6,9 @@
 // its security rules stay the visitors' only.
 // Not for a client's site: its own API gets its own adapter (index.ts).
 import type { FirebaseOptions } from 'firebase/app'
-import type * as FirebaseAuth from 'firebase/auth'
-import type { InboxAdapter, InboxMessage, InboxReply, InboxUser } from './types'
+import type { InboxAdapter, InboxMessage, InboxReply } from './types'
+import { editorAuth, EditorAuthError } from '@/services/editor-auth'
 import { InboxError } from './types'
-
-// A Firebase app of its own, so nothing else in the editor can clash with it.
-const APP_NAME = 'pagewright-inbox'
 
 type RawMessage = Omit<InboxMessage, 'createdAt' | 'replies'> & {
   createdAt: string
@@ -31,30 +28,16 @@ function toMessage (raw: RawMessage): InboxMessage {
   }
 }
 
-function toUser (user: { email: string | null, displayName: string | null, photoURL: string | null } | null): InboxUser | null {
-  return user ? { email: user.email ?? '', name: user.displayName ?? '', photo: user.photoURL ?? '' } : null
-}
-
 export function pagewrightInbox (config: FirebaseOptions, endpoint: string): InboxAdapter {
-  let ready: Promise<{ auth: FirebaseAuth.Auth, module: typeof FirebaseAuth }> | null = null
-
-  // Firebase is loaded only when the section is opened.
-  function firebase () {
-    ready ??= (async () => {
-      const [app, module] = await Promise.all([import('firebase/app'), import('firebase/auth')])
-      const instance = app.getApps().find(item => item.name === APP_NAME) ?? app.initializeApp(config, APP_NAME)
-      return { auth: module.getAuth(instance), module }
-    })()
-    return ready
-  }
+  // The editor's one sign-in, shared with the "Користувачі" section and with
+  // the saves the editor makes - see services/editor-auth.ts.
+  const session = editorAuth(config)
 
   async function call<T> (path: string, init: RequestInit = {}): Promise<T> {
-    const { auth } = await firebase()
-    await auth.authStateReady()
-    if (!auth.currentUser) {
+    const token = await session.token()
+    if (!token) {
       throw new InboxError('sign-in')
     }
-    const token = await auth.currentUser.getIdToken()
     let response: Response
     try {
       response = await fetch(`${endpoint.replace(/\/+$/, '')}${path}`, {
@@ -74,30 +57,23 @@ export function pagewrightInbox (config: FirebaseOptions, endpoint: string): Inb
 
   return {
     async watchUser (onUser) {
-      const { auth, module } = await firebase()
-      return module.onAuthStateChanged(auth, user => onUser(toUser(user)))
+      // EditorUser and InboxUser are the same three fields.
+      return await session.watchUser(onUser)
     },
 
     async signIn () {
-      const { auth, module } = await firebase()
-      const provider = new module.GoogleAuthProvider()
-      // Always the account picker: the one remembered may not be the admin.
-      provider.setCustomParameters({ prompt: 'select_account' })
       try {
-        await module.signInWithPopup(auth, provider)
-        return true
+        return await session.signIn()
       } catch (error) {
-        const code = (error as { code?: string }).code ?? ''
-        if (code === 'auth/popup-closed-by-user' || code === 'auth/cancelled-popup-request') {
-          return false
-        }
-        throw new InboxError(code === 'auth/unauthorized-domain' ? 'domain' : 'server', code)
+        // The section speaks in its own error codes, so the shared sign-in's
+        // are translated here rather than leaking out of the adapter.
+        const detail = error instanceof Error ? error.message : String(error)
+        throw new InboxError(error instanceof EditorAuthError && error.code === 'domain' ? 'domain' : 'server', detail)
       }
     },
 
     async signOut () {
-      const { auth, module } = await firebase()
-      await module.signOut(auth)
+      await session.signOut()
     },
 
     async list () {

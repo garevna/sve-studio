@@ -146,6 +146,33 @@ export const useAjaxStore = defineStore('ajax', () => {
     })
   }
 
+  // A deployment that keeps the roles on the server (NUXT_CONTENT_API_ACCESS
+  // =auth) has a credential of its own: the Firebase ID token of whoever
+  // signed in to the editor, not the launch token everything below is built
+  // around. stores/users.ts installs the provider once it has seen that the
+  // content API asks for a sign-in; until then nothing here changes, which
+  // is why the demo and the host-system path are untouched.
+  //
+  // Asked per request on purpose: the Firebase SDK holds the token and
+  // renews it shortly before it expires, so there is nothing to schedule
+  // here and no second copy of it to go stale.
+  let authTokenProvider: (() => Promise<string | null>) | null = null
+
+  function setAuthTokenProvider (provider: (() => Promise<string | null>) | null) {
+    authTokenProvider = provider
+  }
+
+  api.interceptors.request.use(async config => {
+    if (!authTokenProvider) {
+      return config
+    }
+    const fresh = await authTokenProvider()
+    if (fresh) {
+      config.headers.Authorization = `Bearer ${fresh}`
+    }
+    return config
+  })
+
   // No login flow of our own: the host system leaves a ready-made access
   // token in localStorage (see main.ts's readLaunchToken()) and the editor
   // sends it as a static header, set once at bootstrap by setToken() below.
@@ -1387,6 +1414,7 @@ export const useAjaxStore = defineStore('ajax', () => {
     sendRequest,
     setToken,
     clearToken,
+    setAuthTokenProvider,
     setLocale,
     setLoading,
     setError,

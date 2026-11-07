@@ -208,19 +208,19 @@
           },
           "content": {
             "uk": [
-              "Редактор і порожнє веб-застосування, готові до роботи.",
+              "Редактор і веб-додаток без контенту, готові до роботи.",
               "Бекенд, Telegram-бот і закритий канал налаштовую я — вам не треба підключати нічого.",
               "На старті — головна сторінка й порожнє меню. Решту сторінок ви створюєте самі, у редакторі.",
               "$900 одноразово, далі $90 на місяць."
             ],
             "en": [
-              "The editor and an empty web application, ready to work in.",
+              "The editor and a web app with no content yet, ready to work in.",
               "The back end, the Telegram bot and the private channel are set up by me — there is nothing for you to connect.",
               "You start with a home page and an empty menu. Every other page you make yourself, in the editor.",
               "$900 once, then $90 a month."
             ],
             "de": [
-              "Der Editor und eine leere Webanwendung, einsatzbereit.",
+              "Der Editor und eine Web-App noch ohne Inhalte, einsatzbereit.",
               "Backend, Telegram-Bot und privater Kanal werden von mir eingerichtet — Sie müssen nichts anbinden.",
               "Sie starten mit einer Startseite und einem leeren Menü. Alle weiteren Seiten erstellen Sie selbst im Editor.",
               "900 $ einmalig, danach 90 $ pro Monat."
@@ -316,19 +316,19 @@
           "content": {
             "uk": [
               "Я розробниця, а не студія. Я даю інструмент і запускаю його — а дизайн, тексти, фотографії та просування лишаються вашими.",
-              "Входить: редактор, порожнє веб-застосування, бекенд, Telegram-бот і закритий канал, оновлення та підтримка самого інструмента.",
+              "Входить: редактор, веб-додаток без контенту, бекенд, Telegram-бот і закритий канал, оновлення та підтримка самого інструмента.",
               "Не входить: наповнення сторінок, написання текстів, фотозйомка, SEO-просування.",
               "Якщо вам потрібна людина, яка зробить сайт замість вас, — це веб-студія. Можливо, Pagewright у неї вже є."
             ],
             "en": [
               "I am a developer, not a studio. I give you the tool and get it running — the design, the words, the photographs and the marketing stay yours.",
-              "Included: the editor, an empty web application, the back end, the Telegram bot and the private channel, and updates and support for the tool itself.",
+              "Included: the editor, a web app with no content yet, the back end, the Telegram bot and the private channel, and updates and support for the tool itself.",
               "Not included: filling the pages, writing the copy, photography, SEO.",
               "If what you want is somebody to build the site instead of you, that is a web studio. It may well already have Pagewright."
             ],
             "de": [
               "Ich bin Entwicklerin, kein Studio. Ich liefere das Werkzeug und bringe es zum Laufen — Design, Texte, Fotos und Marketing bleiben bei Ihnen.",
-              "Enthalten: der Editor, eine leere Webanwendung, das Backend, der Telegram-Bot und der private Kanal sowie Updates und Support für das Werkzeug selbst.",
+              "Enthalten: der Editor, eine Web-App noch ohne Inhalte, das Backend, der Telegram-Bot und der private Kanal sowie Updates und Support für das Werkzeug selbst.",
               "Nicht enthalten: Seiten befüllen, Texte schreiben, Fotografie, SEO.",
               "Wenn Sie jemanden suchen, der die Website an Ihrer Stelle baut, ist das ein Webstudio. Gut möglich, dass es Pagewright schon hat."
             ]
@@ -655,9 +655,9 @@
               "de": "Was machen Sie, und was mache ich?"
             },
             "answer": {
-              "uk": "Я роблю так, щоб машина працювала: редактор, порожнє веб-застосування, бекенд, Telegram-бот і закритий канал, куди приходитимуть повідомлення ваших клієнтів. На старті ви отримуєте головну сторінку й порожнє меню.\n\nДалі сторінки, тексти й картинки — ваші. Не тому, що це складно, а тому, що ви знаєте свій бізнес, а я ні: редактор і зроблено для того, щоб це не вимагало розробника.\n\nЯ розробниця й лишаюся нею — мій час іде в нові можливості редактора, а не в чужі тексти.",
-              "en": "I make the machine work: the editor, an empty web application, the back end, the Telegram bot and the private channel your customers’ messages arrive in. You start with a home page and an empty menu.\n\nAfter that the pages, the words and the pictures are yours. Not because it is hard, but because you know your business and I do not — the editor exists precisely so that this needs no developer.\n\nI am a developer and I intend to stay one: my time goes into new things the editor can do, not into somebody else’s copy.",
-              "de": "Ich sorge dafür, dass die Maschine läuft: der Editor, eine leere Webanwendung, das Backend, der Telegram-Bot und der private Kanal, in dem die Nachrichten Ihrer Kunden ankommen. Sie starten mit einer Startseite und einem leeren Menü.\n\nDanach gehören Seiten, Texte und Bilder Ihnen. Nicht weil es schwierig wäre, sondern weil Sie Ihr Geschäft kennen und ich nicht — genau dafür gibt es den Editor, damit das keinen Entwickler braucht.\n\nIch bin Entwicklerin und bleibe es: meine Zeit fließt in neue Funktionen des Editors, nicht in fremde Texte."
+              "uk": "Я роблю так, щоб машина працювала: редактор, веб-додаток без контенту, бекенд, Telegram-бот і закритий канал, куди приходитимуть повідомлення ваших клієнтів. На старті ви отримуєте головну сторінку й порожнє меню.\n\nДалі сторінки, тексти й картинки — ваші. Не тому, що це складно, а тому, що ви знаєте свій бізнес, а я ні: редактор і зроблено для того, щоб це не вимагало розробника.\n\nЯ розробниця й лишаюся нею — мій час іде в нові можливості редактора, а не в чужі тексти.",
+              "en": "I make the machine work: the editor, a web app with no content yet, the back end, the Telegram bot and the private channel your customers’ messages arrive in. You start with a home page and an empty menu.\n\nAfter that the pages, the words and the pictures are yours. Not because it is hard, but because you know your business and I do not — the editor exists precisely so that this needs no developer.\n\nI am a developer and I intend to stay one: my time goes into new things the editor can do, not into somebody else’s copy.",
+              "de": "Ich sorge dafür, dass die Maschine läuft: der Editor, eine Web-App noch ohne Inhalte, das Backend, der Telegram-Bot und der private Kanal, in dem die Nachrichten Ihrer Kunden ankommen. Sie starten mit einer Startseite und einem leeren Menü.\n\nDanach gehören Seiten, Texte und Bilder Ihnen. Nicht weil es schwierig wäre, sondern weil Sie Ihr Geschäft kennen und ich nicht — genau dafür gibt es den Editor, damit das keinen Entwickler braucht.\n\nIch bin Entwicklerin und bleibe es: meine Zeit fließt in neue Funktionen des Editors, nicht in fremde Texte."
             }
           },
           {

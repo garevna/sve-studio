@@ -127,10 +127,234 @@
   border: solid 2px var(--bright-grey) !important;
 }
 
-.tabs-selected-class {
-  background: var(--dark-grey) !important;
+.shine-button {
+  background: var(--primary) !important;
+  color: var(--white) !important;
+  border-radius: var(--default-border-radius) !important;
+  box-shadow: none !important;
+  font-family: var(--main-font) !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  text-transform: none !important;
+  padding: 12px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.shine-button:hover {
+  background: var(--secondary) !important;
+  border-radius: var(--default-border-radius) !important;
+}
+
+.shine-button:disabled {
+  opacity: 0.3 !important;
+}
+
+.wave-button {
+  background: transparent !important;
+  color: var(--primary) !important;
+  border: solid 1px var(--primary) !important;
+  border-radius: var(--default-border-radius) !important;
+  box-shadow: none !important;
+  font-family: var(--main-font) !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  text-transform: none !important;
+  padding: 12px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transition: color 0.45s ease;
+}
+
+.wave-button:hover {
+  background: var(--accent) !important;
+  color: var(--white) !important;
+  border: solid 1px transparent !important;
+  border-radius: var(--default-border-radius) !important;
+}
+
+.wave-button:disabled {
+  color: var(--grey) !important;
+  border: solid 1px var(--grey) !important;
+}
+
+.arrow-button {
+  background: var(--primary) !important;
+  color: var(--white) !important;
+  border-radius: var(--default-border-radius) !important;
+  box-shadow: none !important;
+  font-family: var(--main-font) !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  text-transform: none !important;
+  padding: 12px;
+  width: 100%;
+  transition: background 0.35s ease;
+}
+
+.arrow-button:hover {
+  background: var(--secondary) !important;
+  border-radius: var(--default-border-radius) !important;
+}
+
+.arrow-button:disabled {
+  opacity: 0.3 !important;
+}
+
+.pulse-button {
+  background: var(--primary) !important;
   color: var(--white) !important;
   border-radius: var(--large-border-radius) !important;
+  box-shadow: none !important;
+  font-family: var(--main-font) !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  text-transform: none !important;
+  padding: 12px;
+  width: 100%;
+  outline: solid 2px transparent;
+  animation: pw-btn-pulse 2.4s ease-out infinite;
+}
+
+.pulse-button:hover {
+  background: var(--secondary) !important;
+  border-radius: var(--large-border-radius) !important;
+}
+
+.pulse-button:disabled {
+  opacity: 0.3 !important;
+  animation: none;
+}
+
+.press-button {
+  background: var(--secondary) !important;
+  color: var(--white) !important;
+  border-radius: var(--default-border-radius) !important;
+  box-shadow: 0 6px 0 var(--primary) !important;
+  font-family: var(--main-font) !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  text-transform: none !important;
+  padding: 12px;
+  width: 100%;
+  margin-bottom: 6px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.press-button:hover {
+  background: var(--secondary) !important;
+  border-radius: var(--default-border-radius) !important;
+  box-shadow: 0 8px 0 var(--primary) !important;
+  transform: translateY(-2px);
+}
+
+.press-button:disabled {
+  opacity: 0.3 !important;
+  transform: none;
+}
+
+.jelly-button {
+  background: var(--primary) !important;
+  color: var(--white) !important;
+  border-radius: var(--default-border-radius) !important;
+  box-shadow: none !important;
+  font-family: var(--main-font) !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  text-transform: none !important;
+  padding: 12px;
+  width: 100%;
+}
+
+.jelly-button:hover {
+  background: var(--secondary) !important;
+  border-radius: var(--default-border-radius) !important;
+  animation: pw-btn-jelly 0.7s ease;
+}
+
+.jelly-button:disabled {
+  opacity: 0.3 !important;
+  animation: none;
+}
+
+.orbit-button {
+  color: var(--primary) !important;
+  border: solid 1px var(--accent) !important;
+  border-radius: var(--default-border-radius) !important;
+  box-shadow: none !important;
+  font-family: var(--main-font) !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  text-transform: none !important;
+  padding: 12px;
+  width: 100%;
+  position: relative;
+  isolation: isolate;
+}
+
+.orbit-button:hover {
+  background: var(--light-grey-2) !important;
+  border: solid 1px var(--success) !important;
+  border-radius: var(--default-border-radius) !important;
+}
+
+.orbit-button:disabled {
+  color: var(--grey) !important;
+}
+
+.aurora-button {
+  background: var(--primary) !important;
+  color: var(--white) !important;
+  border-radius: var(--default-border-radius) !important;
+  box-shadow: none !important;
+  font-family: var(--main-font) !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  text-transform: none !important;
+  padding: 12px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transition: box-shadow 0.4s ease;
+}
+
+.aurora-button:hover {
+  background: var(--primary) !important;
+  border-radius: var(--default-border-radius) !important;
+  box-shadow: 0 8px 24px color-mix(in srgb, var(--secondary) 45%, transparent) !important;
+}
+
+.aurora-button:disabled {
+  opacity: 0.3 !important;
+}
+
+.link-button {
+  background: transparent !important;
+  color: var(--primary) !important;
+  border-radius: var(--default-border-radius) !important;
+  box-shadow: none !important;
+  font-family: var(--main-font) !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  text-transform: none !important;
+  padding: 12px;
+  width: 100%;
+  transition: color 0.3s ease;
+}
+
+.link-button:hover {
+  background: transparent !important;
+  color: var(--secondary) !important;
+  border-radius: var(--default-border-radius) !important;
+}
+
+.link-button:disabled {
+  color: var(--grey) !important;
 }
 
 .v-btn:hover>.v-btn__overlay {
@@ -201,5 +425,198 @@ button {
 @media screen and (max-width: 1024px) {
   .tab-button *, .tab-button--active * {
     font-size: 16px;
+  }
+}
+
+.shine-button > .v-btn__content,
+.wave-button > .v-btn__content,
+.orbit-button > .v-btn__content,
+.aurora-button > .v-btn__content,
+.link-button > .v-btn__content {
+  position: relative;
+  z-index: 1;
+}
+
+.shine-button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(105deg, transparent 30%, color-mix(in srgb, var(--white) 50%, transparent) 50%, transparent 70%);
+  transform: translateX(-110%);
+  animation: pw-btn-shine 3.6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.shine-button:hover::after {
+  animation-duration: 1.4s;
+}
+
+.wave-button::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 110%;
+  z-index: 0;
+  width: 170%;
+  aspect-ratio: 1;
+  border-radius: 42%;
+  background: var(--primary);
+  transform: translateX(-50%) rotate(0deg);
+  transition: top 0.8s ease, transform 1.2s ease;
+  pointer-events: none;
+}
+
+.wave-button:hover::before,
+.wave-button:focus-visible::before {
+  top: -70%;
+  transform: translateX(-50%) rotate(160deg);
+}
+
+.arrow-button > .v-btn__content::after {
+  content: "\2192";
+  display: inline-block;
+  width: 0;
+  margin-left: 0;
+  opacity: 0;
+  overflow: hidden;
+  transform: translateX(-8px);
+  transition: width 0.35s ease, margin-left 0.35s ease, opacity 0.35s ease, transform 0.35s ease;
+}
+
+.arrow-button:hover > .v-btn__content::after,
+.arrow-button:focus-visible > .v-btn__content::after {
+  width: 1.1em;
+  margin-left: 10px;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.press-button:active {
+  transform: translateY(4px);
+  box-shadow: 0 2px 0 var(--primary) !important;
+}
+
+.jelly-button:active {
+  animation: pw-btn-jelly 0.5s ease;
+}
+
+.orbit-button::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  z-index: 0;
+  border-style: solid;
+  border-width: 3px;
+  border-color: inherit;
+  border-radius: inherit;
+  -webkit-mask: conic-gradient(from var(--pw-orbit-angle), transparent 0deg 220deg, #000 360deg);
+  mask: conic-gradient(from var(--pw-orbit-angle), transparent 0deg 220deg, #000 360deg);
+  animation: pw-btn-orbit 3s linear infinite;
+  pointer-events: none;
+}
+
+.orbit-button:hover::before {
+  animation-duration: 1.2s;
+}
+
+.orbit-button:disabled::before {
+  animation: none;
+  opacity: 0;
+}
+
+.aurora-button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(110deg, var(--primary), var(--secondary), var(--dark), var(--primary));
+  background-size: 300% 100%;
+  animation: pw-btn-aurora 6s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+.aurora-button:hover::before {
+  animation-duration: 2s;
+}
+
+.link-button > .v-btn__content::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -4px;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+  transform: scaleX(0);
+  transition: transform 0.35s ease;
+}
+
+.link-button:hover > .v-btn__content::after,
+.link-button:focus-visible > .v-btn__content::after {
+  transform: scaleX(1);
+}
+
+@property --pw-orbit-angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes pw-btn-shine {
+  0% { transform: translateX(-110%); }
+  35% { transform: translateX(110%); }
+  100% { transform: translateX(110%); }
+}
+
+@keyframes pw-btn-pulse {
+  0% { outline-offset: 0; outline-color: color-mix(in srgb, var(--secondary) 60%, transparent); }
+  70% { outline-offset: 12px; outline-color: transparent; }
+  100% { outline-offset: 12px; outline-color: transparent; }
+}
+
+@keyframes pw-btn-jelly {
+  0% { transform: scale(1, 1); }
+  30% { transform: scale(1.04, 0.9); }
+  50% { transform: scale(0.97, 1.06); }
+  70% { transform: scale(1.02, 0.97); }
+  100% { transform: scale(1, 1); }
+}
+
+@keyframes pw-btn-orbit {
+  to { --pw-orbit-angle: 360deg; }
+}
+
+@keyframes pw-btn-aurora {
+  from { background-position: 0% 50%; }
+  to { background-position: 100% 50%; }
+}
+
+@media (hover: none) {
+  .arrow-button > .v-btn__content::after {
+    width: 1.1em;
+    margin-left: 10px;
+    opacity: 1;
+    transform: none;
+  }
+
+  .link-button > .v-btn__content::after {
+    transform: scaleX(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shine-button::after,
+  .orbit-button::before,
+  .aurora-button::before,
+  .pulse-button,
+  .jelly-button:hover,
+  .jelly-button:active {
+    animation: none !important;
+  }
+
+  .wave-button::before {
+    transition: none;
   }
 }

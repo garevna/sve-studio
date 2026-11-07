@@ -39,6 +39,16 @@
     }
   }
 
+  // The look picked in the editor is one of the UI Kit's *-button classes
+  // (buttons.css). primary-button is only the fallback for a block that has
+  // none - added on top of another look it would mix the two (its blue
+  // background under an outlined button), while the editor shows the
+  // picked one alone.
+  const buttonClass = computed(() => {
+    const own = props.item.class || ''
+    return /(?:^|\s)[\w-]+-button(?:\s|$)/.test(own) ? own : ['primary-button', own]
+  })
+
   const component = shallowRef<unknown>(null)
   const templateComponent = shallowRef<unknown>(null)
 
@@ -146,7 +156,7 @@
     <template v-if="props.item.type === 'button'">
       <!-- Stays a <button> with a click: the site's buttons.css styles
         the tag itself. -->
-      <v-btn :class="['primary-button', props.item.class]" @click="onButtonClick">
+      <v-btn :class="buttonClass" @click="onButtonClick">
         <!-- Optional, and only rendered when the block actually carries one -
           a button with no icon must look exactly as it always has. -->
         <v-icon v-if="props.item.icon" class="mr-2" :icon="props.item.icon" size="20" />

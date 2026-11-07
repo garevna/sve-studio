@@ -76,6 +76,11 @@ export default defineNuxtConfig({
     // Hot reload talks to this server directly: the editor's dev server
     // proxies the pages (/site), not the reload socket.
     server: { hmr: { clientPort: 3007 } },
+    // Firebase is loaded only when needed (sign-in, the account's messages).
+    // Prebundled together up front: found one by one, Vite bundles each part
+    // in a pass of its own, and Firestore then can't see the app ("Service
+    // firestore is not available").
+    optimizeDeps: { include: ['firebase/app', 'firebase/auth', 'firebase/firestore'] },
     plugins: [
       // The precompiled Vuetify CSS, with Vuetify's own defaults - the
       // editor's SASS settings (rounder corners for its own chrome) must not

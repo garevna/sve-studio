@@ -12,6 +12,7 @@
   import { useUiFeedbackStore } from '@/stores/ui-feedback'
   import { buttonPreviewVars } from '@/utils/button-preview-vars'
   import { extractButtonEntries, serializeButtonEntries } from '@/utils/button-style-entry'
+  import { EDITED_APP_SCOPE_CLASS } from '@/utils/edited-app-scope'
   import { APP_THEME_NAME, themeClass } from '@/utils/vuetify-theme-names'
 
   const FILE_NAME = 'buttons.css'
@@ -67,6 +68,33 @@
   function serializeEntries (): string {
     return serializeButtonEntries(entries.value, otherNodesRef.value)
   }
+
+  // A button that moves (a glare, a wave, a ring...) gets that from rules
+  // this page has no fields for - pseudo-elements, :active, keyframes - and
+  // the colour-only sample below cannot show it. Those are previewed as the
+  // real site button with the real class instead.
+  function isMotionEntry (entry: ButtonEntry): boolean {
+    const own = `.${entry.className}`
+    const moves = [...entry.base.raw, ...entry.hover.raw].some(item => item.property === 'animation')
+    return moves || otherNodesRef.value.some(node => node.kind === 'rule' && node.selectors.some(selector =>
+      selector.startsWith(own) && /^(?::active|::|:hover::|:focus-visible|\s*>)/.test(selector.slice(own.length)),
+    ))
+  }
+
+  // The site's stylesheets were loaded once, when the editor started, so the
+  // real-class samples would show buttons.css as it was then. The text being
+  // edited is laid over it here, so a colour picked below shows at once.
+  const LIVE_STYLE_ID = 'ui-kit-buttons-live'
+  function showLiveStyles () {
+    let style = document.querySelector<HTMLStyleElement>(`#${LIVE_STYLE_ID}`)
+    if (!style) {
+      style = document.createElement('style')
+      style.id = LIVE_STYLE_ID
+      document.head.append(style)
+    }
+    style.textContent = serializeEntries()
+  }
+  watch([entries, otherNodesRef], showLiveStyles, { deep: true })
 
   async function save () {
     saving.value = true
@@ -316,7 +344,13 @@
                 :class="[themeClass(APP_THEME_NAME), { 'button-palette-preview--wide': isWideButton(entry) }]"
                 :style="{ '--btn-inherited-radius': inheritedRadius || '0' }"
               >
+                <div v-if="isMotionEntry(entry)" class="button-palette-preview-real" :class="EDITED_APP_SCOPE_CLASS">
+                  <v-btn :class="entry.className" :disabled="previewDisabled.has(entry.className)">
+                    {{ t('common.button') }}
+                  </v-btn>
+                </div>
                 <button
+                  v-else
                   class="button-palette-preview-btn"
                   :class="{ 'button-palette-preview-btn--wide': isWideButton(entry) }"
                   :disabled="previewDisabled.has(entry.className)"
@@ -551,6 +585,12 @@
 }
 .button-palette-preview--wide {
   flex: 1 1 auto;
+}
+/* Room for what grows outside the button: the pulse ring, the key's edge. */
+.button-palette-preview-real {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 14px;
 }
 /*
  * Real interactive button, not a static swatch - :hover fires from an

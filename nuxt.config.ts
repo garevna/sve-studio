@@ -83,6 +83,10 @@ export default defineNuxtConfig({
   },
 
   vite: {
+    // The "Повідомлення" section's sign-in, loaded only when opened -
+    // prebundled up front so opening it doesn't make Vite rebundle and
+    // reload the editor.
+    optimizeDeps: { include: ['firebase/app', 'firebase/auth'] },
     plugins: [
       vuetify({
         autoImport: true,

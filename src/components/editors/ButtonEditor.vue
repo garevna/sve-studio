@@ -1,16 +1,17 @@
 <script setup lang="ts">
   import type { TemplateBlockModel } from '@/types/TemplateBlockModel'
-  import { computed, ref } from 'vue'
+  import { computed, ref, watch } from 'vue'
+  import ButtonActionSettings from '@/components/editors/ButtonActionSettings.vue'
+  import ButtonIcon from '@/components/editors/icon/ButtonIcon.vue'
   import LocaleSwitcher from '@/components/editors/small/LocaleSwitcher.vue'
   import IconEditor from '@/components/editors/text/IconEditor.vue'
   import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
   import ButtonVariantSelect from '@/components/special/ButtonVariantSelect.vue'
-  import LinkTargetSettings from '@/components/special/LinkTargetSettings.vue'
-  import FeedbackCardDialog from '@/components/templates/sections/FeedbackCardDialog.vue'
+  import { lookNeedsIcon } from '@/composables/useButtonVariants'
   import { useEditorMode } from '@/composables/useEditorMode'
-  import { feedbackFormTexts } from '@/configs/components/feedback-form'
   import { t } from '@/i18n'
   import { useUiFeedbackStore } from '@/stores/ui-feedback'
+  import { buttonLinkSummary } from '@/utils/button-link-summary'
 
   // A button block: what it says, how it looks, whether it carries an icon,
   // and where it goes. All four were missing except the words - the look was
@@ -47,6 +48,18 @@
     },
   })
 
+  // A look built around an icon (button-with-icon-right) without one would
+  // be a button with an empty place in it - so picking that look opens the
+  // icon window straight away, and until there is an icon the field says
+  // why it is wanted.
+  const needsIcon = computed(() => lookNeedsIcon(className.value))
+  const iconEditorRef = ref<{ openMenu: () => void } | null>(null)
+  watch(needsIcon, (now, before) => {
+    if (now && !before && !icon.value) {
+      iconEditorRef.value?.openMenu()
+    }
+  })
+
   async function requestDelete () {
     if (!await useUiFeedbackStore().confirmDelete('button')) {
       return
@@ -55,34 +68,7 @@
     emit('delete')
   }
 
-  // What a click does: go to a page (or a block on it - the form on the
-  // contacts page, say), or open the feedback form in a popup. The popup's
-  // form has its own texts, set in the same window the footer's card uses.
-  const formOpen = ref(false)
-  const action = computed({
-    get: () => (props.block.action === 'form' ? 'form' : 'link'),
-    set: (value: 'link' | 'form') => {
-      /* eslint-disable vue/no-mutating-props -- the block is edited in place, see the top comment */
-      if (value === 'form') {
-        props.block.action = 'form'
-        props.block.form ??= feedbackFormTexts()
-      } else {
-        delete props.block.action
-      }
-      /* eslint-enable vue/no-mutating-props */
-    },
-  })
-
-  const linkSummary = computed(() => {
-    if (props.block.action === 'form') {
-      return t('buttonEditor.opensFeedbackForm')
-    }
-    if (props.block.route !== 'dynamic-page') {
-      return props.block.route ? t('buttonEditor.pageRoute', { route: props.block.route }) : t('buttonEditor.noTarget')
-    }
-    const pageId = (props.block.params as { pageId?: string } | undefined)?.pageId
-    return props.block.hash ? t('menuSettings.pageBlock', { pageId, hash: props.block.hash }) : t('menuSettings.page', { pageId })
-  })
+  const linkSummary = computed(() => buttonLinkSummary(props.block))
 </script>
 
 <template>
@@ -103,7 +89,7 @@
         the link is where the rest of what this button says already lives. -->
       <div class="button-editor-face-slot">
         <v-btn :class="className">
-          <v-icon v-if="icon" class="mr-2" :icon="icon" size="20" />
+          <ButtonIcon v-if="icon" :icon="icon" />
           {{ content }}
         </v-btn>
       </div>
@@ -166,33 +152,14 @@
 
             appearance=false: a button's icon takes its size and colour from
             the button, so there is nothing of that kind to set. -->
-          <div class="button-editor-icon-row mb-6">
+          <div class="button-editor-icon-row" :class="needsIcon && !icon ? 'mb-2' : 'mb-6'">
             <span class="button-editor-field-label">{{ t('buttonEditor.icon') }}</span>
-            <IconEditor v-model:icon="icon" :appearance="false" :icon-size="24" />
+            <IconEditor ref="iconEditorRef" v-model:icon="icon" :appearance="false" :icon-size="24" />
             <v-btn v-if="icon" size="small" variant="text" @click="icon = ''">{{ t('buttonEditor.remove') }}</v-btn>
           </div>
+          <p v-if="needsIcon && !icon" class="button-editor-icon-needed mb-6">{{ t('buttonEditor.iconNeeded') }}</p>
 
-          <p class="button-editor-field-label mb-2">{{ t('buttonEditor.action') }}</p>
-          <v-btn-toggle
-            v-model="action"
-            class="mb-6 button-editor-action-toggle"
-            color="primary"
-            density="compact"
-            mandatory
-            variant="outlined"
-          >
-            <v-btn prepend-icon="mdi-link-variant" value="link">{{ t('buttonEditor.toPage') }}</v-btn>
-            <v-btn prepend-icon="mdi-message-text-outline" value="form">{{ t('buttonEditor.opensForm') }}</v-btn>
-          </v-btn-toggle>
-
-          <!-- The same three fields the menu and the footer's links use -
-            a page, and optionally one block on it to scroll to. -->
-          <LinkTargetSettings v-if="action === 'link'" :active="panelOpen" auto :item="block" />
-          <template v-else-if="block.form">
-            <p class="text-body-2 mb-3">{{ t('buttonEditor.formHint') }}</p>
-            <v-btn prepend-icon="mdi-playlist-edit" variant="tonal" @click="formOpen = true">{{ t('buttonEditor.formTexts') }}</v-btn>
-            <FeedbackCardDialog v-model="formOpen" :card="block.form" />
-          </template>
+          <ButtonActionSettings :active="panelOpen" :block="block" />
         </v-card-text>
 
         <v-card-actions>
@@ -235,9 +202,9 @@
   align-items: center;
   gap: 12px;
 }
-.button-editor-action-toggle {
-  flex-wrap: wrap;
-  height: auto;
+.button-editor-icon-needed {
+  font-size: 0.85rem;
+  color: rgb(var(--v-theme-warning));
 }
 .button-editor-field-label {
   font-size: 0.85rem;

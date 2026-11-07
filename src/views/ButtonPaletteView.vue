@@ -1,17 +1,21 @@
 <script lang="ts" setup>
   import type { ButtonEntry } from '@/utils/button-style-entry'
+  import type { CssNode } from '@/utils/css-rules'
   import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
   import googleIcon from '@/assets/google-icon.svg'
+  import ButtonIcon from '@/components/editors/icon/ButtonIcon.vue'
   import ButtonStylePicker from '@/components/special/ButtonStylePicker.vue'
   import EditorSaveBar from '@/components/special/EditorSaveBar.vue'
   import PaletteSwatchPicker from '@/components/special/PaletteSwatchPicker.vue'
   import TabsPreview from '@/components/special/TabsPreview.vue'
+  import { lookNeedsIcon } from '@/composables/useButtonVariants'
   import { isTabClass, TAB_STRIP_CLASS, TAB_STYLE_CLASS } from '@/configs/tab-classes'
   import { t } from '@/i18n'
   import { useAjaxStore } from '@/stores/ajax'
   import { useUiFeedbackStore } from '@/stores/ui-feedback'
   import { buttonPreviewVars } from '@/utils/button-preview-vars'
   import { extractButtonEntries, serializeButtonEntries } from '@/utils/button-style-entry'
+  import { parseCss, serializeCss } from '@/utils/css-rules'
   import { EDITED_APP_SCOPE_CLASS } from '@/utils/edited-app-scope'
   import { APP_THEME_NAME, themeClass } from '@/utils/vuetify-theme-names'
 
@@ -69,11 +73,12 @@
     return serializeButtonEntries(entries.value, otherNodesRef.value)
   }
 
-  // A button that moves (a glare, a wave, a ring...) gets that from rules
-  // this page has no fields for - pseudo-elements, :active, keyframes - and
-  // the colour-only sample below cannot show it. Those are previewed as the
-  // real site button with the real class instead.
-  function isMotionEntry (entry: ButtonEntry): boolean {
+  // A button that moves (a glare, a wave, a ring...) or arranges what is
+  // inside it (the icon to the right of the text) gets that from rules this
+  // page has no fields for - pseudo-elements, :active, keyframes, rules on
+  // its content - and the colour-only sample below cannot show it. Those are
+  // previewed as the real site button with the real class instead.
+  function usesRealPreview (entry: ButtonEntry): boolean {
     const own = `.${entry.className}`
     const moves = [...entry.base.raw, ...entry.hover.raw].some(item => item.property === 'animation')
     return moves || otherNodesRef.value.some(node => node.kind === 'rule' && node.selectors.some(selector =>
@@ -81,10 +86,45 @@
     ))
   }
 
+  // A page's button may carry an icon (the block's "Іконка" field), and
+  // where it goes is the class's business - so the real-class sample can
+  // show one. On at first only for a class that is about the icon
+  // (button-with-icon-right); the checkbox flips it for any of them.
+  const SAMPLE_ICON = 'mdi-arrow-right'
+  const previewIconFlipped = ref(new Set<string>())
+  function realIconShown (className: string): boolean {
+    return lookNeedsIcon(className) !== previewIconFlipped.value.has(className)
+  }
+  function toggleRealIcon (className: string) {
+    const flipped = new Set(previewIconFlipped.value)
+    if (flipped.has(className)) {
+      flipped.delete(className)
+    } else {
+      flipped.add(className)
+    }
+    previewIconFlipped.value = flipped
+  }
+
   // The site's stylesheets were loaded once, when the editor started, so the
   // real-class samples would show buttons.css as it was then. The text being
   // edited is laid over it here, so a colour picked below shows at once.
   const LIVE_STYLE_ID = 'ui-kit-buttons-live'
+  //
+  // Every :hover rule is repeated there under FORCE_HOVER_CLASS too, so the
+  // sample can show its hover look while the hover state is being edited -
+  // a real :hover needs the mouse, and the mouse is on the fields.
+  const FORCE_HOVER_CLASS = 'ui-kit-force-hover'
+  function forcedHoverRules (cssText: string): string {
+    const rules: CssNode[] = []
+    for (const node of parseCss(cssText)) {
+      if (node.kind !== 'rule') continue
+      const selectors = node.selectors.filter(selector => selector.includes(':hover'))
+      if (selectors.length > 0) {
+        rules.push({ ...node, selectors: selectors.map(selector => selector.replaceAll(':hover', `.${FORCE_HOVER_CLASS}`)) })
+      }
+    }
+    return serializeCss(rules)
+  }
   function showLiveStyles () {
     let style = document.querySelector<HTMLStyleElement>(`#${LIVE_STYLE_ID}`)
     if (!style) {
@@ -92,7 +132,19 @@
       style.id = LIVE_STYLE_ID
       document.head.append(style)
     }
-    style.textContent = serializeEntries()
+    const cssText = serializeEntries()
+    style.textContent = `${cssText}\n\n${forcedHoverRules(cssText)}`
+  }
+
+  // The state the open row's settings are on (normal / hover / disabled) -
+  // the sample shows that one. The disabled checkbox still works on its own.
+  const editedState = ref<{ className: string, state: string } | null>(null)
+  function previewState (className: string): 'base' | 'hover' | 'disabled' {
+    if (previewDisabled.value.has(className)) return 'disabled'
+    const edited = expandedClassName.value === className && editedState.value?.className === className
+      ? editedState.value.state
+      : 'base'
+    return edited === 'hover' || edited === 'disabled' ? edited : 'base'
   }
   watch([entries, otherNodesRef], showLiveStyles, { deep: true })
 
@@ -152,6 +204,8 @@
 
   function toggleExpanded (className: string) {
     expandedClassName.value = expandedClassName.value === className ? null : className
+    // A row opens on "normal" again.
+    editedState.value = null
   }
 
   // Confirmed like every other deletion in this editor. Undo would bring it
@@ -344,16 +398,25 @@
                 :class="[themeClass(APP_THEME_NAME), { 'button-palette-preview--wide': isWideButton(entry) }]"
                 :style="{ '--btn-inherited-radius': inheritedRadius || '0' }"
               >
-                <div v-if="isMotionEntry(entry)" class="button-palette-preview-real" :class="EDITED_APP_SCOPE_CLASS">
-                  <v-btn :class="entry.className" :disabled="previewDisabled.has(entry.className)">
+                <div v-if="usesRealPreview(entry)" class="button-palette-preview-real" :class="EDITED_APP_SCOPE_CLASS">
+                  <!-- The same markup a page's button block renders,
+                    icon included (site TemplateItem.vue). -->
+                  <v-btn
+                    :class="[entry.className, { [FORCE_HOVER_CLASS]: previewState(entry.className) === 'hover' }]"
+                    :disabled="previewState(entry.className) === 'disabled'"
+                  >
+                    <ButtonIcon v-if="realIconShown(entry.className)" :icon="SAMPLE_ICON" />
                     {{ t('common.button') }}
                   </v-btn>
                 </div>
                 <button
                   v-else
                   class="button-palette-preview-btn"
-                  :class="{ 'button-palette-preview-btn--wide': isWideButton(entry) }"
-                  :disabled="previewDisabled.has(entry.className)"
+                  :class="{
+                    'button-palette-preview-btn--wide': isWideButton(entry),
+                    'button-palette-preview-btn--hover': previewState(entry.className) === 'hover',
+                  }"
+                  :disabled="previewState(entry.className) === 'disabled'"
                   :style="previewVars(entry)"
                 >
                   <img
@@ -384,6 +447,14 @@
                   >
                   {{ t('buttonPalette.icon') }}
                 </label>
+                <label v-if="usesRealPreview(entry)" class="button-palette-preview-disabled" @click.stop>
+                  <input
+                    :checked="realIconShown(entry.className)"
+                    type="checkbox"
+                    @change="toggleRealIcon(entry.className)"
+                  >
+                  {{ t('buttonPalette.icon') }}
+                </label>
               </div>
             </v-theme-provider>
             <span class="button-palette-class-name">.{{ entry.className }}</span>
@@ -397,7 +468,11 @@
           </div>
           <v-expand-transition>
             <div v-if="expandedClassName === entry.className" class="button-palette-row-body">
-              <ButtonStylePicker :entry="entry" :inherited-radius="inheritedRadius" />
+              <ButtonStylePicker
+                :entry="entry"
+                :inherited-radius="inheritedRadius"
+                @state="state => editedState = { className: entry.className, state }"
+              />
             </div>
           </v-expand-transition>
         </div>
@@ -632,7 +707,8 @@
   width: 100%;
   display: block;
 }
-.button-palette-preview-btn:hover:not(:disabled) {
+.button-palette-preview-btn:hover:not(:disabled),
+.button-palette-preview-btn--hover:not(:disabled) {
   background: var(--btn-hover-bg, var(--btn-bg, transparent));
   color: var(--btn-hover-color, var(--btn-color, inherit));
   border: var(--btn-hover-border, var(--btn-border, none));

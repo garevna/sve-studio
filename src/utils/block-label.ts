@@ -12,6 +12,7 @@ const CONTENT_LABEL_TYPES = new Set(['header', 'title', 'text'])
 const TYPE_LABELS: Record<string, string> = {
   'baner': 'common.banner',
   'button': 'common.button',
+  'icon-button': 'common.iconButton',
   'card': 'common.card',
   'cards': 'common.cards',
   'card-with-toolbar-image': 'blockTypes.cardWithToolbarImage',
@@ -27,6 +28,7 @@ const TYPE_LABELS: Record<string, string> = {
   'section-with-free-content': 'common.arbitraryContent',
   'slider-with-images': 'blockTypes.sliderWithImages',
   'swiper': 'blockTypes.swiper',
+  'tabs': 'common.tabs',
   'text-with-icon': 'common.textWithIcon',
 }
 

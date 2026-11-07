@@ -46,6 +46,14 @@ export const listOfComponents = [
         iconClass: 'mr-2',
         image: null,
       },
+      {
+        id: 'icon-button',
+        title: 'common.iconButton',
+        icon: 'mdi-gesture-tap-button',
+        class: 'ml-12',
+        iconClass: 'mr-2',
+        image: null,
+      },
     ],
   },
   {
@@ -233,6 +241,7 @@ export const listOfComponents = [
       },
       { id: 'card-with-icon-left', title: 'blockMenu.cardWithIconLeft', icon: 'mdi-view-list', iconClass: 'mr-2', class: 'ml-12', image: cardWithIconLeft },
       { id: 'card-with-icon-row', title: 'blockMenu.cardWithIconRow', icon: 'mdi-format-list-bulleted-square', iconClass: 'mr-2', class: 'ml-12', image: null },
+      { id: 'tabs', title: 'common.tabs', icon: 'mdi-tab', iconClass: 'mr-2', class: 'ml-12', image: null },
       // { id: 'card-ver-3', title: 'З іконкою ліворуч', icon: 'mdi-view-list', iconClass: 'mr-2', class: 'ml-12', image: null },
       { id: 'card-with-hover', title: 'blockMenu.cardWithHover', icon: 'mdi-format-text-wrapping-overflow', iconClass: 'rotate-left-90', class: 'ml-12', image: null },
     ],

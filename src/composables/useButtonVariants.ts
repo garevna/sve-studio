@@ -20,6 +20,14 @@ const EXCLUDED = new Set(['google-button'])
 const variants = ref<string[]>([])
 let loading: Promise<void> | null = null
 
+// A look that is built around an icon says so in its name
+// (button-with-icon-right): a button given that look needs one, so the
+// button's settings ask for it. Takes a whole class string, like the block
+// stores.
+export function lookNeedsIcon (className: string): boolean {
+  return className.split(' ').some(token => token.includes('button') && token.includes('icon'))
+}
+
 export function useButtonVariants () {
   const ajaxStore = useAjaxStore()
 

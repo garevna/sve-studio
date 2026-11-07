@@ -5,6 +5,8 @@
 
   import { computed, defineAsyncComponent, ref, shallowRef, watch } from 'vue'
 
+  import ButtonIcon from '../components/small/ButtonIcon.vue'
+  import IconVariant from '../components/small/IconVariant.vue'
   import FeedbackPopup from '../components/template-components/FeedbackPopup.vue'
   // import { scrollByRef } from '@/utils/scroll-by-ref'
   // import { getDynamicPageContent } from '@/services/ajax/get-dynamic-page-content'
@@ -39,14 +41,20 @@
     }
   }
 
-  // The look picked in the editor is one of the UI Kit's *-button classes
-  // (buttons.css). primary-button is only the fallback for a block that has
+  // The look picked in the editor is one of the UI Kit's button classes
+  // (buttons.css) - every one of them has "button" in its name. primary-button is only the fallback for a block that has
   // none - added on top of another look it would mix the two (its blue
   // background under an outlined button), while the editor shows the
   // picked one alone.
   const buttonClass = computed(() => {
     const own = props.item.class || ''
-    return /(?:^|\s)[\w-]+-button(?:\s|$)/.test(own) ? own : ['primary-button', own]
+    return own.split(' ').some(token => token.includes('button')) ? own : ['primary-button', own]
+  })
+
+  // An icon button's tooltip, in this language or the site's main one.
+  const iconButtonLabel = computed(() => {
+    const content = props.item.content as Record<string, string> | undefined
+    return content?.[locale.value] || content?.[defaultLocale.value] || ''
   })
 
   const component = shallowRef<unknown>(null)
@@ -75,6 +83,7 @@
     'card': 'TemplateCard',
     'baner': 'TemplateBaner',
     'cards': 'CardSet',
+    'tabs': 'TabSet',
     'text-with-icon': 'TextWithIcon',
     'dark-fone-section': 'DarkFoneSection',
     'hover-card': 'HoverTemplate',
@@ -159,9 +168,33 @@
       <v-btn :class="buttonClass" @click="onButtonClick">
         <!-- Optional, and only rendered when the block actually carries one -
           a button with no icon must look exactly as it always has. -->
-        <v-icon v-if="props.item.icon" class="mr-2" :icon="props.item.icon" size="20" />
+        <ButtonIcon v-if="props.item.icon" :icon="props.item.icon" />
         {{ props.item.content[locale as 'uk' | 'en' | 'de'] }}
       </v-btn>
+    </template>
+
+    <!-- An icon-only button: what it does is said by its tooltip (and, for
+      screen readers, by the same words as its label). -->
+    <template v-if="props.item.type === 'icon-button'">
+      <v-tooltip :disabled="!iconButtonLabel" location="top" :text="iconButtonLabel">
+        <template #activator="{ props: tooltipProps }">
+          <button
+            v-bind="tooltipProps"
+            :aria-label="iconButtonLabel"
+            :class="['icon-button', props.item.class]"
+            :style="{ '--icon-button-plate': props.item.hoverBackground ? `var(--${props.item.hoverBackground})` : 'transparent' }"
+            type="button"
+            @click="onButtonClick"
+          >
+            <IconVariant
+              :background="props.item.background ? `var(--${props.item.background})` : null"
+              :color="`var(--${props.item.color || 'primary'})`"
+              :icon="props.item.icon || ''"
+              :size="props.item.size || 32"
+            />
+          </button>
+        </template>
+      </v-tooltip>
     </template>
 
     <FeedbackPopup
@@ -197,5 +230,24 @@
 
 .rounded {
   border-radius: var(--large-border-radius) !important;
+}
+/* The plate under the icon is always there at the same size - only its
+   colour changes on hover (the block's hoverBackground), so nothing around
+   the button moves. */
+.icon-button {
+  display: inline-flex;
+  padding: 8px;
+  border: none;
+  border-radius: 50% !important;
+  background: transparent;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.icon-button:hover {
+  background: var(--icon-button-plate);
+}
+.icon-button:focus-visible {
+  outline: solid 2px var(--secondary);
+  outline-offset: 2px;
 }
 </style>

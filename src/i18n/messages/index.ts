@@ -26,6 +26,7 @@ import footer from './footer.json'
 import generalSettings from './generalSettings.json'
 import header from './header.json'
 import home from './home.json'
+import iconButton from './iconButton.json'
 import icons from './icons.json'
 import images from './images.json'
 import inbox from './inbox.json'
@@ -44,6 +45,7 @@ import siteSettings from './siteSettings.json'
 import socialLinks from './socialLinks.json'
 import spacing from './spacing.json'
 import styleFiles from './styleFiles.json'
+import tabs from './tabs.json'
 import textFormat from './textFormat.json'
 import textSection from './textSection.json'
 import textWithIcon from './textWithIcon.json'
@@ -76,6 +78,7 @@ export const MESSAGES = {
   generalSettings,
   header,
   home,
+  iconButton,
   icons,
   images,
   inbox,
@@ -94,6 +97,7 @@ export const MESSAGES = {
   socialLinks,
   spacing,
   styleFiles,
+  tabs,
   textFormat,
   textSection,
   textWithIcon,

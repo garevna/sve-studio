@@ -29,3 +29,9 @@ export function cardDefaults (block: TemplateBlockModel): Partial<TemplateBlockM
     contentClass: block.contentClass,
   }
 }
+
+// A tabs block's cards are its panels, each as wide as the block: the same
+// defaults minus the card width.
+export function tabCardDefaults (block: TemplateBlockModel): Partial<TemplateBlockModel> {
+  return { ...cardDefaults(block), width: 0 }
+}

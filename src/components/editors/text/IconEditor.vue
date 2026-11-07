@@ -50,6 +50,9 @@
     menuOpen.value = true
     nextTick(() => pickerRef.value?.loadIconNames())
   }
+  // For a host that has to ask for an icon itself - a button whose look
+  // needs one (ButtonEditor.vue).
+  defineExpose({ openMenu })
 
 </script>
 

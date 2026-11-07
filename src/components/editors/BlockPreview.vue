@@ -3,6 +3,7 @@
   import type { TemplateBlockModel } from '@/types/TemplateBlockModel'
   import { computed } from 'vue'
   import CardSet from '@/components/templates/cards/CardSet.vue'
+  import TabSet from '@/components/templates/cards/TabSet.vue'
   import TemplateFlexSection from '@/components/templates/sections/TemplateFlexSection.vue'
   import TemplateNestedSection from '@/components/templates/sections/TemplateNestedSection.vue'
   import TemplateItem from '@/components/templates/TemplateItem.vue'
@@ -33,6 +34,7 @@
       </div>
       <TemplateFlexSection v-else-if="shown.type === 'float'" :section="shown" />
       <CardSet v-else-if="shown.type === 'cards'" :item="shown" />
+      <TabSet v-else-if="shown.type === 'tabs'" :item="shown" />
       <TemplateItem v-else :block-index="0" :blocks="asList" />
     </v-theme-provider>
   </div>

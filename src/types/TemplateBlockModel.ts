@@ -7,10 +7,14 @@ enum BlockTypeModel {
   text = 'text',
   image = 'image',
   button = 'button',
+  // An icon-only button with a tooltip (IconButtonEditor.vue).
+  ICON_BUTTON = 'icon-button',
   SECTION = 'section',
   FLOAT = 'float',
   CARD = 'card',
   CARDS = 'cards',
+  // A set of cards shown one at a time, under a row of tabs (TabSet.vue).
+  TABS = 'tabs',
   PARALLAX = 'parallax',
   PARALLAX_INSIDE = 'parallax-inside',
   SWIPER = 'swiper',
@@ -65,6 +69,13 @@ export interface BaseBlock {
   // every size the footer stores, always a multiple of 4.
   gap?: number
   icon?: string
+  // icon-button: the plate under the icon on hover (palette key; unset = none)
+  hoverBackground?: string
+  // tabs: how the row of tabs looks ('pill' | 'underline' | 'folder'), its
+  // accent and its plate (palette keys) - see TabStrip.vue
+  tabLook?: string
+  tabAccent?: string
+  tabPlate?: string
   // Lets an icon stay configured (color/size/background all preserved) but
   // not rendered - e.g. toggling it off/on to compare a card-with-hover
   // side with vs without an icon, without losing the setup each time.

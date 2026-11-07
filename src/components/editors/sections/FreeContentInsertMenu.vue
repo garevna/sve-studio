@@ -8,6 +8,7 @@
   import { feedbackForm } from '@/configs/components/feedback-form'
   import { button } from '@/configs/components/simple/button'
   import { header } from '@/configs/components/simple/header'
+  import { iconButton } from '@/configs/components/simple/icon-button'
   import { image } from '@/configs/components/simple/image'
   import { text } from '@/configs/components/simple/text'
   import { textWithIcon } from '@/configs/components/simple/text-with-icon'
@@ -52,6 +53,9 @@
     { get title () {
       return t('common.button')
     }, icon: 'mdi-button-pointer', factory: () => button() as TemplateBlockModel },
+    { get title () {
+      return t('common.iconButton')
+    }, icon: 'mdi-gesture-tap-button', factory: () => iconButton() as TemplateBlockModel },
     { get title () {
       return t('elements.imageCarousel')
     }, icon: 'mdi-camera-burst', factory: swiperWithImagesTemplate },

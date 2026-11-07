@@ -1,0 +1,135 @@
+<script setup lang="ts">
+  import type { TemplateBlockModel } from '../../types/common'
+  import { storeToRefs } from 'pinia'
+  import { computed, ref, watch } from 'vue'
+  import TabStrip from '../../components/small/TabStrip.vue'
+  import { useCommonStore } from '../../stores/common'
+  import TemplateCard from './TemplateCard.vue'
+
+  // A tabs block: a set of cards (the same cards CardSet.vue lays out side
+  // by side) showing one at a time. A card's title is its tab's name; the
+  // card itself is the panel, as wide as the block.
+  //
+  // Every panel sits in the same place and only the chosen one is shown, so
+  // the block is as tall as its tallest panel and nothing under it jumps
+  // when a tab is switched. A panel comes in from the side of the tab it was
+  // switched to. The editor's copy is src/components/templates/cards/TabSet.vue.
+  const props = defineProps<{ item: TemplateBlockModel }>()
+  const { locale, defaultLocale } = storeToRefs(useCommonStore())
+
+  const cards = computed(() => props.item.children || [])
+  const active = ref(0)
+  watch(() => cards.value.length, count => {
+    if (active.value >= count) active.value = Math.max(0, count - 1)
+  })
+
+  function text (value: unknown): string {
+    const model = value as Record<string, string> | undefined
+    return model?.[locale.value] || model?.[defaultLocale.value] || ''
+  }
+  const labels = computed(() => cards.value.map((card, index) => text(card.title) || String(index + 1)))
+
+  const look = computed(() => props.item.tabLook || 'pill')
+  const DEFAULT_PLATE: Record<string, string> = { pill: 'light-grey-2', underline: 'light-grey-1', folder: 'light-grey-2' }
+  const accent = computed(() => `var(--${props.item.tabAccent || 'primary'})`)
+  const plate = computed(() => `var(--${props.item.tabPlate || DEFAULT_PLATE[look.value] || 'light-grey-2'})`)
+
+  // The card's own look comes from the block, as in a card set - only the
+  // width is the block's whole width rather than a card's.
+  function panelCard (card: TemplateBlockModel): TemplateBlockModel {
+    return {
+      ...card,
+      width: 0,
+      height: props.item.height,
+      size: props.item.size || 24,
+      mobileSize: props.item.mobileSize,
+      ver: props.item.ver || 2,
+      background: props.item.background,
+      color: props.item.color,
+      cardBackground: props.item.cardBackground,
+      cardStyle: props.item.cardStyle,
+      titleClass: props.item.titleClass,
+      contentClass: props.item.contentClass,
+    }
+  }
+</script>
+
+<template>
+  <div :id="props.item.id" :class="['tab-set', `tab-set--${look}`, props.item.class]" :style="{ '--tab-plate': plate }">
+    <TabStrip
+      v-model="active"
+      :accent="accent"
+      :labels="labels"
+      :look="look"
+      :plate="plate"
+    />
+    <div class="tab-set__panels">
+      <div
+        v-for="(card, index) of cards"
+        :key="index"
+        :aria-hidden="index !== active"
+        :class="['tab-set__panel', {
+          'tab-set__panel--active': index === active,
+          'tab-set__panel--before': index < active,
+          'tab-set__panel--after': index > active,
+        }]"
+        :inert="index !== active || undefined"
+        role="tabpanel"
+      >
+        <TemplateCard :item="panelCard(card)" />
+      </div>
+    </div>
+  </div>
+</template>
+
+<style scoped>
+.tab-set {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+.tab-set__panels {
+  display: grid;
+}
+.tab-set__panel {
+  grid-area: 1 / 1;
+  display: flex;
+  min-width: 0;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.35s ease, transform 0.35s ease, visibility 0s linear 0.35s;
+}
+.tab-set__panel--before {
+  transform: translateX(-24px);
+}
+.tab-set__panel--after {
+  transform: translateX(24px);
+}
+.tab-set__panel--active {
+  visibility: visible;
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.35s ease, transform 0.35s ease, visibility 0s;
+}
+.tab-set__panel > * {
+  flex: 1 1 auto;
+}
+/* folder: the chosen tab and the panel are one piece */
+.tab-set--folder {
+  gap: 0;
+}
+.tab-set--folder .tab-set__panels {
+  padding: 8px;
+  border-radius: 0 var(--large-border-radius) var(--large-border-radius) var(--large-border-radius);
+  background: var(--tab-plate);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tab-set__panel,
+  .tab-set__panel--active {
+    transform: none;
+    transition: none;
+  }
+}
+</style>

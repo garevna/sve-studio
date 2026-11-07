@@ -13,6 +13,7 @@
   import { resolveThemeAssetPath } from '@/utils/theme-asset-path'
   // import { useAjaxStore } from '@/stores/ajax'
   import ButtonEditor from '../editors/ButtonEditor.vue'
+  import IconButtonEditor from '../editors/IconButtonEditor.vue'
   import ImageEditor from '../editors/ImageEditor.vue'
   import RouteEditor from '../editors/RouteEditor.vue'
   import SwiperImagesEditor from '../editors/SwiperImagesEditor.vue'
@@ -302,6 +303,9 @@
         :deletable="props.deletable"
         @delete="emit('delete')"
       />
+    </template>
+    <template v-else-if="item.type === 'icon-button'">
+      <icon-button-editor :block="item" :deletable="props.deletable" @delete="emit('delete')" />
     </template>
     <template v-else-if="item.type === 'card'">
       <template-card :class="['mb-4', displayClass]" :defaults="props.defaults" :item="item" />

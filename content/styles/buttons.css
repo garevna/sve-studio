@@ -119,6 +119,19 @@
   border: solid 1px var(--grey) !important;
 }
 
+.button-with-icon-right > .v-btn__content > .button-icon {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  margin: 0 !important;
+  transform: translateY(-50%);
+  transition: transform 0.3s ease;
+}
+
+.button-with-icon-right:hover > .v-btn__content > .button-icon {
+  transform: translate(4px, -50%);
+}
+
 .google-button {
   border: solid 1px var(--light-grey-1) !important;
 }
@@ -205,7 +218,7 @@
   opacity: 0.3 !important;
 }
 
-.pulse-button {
+.pulse-filled-button {
   background: var(--primary) !important;
   color: var(--white) !important;
   border-radius: var(--large-border-radius) !important;
@@ -216,18 +229,75 @@
   text-transform: none !important;
   padding: 12px;
   width: 100%;
-  outline: solid 2px transparent;
-  animation: pw-btn-pulse 2.4s ease-out infinite;
+  position: relative;
 }
 
-.pulse-button:hover {
+.pulse-filled-button:hover {
   background: var(--secondary) !important;
   border-radius: var(--large-border-radius) !important;
 }
 
-.pulse-button:disabled {
+.pulse-filled-button:disabled {
   opacity: 0.3 !important;
+}
+
+.pulse-outlined-button {
+  background: transparent !important;
+  color: var(--primary) !important;
+  border: solid 1px var(--primary) !important;
+  border-radius: var(--large-border-radius) !important;
+  box-shadow: none !important;
+  font-family: var(--main-font) !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  text-transform: none !important;
+  padding: 12px;
+  width: 100%;
+  position: relative;
+}
+
+.pulse-outlined-button:hover {
+  background: transparent !important;
+  color: var(--secondary) !important;
+  border: solid 1px var(--secondary) !important;
+  border-radius: var(--large-border-radius) !important;
+}
+
+.pulse-outlined-button:disabled {
+  color: var(--grey) !important;
+  border: solid 1px var(--grey) !important;
+}
+
+.pulse-filled-button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 2px;
+  border-radius: inherit;
+  background: inherit;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  animation: pw-btn-pulse 2.4s ease-out infinite;
+  pointer-events: none;
+}
+
+.pulse-outlined-button::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-style: solid;
+  border-width: 2px;
+  border-color: inherit;
+  border-radius: inherit;
+  animation: pw-btn-pulse 2.4s ease-out infinite;
+  pointer-events: none;
+}
+
+.pulse-filled-button:disabled::before,
+.pulse-outlined-button:disabled::before {
   animation: none;
+  opacity: 0;
 }
 
 .press-button {
@@ -571,9 +641,9 @@ button {
 }
 
 @keyframes pw-btn-pulse {
-  0% { outline-offset: 0; outline-color: color-mix(in srgb, var(--secondary) 60%, transparent); }
-  70% { outline-offset: 12px; outline-color: transparent; }
-  100% { outline-offset: 12px; outline-color: transparent; }
+  0% { inset: -1px; opacity: 0.8; }
+  75% { inset: -12px; opacity: 0; }
+  100% { inset: -12px; opacity: 0; }
 }
 
 @keyframes pw-btn-jelly {
@@ -610,7 +680,8 @@ button {
   .shine-button::after,
   .orbit-button::before,
   .aurora-button::before,
-  .pulse-button,
+  .pulse-filled-button::before,
+  .pulse-outlined-button::before,
   .jelly-button:hover,
   .jelly-button:active {
     animation: none !important;

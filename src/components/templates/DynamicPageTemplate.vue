@@ -9,7 +9,7 @@
   import { galery2 } from '@/configs/components/galery-2'
   import { t } from '@/i18n'
   import { useCommonStore } from '@/stores/common'
-  import { cardDefaults } from '@/utils/card-defaults'
+  import { cardDefaults, tabCardDefaults } from '@/utils/card-defaults'
   import { EDITED_APP_SCOPE_CLASS } from '@/utils/edited-app-scope'
   import { imageBlockVariant, imagePairSiblingIndex, isSecondHalfOfImagePair } from '@/utils/image-variant'
   import { stableKey } from '@/utils/stable-key'
@@ -23,6 +23,8 @@
   import CardWithHoverGroupActions from './cards/CardWithHoverGroupActions.vue'
   import CardWithToolbarImageGroupActions from './cards/CardWithToolbarImageGroupActions.vue'
   import EditableCardsBlock from './cards/EditableCardsBlock.vue'
+  import EditableTabsBlock from './cards/EditableTabsBlock.vue'
+  import TabSet from './cards/TabSet.vue'
   import ImageVariantBlock from './ImageVariantBlock.vue'
   import DarkFoneSection from './sections/DarkFoneSection.vue'
   import DarkFoneSectionActions from './sections/DarkFoneSectionActions.vue'
@@ -96,7 +98,7 @@
   // without a menu of its own, keeping "where does delete live" consistent
   // instead of merging unrelated actions into one control just because
   // they're both in this component.
-  const TYPES_WITH_OWN_MENU = new Set(['header', 'title', 'text', 'text-with-icon', 'button', 'carousel'])
+  const TYPES_WITH_OWN_MENU = new Set(['header', 'title', 'text', 'text-with-icon', 'button', 'icon-button', 'carousel'])
   function blockHasOwnMenu (type: string): boolean {
     return TYPES_WITH_OWN_MENU.has(type)
   }
@@ -376,6 +378,16 @@
                 @edit-card="openCardEditor(block.children as TemplateBlockModel[], $event, cardDefaults(block), block.uniformCardIcon !== false ? block : undefined)"
               />
               <CardSet v-else :item="block" />
+            </template>
+            <template v-else-if="block.type === 'tabs'">
+              <EditableTabsBlock
+                v-if="blockMode === 'edit'"
+                :block="block"
+                :card-defaults="tabCardDefaults(block)"
+                @delete-card="requestDeleteCard(block.children as TemplateBlockModel[], $event)"
+                @edit-card="openCardEditor(block.children as TemplateBlockModel[], $event, tabCardDefaults(block), block.uniformCardIcon !== false ? block : undefined)"
+              />
+              <TabSet v-else :item="block" />
             </template>
             <template v-else-if="block.type === 'image' && imagePairIndices(pageContent.blocks, index)">
               <!-- A desktop/mobile pair (see image-variant.ts) is two real

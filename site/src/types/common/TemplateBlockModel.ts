@@ -9,10 +9,12 @@ enum BlockTypeModel {
   text = 'text',
   image = 'image',
   button = 'button',
+  ICON_BUTTON = 'icon-button',
   SECTION = 'section',
   FLOAT = 'float',
   CARD = 'card',
   CARDS = 'cards',
+  TABS = 'tabs',
   PARALLAX = 'parallax',
   PARALLAX_INSIDE = 'parallax-inside',
   SWIPER = 'swiper',
@@ -64,6 +66,10 @@ export interface BaseBlock {
   width?: number
   height?: number
   icon?: string
+  tabLook?: string /* tabs: 'pill' | 'underline' | 'folder' */
+  tabAccent?: string /* tabs: palette key */
+  tabPlate?: string /* tabs: palette key */
+  hoverBackground?: string /* icon-button: the plate under the icon on hover (palette key) */
   iconHidden?: boolean /* card: the icon is switched off ("Показувати іконку") */
   image?: string
   title?: TranslatedModel

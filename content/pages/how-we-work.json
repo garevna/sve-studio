@@ -215,6 +215,81 @@
       ]
     },
     {
+      "type": "header",
+      "content": {
+        "uk": "Під кожен масштаб — свій режим",
+        "en": "A mode for every scale",
+        "de": "Für jede Größe der passende Modus"
+      },
+      "class": "text-center my-12 h2 text-primary"
+    },
+    {
+      "type": "tabs",
+      "id": "how-we-work-modes",
+      "ver": 2,
+      "size": 44,
+      "color": "primary",
+      "tabLook": "pill",
+      "children": [
+        {
+          "type": "card",
+          "icon": "mdi-rocket-launch-outline",
+          "title": {
+            "uk": "Стартапам",
+            "en": "Start-ups",
+            "de": "Start-ups"
+          },
+          "content": {
+            "uk": "MVP за спринт, а не за квартал. Лендінг, форма заявки й аналітика — щоб перевірити ідею до того, як закінчиться раунд.",
+            "en": "An MVP in a sprint, not a quarter. A landing page, a sign-up form and analytics — to test the idea before the funding round runs out.",
+            "de": "Ein MVP in einem Sprint, nicht in einem Quartal. Landingpage, Anmeldeformular und Analytics – um die Idee zu testen, bevor die Finanzierungsrunde aufgebraucht ist."
+          }
+        },
+        {
+          "type": "card",
+          "icon": "mdi-storefront-outline",
+          "title": {
+            "uk": "Малому бізнесу",
+            "en": "Small business",
+            "de": "Kleine Unternehmen"
+          },
+          "content": {
+            "uk": "Сайт, який власник оновлює сам: ціни, фото, графік роботи. Без дзвінків розробнику о десятій вечора.",
+            "en": "A site the owner keeps up to date themselves: prices, photos, opening hours. No calls to a developer at ten at night.",
+            "de": "Eine Website, die der Inhaber selbst pflegt: Preise, Fotos, Öffnungszeiten. Ohne Anruf beim Entwickler um zehn Uhr abends."
+          }
+        },
+        {
+          "type": "card",
+          "icon": "mdi-palette-swatch-outline",
+          "title": {
+            "uk": "Агенціям",
+            "en": "Agencies",
+            "de": "Agenturen"
+          },
+          "content": {
+            "uk": "Один редактор на всіх клієнтів: ваші шаблони, ваш бренд, жодного нашого логотипа. Клієнт править тексти — дизайн лишається вашим.",
+            "en": "One editor for all your clients: your templates, your brand, not a trace of our logo. The client edits the texts — the design stays yours.",
+            "de": "Ein Editor für alle Ihre Kunden: Ihre Vorlagen, Ihre Marke, keine Spur von unserem Logo. Der Kunde ändert die Texte – das Design bleibt Ihres."
+          }
+        },
+        {
+          "type": "card",
+          "icon": "mdi-domain",
+          "title": {
+            "uk": "Великим командам",
+            "en": "Large teams",
+            "de": "Große Teams"
+          },
+          "content": {
+            "uk": "Кожен бачить своє: маркетинг — тексти, дизайнер — UI Kit. А продакшн ніхто випадково не покладе.",
+            "en": "Everyone sees their own part: marketing the texts, the designer the UI Kit. And nobody takes production down by accident.",
+            "de": "Jeder sieht seinen Teil: das Marketing die Texte, das Design das UI-Kit. Und niemand legt versehentlich die Produktion lahm."
+          }
+        }
+      ]
+    },
+    {
       "type": "dark-fone-section",
       "title": {
         "uk": "Наш стек суперсил",

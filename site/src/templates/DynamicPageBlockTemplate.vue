@@ -19,7 +19,7 @@
   // key ("blue"), which as a bare CSS value is a different colour altogether
   // (pure #0000FF). Carousels and card sets are left alone - their
   // `background` is their cards' colour, as in the editor.
-  const CARD_BACKGROUND_TYPES = new Set(['carousel', 'cards'])
+  const CARD_BACKGROUND_TYPES = new Set(['carousel', 'cards', 'tabs'])
   const ownBackground = computed(() => block.value?.background && !CARD_BACKGROUND_TYPES.has(block.value.type) ? block.value.background : '')
   const blockBackground = computed(() => {
     const value = ownBackground.value

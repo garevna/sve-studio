@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import type { ButtonBorder, ButtonEntry, ButtonState, ButtonStateStyle } from '@/utils/button-style-entry'
-  import { computed, ref } from 'vue'
+  import { computed, ref, watch } from 'vue'
   import { t } from '@/i18n'
   import { resolveCssVarValue } from '@/utils/css-var-value'
   import { BORDER_STYLES, resolveSwatchValue } from '@/utils/palette-entry'
@@ -50,6 +50,11 @@
     },
   }
   const activeState = ref<PickerState>('base')
+  // Which state is being edited, so the sample can show THAT state: edited
+  // hover colours are otherwise only seen with the mouse on the sample, and
+  // the mouse is here, on the fields.
+  const emit = defineEmits<{ state: [state: PickerState] }>()
+  watch(activeState, state => emit('state', state))
   // The state object being WRITTEN to - editing a field here always writes
   // an explicit override onto THIS specific state, never onto base. For the
   // extra state that object lives on the OTHER entry, which is what keeps

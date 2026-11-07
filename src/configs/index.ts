@@ -2,6 +2,7 @@ import { banerTemplate } from './components/baner'
 import { cardWithHoverGroupTemplate } from './components/cards/card-with-hover'
 import { cardWithIconLeftTemplate, cardWithIconRowTemplate, cardWithIconTopTemplate } from './components/cards/card-with-icon'
 import { cardWithToolbarImageGroupTemplate } from './components/cards/card-with-toolbar-image'
+import { tabsTemplate } from './components/cards/tabs'
 import { carouselWithCardsTemplate } from './components/carousel-with-cards'
 import { faq } from './components/faq'
 import { feedbackForm } from './components/feedback-form'
@@ -17,6 +18,7 @@ import { sectionTwoImages } from './components/sections/section-two-images'
 import { sectionsWithFreeContent } from './components/sections/sections-with-free-content'
 import { button } from './components/simple/button'
 import { header } from './components/simple/header'
+import { iconButton } from './components/simple/icon-button'
 import { image } from './components/simple/image'
 // import { sectionCardsTemplate } from './components/section-with-free-content'
 import { text } from './components/simple/text'
@@ -48,6 +50,8 @@ export const components = {
   title,
   text,
   button,
+  'tabs': tabsTemplate,
+  'icon-button': iconButton,
   'text-with-icon': textWithIcon,
   'image-universal': image,
   galery1,

@@ -254,6 +254,16 @@
       "uk": "Форма, де відвідувач лишає ім’я, телефон і повідомлення. На неї може вести кнопка.",
       "en": "Form where visitors can leave their name, phone number, and message. Can be linked to by a button.",
       "de": "Formular, in dem Besucher ihren Namen, ihre Telefonnummer und ihre Nachricht hinterlassen können. Kann über eine Schaltfläche verknüpft werden."
+    },
+    "iconButton": {
+      "uk": "Кнопка-іконка з підказкою: веде на сторінку чи її розділ або відкриває форму зворотного зв’язку.",
+      "en": "",
+      "de": ""
+    },
+    "tabs": {
+      "uk": "Картки, з яких видно одну: над ними ряд вкладок із назвами карток.",
+      "en": "",
+      "de": ""
     }
   },
   "all": {

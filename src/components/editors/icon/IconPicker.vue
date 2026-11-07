@@ -37,7 +37,8 @@
   const isPathIcon = computed(() => /^(\/|data:|https?:|blob:)/.test(icon.value || ''))
   const iconSrc = computed(() => resolveThemeAssetPath(icon.value, commonStore.activeTheme))
 
-  const source = ref<'mdi' | 'upload' | 'social'>(isMdiIcon.value ? 'mdi' : (socialIconOf(icon.value) ? 'social' : 'upload'))
+  // No icon yet: start in the library, the usual place to find one.
+  const source = ref<'mdi' | 'upload' | 'social'>(!icon.value || isMdiIcon.value ? 'mdi' : (socialIconOf(icon.value) ? 'social' : 'upload'))
 
   // Every look of every network (configs/social-icons.ts).
   const LOOKS: SocialIconLook[] = ['color', 'mono', 'circle']

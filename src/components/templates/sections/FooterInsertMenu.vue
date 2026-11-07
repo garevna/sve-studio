@@ -3,6 +3,7 @@
   import { computed } from 'vue'
   import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
   import { button } from '@/configs/components/simple/button'
+  import { iconButton } from '@/configs/components/simple/icon-button'
   import { image } from '@/configs/components/simple/image'
   import { text } from '@/configs/components/simple/text'
   import { textWithIcon } from '@/configs/components/simple/text-with-icon'
@@ -92,6 +93,9 @@
     { get title () {
       return t('common.button')
     }, icon: 'mdi-button-pointer', factory: () => button() as TemplateBlockModel },
+    { get title () {
+      return t('common.iconButton')
+    }, icon: 'mdi-gesture-tap-button', factory: () => iconButton() as TemplateBlockModel },
   ]
 
   const props = defineProps<{

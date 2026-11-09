@@ -1,32 +1,22 @@
 {
   "settings": {
     "uk": "Налаштування кнопки-іконки",
-    "en": "",
-    "de": ""
+    "en": "Icon button settings",
+    "de": "Einstellungen für die Symbolschaltfläche"
   },
   "iconNeeded": {
     "uk": "Кнопка без іконки порожня — виберіть її в бібліотеці, серед соцмереж або завантажте свою SVG.",
-    "en": "",
-    "de": ""
+    "en": "A button without an icon is empty — select one from the library, from social media, or upload your own SVG.",
+    "de": "Eine Schaltfläche ohne Symbol ist leer – wählen Sie eines aus der Bibliothek, aus den sozialen Netzwerken oder laden Sie Ihr eigenes SVG hoch."
   },
   "tooltip": {
     "uk": "Підказка при наведенні",
-    "en": "",
-    "de": ""
+    "en": "Hover tooltip",
+    "de": "Tooltip beim Darüberfahren"
   },
   "tooltipNeeded": {
     "uk": "Заповніть підказку всіма мовами сайту — вона пояснює, що робить кнопка.",
-    "en": "",
-    "de": ""
-  },
-  "hoverPlate": {
-    "uk": "Підкладка при наведенні",
-    "en": "",
-    "de": ""
-  },
-  "noPlate": {
-    "uk": "Без підкладки",
-    "en": "",
-    "de": ""
+    "en": "Fill in the tooltip in all the site’s languages — it explains what the button does.",
+    "de": "Füllen Sie den Tooltip in allen Sprachen der Website aus – er erklärt, was die Schaltfläche bewirkt."
   }
 }

@@ -3,6 +3,7 @@
   import EditorPageHeader from '@/components/special/EditorPageHeader.vue'
   import { t } from '@/i18n'
   import ButtonPaletteView from '@/views/ButtonPaletteView.vue'
+  import ButtonSetView from '@/views/ButtonSetView.vue'
   import CardStylesView from '@/views/CardStylesView.vue'
   import FooterLayoutView from '@/views/FooterLayoutView.vue'
   import MenuStyleView from '@/views/MenuStyleView.vue'
@@ -45,7 +46,9 @@
         <!-- Buttons and tabs edit the same stylesheet: only the open one is
           mounted, so neither works from the other's stale copy. -->
         <v-tabs-window-item value="buttons">
-          <ButtonPaletteView v-if="tab === 'buttons'" />
+          <!-- The client's own buttons (button-set.css); the tabs below are
+            still buttons.css. -->
+          <ButtonSetView v-if="tab === 'buttons'" />
         </v-tabs-window-item>
         <v-tabs-window-item value="tabs">
           <ButtonPaletteView v-if="tab === 'tabs'" section="tabs" />

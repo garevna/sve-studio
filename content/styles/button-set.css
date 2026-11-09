@@ -1,0 +1,325 @@
+/* @button-set
+{
+  "buttons": [
+    {
+      "className": "primary-button",
+      "name": "Основна",
+      "template": "filled",
+      "base": {
+        "background": "primary",
+        "color": "white",
+        "borderRadius": "var(--large-border-radius)",
+        "boxShadow": "none"
+      },
+      "hover": {
+        "background": "selected-date-first-fone-color",
+        "borderRadius": "var(--small-border-radius)"
+      },
+      "disabled": {
+        "opacity": 30
+      }
+    },
+    {
+      "className": "outlined-button",
+      "name": "Контурна",
+      "template": "outlined",
+      "base": {
+        "background": "transparent",
+        "color": "primary",
+        "border": {
+          "style": "solid",
+          "width": 1,
+          "color": "primary"
+        },
+        "borderRadius": "var(--default-border-radius)",
+        "boxShadow": "none"
+      },
+      "hover": {
+        "color": "secondary",
+        "border": {
+          "style": "solid",
+          "width": 1,
+          "color": "secondary"
+        },
+        "opacity": 92
+      },
+      "disabled": {
+        "color": "grey",
+        "border": {
+          "style": "solid",
+          "width": 1,
+          "color": "grey"
+        }
+      }
+    },
+    {
+      "className": "simple-button",
+      "name": "Проста",
+      "template": "outlined",
+      "fullWidth": false,
+      "base": {
+        "background": "transparent",
+        "color": "black",
+        "border": {
+          "style": "solid",
+          "width": 1,
+          "color": "black"
+        },
+        "borderRadius": "var(--default-border-radius)",
+        "boxShadow": "none"
+      },
+      "hover": {
+        "color": "secondary",
+        "border": {
+          "style": "solid",
+          "width": 1,
+          "color": "secondary"
+        }
+      },
+      "disabled": {
+        "color": "grey",
+        "border": {
+          "style": "solid",
+          "width": 1,
+          "color": "grey"
+        }
+      }
+    },
+    {
+      "className": "green-button",
+      "name": "Зелена",
+      "template": "filled",
+      "fullWidth": false,
+      "base": {
+        "background": "green-button",
+        "color": "white",
+        "borderRadius": "var(--large-border-radius)"
+      },
+      "hover": {
+        "background": "green",
+        "color": "white"
+      },
+      "disabled": {
+        "opacity": 30
+      }
+    }
+  ]
+}
+*/
+
+.primary-button {
+  font-family: var(--main-font) !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  text-transform: none !important;
+  letter-spacing: normal !important;
+  box-shadow: none !important;
+  border-radius: var(--default-border-radius) !important;
+  padding: 12px 24px;
+  width: 100%;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.primary-button {
+  background: var(--primary) !important;
+  color: var(--white) !important;
+  border-radius: var(--large-border-radius) !important;
+  box-shadow: none !important;
+}
+
+.primary-button:hover {
+  background: var(--selected-date-first-fone-color) !important;
+  border-radius: var(--small-border-radius) !important;
+}
+
+.primary-button:disabled {
+  opacity: 0.3 !important;
+}
+
+.outlined-button {
+  font-family: var(--main-font) !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  text-transform: none !important;
+  letter-spacing: normal !important;
+  box-shadow: none !important;
+  border-radius: var(--default-border-radius) !important;
+  padding: 12px 24px;
+  width: 100%;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.outlined-button {
+  background: transparent !important;
+  color: var(--primary) !important;
+  border: solid 1px var(--primary) !important;
+  border-radius: var(--default-border-radius) !important;
+  box-shadow: none !important;
+}
+
+.outlined-button:hover {
+  color: var(--secondary) !important;
+  border: solid 1px var(--secondary) !important;
+  opacity: 0.92 !important;
+}
+
+.outlined-button:disabled {
+  color: var(--grey) !important;
+  border: solid 1px var(--grey) !important;
+}
+
+.simple-button {
+  font-family: var(--main-font) !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  text-transform: none !important;
+  letter-spacing: normal !important;
+  box-shadow: none !important;
+  border-radius: var(--default-border-radius) !important;
+  padding: 12px 24px;
+  width: auto;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.simple-button {
+  background: transparent !important;
+  color: var(--black) !important;
+  border: solid 1px var(--black) !important;
+  border-radius: var(--default-border-radius) !important;
+  box-shadow: none !important;
+}
+
+.simple-button:hover {
+  color: var(--secondary) !important;
+  border: solid 1px var(--secondary) !important;
+}
+
+.simple-button:disabled {
+  color: var(--grey) !important;
+  border: solid 1px var(--grey) !important;
+}
+
+.green-button {
+  font-family: var(--main-font) !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  text-transform: none !important;
+  letter-spacing: normal !important;
+  box-shadow: none !important;
+  border-radius: var(--default-border-radius) !important;
+  padding: 12px 24px;
+  width: auto;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.green-button {
+  background: var(--green-button) !important;
+  color: var(--white) !important;
+  border-radius: var(--large-border-radius) !important;
+}
+
+.green-button:hover {
+  background: var(--green) !important;
+  color: var(--white) !important;
+}
+
+.green-button:disabled {
+  opacity: 0.3 !important;
+}
+
+.button-kind-sign-in-google {
+  font-family: var(--main-font) !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  text-transform: none !important;
+  letter-spacing: normal !important;
+  box-shadow: none !important;
+  border-radius: var(--default-border-radius) !important;
+  padding: 12px 24px;
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 52px;
+  font-weight: 600 !important;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.button-kind-sign-in-google {
+  background: var(--white) !important;
+  color: var(--black) !important;
+  border: solid 1px var(--light-grey-1) !important;
+  border-radius: 999px !important;
+}
+
+.button-kind-sign-in-google:hover {
+  border: solid 1px var(--secondary) !important;
+}
+
+.button-kind-sign-in-google:disabled {
+  opacity: 0.5 !important;
+}
+
+.button-kind-sign-in-github {
+  font-family: var(--main-font) !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  text-transform: none !important;
+  letter-spacing: normal !important;
+  box-shadow: none !important;
+  border-radius: var(--default-border-radius) !important;
+  padding: 12px 24px;
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 52px;
+  font-weight: 600 !important;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.button-kind-sign-in-github {
+  background: var(--white) !important;
+  color: var(--black) !important;
+  border: solid 1px var(--light-grey-1) !important;
+  border-radius: 999px !important;
+}
+
+.button-kind-sign-in-github:hover {
+  border: solid 1px var(--secondary) !important;
+}
+
+.button-kind-sign-in-github:disabled {
+  opacity: 0.5 !important;
+}
+
+.button-kind-sign-in-github .mdi {
+  font-size: 24px;
+  line-height: 1;
+  color: currentColor;
+}
+
+.button-kind-icon-button {
+  display: inline-flex;
+  padding: 8px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.button-kind-icon-button {
+  background: transparent !important;
+  border-radius: 50% !important;
+}
+
+.button-kind-icon-button:hover {
+  background: var(--light-grey-2) !important;
+}
+
+.button-kind-icon-button:disabled {
+  opacity: 0.4 !important;
+}

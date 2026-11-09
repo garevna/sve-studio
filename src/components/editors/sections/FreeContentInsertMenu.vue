@@ -5,6 +5,7 @@
   import SocialLinkMenu from '@/components/editors/SocialLinkMenu.vue'
   import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
   import { cardWithIconRowTemplate } from '@/configs/components/cards/card-with-icon'
+  import { tabsTemplate } from '@/configs/components/cards/tabs'
   import { feedbackForm } from '@/configs/components/feedback-form'
   import { button } from '@/configs/components/simple/button'
   import { header } from '@/configs/components/simple/header'
@@ -50,6 +51,9 @@
     { get title () {
       return t('elements.cardsWithIcon')
     }, icon: 'mdi-card-text-outline', factory: cardWithIconRowTemplate },
+    { get title () {
+      return t('common.tabs')
+    }, icon: 'mdi-tab', factory: tabsTemplate },
     { get title () {
       return t('common.button')
     }, icon: 'mdi-button-pointer', factory: () => button() as TemplateBlockModel },

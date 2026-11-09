@@ -1,31 +1,44 @@
+import type { SetButton } from '@/utils/button-set'
 import { ref } from 'vue'
-import { isTabClass } from '@/configs/tab-classes'
+import { templateOf } from '@/configs/button-catalog'
 import { useAjaxStore } from '@/stores/ajax'
-import { extractButtonEntries } from '@/utils/button-style-entry'
+import { BUTTON_SET_FILE, parseButtonSet } from '@/utils/button-set'
 
-// Which button looks a page block can choose from: exactly the classes the
-// UI Kit defines in buttons.css, read from the stylesheet itself rather than
-// listed here - a hardcoded list would be wrong the first time a designer
-// adds a button, and the whole point of the UI Kit is that it decides.
-//
-// Two kinds are left out. Tabs are not buttons a page can place (they only
-// mean anything inside a tab strip - see configs/tab-classes.ts), and
-// google-button carries an icon and a purpose of its own: it is the sign-in
-// button, not a style to give to arbitrary content.
-const EXCLUDED = new Set(['google-button'])
+// The buttons a page's button can be given: the client's own set from the
+// UI Kit (utils/button-set.ts) - by the names the client gave them - and
+// nothing from our catalogue they did not take.
+export interface ButtonVariant {
+  // the class a button block stores
+  className: string
+  // the client's name for it
+  name: string
+  // its kind in the catalogue
+  template: string
+}
 
-// Module-level: one fetch for a page that may hold a dozen button blocks,
-// and the list cannot go stale within a session - a designer editing
-// buttons.css is in the UI Kit, not on this page.
-const variants = ref<string[]>([])
+// Module-level: one fetch for a page that may hold a dozen button blocks.
+// The UI Kit hands its edits over (forgetButtonVariants), so a button just
+// added there is offered here without reloading.
+const variants = ref<ButtonVariant[]>([])
 let loading: Promise<void> | null = null
 
-// A look that is built around an icon says so in its name
-// (button-with-icon-right): a button given that look needs one, so the
-// button's settings ask for it. Takes a whole class string, like the block
-// stores.
+function fromSet (buttons: SetButton[]): ButtonVariant[] {
+  return buttons.map(({ className, name, template }) => ({ className, name, template }))
+}
+
+export function forgetButtonVariants (buttons: SetButton[]) {
+  variants.value = fromSet(buttons)
+  loading = Promise.resolve()
+}
+
+// A look built around an icon (its kind says so - "icon on the right"):
+// a button given that look needs one, so the button's settings ask for it.
+// Takes a whole class string, like the block stores. Known once the set has
+// been loaded (useButtonVariants().load).
 export function lookNeedsIcon (className: string): boolean {
-  return className.split(' ').some(token => token.includes('button') && token.includes('icon'))
+  const tokens = className.split(' ')
+  const variant = variants.value.find(item => tokens.includes(item.className))
+  return !!variant && !!templateOf(variant.template).needsIcon
 }
 
 export function useButtonVariants () {
@@ -33,13 +46,8 @@ export function useButtonVariants () {
 
   function load (): Promise<void> {
     loading ??= (async () => {
-      const css = await ajaxStore.getStyleFile('buttons.css')
-      const { entries } = extractButtonEntries(css ?? '')
-      variants.value = entries
-        .map(entry => entry.className)
-        .filter(className => !isTabClass(className) && !EXCLUDED.has(className))
-        // eslint-disable-next-line unicorn/no-array-sort -- toSorted() isn't in this project's configured TS lib target
-        .sort((a, b) => a.localeCompare(b))
+      const css = await ajaxStore.getStyleFile(BUTTON_SET_FILE)
+      variants.value = fromSet(parseButtonSet(css) ?? [])
     })()
     return loading
   }

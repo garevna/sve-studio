@@ -69,8 +69,6 @@ export interface BaseBlock {
   // every size the footer stores, always a multiple of 4.
   gap?: number
   icon?: string
-  // icon-button: the plate under the icon on hover (palette key; unset = none)
-  hoverBackground?: string
   // tabs: how the row of tabs looks ('pill' | 'underline' | 'folder'), its
   // accent and its plate (palette keys) - see TabStrip.vue
   tabLook?: string
@@ -122,7 +120,9 @@ export interface BaseBlock {
   cardWidth?: number
   // Button: what a click does. Unset = go to its page (route/params/hash);
   // 'form' = open the feedback form, with the texts in `form`, in a popup.
-  action?: 'form'
+  // form: opens the feedback form; popup: opens the site's popup `popup`
+  action?: 'form' | 'popup'
+  popup?: string
   form?: FeedbackFormModel
   // Footer root block only (FooterSettingsView.vue) - whether the footer
   // renders at all. Default true when unset, same convention as
@@ -195,6 +195,30 @@ export interface PageSeoModel {
 // title: the page's name in every language of the site (a plain string in
 // pages saved before that) - see utils/page-title.ts.
 export type TemplatePageModel = { id: string, title?: TranslatedModel | string, breadcrumbs: boolean, backButton: boolean, hero: boolean, blocks: TemplateBlockModel[], seo?: PageSeoModel }
+
+// One of the site's popups (content/settings/popups.json, the editor's
+// "Попапи" section): a window any button on any page opens (action 'popup',
+// popup: id). The window itself is one of four fixed components (site
+// PopupHost.vue); what is in it is the popup's own column of blocks, like
+// one half of a "Довільний контент" section.
+//   placement: left / right - a panel from that edge, full height, `width`
+//              wide (at most the screen); bottom - a sheet from below;
+//              center - a window in the middle, `width` wide.
+export interface PopupModel {
+  id: string
+  // the client's own name for it, in the editor only
+  name: string
+  placement: 'left' | 'right' | 'bottom' | 'center'
+  width?: number
+  // shown at the top of the window (optional)
+  title?: TranslatedModel
+  content: TemplateBlockModel
+}
+
+// content/settings/popups.json
+export interface PopupsDocument {
+  popups: PopupModel[]
+}
 
 // listDynamicPages()'s own return shape - just enough to render
 // PagesListView.vue's list without fetching every page's full content.

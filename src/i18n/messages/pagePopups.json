@@ -1,0 +1,119 @@
+{
+  "list": {
+    "uk": "Попапи",
+    "en": "Popups",
+    "de": "Popups"
+  },
+  "hint": {
+    "uk": "Вікна над сторінкою сайту. Будь-який попап відкриває будь-яка кнопка будь-якої сторінки: у налаштуваннях кнопки виберіть «Відкриває попап». Попап можна почати й там.",
+    "en": "Pop-ups above the website page. Any button on any page can open a pop-up: in the button settings, select ‘Opens a pop-up’. You can also create a pop-up from there.",
+    "de": "Pop-ups über der Webseite. Jedes Pop-up lässt sich über eine beliebige Schaltfläche auf einer beliebigen Seite öffnen: Wählen Sie in den Einstellungen der Schaltfläche die Option „Öffnet ein Pop-up“ aus. Das Pop-up kann auch dort gestartet werden."
+  },
+  "none": {
+    "uk": "Попапів ще немає. Додайте перший.",
+    "en": "There are no popups yet. Add your first one.",
+    "de": "Es gibt noch keine Pop-ups. Fügen Sie das erste hinzu."
+  },
+  "add": {
+    "uk": "Додати попап",
+    "en": "Add a popup",
+    "de": "Popup hinzufügen"
+  },
+  "newName": {
+    "uk": "Попап {n}",
+    "en": "Popup {n}",
+    "de": "Popup {n}"
+  },
+  "name": {
+    "uk": "Назва попапу (бачите тільки ви)",
+    "en": "Popup name (visible only to you)",
+    "de": "Name des Popups (nur für Sie sichtbar)"
+  },
+  "title": {
+    "uk": "Заголовок у попапі",
+    "en": "Popup title",
+    "de": "Überschrift im Popup"
+  },
+  "width": {
+    "uk": "Ширина: {width}px",
+    "en": "Width: {width}px",
+    "de": "Breite: {width}px"
+  },
+  "done": {
+    "uk": "Готово",
+    "en": "Done",
+    "de": "Fertig"
+  },
+  "edit": {
+    "uk": "Редагувати попап",
+    "en": "Edit popup",
+    "de": "Popup bearbeiten"
+  },
+  "opensPopup": {
+    "uk": "Відкриває попап",
+    "en": "Opens a popup",
+    "de": "Öffnet ein Popup"
+  },
+  "opens": {
+    "uk": "Відкриває попап «{name}»",
+    "en": "Opens the ‘{name}’ popup",
+    "de": "Öffnet das Popup „{name}“"
+  },
+  "which": {
+    "uk": "Який попап",
+    "en": "Which popup",
+    "de": "Welches Popup"
+  },
+  "createFor": {
+    "uk": "Або створіть новий:",
+    "en": "Or create a new one:",
+    "de": "Oder erstellen Sie ein neues:"
+  },
+  "deleteTitle": {
+    "uk": "Видалити попап «{name}»?",
+    "en": "Delete the ‘{name}’ popup?",
+    "de": "Das Popup „{name}“ löschen?"
+  },
+  "deleteTextUsed": {
+    "uk": "Його відкривають кнопки тут: {places}. Після видалення вони ні на що не вестимуть. Цю дію не можна скасувати.",
+    "en": "It is opened by buttons here: {places}. Once deleted, these buttons will no longer lead anywhere. This action cannot be undone.",
+    "de": "Es wird über die Schaltflächen hier geöffnet: {places}. Nach dem Löschen führen diese Schaltflächen zu nichts mehr. Dieser Vorgang kann nicht rückgängig gemacht werden."
+  },
+  "placement": {
+    "right": {
+      "uk": "Праворуч",
+      "en": "Right",
+      "de": "Rechts"
+    },
+    "left": {
+      "uk": "Ліворуч",
+      "en": "Left",
+      "de": "Links"
+    },
+    "bottom": {
+      "uk": "Знизу",
+      "en": "Bottom",
+      "de": "Unten"
+    },
+    "center": {
+      "uk": "По центру",
+      "en": "Centre",
+      "de": "Zentriert"
+    }
+  },
+  "blocks": {
+    "uk": "блоків: {count}",
+    "en": "blocks: {count}",
+    "de": "Blöcke: {count}"
+  },
+  "preview": {
+    "uk": "Переглянути, як побачить відвідувач",
+    "en": "",
+    "de": ""
+  },
+  "builtIn": {
+    "uk": "базовий",
+    "en": "",
+    "de": ""
+  }
+}

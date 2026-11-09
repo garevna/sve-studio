@@ -183,6 +183,10 @@ function settingsFileName (key: string): string {
   if (key === 'seo') {
     return 'seo.json'
   }
+  // The site's popups - windows any of its buttons can open.
+  if (key === 'popups') {
+    return 'popups.json'
+  }
   throw new Error(`Unknown settings key: ${key}`)
 }
 

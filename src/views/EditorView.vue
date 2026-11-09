@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-  // import { listOfComponents } from '@/configs/nav-panel-menu'
   import type { SeoSettingsModel } from '@/types/SeoSettingsModel'
   import type { TemplateBlockModel, TranslatedModel } from '@/types/TemplateBlockModel'
   import { SveBadge, SveButton, SveDock, SveDockItem, SveIconButton, SveMenu, SveMenuDivider, SveMenuItem, SveMenuLabel, SveTopBar } from '@sve/editor-ui'
@@ -7,6 +6,8 @@
   import { useRoute } from 'vue-router'
   import BlockGallery from '@/components/editors/BlockGallery.vue'
   import PageStructurePanel from '@/components/editors/PageStructurePanel.vue'
+  // import { listOfComponents } from '@/configs/nav-panel-menu'
+  import PopupEditorDialog from '@/components/editors/popups/PopupEditorDialog.vue'
   import LocaleSwitcher from '@/components/editors/small/LocaleSwitcher.vue'
   import PageSeoDialog from '@/components/special/PageSeoDialog.vue'
   import PageTitleDialog from '@/components/special/PageTitleDialog.vue'
@@ -502,6 +503,9 @@
         @add="pageBlocks.openGallery(null)"
       />
       <BlockGallery @select="selectHandler" />
+      <!-- A popup started or opened from a button's settings, edited
+        without leaving the page (the "Попапи" section has them all). -->
+      <PopupEditorDialog v-if="editable" />
       <!-- Hidden while loading for the same reason the content is: the hero
         reads its image from the same store slot, so it would otherwise sit
         there empty (or, before the clear, still showing the previous

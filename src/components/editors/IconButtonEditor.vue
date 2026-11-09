@@ -4,12 +4,14 @@
   import ButtonActionSettings from '@/components/editors/ButtonActionSettings.vue'
   import IconEditor from '@/components/editors/text/IconEditor.vue'
   import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
-  import PaletteSwatchPicker from '@/components/special/PaletteSwatchPicker.vue'
+  import ButtonVariantSelect from '@/components/special/ButtonVariantSelect.vue'
   import { useEditorMode } from '@/composables/useEditorMode'
+  import { useSitePopups } from '@/composables/useSitePopups'
   import { t } from '@/i18n'
   import { useCommonStore } from '@/stores/common'
   import { useUiFeedbackStore } from '@/stores/ui-feedback'
   import { buttonLinkSummary } from '@/utils/button-link-summary'
+  import { kindClass } from '@/utils/button-set'
   import { emptyTranslatedModel, isTranslatedModel, localeDisplayName, resolveLocaleText, siteLocales } from '@/utils/locale-text'
 
   // An icon-only button with a tooltip: the icon (from the library, a
@@ -58,18 +60,16 @@
       props.block.background = value || undefined
     },
   })
-  // The plate under the icon: always there and always the same size (so
-  // nothing around the button moves), transparent until the pointer is on
-  // it, then this colour. Empty = no plate at all.
-  const hoverBackground = computed({
-    get: () => props.block.hoverBackground || '',
+  // Its look - the plate under the icon, the corners - is one of the
+  // client's icon buttons from the UI Kit (ButtonVariantSelect kind
+  // "icon-button"); without one picked, the first of them (kindClass).
+  const blockClass = computed({
+    get: () => props.block.class || '',
     set: (value: string) => {
-      props.block.hoverBackground = value || undefined
+      props.block.class = value || undefined
     },
   })
-  const plateStyle = computed(() => ({
-    '--icon-button-plate': hoverBackground.value ? `var(--${hoverBackground.value})` : 'transparent',
-  }))
+  const lookClass = computed(() => blockClass.value.split(' ').find(token => token.includes('button')) || kindClass('icon-button'))
 
   function tooltipIn (locale: string): string {
     const content = props.block.content
@@ -86,7 +86,10 @@
 
   const tooltip = computed(() => resolveLocaleText(props.block.content, commonStore.locale))
   const missingTooltips = computed(() => siteLocales().filter(locale => !tooltipIn(locale).trim()))
-  const linkSummary = computed(() => buttonLinkSummary(props.block))
+  // The site's popups by name, for "Відкриває попап «…»".
+  const sitePopups = useSitePopups()
+  void sitePopups.load()
+  const linkSummary = computed(() => buttonLinkSummary(props.block, sitePopups.popups.value))
 
   const panelOpen = ref(false)
   const iconEditorRef = ref<{ openMenu: () => void } | null>(null)
@@ -119,8 +122,7 @@
           <span
             v-bind="tooltipProps"
             class="icon-button-editor-face"
-            :class="{ 'icon-button-editor-face--plate': mode !== 'edit' }"
-            :style="plateStyle"
+            :class="{ [lookClass]: mode !== 'edit' }"
           >
             <IconEditor
               v-model:icon="icon"
@@ -184,16 +186,7 @@
             variant="outlined"
             @update:model-value="(value: string) => setTooltip(locale, value)"
           />
-          <div class="icon-button-editor-icon-row mt-4 mb-2">
-            <span class="icon-button-editor-label">{{ t('iconButton.hoverPlate') }}</span>
-            <PaletteSwatchPicker v-model="hoverBackground" />
-            <ToolbarIconButton
-              v-if="hoverBackground"
-              icon="mdi-close"
-              :tooltip="t('iconButton.noPlate')"
-              @click="hoverBackground = ''"
-            />
-          </div>
+          <ButtonVariantSelect v-model:class="blockClass" class="mt-4 mb-2" kind="icon-button" />
           <p v-if="missingTooltips.length > 0" class="icon-button-editor-needed mb-6">
             {{ t('iconButton.tooltipNeeded') }}
           </p>
@@ -219,17 +212,6 @@
 }
 .icon-button-editor-face {
   display: inline-flex;
-}
-/* The site's plate (site TemplateItem.vue .icon-button): same padding,
-   only its colour changes on hover. */
-.icon-button-editor-face--plate {
-  padding: 8px;
-  border-radius: 50%;
-  background: transparent;
-  transition: background-color 0.2s ease;
-}
-.icon-button-editor-face--plate:hover {
-  background: var(--icon-button-plate);
 }
 .icon-button-editor-summary {
   margin: 4px 0 0;

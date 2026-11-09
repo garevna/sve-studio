@@ -1,6 +1,5 @@
 <script lang="ts" setup>
   import type { ButtonEntry } from '@/utils/button-style-entry'
-  import type { CssNode } from '@/utils/css-rules'
   import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
   import googleIcon from '@/assets/google-icon.svg'
   import ButtonIcon from '@/components/editors/icon/ButtonIcon.vue'
@@ -15,8 +14,8 @@
   import { useUiFeedbackStore } from '@/stores/ui-feedback'
   import { buttonPreviewVars } from '@/utils/button-preview-vars'
   import { extractButtonEntries, serializeButtonEntries } from '@/utils/button-style-entry'
-  import { parseCss, serializeCss } from '@/utils/css-rules'
   import { EDITED_APP_SCOPE_CLASS } from '@/utils/edited-app-scope'
+  import { FORCE_HOVER_CLASS, showLiveStyles } from '@/utils/forced-hover-css'
   import { APP_THEME_NAME, themeClass } from '@/utils/vuetify-theme-names'
 
   const FILE_NAME = 'buttons.css'
@@ -108,32 +107,10 @@
   // The site's stylesheets were loaded once, when the editor started, so the
   // real-class samples would show buttons.css as it was then. The text being
   // edited is laid over it here, so a colour picked below shows at once.
-  const LIVE_STYLE_ID = 'ui-kit-buttons-live'
-  //
-  // Every :hover rule is repeated there under FORCE_HOVER_CLASS too, so the
-  // sample can show its hover look while the hover state is being edited -
-  // a real :hover needs the mouse, and the mouse is on the fields.
-  const FORCE_HOVER_CLASS = 'ui-kit-force-hover'
-  function forcedHoverRules (cssText: string): string {
-    const rules: CssNode[] = []
-    for (const node of parseCss(cssText)) {
-      if (node.kind !== 'rule') continue
-      const selectors = node.selectors.filter(selector => selector.includes(':hover'))
-      if (selectors.length > 0) {
-        rules.push({ ...node, selectors: selectors.map(selector => selector.replaceAll(':hover', `.${FORCE_HOVER_CLASS}`)) })
-      }
-    }
-    return serializeCss(rules)
-  }
-  function showLiveStyles () {
-    let style = document.querySelector<HTMLStyleElement>(`#${LIVE_STYLE_ID}`)
-    if (!style) {
-      style = document.createElement('style')
-      style.id = LIVE_STYLE_ID
-      document.head.append(style)
-    }
-    const cssText = serializeEntries()
-    style.textContent = `${cssText}\n\n${forcedHoverRules(cssText)}`
+  // Hover is shown without the mouse through FORCE_HOVER_CLASS (see
+  // utils/forced-hover-css.ts).
+  function refreshLiveStyles () {
+    showLiveStyles('ui-kit-buttons-live', serializeEntries())
   }
 
   // The state the open row's settings are on (normal / hover / disabled) -
@@ -146,7 +123,7 @@
       : 'base'
     return edited === 'hover' || edited === 'disabled' ? edited : 'base'
   }
-  watch([entries, otherNodesRef], showLiveStyles, { deep: true })
+  watch([entries, otherNodesRef], refreshLiveStyles, { deep: true })
 
   async function save () {
     saving.value = true

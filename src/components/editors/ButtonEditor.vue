@@ -9,6 +9,7 @@
   import ButtonVariantSelect from '@/components/special/ButtonVariantSelect.vue'
   import { lookNeedsIcon } from '@/composables/useButtonVariants'
   import { useEditorMode } from '@/composables/useEditorMode'
+  import { useSitePopups } from '@/composables/useSitePopups'
   import { t } from '@/i18n'
   import { useUiFeedbackStore } from '@/stores/ui-feedback'
   import { buttonLinkSummary } from '@/utils/button-link-summary'
@@ -68,7 +69,10 @@
     emit('delete')
   }
 
-  const linkSummary = computed(() => buttonLinkSummary(props.block))
+  // The site's popups by name, for "Відкриває попап «…»".
+  const sitePopups = useSitePopups()
+  void sitePopups.load()
+  const linkSummary = computed(() => buttonLinkSummary(props.block, sitePopups.popups.value))
 </script>
 
 <template>

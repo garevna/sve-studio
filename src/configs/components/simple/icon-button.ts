@@ -10,6 +10,5 @@ export function iconButton () {
     icon: '',
     color: 'primary',
     size: 32,
-    hoverBackground: 'light-grey-2',
   }
 }

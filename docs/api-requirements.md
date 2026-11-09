@@ -188,7 +188,14 @@ GET /content/settings/global          PUT /content/settings/global          ✅ 
 GET /content/settings/palette         PUT /content/settings/palette         ✅ готово
 GET /content/settings/seo             PUT /content/settings/seo             ✅ готово
 GET /content/settings/menu-content    PUT /content/settings/menu-content    ⏳ ще ні
+GET /content/settings/popups          PUT /content/settings/popups          ⏳ ще ні (демо: так)
 ```
+
+`popups` — попапи сайту (розділ редактора «Попапи»): `{ popups: PopupModel[] }`,
+де `PopupModel = { id, name, placement: 'left'|'right'|'bottom'|'center', width?,
+title?: TranslatedModel, content: { type: 'section-with-free-content', children } }`.
+Попап глобальний: його відкриває будь-яка кнопка будь-якої сторінки
+(`action: 'popup'`, `popup: id` у блоці кнопки).
 
 Кожен — непрозорий JSON-блоб (тіла зараз відповідають `GlobalSettingsModel` /
 `Record<string,string>` / структурі меню / `SeoSettingsModel` нижче — але бек

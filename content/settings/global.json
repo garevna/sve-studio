@@ -35,6 +35,7 @@
     "main",
     "vuetify-components",
     "buttons",
+    "button-set",
     "common",
     "date-picker",
     "faq",

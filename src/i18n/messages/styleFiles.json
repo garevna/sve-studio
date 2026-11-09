@@ -128,5 +128,10 @@
     "uk": "Текстові поля (Vuetify)",
     "en": "Text Fields (Vuetify)",
     "de": "Textfelder (Vuetify)"
+  },
+  "buttonSetCss": {
+    "uk": "Мої кнопки (створюється в UI Kit)",
+    "en": "My buttons (created in the UI Kit)",
+    "de": "Meine Schaltflächen (werden im UI Kit erstellt)"
   }
 }

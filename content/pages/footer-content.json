@@ -23,25 +23,13 @@
             "de": "Wage den Schritt ins Ungewisse"
           },
           "class": "mt-8 mb-6 mb-6 mb-6 primary-button",
-          "form": {
-            "type": "question",
-            "title": {
-              "uk": "Маєте питання або пропозицію?",
-              "en": "Do you have any questions or suggestions?",
-              "de": "Haben Sie Fragen oder Anregungen?"
-            },
-            "text": {
-              "uk": "Напишіть нам - відповімо якнайшвидше!",
-              "en": "Write to us - we will respond as soon as possible!",
-              "de": "Schreiben Sie uns - wir antworten so schnell wie möglich!"
-            }
-          },
           "icon": "mdi-send-variant-outline",
           "route": "dynamic-page",
           "params": {
             "pageId": "contacts-page"
           },
-          "action": "form"
+          "action": "popup",
+          "popup": "popup-feedback"
         },
         {
           "type": "component",

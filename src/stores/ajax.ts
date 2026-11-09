@@ -4,7 +4,7 @@ import type { GlobalSettingsModel } from '@/types/GlobalSettingsModel'
 import type { MenuItemModel } from '@/types/MenuItemModel'
 import type { RequestModel } from '@/types/RequestModel'
 import type { SeoSettingsModel } from '@/types/SeoSettingsModel'
-import type { DynamicPageListItem, TemplateBlockModel, TemplatePageModel } from '@/types/TemplateBlockModel'
+import type { DynamicPageListItem, PopupModel, PopupsDocument, TemplateBlockModel, TemplatePageModel } from '@/types/TemplateBlockModel'
 import axios from 'axios'
 // import { getAuth } from 'firebase/auth'
 import { defineStore } from 'pinia'
@@ -919,6 +919,13 @@ export const useAjaxStore = defineStore('ajax', () => {
     if (mode === 'test') {
       return readStyleFileLocal(name)
     }
+    // An unpublished draft outranks the server - the same rule as
+    // getDynamicFilesData. Without it every stylesheet edited in the UI Kit
+    // came back as the published version after a reload, while the draft
+    // sat in IndexedDB still flagged as unsaved.
+    if (await isStyleFileUpdated(name).catch(() => false)) {
+      return readStyleFileLocal(name)
+    }
     try {
       const response = await makeRequest({
         method: 'get',
@@ -1386,6 +1393,26 @@ export const useAjaxStore = defineStore('ajax', () => {
     return undoDynamicFileData<Record<string, string>>('palette.json', '/content/settings/palette')
   }
 
+  // The site's popups (the editor's "Попапи" section) - one document for
+  // the whole site, since any button on any page may open any of them.
+  async function getPopups () {
+    const response = await getDynamicFilesData('popups.json', '/content/settings/popups') as PopupsDocument | null
+    return response?.popups ?? []
+  }
+
+  async function savePopups (popups: PopupModel[], options: { publish?: boolean } = {}) {
+    await saveDynamicFileData('popups.json', { popups } satisfies PopupsDocument, '/content/settings/popups', { what: t('pagePopups.list'), ...options })
+  }
+
+  async function isPopupsUpdated () {
+    return isDynamicFileUpdated('popups.json')
+  }
+
+  async function undoPopups () {
+    const response = await undoDynamicFileData<PopupsDocument>('popups.json', '/content/settings/popups')
+    return response?.popups ?? []
+  }
+
   // Which variant (1, 2, ...) of each "Особистий кабінет" page is selected,
   // keyed by that page's production route name.
   async function getAccountPages () {
@@ -1407,6 +1434,10 @@ export const useAjaxStore = defineStore('ajax', () => {
 
   return {
     loading,
+    getPopups,
+    savePopups,
+    isPopupsUpdated,
+    undoPopups,
     error,
     success,
     isLogged,

@@ -1,0 +1,174 @@
+{
+  "hint": {
+    "uk": "Ваші кнопки — саме їх можна вибрати для кнопок на сторінках, за назвою. Додайте вид із каталогу, задайте йому свої кольори й назву; той самий вид можна додати кілька разів, у різних кольорах.",
+    "en": "Your buttons — these are the ones you can select for the buttons on your pages by name. Add a style from the catalog, assign it your own colors and a name; you can add the same style multiple times, in different colors.",
+    "de": "Ihre Schaltflächen – genau diese können Sie anhand ihres Namens für die Schaltflächen auf den Seiten auswählen. Fügen Sie ein Design aus dem Katalog hinzu, legen Sie die Farben und den Namen fest; dasselbe Design kann mehrmals in verschiedenen Farben hinzugefügt werden."
+  },
+  "empty": {
+    "uk": "Кнопок ще немає. Додайте першу з каталогу.",
+    "en": "There are no buttons yet. Add the first one from the catalog.",
+    "de": "Es gibt noch keine Schaltflächen. Fügen Sie die erste aus dem Katalog hinzu."
+  },
+  "unnamed": {
+    "uk": "Без назви",
+    "en": "No name",
+    "de": "Ohne Namen"
+  },
+  "name": {
+    "uk": "Назва кнопки",
+    "en": "Button name",
+    "de": "Name der Schaltfläche"
+  },
+  "fullWidth": {
+    "uk": "На всю ширину колонки",
+    "en": "Full column width",
+    "de": "Über die gesamte Spaltenbreite"
+  },
+  "settings": {
+    "uk": "Налаштувати",
+    "en": "Customize",
+    "de": "Anpassen"
+  },
+  "duplicate": {
+    "uk": "Додати таку саму",
+    "en": "Add the same one",
+    "de": "Gleiche hinzufügen"
+  },
+  "copyOf": {
+    "uk": "{name} (копія)",
+    "en": "{name} (copy)",
+    "de": "{name} (Kopie) "
+  },
+  "add": {
+    "uk": "Додати кнопку",
+    "en": "Add button",
+    "de": "Schaltfläche hinzufügen"
+  },
+  "catalog": {
+    "uk": "Каталог кнопок",
+    "en": "Button catalog",
+    "de": "Schaltflächenkatalog"
+  },
+  "catalogHint": {
+    "uk": "Виберіть вид — він стане вашою кнопкою, а кольори й назву ви задасте їй самі.",
+    "en": "Select a model — it will become your button, and you can set its colors and name yourself.",
+    "de": "Wählen Sie ein Design aus – es wird zu Ihrer Schaltfläche, und die Farben sowie den Namen legen Sie selbst fest."
+  },
+  "noneYet": {
+    "uk": "У UI Kit ще немає жодної кнопки",
+    "en": "There are no buttons in the UI Kit yet",
+    "de": "Im UI-Kit gibt es noch keine Schaltflächen"
+  },
+  "kind": {
+    "filled": {
+      "uk": "З заливкою",
+      "en": "Filled",
+      "de": "Mit Hintergrundfarbe"
+    },
+    "outlined": {
+      "uk": "Контурна",
+      "en": "Outlined",
+      "de": "Kontur"
+    },
+    "link": {
+      "uk": "Посилання з підкресленням",
+      "en": "Underlined link",
+      "de": "Unterstrichener Link"
+    },
+    "iconRight": {
+      "uk": "З іконкою праворуч",
+      "en": "With an icon on the right",
+      "de": "Mit Symbol rechts"
+    },
+    "shine": {
+      "uk": "З відблиском",
+      "en": "With a glow",
+      "de": "Mit Glanz"
+    },
+    "wave": {
+      "uk": "Хвиля заливки",
+      "en": "Wavy fill",
+      "de": "Wellenförmige Füllung"
+    },
+    "arrow": {
+      "uk": "Зі стрілкою",
+      "en": "With an arrow",
+      "de": "Mit Pfeil"
+    },
+    "pulseFilled": {
+      "uk": "Пульс, з заливкою",
+      "en": "Pulse, filled",
+      "de": "Puls, mit Füllung"
+    },
+    "pulseOutlined": {
+      "uk": "Пульс, контурна",
+      "en": "Pulse, outlined",
+      "de": "Puls, umrandet"
+    },
+    "press": {
+      "uk": "Клавіша",
+      "en": "Key",
+      "de": "Taste"
+    },
+    "orbit": {
+      "uk": "Вогник по контуру",
+      "en": "Outline glow",
+      "de": "Leuchtender Umriss"
+    },
+    "aurora": {
+      "uk": "Переливається",
+      "en": "Shimmering",
+      "de": "Farbverlauf"
+    },
+    "signInGoogle": {
+      "uk": "Вхід через Google",
+      "en": "Sign in with Google",
+      "de": "Anmeldung über Google"
+    },
+    "signInGithub": {
+      "uk": "Вхід через GitHub",
+      "en": "Sign in with GitHub",
+      "de": "Anmeldung über GitHub"
+    },
+    "iconButton": {
+      "uk": "Кнопка-іконка",
+      "en": "Icon button",
+      "de": "Schaltfläche mit Symbol"
+    }
+  },
+  "usedTitle": {
+    "uk": "«{name}» стоїть на сторінках",
+    "en": "“{name}” appears on the pages",
+    "de": "„{name}“ ist auf den Seiten zu finden"
+  },
+  "usedText": {
+    "uk": "Цю кнопку вже вставлено тут:",
+    "en": "This button has already been inserted here:",
+    "de": "Diese Schaltfläche wurde hier bereits eingefügt:"
+  },
+  "usedCount": {
+    "uk": "кнопок: {count}",
+    "en": "buttons: {count}",
+    "de": "Schaltflächen: {count}"
+  },
+  "replaceWith": {
+    "uk": "Чим її замінити",
+    "en": "What to replace it with",
+    "de": "Womit soll sie ersetzt werden"
+  },
+  "replaceNote": {
+    "uk": "Кнопки на цих сторінках стануть вибраною кнопкою, а цю буде видалено. Сторінки з незбереженими змінами лишаться чернетками; ваші кнопки буде збережено.",
+    "en": "The buttons on these pages will become the selected button, and this one will be removed. Pages with unsaved changes will remain as drafts; your buttons will be saved.",
+    "de": "Die Schaltflächen auf diesen Seiten werden durch die ausgewählte Schaltfläche ersetzt, und diese wird gelöscht. Seiten mit nicht gespeicherten Änderungen bleiben als Entwürfe erhalten; Ihre Schaltflächen werden gespeichert."
+  },
+  "noReplacement": {
+    "uk": "Замінити її нічим: спочатку додайте ще одну кнопку такого ж роду.",
+    "en": "There’s nothing to replace it with: first, add another button of the same type.",
+    "de": "Ersetzen Sie sie durch nichts: Fügen Sie zunächst eine weitere Schaltfläche derselben Art hinzu."
+  },
+  "replaceAndDelete": {
+    "uk": "Замінити й видалити",
+    "en": "Replace and delete",
+    "de": "Ersetzen und löschen"
+  }
+}

@@ -7,24 +7,32 @@
   import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
   import CardEditDialog from '@/components/templates/cards/CardEditDialog.vue'
   import EditableCardsBlock from '@/components/templates/cards/EditableCardsBlock.vue'
+  import EditableTabsBlock from '@/components/templates/cards/EditableTabsBlock.vue'
   import TemplateItem from '@/components/templates/TemplateItem.vue'
   import { useEditorMode } from '@/composables/useEditorMode'
   import { t } from '@/i18n'
   import { useCommonStore } from '@/stores/common'
   import { useUiFeedbackStore } from '@/stores/ui-feedback'
-  import { cardDefaults } from '@/utils/card-defaults'
+  import { cardDefaults, tabCardDefaults } from '@/utils/card-defaults'
   import { stableKey } from '@/utils/stable-key'
   import FreeContentInsertMenu from './FreeContentInsertMenu.vue'
 
   const commonStore = useCommonStore()
   const mode = useEditorMode()
 
+  // Which column: one half of a page's section (blockIndex/sectionIndex),
+  // or a column handed over whole - a popup's content (PopupEditorDialog).
   const props = defineProps<{
-    blockIndex: number
-    sectionIndex: number
+    blockIndex?: number
+    sectionIndex?: number
+    section?: TemplateBlockModel
   }>()
 
-  const record = computed(() => commonStore.dynamicPageContent ? (commonStore.dynamicPageContent as { blocks: TemplateBlockModel[] }).blocks[props.blockIndex]?.children?.[props.sectionIndex] || null : null)
+  const record = computed(() => {
+    if (props.section) return props.section
+    if (!commonStore.dynamicPageContent || props.blockIndex === undefined || props.sectionIndex === undefined) return null
+    return (commonStore.dynamicPageContent as { blocks: TemplateBlockModel[] }).blocks[props.blockIndex]?.children?.[props.sectionIndex] || null
+  })
 
   // TemplateItem.vue's own `item` computed setter defaults to
   // commonStore.updateDynamicPageContent, which writes into the page's
@@ -100,7 +108,8 @@
     editingCard.value = {
       cards: block.children as TemplateBlockModel[],
       index,
-      defaults: cardDefaults(block),
+      // a tab's card is as wide as its block
+      defaults: block.type === 'tabs' ? tabCardDefaults(block) : cardDefaults(block),
       // Matches DynamicPageTemplate.vue: with a uniform icon look, edits to
       // any one card's icon land on the block every card reads from.
       block: block.uniformCardIcon === false ? undefined : block,
@@ -154,6 +163,15 @@
           :card-defaults="cardDefaults(child)"
           :class="dragClass"
           @delete="removeChild(num)"
+          @delete-card="removeCard(child, $event)"
+          @edit-card="openCardEditor(child, $event)"
+        />
+        <!-- Tabs are a set of cards too, with the same toolbar. -->
+        <EditableTabsBlock
+          v-else-if="child.type === 'tabs'"
+          :block="child"
+          :card-defaults="tabCardDefaults(child)"
+          :class="dragClass"
           @delete-card="removeCard(child, $event)"
           @edit-card="openCardEditor(child, $event)"
         />

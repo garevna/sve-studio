@@ -14,6 +14,7 @@
 
   import { getImageURL } from '../services/get-image-url'
   import { useCommonStore } from '../stores/common'
+  import { usePopupsStore } from '../stores/popups'
   import { IMAGE_PLACEHOLDER_CLASS } from '../utils/image-fallback'
   import { localeAsset } from '../utils/locale-asset'
   import ErrorComponent from './ErrorComponent.vue'
@@ -33,9 +34,13 @@
   // A button set to open the feedback form (action 'form') shows it in a
   // window over the page instead of going anywhere.
   const formOpen = ref(false)
+  const popupsStore = usePopupsStore()
   function onButtonClick () {
     if (props.item.action === 'form') {
       formOpen.value = true
+    } else if (props.item.action === 'popup') {
+      // One of the site's popups: its flag (stores/popups.ts).
+      if (props.item.popup) popupsStore.show(props.item.popup)
     } else if (targetPath.value) {
       follow(props.item)
     }
@@ -181,8 +186,7 @@
           <button
             v-bind="tooltipProps"
             :aria-label="iconButtonLabel"
-            :class="['icon-button', props.item.class]"
-            :style="{ '--icon-button-plate': props.item.hoverBackground ? `var(--${props.item.hoverBackground})` : 'transparent' }"
+            :class="['icon-button', props.item.class || 'button-kind-icon-button']"
             type="button"
             @click="onButtonClick"
           >
@@ -231,20 +235,11 @@
 .rounded {
   border-radius: var(--large-border-radius) !important;
 }
-/* The plate under the icon is always there at the same size - only its
-   colour changes on hover (the block's hoverBackground), so nothing around
-   the button moves. */
+/* Its look - the plate under the icon, always the same size - is the
+   client's icon button from the UI Kit (button-set.css): the block's class,
+   or button-kind-icon-button for the first one. */
 .icon-button {
   display: inline-flex;
-  padding: 8px;
-  border: none;
-  border-radius: 50% !important;
-  background: transparent;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-.icon-button:hover {
-  background: var(--icon-button-plate);
 }
 .icon-button:focus-visible {
   outline: solid 2px var(--secondary);

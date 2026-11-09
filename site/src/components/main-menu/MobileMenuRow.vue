@@ -10,6 +10,7 @@
   import { ACCOUNT_PAGE_ID } from '../../services/site-links'
   import { useAuthStore } from '../../stores/auth'
   import { useCommonStore } from '../../stores/common'
+  import { usePopupsStore } from '../../stores/popups'
   import SocialIconImage from '../small/SocialIconImage.vue'
   import FeedbackPopup from '../template-components/FeedbackPopup.vue'
   import LocaleSwitcher from './LocaleSwitcher.vue'
@@ -33,6 +34,7 @@
   }
 
   const formOpen = ref(false)
+  const popupsStore = usePopupsStore()
 
   // The signed-in visitor (stores/auth); a tap opens their account.
   const auth = useAuthStore()
@@ -92,10 +94,18 @@
     </div>
 
     <template v-else-if="row.type === 'contact'">
-      <v-btn :class="row.buttonClass || 'primary-button'" @click="formOpen = true">
+      <!-- Opens its site popup (stores/popups.ts); a row from before popups
+        still opens its own form. -->
+      <v-btn :class="row.buttonClass || 'primary-button'" @click="row.popup ? popupsStore.show(row.popup) : (formOpen = true)">
         {{ translated(row.label, locale) }}
       </v-btn>
-      <FeedbackPopup v-model="formOpen" :text="row.form?.text" :title="row.form?.title" :type="row.form?.type" />
+      <FeedbackPopup
+        v-if="!row.popup"
+        v-model="formOpen"
+        :text="row.form?.text"
+        :title="row.form?.title"
+        :type="row.form?.type"
+      />
     </template>
 
     <RouterLink v-else-if="row.type === 'user' && signedInUser" class="mobile-menu-user" :to="pagePath(ACCOUNT_PAGE_ID)">

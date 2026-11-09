@@ -20,6 +20,7 @@
   import TextWithIconEditor from '../editors/text/TextWithIconEditor.vue'
   import CardSet from './cards/CardSet.vue'
   import CardWithToolbarImage from './cards/CardWithToolbarImage.vue'
+  import TabSet from './cards/TabSet.vue'
 
   import TemplateCard from './cards/TemplateCard.vue'
   import ErrorComponent from './helpers/ErrorComponent.vue'
@@ -319,6 +320,9 @@
       SectionWithFreeContent.vue's own EditableCardsBlock instead. -->
     <template v-else-if="item.type === 'cards'">
       <card-set :item="item" />
+    </template>
+    <template v-else-if="item.type === 'tabs'">
+      <tab-set :item="item" />
     </template>
     <div v-else-if="item.type === 'component'" :class="displayClass">
       <!-- home-page-components disagree on their own prop convention: some

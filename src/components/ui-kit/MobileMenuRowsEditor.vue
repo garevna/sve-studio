@@ -5,8 +5,9 @@
   import ButtonVariantSelect from '@/components/special/ButtonVariantSelect.vue'
   import PaletteSwatchPicker from '@/components/special/PaletteSwatchPicker.vue'
   import FeedbackCardDialog from '@/components/templates/sections/FeedbackCardDialog.vue'
+  import { useSitePopups } from '@/composables/useSitePopups'
   import { useSortableList } from '@/composables/useSortableList'
-  import { CONTACT_LABEL, mobileRow } from '@/configs/menu-style'
+  import { CONTACT_LABEL, FEEDBACK_POPUP_ID, mobileRow } from '@/configs/menu-style'
   import { t } from '@/i18n'
   import { siteLocales } from '@/utils/locale-text'
 
@@ -37,7 +38,12 @@
     row.label = { ...(row.label ?? CONTACT_LABEL), [locale]: value }
   }
 
-  // The contact button's form texts, in the same window as a page button's.
+  // The site's popups, for what the contact button opens.
+  const sitePopups = useSitePopups()
+  void sitePopups.load()
+
+  // A contact row from before popups: its own form texts, in the same
+  // window as a page button's.
   const formRow = ref<MobileMenuRow | null>(null)
   const formOpen = ref(false)
   function openForm (row: MobileMenuRow) {
@@ -176,7 +182,26 @@
                 variant="outlined"
                 @update:model-value="(value: string) => setLabel(row, locale, value)"
               />
-              <v-btn class="align-self-start" prepend-icon="mdi-form-select" variant="tonal" @click="openForm(row)">{{ t('menuStyle.formTexts') }}</v-btn>
+              <!-- What it opens: one of the site's popups (the "Попапи"
+                section) - the feedback popup unless another is picked. -->
+              <v-select
+                density="compact"
+                hide-details
+                item-title="name"
+                item-value="id"
+                :items="sitePopups.popups.value"
+                :label="t('pagePopups.which')"
+                :model-value="row.popup ?? (row.form ? null : FEEDBACK_POPUP_ID)"
+                variant="outlined"
+                @update:model-value="(id: string) => { row.popup = id; delete row.form }"
+              />
+              <v-btn
+                v-if="!row.popup && row.form"
+                class="align-self-start"
+                prepend-icon="mdi-form-select"
+                variant="tonal"
+                @click="openForm(row)"
+              >{{ t('menuStyle.formTexts') }}</v-btn>
             </template>
 
             <div v-if="row.type === 'divider'" class="mobile-rows-field">

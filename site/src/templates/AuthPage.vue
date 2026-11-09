@@ -171,13 +171,16 @@
           </button>
         </form>
 
-        <!-- The ways the site's settings turn on (global.json auth.methods). -->
+        <!-- The ways the site's settings turn on (global.json auth.methods).
+          Their look is the client's sign-in button of that kind from the UI
+          Kit (button-set.css, button-kind-*) - the page's own until the
+          client takes one. -->
         <template v-if="auth.methods.includes('google') || auth.methods.includes('github')">
           <div v-if="auth.methods.includes('password')" class="pw-auth__or"><span>{{ say(AUTH_TEXTS.or) }}</span></div>
           <div class="pw-auth__socials">
             <button
               v-if="auth.methods.includes('google')"
-              class="pw-auth__button pw-auth__button--social"
+              class="pw-auth__button button-kind-sign-in-google"
               :disabled="auth.busy"
               type="button"
               @click="auth.signInWithGoogle()"
@@ -187,12 +190,12 @@
             </button>
             <button
               v-if="auth.methods.includes('github')"
-              class="pw-auth__button pw-auth__button--social"
+              class="pw-auth__button button-kind-sign-in-github"
               :disabled="auth.busy"
               type="button"
               @click="auth.signInWithGithub()"
             >
-              <i aria-hidden="true" class="mdi mdi-github pw-auth__github" />
+              <i aria-hidden="true" class="mdi mdi-github" />
               {{ say(AUTH_TEXTS.github) }}
             </button>
           </div>
@@ -384,19 +387,6 @@
 .pw-auth__socials {
   display: grid;
   gap: 10px;
-}
-.pw-auth__github {
-  font-size: 24px;
-  line-height: 1;
-  color: var(--black);
-}
-.pw-auth__button--social {
-  color: var(--black);
-  background: var(--white);
-  border: 1px solid var(--light-grey-1);
-}
-.pw-auth__button--social:not(:disabled):hover {
-  border-color: var(--secondary);
 }
 
 .pw-auth__or {

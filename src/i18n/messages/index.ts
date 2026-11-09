@@ -11,6 +11,7 @@ import blockMenu from './blockMenu.json'
 import blockTypes from './blockTypes.json'
 import buttonEditor from './buttonEditor.json'
 import buttonPalette from './buttonPalette.json'
+import buttonSet from './buttonSet.json'
 import cards from './cards.json'
 import cardStyles from './cardStyles.json'
 import common from './common.json'
@@ -34,6 +35,7 @@ import kit from './kit.json'
 import linkTarget from './linkTarget.json'
 import menuSettings from './menuSettings.json'
 import menuStyle from './menuStyle.json'
+import pagePopups from './pagePopups.json'
 import pages from './pages.json'
 import palette from './palette.json'
 import parallax from './parallax.json'
@@ -63,6 +65,7 @@ export const MESSAGES = {
   blockTypes,
   buttonEditor,
   buttonPalette,
+  buttonSet,
   cards,
   cardStyles,
   common,
@@ -86,6 +89,7 @@ export const MESSAGES = {
   linkTarget,
   menuSettings,
   menuStyle,
+  pagePopups,
   pages,
   palette,
   parallax,

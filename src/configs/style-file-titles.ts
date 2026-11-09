@@ -7,6 +7,7 @@ import { t } from '@/i18n'
 export const STYLE_FILE_TITLES: Record<string, string> = {
   'alert-blocks.css': 'styleFiles.alertBlocksCss',
   'buttons.css': 'common.buttons',
+  'button-set.css': 'styleFiles.buttonSetCss',
   'cards.css': 'styleFiles.cardsCss',
   'common.css': 'styleFiles.commonCss',
   'date-picker.css': 'common.datePicker',

@@ -42,6 +42,7 @@ export type EditorSectionKey
     | 'menu'
     | 'account'
     | 'messages'
+    | 'popups'
     | 'users'
 
 // group: where the section sits on the start screen - what is on the
@@ -71,6 +72,7 @@ export const EDITOR_SECTIONS: EditorSection[] = [
   { key: 'menu', icon: 'mdi-menu', to: '/menu', group: 'content' },
   { key: 'header', icon: 'mdi-page-layout-header', to: '/header', group: 'content' },
   { key: 'footer', icon: 'mdi-page-layout-footer', to: '/footer', group: 'content' },
+  { key: 'popups', icon: 'mdi-dock-window', to: '/popups', group: 'content' },
   { key: 'palette', icon: 'mdi-palette-outline', to: '/palette', group: 'look' },
   { key: 'ui-kit', icon: 'mdi-view-grid-outline', to: '/ui-kit', group: 'look' },
   { key: 'styles', icon: 'mdi-language-css3', to: '/styles', group: 'look' },
@@ -107,7 +109,7 @@ export const EDITOR_ROLES: EditorRole[] = [
     icon: 'mdi-account-edit',
     // 'menu' is here provisionally - the project owner wasn't sure whether
     // main-menu editing belongs to this role; drop the key to take it away.
-    sections: ['messages', 'pages', 'menu', 'header', 'footer', 'general-settings'],
+    sections: ['messages', 'pages', 'menu', 'header', 'footer', 'popups', 'general-settings'],
     canEditPageContent: true,
     generalSettingsScope: 'basic',
   },

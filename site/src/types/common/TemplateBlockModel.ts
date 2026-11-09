@@ -69,7 +69,6 @@ export interface BaseBlock {
   tabLook?: string /* tabs: 'pill' | 'underline' | 'folder' */
   tabAccent?: string /* tabs: palette key */
   tabPlate?: string /* tabs: palette key */
-  hoverBackground?: string /* icon-button: the plate under the icon on hover (palette key) */
   iconHidden?: boolean /* card: the icon is switched off ("Показувати іконку") */
   image?: string
   title?: TranslatedModel
@@ -108,7 +107,8 @@ export interface BaseBlock {
   tiles?: string[]
   // Button: what a click does. Unset = go to its page (route/params/hash);
   // 'form' = open the feedback form, with the texts in `form`, in a popup.
-  action?: 'form'
+  action?: 'form' | 'popup'
+  popup?: string /* action 'popup': the site's popup it opens */
   form?: FeedbackFormModel
   // "cards" block: the CARD's own fill, as a bare palette key
   // ("light-green"). Not `background` above - that one has always meant the
@@ -139,6 +139,30 @@ type BlockTreeModel = BaseBlock & { children?: BlockTreeModel[] }
 
 export type TemplateBlockModel = BlockTreeModel
 export type TemplatePageModel = { id: string, breadcrumbs: boolean, backButton: boolean, hero: boolean, blocks: TemplateBlockModel[], seo?: PageSeoModel }
+
+// One of the site's popups (content/settings/popups.json, the editor's
+// "Попапи" section): a window any button on any page opens (action 'popup',
+// popup: id). The window itself is one of four fixed components (site
+// PopupHost.vue); what is in it is the popup's own column of blocks, like
+// one half of a "Довільний контент" section.
+//   placement: left / right - a panel from that edge, full height, `width`
+//              wide (at most the screen); bottom - a sheet from below;
+//              center - a window in the middle, `width` wide.
+export interface PopupModel {
+  id: string
+  // the client's own name for it, in the editor only
+  name: string
+  placement: 'left' | 'right' | 'bottom' | 'center'
+  width?: number
+  // shown at the top of the window (optional)
+  title?: TranslatedModel
+  content: TemplateBlockModel
+}
+
+// content/settings/popups.json
+export interface PopupsDocument {
+  popups: PopupModel[]
+}
 
 // The feedback form's own settings: on a page (the "FeedbackForm" block),
 // in the footer (FeedbackCard) and in a button's popup.

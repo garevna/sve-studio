@@ -1,0 +1,99 @@
+{
+  "popups": [
+    {
+      "id": "popup-feedback",
+      "name": "Зворотний зв’язок",
+      "placement": "center",
+      "width": 520,
+      "content": {
+        "type": "section-with-free-content",
+        "children": [
+          {
+            "type": "component",
+            "content": "FeedbackForm",
+            "props": {
+              "type": "message",
+              "title": {
+                "uk": "Маєте питання або пропозицію?",
+                "en": "Do you have any questions or suggestions?",
+                "de": "Haben Sie Fragen oder Anregungen?"
+              },
+              "text": {
+                "uk": "Напишіть нам - відповімо якнайшвидше!",
+                "en": "Write to us - we will respond as soon as possible!",
+                "de": "Schreiben Sie uns - wir antworten so schnell wie möglich!"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "popup-launch",
+      "name": "Запуск проєкту",
+      "placement": "right",
+      "width": 480,
+      "title": {
+        "uk": "Як ми запускаємо проєкт",
+        "en": "How we launch a project",
+        "de": "Wie wir ein Projekt starten"
+      },
+      "content": {
+        "type": "section-with-free-content",
+        "children": [
+          {
+            "type": "tabs",
+            "ver": 2,
+            "size": 36,
+            "color": "primary",
+            "tabLook": "underline",
+            "children": [
+              {
+                "type": "card",
+                "icon": "mdi-clipboard-text-outline",
+                "title": {
+                  "uk": "Бриф",
+                  "en": "Brief",
+                  "de": "Briefing"
+                },
+                "content": {
+                  "uk": "Тридцять хвилин розмови замість анкети на сорок питань. Ви розповідаєте, що болить, ми — що з цього вийде сайтом.",
+                  "en": "Thirty minutes of conversation instead of a forty-question form. You tell us what hurts; we tell you what of it becomes a website.",
+                  "de": "Dreißig Minuten Gespräch statt eines Fragebogens mit vierzig Fragen. Sie erzählen, wo es hakt, wir sagen, was davon eine Website wird."
+                }
+              },
+              {
+                "type": "card",
+                "icon": "mdi-palette-outline",
+                "title": {
+                  "uk": "Дизайн",
+                  "en": "Design",
+                  "de": "Design"
+                },
+                "content": {
+                  "uk": "Збираємо сторінки з готових блоків у ваших кольорах. Правки — прямо в редакторі, без пересилання макетів туди-сюди.",
+                  "en": "We put the pages together from ready blocks in your colours. Changes happen right in the editor, with no mock-ups going back and forth.",
+                  "de": "Wir setzen die Seiten aus fertigen Blöcken in Ihren Farben zusammen. Änderungen direkt im Editor, ohne Entwürfe hin und her zu schicken."
+                }
+              },
+              {
+                "type": "card",
+                "icon": "mdi-rocket-launch-outline",
+                "title": {
+                  "uk": "Запуск",
+                  "en": "Launch",
+                  "de": "Start"
+                },
+                "content": {
+                  "uk": "Публікуємо, підключаємо домен і форму зв’язку. Далі сайт ваш: тексти й ціни змінюєте самі.",
+                  "en": "We publish, connect the domain and the contact form. From then on the site is yours: you change the texts and prices yourself.",
+                  "de": "Wir veröffentlichen, verbinden Domain und Kontaktformular. Danach gehört die Website Ihnen: Texte und Preise ändern Sie selbst."
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

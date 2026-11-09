@@ -80,3 +80,19 @@ export const FEEDBACK_FIELD_LABELS: Record<Exclude<FeedbackField, 'message' | 'r
 export function feedbackFormKind (id: string | undefined): FeedbackFormKind {
   return FEEDBACK_FORM_KINDS.find(kind => kind.id === id) ?? FEEDBACK_FORM_KINDS[0]!
 }
+
+// How to get back to the visitor: a messenger first, e-mail last.
+export const FEEDBACK_CONTACT = {
+  label: { uk: 'Як з вами зв’язатися', en: 'How to reach you', de: 'Wie wir Sie erreichen' },
+  ways: [
+    { via: 'telegram', name: 'Telegram', placeholder: { uk: '@нік або номер', en: '@username or number', de: '@Benutzername oder Nummer' } },
+    { via: 'viber', name: 'Viber', placeholder: { uk: 'Номер телефону', en: 'Phone number', de: 'Telefonnummer' } },
+    { via: 'whatsapp', name: 'WhatsApp', placeholder: { uk: 'Номер телефону', en: 'Phone number', de: 'Telefonnummer' } },
+    { via: 'email', name: 'Email', placeholder: { uk: 'Ваша пошта', en: 'Your email', de: 'Ihre E-Mail' } },
+  ] as const,
+  signedIn: {
+    uk: 'Відповідь прийде у ваш особистий кабінет. Контакт - за бажанням.',
+    en: 'The reply will come to your personal account. A contact is optional.',
+    de: 'Die Antwort kommt in Ihren persönlichen Bereich. Ein Kontakt ist optional.',
+  },
+} satisfies { label: Words, ways: readonly { via: string, name: string, placeholder: Words }[], signedIn: Words }

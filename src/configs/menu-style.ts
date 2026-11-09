@@ -1,4 +1,5 @@
 import type { SocialIconLook } from './social-icons'
+import { FEEDBACK_POPUP_ID } from './default-popups'
 
 // The look of the site's menus, set in the UI Kit ("Меню") and kept in
 // global.json `menuStyle`. Same file in site/src/configs - keep the two
@@ -48,6 +49,9 @@ export interface MobileMenuRow {
   // contact: a button that opens the feedback form.
   buttonClass?: string
   label?: Translated
+  // contact: the site popup it opens (content/settings/popups.json); a row
+  // from before popups carries its own form texts instead
+  popup?: string
   form?: { type?: string, title?: Translated, text?: Translated }
   // divider: its colour.
   color?: string
@@ -96,7 +100,7 @@ export function mobileRow (type: MobileRowType): MobileMenuRow {
       return { type, align: 'center', iconLook: 'color', iconColor: 'grey', iconSize: 32 }
     }
     case 'contact': {
-      return { type, align: 'center', buttonClass: 'primary-button', label: { ...CONTACT_LABEL }, form: { type: 'message' } }
+      return { type, align: 'center', buttonClass: 'primary-button', label: { ...CONTACT_LABEL }, popup: FEEDBACK_POPUP_ID }
     }
     case 'divider': {
       return { type, color: 'light-grey-1' }
@@ -237,3 +241,7 @@ export function rowStyle (row: MobileMenuRow): Record<string, string> {
 export function translated (value: Translated | undefined, locale: string): string {
   return value?.[locale] || value?.uk || Object.values(value ?? {}).find(Boolean) || ''
 }
+
+// The feedback popup every site starts with (configs/default-popups.ts).
+
+export { FEEDBACK_POPUP_ID } from './default-popups'

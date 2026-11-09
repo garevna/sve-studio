@@ -1,0 +1,104 @@
+/* The site's popup window (site PopupHost.vue) - the same frame, the same
+   classes, so the editor shows and edits a popup as it will look. Plain
+   (not scoped) CSS: the frame is Vuetify's own element, teleported. Used by
+   PopupEditorDialog.vue and PopupPreviewDialog.vue. */
+.pw-popup-overlay.v-overlay__content {
+  margin: 0 !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+}
+/* The theme stretches every dialog to the full width and rounds its frame
+   (vuetify-overlay-content.css); a popup keeps its own width, and its
+   corners are the panel's. */
+.v-dialog:not(.v-bottom-sheet) > .v-overlay__content.pw-popup-overlay {
+  min-width: 0;
+  border-radius: 0 !important;
+}
+.pw-popup-overlay--left.v-overlay__content,
+.pw-popup-overlay--right.v-overlay__content {
+  position: fixed !important;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+}
+.pw-popup-overlay--left.v-overlay__content { left: 0; }
+.pw-popup-overlay--right.v-overlay__content { right: 0; }
+.pw-popup-overlay--bottom.v-overlay__content {
+  position: fixed !important;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100% !important;
+  max-height: 85vh !important;
+}
+.pw-popup-overlay--center.v-overlay__content {
+  max-width: calc(100vw - 32px) !important;
+  max-height: calc(100vh - 32px) !important;
+}
+.pw-popup {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  background: var(--white);
+  overflow: hidden;
+}
+.pw-popup--left { border-radius: 0 var(--large-border-radius) var(--large-border-radius) 0; }
+.pw-popup--right { border-radius: var(--large-border-radius) 0 0 var(--large-border-radius); }
+.pw-popup--bottom { border-radius: var(--large-border-radius) var(--large-border-radius) 0 0; }
+.pw-popup--center { border-radius: var(--large-border-radius); }
+.pw-popup__head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 16px 0 24px;
+}
+.pw-popup__title {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0;
+  font-family: var(--main-font);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--black);
+}
+.pw-popup__close {
+  display: inline-flex;
+  margin-left: auto;
+  padding: 6px;
+  color: var(--grey);
+  font-size: 24px;
+  line-height: 1;
+}
+.pw-popup__body {
+  flex: 1 1 auto;
+  min-height: 0;
+  padding: 8px 24px 24px;
+}
+.pw-popup-left-enter-active, .pw-popup-left-leave-active,
+.pw-popup-right-enter-active, .pw-popup-right-leave-active,
+.pw-popup-bottom-enter-active, .pw-popup-bottom-leave-active,
+.pw-popup-center-enter-active, .pw-popup-center-leave-active {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+}
+.pw-popup-left-enter-from, .pw-popup-left-leave-to { transform: translateX(-100%); }
+.pw-popup-right-enter-from, .pw-popup-right-leave-to { transform: translateX(100%); }
+.pw-popup-bottom-enter-from, .pw-popup-bottom-leave-to { transform: translateY(100%); }
+.pw-popup-center-enter-from, .pw-popup-center-leave-to { transform: scale(0.96); opacity: 0; }
+
+/* A form in a popup: the window is its frame - no card of its own inside
+   it (a card in a window looked like a popup in a popup), the window's
+   whole width, no room of its own above and below. */
+.pw-popup .feedback-form-block {
+  display: block !important;
+  padding-block: 0 !important;
+}
+.pw-popup .feedback-form-block .footer-feedback-card {
+  min-width: 0 !important;
+  max-width: none !important;
+  width: 100%;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}

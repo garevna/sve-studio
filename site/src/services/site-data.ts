@@ -1,4 +1,5 @@
-import type { GlobalSettingsModel, MenuItemModel, SeoSettingsModel, TemplateBlockModel, TemplatePageModel } from '../types/common'
+import type { GlobalSettingsModel, MenuItemModel, PopupModel, PopupsDocument, SeoSettingsModel, TemplateBlockModel, TemplatePageModel } from '../types/common'
+import { withDefaultPopups } from '../configs/default-popups'
 import { dbRequest } from '../db/client'
 
 // Where the site reads its content - the one place to change for a site
@@ -52,6 +53,13 @@ export async function getPage (pageId: string, { includeHidden = false } = {}): 
 
 export async function getFooter (): Promise<TemplateBlockModel | null> {
   return (await dbRequest<TemplateBlockModel | null>('pages', 'get', { pageId: 'footer-content' }).catch(() => null)) ?? null
+}
+
+// The site's popups - any button on any page may open one.
+export async function getPopups (): Promise<PopupModel[]> {
+  const document = await dbRequest<PopupsDocument | null>('settings', 'get', { key: 'popups' }).catch(() => null)
+  // the base package's popups are there whatever the stored list says
+  return withDefaultPopups(document?.popups ?? [])
 }
 
 export async function getSeoSettings (): Promise<SeoSettingsModel | null> {

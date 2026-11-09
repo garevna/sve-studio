@@ -290,6 +290,17 @@
       ]
     },
     {
+      "type": "button",
+      "class": "outlined-button my-8",
+      "content": {
+        "uk": "Як ми запускаємо проєкт",
+        "en": "How we launch a project",
+        "de": "Wie wir ein Projekt starten"
+      },
+      "action": "popup",
+      "popup": "popup-launch"
+    },
+    {
       "type": "dark-fone-section",
       "title": {
         "uk": "Наш стек суперсил",

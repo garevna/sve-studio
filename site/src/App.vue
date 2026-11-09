@@ -21,11 +21,13 @@
   import { FOOTER_FINAL_FRAME, FOOTER_HORIZON, resolveFooterVariant } from './configs/footer-variants'
   import { HERO_SPLIT_VARIANT, HERO_WITH_TITLE_VARIANT } from './configs/header-layout'
   import { loadCountryList } from './services/load-country-list'
-  import { getFooter, getMenu, getPage, getPageTitles, getPalette, getSeoSettings, getSiteSettings } from './services/site-data'
+  import { getFooter, getMenu, getPage, getPageTitles, getPalette, getPopups, getSeoSettings, getSiteSettings } from './services/site-data'
   import { ACCOUNT_PAGE_ID, AUTH_PAGE_ID, parseSitePath } from './services/site-links'
   import { useCommonStore } from './stores/common'
+  import { usePopupsStore } from './stores/popups'
   import AccountPage from './templates/AccountPage.vue'
   import AuthPage from './templates/AuthPage.vue'
+  import PopupHost from './templates/components/PopupHost.vue'
   import DynamicPageTemplate from './templates/DynamicPageTemplate.vue'
   import FooterTemplate from './templates/FooterTemplate.vue'
   import PageNotFound from './templates/PageNotFound.vue'
@@ -38,6 +40,7 @@
 
   const route = useRoute()
   const commonStore = useCommonStore()
+  const popupsStore = usePopupsStore()
   const {
     parallaxImage,
     parallaxHeader,
@@ -80,14 +83,16 @@
   // --- the site, once ---------------------------------------------------------
 
   async function loadSite () {
-    const [settings, palette, menu, footer, seoSettings, pageTitles] = await Promise.all([
+    const [settings, palette, menu, footer, seoSettings, pageTitles, popups] = await Promise.all([
       getSiteSettings(),
       getPalette(),
       getMenu(),
       getFooter(),
       getSeoSettings(),
       getPageTitles(),
+      getPopups(),
     ])
+    popupsStore.items = popups
     // buttons.css, home.css... read bare var(--primary) and so on.
     for (const [name, value] of Object.entries(palette)) {
       document.documentElement.style.setProperty(`--${name}`, value)
@@ -325,6 +330,10 @@
       <SiteCopyright />
       <FooterHorizonSignature v-if="footerVariant === FOOTER_HORIZON" :text="company?.name || ''" />
     </v-footer>
+
+    <!-- The site's popups: mounted once, each opened by its flag in the
+      popups store (stores/popups.ts). -->
+    <PopupHost />
 
     <!-- <AuthErrorPopup />
       <info-popup />

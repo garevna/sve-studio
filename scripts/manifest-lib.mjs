@@ -8,7 +8,7 @@ import { createHash } from 'node:crypto'
 import { readdir, readFile, stat, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 
-const SETTINGS_KEYS = ['global', 'palette', 'menu-content', 'seo']
+const SETTINGS_KEYS = ['global', 'palette', 'menu-content', 'seo', 'popups']
 const PUBLIC_KEYS = ['account-pages']
 const IMAGE_EXTENSION = /\.(webp|avif|png|jpe?g|svg|gif)$/i
 
@@ -43,7 +43,6 @@ async function listImages (dir, prefix = '') {
 // it lives under content/public/.
 // contentDir is the repo's content/ folder.
 export async function regenerateManifest (contentDir) {
-
   const pages = (await listFiles(path.join(contentDir, 'pages'), name => name.endsWith('.json')))
     .map(name => name.replace(/\.json$/, ''))
 
@@ -69,7 +68,9 @@ export async function regenerateManifest (contentDir) {
   const hashes = {}
   const fingerprint = async relative => {
     const bytes = await readFile(path.join(contentDir, relative)).catch(() => null)
-    if (bytes) hashes[relative] = createHash('sha256').update(bytes).digest('hex').slice(0, 16)
+    if (bytes) {
+      hashes[relative] = createHash('sha256').update(bytes).digest('hex').slice(0, 16)
+    }
   }
   await Promise.all([
     ...pages.map(id => fingerprint(`pages/${id}.json`)),

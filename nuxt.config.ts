@@ -7,10 +7,11 @@ const contentDir = fileURLToPath(new URL('content', import.meta.url))
 // (set by the deploy workflow). Nuxt reads the same variable for its base.
 const root = process.env.NUXT_APP_BASE_URL || '/'
 // Pagewright's own Google Search Console code - the product's, not a
-// client site's (that one is in the editor's SEO settings). Set as the
-// repository variable GOOGLE_SITE_VERIFICATION; the deploy workflow hands
-// it to the build, which writes it into the HTML (Google reads the HTML
-// as served, without running scripts).
+// client site's (that one is in the editor's SEO settings). Optional - a
+// verification file in deploy/<target>/public/ does the same. The deploy
+// workflow hands each address its own code (repository variables
+// GOOGLE_SITE_VERIFICATION_PAGES / _CLOUDFLARE); the build writes it into
+// the HTML (Google reads the HTML as served, without running scripts).
 const pagewrightVerification = process.env.GOOGLE_SITE_VERIFICATION?.trim() || ''
 
 // Nuxt app of Pagewright (the editor).

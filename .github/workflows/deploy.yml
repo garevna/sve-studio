@@ -1,7 +1,15 @@
-# Builds the demo (editor + site, static) and publishes it on GitHub Pages:
-# https://garevna.github.io/sve-studio/
-# In the repository settings, Pages > Source must be "GitHub Actions".
-name: Deploy to GitHub Pages
+# Builds Pagewright (editor + site, static) and publishes it twice, one
+# build per address (each has its own root):
+#   GitHub Pages - https://garevna.github.io/sve-studio/
+#                  (Settings > Pages > Source must be "GitHub Actions");
+#   Cloudflare   - https://pagewright.pp.ua/ (deploy/cloudflare/), runs
+#                  once the repository has the variable CLOUDFLARE_ACCOUNT_ID
+#                  and the secret CLOUDFLARE_API_TOKEN.
+#
+# Files only one address must have - Google Search Console's verification
+# file is a different one for each - live in deploy/<target>/public/ and
+# are copied into that target's build only.
+name: Deploy
 
 on:
   push:
@@ -22,9 +30,9 @@ jobs:
     runs-on: ubuntu-latest
     env:
       NUXT_APP_BASE_URL: /sve-studio/
-      # Pagewright's Google Search Console code (Settings > Secrets and
-      # variables > Actions > Variables). Empty = no tag.
-      GOOGLE_SITE_VERIFICATION: ${{ vars.GOOGLE_SITE_VERIFICATION }}
+      # Search Console by meta tag instead of a file (optional; Settings >
+      # Secrets and variables > Actions > Variables). Empty = no tag.
+      GOOGLE_SITE_VERIFICATION: ${{ vars.GOOGLE_SITE_VERIFICATION_PAGES }}
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
@@ -37,6 +45,7 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm generate
       - run: node scripts/gh-pages-404.mjs .output/public /sve-studio/
+      - run: cp -r deploy/github-pages/public/. .output/public/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: .output/public
@@ -50,3 +59,29 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+
+  cloudflare:
+    if: ${{ vars.CLOUDFLARE_ACCOUNT_ID != '' }}
+    runs-on: ubuntu-latest
+    environment:
+      name: cloudflare
+      url: https://pagewright.pp.ua/
+    env:
+      GOOGLE_SITE_VERIFICATION: ${{ vars.GOOGLE_SITE_VERIFICATION_CLOUDFLARE }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.27.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      # Root "/": no NUXT_APP_BASE_URL.
+      - run: pnpm generate
+      - run: cp -r deploy/cloudflare/public/. .output/public/
+      - run: pnpm dlx wrangler@4.160.0 deploy --config deploy/cloudflare/wrangler.jsonc
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}

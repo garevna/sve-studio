@@ -1,7 +1,24 @@
+import { readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import vuetify from 'vite-plugin-vuetify'
 
 const siteSrc = fileURLToPath(new URL('src', import.meta.url))
+
+// The site's Google Search Console code (SEO → "Код підтвердження"),
+// written into the page's HTML itself: Google checks the HTML as it is
+// served, without running scripts, and with `ssr: false` App.vue's
+// useHead() only adds the tag once the page runs. Read from the starting
+// content at build time - "Зберегти" in the editor writes
+// content/settings/seo.json in dev, so the next deploy carries the code.
+function googleSiteVerification (): string {
+  try {
+    const seo = JSON.parse(readFileSync(new URL('../content/settings/seo.json', import.meta.url), 'utf8')) as { googleSiteVerification?: string }
+    return seo.googleSiteVerification?.trim() ?? ''
+  } catch {
+    return ''
+  }
+}
+const verification = googleSiteVerification()
 
 // The SITE built with the editor: the pages people visit, with their own
 // addresses, menu, languages and links.
@@ -40,7 +57,10 @@ export default defineNuxtConfig({
       htmlAttrs: { lang: 'uk' },
       // GitHub Pages deep links: see the editor's nuxt.config.ts.
       script: [{ innerHTML: String.raw`(function(){var p=new URLSearchParams(location.search).get('__sve_path');if(p!==null){history.replaceState(null,'',location.pathname+p.replace(/^\//,''))}})()`, tagPosition: 'head' }],
-      meta: [{ name: 'viewport', content: 'width=device-width, initial-scale=1' }],
+      meta: [
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        ...(verification ? [{ name: 'google-site-verification', content: verification }] : []),
+      ],
       link: [
         // The site's own logo replaces this once its settings are in (App.vue).
         { rel: 'icon', href: `${process.env.SVE_ROOT || '/'}favicon.ico`, key: 'favicon' },

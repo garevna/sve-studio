@@ -6,6 +6,12 @@ const contentDir = fileURLToPath(new URL('content', import.meta.url))
 // Where the demo is served: "/" locally, "/sve-studio/" on GitHub Pages
 // (set by the deploy workflow). Nuxt reads the same variable for its base.
 const root = process.env.NUXT_APP_BASE_URL || '/'
+// Pagewright's own Google Search Console code - the product's, not a
+// client site's (that one is in the editor's SEO settings). Set as the
+// repository variable GOOGLE_SITE_VERIFICATION; the deploy workflow hands
+// it to the build, which writes it into the HTML (Google reads the HTML
+// as served, without running scripts).
+const pagewrightVerification = process.env.GOOGLE_SITE_VERIFICATION?.trim() || ''
 
 // Nuxt app of Pagewright (the editor).
 //
@@ -52,6 +58,7 @@ export default defineNuxtConfig({
   app: {
     head: {
       title: 'Pagewright',
+      meta: pagewrightVerification ? [{ name: 'google-site-verification', content: pagewrightVerification }] : [],
       // A deep link opened on GitHub Pages comes back through 404.html as
       // ?__sve_path=... - the address is put back before the router starts.
       script: [{ innerHTML: String.raw`(function(){var p=new URLSearchParams(location.search).get('__sve_path');if(p!==null){history.replaceState(null,'',location.pathname+p.replace(/^\//,''))}})()`, tagPosition: 'head' }],

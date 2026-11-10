@@ -22,6 +22,9 @@ jobs:
     runs-on: ubuntu-latest
     env:
       NUXT_APP_BASE_URL: /sve-studio/
+      # Pagewright's Google Search Console code (Settings > Secrets and
+      # variables > Actions > Variables). Empty = no tag.
+      GOOGLE_SITE_VERIFICATION: ${{ vars.GOOGLE_SITE_VERIFICATION }}
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4

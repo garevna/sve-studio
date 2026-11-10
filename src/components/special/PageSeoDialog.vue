@@ -5,11 +5,12 @@
      FooterEditor.vue, CardContainerActions.vue, FaqBlockActions.vue), and
      it's what lets the page editor's autosave pick these edits up without
      an extra round of emits. */
+  import type { EditorMode } from '@/composables/useEditorMode'
   import type { PageSeoModel } from '@/types/TemplateBlockModel'
-  import { ref, toRaw, watch } from 'vue'
+  import { computed, ref, toRaw, watch } from 'vue'
+  import ImageEditor from '@/components/editors/ImageEditor.vue'
+  import { provideEditorMode } from '@/composables/useEditorMode'
   import { t } from '@/i18n'
-  import { useAjaxStore } from '@/stores/ajax'
-  import { uploadImage } from '@/utils/upload-image'
 
   // One page's own SEO fields, edited in place. Extracted out of
   // EditorView.vue because the SEO role reaches these from the pages list
@@ -37,8 +38,6 @@
 
   const open = defineModel<boolean>({ default: false })
 
-  const ajaxStore = useAjaxStore()
-
   // "Скасувати" has to actually undo, not just close: the fields below are
   // bound straight to the caller's own object, so by the time the dialog is
   // closed the edits are already in it. Snapshotting on open is enough -
@@ -56,26 +55,11 @@
     open.value = false
   }
 
-  const ogImageInput = ref<HTMLInputElement | null>(null)
-  const ogImageUploading = ref(false)
-  async function onOgImageChange (event: Event) {
-    const file = (event.target as HTMLInputElement).files?.[0]
-    if (!file) return
-    ogImageUploading.value = true
-    const previous = props.seo.ogImage
-    // Preview first: it also tells upload-image.ts which slot this is.
-    const previewUrl = URL.createObjectURL(file)
-    props.seo.ogImage = previewUrl
-    try {
-      props.seo.ogImage = await uploadImage(file, { replaces: previous, preview: previewUrl, folder: props.pageId })
-    } catch (error) {
-      props.seo.ogImage = previous
-      throw error
-    } finally {
-      URL.revokeObjectURL(previewUrl)
-      ogImageUploading.value = false
-    }
-  }
+  // The same picture control as everywhere else; it uploads into the
+  // page's own folder. The dialog can be opened from the pages list, where
+  // nothing is in edit mode - here it always is.
+  provideEditorMode(computed<EditorMode>(() => 'edit'))
+  const ogImageBox = ref(150)
 </script>
 
 <template>
@@ -105,28 +89,8 @@
         />
 
         <p class="seo-field-label mt-4 mb-2">{{ t('seo.pageImage') }}</p>
-        <div class="d-flex align-center ga-4">
-          <img
-            v-if="seo.ogImage"
-            class="seo-og-image-preview"
-            :src="ajaxStore.getImageURL(seo.ogImage)"
-          >
-          <v-btn
-            :loading="ogImageUploading"
-            prepend-icon="mdi-upload"
-            size="small"
-            variant="outlined"
-            @click="ogImageInput?.click()"
-          >
-            {{ t('common.upload') }}
-          </v-btn>
-          <input
-            ref="ogImageInput"
-            accept="image/*"
-            style="display: none"
-            type="file"
-            @change="onOgImageChange"
-          >
+        <div class="seo-og-image">
+          <ImageEditor v-model:height="ogImageBox" v-model:src="seo.ogImage" fit="contain" :folder="pageId" />
         </div>
 
         <v-switch
@@ -181,9 +145,9 @@
   font-size: 0.9rem;
   color: #7A8699;
 }
-.seo-og-image-preview {
-  max-width: 120px;
-  max-height: 80px;
-  border-radius: 4px;
+/* 1200×630 is the shape social networks show. */
+.seo-og-image {
+  width: 286px;
+  max-width: 100%;
 }
 </style>

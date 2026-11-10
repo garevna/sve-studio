@@ -367,13 +367,28 @@
           }
         ]
       }
+    },
+    {
+      "id": "popup-1a5kq",
+      "name": "Попап 8",
+      "kind": "date",
+      "placement": "center",
+      "width": 480,
+      "content": {
+        "type": "section-with-free-content",
+        "children": []
+      },
+      "calendar": "calendar-s8v2p"
     }
   ],
   "looks": [
     {
       "id": "look-main",
       "name": "Основний",
-      "base": "centered"
+      "base": "centered",
+      "buttons": {
+        "main": "green-button"
+      }
     }
   ],
   "calendars": [
@@ -381,7 +396,36 @@
       "id": "calendar-main",
       "name": "Календар",
       "variant": "extended",
-      "firstDayOfWeek": 1
+      "firstDayOfWeek": 1,
+      "headerBackground": "light-grey-2",
+      "headerColor": "black",
+      "weekdayColor": "grey",
+      "selectedColor": "black",
+      "selectedTextColor": "white",
+      "todayColor": "dark-grey",
+      "monthWeight": 700,
+      "dayRadius": 8,
+      "buttons": {
+        "main": "green-button",
+        "second": "simple-button"
+      }
+    },
+    {
+      "id": "calendar-s8v2p",
+      "name": "Material (з шапкою)",
+      "variant": "material",
+      "headerBackground": "green",
+      "headerColor": "light-green",
+      "prevIcon": "mdi-chevron-left",
+      "nextIcon": "mdi-chevron-right",
+      "weekdayFormat": "short",
+      "weekdayColor": "special",
+      "dayRadius": 8,
+      "selectedColor": "green-button",
+      "selectedTextColor": "white",
+      "todayColor": "warning",
+      "firstDayOfWeek": 1,
+      "radius": "small-border-radius"
     }
   ]
 }

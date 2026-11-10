@@ -38,11 +38,14 @@
   // read: where a picked file goes instead of the server upload - returns the
   // value to keep (the general settings keep their pictures inside
   // global.json, see GeneralSettingsView.vue).
+  // folder: content/images/<folder>/ for the upload, when the picture
+  // belongs to a page other than the one being edited (a page's SEO image).
   const props = defineProps<{
     naturalSize?: boolean
     fallback?: string
     fit?: 'cover' | 'contain'
     read?: (file: File) => Promise<string>
+    folder?: string
   }>()
 
   // Fired with the real uploaded path (not the transient blob: preview) so
@@ -91,7 +94,7 @@
     src.value = previewUrl
 
     try {
-      const path = props.read ? await props.read(file) : await uploadImage(file, { replaces: previous, preview: previewUrl })
+      const path = props.read ? await props.read(file) : await uploadImage(file, { replaces: previous, preview: previewUrl, folder: props.folder })
       src.value = path
       emit('uploaded', path)
       URL.revokeObjectURL(previewUrl)

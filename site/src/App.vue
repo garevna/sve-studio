@@ -224,6 +224,10 @@
     meta: [
       { name: 'description', content: dynamicPageContent.value?.seo?.description || seo.value?.defaultDescription || '' },
       ...(dynamicPageContent.value?.seo?.noindex ? [{ name: 'robots', content: 'noindex,follow' }] : []),
+      // Google Search Console. Also written into the HTML at build time
+      // (nuxt.config.ts) - this one follows a newly published code, and is
+      // what a server-rendered site sends.
+      ...(seo.value?.googleSiteVerification?.trim() ? [{ name: 'google-site-verification', content: seo.value.googleSiteVerification.trim() }] : []),
     ],
     // The browser tab's icon is the site's own logo (Загальні налаштування)
     // - change the logo and the icon follows. The editor's icon until then.

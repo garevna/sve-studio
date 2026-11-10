@@ -15,7 +15,7 @@
     "de": "%s wird durch den Titel der jeweiligen Seite ersetzt. Beispiel: „%s – Virtual Dimension“"
   },
   "titleTemplate": {
-    "uk": "Шаблон заголовка вкладки (<title>)",
+    "uk": "Шаблон заголовка вкладки (тег title)",
     "en": "Tab Title Template",
     "de": "Tab-Titel-Vorlage"
   },

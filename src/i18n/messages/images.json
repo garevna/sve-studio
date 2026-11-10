@@ -9,11 +9,6 @@
     "en": "The browser could not display “{name}” as an image",
     "de": "Der Browser konnte „{name}“ nicht als Bild anzeigen"
   },
-  "dropHere": {
-    "uk": "Перетягніть зображення сюди або натисніть",
-    "en": "Drag the image here or click",
-    "de": "Ziehen Sie das Bild hierher oder klicken Sie"
-  },
   "upload": {
     "uk": "Завантажити зображення",
     "en": "Upload Image",
@@ -28,11 +23,6 @@
     "uk": "Змінити зображення",
     "en": "Change Image",
     "de": "Bild ändern"
-  },
-  "choose": {
-    "uk": "Виберіть зображення",
-    "en": "Choose Image",
-    "de": "Bild auswählen"
   },
   "uploadSeries": {
     "uk": "Завантажити серію фото",

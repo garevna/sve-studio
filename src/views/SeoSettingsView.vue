@@ -1,8 +1,11 @@
 <script lang="ts" setup>
+  import type { EditorMode } from '@/composables/useEditorMode'
   import type { SeoSettingsModel } from '@/types/SeoSettingsModel'
-  import { onMounted, ref, watch } from 'vue'
+  import { computed, onMounted, ref, watch } from 'vue'
+  import ImageEditor from '@/components/editors/ImageEditor.vue'
   import EditorPageHeader from '@/components/special/EditorPageHeader.vue'
   import EditorSaveBar from '@/components/special/EditorSaveBar.vue'
+  import { provideEditorMode } from '@/composables/useEditorMode'
   import { t } from '@/i18n'
   import { useAjaxStore } from '@/stores/ajax'
   import { useUiFeedbackStore } from '@/stores/ui-feedback'
@@ -42,18 +45,16 @@
     loading.value = false
   })
 
-  function pickFile (value: File | File[] | null): File | null {
-    return Array.isArray(value) ? value[0] ?? null : value
-  }
-
-  async function onOgImageChange (value: File | File[] | null) {
-    const file = pickFile(value)
-    if (!file || !settings.value) return
+  // The same picture control as everywhere else (ImageEditor); the file
+  // stays inside seo.json, like the pictures of the general settings.
+  provideEditorMode(computed<EditorMode>(() => 'edit'))
+  const ogImageBox = ref(200)
+  async function readOgImage (file: File): Promise<string> {
     try {
-      const { dataUrl } = await readImageFile(file)
-      settings.value.defaultOgImage = dataUrl
+      return (await readImageFile(file)).dataUrl
     } catch (error) {
       feedback.notifyError(t('popups.imageUploadFailed'), error instanceof Error ? error.message : String(error))
+      throw error
     }
   }
 
@@ -144,20 +145,9 @@
         <p class="text-body-2 text-medium-emphasis mb-3">
           {{ t('seo.defaultImageHint') }}
         </p>
-        <v-row align="center">
-          <v-col cols="12" md="5">
-            <v-file-upload
-              accept="image/*"
-              class="upload-dropzone"
-              density="compact"
-              :title="t('images.dropHere')"
-              @update:model-value="onOgImageChange"
-            />
-          </v-col>
-          <v-col v-if="settings.defaultOgImage" cols="12" md="7">
-            <img class="og-image-preview" :src="settings.defaultOgImage">
-          </v-col>
-        </v-row>
+        <div class="og-image">
+          <ImageEditor v-model:height="ogImageBox" v-model:src="settings.defaultOgImage" fit="contain" :read="readOgImage" />
+        </div>
 
         <h2 class="editor-section-title">Google Search Console</h2>
         <v-row>
@@ -195,16 +185,9 @@
     font-weight: 600;
     margin: 24px 0 12px;
   }
-  .upload-dropzone :deep(.v-file-upload-dropzone) {
-    border: dashed 1px rgba(58, 74, 88, 0.3) !important;
-    border-radius: 8px;
-  }
-  .og-image-preview {
-    display: block;
+  /* 1200×630 is the shape social networks show. */
+  .og-image {
+    width: 380px;
     max-width: 100%;
-    max-height: 200px;
-    object-fit: contain;
-    border: solid 1px rgba(58, 74, 88, 0.15);
-    border-radius: 8px;
   }
 </style>

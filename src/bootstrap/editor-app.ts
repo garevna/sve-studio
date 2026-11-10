@@ -12,7 +12,6 @@ import type { Pinia } from 'pinia'
 import type { App } from 'vue'
 import { createVuetify } from 'vuetify'
 import { mdi } from 'vuetify/iconsets/mdi'
-import { VFileUpload } from 'vuetify/labs/components'
 import SelectColorFromPalette from '@/components/special/SelectColorFromPalette.vue'
 import { siteStyles } from '@/configs/card-style'
 import { onSeedProblems } from '@/db/client'
@@ -127,5 +126,4 @@ export function installEditor (app: App, { pinia, vuetify, theme }: { pinia: Pin
   app.use(i18n)
   app.use(vuetify)
   app.component('select-color-from-palette', SelectColorFromPalette)
-  app.component('VFileUpload', VFileUpload)
 }

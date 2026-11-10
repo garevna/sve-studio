@@ -1,157 +1,157 @@
 {
   "title": {
     "uk": "Повідомлення",
-    "en": "",
-    "de": ""
+    "en": "Messages",
+    "de": "Nachrichten"
   },
   "detail": {
     "uk": "від відвідувачів сайту",
-    "en": "",
-    "de": ""
+    "en": "from website visitors",
+    "de": "von Website-Besuchern"
   },
   "signInTitle": {
     "uk": "Повідомлення відвідувачів",
-    "en": "",
-    "de": ""
+    "en": "Visitor messages",
+    "de": "Nachrichten von Besuchern"
   },
   "signInText": {
     "uk": "Увійдіть обліковим записом Google, якому дозволено читати повідомлення й відповідати на них.",
-    "en": "",
-    "de": ""
+    "en": "Sign in with a Google account that is authorised to read and reply to messages.",
+    "de": "Melden Sie sich mit einem Google-Konto an, das zum Lesen und Beantworten von Nachrichten berechtigt ist."
   },
   "signInGoogle": {
     "uk": "Увійти через Google",
-    "en": "",
-    "de": ""
+    "en": "Sign in with Google",
+    "de": "Über Google anmelden"
   },
   "signOut": {
     "uk": "Вийти",
-    "en": "",
-    "de": ""
+    "en": "Sign out",
+    "de": "Abmelden"
   },
   "switchAccount": {
     "uk": "Увійти іншим обліковим записом",
-    "en": "",
-    "de": ""
+    "en": "Sign in with a different account",
+    "de": "Mit einem anderen Konto anmelden"
   },
   "notConfigured": {
     "uk": "Повідомлень тут не буде: у загальних налаштуваннях сайту не задано вхід (Firebase) або адресу форми зворотного зв’язку.",
-    "en": "",
-    "de": ""
+    "en": "There will be no messages here: the site’s general settings do not specify a login (Firebase) or a contact form address.",
+    "de": "Hier werden keine Nachrichten angezeigt: In den allgemeinen Einstellungen der Website sind weder die Anmeldung (Firebase) noch die Adresse des Kontaktformulars festgelegt."
   },
   "notAdmin": {
     "uk": "Обліковий запис {email} не має доступу до повідомлень.",
-    "en": "",
-    "de": ""
+    "en": "The account {email} does not have access to messages.",
+    "de": "Das Konto {email} hat keinen Zugriff auf Nachrichten."
   },
   "domainError": {
     "uk": "Вхід з цієї адреси не дозволено. Додайте її у Firebase → Authentication → Settings → Authorized domains.",
-    "en": "",
-    "de": ""
+    "en": "Logging in from this address is not permitted. Add it in Firebase → Authentication → Settings → Authorised domains.",
+    "de": "Die Anmeldung über diese Adresse ist nicht zulässig. Fügen Sie sie unter Firebase → Authentication → Settings → Authorized domains hinzu."
   },
   "networkError": {
     "uk": "Сервіс повідомлень не відповідає. Спробуйте трохи згодом.",
-    "en": "",
-    "de": ""
+    "en": "The messaging service is not responding. Please try again later.",
+    "de": "Der Benachrichtigungsdienst reagiert nicht. Versuchen Sie es später erneut."
   },
   "serverError": {
     "uk": "Не вдалося отримати повідомлення.",
-    "en": "",
-    "de": ""
+    "en": "Unable to retrieve messages.",
+    "de": "Die Benachrichtigung konnte nicht abgerufen werden."
   },
   "refresh": {
     "uk": "Оновити",
-    "en": "",
-    "de": ""
+    "en": "Refresh",
+    "de": "Aktualisieren"
   },
   "filterWaiting": {
     "uk": "Без відповіді",
-    "en": "",
-    "de": ""
+    "en": "Unanswered",
+    "de": "Ohne Antwort"
   },
   "filterAnswered": {
     "uk": "З відповіддю",
-    "en": "",
-    "de": ""
+    "en": "With reply",
+    "de": "Mit Antwort"
   },
   "filterAll": {
     "uk": "Усі",
-    "en": "",
-    "de": ""
+    "en": "All",
+    "de": "Alle"
   },
   "emptyWaiting": {
     "uk": "На всі повідомлення вже є відповідь.",
-    "en": "",
-    "de": ""
+    "en": "All messages have already been replied to.",
+    "de": "Alle Benachrichtigungen sind bereits beantwortet."
   },
   "emptyAnswered": {
     "uk": "Ще немає повідомлень з відповіддю.",
-    "en": "",
-    "de": ""
+    "en": "There are no messages with replies yet.",
+    "de": "Es gibt noch keine Nachrichten mit einer Antwort."
   },
   "emptyAll": {
     "uk": "Повідомлень ще немає.",
-    "en": "",
-    "de": ""
+    "en": "There are no messages yet.",
+    "de": "Es gibt noch keine Nachrichten."
   },
   "replyPlaceholder": {
     "uk": "Ваша відповідь…",
-    "en": "",
-    "de": ""
+    "en": "Your reply…",
+    "de": "Deine Antwort…"
   },
   "replyHint": {
     "uk": "Ctrl+Enter — надіслати",
-    "en": "",
-    "de": ""
+    "en": "Ctrl+Enter — send",
+    "de": "Strg+Eingabetaste – senden"
   },
   "send": {
     "uk": "Відповісти",
-    "en": "",
-    "de": ""
+    "en": "Reply",
+    "de": "Antworten"
   },
   "sent": {
     "uk": "Відповідь надіслано",
-    "en": "",
-    "de": ""
+    "en": "Reply sent",
+    "de": "Antwort gesendet"
   },
   "sentNotInTelegram": {
     "uk": "Відповідь уже в кабінеті відвідувача. У Telegram допис не оновлено: він старіший за цей розділ.",
-    "en": "",
-    "de": ""
+    "en": "The reply is already in the visitor’s account. The post hasn’t been updated on Telegram: it’s older than this section.",
+    "de": "Die Antwort ist bereits im Besucherbereich zu finden. In Telegram wurde der Beitrag nicht aktualisiert: Er ist älter als dieser Abschnitt."
   },
   "sendFailed": {
     "uk": "Відповідь не надіслано",
-    "en": "",
-    "de": ""
+    "en": "Reply not sent",
+    "de": "Antwort wurde nicht gesendet"
   },
   "page": {
     "uk": "Сторінка",
-    "en": "",
-    "de": ""
+    "en": "Page",
+    "de": "Seite"
   },
   "delete": {
     "uk": "Видалити повідомлення",
-    "en": "",
-    "de": ""
+    "en": "Delete message",
+    "de": "Nachricht löschen"
   },
   "deleteTitle": {
     "uk": "Видалити повідомлення?",
-    "en": "",
-    "de": ""
+    "en": "Delete message?",
+    "de": "Nachricht löschen?"
   },
   "deleteText": {
     "uk": "Повідомлення разом з відповідями зникне з бази, з кабінету відвідувача ({name}) і з групи в Telegram. Повернути його буде неможливо.",
-    "en": "",
-    "de": ""
+    "en": "The message and any replies will be removed from the database, from the visitor’s account ({name}) and from the Telegram group. It will not be possible to restore it.",
+    "de": "Die Nachricht wird zusammen mit den Antworten aus der Datenbank, aus dem Besucherprofil ({name}) und aus der Telegram-Gruppe entfernt. Eine Wiederherstellung ist nicht möglich."
   },
   "deleted": {
     "uk": "Повідомлення видалено",
-    "en": "",
-    "de": ""
+    "en": "Message deleted",
+    "de": "Nachricht gelöscht"
   },
   "deleteFailed": {
     "uk": "Не вдалося видалити повідомлення",
-    "en": "",
-    "de": ""
+    "en": "Unable to delete the message",
+    "de": "Nachricht konnte nicht gelöscht werden"
   }
 }

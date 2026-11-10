@@ -4,6 +4,7 @@
 // A new section: add its file here.
 
 import accountPages from './accountPages.json'
+import architecture from './architecture.json'
 import banner from './banner.json'
 import bannerTexts from './bannerTexts.json'
 import block from './block.json'
@@ -12,6 +13,7 @@ import blockTypes from './blockTypes.json'
 import buttonEditor from './buttonEditor.json'
 import buttonPalette from './buttonPalette.json'
 import buttonSet from './buttonSet.json'
+import calendars from './calendars.json'
 import cards from './cards.json'
 import cardStyles from './cardStyles.json'
 import common from './common.json'
@@ -40,7 +42,9 @@ import pages from './pages.json'
 import palette from './palette.json'
 import parallax from './parallax.json'
 import popularDestinations from './popularDestinations.json'
+import popupLooks from './popupLooks.json'
 import popups from './popups.json'
+import problemLog from './problemLog.json'
 import saveTargets from './saveTargets.json'
 import seo from './seo.json'
 import siteSettings from './siteSettings.json'
@@ -57,6 +61,7 @@ import ui from './ui.json'
 import users from './users.json'
 
 export const MESSAGES = {
+  architecture,
   accountPages,
   banner,
   bannerTexts,
@@ -90,6 +95,9 @@ export const MESSAGES = {
   menuSettings,
   menuStyle,
   pagePopups,
+  popupLooks,
+  calendars,
+  problemLog,
   pages,
   palette,
   parallax,

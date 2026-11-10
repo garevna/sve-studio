@@ -26,11 +26,12 @@ import type { Driver } from 'unstorage'
 
 type Bindings = Record<string, unknown>
 
-// The three stores, and the binding each one looks for.
+// The stores, and the binding each one looks for.
 const STORES = [
   { mount: 'content-docs', binding: 'CONTENT_DOCS', folder: 'content-docs' },
   { mount: 'content-images', binding: 'CONTENT_IMAGES', folder: 'content-images' },
   { mount: 'content-users', binding: 'CONTENT_USERS', folder: 'content-users' },
+  { mount: 'content-log', binding: 'CONTENT_LOG', folder: 'content-log' },
 ] as const
 
 // nuxt.config.ts has already mounted a driver at each of these bases, and

@@ -15,4 +15,7 @@ export interface DbResponseMessage {
   action: string
   data?: unknown
   error?: string
+  // id 0: not an answer - a problem the worker met, for the page to report
+  // (utils/report.ts); a worker has no console the page's people read.
+  log?: { level: 'error' | 'warn', message: string, detail?: string }
 }

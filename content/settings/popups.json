@@ -1,31 +1,108 @@
 {
   "popups": [
     {
-      "id": "popup-feedback",
-      "name": "Зворотний зв’язок",
+      "id": "popup-callback",
+      "name": "Замовити дзвінок",
+      "kind": "feedback",
+      "feedbackType": "call-request",
       "placement": "center",
-      "width": 520,
+      "width": 480,
+      "title": {
+        "uk": "Передзвонимо вам",
+        "en": "We will call you back",
+        "de": "Wir rufen Sie zurück"
+      },
+      "text": {
+        "uk": "Залиште номер телефону — зателефонуємо найближчим часом.",
+        "en": "Leave your phone number — we will call you shortly.",
+        "de": "Hinterlassen Sie Ihre Telefonnummer – wir rufen Sie in Kürze an."
+      },
+      "content": {
+        "type": "section-with-free-content",
+        "children": []
+      }
+    },
+    {
+      "id": "popup-client-form",
+      "name": "Своя форма",
+      "kind": "form",
+      "placement": "center",
+      "width": 480,
+      "title": {
+        "uk": "Заявка",
+        "en": "Request",
+        "de": "Anfrage"
+      },
+      "text": {
+        "uk": "Заповніть, будь ласка, кілька полів.",
+        "en": "Please fill in a few fields.",
+        "de": "Bitte füllen Sie ein paar Felder aus."
+      },
       "content": {
         "type": "section-with-free-content",
         "children": [
           {
-            "type": "component",
-            "content": "FeedbackForm",
-            "props": {
-              "type": "message",
-              "title": {
-                "uk": "Маєте питання або пропозицію?",
-                "en": "Do you have any questions or suggestions?",
-                "de": "Haben Sie Fragen oder Anregungen?"
+            "type": "form-field",
+            "formField": {
+              "input": "text",
+              "label": {
+                "uk": "Ваше імʼя",
+                "en": "Your name",
+                "de": "Ihr Name"
               },
-              "text": {
-                "uk": "Напишіть нам - відповімо якнайшвидше!",
-                "en": "Write to us - we will respond as soon as possible!",
-                "de": "Schreiben Sie uns - wir antworten so schnell wie möglich!"
-              }
-            }
+              "required": true
+            },
+            "class": "mb-4"
+          },
+          {
+            "type": "form-field",
+            "formField": {
+              "input": "phone",
+              "label": {
+                "uk": "Телефон",
+                "en": "Phone",
+                "de": "Telefon"
+              },
+              "required": true
+            },
+            "class": "mb-7"
+          },
+          {
+            "type": "form-field",
+            "formField": {
+              "input": "textarea",
+              "label": {
+                "uk": "Коментар",
+                "en": "Comment",
+                "de": "Kommentar"
+              },
+              "required": false
+            },
+            "class": "mb-4"
           }
         ]
+      }
+    },
+    {
+      "id": "popup-feedback",
+      "name": "Повідомлення або питання",
+      "kind": "feedback",
+      "feedbackType": "ask",
+      "placement": "center",
+      "width": 480,
+      "title": {
+        "uk": "Маєте питання або пропозицію?",
+        "en": "Do you have any questions or suggestions?",
+        "de": "Haben Sie Fragen oder Anregungen?"
+      },
+      "text": {
+        "uk": "Напишіть нам - відповімо якнайшвидше!",
+        "en": "Write to us - we will respond as soon as possible!",
+        "de": "Schreiben Sie uns - wir antworten so schnell wie möglich!"
+      },
+      "content": {
+        "type": "section-with-free-content",
+        "children": []
       }
     },
     {
@@ -43,10 +120,10 @@
         "children": [
           {
             "type": "tabs",
-            "ver": 2,
+            "ver": 4,
             "size": 36,
             "color": "primary",
-            "tabLook": "underline",
+            "tabLook": "folder",
             "children": [
               {
                 "type": "card",
@@ -94,6 +171,217 @@
           }
         ]
       }
+    },
+    {
+      "id": "popup-3yhfs",
+      "name": "Confirm delete",
+      "kind": "confirm",
+      "placement": "center",
+      "width": 480,
+      "content": {
+        "type": "section-with-free-content",
+        "children": []
+      },
+      "title": {
+        "uk": "Видалення",
+        "en": "Deleting",
+        "de": "Löschen"
+      },
+      "text": {
+        "uk": "Ви впевнені, що хочете видалити вибраний елемент?",
+        "en": "Are you sure you want to delete the selected item?",
+        "de": "Möchten Sie das ausgewählte Element wirklich löschen?"
+      },
+      "okText": {
+        "uk": "Підтвердити",
+        "en": "Confirm",
+        "de": "Bestätigen"
+      },
+      "cancelText": {
+        "uk": "Скасувати",
+        "en": "Cancel",
+        "de": "Abbrechen"
+      }
+    },
+    {
+      "id": "popup-bjtrk",
+      "name": "Date picker",
+      "kind": "date",
+      "placement": "center",
+      "width": 480,
+      "content": {
+        "type": "section-with-free-content",
+        "children": []
+      }
+    },
+    {
+      "id": "popup-order",
+      "name": "Оформлення замовлення",
+      "kind": "form",
+      "placement": "center",
+      "width": 520,
+      "title": {
+        "uk": "Оформлення замовлення",
+        "en": "Placing an order",
+        "de": "Bestellung aufgeben"
+      },
+      "text": {
+        "uk": "Дані для договору. Проєкт договору надішлемо на пошту протягом робочого дня; після підписання — рахунок, після оплати — доступ.",
+        "en": "The details for the contract. We will email you a draft contract within a working day; once it is signed, an invoice; once it is paid, access.",
+        "de": "Die Angaben für den Vertrag. Den Vertragsentwurf senden wir innerhalb eines Werktags per E-Mail; nach der Unterzeichnung die Rechnung, nach der Zahlung den Zugang."
+      },
+      "okText": {
+        "uk": "Надіслати заявку",
+        "en": "Send the request",
+        "de": "Anfrage senden"
+      },
+      "content": {
+        "type": "section-with-free-content",
+        "children": [
+          {
+            "type": "form-field",
+            "class": "mb-4",
+            "formField": {
+              "input": "select",
+              "label": {
+                "uk": "Хто укладає договір",
+                "en": "Who signs the contract",
+                "de": "Wer schließt den Vertrag"
+              },
+              "required": true,
+              "options": [
+                {
+                  "value": "fop",
+                  "label": {
+                    "uk": "ФОП",
+                    "en": "Sole proprietor",
+                    "de": "Einzelunternehmer"
+                  }
+                },
+                {
+                  "value": "company",
+                  "label": {
+                    "uk": "Компанія (ТОВ)",
+                    "en": "Company (LLC)",
+                    "de": "Unternehmen (GmbH)"
+                  }
+                },
+                {
+                  "value": "person",
+                  "label": {
+                    "uk": "Фізична особа",
+                    "en": "Private person",
+                    "de": "Privatperson"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "form-field",
+            "class": "mb-4",
+            "formField": {
+              "input": "text",
+              "label": {
+                "uk": "Назва компанії або ПІБ",
+                "en": "Company name or full name",
+                "de": "Firmenname oder vollständiger Name"
+              },
+              "required": true
+            }
+          },
+          {
+            "type": "form-field",
+            "class": "mb-4",
+            "formField": {
+              "input": "text",
+              "label": {
+                "uk": "Код ЄДРПОУ (для компанії)",
+                "en": "Company registration number",
+                "de": "Handelsregisternummer (für Unternehmen)"
+              }
+            }
+          },
+          {
+            "type": "form-field",
+            "class": "mb-4",
+            "formField": {
+              "input": "text",
+              "label": {
+                "uk": "Юридична адреса",
+                "en": "Registered address",
+                "de": "Anschrift"
+              },
+              "required": true
+            }
+          },
+          {
+            "type": "form-field",
+            "class": "mb-4",
+            "formField": {
+              "input": "email",
+              "label": {
+                "uk": "Email для договору й рахунку",
+                "en": "Email for the contract and invoice",
+                "de": "E-Mail für Vertrag und Rechnung"
+              },
+              "required": true
+            }
+          },
+          {
+            "type": "form-field",
+            "class": "mb-4",
+            "formField": {
+              "input": "phone",
+              "label": {
+                "uk": "Телефон",
+                "en": "Phone",
+                "de": "Telefon"
+              },
+              "required": true
+            }
+          },
+          {
+            "type": "form-field",
+            "class": "mb-4",
+            "formField": {
+              "input": "checkbox",
+              "label": {
+                "uk": "Додати «Без згадки про Pagewright»",
+                "en": "Add \"No Pagewright mention\"",
+                "de": "„Ohne Pagewright-Hinweis“ hinzufügen"
+              }
+            }
+          },
+          {
+            "type": "form-field",
+            "class": "mb-4",
+            "formField": {
+              "input": "textarea",
+              "label": {
+                "uk": "Коментар",
+                "en": "Comment",
+                "de": "Kommentar"
+              }
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "looks": [
+    {
+      "id": "look-main",
+      "name": "Основний",
+      "base": "centered"
+    }
+  ],
+  "calendars": [
+    {
+      "id": "calendar-main",
+      "name": "Календар",
+      "variant": "extended",
+      "firstDayOfWeek": 1
     }
   ]
 }

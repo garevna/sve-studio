@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { report } from '@/utils/report'
 
 // Dev only. An uploaded picture is stored by the content API in this
 // browser (a service worker's storage), and the page JSON only links to it
@@ -45,12 +46,12 @@ async function syncOnce (): Promise<void> {
       // stand-in (X-Placeholder), with a 200 - copied, that stand-in became
       // a fake file under the real name.
       if (!response.ok || response.headers.get('X-Placeholder') === '1') {
-        console.warn(`Image ${name} is linked from content/ but this browser does not have it either`)
+        report('warn', 'dev-content-images', `Image ${name} is linked from content/ but this browser does not have it either`)
         continue
       }
       await copyImageToContent(name, await response.blob())
     } catch (error) {
-      console.warn(`Could not copy image ${name} into content/images`, error)
+      report('warn', 'dev-content-images', `Could not copy image ${name} into content/images`, error)
     }
   }
 }
@@ -64,7 +65,7 @@ export function syncContentImages (): Promise<void> {
     return running
   }
   running = syncOnce()
-    .catch(error => console.warn('Copying uploaded images into content/ failed', error))
+    .catch(error => report('warn', 'dev-content-images', 'Copying uploaded images into content/ failed', error))
     .finally(() => {
       running = null
       if (again) {

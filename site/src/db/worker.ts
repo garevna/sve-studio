@@ -3,6 +3,19 @@ import type { DbRequestMessage, DbResponseMessage } from './protocol'
 import { DB_CONFIG, dbNameForTheme } from './config'
 import { themeFilePath } from './theme-layout'
 
+// Problems go to the page, which reports them (utils/report.ts) - never to
+// the console.
+function warn (message: string, error?: unknown) {
+  tell('warn', message, error)
+}
+function fail (message: string, error?: unknown) {
+  tell('error', message, error)
+}
+function tell (level: 'error' | 'warn', message: string, error?: unknown) {
+  const detail = error === undefined ? undefined : (error instanceof Error ? error.message : String(error))
+  self.postMessage({ id: 0, route: 'log', action: level, log: { level, message, detail } })
+}
+
 declare const self: DedicatedWorkerGlobalScope
 
 // source/seedHash: where the record's content came from. 'seed' - a copy of
@@ -216,7 +229,7 @@ async function seedIfEmpty (db: IDBDatabase, theme: number): Promise<void> {
           .then(content => putRecord(db, 'pages', { pageId, content, visible: (content as { visible?: boolean })?.visible !== false, ...seedOrigin(manifest, `pages/${pageId}.json`) } satisfies PageRecord))
           .catch(error => {
             seedSkipped.add(`pages/${pageId}.json`)
-            console.warn(`seedIfEmpty: skipped page "${pageId}" (listed in manifest.json, but missing or not valid JSON)`, error)
+            warn(`seedIfEmpty: skipped page "${pageId}" (listed in manifest.json, but missing or not valid JSON)`, error)
           }),
       )
     }
@@ -229,7 +242,7 @@ async function seedIfEmpty (db: IDBDatabase, theme: number): Promise<void> {
           .then(content => putRecord(db, 'settings', { key, content, ...seedOrigin(manifest, settingsSeedPath(key)) } satisfies SettingsRecord))
           .catch(error => {
             seedSkipped.add(settingsFileName(key))
-            console.warn(`seedIfEmpty: skipped settings "${key}" (listed in manifest.json, but missing or not valid JSON)`, error)
+            warn(`seedIfEmpty: skipped settings "${key}" (listed in manifest.json, but missing or not valid JSON)`, error)
           }),
       )
     }
@@ -246,14 +259,14 @@ async function seedIfEmpty (db: IDBDatabase, theme: number): Promise<void> {
               // covers a style with no IndexedDB record yet, so this fails
               // safe instead of poisoning the store.
               seedSkipped.add(`styles/${name}`)
-              console.error(`seedIfEmpty: "${name}" fetched as HTML, not CSS - skipping (left unseeded)`)
+              fail(`seedIfEmpty: "${name}" fetched as HTML, not CSS - skipping (left unseeded)`)
               return
             }
             return putRecord(db, 'styles', { name, content, ...seedOrigin(manifest, `styles/${name}`) } satisfies StyleRecord)
           })
           .catch(error => {
             seedSkipped.add(`styles/${name}`)
-            console.warn(`seedIfEmpty: skipped style "${name}"`, error)
+            warn(`seedIfEmpty: skipped style "${name}"`, error)
           }),
       )
     }
@@ -290,7 +303,7 @@ async function seedMissingPages (db: IDBDatabase): Promise<void> {
           .then(content => putRecord(db, 'pages', { pageId, content, visible: (content as { visible?: boolean })?.visible !== false, ...seedOrigin(manifest, `pages/${pageId}.json`) } satisfies PageRecord))
           .catch(error => {
             seedSkipped.add(`pages/${pageId}.json`)
-            console.warn(`seedMissingPages: failed to seed "${pageId}" from manifest.json`, error)
+            warn(`seedMissingPages: failed to seed "${pageId}" from manifest.json`, error)
           }),
       ),
   )
@@ -315,7 +328,7 @@ async function seedMissingSettings (db: IDBDatabase): Promise<void> {
           .then(content => putRecord(db, 'settings', { key, content, ...seedOrigin(manifest, settingsSeedPath(key)) } satisfies SettingsRecord))
           .catch(error => {
             seedSkipped.add(settingsFileName(key))
-            console.warn(`seedMissingSettings: failed to seed "${key}" from manifest.json`, error)
+            warn(`seedMissingSettings: failed to seed "${key}" from manifest.json`, error)
           }),
       ),
   )
@@ -343,7 +356,7 @@ async function seedMissingStyles (db: IDBDatabase): Promise<void> {
           })
           .catch(error => {
             seedSkipped.add(`styles/${name}`)
-            console.warn(`seedMissingStyles: failed to seed "${name}" from manifest.json`, error)
+            warn(`seedMissingStyles: failed to seed "${name}" from manifest.json`, error)
           }),
       ),
   )
@@ -391,7 +404,7 @@ async function refreshChangedSeedFiles (db: IDBDatabase): Promise<void> {
       const content = await fetch(fileUrl(`dynamic-pages/${pageId}.json`), { cache: 'no-store' }).then(response => response.json())
       const hiddenInFile = (content as { visible?: boolean })?.visible === false
       await putRecord(db, 'pages', { pageId, content, visible: hiddenInFile ? false : (record?.visible ?? true), ...seedOrigin(manifest, seedPath) } satisfies PageRecord)
-    }).catch(error => console.warn(`refreshChangedSeedFiles: page "${pageId}"`, error)))
+    }).catch(error => warn(`refreshChangedSeedFiles: page "${pageId}"`, error)))
   }
   for (const key of manifest.settings) {
     const seedPath = settingsSeedPath(key)
@@ -401,7 +414,7 @@ async function refreshChangedSeedFiles (db: IDBDatabase): Promise<void> {
       }
       const content = await fetch(fileUrl(settingsFileName(key)), { cache: 'no-store' }).then(response => response.json())
       await putRecord(db, 'settings', { key, content, ...seedOrigin(manifest, seedPath) } satisfies SettingsRecord)
-    }).catch(error => console.warn(`refreshChangedSeedFiles: settings "${key}"`, error)))
+    }).catch(error => warn(`refreshChangedSeedFiles: settings "${key}"`, error)))
   }
   for (const name of manifest.styles) {
     const seedPath = `styles/${name}`
@@ -414,7 +427,7 @@ async function refreshChangedSeedFiles (db: IDBDatabase): Promise<void> {
         return
       }
       await putRecord(db, 'styles', { name, content, ...seedOrigin(manifest, seedPath) } satisfies StyleRecord)
-    }).catch(error => console.warn(`refreshChangedSeedFiles: style "${name}"`, error)))
+    }).catch(error => warn(`refreshChangedSeedFiles: style "${name}"`, error)))
   }
   await Promise.all(tasks)
 }
@@ -451,20 +464,20 @@ async function takeNewRelease (db: IDBDatabase): Promise<void> {
     tasks.push(fetch(fileUrl(`dynamic-pages/${pageId}.json`), { cache: 'no-store' })
       .then(response => response.json())
       .then(content => putRecord(db, 'pages', { pageId, content, visible: (content as { visible?: boolean })?.visible !== false, ...seedOrigin(manifest, seedPath) } satisfies PageRecord))
-      .catch(error => console.warn(`takeNewRelease: page "${pageId}"`, error)))
+      .catch(error => warn(`takeNewRelease: page "${pageId}"`, error)))
   }
   for (const key of manifest.settings) {
     tasks.push(fetch(fileUrl(settingsFileName(key)), { cache: 'no-store' })
       .then(response => response.json())
       .then(content => putRecord(db, 'settings', { key, content, ...seedOrigin(manifest, settingsSeedPath(key)) } satisfies SettingsRecord))
-      .catch(error => console.warn(`takeNewRelease: settings "${key}"`, error)))
+      .catch(error => warn(`takeNewRelease: settings "${key}"`, error)))
   }
   for (const name of manifest.styles) {
     const seedPath = `styles/${name}`
     tasks.push(fetch(fileUrl(seedPath), { cache: 'no-store' })
       .then(response => response.text())
       .then(content => looksLikeHtml(content) ? undefined : putRecord(db, 'styles', { name, content, ...seedOrigin(manifest, seedPath) } satisfies StyleRecord))
-      .catch(error => console.warn(`takeNewRelease: style "${name}"`, error)))
+      .catch(error => warn(`takeNewRelease: style "${name}"`, error)))
   }
   await Promise.all(tasks)
   await putRecord(db, 'meta', { key: 'release', value: signature })
@@ -622,8 +635,8 @@ self.onmessage = async (event: MessageEvent<DbRequestMessage>) => {
         await seedMissingSettings(db)
         await seedMissingStyles(db)
         await refreshChangedSeedFiles(db)
-        await takeNewRelease(db).catch(error => console.warn('takeNewRelease', error))
-        await dropRetiredPaletteKeys(db).catch(error => console.warn('dropRetiredPaletteKeys', error))
+        await takeNewRelease(db).catch(error => warn('takeNewRelease', error))
+        await dropRetiredPaletteKeys(db).catch(error => warn('dropRetiredPaletteKeys', error))
         return db
       })
       await dbPromise

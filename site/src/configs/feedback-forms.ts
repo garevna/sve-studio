@@ -16,6 +16,11 @@ export interface FeedbackFormKind {
   // The label of the message field, where the kind has one.
   messageLabel?: Words
   button: Words
+  // The ways back to the visitor it offers (all of them when unset).
+  contactWays?: ('telegram' | 'viber' | 'whatsapp' | 'email')[]
+  // What has to be filled in before it is sent: 'phone' - a phone number;
+  // 'message-and-contact' - the message and a way back.
+  requires?: 'phone' | 'message-and-contact'
 }
 
 export const FEEDBACK_FORM_KINDS: FeedbackFormKind[] = [
@@ -24,6 +29,16 @@ export const FEEDBACK_FORM_KINDS: FeedbackFormKind[] = [
     icon: 'mdi-phone-in-talk',
     fields: ['name', 'phone'],
     button: { uk: 'Замовити дзвінок', en: 'Request a call', de: 'Rückruf anfordern' },
+    requires: 'phone',
+  },
+  {
+    id: 'ask',
+    icon: 'mdi-message-question-outline',
+    fields: ['name', 'email', 'message'],
+    messageLabel: { uk: 'Ваше повідомлення або питання', en: 'Your message or question', de: 'Ihre Nachricht oder Frage' },
+    button: { uk: 'Надіслати', en: 'Send', de: 'Senden' },
+    contactWays: ['telegram', 'email'],
+    requires: 'message-and-contact',
   },
   {
     id: 'message',
@@ -92,13 +107,16 @@ export const FEEDBACK_CONTACT = {
 } satisfies { label: Words, ways: readonly { via: string, name: string, placeholder: Words }[], signedIn: Words }
 
 // What the form says after the button is pressed.
-export const FEEDBACK_STATUS: Record<'sending' | 'sent' | 'sentToAccount' | 'failed' | 'notConfigured' | 'empty', Words> = {
+export const FEEDBACK_STATUS: Record<'sending' | 'sent' | 'sentToAccount' | 'failed' | 'notConfigured' | 'empty' | 'phoneRequired' | 'messageRequired' | 'contactRequired', Words> = {
   sending: { uk: 'Надсилаємо…', en: 'Sending…', de: 'Wird gesendet…' },
   sent: { uk: 'Дякуємо! Повідомлення надіслано — відповімо найближчим часом.', en: 'Thank you! Your message has been sent — we’ll get back to you soon.', de: 'Danke! Ihre Nachricht wurde gesendet – wir melden uns in Kürze.' },
   sentToAccount: { uk: 'Дякуємо! Повідомлення надіслано — відповідь з’явиться в особистому кабінеті.', en: 'Thank you! Your message has been sent — the reply will appear in your personal account.', de: 'Danke! Ihre Nachricht wurde gesendet – die Antwort erscheint in Ihrem persönlichen Bereich.' },
   failed: { uk: 'Не вдалося надіслати. Спробуйте ще раз трохи згодом.', en: 'Couldn’t send it. Please try again a little later.', de: 'Senden fehlgeschlagen. Bitte versuchen Sie es etwas später noch einmal.' },
   notConfigured: { uk: 'Надсилання форм на цьому сайті ще не налаштоване.', en: 'Sending forms isn’t set up on this site yet.', de: 'Das Senden von Formularen ist auf dieser Website noch nicht eingerichtet.' },
   empty: { uk: 'Залиште, будь ласка, повідомлення або контакт для зв’язку.', en: 'Please leave a message or a way to reach you.', de: 'Bitte hinterlassen Sie eine Nachricht oder einen Kontakt.' },
+  phoneRequired: { uk: 'Вкажіть, будь ласка, номер телефону — ми передзвонимо.', en: 'Please give a phone number — we will call you back.', de: 'Bitte geben Sie eine Telefonnummer an – wir rufen zurück.' },
+  messageRequired: { uk: 'Напишіть, будь ласка, повідомлення або питання.', en: 'Please write your message or question.', de: 'Bitte schreiben Sie Ihre Nachricht oder Frage.' },
+  contactRequired: { uk: 'Вкажіть, будь ласка, як з вами зв’язатися.', en: 'Please tell us how to reach you.', de: 'Bitte geben Sie an, wie wir Sie erreichen.' },
 }
 
 // A form saved before a kind was chosen is a callback form - that is what

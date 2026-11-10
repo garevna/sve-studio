@@ -20,7 +20,8 @@
   // icon: a block of cards styles all of its icons at once from its own
   // toolbar, so each card is left with the choice of icon and nothing else.
   // mobileSizable: also the icon's size on a phone (IconAppearance) - cards.
-  const props = withDefaults(defineProps<{ appearance?: boolean, mobileSizable?: boolean }>(), { appearance: true })
+  // query: what the library search starts with (IconPicker.vue).
+  const props = withDefaults(defineProps<{ appearance?: boolean, mobileSizable?: boolean, query?: string }>(), { appearance: true })
 
   const icon = defineModel<string>('icon', { default: defaultIcon })
   const iconColor = defineModel<string>('iconColor', { default: 'grey' })
@@ -134,6 +135,7 @@
             v-model:icon="icon"
             :preview-background="iconBackground"
             :preview-color="iconColor"
+            :query="props.query"
           />
 
           <v-divider v-if="props.appearance" class="my-5" />

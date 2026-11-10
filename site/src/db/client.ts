@@ -1,6 +1,7 @@
 import type { DbRequestMessage, DbResponseMessage } from './protocol'
 import { getActiveTheme } from '@/utils/active-theme'
 import { sveRoot } from '../utils/sve-root'
+import { report } from '../utils/report'
 
 // Plain module, not a Pinia store - main.ts needs to read palette/settings/
 // CSS text before Pinia (or the Vue app) exists at all, so this has to be
@@ -19,6 +20,11 @@ function getWorker (): Worker {
 
   worker = new Worker(new URL('worker.ts', import.meta.url), { type: 'module' })
   worker.onmessage = (event: MessageEvent<DbResponseMessage>) => {
+    if (event.data.log) {
+      const { level, message, detail } = event.data.log
+      report(level, 'db-worker', message, detail)
+      return
+    }
     const { id, error, data } = event.data
     const entry = pending.get(id)
     if (!entry) {

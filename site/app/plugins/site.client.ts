@@ -5,6 +5,7 @@ import { createVuetify } from 'vuetify'
 import { getPalette } from '../../src/services/site-data'
 import { probeContentApi } from '../../src/utils/content-api-state'
 import { installImageFallback } from '../../src/utils/image-fallback'
+import { report, reportUncaught } from '../../src/utils/report'
 import { sveRoot } from '../../src/utils/sve-root'
 
 // The editor's content API worker (service-worker/content-api-sw.ts) - it
@@ -18,7 +19,7 @@ function startContentApi () {
       // Does it actually answer? (see utils/content-api-state.ts)
       .then(() => probeContentApi(sveRoot()))
       .catch(error => {
-        console.warn('Content API worker could not start', error)
+        report('warn', 'content-api', 'Content API worker could not start', error)
       })
   }
 }
@@ -29,6 +30,10 @@ export default defineNuxtPlugin({
     startContentApi()
     // A picture not set or not found shows the checkerboard.
     installImageFallback()
+
+    // Nothing goes to the console: what nobody caught is reported
+    // (src/utils/report.ts).
+    reportUncaught(nuxtApp.vueApp)
 
     const pinia = createPinia()
     nuxtApp.vueApp.use(pinia)

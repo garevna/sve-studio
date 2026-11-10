@@ -1,4 +1,5 @@
 import { dbRequest } from '@/db/client'
+import { report } from '@/utils/report'
 
 // layer is optional - the standalone page-preview build (packages/page-preview)
 // has no editor CSS layer system to coexist with at all (production itself
@@ -20,7 +21,7 @@ export async function loadThemeStyles (activeTheme: number, styleNames: string[]
     try {
       cssText = await dbRequest<string>('styles', 'get', { name: `${fileName}.css` })
     } catch (error) {
-      console.error(`Failed to load theme ${activeTheme} style: ${fileName}`, error)
+      report('error', 'styles', `Failed to load theme ${activeTheme} style: ${fileName}`, error)
       return
     }
 

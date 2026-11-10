@@ -15,6 +15,8 @@ enum BlockTypeModel {
   CARDS = 'cards',
   // A set of cards shown one at a time, under a row of tabs (TabSet.vue).
   TABS = 'tabs',
+  // A field of a client's own form (in a 'form' popup).
+  FORM_FIELD = 'form-field',
   PARALLAX = 'parallax',
   PARALLAX_INSIDE = 'parallax-inside',
   SWIPER = 'swiper',
@@ -123,6 +125,17 @@ export interface BaseBlock {
   // form: opens the feedback form; popup: opens the site's popup `popup`
   action?: 'form' | 'popup'
   popup?: string
+  // action 'popup': what the popup is opened about (a card's button passes
+  // its card's title when this is unset) - a form popup shows it and sends
+  // it with the answers.
+  popupContext?: TranslatedModel
+  // A card's own button, under its text (a "button" block).
+  button?: TemplateBlockModel
+  // "cards" block: the gaps inside every card, px - under the title,
+  // between the lines of the text, above the button.
+  cardGaps?: { title?: number, lines?: number, button?: number }
+  // 'form-field' block: the field it is.
+  formField?: FormFieldModel
   form?: FeedbackFormModel
   // Footer root block only (FooterSettingsView.vue) - whether the footer
   // renders at all. Default true when unset, same convention as
@@ -210,14 +223,133 @@ export interface PopupModel {
   name: string
   placement: 'left' | 'right' | 'bottom' | 'center'
   width?: number
-  // shown at the top of the window (optional)
+  // What the popup is for (configs/popup-kinds.ts). Unset = 'content'.
+  kind?: PopupKind
+  // Every popup is the same frame (content/styles/popups.css): a close
+  // cross, a title, a text, its own middle, a row of buttons.
   title?: TranslatedModel
+  text?: TranslatedModel
+  // 'message': an ordinary message or one about an error (its own colour).
+  tone?: 'info' | 'error'
+  // The buttons' words; each kind has its own defaults.
+  okText?: TranslatedModel
+  cancelText?: TranslatedModel
+  // 'prompt': the field and what its text is turned into.
+  input?: PopupInputModel
+  // 'select': the choices; the chosen one's value is the answer.
+  options?: PopupOptionModel[]
+  // 'feedback': which form (configs/feedback-forms.ts) - sent to the
+  // site's channel (global.json feedback.endpoint).
+  feedbackType?: string
+  // 'content' and 'form': the blocks in the middle ('form': fields among
+  // them, sent to the channel as one message).
   content: TemplateBlockModel
+  // Where the answer goes besides the page: one of the client's API
+  // endpoints (global.json clientApi.endpoints[].id, docs/client-api.md).
+  deliver?: string
+  // Its look: one of the client's popup looks (UI Kit "Попапи",
+  // PopupsDocument.looks) - the frame every simple popup shares. Unset =
+  // the first.
+  look?: string
+  // 'date': one of the client's calendars (UI Kit "Календар",
+  // PopupsDocument.calendars). Unset = the first.
+  calendar?: string
+  // This popup's own text format, over its look's (TextFormatMenu classes).
+  titleClass?: string
+  textClass?: string
+}
+
+// A look of popups, from the client's own set (UI Kit "Попапи"): one of our
+// base variants (configs/popup-looks.ts), set up and named by the client.
+// Colours are palette keys, the corners a radius variable of the theme.
+// Simple popups (a message, an error, a confirmation, a field, a list) share
+// it - usually there is one; a specific popup adds a model of its own part
+// (a calendar, PopupCalendarModel).
+export interface PopupLookModel {
+  id: string
+  name: string
+  base: 'centered' | 'classic' | 'header'
+  background?: string
+  // 'header' only: the title strip's fill
+  headerBackground?: string
+  radius?: string
+  closeColor?: string
+  titleClass?: string
+  textClass?: string
+  // classes of the client's own buttons (UI Kit "Кнопки")
+  buttons?: { main?: string, second?: string }
+}
+
+// A calendar of the client's own set (UI Kit "Календар"), for date popups:
+// Vuetify's plain one, or the theme's own (content/styles/date-picker.css
+// .custom-date-picker - the month large, the arrows at the right), with the
+// colours of the chosen day and of today (palette keys).
+export interface PopupCalendarModel {
+  id: string
+  name: string
+  // the preset it started from; every detail below can then be changed
+  variant: 'simple' | 'extended' | 'material' | 'weeks' | 'vertical' | 'tiles' | 'lines'
+  // the strip with the month and the arrows - the window's own header
+  headerBackground?: string
+  headerColor?: string
+  // the month's weight in the strip (400-700): 600 suits the main font (Manrope), another
+  // font may want another
+  monthWeight?: number
+  prevIcon?: string
+  nextIcon?: string
+  // the day names: one letter (narrow) or two (short: Пн, Вт)
+  weekdayFormat?: 'narrow' | 'short'
+  weekdayColor?: string
+  // a day's corners, px; 99 = a circle
+  dayRadius?: number
+  // the chosen day: its fill and its digits (palette keys)
+  selectedColor?: string
+  selectedTextColor?: string
+  todayColor?: string
+  // 1 = the week starts on Monday
+  firstDayOfWeek?: 0 | 1
+  // the window's corners and its buttons, over the popup's look
+  radius?: string
+  buttons?: { main?: string, second?: string }
+}
+
+export type PopupKind = 'content' | 'feedback' | 'form' | 'message' | 'confirm' | 'prompt' | 'select' | 'date'
+
+export interface PopupInputModel {
+  format?: 'text' | 'number' | 'integer' | 'email' | 'phone'
+  label?: TranslatedModel
+  placeholder?: TranslatedModel
+  required?: boolean
+  // several lines (text only)
+  multiline?: boolean
+}
+
+export interface PopupOptionModel {
+  value: string
+  label: TranslatedModel
 }
 
 // content/settings/popups.json
 export interface PopupsDocument {
   popups: PopupModel[]
+  // the client's popup looks (UI Kit "Попапи"); the first is the default
+  looks?: PopupLookModel[]
+  // the client's calendars (UI Kit "Календар"); the first is the default
+  calendars?: PopupCalendarModel[]
+  // Before looks: the buttons every popup shared. Read once into the first
+  // look (configs/popup-looks.ts withDefaultLooks), not written any more.
+  buttons?: { main?: string, second?: string }
+}
+
+// A field of a client's own form ("form-field" block, in a 'form' popup).
+export interface FormFieldModel {
+  input: 'text' | 'textarea' | 'email' | 'phone' | 'number' | 'date' | 'select' | 'checkbox'
+  // the field's key in the message sent; made from its label when unset
+  name?: string
+  label?: TranslatedModel
+  required?: boolean
+  // 'select'
+  options?: PopupOptionModel[]
 }
 
 // listDynamicPages()'s own return shape - just enough to render

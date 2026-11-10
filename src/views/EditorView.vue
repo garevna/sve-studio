@@ -3,11 +3,10 @@
   import type { TemplateBlockModel, TranslatedModel } from '@/types/TemplateBlockModel'
   import { SveBadge, SveButton, SveDock, SveDockItem, SveIconButton, SveMenu, SveMenuDivider, SveMenuItem, SveMenuLabel, SveTopBar } from '@sve/editor-ui'
   import { computed, onBeforeMount, ref, watch } from 'vue'
-  import { useRoute } from 'vue-router'
+  import { onBeforeRouteLeave, useRoute } from 'vue-router'
   import BlockGallery from '@/components/editors/BlockGallery.vue'
   import PageStructurePanel from '@/components/editors/PageStructurePanel.vue'
   // import { listOfComponents } from '@/configs/nav-panel-menu'
-  import PopupEditorDialog from '@/components/editors/popups/PopupEditorDialog.vue'
   import LocaleSwitcher from '@/components/editors/small/LocaleSwitcher.vue'
   import PageSeoDialog from '@/components/special/PageSeoDialog.vue'
   import PageTitleDialog from '@/components/special/PageTitleDialog.vue'
@@ -27,6 +26,7 @@
   import { localeDisplayName, missingTranslations } from '@/utils/locale-text'
   import { type PageTitle, pageTitleText, translatedPageTitle } from '@/utils/page-title'
   import { openPreview, pagePreviewUrl, refreshPreviewIfOpen } from '@/utils/preview-window'
+  import { report } from '@/utils/report'
   import '@/common.css'
 
   // interface TreeItem {
@@ -193,11 +193,6 @@
     }
   }
 
-  const icon = ref('')
-  watch(icon, (newIcon: string) => {
-    console.log('Selected icon:', newIcon)
-  })
-
   function resize () {
     commonStore.setWindowSize({ width: window.innerWidth, height: window.innerHeight })
   }
@@ -228,7 +223,7 @@
     // damage happened.
     const loadedId = (commonStore.dynamicPageContent as { id?: string } | null)?.id
     if (loadedId && loadedId !== pageId.value) {
-      console.error(`Refusing to save: loaded content is "${loadedId}" but the open page is "${pageId.value}"`)
+      report('error', 'editor', `Refusing to save: loaded content is "${loadedId}" but the open page is "${pageId.value}"`, undefined, { shown: true })
       if (!options.silent) {
         feedback.notifyError(
           t('popups.saveCancelled'),
@@ -309,6 +304,10 @@
   // is closing - more reliable than beforeunload for triggering an async
   // flush that has a real chance to finish (beforeunload's own unload
   // sequence tends to cut async work off much harder).
+  // Leaving for another section (a popup's settings, say) before the
+  // debounce fired: the edit is saved first.
+  onBeforeRouteLeave(() => flushPendingSave())
+
   function onVisibilityChange () {
     if (document.visibilityState === 'hidden') flushPendingSave()
   }
@@ -505,7 +504,6 @@
       <BlockGallery @select="selectHandler" />
       <!-- A popup started or opened from a button's settings, edited
         without leaving the page (the "Попапи" section has them all). -->
-      <PopupEditorDialog v-if="editable" />
       <!-- Hidden while loading for the same reason the content is: the hero
         reads its image from the same store slot, so it would otherwise sit
         there empty (or, before the clear, still showing the previous

@@ -15,6 +15,7 @@
     "lint": "eslint",
     "lint:fix": "eslint --fix",
     "generate-manifest": "node scripts/generate-manifest.mjs",
+    "diagrams": "node scripts/render-diagrams.mjs",
     "mcp": "ruler apply",
     "mcp:revert": "ruler revert"
   },

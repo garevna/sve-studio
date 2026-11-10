@@ -2,6 +2,7 @@ import type { AuthAdapter, AuthErrorCode, AuthMethod, AuthSettings, AuthUser } f
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import { AuthError } from '@/services/auth/types'
+import { report } from '../utils/report'
 
 // Who is signed in on the site, and the actions the pages call. The service
 // behind it is an adapter (services/auth) picked by the site's settings
@@ -43,7 +44,7 @@ export const useAuthStore = defineStore('auth', () => {
         })
         return
       } catch (error_) {
-        console.warn('[auth] not available', error_)
+        report('warn', 'auth', 'Sign-in not available', error_)
       }
     }
     enabled.value = false

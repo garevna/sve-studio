@@ -17,6 +17,7 @@
   import HeroSection from './components/hero-section/theme_2/HeroSection.vue'
   import MainMenu from './components/main-menu/MainMenu.vue'
   import SiteCopyright from './components/SiteCopyright.vue'
+  import SiteNotice from './components/small/SiteNotice.vue'
   import { siteStyles } from './configs/card-style'
   import { FOOTER_FINAL_FRAME, FOOTER_HORIZON, resolveFooterVariant } from './configs/footer-variants'
   import { HERO_SPLIT_VARIANT, HERO_WITH_TITLE_VARIANT } from './configs/header-layout'
@@ -92,7 +93,9 @@
       getPageTitles(),
       getPopups(),
     ])
-    popupsStore.items = popups
+    popupsStore.items = popups.popups
+    popupsStore.looks = popups.looks
+    popupsStore.calendars = popups.calendars
     // buttons.css, home.css... read bare var(--primary) and so on.
     for (const [name, value] of Object.entries(palette)) {
       document.documentElement.style.setProperty(`--${name}`, value)
@@ -334,6 +337,7 @@
     <!-- The site's popups: mounted once, each opened by its flag in the
       popups store (stores/popups.ts). -->
     <PopupHost />
+    <SiteNotice />
 
     <!-- <AuthErrorPopup />
       <info-popup />

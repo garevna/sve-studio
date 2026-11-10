@@ -1,6 +1,7 @@
-import type { PopupModel, TemplateBlockModel, TemplatePageModel } from '@/types/TemplateBlockModel'
+import type { PopupCalendarModel, PopupKind, PopupLookModel, PopupModel, PopupsDocument, TemplateBlockModel, TemplatePageModel } from '@/types/TemplateBlockModel'
 import { computed, ref, watch } from 'vue'
 import { BUILT_IN_POPUP_IDS, withDefaultPopups } from '@/configs/default-popups'
+import { withDefaultCalendars, withDefaultLooks } from '@/configs/popup-looks'
 import { t } from '@/i18n'
 import { useAjaxStore } from '@/stores/ajax'
 import { useCommonStore } from '@/stores/common'
@@ -16,6 +17,10 @@ import { resolveLocaleText } from '@/utils/locale-text'
 // "Зберегти" in the section publishes.
 
 const popups = ref<PopupModel[]>([])
+// The client's looks of popups and calendars (UI Kit "Попапи" and
+// "Календар", configs/popup-looks.ts) - kept in the same document.
+const looks = ref<PopupLookModel[]>([])
+const calendars = ref<PopupCalendarModel[]>([])
 const loaded = ref(false)
 const dirty = ref(false)
 const editingId = ref<string | null>(null)
@@ -23,7 +28,7 @@ let loading: Promise<void> | null = null
 let skipNext = false
 let timer: ReturnType<typeof setTimeout> | null = null
 
-const DEFAULT_WIDTH: Record<PopupModel['placement'], number | undefined> = { left: 420, right: 420, bottom: undefined, center: 640 }
+const DEFAULT_WIDTH: Record<PopupModel['placement'], number | undefined> = { left: 420, right: 420, bottom: undefined, center: 480 }
 
 export interface PopupUsePlace {
   pageId: string
@@ -55,6 +60,10 @@ function visit (value: unknown, id: string, clear = false): number {
   return count
 }
 
+function documentOf (): PopupsDocument {
+  return { popups: popups.value, looks: looks.value, calendars: calendars.value }
+}
+
 export function useSitePopups () {
   const ajaxStore = useAjaxStore()
   const commonStore = useCommonStore()
@@ -64,14 +73,17 @@ export function useSitePopups () {
       skipNext = true
       // The base package's popups are there whatever the stored list (or
       // a draft from before they existed) says.
-      popups.value = withDefaultPopups(await ajaxStore.getPopups())
+      const document = await ajaxStore.getPopups()
+      popups.value = withDefaultPopups(document.popups)
+      looks.value = withDefaultLooks(document)
+      calendars.value = withDefaultCalendars(document)
       dirty.value = await ajaxStore.isPopupsUpdated()
       loaded.value = true
     })()
     return loading
   }
 
-  watch(popups, () => {
+  watch([popups, looks, calendars], () => {
     if (skipNext) {
       skipNext = false
       return
@@ -85,7 +97,7 @@ export function useSitePopups () {
     }
     timer = setTimeout(() => {
       timer = null
-      void ajaxStore.savePopups(popups.value, { publish: false })
+      void ajaxStore.savePopups(documentOf(), { publish: false })
     }, 800)
   }, { deep: true })
 
@@ -94,34 +106,53 @@ export function useSitePopups () {
       clearTimeout(timer)
       timer = null
     }
-    await ajaxStore.savePopups(popups.value, { publish: true })
+    await ajaxStore.savePopups(documentOf(), { publish: true })
     dirty.value = false
   }
 
   async function undo () {
     skipNext = true
-    popups.value = await ajaxStore.undoPopups()
+    const document = await ajaxStore.undoPopups()
+    popups.value = withDefaultPopups(document.popups)
+    looks.value = withDefaultLooks(document)
+    calendars.value = withDefaultCalendars(document)
     dirty.value = false
   }
 
-  function newId (): string {
-    const taken = new Set(popups.value.map(popup => popup.id))
+  function newId (prefix = 'popup'): string {
+    const taken = new Set([...popups.value, ...looks.value, ...calendars.value].map(item => item.id))
     for (;;) {
-      const id = `popup-${Math.random().toString(36).slice(2, 7)}`
+      const id = `${prefix}-${Math.random().toString(36).slice(2, 7)}`
       if (!taken.has(id)) {
         return id
       }
     }
   }
 
-  function create (placement: PopupModel['placement'], name?: string): PopupModel {
-    popups.value.push({
+  // A new popup of a kind, with something in it to start from: a choice
+  // list two choices long, a field that takes text.
+  function create (kind: PopupKind, placement: PopupModel['placement'], name?: string): PopupModel {
+    const popup: PopupModel = {
       id: newId(),
       name: name || t('pagePopups.newName', { n: popups.value.length + 1 }),
+      kind,
       placement,
       width: DEFAULT_WIDTH[placement],
       content: { type: 'section-with-free-content', children: [] },
-    })
+    }
+    if (kind === 'message') {
+      popup.tone = 'info'
+    }
+    if (kind === 'prompt') {
+      popup.input = { format: 'text', required: true }
+    }
+    if (kind === 'select') {
+      popup.options = [
+        { value: 'one', label: { uk: 'Перший варіант', en: '', de: '' } },
+        { value: 'two', label: { uk: 'Другий варіант', en: '', de: '' } },
+      ]
+    }
+    popups.value.push(popup)
     return popups.value.at(-1)!
   }
 
@@ -174,6 +205,9 @@ export function useSitePopups () {
 
   return {
     popups,
+    looks,
+    calendars,
+    newId,
     loaded,
     dirty,
     load,

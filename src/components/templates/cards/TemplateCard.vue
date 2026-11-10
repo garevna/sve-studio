@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import type { TemplateBlockModel } from '@/types/TemplateBlockModel'
+  import type { TemplateBlockModel, TranslatedModel } from '@/types/TemplateBlockModel'
   import { computed } from 'vue'
   import IconVariant from '@/components/small/IconVariant.vue'
   import { resolveCardStyle } from '@/configs/card-style'
@@ -99,12 +99,34 @@
   // a real column-gap between icon and text, so it needs nothing extra.
   const iconWrapperClass = computed(() => (ver.value === 1 ? 'mb-8' : ''))
   const cardGapClass = computed(() => (ver.value === 2 ? 'gr-8' : ''))
+
+  // The gaps inside the card (the block's "Відступи"), px: under the title,
+  // between the lines, above the button. Unset - the card's own spacing.
+  const gaps = computed(() => props.item.cardGaps ?? props.defaults?.cardGaps)
+  const gapStyle = computed(() => {
+    const style: Record<string, string> = {}
+    if (gaps.value?.lines !== undefined) style['--card-line-gap'] = `${gaps.value.lines}px`
+    if (gaps.value?.button !== undefined) style['--card-button-gap'] = `${gaps.value.button}px`
+    return style
+  })
+  // A card's button opens a popup about this card: its title goes with it
+  // unless the button says otherwise.
+  const cardButton = computed(() => {
+    const button = props.item.button
+    if (!button) return null
+    return button.action === 'popup' && !button.popupContext && props.item.title ? { ...button, popupContext: props.item.title } : button
+  })
+  const cardButtonClass = computed(() => {
+    const own = cardButton.value?.class || ''
+    return own.split(' ').some(token => token.includes('button')) ? own : `primary-button ${own}`
+  })
+  const cardButtonText = computed(() => resolveLocaleText(cardButton.value?.content as TranslatedModel | undefined, commonStore.locale))
 </script>
 
 <template>
   <div
     :class="[`template-card-${ver || 2}`, cardStyleClass, props.item.class, cardGapClass]"
-    :style="cardBackground ? { background: cardBackground } : undefined"
+    :style="{ ...(cardBackground ? { background: cardBackground } : {}), ...gapStyle }"
   >
     <div :class="iconWrapperClass" style="grid-area: icon; align-content: center;">
       <icon-variant
@@ -118,13 +140,13 @@
     </div>
     <h4
       v-if="props.item.title"
-      :class="[titleClass, titleGap, headerClass]"
-      style="grid-area: title;"
+      :class="[titleClass, gaps?.title === undefined ? titleGap : '', headerClass]"
+      :style="{ gridArea: 'title', ...(gaps?.title === undefined ? {} : { marginBottom: `${gaps.title}px` }) }"
     >
       {{ title }}
     </h4>
     <template v-if="props.item.content">
-      <div v-if="Array.isArray(content)">
+      <div v-if="Array.isArray(content)" class="card-lines">
         <template v-for="(line, index) in content" :key="index">
           <p :class="['card-content-text', contentClass]" style="grid-area: content">
             {{ line }}
@@ -135,6 +157,11 @@
         {{ content }}
       </p>
     </template>
+    <!-- The card's own button (a "button" block): under the text. -->
+    <div v-if="cardButton" class="card-button">
+      <!-- The look only: the button is edited in the card's dialog. -->
+      <v-btn :class="cardButtonClass" :text="cardButtonText" />
+    </div>
   </div>
 </template>
 
@@ -284,5 +311,21 @@
     align-items: center;
     row-gap: 20px;
   }
+}
+/* The lines of the text, apart by the block's gap; the button under them. */
+.card-lines {
+  display: flex;
+  flex-direction: column;
+  gap: var(--card-line-gap, 0);
+  grid-area: content;
+}
+.card-lines > p {
+  margin-bottom: 0;
+}
+.card-button {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
+  padding-top: var(--card-button-gap, 16px);
 }
 </style>

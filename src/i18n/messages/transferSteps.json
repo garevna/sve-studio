@@ -41,42 +41,42 @@
   },
   "badge": {
     "uk": "Форма номера",
-    "en": "",
-    "de": ""
+    "en": "Room number format",
+    "de": "Form der Nummer"
   },
   "badgeCircle": {
     "uk": "Кружок",
-    "en": "",
-    "de": ""
+    "en": "Circle",
+    "de": "Kreis"
   },
   "badgeGear": {
     "uk": "Шестерня",
-    "en": "",
-    "de": ""
+    "en": "Gear",
+    "de": "Zahnrad"
   },
   "badgeHexagon": {
     "uk": "Шестикутник",
-    "en": "",
-    "de": ""
+    "en": "Hexagon",
+    "de": "Sechseck"
   },
   "badgeBurst": {
     "uk": "Зірка-сплеск",
-    "en": "",
-    "de": ""
+    "en": "Starburst",
+    "de": "Stern-Explosion"
   },
   "hover": {
     "uk": "Ефект при наведенні",
-    "en": "",
-    "de": ""
+    "en": "Hover effect",
+    "de": "Hover-Effekt"
   },
   "hoverLift": {
     "uk": "Підйом",
-    "en": "",
-    "de": ""
+    "en": "Lift",
+    "de": "Anheben"
   },
   "hoverWaves": {
     "uk": "Хвилі",
-    "en": "",
-    "de": ""
+    "en": "Waves",
+    "de": "Wellen"
   }
 }

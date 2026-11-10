@@ -2,6 +2,7 @@
   import type { TemplateBlockModel } from '@/types/TemplateBlockModel'
   import { computed, defineAsyncComponent, onBeforeMount, shallowRef } from 'vue'
   import { useCommonStore } from '@/stores/common'
+  import { report } from '@/utils/report'
   import ErrorComponent from './helpers/ErrorComponent.vue'
   import LoadingComponent from './helpers/LoadingComponent.vue'
   // import TemplateItem from './TemplateItem.vue'
@@ -13,7 +14,7 @@
       return
     }
     if ((footerContent.value.type !== 'section' && footerContent.value.type !== 'float') || !footerContent.value.children) {
-      console.log('Invalid footer content')
+      report('warn', 'footer', 'Invalid footer content')
       return
     }
     for (const block of footerContent.value.children) {

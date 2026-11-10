@@ -77,6 +77,12 @@ export interface GlobalSettingsModel {
   header?: Partial<HeaderSettingsModel>
   // Where the site's feedback forms send (the site reads it too).
   feedback?: { endpoint?: string }
+  // The client's own API: where visitors' answers go (the site's
+  // services/client-api.ts, docs/client-api.md).
+  clientApi?: {
+    baseUrl?: string
+    endpoints?: { id: string, name?: string, url: string, method?: 'POST' | 'PUT' }[]
+  }
   // Visitors' sign-in (the site's account pages). The editor's
   // "Повідомлення" section signs its admin in with the same - see
   // services/inbox.

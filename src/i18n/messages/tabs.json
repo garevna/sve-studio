@@ -1,32 +1,32 @@
 {
   "untitled": {
     "uk": "Вкладка {n}",
-    "en": "",
-    "de": ""
+    "en": "Tab {n}",
+    "de": "Registerkarte {n}"
   },
   "lookPill": {
     "uk": "Пігулка, що перетікає",
-    "en": "",
-    "de": ""
+    "en": "Blending pill",
+    "de": "Fließende Pille"
   },
   "lookUnderline": {
     "uk": "Підкреслення, що тягнеться",
-    "en": "",
-    "de": ""
+    "en": "Stretching underline",
+    "de": "Ziehende Unterstreichung"
   },
   "lookFolder": {
     "uk": "Папка",
-    "en": "",
-    "de": ""
+    "en": "Folder",
+    "de": "Ordner"
   },
   "accent": {
     "uk": "Колір вибраної вкладки",
-    "en": "",
-    "de": ""
+    "en": "Colour of selected tab",
+    "de": "Farbe der ausgewählten Registerkarte"
   },
   "plate": {
     "uk": "Колір підкладки вкладок",
-    "en": "",
-    "de": ""
+    "en": "Tabs panel background colour",
+    "de": "Hintergrundfarbe der Registerkarten"
   }
 }

@@ -1,11 +1,12 @@
 <script setup lang="ts">
-  import type { PopupModel, TemplateBlockModel } from '@/types/TemplateBlockModel'
+  import type { TemplateBlockModel } from '@/types/TemplateBlockModel'
   import { computed, ref } from 'vue'
+  import { useRoute, useRouter } from 'vue-router'
   import LinkTargetSettings from '@/components/special/LinkTargetSettings.vue'
   import FeedbackCardDialog from '@/components/templates/sections/FeedbackCardDialog.vue'
   import { useSitePopups } from '@/composables/useSitePopups'
   import { feedbackFormTexts } from '@/configs/components/feedback-form'
-  import { POPUP_PLACEMENTS } from '@/configs/popup-placements'
+  import { ADDABLE_POPUP_KINDS } from '@/configs/popup-kinds'
   import { t } from '@/i18n'
 
   // What a click on a button does: go to a page (or a block on it - the
@@ -53,10 +54,19 @@
     },
   })
 
-  function createPopup (placement: PopupModel['placement']) {
-    const popup = sitePopups.create(placement)
+  function createPopup (option: typeof ADDABLE_POPUP_KINDS[number]) {
+    const popup = sitePopups.create(option.kind, option.placement)
     popupId.value = popup.id
-    sitePopups.edit(popup.id)
+    openPopup(popup.id)
+  }
+
+  // A popup is edited in its own section, under its row (PopupsView.vue);
+  // the back arrow there returns to this page. The page's draft is saved on
+  // the way out (EditorView.vue).
+  const router = useRouter()
+  const route = useRoute()
+  function openPopup (id: string) {
+    void router.push({ path: '/popups', query: { edit: id, from: route.fullPath } })
   }
 </script>
 
@@ -102,7 +112,7 @@
         v-if="popupId"
         prepend-icon="mdi-pencil-outline"
         variant="tonal"
-        @click="sitePopups.edit(popupId)"
+        @click="openPopup(popupId)"
       >
         {{ t('pagePopups.edit') }}
       </v-btn>
@@ -110,14 +120,14 @@
     <p class="button-action-label mt-4 mb-2">{{ t('pagePopups.createFor') }}</p>
     <div class="button-action-placements">
       <v-btn
-        v-for="placement of POPUP_PLACEMENTS"
-        :key="placement.value"
-        :prepend-icon="placement.icon"
+        v-for="option of ADDABLE_POPUP_KINDS"
+        :key="option.kind"
+        :prepend-icon="option.icon"
         size="small"
         variant="outlined"
-        @click="createPopup(placement.value)"
+        @click="createPopup(option)"
       >
-        {{ t(placement.label) }}
+        {{ t(`pagePopups.kinds.${option.kind}`) }}
       </v-btn>
     </div>
   </template>

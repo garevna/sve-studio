@@ -44,6 +44,8 @@ export type EditorSectionKey
     | 'messages'
     | 'popups'
     | 'users'
+    | 'log'
+    | 'architecture'
 
 // group: where the section sits on the start screen - what is on the
 // site, how it looks, how it is set up - and, apart from all of that, the
@@ -83,6 +85,12 @@ export const EDITOR_SECTIONS: EditorSection[] = [
   // an owner ever see it: handing out roles is the one thing a role cannot
   // be given.
   { key: 'users', icon: 'mdi-account-multiple-outline', to: '/users', group: 'settings' },
+  // The same: what went wrong is for whoever runs the deployment
+  // (server/content-api/log-routes.ts lets nobody else read it).
+  { key: 'log', icon: 'mdi-alert-circle-outline', to: '/log', group: 'settings' },
+  // The project's schemes (ArchitectureView.vue): for whoever builds and
+  // keeps the site - the developer and, as always, the supervisor.
+  { key: 'architecture', icon: 'mdi-sitemap-outline', to: '/architecture', group: 'settings' },
 ]
 
 export type EditorRole = {
@@ -143,7 +151,7 @@ export const EDITOR_ROLES: EditorRole[] = [
     // below supervisor. Everything except 'seo' - that one belongs to the
     // SEO specialist, and a developer who genuinely needs it is one key
     // away (or one switch to supervisor).
-    sections: ['styles', 'palette', 'ui-kit', 'general-settings', 'pages', 'menu', 'header', 'footer', 'account'],
+    sections: ['styles', 'palette', 'ui-kit', 'general-settings', 'pages', 'menu', 'header', 'footer', 'account', 'architecture'],
     canEditPageContent: true,
     generalSettingsScope: 'full',
   },

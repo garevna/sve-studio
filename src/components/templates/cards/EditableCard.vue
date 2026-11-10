@@ -6,6 +6,8 @@
   import TextFormatMenu from '@/components/editors/text/TextFormatMenu.vue'
   import TextOnBackground from '@/components/editors/text/TextOnBackground.vue'
   import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
+  import TemplateItem from '@/components/templates/TemplateItem.vue'
+  import { button } from '@/configs/components/simple/button'
   import { t } from '@/i18n'
   import { useCommonStore } from '@/stores/common'
   import { useUiFeedbackStore } from '@/stores/ui-feedback'
@@ -158,6 +160,15 @@
     const model = ensureLineArrays()
     for (const locale of siteLocales()) (model[locale] as string[]).splice(index, 1)
   }
+
+  // A card's button starts as a page button does (configs/components/simple).
+  function setButton (value: TemplateBlockModel | undefined) {
+    // eslint-disable-next-line vue/no-mutating-props -- the card is edited in place
+    props.card.button = value
+  }
+  function addButton () {
+    setButton(button() as TemplateBlockModel)
+  }
 </script>
 
 <template>
@@ -280,6 +291,32 @@
           {{ t('cards.addItem') }}
         </v-btn>
       </div>
+    </div>
+
+    <!-- The card's own button, under its text: the same button as anywhere
+      on a page (its look from the UI Kit, what a click does - a page, a
+      popup). Opening a popup, it passes the card's title along. -->
+    <div class="card-content-section mt-6">
+      <span class="card-content-label">{{ t('cards.button') }}</span>
+      <div v-if="card.button" class="card-button-edit mt-2">
+        <template-item
+          :block-index="0"
+          :blocks="[card.button]"
+          deletable
+          :update-item="(_index: number, value: TemplateBlockModel) => setButton(value)"
+          @delete="setButton(undefined)"
+        />
+      </div>
+      <v-btn
+        v-else
+        block
+        class="mt-2"
+        prepend-icon="mdi-gesture-tap-button"
+        variant="outlined"
+        @click="addButton"
+      >
+        {{ t('cards.addButton') }}
+      </v-btn>
     </div>
   </div>
 </template>

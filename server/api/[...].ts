@@ -30,6 +30,7 @@ export default defineEventHandler(event => {
           }
         : undefined,
       log: import.meta.dev,
+      logs: useStorage('content-log'),
     }).handler
   }
   return handler(event)

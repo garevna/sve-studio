@@ -1,5 +1,6 @@
 import type { HeaderSettingsModel } from '../../configs/header-layout'
 import type { AuthSettings } from '../../services/auth/types'
+import type { ClientApiSettings } from '../../services/client-api'
 import type { IconSetModel } from './IconSetModel'
 import type { LinksModel } from './LinksModel'
 import type { DropdownStyle, MobileMenuStyle } from '@/configs/menu-style'
@@ -18,6 +19,9 @@ export type GlobalSettingsModel = {
   // Where the feedback forms send (utils/feedback-transport.ts). Absent:
   // the form says sending isn't set up.
   feedback?: { endpoint?: string }
+  // The client's own API: where visitors' answers go (services/client-api.ts,
+  // docs/client-api.md).
+  clientApi?: ClientApiSettings
   // The AI assistant (utils/ai-transport.ts). An absent or empty endpoint
   // is the switched-off state the demo ships with; `tasks` says which of
   // the assistant's jobs this site paid for.

@@ -48,7 +48,11 @@ const repo = createContentRepository({
   resetOnRelease: process.env.NODE_ENV !== 'development',
 })
 
-const handle = toWebHandler(createContentApiHandler({ repo, access: 'open' }))
+// The visitor's own problem log (/api/log): in the demo the people running
+// the deployment are the visitor themselves.
+const logs = createStorage({ driver: indexedbDriver({ dbName: 'content-api-log', storeName: 'log' }) })
+
+const handle = toWebHandler(createContentApiHandler({ repo, access: 'open', logs }))
 
 // --- lifecycle ---------------------------------------------------------------
 

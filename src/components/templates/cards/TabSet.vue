@@ -30,6 +30,13 @@
   const DEFAULT_PLATE: Record<string, string> = { pill: 'light-grey-2', underline: 'light-grey-1', folder: 'light-grey-2' }
   const accent = computed(() => `var(--${props.item.tabAccent || 'primary'})`)
   const plate = computed(() => `var(--${props.item.tabPlate || DEFAULT_PLATE[look.value] || 'light-grey-2'})`)
+  // folder: square corner of the panel under a tab at the row's end
+  // (TabStrip.vue tells which end the chosen tab touches).
+  const edges = ref({ start: true, end: false })
+  const folderCorners = computed(() => ({
+    '--folder-start': edges.value.start ? '0' : 'var(--large-border-radius)',
+    '--folder-end': edges.value.end ? '0' : 'var(--large-border-radius)',
+  }))
 
   // The card's own look comes from the block, as in a card set - only the
   // width is the block's whole width rather than a card's.
@@ -52,13 +59,14 @@
 </script>
 
 <template>
-  <div :id="props.item.id" :class="['tab-set', `tab-set--${look}`, props.item.class]" :style="{ '--tab-plate': plate }">
+  <div :id="props.item.id" :class="['tab-set', `tab-set--${look}`, props.item.class]" :style="{ '--tab-plate': plate, ...folderCorners }">
     <TabStrip
       v-model="active"
       :accent="accent"
       :labels="labels"
       :look="look"
       :plate="plate"
+      @edges="edges = $event"
     />
     <div class="tab-set__panels">
       <div
@@ -88,6 +96,11 @@
 }
 .tab-set__panels {
   display: grid;
+  /* The panels waiting at the side (translated 24px for the slide) stay
+     inside: on a phone they made the whole page 12px wider. A little room
+     is kept for a card's shadow. */
+  overflow-x: clip;
+  overflow-clip-margin: 8px;
 }
 .tab-set__panel {
   grid-area: 1 / 1;
@@ -112,14 +125,22 @@
 .tab-set__panel > * {
   flex: 1 1 auto;
 }
-/* folder: the chosen tab and the panel are one piece */
+/* folder: the chosen tab and the panel are one piece - the panel's corner
+   under a tab at the row's end is square, and the card in it wears no fill
+   or corners of its own (the panel is its fill). */
 .tab-set--folder {
   gap: 0;
 }
 .tab-set--folder .tab-set__panels {
-  padding: 8px;
-  border-radius: 0 var(--large-border-radius) var(--large-border-radius) var(--large-border-radius);
+  border-radius: var(--folder-start) var(--folder-end) var(--large-border-radius) var(--large-border-radius);
   background: var(--tab-plate);
+  overflow: hidden;
+}
+.tab-set--folder .tab-set__panels :deep(.tab-set__panel > *),
+.tab-set--folder .tab-set__panels :deep(.v-card) {
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
 }
 
 @media (prefers-reduced-motion: reduce) {

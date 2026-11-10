@@ -1,0 +1,64 @@
+erDiagram
+  PAGE ||--o{ BLOCK : "blocks"
+  BLOCK ||--o{ BLOCK : "children, Button der Karte"
+  MENU }o--|| PAGE : "pageId"
+  BLOCK }o--o| POPUP : "popup (id)"
+  BLOCK }o--o| SET_BUTTON : "class (Klassenname)"
+  POPUPS ||--o{ POPUP : "popups"
+  POPUPS ||--o{ LOOK : "looks"
+  POPUPS ||--o{ CALENDAR : "calendars"
+  POPUP }o--|| LOOK : "look (id)"
+  POPUP }o--o| CALENDAR : "calendar (id)"
+  POPUP ||--o{ BLOCK : "content: Blöcke, Formularfelder"
+  POPUP }o--o| ENDPOINT : "deliver (id)"
+  LOOK }o--o{ SET_BUTTON : "buttons.main, .second"
+  GLOBAL ||--o{ ENDPOINT : "clientApi.endpoints"
+
+  PAGE {
+    string id PK "pages/*.json"
+    json title "Name in allen Sprachen"
+    bool visible
+  }
+  BLOCK {
+    string type "header, cards, tabs, button, form-field..."
+    string class "Format und Abstand, mb-N"
+    string action "Popup oder Link"
+    string popup FK
+    json popupContext "worum es geöffnet wurde"
+  }
+  MENU {
+    json items "menu-content.json"
+  }
+  POPUPS {
+    string file "settings/popups.json"
+  }
+  POPUP {
+    string id PK
+    string kind "message, confirm, prompt, select, date, form..."
+    string look FK
+    string calendar FK
+    string deliver FK
+  }
+  LOOK {
+    string id PK
+    string base "centered, classic, header"
+    string titleClass
+    string textClass
+  }
+  CALENDAR {
+    string id PK
+    string variant "simple, extended"
+  }
+  SET_BUTTON {
+    string className PK "styles/button-set.css"
+    string name "Name, den der Kunde vergab"
+    string template "Art aus dem Katalog"
+  }
+  GLOBAL {
+    string file "settings/global.json"
+    string feedbackEndpoint "wohin Formulare gehen"
+  }
+  ENDPOINT {
+    string id PK
+    string url
+  }

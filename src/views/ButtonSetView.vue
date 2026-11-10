@@ -231,26 +231,40 @@
           </div>
           <v-expand-transition>
             <div v-if="expanded === button.className" class="button-set-row-body">
-              <div class="button-set-fields">
-                <v-text-field
-                  v-model="button.name"
-                  density="compact"
-                  hide-details
-                  :label="t('buttonSet.name')"
-                  variant="outlined"
-                />
-                <v-switch
-                  v-if="!templateOf(button.template).bare"
-                  color="primary"
-                  density="compact"
-                  hide-details
-                  inset
-                  :label="t('buttonSet.fullWidth')"
-                  :model-value="button.fullWidth !== false"
-                  @update:model-value="(value: boolean | null) => button.fullWidth = value ? undefined : false"
-                />
+              <div class="button-set-row-edit">
+                <div class="button-set-fields">
+                  <v-text-field
+                    v-model="button.name"
+                    density="compact"
+                    hide-details
+                    :label="t('buttonSet.name')"
+                    variant="outlined"
+                  />
+                  <v-switch
+                    v-if="!templateOf(button.template).bare"
+                    color="primary"
+                    density="compact"
+                    hide-details
+                    inset
+                    :label="t('buttonSet.fullWidth')"
+                    :model-value="button.fullWidth !== false"
+                    @update:model-value="(value: boolean | null) => button.fullWidth = value ? undefined : false"
+                  />
+                </div>
+                <ButtonStylePicker :entry="button" @state="state => editedState = state" />
               </div>
-              <ButtonStylePicker :entry="button" @state="state => editedState = state" />
+              <!-- On a wide screen the button stays in sight beside its
+                settings, in the state being edited. -->
+              <div class="button-set-row-preview">
+                <div class="button-set-row-preview-stage">
+                  <ButtonSample
+                    :class-name="button.className"
+                    :disabled="stateOf(button.className) === 'disabled'"
+                    :extra-class="{ [FORCE_HOVER_CLASS]: stateOf(button.className) === 'hover' }"
+                    :template="button.template"
+                  />
+                </div>
+              </div>
             </div>
           </v-expand-transition>
         </div>
@@ -420,6 +434,36 @@
 }
 .button-set-row-body {
   padding: 8px 16px 16px;
+}
+.button-set-row-edit {
+  min-width: 0;
+}
+.button-set-row-preview {
+  display: none;
+}
+/* Settings on the left, the button on the right, in sight while scrolling.
+   A phone keeps one column: the sample in the row's head above. */
+@media (min-width: 1100px) {
+  .button-set-row-body {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 420px);
+    gap: 24px;
+    align-items: start;
+  }
+  .button-set-row-preview {
+    display: block;
+    position: sticky;
+    top: 72px;
+  }
+  .button-set-row-preview-stage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 160px;
+    padding: 32px 24px;
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.03);
+  }
 }
 .button-set-fields {
   display: flex;

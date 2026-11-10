@@ -1,6 +1,6 @@
 {
   "activeTheme": 2,
-  "font": "Montserrat",
+  "font": "Google Sans Flex:opsz,wght@1..144,1..1000",
   "accentFonts": [
     "Rubik Dirt",
     "Shantell Sans:ital,wght@0,300..800;1,300..800"
@@ -36,6 +36,7 @@
     "vuetify-components",
     "buttons",
     "button-set",
+    "popups",
     "common",
     "date-picker",
     "faq",
@@ -103,9 +104,9 @@
       "id": "contact-5",
       "kind": "text",
       "text": {
-        "uk": "40181587",
-        "en": "40181587",
-        "de": "40181587"
+        "uk": "2147200307",
+        "en": "2147200307",
+        "de": "2147200307"
       }
     }
   ],

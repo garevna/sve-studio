@@ -1,0 +1,23 @@
+sequenceDiagram
+  actor V as Visitor
+  participant Card as Card (TemplateCard)
+  participant Store as Popups store
+  participant Host as PopupHost / PopupAnswer
+  participant Relay as Feedback channel
+  participant API as Client's API
+
+  V->>Card: "Choose this package"
+  Card->>Store: show("popup-order", "The same, with the AI assistant")
+  Store-->>Host: open[id] = true, context[id]
+  Host-->>V: frame from the look, a chip with the package, the fields
+  V->>Host: "Send the request"
+  Host->>Host: check the required fields
+  alt something is missing
+    Host-->>V: red outline, "Please fill in the marked fields"
+  else all there
+    Host->>Relay: POST feedback.endpoint ("popup-order" — package, fields)
+    Relay-->>Host: ok
+    Host-->>V: "Thank you!" and a "Close" button
+  end
+  Note over Store,API: A dialog popup (confirm, choice, date) instead of a form<br/>returns its value to whoever called show() and,<br/>if deliver is set, sends it to the client's API
+  Store-)API: POST endpoint.url { source, id, kind, value, locale, page, at }

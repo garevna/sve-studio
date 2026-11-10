@@ -1,0 +1,15 @@
+stateDiagram-v2
+  state "Стартовий" as Starting
+  state "Опублікований" as Published
+  state "Чернетка" as Draft
+  [*] --> Starting: файл у content/
+  Starting --> Published: перше читання через API
+  Published --> Draft: правка в редакторі
+  Draft --> Draft: автозбереження за 800 мс
+  Draft --> Published: «Зберегти»
+  Draft --> Published: «Скасувати зміни»
+  Published --> Starting: новий реліз демо (змінився відбиток у manifest.json)
+  note right of Draft
+    Читання завжди віддає чернетку,
+    якщо вона є: чернетка перемагає.
+  end note

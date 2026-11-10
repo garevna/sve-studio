@@ -1,6 +1,6 @@
 <script setup lang="ts">
-  import type { TemplateBlockModel } from '@/types/TemplateBlockModel'
-  import { ref } from 'vue'
+  import type { FormFieldModel, TemplateBlockModel, TranslatedModel } from '@/types/TemplateBlockModel'
+  import { computed, inject, ref } from 'vue'
   import ContactLineMenu from '@/components/editors/ContactLineMenu.vue'
   import SocialLinkMenu from '@/components/editors/SocialLinkMenu.vue'
   import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
@@ -17,6 +17,8 @@
   import { swiperWithImagesTemplate } from '@/configs/components/swiper-with-images'
   import { swiperWithThumbnailsTemplate } from '@/configs/components/swiper-with-thumbnails'
   import { t } from '@/i18n'
+  import { emptyTranslatedModel } from '@/utils/locale-text'
+  import { FORM_FIELDS_HERE } from '@/utils/popup-form'
 
   // Scoped insert menu for one half of a "Довільний контент" section -
   // deliberately NOT reusing InsertPageBlock.vue (that one is hardwired to
@@ -71,6 +73,33 @@
     }, icon: 'mdi-email-edit-outline', factory: () => feedbackForm() as TemplateBlockModel },
   ]
 
+  // In a client's own form (a 'form' popup) the column takes the form's
+  // fields as well - and no feedback form of its own inside it.
+  const formHere = inject(FORM_FIELDS_HERE, null)
+  const inForm = computed(() => !!formHere?.value)
+  const shownItems = computed(() => inForm.value ? menuItems.filter(item => item.icon !== 'mdi-email-edit-outline') : menuItems)
+  const FIELD_INPUTS: { input: FormFieldModel['input'], icon: string }[] = [
+    { input: 'text', icon: 'mdi-form-textbox' },
+    { input: 'textarea', icon: 'mdi-text-long' },
+    { input: 'email', icon: 'mdi-email-outline' },
+    { input: 'phone', icon: 'mdi-phone-outline' },
+    { input: 'number', icon: 'mdi-numeric' },
+    { input: 'date', icon: 'mdi-calendar-outline' },
+    { input: 'select', icon: 'mdi-format-list-bulleted' },
+    { input: 'checkbox', icon: 'mdi-checkbox-marked-outline' },
+  ]
+  function insertField (input: FormFieldModel['input']) {
+    const formField: FormFieldModel = { input, label: emptyTranslatedModel() as TranslatedModel }
+    if (input === 'select') {
+      formField.options = [
+        { value: 'one', label: emptyTranslatedModel() as TranslatedModel },
+        { value: 'two', label: emptyTranslatedModel() as TranslatedModel },
+      ]
+    }
+    emit('insert', { type: 'form-field', class: 'mb-4', formField } as TemplateBlockModel)
+    open.value = false
+  }
+
   const emit = defineEmits<{ insert: [block: TemplateBlockModel] }>()
 
   // Stays open while the social-network submenu is picked from.
@@ -92,8 +121,23 @@
     </template>
     <v-card theme="editorTheme">
       <v-list>
+        <template v-if="inForm">
+          <v-list-subheader>{{ t('pagePopups.formFields') }}</v-list-subheader>
+          <v-list-item
+            v-for="field of FIELD_INPUTS"
+            :key="field.input"
+            link
+            :title="t(`pagePopups.fieldKinds.${field.input}`)"
+            @click="insertField(field.input)"
+          >
+            <template #append>
+              <v-icon :icon="field.icon" size="x-small" />
+            </template>
+          </v-list-item>
+          <v-divider class="my-1" />
+        </template>
         <v-list-item
-          v-for="(item, index) of menuItems"
+          v-for="(item, index) of shownItems"
           :key="index"
           link
           :title="item.title"

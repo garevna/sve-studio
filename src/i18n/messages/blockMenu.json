@@ -257,13 +257,13 @@
     },
     "iconButton": {
       "uk": "Кнопка-іконка з підказкою: веде на сторінку чи її розділ або відкриває форму зворотного зв’язку.",
-      "en": "",
-      "de": ""
+      "en": "Icon button with a tooltip: takes you to a page or a section of a page, or opens a feedback form.",
+      "de": "Schaltfläche mit Symbol und Tooltip: Führt zu einer Seite oder einem Abschnitt davon oder öffnet ein Feedback-Formular."
     },
     "tabs": {
       "uk": "Картки, з яких видно одну: над ними ряд вкладок із назвами карток.",
-      "en": "",
-      "de": ""
+      "en": "Cards, with one visible at a time: above them is a row of tabs with the card titles.",
+      "de": "Karten, von denen jeweils nur eine sichtbar ist: Über ihnen befindet sich eine Reihe von Registerkarten mit den Namen der Karten."
     }
   },
   "all": {

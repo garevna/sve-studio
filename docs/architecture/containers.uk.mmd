@@ -1,0 +1,35 @@
+flowchart LR
+  owner(["Власник, супервайзер,<br/>контент-менеджер"])
+  visitor(["Відвідувач сайту"])
+
+  editor["Редактор<br/>браузер · Nuxt, Vue"]
+  site["Сайт<br/>браузер · Nuxt, Vue"]
+
+  dbw[("IndexedDB<br/>браузер · чернетки й кеш")]
+  sw["API контенту<br/>браузер · service worker, демо"]
+  nitro["API контенту<br/>сервер · Nitro /api"]
+
+  store[("Сховища<br/>сервер · docs, images, users, log")]
+  seed[("content/<br/>стартовий контент")]
+
+  relay["Telegram-реле<br/>Cloudflare Worker"]
+  channel["Канал у Telegram"]
+  ai["AI-помічник<br/>Workers AI, денна межа"]
+  fb["Firebase<br/>вхід, повідомлення"]
+  client["API клієнта<br/>за потреби"]
+
+  owner --> editor
+  visitor --> site
+  editor <--> dbw
+  site <--> dbw
+  editor -- "/api" --> sw
+  editor -- "/api, вхід" --> nitro
+  site -- "/api" --> sw
+  sw -. "стартові файли" .-> seed
+  nitro --> store
+  nitro -. "стартові файли" .-> seed
+  site -- "форми" --> relay --> channel
+  site -- "переклад, тексти" --> ai
+  site --> fb
+  editor --> fb
+  site -- "відповіді попапів" --> client

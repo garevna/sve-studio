@@ -1,0 +1,15 @@
+stateDiagram-v2
+  state "Starting" as Starting
+  state "Published" as Published
+  state "Draft" as Draft
+  [*] --> Starting: a file in content/
+  Starting --> Published: first read through the API
+  Published --> Draft: an edit in the editor
+  Draft --> Draft: autosave after 800 ms
+  Draft --> Published: "Save"
+  Draft --> Published: "Undo changes"
+  Published --> Starting: a new demo release (a fingerprint in manifest.json changed)
+  note right of Draft
+    A read always returns the draft
+    if there is one: the draft wins.
+  end note

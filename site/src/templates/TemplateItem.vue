@@ -40,7 +40,11 @@
       formOpen.value = true
     } else if (props.item.action === 'popup') {
       // One of the site's popups: its flag (stores/popups.ts).
-      if (props.item.popup) popupsStore.show(props.item.popup)
+      // With what it is about (a card's button: the card's title).
+      if (props.item.popup) {
+        const about = props.item.popupContext as Record<string, string> | undefined
+        void popupsStore.show(props.item.popup, about?.[locale.value] || about?.[defaultLocale.value] || '')
+      }
     } else if (targetPath.value) {
       follow(props.item)
     }
@@ -89,6 +93,7 @@
     'baner': 'TemplateBaner',
     'cards': 'CardSet',
     'tabs': 'TabSet',
+    'form-field': 'FormField',
     'text-with-icon': 'TextWithIcon',
     'dark-fone-section': 'DarkFoneSection',
     'hover-card': 'HoverTemplate',

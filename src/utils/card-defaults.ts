@@ -27,6 +27,7 @@ export function cardDefaults (block: TemplateBlockModel): Partial<TemplateBlockM
     cardStyle: block.cardStyle,
     titleClass: block.titleClass,
     contentClass: block.contentClass,
+    cardGaps: block.cardGaps,
   }
 }
 

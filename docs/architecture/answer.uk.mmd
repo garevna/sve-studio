@@ -1,0 +1,23 @@
+sequenceDiagram
+  actor V as Відвідувач
+  participant Card as Картка (TemplateCard)
+  participant Store as Стор попапів
+  participant Host as PopupHost / PopupAnswer
+  participant Relay as Канал зворотного зв'язку
+  participant API as API клієнта
+
+  V->>Card: «Обрати пакет»
+  Card->>Store: show("popup-order", "Те саме, з AI-помічником")
+  Store-->>Host: open[id] = true, context[id]
+  Host-->>V: рамка з моделі, плашка з назвою пакета, поля
+  V->>Host: «Надіслати заявку»
+  Host->>Host: перевірити обов'язкові поля
+  alt чогось бракує
+    Host-->>V: червона рамка, «Заповніть позначені поля»
+  else усе є
+    Host->>Relay: POST feedback.endpoint («popup-order» — пакет, поля)
+    Relay-->>Host: ok
+    Host-->>V: «Дякуємо!» і кнопка «Закрити»
+  end
+  Note over Store,API: Попап-діалог (підтвердження, вибір, дата) замість форми<br/>повертає значення тому, хто викликав show(), і,<br/>якщо задано deliver, надсилає його в API клієнта
+  Store-)API: POST endpoint.url { source, id, kind, value, locale, page, at }

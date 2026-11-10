@@ -3,6 +3,7 @@
 // without it never downloads the SDK.
 import type { User } from 'firebase/auth'
 import type { AuthAdapter, AuthErrorCode, AuthSettings, AuthUser } from './types'
+import { report } from '../../utils/report'
 import { AuthError } from './types'
 
 const ERRORS: Record<string, AuthErrorCode> = {
@@ -27,7 +28,7 @@ const ERRORS: Record<string, AuthErrorCode> = {
 function failure (error: unknown): AuthError {
   const code = (error as { code?: string })?.code || ''
   if (!ERRORS[code]) {
-    console.warn('[auth]', code || error)
+    report('warn', 'auth', String(code || 'unknown'), error)
   }
   return new AuthError(ERRORS[code] || 'unknown')
 }

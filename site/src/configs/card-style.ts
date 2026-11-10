@@ -17,7 +17,7 @@ export function resolveCardStyle (cardStyle: string | undefined, ver: number): s
 // UI Kit stylesheets the site always needs, whatever global.json's `styles`
 // list says - a list saved before the file existed would otherwise leave
 // every card unstyled.
-export const UI_KIT_STYLES = ['cards']
+export const UI_KIT_STYLES = ['cards', 'button-set', 'popups']
 
 export function withUiKitStyles (styles: string[]): string[] {
   return [...styles, ...UI_KIT_STYLES.filter(name => !styles.includes(name))]

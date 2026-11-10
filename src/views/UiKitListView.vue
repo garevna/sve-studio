@@ -1,23 +1,31 @@
 <script lang="ts" setup>
   import { ref } from 'vue'
+  import { useRoute } from 'vue-router'
   import EditorPageHeader from '@/components/special/EditorPageHeader.vue'
   import { t } from '@/i18n'
   import ButtonPaletteView from '@/views/ButtonPaletteView.vue'
   import ButtonSetView from '@/views/ButtonSetView.vue'
+  import CalendarsView from '@/views/CalendarsView.vue'
   import CardStylesView from '@/views/CardStylesView.vue'
   import FooterLayoutView from '@/views/FooterLayoutView.vue'
   import MenuStyleView from '@/views/MenuStyleView.vue'
+  import PopupLooksView from '@/views/PopupLooksView.vue'
   import SpacingSettingsView from '@/views/SpacingSettingsView.vue'
 
-  // "Вибір дати" is a stub,
-  // the same "Розділ у розробці" placeholder PlaceholderView.vue uses for
-  // not-yet-built sections elsewhere in the app.
+  // "Попапи" and "Календар" are the client's looks of popups and of the
+  // date popup's calendar (popups.json looks/calendars); the "Попапи"
+  // section gives each popup its words and picks one of these by name.
   //
   // The footer's COLUMN LAYOUT belongs here rather than in the footer
   // editor: it's a design decision about the site's shape (how many
   // columns, how wide, what gap), set once as numbers, while the footer
   // editor is for the content that goes in them.
-  const tab = ref<'buttons' | 'tabs' | 'cards' | 'footer' | 'spacing' | 'menu' | 'date'>('buttons')
+  // ?tab=date and so on: a link from elsewhere (a date popup's settings)
+  // opens on its tab.
+  type Tab = 'buttons' | 'tabs' | 'cards' | 'footer' | 'spacing' | 'menu' | 'popups' | 'date'
+  const TABS: Tab[] = ['buttons', 'tabs', 'cards', 'footer', 'spacing', 'menu', 'popups', 'date']
+  const asked = useRoute().query.tab
+  const tab = ref<Tab>(TABS.includes(asked as Tab) ? asked as Tab : 'buttons')
 </script>
 
 <template>
@@ -39,6 +47,7 @@
         <v-tab value="footer">{{ t('common.footer') }}</v-tab>
         <v-tab value="spacing">{{ t('kit.spacing') }}</v-tab>
         <v-tab value="menu">{{ t('common.menu') }}</v-tab>
+        <v-tab value="popups">{{ t('popupLooks.tab') }}</v-tab>
         <v-tab value="date">{{ t('common.datePicker') }}</v-tab>
       </v-tabs>
 
@@ -65,8 +74,11 @@
         <v-tabs-window-item value="menu">
           <MenuStyleView />
         </v-tabs-window-item>
+        <v-tabs-window-item value="popups">
+          <PopupLooksView v-if="tab === 'popups'" />
+        </v-tabs-window-item>
         <v-tabs-window-item value="date">
-          <p class="text-body-1 text-medium-emphasis mt-4">{{ t('common.inDevelopment') }}</p>
+          <CalendarsView v-if="tab === 'date'" />
         </v-tabs-window-item>
       </v-tabs-window>
     </v-main>

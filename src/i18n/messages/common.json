@@ -341,12 +341,12 @@
   },
   "iconButton": {
     "uk": "Кнопка-іконка",
-    "en": "",
-    "de": ""
+    "en": "Icon button",
+    "de": "Schaltfläche mit Symbol"
   },
   "tabs": {
     "uk": "Вкладки",
-    "en": "",
-    "de": ""
+    "en": "Tabs",
+    "de": "Registerkarten"
   }
 }

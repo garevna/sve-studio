@@ -22,6 +22,9 @@
   }>(), { look: 'pill', accent: 'var(--primary)', plate: 'var(--light-grey-2)' })
 
   const active = defineModel<number>({ default: 0 })
+  // folder: whether the chosen tab touches the row's left or right end -
+  // the panel's corner under it is then square (TabSet.vue).
+  const emit = defineEmits<{ edges: [edges: { start: boolean, end: boolean }] }>()
 
   const scroller = ref<HTMLElement | null>(null)
   const track = ref<HTMLElement | null>(null)
@@ -46,6 +49,10 @@
     const el = scroller.value
     if (el) {
       fade.value = { start: el.scrollLeft > 1, end: el.scrollLeft + el.clientWidth < el.scrollWidth - 1 }
+    }
+    if (tab && el) {
+      const left = tab.offsetLeft - el.scrollLeft
+      emit('edges', { start: left <= 1, end: left + tab.offsetWidth >= el.clientWidth - 1 })
     }
   }
 
@@ -272,11 +279,39 @@
   gap: 4px;
 }
 .tab-strip--folder .tab-strip__tab {
-  border-radius: 16px 16px 0 0 !important;
+  border-radius: var(--tab-folder-radius) var(--tab-folder-radius) 0 0 !important;
 }
 .tab-strip--folder .tab-strip__tab--active {
   background: var(--tab-plate);
   color: var(--tab-accent);
+}
+/* Where the chosen tab meets the panel, the corners curve outwards, as a
+   folder's tab does - not at the row's ends, where the panel's own corner
+   is square. */
+.tab-strip--folder .tab-strip__tab--active::before,
+.tab-strip--folder .tab-strip__tab--active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  width: var(--tab-folder-radius);
+  height: var(--tab-folder-radius);
+  pointer-events: none;
+}
+.tab-strip--folder .tab-strip__tab--active::before {
+  right: 100%;
+  background: radial-gradient(circle at 0 0, transparent calc(var(--tab-folder-radius) - 0.5px), var(--tab-plate) var(--tab-folder-radius));
+}
+.tab-strip--folder .tab-strip__tab--active::after {
+  left: 100%;
+  background: radial-gradient(circle at 100% 0, transparent calc(var(--tab-folder-radius) - 0.5px), var(--tab-plate) var(--tab-folder-radius));
+}
+.tab-strip--folder .tab-strip__tab--active:first-child::before,
+.tab-strip--folder .tab-strip__tab--active:last-child::after {
+  display: none;
+}
+.tab-strip--folder .tab-strip__track {
+  /* the curve at the tab's foot, and no gap the plate would show through */
+  --tab-folder-radius: min(var(--large-border-radius), 16px);
 }
 
 @media (prefers-reduced-motion: reduce) {

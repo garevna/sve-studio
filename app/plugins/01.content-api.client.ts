@@ -14,6 +14,7 @@
 // `contentApiReady` is false only in the last case - it means "no API is
 // answering", which is what stores/ajax.ts falls back from.
 import { serverRolesEnabled } from '@/services/editor-users'
+import { report, setReportTarget } from '@/utils/report'
 
 type ContentApiKind = 'server' | 'service-worker' | 'local'
 
@@ -102,12 +103,12 @@ async function startContentApi (base: string): Promise<ContentApiKind> {
     // answers; without the tag, work on the local copy instead.
     const probe = await fetch(`${base}api/content/styles`, { cache: 'no-store' }).catch(() => null)
     if (probe?.headers.get('X-Content-Api') !== 'service-worker') {
-      console.warn('Content API: requests bypass the service worker (DevTools "Bypass for network"?) - working on the local copy only')
+      report('warn', 'content-api', 'Requests bypass the service worker (DevTools "Bypass for network"?) - working on the local copy only')
       return 'local'
     }
     return 'service-worker'
   } catch (error) {
-    console.error('Content API could not start - working on the local copy only', error)
+    report('warn', 'content-api', 'Could not start - working on the local copy only', error)
     return 'local'
   }
 }
@@ -116,6 +117,8 @@ export default defineNuxtPlugin({
   name: 'content-api',
   async setup () {
     const kind = await startContentApi(useRuntimeConfig().app.baseURL)
+    // where reports go from now on (utils/report.ts)
+    setReportTarget(kind)
     return { provide: { contentApiReady: kind !== 'local', contentApiKind: kind } }
   },
 })

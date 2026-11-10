@@ -129,11 +129,14 @@ export default defineNuxtConfig({
       // deployment points all three at something that survives a restart -
       // cloudflare-kv-binding, fs, s3... - and nothing else changes.
       'content-users': { driver: 'memory' },
+      // What went wrong in the editor or on the site (/api/log).
+      'content-log': { driver: 'memory' },
     },
     devStorage: {
       'content-docs': { driver: 'fs', base: './.data/content-docs' },
       'content-images': { driver: 'fs', base: './.data/content-images' },
       'content-users': { driver: 'fs', base: './.data/content-users' },
+      'content-log': { driver: 'fs', base: './.data/content-log' },
     },
   },
 

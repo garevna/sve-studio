@@ -78,6 +78,16 @@ export const editorRoutes: RouteRecordRaw[] = [
     component: () => import('@/views/UsersView.vue'),
   },
   {
+    path: '/architecture',
+    name: 'architecture',
+    component: () => import('@/views/ArchitectureView.vue'),
+  },
+  {
+    path: '/log',
+    name: 'log',
+    component: () => import('@/views/ProblemLogView.vue'),
+  },
+  {
     path: '/popups',
     name: 'popups',
     component: () => import('@/views/PopupsView.vue'),

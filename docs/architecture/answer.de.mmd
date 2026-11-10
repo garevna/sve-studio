@@ -1,0 +1,23 @@
+sequenceDiagram
+  actor V as Besucher
+  participant Card as Karte (TemplateCard)
+  participant Store as Popup-Store
+  participant Host as PopupHost / PopupAnswer
+  participant Relay as Feedback-Kanal
+  participant API as API des Kunden
+
+  V->>Card: „Paket wählen“
+  Card->>Store: show("popup-order", "Dasselbe, mit KI-Assistent")
+  Store-->>Host: open[id] = true, context[id]
+  Host-->>V: Rahmen aus dem Modell, Chip mit dem Paket, Felder
+  V->>Host: „Anfrage senden“
+  Host->>Host: Pflichtfelder prüfen
+  alt etwas fehlt
+    Host-->>V: roter Rahmen, „Bitte füllen Sie die markierten Felder aus“
+  else alles da
+    Host->>Relay: POST feedback.endpoint („popup-order“ — Paket, Felder)
+    Relay-->>Host: ok
+    Host-->>V: „Danke!“ und die Schaltfläche „Schließen“
+  end
+  Note over Store,API: Ein Dialog-Popup (Bestätigung, Auswahl, Datum) statt eines Formulars<br/>gibt seinen Wert dem zurück, der show() aufrief, und<br/>sendet ihn, wenn deliver gesetzt ist, an die API des Kunden
+  Store-)API: POST endpoint.url { source, id, kind, value, locale, page, at }

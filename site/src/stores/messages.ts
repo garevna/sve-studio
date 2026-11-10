@@ -1,6 +1,7 @@
 import type { MessageDraft, SiteMessage } from '@/services/messages/types'
 import { defineStore } from 'pinia'
 import { ref, watch } from 'vue'
+import { report } from '../utils/report'
 import { useAuthStore } from './auth'
 
 // The signed-in visitor's messages and the replies to them - live: a reply
@@ -29,12 +30,12 @@ export const useMessagesStore = defineStore('messages', () => {
         list.value = next
         loading.value = false
       }, error => {
-        console.warn('[messages]', error)
+        report('warn', 'messages', 'Could not watch messages', error)
         failed.value = true
         loading.value = false
       })
     } catch (error) {
-      console.warn('[messages]', error)
+      report('warn', 'messages', 'Could not read messages', error)
       failed.value = true
       loading.value = false
     }
@@ -51,7 +52,7 @@ export const useMessagesStore = defineStore('messages', () => {
       const { createMessage } = await import('@/services/messages/firebase')
       return await createMessage({ ...draft, uid: auth.user.uid })
     } catch (error) {
-      console.warn('[messages] not saved', error)
+      report('warn', 'messages', 'Message not saved', error)
       return null
     }
   }

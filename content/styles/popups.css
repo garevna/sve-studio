@@ -1,0 +1,430 @@
+/* Popups: one look for every popup of the site (site PopupHost.vue; the
+   editor draws the same window). Every popup is the same frame:
+     a close cross in the top right corner (always there),
+     a title,
+     a text,
+     what the popup is for (a form, a field, a list, blocks...),
+     a row of buttons.
+   Only the middle differs from popup to popup. A message about an error
+   wears the error colour (pw-popup--error).
+
+   A popup's look (UI Kit "Попапи", configs/popup-looks.ts) puts one of
+   the pw-popup--look-* classes on the frame and its colours as variables:
+   --pw-popup-bg, --pw-popup-head-bg, --pw-popup-radius, --pw-popup-close.
+   A title or a text with a format of its own (pw-popup__title--own,
+   pw-popup__text--own) takes its type from its classes, not from here.
+
+   Plain CSS: the window is Vuetify's own element, teleported to <body>. */
+
+/* --- where it appears ----------------------------------------------------- */
+.pw-popup-overlay.v-overlay__content {
+  margin: 0 !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+}
+/* The theme stretches every dialog to the full width and rounds its frame
+   (vuetify-overlay-content.css); a popup keeps its own width, and its
+   corners are the panel's. */
+.v-dialog:not(.v-bottom-sheet) > .v-overlay__content.pw-popup-overlay {
+  min-width: 0;
+  border-radius: 0 !important;
+}
+.pw-popup-overlay--left.v-overlay__content,
+.pw-popup-overlay--right.v-overlay__content {
+  position: fixed !important;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+}
+.pw-popup-overlay--left.v-overlay__content { left: 0; }
+.pw-popup-overlay--right.v-overlay__content { right: 0; }
+.pw-popup-overlay--bottom.v-overlay__content {
+  position: fixed !important;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100% !important;
+  max-height: 85vh !important;
+}
+.pw-popup-overlay--center.v-overlay__content {
+  max-width: calc(100vw - 32px) !important;
+  max-height: calc(100vh - 32px) !important;
+}
+
+/* --- the frame ------------------------------------------------------------ */
+.pw-popup {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  background: var(--pw-popup-bg, var(--white));
+  overflow: hidden;
+}
+.pw-popup--left { border-radius: 0 var(--pw-popup-radius, var(--large-border-radius)) var(--pw-popup-radius, var(--large-border-radius)) 0; }
+.pw-popup--right { border-radius: var(--pw-popup-radius, var(--large-border-radius)) 0 0 var(--pw-popup-radius, var(--large-border-radius)); }
+.pw-popup--bottom { border-radius: var(--pw-popup-radius, var(--large-border-radius)) var(--pw-popup-radius, var(--large-border-radius)) 0 0; }
+.pw-popup--center { border-radius: var(--pw-popup-radius, var(--large-border-radius)); }
+.pw-popup--error { border: solid 1px var(--error); }
+
+/* The cross in its corner; the title centred between it and an empty
+   place of the same width on the left. */
+.pw-popup__head {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr) 40px;
+  align-items: start;
+  gap: 8px;
+  padding: 16px 16px 0;
+}
+.pw-popup__title {
+  grid-column: 2;
+  margin: 8px 0 0;
+  text-align: center;
+  white-space: break-spaces;
+  overflow-wrap: anywhere;
+}
+.pw-popup__title:not(.pw-popup__title--own) {
+  font-family: var(--main-font);
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--black);
+}
+.pw-popup__close {
+  grid-column: 3;
+  display: inline-flex;
+  justify-content: center;
+  padding: 6px !important;
+  border: none;
+  border-radius: 50% !important;
+  background: transparent;
+  color: var(--pw-popup-close, var(--grey));
+  font-size: 24px !important;
+  line-height: 1;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+.pw-popup__close:hover {
+  color: var(--dark-grey);
+}
+
+.pw-popup__body {
+  flex: 1 1 auto;
+  min-height: 0;
+  padding: 12px 24px 8px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+/* A message's sign, above its text. */
+.pw-popup__icon {
+  display: block;
+  margin: 0 auto 16px;
+  font-size: 44px;
+  line-height: 1;
+  text-align: center;
+  color: var(--success);
+}
+.pw-popup--error .pw-popup__icon {
+  color: var(--error);
+}
+.pw-popup__text {
+  margin: 0 0 16px;
+  text-align: center;
+  white-space: pre-line;
+}
+.pw-popup__text:not(.pw-popup__text--own) {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--black);
+}
+.pw-popup__text:last-child {
+  margin-bottom: 0;
+}
+/* What the popup was opened about (a card's title): a chip under the text. */
+.pw-popup__about {
+  display: table;
+  margin: 0 auto 16px;
+  padding: 6px 16px;
+  border-radius: var(--large-border-radius);
+  background: var(--light-grey-2);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--primary);
+  text-align: center;
+}
+.pw-popup--look-classic .pw-popup__about {
+  margin-left: 0;
+}
+/* A field, a list or a calendar - what the visitor answers with. */
+.pw-popup__answer {
+  display: flex;
+  justify-content: center;
+  margin-top: 8px;
+}
+.pw-popup__answer > .v-input {
+  width: 100%;
+}
+/* The theme fixes every field at 56px high; a several-line one grows. */
+.pw-popup .v-textarea .v-field__field {
+  height: auto !important;
+}
+.pw-popup__error {
+  margin: 8px 0 0;
+  font-size: 14px;
+  color: var(--error);
+  text-align: center;
+}
+
+/* The buttons: one under the other on a phone, side by side on a wider
+   screen - the main one first. */
+.pw-popup__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px 24px 24px;
+}
+.pw-popup__actions:empty {
+  display: none;
+}
+.pw-popup__actions > .v-btn {
+  width: 100%;
+  margin: 0 !important;
+}
+@media (min-width: 600px) {
+  .pw-popup__actions {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .pw-popup__actions > .v-btn {
+    width: auto;
+    min-width: 160px;
+  }
+}
+
+/* --- the looks' own variants ----------------------------------------------- */
+/* classic: a dialog - title and text from the left, buttons at the right. */
+.pw-popup--look-classic .pw-popup__head {
+  grid-template-columns: minmax(0, 1fr) 40px;
+  padding: 20px 16px 0 24px;
+}
+.pw-popup--look-classic .pw-popup__title {
+  grid-column: 1;
+  text-align: left;
+}
+.pw-popup--look-classic .pw-popup__close {
+  grid-column: 2;
+}
+.pw-popup--look-classic .pw-popup__text,
+.pw-popup--look-classic .pw-popup__error {
+  text-align: left;
+}
+.pw-popup--look-classic .pw-popup__icon {
+  margin: 0 0 12px;
+  text-align: left;
+}
+.pw-popup--look-classic .pw-popup__answer {
+  justify-content: flex-start;
+}
+@media (min-width: 600px) {
+  .pw-popup--look-classic .pw-popup__actions {
+    justify-content: flex-end;
+  }
+}
+
+/* header: the title on a strip of colour across the top. */
+.pw-popup--look-header .pw-popup__head {
+  padding: 18px 16px 18px;
+  background: var(--pw-popup-head-bg, var(--primary));
+}
+.pw-popup--look-header .pw-popup__title {
+  margin-top: 4px;
+}
+.pw-popup--look-header .pw-popup__title:not(.pw-popup__title--own),
+.pw-popup--look-header .pw-popup__close {
+  color: var(--white);
+}
+.pw-popup--look-header .pw-popup__body {
+  padding-top: 20px;
+}
+
+/* --- a date popup: the calendar is the window (UI Kit "Календар") -------- */
+/* No title bar: the calendar's strip with the month and the arrows is the
+   window's header, edge to edge; its colours, the day names, a day's
+   corners and the chosen day are the calendar model's
+   (configs/popup-looks.ts calendarProps: --pw-cal-*). */
+.pw-popup__body--date {
+  padding: 0 0 4px;
+}
+.pw-popup__body--date .pw-popup__answer {
+  display: block;
+  margin-top: 0;
+}
+.pw-popup .pw-calendar {
+  /* the window's corners shape it, not Vuetify's own */
+  border-radius: 0 !important;
+  width: 100%;
+  max-width: none;
+  min-width: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+.pw-popup .pw-calendar:not(.pw-calendar--material) .v-date-picker-controls {
+  /* Vuetify fixes this row at 56px; with room around its content that
+     pushed the month and the arrows to the bottom edge - the row takes its
+     content's height and centres it */
+  align-items: center;
+  height: auto !important;
+  min-height: 56px;
+  margin: 0 0 8px;
+  padding: 0 16px 0 24px;
+  background: var(--pw-cal-head-bg) !important;
+  color: var(--pw-cal-head-fg) !important;
+}
+.pw-popup .pw-calendar:not(.pw-calendar--material) .v-date-picker-controls .v-btn {
+  color: var(--pw-cal-head-fg) !important;
+}
+/* the month's name: its weight is the calendar's (--pw-cal-month-weight) */
+.pw-popup .pw-calendar.v-picker .v-date-picker-controls .v-btn {
+  font-weight: var(--pw-cal-month-weight, 600) !important;
+}
+.pw-popup .pw-calendar .v-date-picker-controls__month,
+.pw-popup .pw-calendar .v-date-picker-controls__year {
+  align-items: center;
+  height: auto;
+}
+/* material: Vuetify's own header - the popup's title and the chosen date -
+   is the coloured part; the month row under it stays plain. */
+/* The theme lays every picker out as one "body" area (date-picker.css
+   .v-picker.v-sheet), which sent this header to the bottom; it goes back on
+   top here. */
+.pw-popup .pw-calendar--material.v-picker.v-sheet {
+  grid-template-areas: "title" "header" "body";
+}
+.pw-popup .pw-calendar--material .v-picker-title { grid-area: title; }
+.pw-popup .pw-calendar--material .v-date-picker-header { grid-area: header; }
+.pw-popup .pw-calendar--material .v-picker__body { grid-area: body; }
+.pw-popup .pw-calendar--material .v-picker-title,
+.pw-popup .pw-calendar--material .v-date-picker-header {
+  background: var(--pw-cal-head-bg) !important;
+  color: var(--pw-cal-head-fg) !important;
+}
+.pw-popup .pw-calendar--material .v-picker-title {
+  padding: 16px 24px 0;
+  margin: 0;
+}
+.pw-popup .pw-calendar--material .v-date-picker-header {
+  /* Vuetify sets the date at the header's foot; centred, with even room */
+  align-items: center;
+  min-height: 0;
+  padding: 12px 24px;
+}
+/* no title given: no empty band above the date */
+.pw-popup .pw-calendar--material .v-picker-title:has(.v-date-picker__title:empty) {
+  display: none;
+}
+.pw-popup .pw-calendar--material .v-date-picker-controls {
+  padding: 8px 12px 0 16px;
+}
+/* weeks: the week numbers, quiet */
+.pw-popup .pw-calendar--weeks .v-date-picker-month__weeks {
+  color: var(--pw-cal-weekday);
+  opacity: 0.7;
+}
+.pw-popup .pw-calendar .v-date-picker-month {
+  padding: 0 16px;
+}
+.pw-popup .pw-calendar .v-date-picker-month__weekday {
+  opacity: 1 !important;
+  color: var(--pw-cal-weekday) !important;
+  text-transform: capitalize;
+}
+.pw-popup .pw-calendar .v-date-picker-month__day .v-btn.v-date-picker-month__day-btn {
+  border-radius: var(--pw-cal-day-radius) !important;
+}
+.pw-popup .pw-calendar .v-date-picker-month__day--selected .v-btn.v-date-picker-month__day-btn {
+  background: var(--pw-cal-sel-bg) !important;
+  color: var(--pw-cal-sel-fg) !important;
+}
+.pw-popup .pw-calendar .v-date-picker-month__day:not(.v-date-picker-month__day--selected) .v-btn[aria-current="date"] {
+  border: solid 2px var(--pw-cal-today);
+  color: var(--pw-cal-today) !important;
+}
+/* vertical: turned on its side - the day names down the left, a week a
+   column. The days come week by week, so flowing them into columns of 7
+   does it; the theme's 7-column rule has to give way. */
+.pw-popup .pw-calendar--vertical .v-date-picker-month__days {
+  grid-auto-flow: column;
+  grid-template-rows: repeat(7, auto);
+  grid-template-columns: none !important;
+  justify-content: space-around;
+  row-gap: 2px;
+}
+.pw-popup .pw-calendar--vertical .v-date-picker-month__weekday {
+  justify-content: flex-start;
+  padding-right: 12px;
+  font-weight: 600;
+}
+/* tiles: every day a tile */
+.pw-popup .pw-calendar--tiles .v-date-picker-month__days {
+  gap: 6px;
+}
+.pw-popup .pw-calendar--tiles .v-date-picker-month__day:not(.v-date-picker-month__weekday):not(.v-date-picker-month__day--selected) .v-btn.v-date-picker-month__day-btn {
+  background: var(--light-grey-2) !important;
+}
+.pw-popup .pw-calendar--tiles .v-date-picker-month__day--adjacent .v-btn.v-date-picker-month__day-btn {
+  opacity: 0.45;
+}
+/* lines: the day names in capitals over a thin line, the weekend marked */
+.pw-popup .pw-calendar--lines .v-date-picker-month__weekday {
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--light-grey-1);
+  font-size: 11px !important;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.pw-popup .pw-calendar--lines .v-date-picker-month__day--week-end:not(.v-date-picker-month__day--selected) .v-btn.v-date-picker-month__day-btn {
+  color: var(--pw-cal-today) !important;
+}
+.pw-popup__text--after {
+  margin: 12px 24px 0;
+}
+
+/* A form in a popup: the window is its frame - no card of its own inside
+   it (a card in a window looked like a popup in a popup), the window's
+   whole width, no room of its own above and below. */
+.pw-popup .feedback-form-block {
+  display: block !important;
+  padding-block: 0 !important;
+}
+.pw-popup .footer-feedback-card {
+  min-width: 0 !important;
+  max-width: none !important;
+  width: 100%;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* --- coming in from where they sit ------------------------------------------ */
+.pw-popup-left-enter-active, .pw-popup-left-leave-active,
+.pw-popup-right-enter-active, .pw-popup-right-leave-active,
+.pw-popup-bottom-enter-active, .pw-popup-bottom-leave-active,
+.pw-popup-center-enter-active, .pw-popup-center-leave-active {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+}
+.pw-popup-left-enter-from, .pw-popup-left-leave-to { transform: translateX(-100%); }
+.pw-popup-right-enter-from, .pw-popup-right-leave-to { transform: translateX(100%); }
+.pw-popup-bottom-enter-from, .pw-popup-bottom-leave-to { transform: translateY(100%); }
+.pw-popup-center-enter-from, .pw-popup-center-leave-to { transform: scale(0.96); opacity: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  .pw-popup-left-enter-active, .pw-popup-left-leave-active,
+  .pw-popup-right-enter-active, .pw-popup-right-leave-active,
+  .pw-popup-bottom-enter-active, .pw-popup-bottom-leave-active,
+  .pw-popup-center-enter-active, .pw-popup-center-leave-active {
+    transition: none;
+  }
+}

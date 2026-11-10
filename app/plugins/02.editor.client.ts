@@ -12,6 +12,7 @@ import { useUiFeedbackStore } from '@/stores/ui-feedback'
 import { getActiveTheme } from '@/utils/active-theme'
 import { syncContentImages } from '@/utils/dev-content-images'
 import { installImageFallback } from '@/utils/image-fallback'
+import { reportUncaught, setReportNotice } from '@/utils/report'
 import { EDITOR_THEME_NAME } from '@/utils/vuetify-theme-names'
 
 export default defineNuxtPlugin({
@@ -21,6 +22,9 @@ export default defineNuxtPlugin({
     if (!nuxtApp.$contentApiReady) {
       useLocalOnlyMode()
     }
+    // Nothing goes to the console: what nobody caught is reported
+    // (utils/report.ts).
+    reportUncaught(nuxtApp.vueApp)
 
     // A picture not set or not found shows the checkerboard.
     installImageFallback()
@@ -40,6 +44,8 @@ export default defineNuxtPlugin({
     const kitTexts = () => setKitLabels({ back: t('common.back'), close: t('common.close'), look: t('kit.look'), pickColor: t('kit.pickColor'), tools: t('kit.tools'), systemFont: t('kit.systemFont') })
     kitTexts()
     watch(i18n.global.locale, kitTexts)
+    // In the demo an error is shown as well as written down.
+    setReportNotice((message, detail) => useUiFeedbackStore(pinia).notify('error', message, detail))
     startLook(look => Object.assign(vuetify.theme.themes.value[EDITOR_THEME_NAME]!.colors, vuetifyColors(look)))
     // Dev: catch up on uploaded pictures that content/ links to but lacks.
     // Only against the in-browser API: a real server has its own storage and

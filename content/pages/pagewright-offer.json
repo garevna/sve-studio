@@ -196,6 +196,17 @@
               "Schritt für Schritt: Telegram-Bot und privater Kanal für Ihren Kunden, und wie der KI-Assistent aktiviert wird.",
               "390 $ pro Monat oder 3.900 $ pro Jahr."
             ]
+          },
+          "button": {
+            "type": "button",
+            "class": "primary-button",
+            "content": {
+              "uk": "Обрати пакет",
+              "en": "Choose this package",
+              "de": "Paket wählen"
+            },
+            "action": "popup",
+            "popup": "popup-order"
           }
         },
         {
@@ -225,6 +236,17 @@
               "Sie starten mit einer Startseite und einem leeren Menü. Alle weiteren Seiten erstellen Sie selbst im Editor.",
               "900 $ einmalig, danach 90 $ pro Monat."
             ]
+          },
+          "button": {
+            "type": "button",
+            "class": "primary-button",
+            "content": {
+              "uk": "Обрати пакет",
+              "en": "Choose this package",
+              "de": "Paket wählen"
+            },
+            "action": "popup",
+            "popup": "popup-order"
           }
         },
         {
@@ -254,6 +276,17 @@
               "Er läuft mit Ihrem eigenen Schlüssel und einem Tageslimit, das Sie sehen und ändern können.",
               "1.200 $ einmalig, danach 120 $ pro Monat."
             ]
+          },
+          "button": {
+            "type": "button",
+            "class": "primary-button",
+            "content": {
+              "uk": "Обрати пакет",
+              "en": "Choose this package",
+              "de": "Paket wählen"
+            },
+            "action": "popup",
+            "popup": "popup-order"
           }
         },
         {
@@ -283,11 +316,26 @@
               "Zu jedem Paket oben hinzubuchbar.",
               "500 $ einmalig."
             ]
+          },
+          "button": {
+            "type": "button",
+            "class": "outlined-button",
+            "content": {
+              "uk": "Додати до пакета",
+              "en": "Add to a package",
+              "de": "Zum Paket hinzufügen"
+            },
+            "action": "popup",
+            "popup": "popup-order"
           }
         }
       ],
       "color": "blue",
-      "background": "light-grey-1"
+      "background": "light-grey-1",
+      "cardGaps": {
+        "lines": 6,
+        "button": 20
+      }
     },
     {
       "type": "header",

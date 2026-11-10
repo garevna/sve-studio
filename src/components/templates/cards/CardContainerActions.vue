@@ -134,6 +134,25 @@
   })
   /* eslint-enable vue/no-mutating-props */
 
+  // The gaps inside every card, px: under the title, between the lines,
+  // above the button (TemplateCard.vue). Unset - the card's own spacing.
+  type GapKey = 'title' | 'lines' | 'button'
+  // what a card has without a setting (the title's: mb-4 / mb-2 / none by variant)
+  function gapDefault (key: GapKey): number {
+    if (key === 'title') {
+      const ver = props.block.ver || 2
+      return ver === 1 ? 16 : (ver === 4 ? 0 : 8)
+    }
+    return key === 'button' ? 16 : 0
+  }
+  function gapOf (key: GapKey): number {
+    return props.block.cardGaps?.[key] ?? gapDefault(key)
+  }
+  function setGap (key: GapKey, value: number) {
+    // eslint-disable-next-line vue/no-mutating-props
+    props.block.cardGaps = { ...props.block.cardGaps, [key]: value }
+  }
+
   function setVer (ver: number) {
     // eslint-disable-next-line vue/no-mutating-props
     props.block.ver = ver
@@ -220,6 +239,33 @@
     </div>
   </v-menu>
 
+  <v-menu :close-on-content-click="false" location="bottom start">
+    <template #activator="{ props: menuProps }">
+      <ToolbarIconButton
+        v-bind="menuProps"
+        icon="mdi-arrow-split-horizontal"
+        :tooltip="t('cards.gaps')"
+      />
+    </template>
+    <v-card class="card-gaps" theme="editorTheme">
+      <v-card-text>
+        <v-slider
+          v-for="key of (['title', 'lines', 'button'] as const)"
+          :key="key"
+          color="primary"
+          density="compact"
+          hide-details
+          :label="`${t(`cards.gap.${key}`)}: ${gapOf(key)}px`"
+          :max="64"
+          :min="0"
+          :model-value="gapOf(key)"
+          :step="2"
+          @update:model-value="(value: number) => setGap(key, value)"
+        />
+      </v-card-text>
+    </v-card>
+  </v-menu>
+
   <CardStyleMenu :block="block" />
 
   <PaletteSwatchPicker v-model="cardBackground" gradients>
@@ -248,5 +294,13 @@
 .card-icon-appearance {
   width: 360px;
   max-width: calc(100vw - 48px);
+}
+.card-gaps {
+  width: 320px;
+  max-width: calc(100vw - 32px);
+}
+.card-gaps :deep(.v-slider) {
+  flex-direction: column;
+  align-items: stretch;
 }
 </style>

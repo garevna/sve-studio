@@ -1,214 +1,214 @@
 {
   "title": {
     "uk": "Користувачі",
-    "en": "",
-    "de": ""
+    "en": "Users",
+    "de": "Benutzer"
   },
   "detail": {
     "uk": "хто працює в редакторі",
-    "en": "",
-    "de": ""
+    "en": "who is working in the editor",
+    "de": "Wer arbeitet im Editor"
   },
   "refresh": {
     "uk": "Оновити список",
-    "en": "",
-    "de": ""
+    "en": "Refresh list",
+    "de": "Liste aktualisieren"
   },
   "signOut": {
     "uk": "Вийти",
-    "en": "",
-    "de": ""
+    "en": "Sign out",
+    "de": "Abmelden"
   },
   "signInTitle": {
     "uk": "Вхід до редактора",
-    "en": "",
-    "de": ""
+    "en": "Sign in to the editor",
+    "de": "Im Editor anmelden"
   },
   "signInText": {
     "uk": "Увійдіть обліковим записом Google. Роль вам видає супервайзер — до того ви можете лише дивитися.",
-    "en": "",
-    "de": ""
+    "en": "Sign in with your Google account. Your role is assigned by a supervisor — until then, you can only view content.",
+    "de": "Melden Sie sich mit Ihrem Google-Konto an. Die Rolle wird Ihnen vom Supervisor zugewiesen – bis dahin können Sie nur zuschauen."
   },
   "signInGoogle": {
     "uk": "Увійти через Google",
-    "en": "",
-    "de": ""
+    "en": "Sign in with Google",
+    "de": "Über Google anmelden"
   },
   "switchAccount": {
     "uk": "Увійти іншим обліковим записом",
-    "en": "",
-    "de": ""
+    "en": "Sign in with a different account",
+    "de": "Mit einem anderen Konto anmelden"
   },
   "notEnforcedTitle": {
     "uk": "Тут роль обираєте ви самі",
-    "en": "",
-    "de": ""
+    "en": "You choose the role yourself here",
+    "de": "Hier wählen Sie die Rolle selbst aus"
   },
   "notEnforcedText": {
     "uk": "У цій версії роль перемикається на головній сторінці редактора й нічого не обмежує на сервері: кожен відвідувач редагує власну копію сайту у своєму браузері.",
-    "en": "",
-    "de": ""
+    "en": "In this version, the role is switched on the editor’s home page and nothing is restricted on the server: each visitor edits their own copy of the site in their browser.",
+    "de": "In dieser Version wird die Rolle auf der Startseite des Editors umgeschaltet und es gibt keine Einschränkungen auf dem Server: Jeder Besucher bearbeitet seine eigene Kopie der Website in seinem Browser."
   },
   "notEnforcedHow": {
     "uk": "На робочому сайті цей розділ стає справжнім: сервер запускається з NUXT_CONTENT_API_ACCESS=auth, NUXT_CONTENT_API_FIREBASE_PROJECT_ID і NUXT_CONTENT_API_OWNERS — після цього роль видається тут, а кожне збереження перевіряється на сервері.",
-    "en": "",
-    "de": ""
+    "en": "On a live site, this section becomes relevant: the server is started with NUXT_CONTENT_API_ACCESS=auth, NUXT_CONTENT_API_FIREBASE_PROJECT_ID and NUXT_CONTENT_API_OWNERS — after which the role is assigned here, and every save is validated on the server.",
+    "de": "Auf der Live-Website wird dieser Abschnitt zur Realität: Der Server wird mit den Parametern NUXT_CONTENT_API_ACCESS=auth, NUXT_CONTENT_API_FIREBASE_PROJECT_ID und NUXT_CONTENT_API_OWNERS gestartet – danach wird die Rolle hier zugewiesen, und jede Speicherung wird auf dem Server überprüft."
   },
   "notConfiguredTitle": {
     "uk": "Вхід не налаштовано",
-    "en": "",
-    "de": ""
+    "en": "Login not configured",
+    "de": "Anmeldung nicht konfiguriert"
   },
   "notConfiguredText": {
     "uk": "Сервер вимагає входу, але в загальних налаштуваннях сайту не задано спосіб входу (Firebase). Без нього ніхто не зможе увійти — ні ви, ні клієнт.",
-    "en": "",
-    "de": ""
+    "en": "The server requires login, but the login method (Firebase) has not been specified in the site’s general settings. Without it, no one will be able to log in — neither you nor the client.",
+    "de": "Der Server verlangt eine Anmeldung, aber in den allgemeinen Einstellungen der Website ist keine Anmeldemethode (Firebase) festgelegt. Ohne diese Angabe kann sich niemand anmelden – weder Sie noch der Kunde."
   },
   "forbiddenTitle": {
     "uk": "Цей розділ — для супервайзера",
-    "en": "",
-    "de": ""
+    "en": "This section is for the supervisor",
+    "de": "Dieser Bereich ist für den Supervisor bestimmt"
   },
   "forbiddenText": {
     "uk": "Ви увійшли як {email}. Ролі видає супервайзер або власник розгортання.",
-    "en": "",
-    "de": ""
+    "en": "You are logged in as {email}. Roles are assigned by the supervisor or deployment owner.",
+    "de": "Sie sind als {email} angemeldet. Rollen werden vom Supervisor oder vom Eigentümer der Bereitstellung vergeben."
   },
   "youTitle": {
     "uk": "Ви",
-    "en": "",
-    "de": ""
+    "en": "You",
+    "de": "Sie"
   },
   "owner": {
     "uk": "Власник розгортання",
-    "en": "",
-    "de": ""
+    "en": "Deployment owner",
+    "de": "Eigentümer der Bereitstellung"
   },
   "ownerHint": {
     "uk": "Ваш обліковий запис задано в налаштуваннях сервера, а не в цьому списку. Його не можна ні змінити, ні видалити звідси — саме тому доступ до редактора не можна втратити остаточно.",
-    "en": "",
-    "de": ""
+    "en": "Your account is specified in the server settings, not in this list. It cannot be changed or deleted from here — which is why access to the editor cannot be permanently lost.",
+    "de": "Ihr Konto ist in den Servereinstellungen festgelegt und nicht in dieser Liste. Er kann hier weder geändert noch gelöscht werden – genau deshalb kann der Zugriff auf den Editor nicht endgültig verloren gehen."
   },
   "listTitle": {
     "uk": "Хто ще входив",
-    "en": "",
-    "de": ""
+    "en": "Who else has logged in",
+    "de": "Wer war noch angemeldet"
   },
   "listHint": {
     "uk": "Людина з’являється в списку після першого входу. Поки ви не видали роль, вона нічого не може змінити — лише дивитися.",
-    "en": "",
-    "de": ""
+    "en": "A person appears on the list after their first login. Until you assign them a role, they cannot make any changes — they can only view content.",
+    "de": "Eine Person erscheint nach der ersten Anmeldung in der Liste. Solange Sie ihr keine Rolle zugewiesen haben, kann sie nichts ändern – sie kann nur zusehen."
   },
   "waiting": {
     "uk": "Чекають на роль: {count}",
-    "en": "",
-    "de": ""
+    "en": "Waiting for a role: {count}",
+    "de": "Warten auf eine Rolle: {count}"
   },
   "empty": {
     "uk": "Більше ніхто не входив. Надішліть людині адресу редактора — після входу вона буде тут.",
-    "en": "",
-    "de": ""
+    "en": "No one else has logged in. Send the person the editor’s URL — they’ll be here once they’ve logged in.",
+    "de": "Es hat sich niemand mehr angemeldet. Senden Sie der Person den Link zum Editor – nach der Anmeldung wird sie hier erscheinen."
   },
   "noRole": {
     "uk": "Без ролі",
-    "en": "",
-    "de": ""
+    "en": "No role",
+    "de": "Ohne Rolle"
   },
   "noRoleHint": {
     "uk": "Може дивитися, не може нічого зберегти",
-    "en": "",
-    "de": ""
+    "en": "Can view, cannot save anything",
+    "de": "Kann nur ansehen, nichts speichern"
   },
   "roleMenu": {
     "uk": "Роль — які розділи відкриваються",
-    "en": "",
-    "de": ""
+    "en": "Role — which sections are accessible",
+    "de": "Rolle – welche Bereiche sind zugänglich"
   },
   "lastSeen": {
     "uk": "Був тут {when}",
-    "en": "",
-    "de": ""
+    "en": "Was here {when}",
+    "de": "War {when} hier"
   },
   "remove": {
     "uk": "Прибрати зі списку",
-    "en": "",
-    "de": ""
+    "en": "Remove from list",
+    "de": "Aus der Liste entfernen"
   },
   "removeTitle": {
     "uk": "Прибрати зі списку?",
-    "en": "",
-    "de": ""
+    "en": "Remove from list?",
+    "de": "Aus der Liste entfernen?"
   },
   "removeText": {
     "uk": "{name} втратить роль і більше нічого не збереже. Обліковий запис залишається: ця людина зможе увійти знову — без ролі.",
-    "en": "",
-    "de": ""
+    "en": "{name} will lose their role and will no longer be able to save anything. The account remains: this person will be able to log in again — without a role.",
+    "de": "{name} verliert seine Rolle und speichert nichts mehr. Das Konto bleibt bestehen: Diese Person kann sich wieder anmelden – ohne Rolle."
   },
   "removed": {
     "uk": "Прибрано зі списку",
-    "en": "",
-    "de": ""
+    "en": "Removed from the list",
+    "de": "Aus der Liste entfernt"
   },
   "supervisorTitle": {
     "uk": "Передати повний доступ?",
-    "en": "",
-    "de": ""
+    "en": "Grant full access?",
+    "de": "Vollzugriff übertragen?"
   },
   "supervisorText": {
     "uk": "Супервайзер отримує всі розділи редактора, включно з цим: зможе видавати й забирати ролі. {name} зможе зробити тут усе те, що й ви.",
-    "en": "",
-    "de": ""
+    "en": "The supervisor will have access to all sections of the editor, including this one: they will be able to assign and revoke roles. {name} will be able to do everything here that you can.",
+    "de": "Der Supervisor erhält alle Bereiche des Editors, einschließlich dieses: Er kann Rollen vergeben und entziehen. {name} kann hier alles tun, was auch Sie tun können."
   },
   "changed": {
     "uk": "Роль змінено: {role}",
-    "en": "",
-    "de": ""
+    "en": "Role changed: {role}",
+    "de": "Rolle geändert: {role}"
   },
   "changeFailed": {
     "uk": "Роль не змінено",
-    "en": "",
-    "de": ""
+    "en": "Role not changed",
+    "de": "Rolle nicht geändert"
   },
   "removeFailed": {
     "uk": "Не вдалося прибрати",
-    "en": "",
-    "de": ""
+    "en": "Unable to remove",
+    "de": "Entfernen fehlgeschlagen"
   },
   "errors": {
     "self": {
       "uk": "Свою власну роль змінити не можна — це зробить інший супервайзер або власник розгортання.",
-      "en": "",
-      "de": ""
+      "en": "You cannot change your own role — this must be done by another supervisor or the deployment owner.",
+      "de": "Die eigene Rolle kann nicht geändert werden – dies muss ein anderer Supervisor oder der Eigentümer der Bereitstellung tun."
     },
     "owner": {
       "uk": "Цей обліковий запис задано в налаштуваннях сервера — звідси його не змінити.",
-      "en": "",
-      "de": ""
+      "en": "This account is specified in the server settings — it cannot be changed here.",
+      "de": "Dieses Konto ist in den Servereinstellungen festgelegt – es kann hier nicht geändert werden."
     },
     "not-found": {
       "uk": "Цієї людини вже немає в списку. Оновіть його.",
-      "en": "",
-      "de": ""
+      "en": "This person is no longer on the list. Please refresh it.",
+      "de": "Diese Person ist nicht mehr in der Liste enthalten. Bitte aktualisieren Sie die Liste."
     },
     "forbidden": {
       "uk": "Для цієї дії потрібні права супервайзера.",
-      "en": "",
-      "de": ""
+      "en": "Supervisor permissions are required for this action.",
+      "de": "Für diese Aktion sind Supervisor-Rechte erforderlich."
     },
     "sign-in": {
       "uk": "Сеанс завершився. Увійдіть знову.",
-      "en": "",
-      "de": ""
+      "en": "Your session has expired. Please sign in again.",
+      "de": "Die Sitzung ist abgelaufen. Melden Sie sich bitte erneut an."
     },
     "network": {
       "uk": "Сервер не відповів.",
-      "en": "",
-      "de": ""
+      "en": "The server did not respond.",
+      "de": "Der Server hat nicht geantwortet."
     },
     "server": {
       "uk": "Сервер відповів помилкою.",
-      "en": "",
-      "de": ""
+      "en": "The server returned an error.",
+      "de": "Der Server hat einen Fehler zurückgegeben."
     }
   }
 }

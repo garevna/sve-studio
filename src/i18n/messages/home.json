@@ -22,7 +22,7 @@
   "groups": {
     "visitors": {
       "uk": "Відвідувачі",
-      "en": "",
+      "en": "Visitors",
       "de": ""
     },
     "content": {
@@ -165,37 +165,61 @@
     "messages": {
       "title": {
         "uk": "Повідомлення",
-        "en": "",
-        "de": ""
+        "en": "Messages",
+        "de": "Beiträge"
       },
       "description": {
         "uk": "Що пишуть відвідувачі, і відповіді їм",
-        "en": "",
-        "de": ""
+        "en": "What visitors are saying, and our replies",
+        "de": "Was Besucher sagen und unsere Antworten"
       }
     },
     "users": {
       "title": {
         "uk": "Користувачі",
-        "en": "",
-        "de": ""
+        "en": "Users",
+        "de": "Benutzer"
       },
       "description": {
         "uk": "Хто працює в редакторі та з якою роллю",
-        "en": "",
-        "de": ""
+        "en": "Who is working in the editor and in what role",
+        "de": "Wer arbeitet im Editor und in welcher Rolle"
       }
     },
     "popups": {
       "title": {
         "uk": "Попапи",
+        "en": "Popups",
+        "de": "Popups"
+      },
+      "description": {
+        "uk": "Вікна над сторінкою: їх відкривають кнопки будь-якої сторінки",
+        "en": "Windows over the page: their opening is triggered by buttons on any page",
+        "de": "Fenster über der Seite: Ihre Öffnung wird durch Schaltflächen auf jeder Seite ausgelöst"
+      }
+    },
+    "log": {
+      "title": {
+        "uk": "Журнал помилок",
         "en": "",
         "de": ""
       },
       "description": {
-        "uk": "Вікна над сторінкою: їх відкривають кнопки будь-якої сторінки",
+        "uk": "Що пішло не так у редакторі та на сайті",
         "en": "",
         "de": ""
+      }
+    },
+    "architecture": {
+      "title": {
+        "uk": "Як це влаштовано",
+        "en": "How it works",
+        "de": "So funktioniert es"
+      },
+      "description": {
+        "uk": "Схеми проєкту: з чого складається, як пов’язані дані, як ідуть запити",
+        "en": "The project in schemes: what it is made of, how the data is linked, how requests flow",
+        "de": "Das Projekt in Schemata: woraus es besteht, wie die Daten verknüpft sind, wie Anfragen laufen"
       }
     }
   },
@@ -263,39 +287,39 @@
   },
   "roleFromServer": {
     "uk": "роль видано супервайзером",
-    "en": "",
-    "de": ""
+    "en": "Role assigned by the supervisor",
+    "de": "Die Rolle wurde vom Supervisor vergeben"
   },
   "signInTitle": {
     "uk": "Увійдіть до редактора",
-    "en": "",
-    "de": ""
+    "en": "Enter the editor",
+    "de": "Im Editor anmelden"
   },
   "signInText": {
     "uk": "Цей сайт редагують лише ті, кого впустив супервайзер. Увійдіть обліковим записом Google.",
-    "en": "",
-    "de": ""
+    "en": "Only those granted access by the supervisor can edit this site. Log in with your Google account.",
+    "de": "Diese Website wird nur von Personen bearbeitet, die vom Supervisor zugelassen wurden. Melden Sie sich mit Ihrem Google-Konto an."
   },
   "signInGoogle": {
     "uk": "Увійти через Google",
-    "en": "",
-    "de": ""
+    "en": "Sign in with Google",
+    "de": "Über Google anmelden"
   },
   "norole": {
     "title": {
       "uk": "Ролі ще немає",
-      "en": "",
-      "de": ""
+      "en": "No role has been assigned yet",
+      "de": "Noch keine Rolle"
     },
     "text": {
       "uk": "Ви увійшли як {email}. Супервайзер бачить вас у списку й видасть роль — після цього тут з’являться розділи. Поки що ви можете дивитися сайт, але не зберігати зміни.",
-      "en": "",
-      "de": ""
+      "en": "You are signed in as {email}. The supervisor can see you on the list and will assign you a role — once that’s done, the sections will appear here. For now, you can view the site but cannot save changes.",
+      "de": "Sie sind als {email} angemeldet. Der Supervisor sieht Sie in der Liste und wird Ihnen eine Rolle zuweisen – danach werden hier die Abschnitte angezeigt. Derzeit können Sie die Website ansehen, aber keine Änderungen speichern."
     }
   },
   "signedInAs": {
     "uk": "Ви увійшли як {email}",
-    "en": "",
-    "de": ""
+    "en": "You are signed in as {email}",
+    "de": "Sie sind als {email} angemeldet"
   }
 }

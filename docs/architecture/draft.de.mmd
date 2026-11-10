@@ -1,0 +1,15 @@
+stateDiagram-v2
+  state "Startinhalt" as Starting
+  state "Veröffentlicht" as Published
+  state "Entwurf" as Draft
+  [*] --> Starting: eine Datei in content/
+  Starting --> Published: erstes Lesen über die API
+  Published --> Draft: eine Änderung im Editor
+  Draft --> Draft: automatisches Speichern nach 800 ms
+  Draft --> Published: „Speichern“
+  Draft --> Published: „Änderungen verwerfen“
+  Published --> Starting: neues Demo-Release (ein Fingerabdruck in manifest.json hat sich geändert)
+  note right of Draft
+    Beim Lesen kommt immer der Entwurf,
+    wenn es einen gibt: der Entwurf gewinnt.
+  end note

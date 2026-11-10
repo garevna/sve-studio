@@ -13,6 +13,7 @@ import { computed, getCurrentInstance, ref, watch } from 'vue'
 import { DEFAULT_EDITOR_ROLE, editorRole } from '@/configs/editor-roles'
 import { resolveFooterLayout } from '@/configs/footer-layout'
 import { defaultSiteLocale, normalizeTranslatedFields, siteLocales } from '@/utils/locale-text'
+import { report } from '@/utils/report'
 // import { useRoute } from 'vue-router'
 // import { getBreadcrumbs } from '@/composables/getBreadcrumbs'
 // import { requestParams } from '@/composables/request-params/common'
@@ -301,7 +302,7 @@ export const useCommonStore = defineStore('common', () => {
   async function getDynamicPageContent (pageId: string) {
     const response = await ajax.getDynamicPageContent(pageId)
     if (!response) {
-      console.error(`Invalid path to dynamic page ${pageId} or file /files/theme_${activeTheme.value}/dynamic-pages/${pageId}.json does not exist.`)
+      report('warn', 'common', `No content for page "${pageId}"`)
       clearDynamicPageContent()
       return false
     }

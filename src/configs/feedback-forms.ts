@@ -16,6 +16,11 @@ export interface FeedbackFormKind {
   // The label of the message field, where the kind has one.
   messageLabel?: Words
   button: Words
+  // The ways back to the visitor it offers (all of them when unset).
+  contactWays?: ('telegram' | 'viber' | 'whatsapp' | 'email')[]
+  // What has to be filled in before it is sent: 'phone' - a phone number;
+  // 'message-and-contact' - the message and a way back.
+  requires?: 'phone' | 'message-and-contact'
 }
 
 export const FEEDBACK_FORM_KINDS: FeedbackFormKind[] = [
@@ -24,6 +29,16 @@ export const FEEDBACK_FORM_KINDS: FeedbackFormKind[] = [
     icon: 'mdi-phone-in-talk',
     fields: ['name', 'phone'],
     button: { uk: 'Замовити дзвінок', en: 'Request a call', de: 'Rückruf anfordern' },
+    requires: 'phone',
+  },
+  {
+    id: 'ask',
+    icon: 'mdi-message-question-outline',
+    fields: ['name', 'email', 'message'],
+    messageLabel: { uk: 'Ваше повідомлення або питання', en: 'Your message or question', de: 'Ihre Nachricht oder Frage' },
+    button: { uk: 'Надіслати', en: 'Send', de: 'Senden' },
+    contactWays: ['telegram', 'email'],
+    requires: 'message-and-contact',
   },
   {
     id: 'message',

@@ -1,0 +1,35 @@
+flowchart LR
+  owner(["Owner, supervisor,<br/>content manager"])
+  visitor(["Site visitor"])
+
+  editor["Editor<br/>browser · Nuxt, Vue"]
+  site["Site<br/>browser · Nuxt, Vue"]
+
+  dbw[("IndexedDB<br/>browser · drafts and cache")]
+  sw["Content API<br/>browser · service worker, demo"]
+  nitro["Content API<br/>server · Nitro /api"]
+
+  store[("Storage<br/>server · docs, images, users, log")]
+  seed[("content/<br/>starting content")]
+
+  relay["Telegram relay<br/>Cloudflare Worker"]
+  channel["Telegram channel"]
+  ai["AI assistant<br/>Workers AI, daily limit"]
+  fb["Firebase<br/>sign-in, messages"]
+  client["Client's API<br/>if there is one"]
+
+  owner --> editor
+  visitor --> site
+  editor <--> dbw
+  site <--> dbw
+  editor -- "/api" --> sw
+  editor -- "/api, sign-in" --> nitro
+  site -- "/api" --> sw
+  sw -. "starting files" .-> seed
+  nitro --> store
+  nitro -. "starting files" .-> seed
+  site -- "forms" --> relay --> channel
+  site -- "translation, texts" --> ai
+  site --> fb
+  editor --> fb
+  site -- "popup answers" --> client

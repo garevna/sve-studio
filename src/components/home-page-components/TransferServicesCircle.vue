@@ -32,7 +32,10 @@
 
 <template>
   <div :class="['transfer-services-circle', { 'transfer-services-circle--waves': waves }]" :style="{ '--step-wave-color': numberBackground }">
-    <div class="mobile-mode step-disc-box" :style="{ width: '248px', height: '248px', marginLeft: index % 2 === 0 ? '144px' : '0px', marginTop: index % 2 !== 0 ? '-44px' : '-12px' }">
+    <!-- The zigzag's step to the right: 144px as designed, less on a narrow
+      phone - the disc and its step stay inside the screen with 16px each
+      side (248px + 144px was 392px, wider than a 390px phone). -->
+    <div class="mobile-mode step-disc-box" :style="{ width: '248px', height: '248px', marginLeft: index % 2 === 0 ? 'min(144px, calc(100vw - 280px))' : '0px', marginTop: index % 2 !== 0 ? '-44px' : '-12px' }">
       <span
         v-for="ring of 3"
         :key="ring"

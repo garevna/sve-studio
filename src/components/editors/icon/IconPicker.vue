@@ -29,6 +29,10 @@
     previewBackground?: string
     // The colour the one-colour social icons are shown in.
     previewColor?: string
+    // What the library search starts with - a narrowing for the place the
+    // icon is for ("arrow|chevron" for a calendar's arrows); "|" separates
+    // alternatives.
+    query?: string
   }>()
 
   const commonStore = useCommonStore()
@@ -45,7 +49,7 @@
   function socialCells (network: SocialNetwork) {
     return LOOKS.filter(look => SOCIAL_ICONS[network][look]).map(look => ({ look, ref: socialIconRef(network, look) }))
   }
-  const search = ref('')
+  const search = ref(props.query ?? '')
 
   // The mdi webfont ships ~7500 icon names - bundled as a flat JSON list
   // (extracted from @mdi/font's own CSS at dev time) instead of depending on
@@ -66,7 +70,8 @@
   const filteredNames = computed(() => {
     const query = search.value.trim().toLowerCase()
     if (!query) return []
-    return allIconNames.value.filter(name => name.includes(query)).slice(0, 80)
+    const parts = query.split('|').map(part => part.trim()).filter(Boolean)
+    return allIconNames.value.filter(name => parts.some(part => name.includes(part))).slice(0, 80)
   })
 
   const fileInput = ref<HTMLInputElement | null>(null)

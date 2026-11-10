@@ -1,4 +1,5 @@
 import { dbRequest } from '@/db/client'
+import { report } from '@/utils/report'
 
 const IMPORT_PATTERN = /@import\s+['"](.+?)['"];?/g
 
@@ -73,7 +74,7 @@ export async function loadScopedVuetifyStyles (activeTheme: number, fileName: st
   try {
     cssText = await fetchAndInlineImports(name)
   } catch (error) {
-    console.error(`Failed to load theme ${activeTheme} scoped style: ${fileName}`, error)
+    report('error', 'styles', `Failed to load theme ${activeTheme} scoped style: ${fileName}`, error)
     return
   }
 

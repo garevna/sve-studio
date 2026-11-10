@@ -208,5 +208,8 @@ export const useUsersStore = defineStore('users', () => {
     changeRole,
     remove,
     isEditorRole,
+    // the signed-in person's token, for a request of a section's own
+    // (ProblemLogView.vue)
+    token,
   }
 })

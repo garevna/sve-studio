@@ -1,0 +1,150 @@
+{
+  "title": {
+    "uk": "Як це влаштовано",
+    "en": "How it works",
+    "de": "So funktioniert es"
+  },
+  "lead": {
+    "uk": "Чотири погляди на проєкт: з чого він складається, як документи посилаються один на одного, що відбувається, коли відвідувач відповідає в попапі, і як живе чернетка. Схеми оновлюються разом із застосунком.",
+    "en": "Four views of the project: what it is made of, how its documents refer to one another, what happens when a visitor answers a popup, and how a draft lives. The schemes are updated together with the app.",
+    "de": "Vier Blicke auf das Projekt: woraus es besteht, wie seine Dokumente aufeinander verweisen, was passiert, wenn ein Besucher in einem Popup antwortet, und wie ein Entwurf lebt. Die Schemata werden zusammen mit der App aktualisiert."
+  },
+  "howToRead": {
+    "uk": "Як читати.",
+    "en": "How to read it.",
+    "de": "So liest man es."
+  },
+  "footer": {
+    "uk": "Схеми зібрано з тексту в docs/architecture (Mermaid) командою pnpm diagrams; змінюється застосунок — змінюється текст схеми.",
+    "en": "The schemes are drawn from the text in docs/architecture (Mermaid) by pnpm diagrams; when the app changes, the scheme text changes.",
+    "de": "Die Schemata werden aus dem Text in docs/architecture (Mermaid) mit pnpm diagrams gezeichnet; ändert sich die App, ändert sich der Text des Schemas."
+  },
+  "containers": {
+    "kind": {
+      "uk": "C4 · рівень 2, контейнери",
+      "en": "C4 · level 2, containers",
+      "de": "C4 · Ebene 2, Container"
+    },
+    "title": {
+      "uk": "З чого складається",
+      "en": "What it is made of",
+      "de": "Woraus es besteht"
+    },
+    "how": {
+      "uk": "Прямокутник — програма, що працює сама по собі; циліндр — місце, де лежать дані; стрілка — хто кого викликає.",
+      "en": "A rectangle is a program that runs on its own; a cylinder is where data is kept; an arrow is who calls whom.",
+      "de": "Ein Rechteck ist ein Programm, das für sich läuft; ein Zylinder ist ein Ort, an dem Daten liegen; ein Pfeil zeigt, wer wen aufruft."
+    },
+    "p1": {
+      "uk": "У демо API контенту живе в браузері відвідувача (service worker), тож кожен редагує власну копію сайту.",
+      "en": "In the demo the content API lives in the visitor’s browser (a service worker), so everyone edits their own copy of the site.",
+      "de": "In der Demo lebt die Content-API im Browser des Besuchers (Service Worker), daher bearbeitet jeder seine eigene Kopie der Website."
+    },
+    "p2": {
+      "uk": "На розгортанні з входом те саме API — сервер Nitro, і права перевіряються за роллю.",
+      "en": "On a deployment with sign-in the same API is the Nitro server, and rights are checked by role.",
+      "de": "Bei einer Installation mit Anmeldung ist dieselbe API der Nitro-Server, und die Rechte werden nach Rolle geprüft."
+    },
+    "p3": {
+      "uk": "Редактор і сайт не знають, хто відповідає на /api — воркер чи сервер: вибір робиться один раз під час запуску.",
+      "en": "The editor and the site do not know who answers /api — the worker or the server: the choice is made once, at start.",
+      "de": "Editor und Website wissen nicht, wer auf /api antwortet – Worker oder Server: Die Wahl fällt einmal beim Start."
+    }
+  },
+  "data": {
+    "kind": {
+      "uk": "Карта посилань між документами · нотація ERD",
+      "en": "A map of links between documents · ERD notation",
+      "de": "Karte der Verweise zwischen Dokumenten · ERD-Notation"
+    },
+    "title": {
+      "uk": "Хто на кого посилається",
+      "en": "Who refers to whom",
+      "de": "Wer auf wen verweist"
+    },
+    "how": {
+      "uk": "Таблиць тут немає — є JSON-документи; посилання — рядки з id або назвою класу, і жодна база не стежить, щоб вони не вели в нікуди.",
+      "en": "There are no tables here — there are JSON documents; a link is a string with an id or a class name, and no database makes sure it leads anywhere.",
+      "de": "Hier gibt es keine Tabellen, sondern JSON-Dokumente; ein Verweis ist eine Zeichenkette mit einer id oder einem Klassennamen, und keine Datenbank achtet darauf, dass er irgendwohin führt."
+    },
+    "p1": {
+      "uk": "Кожна лінія — місце, що ламається під час видалення: для кнопок і попапів редактор перевіряє «де використовується».",
+      "en": "Every line is a place that breaks on deletion: for buttons and popups the editor checks “where it is used”.",
+      "de": "Jede Linie ist eine Stelle, die beim Löschen bricht: Bei Schaltflächen und Popups prüft der Editor, „wo es verwendet wird“."
+    },
+    "p2": {
+      "uk": "Кнопка → попап → модель вигляду → кнопка з набору: видалення будь-якої ланки відбивається на всіх, хто далі.",
+      "en": "Button → popup → look → button from the set: deleting any link affects everyone further down.",
+      "de": "Schaltfläche → Popup → Erscheinungsbild → Schaltfläche aus dem Set: Das Löschen eines Glieds wirkt sich auf alle weiteren aus."
+    },
+    "p3": {
+      "uk": "Блок посилається сам на себе: сторінка — дерево блоків, а кнопка картки — блок усередині картки.",
+      "en": "A block refers to itself: a page is a tree of blocks, and a card’s button is a block inside the card.",
+      "de": "Ein Block verweist auf sich selbst: Eine Seite ist ein Baum aus Blöcken, und die Schaltfläche einer Karte ist ein Block in der Karte."
+    }
+  },
+  "answer": {
+    "kind": {
+      "uk": "Діаграма послідовності",
+      "en": "Sequence diagram",
+      "de": "Sequenzdiagramm"
+    },
+    "title": {
+      "uk": "Відвідувач обирає пакет",
+      "en": "A visitor chooses a package",
+      "de": "Ein Besucher wählt ein Paket"
+    },
+    "how": {
+      "uk": "Час іде згори вниз; суцільна стрілка — виклик, пунктирна — відповідь, блок alt — розгалуження.",
+      "en": "Time runs from top to bottom; a solid arrow is a call, a dashed one an answer, an alt block a branch.",
+      "de": "Die Zeit läuft von oben nach unten; ein durchgezogener Pfeil ist ein Aufruf, ein gestrichelter eine Antwort, ein alt-Block eine Verzweigung."
+    },
+    "p1": {
+      "uk": "Ніхто не слухає window: кнопка лише ставить прапорець у сторі, а вікно, змонтоване один раз на весь сайт, реагує на нього.",
+      "en": "Nobody listens to window: a button only sets a flag in the store, and the window, mounted once for the whole site, reacts to it.",
+      "de": "Niemand hört auf window: Eine Schaltfläche setzt nur ein Flag im Store, und das Fenster, einmal für die ganze Website eingebunden, reagiert darauf."
+    },
+    "p2": {
+      "uk": "Форма — лист людині, тому йде в канал зворотного зв’язку.",
+      "en": "A form is a letter to a person, so it goes to the feedback channel.",
+      "de": "Ein Formular ist ein Brief an einen Menschen, daher geht es in den Feedback-Kanal."
+    },
+    "p3": {
+      "uk": "Відповідь діалогу — дані для програми, тому йде в API клієнта, якщо його задано.",
+      "en": "A dialog’s answer is data for a program, so it goes to the client’s API, if one is set.",
+      "de": "Die Antwort eines Dialogs sind Daten für ein Programm, daher geht sie an die API des Kunden, falls eine angegeben ist."
+    }
+  },
+  "draft": {
+    "kind": {
+      "uk": "Діаграма станів",
+      "en": "State diagram",
+      "de": "Zustandsdiagramm"
+    },
+    "title": {
+      "uk": "Життя одного документа",
+      "en": "The life of one document",
+      "de": "Das Leben eines Dokuments"
+    },
+    "how": {
+      "uk": "Прямокутник — стан, стрілка — подія, що переводить з одного стану в інший.",
+      "en": "A rectangle is a state, an arrow the event that moves it to another.",
+      "de": "Ein Rechteck ist ein Zustand, ein Pfeil das Ereignis, das ihn in einen anderen überführt."
+    },
+    "p1": {
+      "uk": "Так живе будь-який документ: сторінка, global.json, popups.json, стилі.",
+      "en": "Every document lives like this: a page, global.json, popups.json, the styles.",
+      "de": "So lebt jedes Dokument: eine Seite, global.json, popups.json, die Stile."
+    },
+    "p2": {
+      "uk": "Чернетка лежить в IndexedDB браузера, опублікована версія — в API; читання завжди віддає чернетку, якщо вона є.",
+      "en": "A draft is kept in the browser’s IndexedDB, the published version in the API; a read always returns the draft if there is one.",
+      "de": "Ein Entwurf liegt in der IndexedDB des Browsers, die veröffentlichte Version in der API; beim Lesen kommt immer der Entwurf, wenn es einen gibt."
+    },
+    "p3": {
+      "uk": "Перехід «новий реліз» є лише в опублікованому демо: щоб відвідувач бачив свіжу версію сайту цілком.",
+      "en": "The “new release” step exists only in the published demo, so that a visitor sees the fresh version of the site whole.",
+      "de": "Der Schritt „neues Release“ gibt es nur in der veröffentlichten Demo, damit ein Besucher die neue Version der Website vollständig sieht."
+    }
+  }
+}

@@ -10,6 +10,11 @@
       "en": "Call request",
       "de": "Anrufanfrage"
     },
+    "ask": {
+      "uk": "Повідомлення або питання",
+      "en": "",
+      "de": ""
+    },
     "message": {
       "uk": "Повідомлення",
       "en": "Message",

@@ -1,5 +1,6 @@
 import type { CountryModel } from '../types/common'
 import { useCommonStore } from '../stores/common'
+import { report } from '../utils/report'
 import { sveRoot } from '../utils/sve-root'
 
 // Ported from client-side's own services/common/load-country-list.ts, which
@@ -39,6 +40,6 @@ export async function loadCountryList (locale: string) {
     // A preview that can't reach the list still has to render: CountryCode
     // falls back to showing its placeholder without a flag, exactly as it
     // did before this existed.
-    console.warn('Failed to load the country list - phone inputs will show no flag:', error)
+    report('warn', 'country-list', 'Failed to load the country list - phone inputs will show no flag', error)
   }
 }

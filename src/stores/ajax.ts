@@ -4,7 +4,7 @@ import type { GlobalSettingsModel } from '@/types/GlobalSettingsModel'
 import type { MenuItemModel } from '@/types/MenuItemModel'
 import type { RequestModel } from '@/types/RequestModel'
 import type { SeoSettingsModel } from '@/types/SeoSettingsModel'
-import type { DynamicPageListItem, PopupModel, PopupsDocument, TemplateBlockModel, TemplatePageModel } from '@/types/TemplateBlockModel'
+import type { DynamicPageListItem, PopupsDocument, TemplateBlockModel, TemplatePageModel } from '@/types/TemplateBlockModel'
 import axios from 'axios'
 // import { getAuth } from 'firebase/auth'
 import { defineStore } from 'pinia'
@@ -19,6 +19,7 @@ import { getActiveTheme } from '@/utils/active-theme'
 import { appBase } from '@/utils/app-base'
 import { syncContentImages } from '@/utils/dev-content-images'
 import { clearStoredToken, extractToken, readStoredToken, storeToken, TOKEN_STORAGE_KEY, tokenExpiryMs } from '@/utils/launch-token'
+import { report } from '@/utils/report'
 // import { useCommonStore } from './common'
 
 export const useAjaxStore = defineStore('ajax', () => {
@@ -73,7 +74,7 @@ export const useAjaxStore = defineStore('ajax', () => {
   }
 
   function logApiFallback (endpoint: string, error: unknown) {
-    console.warn(`API request to ${endpoint} failed, falling back to locally saved data:`, error)
+    report('warn', 'ajax', `API request to ${endpoint} failed, falling back to locally saved data`, error)
   }
   function warnApiFallback (endpoint: string, error: unknown) {
     logApiFallback(endpoint, error)
@@ -98,7 +99,7 @@ export const useAjaxStore = defineStore('ajax', () => {
     useUiFeedbackStore().notifySuccess(t('popups.saved', { what }))
   }
   function reportSaveFailed (what: string, error: unknown) {
-    console.error(`Failed to publish ${what}:`, error)
+    report('error', 'ajax', `Failed to publish ${what}`, error, { shown: true })
     // An auth refusal gets its own heading rather than a line buried under
     // "не вдалося зберегти": the request reached the server and was turned
     // away, so retrying changes nothing and the reader needs to know it's
@@ -645,7 +646,7 @@ export const useAjaxStore = defineStore('ajax', () => {
     } catch (error_) {
       // Refreshing the cache is never worth failing a read that already
       // succeeded - the caller has its answer either way.
-      console.warn(`cacheDynamicFileData: could not refresh "${fileName}"`, error_)
+      report('warn', 'ajax', `cacheDynamicFileData: could not refresh "${fileName}"`, error_)
     }
   }
 
@@ -715,7 +716,7 @@ export const useAjaxStore = defineStore('ajax', () => {
           // The pictures this content links to, too - see dev-content-images.ts.
           void syncContentImages()
         } catch (mirrorError) {
-          console.warn('Dev-mirror write to public/ failed (IndexedDB save already succeeded):', mirrorError)
+          report('warn', 'ajax', 'Dev-mirror write to public/ failed (IndexedDB save already succeeded)', mirrorError)
           // Refused by the denylist guard (server/routes/__editor-api__/
           // public-file.ts): the file keeps its clean version - say so.
           if ((mirrorError as { response?: { status?: number } })?.response?.status === 409) {
@@ -952,7 +953,7 @@ export const useAjaxStore = defineStore('ajax', () => {
           content,
         })
       } catch (mirrorError) {
-        console.warn('Dev-mirror write to public/ failed (IndexedDB save already succeeded):', mirrorError)
+        report('warn', 'ajax', 'Dev-mirror write to public/ failed (IndexedDB save already succeeded)', mirrorError)
       }
     }
   }
@@ -1218,7 +1219,7 @@ export const useAjaxStore = defineStore('ajax', () => {
           params: { path: themeFilePath(`dynamic-pages/${pageId}.json`) },
         })
       } catch (mirrorError) {
-        console.warn('Dev-mirror delete of public/ file failed (IndexedDB delete already succeeded):', mirrorError)
+        report('warn', 'ajax', 'Dev-mirror delete of public/ file failed (IndexedDB delete already succeeded)', mirrorError)
       }
     }
   }
@@ -1395,22 +1396,23 @@ export const useAjaxStore = defineStore('ajax', () => {
 
   // The site's popups (the editor's "Попапи" section) - one document for
   // the whole site, since any button on any page may open any of them.
-  async function getPopups () {
+  // The whole document: the popups, and the look their buttons share.
+  async function getPopups (): Promise<PopupsDocument> {
     const response = await getDynamicFilesData('popups.json', '/content/settings/popups') as PopupsDocument | null
-    return response?.popups ?? []
+    return response ?? { popups: [] }
   }
 
-  async function savePopups (popups: PopupModel[], options: { publish?: boolean } = {}) {
-    await saveDynamicFileData('popups.json', { popups } satisfies PopupsDocument, '/content/settings/popups', { what: t('pagePopups.list'), ...options })
+  async function savePopups (document: PopupsDocument, options: { publish?: boolean } = {}) {
+    await saveDynamicFileData('popups.json', document, '/content/settings/popups', { what: t('pagePopups.list'), ...options })
   }
 
   async function isPopupsUpdated () {
     return isDynamicFileUpdated('popups.json')
   }
 
-  async function undoPopups () {
+  async function undoPopups (): Promise<PopupsDocument> {
     const response = await undoDynamicFileData<PopupsDocument>('popups.json', '/content/settings/popups')
-    return response?.popups ?? []
+    return response ?? { popups: [] }
   }
 
   // Which variant (1, 2, ...) of each "Особистий кабінет" page is selected,

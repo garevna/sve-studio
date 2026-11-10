@@ -10,6 +10,7 @@
   import { useCommonStore } from '../../stores/common'
   import { useMessagesStore } from '../../stores/messages'
   import { sendFeedback } from '../../utils/feedback-transport'
+  import ContactWayInput from '../inputs/ContactWayInput.vue'
   import PhoneNumberInput from '../inputs/PhoneNumberInput.vue'
 
   // The feedback form - in the footer, as a block on a page and in a
@@ -28,11 +29,16 @@
     text: TranslatedModel | string
     titleClass?: string
     textClass?: string
+    // In a popup (PopupHost.vue): the popup's frame has the title; the
+    // text and the fields go into its body, the button into its row of
+    // buttons, in the look all popups share (`buttonClass`).
+    framed?: boolean
+    buttonClass?: string
   }
 
   const props = defineProps<PropsModel>()
-  // Sent and accepted - a popup closes itself on it.
-  const emit = defineEmits<{ sent: [] }>()
+  // close: "Закрити" after a popup's form was sent.
+  const emit = defineEmits<{ sent: [], close: [] }>()
 
   type Lang = 'uk' | 'en' | 'de'
   const lang = computed(() => locale.value as Lang)
@@ -46,9 +52,12 @@
   // phone too. A subscription stays about e-mail, a call request about the
   // phone.
   const asksContact = computed(() => (has('email') && kind.value.id !== 'subscribe') || (has('phone') && has('message')))
+  // A kind may offer only some of the ways (a message or question: Telegram
+  // or e-mail).
+  const contactWays = computed(() => FEEDBACK_CONTACT.ways.filter(way => !kind.value.contactWays || kind.value.contactWays.includes(way.via)))
   const contactVia = ref<ContactVia>('telegram')
   const contactValue = ref('')
-  const contactWay = computed(() => FEEDBACK_CONTACT.ways.find(way => way.via === contactVia.value)!)
+  const contactWay = computed(() => contactWays.value.find(way => way.via === contactVia.value) ?? contactWays.value[0]!)
 
   const userName = ref('')
   const userPhone = ref('(+380)')
@@ -60,14 +69,34 @@
 
   // Sent through whatever the site's settings name (utils/feedback-transport.ts);
   // the form itself doesn't know who receives it.
-  type Status = 'idle' | 'sending' | 'sent' | 'sentToAccount' | 'failed' | 'notConfigured' | 'empty'
+  type Status = 'idle' | 'sending' | 'sent' | 'sentToAccount' | 'failed' | 'notConfigured' | 'empty' | 'phoneRequired' | 'messageRequired' | 'contactRequired'
   const status = ref<Status>('idle')
   const statusText = computed(() => (status.value === 'idle' ? '' : FEEDBACK_STATUS[status.value][lang.value]))
+  const done = computed(() => props.framed && (status.value === 'sent' || status.value === 'sentToAccount'))
+  const sendClass = computed(() => props.framed ? (props.buttonClass || 'primary-button') : 'primary-button mt-6')
+  const CLOSE = { uk: 'Закрити', en: 'Close', de: 'Schließen' }
 
   async function submit () {
     const phone = has('phone') && !asksContact.value && (userPhone.value.match(/\d/g) || []).length >= 7 ? userPhone.value : ''
-    const contact = asksContact.value && contactValue.value.trim() ? { via: contactVia.value, value: contactValue.value.trim() } : null
+    const contact = asksContact.value && contactValue.value.trim() ? { via: contactWay.value.via, value: contactValue.value.trim() } : null
     const email = has('email') && !asksContact.value ? userEmail.value.trim() : (contact?.via === 'email' ? contact.value : '')
+    // A call request needs the number to call; a message or question needs
+    // the message and a way back (a signed-in visitor gets the reply in the
+    // account).
+    if (kind.value.requires === 'phone' && !phone) {
+      status.value = 'phoneRequired'
+      return
+    }
+    if (kind.value.requires === 'message-and-contact') {
+      if (!userMessage.value.trim()) {
+        status.value = 'messageRequired'
+        return
+      }
+      if (!contact && !auth.user) {
+        status.value = 'contactRequired'
+        return
+      }
+    }
     if (!userMessage.value.trim() && !phone && !email && !contact) {
       status.value = 'empty'
       return
@@ -117,7 +146,98 @@
 </script>
 
 <template>
-  <div class="footer-feedback-card">
+  <!-- In a popup: the frame's body and its row of buttons. -->
+  <template v-if="props.framed">
+    <div class="pw-popup__body">
+      <template v-if="done">
+        <i aria-hidden="true" class="pw-popup__icon mdi mdi-checkbox-marked-circle-outline" />
+        <p class="pw-popup__text" role="status">{{ statusText }}</p>
+      </template>
+      <template v-else>
+        <p v-if="bodyText" :class="['pw-popup__text', props.textClass, { 'pw-popup__text--own': !!props.textClass }]">{{ bodyText }}</p>
+        <div class="feedback-fields">
+          <v-text-field
+            v-if="has('name') && !auth.user"
+            v-model="userName"
+            hide-details
+            icon-color="primary"
+            :placeholder="FEEDBACK_FIELD_LABELS.name[lang]"
+            prepend-icon="mdi-account-outline"
+            variant="plain"
+          />
+          <phone-number-input
+            v-if="has('phone') && !asksContact"
+            v-model="userPhone"
+            :valid-phone-number="true"
+          />
+          <div v-if="asksContact" class="feedback-contact">
+            <p class="small-text text-grey">{{ auth.user ? FEEDBACK_CONTACT.signedIn[lang] : FEEDBACK_CONTACT.label[lang] }}</p>
+            <ContactWayInput v-model="contactValue" v-model:via="contactVia" :lang="lang" :ways="contactWays" />
+          </div>
+          <v-text-field
+            v-if="has('email') && !asksContact"
+            v-model="userEmail"
+            hide-details
+            icon-color="primary"
+            :placeholder="FEEDBACK_FIELD_LABELS.email[lang]"
+            prepend-icon="mdi-email-outline"
+            type="email"
+            variant="plain"
+          />
+          <v-text-field
+            v-if="has('date')"
+            v-model="userDate"
+            hide-details
+            icon-color="primary"
+            :placeholder="FEEDBACK_FIELD_LABELS.date[lang]"
+            prepend-icon="mdi-calendar-outline"
+            type="date"
+            variant="plain"
+          />
+          <v-rating
+            v-if="has('rating')"
+            v-model="userRating"
+            active-color="primary"
+            color="grey"
+            density="comfortable"
+            hover
+          />
+          <v-textarea
+            v-if="has('message')"
+            v-model="userMessage"
+            auto-grow
+            hide-details
+            :placeholder="kind.messageLabel?.[lang]"
+            rows="3"
+            variant="plain"
+          />
+        </div>
+        <!-- Hidden from people (and from screen readers); a bot fills it in. -->
+        <input
+          v-model="website"
+          aria-hidden="true"
+          autocomplete="off"
+          class="feedback-trap"
+          name="website"
+          tabindex="-1"
+          type="text"
+        >
+        <p v-if="statusText && status !== 'sending'" class="pw-popup__error" role="status">{{ statusText }}</p>
+      </template>
+    </div>
+    <div class="pw-popup__actions">
+      <v-btn v-if="done" :class="sendClass" :text="CLOSE[lang]" @click="emit('close')" />
+      <v-btn
+        v-else
+        :class="sendClass"
+        :disabled="status === 'sending'"
+        :loading="status === 'sending'"
+        :text="kind.button[lang]"
+        @click="submit"
+      />
+    </div>
+  </template>
+  <div v-else class="footer-feedback-card">
     <p v-if="titleText" :class="['h4 text-bold', props.titleClass || 'text-black']">
       {{ titleText }}
     </p>
@@ -141,28 +261,7 @@
       />
       <div v-if="asksContact" class="feedback-contact">
         <p class="small-text text-grey">{{ auth.user ? FEEDBACK_CONTACT.signedIn[lang] : FEEDBACK_CONTACT.label[lang] }}</p>
-        <div class="feedback-contact-ways" role="radiogroup">
-          <button
-            v-for="way of FEEDBACK_CONTACT.ways"
-            :key="way.via"
-            :aria-checked="contactVia === way.via"
-            :class="['feedback-contact-way', { 'feedback-contact-way--on': contactVia === way.via }]"
-            role="radio"
-            type="button"
-            @click="contactVia = way.via"
-          >
-            {{ way.name }}
-          </button>
-        </div>
-        <v-text-field
-          v-model="contactValue"
-          hide-details
-          icon-color="primary"
-          :placeholder="contactWay.placeholder[lang]"
-          :prepend-icon="contactVia === 'email' ? 'mdi-email-outline' : 'mdi-message-reply-text-outline'"
-          :type="contactVia === 'email' ? 'email' : 'text'"
-          variant="plain"
-        />
+        <ContactWayInput v-model="contactValue" v-model:via="contactVia" :lang="lang" :ways="contactWays" />
       </div>
       <v-text-field
         v-if="has('email') && !asksContact"
@@ -213,7 +312,7 @@
       type="text"
     >
     <v-btn
-      class="primary-button mt-6"
+      :class="sendClass"
       :disabled="status === 'sending'"
       :loading="status === 'sending'"
       :text="kind.button[lang]"
@@ -236,24 +335,6 @@
 .feedback-contact {
   display: grid;
   gap: 8px;
-}
-.feedback-contact-ways {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-.feedback-contact-way {
-  padding: 6px 14px;
-  border-radius: 999px;
-  border: 1px solid var(--light-grey-1);
-  font-size: 14px;
-  color: var(--dark-grey);
-  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
-}
-.feedback-contact-way--on {
-  border-color: var(--secondary);
-  background: var(--secondary);
-  color: var(--white);
 }
 .feedback-fields {
   display: flex;

@@ -28,6 +28,7 @@ import { popularTrips } from '../configs/popular-trips'
 // import { requestParams } from '@/composables/request-params/common'
 // import { phonesToCall, phonesToShow, workSchedule } from '@/configs/provider'
 
+import { setClientApi } from '../services/client-api'
 import { getImageURL } from '../services/get-image-url'
 import { localeAsset } from '../utils/locale-asset'
 import { PARALLAX_TEXT_DEFAULTS, parallaxTextClass as parallaxFormat } from '../utils/parallax-text-class'
@@ -202,6 +203,7 @@ export const useCommonStore = defineStore('common', () => {
     menuStyle.value = resolveMenuStyle(response.menuStyle)
     contacts.value = Array.isArray(response.contacts) ? response.contacts : []
     feedbackEndpoint.value = response.feedback?.endpoint || ''
+    setClientApi(response.clientApi)
     aiEndpoint.value = response.ai?.endpoint || ''
     void useAuthStore().configure(response.auth)
     baners.value = response.baner

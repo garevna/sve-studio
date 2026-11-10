@@ -13,6 +13,7 @@
   import { resolveThemeAssetPath } from '@/utils/theme-asset-path'
   // import { useAjaxStore } from '@/stores/ajax'
   import ButtonEditor from '../editors/ButtonEditor.vue'
+  import FormFieldEditor from '../editors/FormFieldEditor.vue'
   import IconButtonEditor from '../editors/IconButtonEditor.vue'
   import ImageEditor from '../editors/ImageEditor.vue'
   import RouteEditor from '../editors/RouteEditor.vue'
@@ -307,6 +308,10 @@
     </template>
     <template v-else-if="item.type === 'icon-button'">
       <icon-button-editor :block="item" :deletable="props.deletable" @delete="emit('delete')" />
+    </template>
+    <!-- A field of a client's own form (a 'form' popup). -->
+    <template v-else-if="item.type === 'form-field'">
+      <form-field-editor :block="item" :deletable="props.deletable" @delete="emit('delete')" />
     </template>
     <template v-else-if="item.type === 'card'">
       <template-card :class="['mb-4', displayClass]" :defaults="props.defaults" :item="item" />

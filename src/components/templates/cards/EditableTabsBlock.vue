@@ -50,6 +50,13 @@
   const DEFAULT_PLATE: Record<string, string> = { pill: 'light-grey-2', underline: 'light-grey-1', folder: 'light-grey-2' }
   const accent = computed(() => `var(--${props.block.tabAccent || 'primary'})`)
   const plate = computed(() => `var(--${props.block.tabPlate || DEFAULT_PLATE[look.value] || 'light-grey-2'})`)
+  // folder: square corner of the panel under a tab at the row's end
+  // (TabStrip.vue tells which end the chosen tab touches).
+  const edges = ref({ start: true, end: false })
+  const folderCorners = computed(() => ({
+    '--folder-start': edges.value.start ? '0' : 'var(--large-border-radius)',
+    '--folder-end': edges.value.end ? '0' : 'var(--large-border-radius)',
+  }))
 </script>
 
 <template>
@@ -58,7 +65,7 @@
       <CardContainerActions v-model:drag-active="dragActive" :block="block" />
       <TabsLookActions :block="block" />
     </template>
-    <div :class="['tabs-editor', `tabs-editor--${look}`]" :style="{ '--tab-plate': plate }">
+    <div :class="['tabs-editor', `tabs-editor--${look}`]" :style="{ '--tab-plate': plate, ...folderCorners }">
       <SortableList v-if="dragActive" v-model:active="dragActive" class="tabs-editor-order" :items="block.children">
         <template #item="{ index, dragClass, contentClass }">
           <span :class="['tabs-editor-chip', dragClass]">
@@ -73,6 +80,7 @@
         :labels="labels"
         :look="look"
         :plate="plate"
+        @edges="edges = $event"
       />
 
       <div class="tabs-editor-panel">
@@ -105,8 +113,15 @@
 }
 .tabs-editor--folder .tabs-editor-panel {
   padding: 8px;
-  border-radius: 0 var(--large-border-radius) var(--large-border-radius) var(--large-border-radius);
+  border-radius: var(--folder-start) var(--folder-end) var(--large-border-radius) var(--large-border-radius);
   background: var(--tab-plate);
+}
+/* The card is the panel (as on the site, TabSet.vue): no fill or corners
+   of its own. */
+.tabs-editor--folder .tabs-editor-panel :deep(.v-card) {
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
 }
 .tabs-editor-order {
   display: flex;

@@ -10,6 +10,7 @@
   import { bentoTile } from '@/configs/footer-variants'
   import { useCommonStore } from '@/stores/common'
 
+  import { report } from '../utils/report'
   import TemplateItem from './TemplateItem.vue'
 
   const { dynamicFooterContent: footerContent, footerSettings } = storeToRefs(useCommonStore())
@@ -50,7 +51,7 @@
       return
     }
     if ((footerContent.value.type !== 'section' && footerContent.value.type !== 'float' && footerContent.value.type !== 'footer-1') || !footerContent.value.children) {
-      console.error('Invalid footer content')
+      report('warn', 'footer', 'Invalid footer content')
       return
     }
   })

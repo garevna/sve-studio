@@ -4,10 +4,13 @@
 // under <root>site/, the editor at <root>) with the rest of the address in
 // ?__sve_path=, which the app puts back before its router starts (see the
 // head script in both nuxt.config.ts files). Also adds .nojekyll, without
-// which GitHub Pages hides the _nuxt/ and _seed/ folders.
+// which GitHub Pages hides the _nuxt/ and _seed/ folders, and a plain answer
+// at api/users/me: there is no sign-in on a static host, and the editor's
+// question about it (src/services/editor-users.ts) should get an answer,
+// not a 404 in the console.
 //
 // node scripts/gh-pages-404.mjs <output dir> <root, e.g. /sve-studio/>
-import { writeFileSync } from 'node:fs'
+import { mkdirSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 
 const [out = '.output/public', root = '/'] = process.argv.slice(2)
@@ -33,3 +36,6 @@ const html = `<!doctype html>
 writeFileSync(join(out, '404.html'), html)
 writeFileSync(join(out, '.nojekyll'), '')
 console.log(`404.html and .nojekyll written to ${out} (root ${root})`)
+
+mkdirSync(join(out, 'api', 'users'), { recursive: true })
+writeFileSync(join(out, 'api', 'users', 'me'), JSON.stringify({ signIn: false }))

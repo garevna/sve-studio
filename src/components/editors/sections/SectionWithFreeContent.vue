@@ -21,7 +21,7 @@
   const mode = useEditorMode()
 
   // Which column: one half of a page's section (blockIndex/sectionIndex),
-  // or a column handed over whole - a popup's content (PopupEditorDialog).
+  // or a column handed over whole - a popup's content (PopupEditPanel).
   const props = defineProps<{
     blockIndex?: number
     sectionIndex?: number
@@ -88,7 +88,8 @@
   // be THIS per-item wrapper, not the section's own shared one two levels
   // up (which would misroute them into the add/drag/margin toolbar instead).
   function isSelfContainedField (block: TemplateBlockModel): boolean {
-    return block.type === 'header' || block.type === 'title' || block.type === 'text' || block.type === 'text-with-icon'
+    // a form's field has its own cog and delete as well (FormFieldEditor.vue)
+    return block.type === 'header' || block.type === 'title' || block.type === 'text' || block.type === 'text-with-icon' || block.type === 'form-field'
   }
 
   // A "cards" block brings its own EditableBlockWrapper (with the set's own

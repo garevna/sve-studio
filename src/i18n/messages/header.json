@@ -118,37 +118,37 @@
   },
   "titleFont": {
     "uk": "Шрифт назви",
-    "en": "",
-    "de": ""
+    "en": "Title font",
+    "de": "Schriftart des Titels"
   },
   "showTitle": {
     "uk": "Показувати назву",
-    "en": "",
-    "de": ""
+    "en": "Show title",
+    "de": "Titel anzeigen"
   },
   "titleCorner": {
     "uk": "Розташування",
-    "en": "",
-    "de": ""
+    "en": "Position",
+    "de": "Position"
   },
   "titleEdit": {
     "uk": "Назва компанії — натисніть, щоб налаштувати",
-    "en": "",
-    "de": ""
+    "en": "Company name — click to customise",
+    "de": "Firmenname – zum Anpassen bitte anklicken"
   },
   "titleShow": {
     "uk": "Показати назву компанії",
-    "en": "",
-    "de": ""
+    "en": "Show company name",
+    "de": "Firmennamen anzeigen"
   },
   "titleSiteWide": {
     "uk": "Назва та її вигляд — спільні для всього сайту.",
-    "en": "",
-    "de": ""
+    "en": "The name and its appearance are consistent across the entire website.",
+    "de": "Der Name und sein Erscheinungsbild gelten für die gesamte Website."
   },
   "titleSize": {
     "uk": "Розмір назви",
-    "en": "",
-    "de": ""
+    "en": "Title size",
+    "de": "Größe des Titels"
   }
 }

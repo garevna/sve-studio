@@ -3,8 +3,8 @@
 #   GitHub Pages - https://garevna.github.io/sve-studio/
 #                  (Settings > Pages > Source must be "GitHub Actions");
 #   Cloudflare   - https://pagewright.pp.ua/ (deploy/cloudflare/), runs
-#                  once the repository has the variable CLOUDFLARE_ACCOUNT_ID
-#                  and the secret CLOUDFLARE_API_TOKEN.
+#                  once the repository has the secrets CLOUDFLARE_ACCOUNT_ID
+#                  and CLOUDFLARE_API_TOKEN.
 #
 # Files only one address must have - Google Search Console's verification
 # file is a different one for each - live in deploy/<target>/public/ and
@@ -60,28 +60,42 @@ jobs:
       - id: deployment
         uses: actions/deploy-pages@v4
 
+  # Secrets can't be read in a job's `if`, so the steps check them: without
+  # both, the job does nothing.
   cloudflare:
-    if: ${{ vars.CLOUDFLARE_ACCOUNT_ID != '' }}
     runs-on: ubuntu-latest
     environment:
       name: cloudflare
       url: https://pagewright.pp.ua/
     env:
       GOOGLE_SITE_VERIFICATION: ${{ vars.GOOGLE_SITE_VERIFICATION_CLOUDFLARE }}
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
+      - id: ready
+        run: |
+          if [ -n "$CLOUDFLARE_API_TOKEN" ] && [ -n "$CLOUDFLARE_ACCOUNT_ID" ]; then
+            echo "go=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "::notice::No CLOUDFLARE_API_TOKEN / CLOUDFLARE_ACCOUNT_ID secrets - not deployed to Cloudflare."
+          fi
+      - if: steps.ready.outputs.go == 'true'
+        uses: actions/checkout@v4
+      - if: steps.ready.outputs.go == 'true'
+        uses: pnpm/action-setup@v4
         with:
           version: 10.27.0
-      - uses: actions/setup-node@v4
+      - if: steps.ready.outputs.go == 'true'
+        uses: actions/setup-node@v4
         with:
           node-version-file: .node-version
           cache: pnpm
-      - run: pnpm install --frozen-lockfile
+      - if: steps.ready.outputs.go == 'true'
+        run: pnpm install --frozen-lockfile
       # Root "/": no NUXT_APP_BASE_URL.
-      - run: pnpm generate
-      - run: cp -r deploy/cloudflare/public/. .output/public/
-      - run: pnpm dlx wrangler@4.160.0 deploy --config deploy/cloudflare/wrangler.jsonc
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+      - if: steps.ready.outputs.go == 'true'
+        run: pnpm generate
+      - if: steps.ready.outputs.go == 'true'
+        run: cp -r deploy/cloudflare/public/. .output/public/
+      - if: steps.ready.outputs.go == 'true'
+        run: pnpm dlx wrangler@4.160.0 deploy --config deploy/cloudflare/wrangler.jsonc

@@ -18,6 +18,8 @@ are served by Cloudflare as they are; an address with no file of its own
 Repository settings the Cloudflare job needs (Settings > Secrets and
 variables > Actions):
 
-- variable `CLOUDFLARE_ACCOUNT_ID` - without it the job is skipped;
-- secret `CLOUDFLARE_API_TOKEN` - a token with "Edit Cloudflare Workers"
-  rights.
+- secret `CLOUDFLARE_ACCOUNT_ID`;
+- secret `CLOUDFLARE_API_TOKEN` - "Edit Cloudflare Workers" rights plus
+  DNS Edit on the zone.
+
+Without both, the Cloudflare job does nothing.

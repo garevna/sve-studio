@@ -9,7 +9,11 @@
     "binding": "ASSETS",
     // Addresses with no file go to worker.js (the apps' start pages).
     "not_found_handling": "none",
-    "html_handling": "auto-trailing-slash"
+    // A file is served at its own name, never redirected: Google's
+    // verification file must answer at google….html itself, not with a
+    // redirect to google… . Folders ("/", "/site/") are pages too and go to
+    // worker.js.
+    "html_handling": "none"
   },
   "routes": [
     { "pattern": "pagewright.pp.ua", "custom_domain": true }

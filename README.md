@@ -2,7 +2,7 @@
 
 **English** | [Українська](README.uk.md)
 
-**Live demo:** <https://garevna.github.io/sve-studio/> - the editor; the site it builds is at <https://garevna.github.io/sve-studio/site/>. Everything you change stays in your own browser.
+**Live demo:** <https://pagewright.pp.ua/> - the editor; the site it builds is at <https://pagewright.pp.ua/site/>. Everything you change stays in your own browser. The same demo also runs on GitHub Pages: <https://garevna.github.io/sve-studio/>.
 
 A visual editor for multilingual websites: pages are assembled from ready-made blocks, edited in place and published - without touching code.
 

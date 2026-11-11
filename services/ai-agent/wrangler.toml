@@ -24,7 +24,7 @@ id = "03b6d5d3c8914da98cd1e9c97767b5c3"
 
 [vars]
 # The sites allowed to call: the published demo and local dev.
-ALLOWED_ORIGINS = "https://garevna.github.io,http://localhost:3006,http://localhost:3007"
+ALLOWED_ORIGINS = "https://pagewright.pp.ua,https://garevna.github.io,http://localhost:3006,http://localhost:3007"
 
 # Whose Firebase ID tokens are accepted. Not a secret - the project id is in
 # the site's own global.json and in every page that signs anybody in.

@@ -11,7 +11,7 @@
 
 | Вид запиту (`role`) | Навіщо | Приклад |
 | --- | --- | --- |
-| `options` — **список** | варіанти для поля | міста з готелями для поля «Куди» |
+| `options` — **список** | варіанти для поля — рядками або **картками** (картинка, переваги, ціна) | міста для «Куди»; категорії номерів, вільні на обрані дати |
 | `dates` — **вільні дати** | які дні пропонує календар і підпис під ними | вільні ночі й ціна за ніч; запитується знову, коли змінюються поля, від яких залежить, чи місяць |
 | `handoff` — **передача в систему клієнта** | відвідувач іде далі — у прийом запитів клієнта: бронювання, кошик, заявку | «Знайти» → система бронювання клієнта |
 | `answer` — **відповідь попапа** | відповідь попапа-питання як є | підтвердження, вибір, дата |
@@ -102,8 +102,25 @@ Content-Type: application/json
 }
 ```
 
+Список, який показують **картками** (номер, майстер, тариф), бере з кожного
+елемента ще три речі: `image` — поле з адресою картинки (відносна — від
+`baseUrl`), `details` — поле з переліком переваг (масив або рядок), `hint` —
+шаблон підпису, напр. `"{perNight} €"`. Як і будь-який запит, він чекає, доки
+заповнені всі поля, які читає, і запитується знову, коли вони змінюються —
+тож категорії номерів приходять саме на обрані дати й гостей:
+
+```json
+{ "id": "hotel-rooms", "role": "options", "name": "Категорії номерів на ці дати",
+  "call": { "url": "hotel/rooms", "query": [
+    { "name": "checkin", "source": { "from": "field", "key": "dates", "pick": "first" } },
+    { "name": "adults", "source": { "from": "field", "key": "adults", "format": "number" } } ] },
+  "list": { "path": "items", "value": "id", "label": "{name}",
+            "image": "image", "details": "perks", "hint": "{perNight} €" } }
+```
+
 Блок на сторінці називає запити за `id`: «Пошук готелю» має `destinations`,
-`availability`, `booking`. Попап — `deliver` (запит виду `answer`).
+`availability`, `roomTypes` (картки номерів, необов'язково), `booking`; обраний
+номер — поле `room`. Попап — `deliver` (запит виду `answer`).
 
 ## Відповідь попапа
 
@@ -141,6 +158,7 @@ Content-Type: application/json
 | --- | --- |
 | `GET /hotel/destinations?lang=uk` | `{ items: [{ id, name, country }] }` |
 | `GET /hotel/availability?destination=lviv&month=2026-12` | `{ days: [{ date, price, currency }] }` |
+| `GET /hotel/rooms?destination&checkin&checkout&adults&children&rooms&lang` | `{ items: [{ id, name, perks, image, perNight, total, nights, currency }] }` — категорії, вільні на ці дати й для цих гостей |
 | `POST /hotel/sessions` | `{ token }` |
 | `GET /hotel/sessions/<token>` | з чим створено сесію |
 | `POST /hotel/bookings` | підтверджене бронювання → `{ id }` |

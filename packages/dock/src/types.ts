@@ -64,11 +64,16 @@ interface DockRequestBase {
 //           answer is the list;
 //   value - the item's field that goes back to the client (its id);
 //   label - what the visitor sees: a template over the item's fields,
-//           "{name}, {country}".
+//           "{name}, {country}";
+// and, for a choice shown as cards (a room, a service, a tariff):
+//   image   - the item's field with a picture's address (relative ones are
+//             taken against the document's baseUrl);
+//   details - the item's field with its points: a list, or one line;
+//   hint    - a line under it, a template: "{perNight} {currency}".
 export interface DockOptionsRequest extends DockRequestBase {
   role: 'options'
   call: DockCall
-  list: { path?: string, value: string, label: string }
+  list: { path?: string, value: string, label: string, image?: string, details?: string, hint?: string }
 }
 
 // The days a calendar offers, asked again when the fields it depends on or
@@ -132,6 +137,9 @@ export interface DockOutgoing {
 export interface DockOption {
   value: string
   label: string
+  image?: string
+  details?: string[]
+  hint?: string
 }
 
 export interface DockDay {

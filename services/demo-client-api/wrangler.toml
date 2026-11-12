@@ -11,6 +11,10 @@ routes = [
   { pattern = "demo-api.pagewright.pp.ua", custom_domain = true }
 ]
 
+# The client's own pictures (room photos), served as they are.
+[assets]
+directory = "public"
+
 [observability]
 enabled = true
 

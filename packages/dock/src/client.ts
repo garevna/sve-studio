@@ -97,6 +97,12 @@ export function createDock ({ document, root, fetch: fetcher = (...args) => fetc
   }
 
   return {
+    // The first list set up to be chosen as cards (it names a picture) - a
+    // block that was never told which list gives its cards takes this one.
+    cardsRequest (): string | undefined {
+      return document()?.requests.find(item => item.role === 'options' && !!item.list.image)?.id
+    },
+
     // The list a field chooses from.
     async options (id: string | undefined, context: DockContext): Promise<DockOption[]> {
       const found = request(id, 'options')
@@ -104,10 +110,27 @@ export function createDock ({ document, root, fetch: fetcher = (...args) => fetc
         return []
       }
       const list = listAt(await cached(buildCall(found.call, context, address())), found.list.path, found.name)
-      return list.map(item => ({
-        value: String(getPath(item, found.list.value) ?? ''),
-        label: fillTemplate(found.list.label, item),
-      })).filter(option => option.value)
+      const { image, details, hint } = found.list
+      return list.map(item => {
+        const option: DockOption = {
+          value: String(getPath(item, found.list.value) ?? ''),
+          label: fillTemplate(found.list.label, item),
+        }
+        const picture = image ? getPath(item, image) : undefined
+        if (typeof picture === 'string' && picture) {
+          option.image = absoluteUrl(picture, address().baseUrl, address().root)
+        }
+        const points = details ? getPath(item, details) : undefined
+        if (Array.isArray(points)) {
+          option.details = points.map(String).filter(Boolean)
+        } else if (typeof points === 'string' && points) {
+          option.details = [points]
+        }
+        if (hint) {
+          option.hint = fillTemplate(hint, item)
+        }
+        return option
+      }).filter(option => option.value)
     },
 
     // The days a calendar offers for the month in context.system.month.

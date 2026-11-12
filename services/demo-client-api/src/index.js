@@ -8,6 +8,8 @@
 //   GET  /hotel/destinations?lang=uk                  cities for "Куди"
 //   GET  /hotel/availability?destination=lviv&month=2026-12
 //                                                     free days, price a night
+//   GET  /hotel/rooms?destination&checkin&checkout&adults&children&rooms&lang
+//                                                     room categories free then: photo, points, price
 //   POST /hotel/sessions                              a booking session -> { token }
 //   GET  /hotel/sessions/<token>                      what it was made with
 //   POST /hotel/bookings                              a confirmed booking -> { id }
@@ -29,6 +31,92 @@ const DESTINATIONS = [
   { id: 'vienna', city: { uk: 'Відень', en: 'Vienna', de: 'Wien' }, country: { uk: 'Австрія', en: 'Austria', de: 'Österreich' }, base: 124 },
   { id: 'berlin', city: { uk: 'Берлін', en: 'Berlin', de: 'Berlin' }, country: { uk: 'Німеччина', en: 'Germany', de: 'Deutschland' }, base: 109 },
 ]
+
+// Room categories: the same in every city, priced from the city's nights.
+// Photos are the client's own (public/rooms, credits in README.md).
+const ROOMS = [
+  {
+    id: 'standard', price: 1, sleeps: 2, size: 18,
+    name: { uk: 'Стандарт', en: 'Standard', de: 'Standard' },
+    perks: {
+      uk: ['двоспальне ліжко', 'робочий стіл', 'душ'],
+      en: ['double bed', 'work desk', 'shower'],
+      de: ['Doppelbett', 'Schreibtisch', 'Dusche'],
+    },
+  },
+  {
+    id: 'deluxe', price: 1.45, sleeps: 2, size: 28,
+    name: { uk: 'Делюкс', en: 'Deluxe', de: 'Deluxe' },
+    perks: {
+      uk: ['ліжко king-size', 'вид на місто', 'кавомашина'],
+      en: ['king-size bed', 'city view', 'coffee machine'],
+      de: ['Kingsize-Bett', 'Stadtblick', 'Kaffeemaschine'],
+    },
+  },
+  {
+    id: 'family', price: 1.7, sleeps: 4, size: 36,
+    name: { uk: 'Сімейний', en: 'Family', de: 'Familienzimmer' },
+    perks: {
+      uk: ['ліжко й розкладний диван', 'до 4 гостей', 'дитяче ліжечко за запитом'],
+      en: ['bed and sofa bed', 'up to 4 guests', 'cot on request'],
+      de: ['Bett und Schlafsofa', 'bis zu 4 Gäste', 'Babybett auf Anfrage'],
+    },
+  },
+  {
+    id: 'suite', price: 2.6, sleeps: 3, size: 64,
+    name: { uk: 'Люкс', en: 'Suite', de: 'Suite' },
+    perks: {
+      uk: ['вітальня й спальня', 'панорамні вікна', 'сніданок у номері'],
+      en: ['living room and bedroom', 'panoramic windows', 'breakfast in the room'],
+      de: ['Wohn- und Schlafzimmer', 'Panoramafenster', 'Frühstück im Zimmer'],
+    },
+  },
+]
+
+function nightsOf (checkin, checkout) {
+  const nights = []
+  for (let day = new Date(`${checkin}T00:00:00Z`); day < new Date(`${checkout}T00:00:00Z`); day.setUTCDate(day.getUTCDate() + 1)) {
+    nights.push(day.toISOString().slice(0, 10))
+    if (nights.length > 60) {
+      break
+    }
+  }
+  return nights
+}
+
+// The categories free for these dates and guests, with their price.
+function roomsOf (destination, { checkin, checkout, adults, children, rooms, lang }) {
+  const nights = nightsOf(checkin, checkout)
+  if (nights.length === 0) {
+    return []
+  }
+  const prices = new Map()
+  for (const month of new Set(nights.map(night => night.slice(0, 7)))) {
+    for (const day of daysOf(destination, month)) {
+      prices.set(day.date, day.price)
+    }
+  }
+  const night = nights.reduce((sum, date) => sum + (prices.get(date) ?? destination.base), 0) / nights.length
+  const perRoom = Math.ceil((adults + children) / Math.max(rooms, 1))
+  // now and then one category is sold out for these dates (never Standard)
+  const soldOut = ['deluxe', 'family', 'suite'][hash(`${destination.id}:${checkin}`) % 5]
+  return ROOMS
+    .filter(room => room.sleeps >= perRoom && room.id !== soldOut)
+    .map(room => {
+      const perNight = Math.round(night * room.price)
+      return {
+        id: room.id,
+        name: room.name[lang],
+        size: room.size,
+        perks: [`${room.size} m²`, ...room.perks[lang]],
+        image: `/rooms/${room.id}.jpg`,
+        perNight,
+        nights: nights.length,
+        total: perNight * nights.length * Math.max(rooms, 1),
+        currency: 'EUR',
+      }
+    })
+}
 
 // How much the demo keeps: it is a shop window, not an archive.
 const KEEP_REQUESTS = 300
@@ -161,6 +249,30 @@ async function session (env, token) {
   return row ? { at: row.at, body: JSON.parse(row.body) } : null
 }
 
+async function roomsAnswer (request, env, url, cors) {
+  const query = url.searchParams
+  const destination = DESTINATIONS.find(item => item.id === query.get('destination'))
+  const day = /^\d{4}-\d{2}-\d{2}$/
+  const checkin = query.get('checkin') ?? ''
+  const checkout = query.get('checkout') ?? ''
+  if (!destination || !day.test(checkin) || !day.test(checkout) || checkout <= checkin) {
+    await note(env, request, url, 400)
+    return json({ error: 'destination, checkin and checkout (YYYY-MM-DD, checkout after checkin) are required' }, 400, cors)
+  }
+  const count = (name, fallback) => Math.min(Math.max(Number.parseInt(query.get(name) ?? '', 10) || fallback, 0), 20)
+  await note(env, request, url, 200)
+  return json({
+    items: roomsOf(destination, {
+      checkin,
+      checkout,
+      adults: count('adults', 1),
+      children: count('children', 0),
+      rooms: count('rooms', 1) || 1,
+      lang: langOf(query.get('lang')),
+    }),
+  }, 200, cors)
+}
+
 async function api (request, env, url, cors) {
   const path = url.pathname
 
@@ -179,6 +291,10 @@ async function api (request, env, url, cors) {
     }
     await note(env, request, url, 200)
     return json({ days: daysOf(destination, month) }, 200, cors)
+  }
+
+  if (request.method === 'GET' && path === '/hotel/rooms') {
+    return roomsAnswer(request, env, url, cors)
   }
 
   if (request.method === 'POST' && path === '/hotel/sessions') {

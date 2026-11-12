@@ -3,6 +3,7 @@
   import type { PopupCalendarModel, TranslatedModel } from '@/types/common/TemplateBlockModel'
   import { storeToRefs } from 'pinia'
   import { computed, onMounted, ref, watch } from 'vue'
+  import DockChoiceCards from '@/components/dock/DockChoiceCards.vue'
   import { calendarProps, newCalendar } from '@/configs/popup-looks'
   import { dock, dockContext, dockValues, reportDock, setDockValue } from '@/services/dock'
   import { useCommonStore } from '@/stores/common'
@@ -13,7 +14,11 @@
   // dates, adults, children, rooms); which of the client's addresses gives
   // the destinations and the free days, and how the visitor is handed over,
   // is the docking block's business (services/dock.ts,
-  // content/settings/client-api.json). The block names the three requests.
+  // content/settings/client-api.json). The block names its requests.
+  //
+  // Once where and when are known, the client's room categories free then
+  // can be offered as cards (photo, points, price a night) - the "room"
+  // field; a block without that request has no such step.
   //
   // The calendar wears one of the client's calendar models (UI Kit
   // "Вибір дати"), like a date popup.
@@ -22,10 +27,12 @@
   const props = defineProps<{
     title?: TranslatedModel
     subtitle?: TranslatedModel
-    labels?: Partial<Record<'destination' | 'dates' | 'guests' | 'button', TranslatedModel>>
+    labels?: Partial<Record<'destination' | 'dates' | 'guests' | 'button' | 'room', TranslatedModel>>
     // the docking block's requests, by id
     destinations?: string
     availability?: string
+    // room categories for the dates and guests chosen (shown as cards)
+    roomTypes?: string
     booking?: string
     // a calendar model (UI Kit); absent - the first one
     calendar?: string
@@ -49,9 +56,12 @@
     pickCity: { uk: 'Оберіть місто', en: 'Choose a city', de: 'Stadt wählen' },
     failed: { uk: 'Не вдалося. Спробуйте ще раз трохи згодом.', en: 'That didn’t work. Please try again a little later.', de: 'Das hat nicht geklappt. Bitte versuchen Sie es etwas später noch einmal.' },
     from: { uk: 'від', en: 'from', de: 'ab' },
+    room: { uk: 'Оберіть номер', en: 'Choose a room', de: 'Zimmer wählen' },
+    perNight: { uk: 'за ніч', en: 'a night', de: 'pro Nacht' },
+    noRooms: { uk: 'На ці дати для такої кількості гостей вільних номерів немає. Спробуйте інші дати.', en: 'No rooms are free for these dates and guests. Try other dates.', de: 'Für diese Daten und Gäste sind keine Zimmer frei. Versuchen Sie andere Daten.' },
   } as const
 
-  function label (key: 'destination' | 'dates' | 'guests' | 'button'): string {
+  function label (key: 'destination' | 'dates' | 'guests' | 'button' | 'room'): string {
     return props.labels?.[key]?.[lang.value] || WORDS[key][lang.value]
   }
   // A word after a number: 1 ніч, 3 ночі, 5 ночей.
@@ -232,6 +242,53 @@
     return parts.join(' · ')
   })
 
+  // the counts are read by the client's requests even when untouched
+  function settleCounts () {
+    for (const rule of GUESTS) {
+      if (dockValues[rule.key] === undefined) {
+        setDockValue(rule.key, rule.fallback)
+      }
+    }
+  }
+
+  // --- the room ----------------------------------------------------------------
+
+  const room = computed({
+    get: () => (typeof dockValues.room === 'string' ? dockValues.room : null),
+    set: value => setDockValue('room', value),
+  })
+  const roomOptions = ref<DockOption[]>([])
+  const roomsLoading = ref(false)
+  const roomsAsked = ref(false)
+  // never set - the docking block's first card list; '' - switched off
+  const roomsRequest = computed(() => props.roomTypes ?? dock.cardsRequest())
+  const roomsShown = computed(() => !!roomsRequest.value && !!destination.value && dates.value.length > 1)
+
+  async function loadRooms () {
+    if (!roomsShown.value) {
+      roomOptions.value = []
+      roomsAsked.value = false
+      return
+    }
+    settleCounts()
+    roomsLoading.value = true
+    try {
+      roomOptions.value = await dock.options(roomsRequest.value, dockContext(lang.value))
+    } catch (error) {
+      roomOptions.value = []
+      reportDock('hotel search: rooms', error)
+    } finally {
+      roomsLoading.value = false
+      roomsAsked.value = true
+    }
+    // a room no longer offered for the new dates or party is let go
+    if (room.value && !roomOptions.value.some(option => option.value === room.value)) {
+      room.value = null
+    }
+  }
+  onMounted(loadRooms)
+  watch(() => [roomsRequest.value, destination.value, dates.value.join(','), adults.value, children.value, rooms.value, lang.value], loadRooms)
+
   // --- on to the client's engine -----------------------------------------------
 
   const ready = computed(() => !!destination.value && dates.value.length > 1)
@@ -242,10 +299,7 @@
     if (!ready.value) {
       return
     }
-    // the counts go out even when untouched
-    for (const rule of GUESTS) {
-      setDockValue(rule.key, numberValue(rule.key, rule.fallback))
-    }
+    settleCounts()
     going.value = true
     problem.value = ''
     try {
@@ -373,6 +427,17 @@
       >
         {{ label('button') }}
       </v-btn>
+    </div>
+
+    <div v-if="roomsShown" class="pw-search__rooms">
+      <h3 class="pw-search__rooms-title">{{ label('room') }}</h3>
+      <DockChoiceCards
+        v-model="room"
+        :empty-text="roomsAsked ? WORDS.noRooms[lang] : ''"
+        :hint-suffix="WORDS.perNight[lang]"
+        :loading="roomsLoading"
+        :options="roomOptions"
+      />
     </div>
 
     <p v-if="problem" class="pw-search__problem">{{ problem }}</p>
@@ -531,6 +596,16 @@
   min-width: 1.5em;
   font-weight: 600;
   text-align: center;
+}
+.pw-search__rooms {
+  max-width: 1080px;
+  margin: 28px auto 0;
+}
+.pw-search__rooms-title {
+  margin: 0 0 16px;
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: 600;
 }
 .pw-search__problem {
   margin: 12px 0 0;

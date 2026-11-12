@@ -26,6 +26,7 @@ export function hotelSearch () {
       subtitle: structuredClone(seedSubtitle),
       destinations: 'hotel-destinations',
       availability: 'hotel-availability',
+      roomTypes: 'hotel-rooms',
       booking: 'hotel-booking',
     },
   }

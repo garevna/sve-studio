@@ -1,61 +1,199 @@
 {
-  "title": { "uk": "Підключення API", "en": "", "de": "" },
-  "hint": { "uk": "Стикувальний блок — єдине місце між формами сайту й API клієнта. Форми знають лише ключі своїх полів; куди й у якому вигляді йдуть значення, налаштовується тут. Для нового клієнта змінюються лише ці налаштування.", "en": "", "de": "" },
-  "demoClient": { "uk": "Підключено демо-клієнта — вигадану мережу готелів «Kalyna Hotels». Її API, прийом запитів відвідувачів і адмінка живуть окремо від сайту, на {url}, як у справжнього клієнта. Відкрийте адмінку в окремому вікні й тримайте поруч із сайтом: кожен запит сайту з’являється там одразу.", "en": "", "de": "" },
-  "openAdmin": { "uk": "Адмінка клієнта", "en": "", "de": "" },
-  "baseUrl": { "uk": "Базова адреса API клієнта", "en": "", "de": "" },
-  "baseUrlHint": { "uk": "Відносні адреси запитів відлічуються від неї. Порожня — від кореня сайту.", "en": "", "de": "" },
-  "none": { "uk": "Запитів ще немає.", "en": "", "de": "" },
-  "edit": { "uk": "Налаштувати", "en": "", "de": "" },
-  "add": { "uk": "Додати запит", "en": "", "de": "" },
-  "deleteTitle": { "uk": "Видалити «{name}»?", "en": "", "de": "" },
-  "deleteText": { "uk": "Блоки, що називають цей запит, перестануть до нього звертатися.", "en": "", "de": "" },
+  "title": { "uk": "Підключення API", "en": "API integration", "de": "API-Anbindung" },
+  "hint": {
+    "uk": "Стикувальний блок — єдине місце між формами сайту й API клієнта. Форми знають лише ключі своїх полів; куди й у якому вигляді йдуть значення, налаштовується тут. Для нового клієнта змінюються лише ці налаштування.",
+    "en": "The interface module is the sole point of connection between the website’s forms and the client’s API. The forms only recognise the keys for their own fields; where the values are sent and in what format is configured here. For a new client, only these settings are changed.",
+    "de": "Die Schnittstelle ist die einzige Verbindung zwischen den Formularen der Website und der API des Kunden. Die Formulare kennen nur die Schlüssel ihrer Felder; wohin und in welcher Form die Werte gesendet werden, wird hier konfiguriert. Bei einem neuen Kunden werden lediglich diese Einstellungen geändert."
+  },
+  "demoClient": {
+    "uk": "Підключено демо-клієнта — вигадану мережу готелів «Kalyna Hotels». Її API, прийом запитів відвідувачів і адмінка живуть окремо від сайту, на {url}, як у справжнього клієнта. Відкрийте адмінку в окремому вікні й тримайте поруч із сайтом: кожен запит сайту з’являється там одразу.",
+    "en": "A demo client has been connected — the fictional ‘Kalyna Hotels’ chain. Its API, visitor request handling and admin panel are hosted separately from the website, at {url}, just like a real client’s. Open the admin panel in a separate window and keep it next to the website: every request made to the website appears there immediately.",
+    "de": "Es ist ein Demo-Kunde verbunden – die fiktive Hotelkette „Kalyna Hotels“. Deren API, die Annahme von Besucheranfragen und der Admin-Bereich befinden sich separat von der Website unter {url}, genau wie bei einem echten Kunden. Öffnen Sie den Admin-Bereich in einem separaten Fenster und halten Sie ihn neben der Website offen: Jede Anfrage der Website erscheint dort sofort."
+  },
+  "openAdmin": { "uk": "Адмінка клієнта", "en": "Client admin dashboard", "de": "Kunden-Adminbereich" },
+  "baseUrl": { "uk": "Базова адреса API клієнта", "en": "Client API base URL", "de": "Basisadresse der Kunden-API" },
+  "baseUrlHint": {
+    "uk": "Відносні адреси запитів відлічуються від неї. Порожня — від кореня сайту.",
+    "en": "Relative request URLs are calculated relative to this. If left blank, they are relative to the site root.",
+    "de": "Relative Adressen von Anfragen werden von dieser Adresse aus gezählt. Ist das Feld leer, gilt die Root-Adresse der Website als Ausgangspunkt."
+  },
+  "none": { "uk": "Запитів ще немає.", "en": "There are no requests yet.", "de": "Es liegen noch keine Anfragen vor." },
+  "edit": { "uk": "Налаштувати", "en": "Configure", "de": "Konfigurieren" },
+  "add": { "uk": "Додати запит", "en": "Add a request", "de": "Anfrage hinzufügen" },
+  "deleteTitle": { "uk": "Видалити «{name}»?", "en": "Delete ‘{name}’?", "de": "„{name}“ löschen?" },
+  "deleteText": {
+    "uk": "Блоки, що називають цей запит, перестануть до нього звертатися.",
+    "en": "Blocks that reference this request will no longer access it.",
+    "de": "Blöcke, die diese Anfrage aufrufen, werden sie nicht mehr ansprechen."
+  },
   "roles": {
-    "options": { "uk": "Список", "en": "", "de": "" },
-    "dates": { "uk": "Вільні дати", "en": "", "de": "" },
-    "handoff": { "uk": "Передача в систему клієнта", "en": "", "de": "" },
-    "answer": { "uk": "Відповідь попапа", "en": "", "de": "" }
+    "options": { "uk": "Список", "en": "List", "de": "Liste" },
+    "dates": { "uk": "Вільні дати", "en": "Available dates", "de": "Freie Termine" },
+    "handoff": {
+      "uk": "Передача в систему клієнта",
+      "en": "Transfer to the client’s system",
+      "de": "Übertragung an das Kundensystem"
+    },
+    "answer": { "uk": "Відповідь попапа", "en": "Popup response", "de": "Antwort erhalten" }
   },
   "roleHints": {
-    "options": { "uk": "варіанти для поля: міста, готелі, категорії", "en": "", "de": "" },
-    "dates": { "uk": "які дні пропонує календар і що під ними", "en": "", "de": "" },
-    "handoff": { "uk": "відвідувач іде далі — у прийом запитів клієнта", "en": "", "de": "" },
-    "answer": { "uk": "відповідь попапа-питання, як вона є", "en": "", "de": "" }
+    "options": {
+      "uk": "варіанти для поля: міста, готелі, категорії",
+      "en": "Options for the field: cities, hotels, categories",
+      "de": "Optionen für das Feld: Städte, Hotels, Kategorien"
+    },
+    "dates": {
+      "uk": "які дні пропонує календар і що під ними",
+      "en": "Which days the calendar offers and what they represent",
+      "de": "Welche Tage bietet der Kalender an und was steht darunter"
+    },
+    "handoff": {
+      "uk": "відвідувач іде далі — у прийом запитів клієнта",
+      "en": "The visitor proceeds to the client’s enquiry form",
+      "de": "Der Besucher geht weiter – zur Annahme von Kundenanfragen"
+    },
+    "answer": {
+      "uk": "відповідь попапа-питання, як вона є",
+      "en": "Popup response to the question, as it stands",
+      "de": "Popup-Antwort auf die Frage, so wie sie ist"
+    }
   },
-  "name": { "uk": "Назва", "en": "", "de": "" },
-  "id": { "uk": "Ідентифікатор (його називає блок)", "en": "", "de": "" },
-  "url": { "uk": "Адреса", "en": "", "de": "" },
-  "query": { "uk": "Параметри в адресі", "en": "", "de": "" },
-  "body": { "uk": "Тіло запиту", "en": "", "de": "" },
-  "listCaption": { "uk": "Що взяти з відповіді", "en": "", "de": "" },
-  "listPath": { "uk": "Де список", "en": "", "de": "" },
-  "listValue": { "uk": "Значення", "en": "", "de": "" },
-  "listLabel": { "uk": "Що бачить відвідувач", "en": "", "de": "" },
-  "pathHint": { "uk": "шлях у відповіді; порожньо — відповідь і є список", "en": "", "de": "" },
-  "valueHint": { "uk": "поле, що повертається клієнту (id)", "en": "", "de": "" },
-  "labelHint": { "uk": "шаблон з полів: {'{'}name{'}'}, {'{'}country{'}'}", "en": "", "de": "" },
-  "daysCaption": { "uk": "Що взяти з відповіді", "en": "", "de": "" },
+  "name": { "uk": "Назва", "en": "Title", "de": "Name" },
+  "id": {
+    "uk": "Ідентифікатор (його називає блок)",
+    "en": "Identifier (as referred to by the block)",
+    "de": "ID (wird vom Block verwendet)"
+  },
+  "url": { "uk": "Адреса", "en": "Address", "de": "Adresse" },
+  "query": { "uk": "Параметри в адресі", "en": "Parameters in the address", "de": "Parameter in der Adresse" },
+  "body": { "uk": "Тіло запиту", "en": "Request body", "de": "Anfragetext" },
+  "listCaption": {
+    "uk": "Що взяти з відповіді",
+    "en": "What to extract from the response",
+    "de": "Was aus der Antwort übernommen werden soll"
+  },
+  "listPath": { "uk": "Де список", "en": "Where is the list", "de": "Wo befindet sich die Liste" },
+  "listValue": { "uk": "Значення", "en": "Value", "de": "Wert" },
+  "listLabel": { "uk": "Що бачить відвідувач", "en": "What the visitor sees", "de": "Was der Besucher sieht" },
+  "pathHint": {
+    "uk": "шлях у відповіді; порожньо — відповідь і є список",
+    "en": "Path in the response; if empty, the response itself is the list",
+    "de": "Pfad in der Antwort; leer – die Antwort ist gleichzeitig die Liste"
+  },
+  "valueHint": {
+    "uk": "поле, що повертається клієнту (id)",
+    "en": "Field returned to the client (id)",
+    "de": "Feld, das an den Kunden zurückgegeben wird (id)"
+  },
+  "labelHint": {
+    "uk": "шаблон з полів: {'{'}name{'}'}, {'{'}country{'}'}",
+    "en": "Template with fields: {'{'}name{'}'}, {'{'}country{'}'}",
+    "de": "Vorlage aus Feldern: {'{'}name{'}'}, {'{'}country{'}'}"
+  },
+  "cardsCaption": {
+    "uk": "Для вибору картками (номер, майстер, тариф) — необов'язково",
+    "en": "For card selection (number, issuer, tariff) — optional",
+    "de": "Für die Auswahl von Karten (Nummer, Aussteller, Tarif) – optional"
+  },
+  "listImage": { "uk": "Картинка", "en": "Image", "de": "Bild" },
+  "imageHint": {
+    "uk": "поле з адресою картинки; відносна — від базової адреси",
+    "en": "field containing the image URL; relative — from the base URL",
+    "de": "Feld mit der Bildadresse; relativ – bezogen auf die Basisadresse"
+  },
+  "listDetails": { "uk": "Переваги", "en": "Advantages", "de": "Vorteile" },
+  "detailsHint": {
+    "uk": "поле зі списком пунктів або одним рядком",
+    "en": "field containing a list of items or a single line",
+    "de": "Feld mit einer Liste von Punkten oder einer einzigen Zeile"
+  },
+  "listHint": {
+    "uk": "Підпис під карткою",
+    "en": "Caption beneath the card",
+    "de": "Beschriftung unter der Karte"
+  },
+  "cardHintHint": {
+    "uk": "шаблон: {'{'}perNight{'}'} €",
+    "en": "Template: {'{'}perNight{'}'} €",
+    "de": ""
+  },
+  "daysCaption": {
+    "uk": "Що взяти з відповіді",
+    "en": "What to extract from the response",
+    "de": ""
+  },
   "dayField": { "uk": "Поле дати", "en": "", "de": "" },
-  "dateHint": { "uk": "день у форматі РРРР-ММ-ДД", "en": "", "de": "" },
+  "dateHint": {
+    "uk": "день у форматі РРРР-ММ-ДД",
+    "en": "",
+    "de": ""
+  },
   "dayHint": { "uk": "Підпис під датою", "en": "", "de": "" },
-  "dayHintHint": { "uk": "шаблон: {'{'}price{'}'} {'{'}currency{'}'}; порожньо — без підпису", "en": "", "de": "" },
+  "dayHintHint": {
+    "uk": "шаблон: {'{'}price{'}'} {'{'}currency{'}'}; порожньо — без підпису",
+    "en": "",
+    "de": ""
+  },
   "modeLink": { "uk": "Посилання", "en": "", "de": "" },
   "modeSession": { "uk": "Сесія", "en": "", "de": "" },
-  "modeLinkHint": { "uk": "Відвідувач одразу переходить на адресу системи клієнта, значення — у самій адресі. Найпростіше: від клієнта потрібен лише перелік параметрів.", "en": "", "de": "" },
-  "modeSessionHint": { "uk": "Спершу запит в API клієнта (дані будь-якого обсягу, клієнт їх перевіряє), потім перехід на адресу з його відповіді.", "en": "", "de": "" },
-  "sessionCaption": { "uk": "1. Запит, що створює сесію", "en": "", "de": "" },
-  "targetCaption": { "uk": "Куди переходить відвідувач", "en": "", "de": "" },
-  "targetUrl": { "uk": "Адреса системи клієнта", "en": "", "de": "" },
-  "targetUrlSessionHint": { "uk": "можна вставити з відповіді: …/s/{'{'}token{'}'}", "en": "", "de": "" },
-  "answerHint": { "uk": "Тіло — відповідь попапа як є: source, id, name, kind, value, locale, page, at (docs/client-api.md).", "en": "", "de": "" },
-  "samples": { "uk": "Тестові значення полів", "en": "", "de": "" },
-  "noFields": { "uk": "Запит не читає жодного поля форми.", "en": "", "de": "" },
+  "modeLinkHint": {
+    "uk": "Відвідувач одразу переходить на адресу системи клієнта, значення — у самій адресі. Найпростіше: від клієнта потрібен лише перелік параметрів.",
+    "en": "",
+    "de": ""
+  },
+  "modeSessionHint": {
+    "uk": "Спершу запит в API клієнта (дані будь-якого обсягу, клієнт їх перевіряє), потім перехід на адресу з його відповіді.",
+    "en": "",
+    "de": ""
+  },
+  "sessionCaption": {
+    "uk": "1. Запит, що створює сесію",
+    "en": "",
+    "de": ""
+  },
+  "targetCaption": {
+    "uk": "Куди переходить відвідувач",
+    "en": "", "de": ""
+  },
+  "targetUrl": {
+    "uk": "Адреса системи клієнта",
+    "en": "",
+    "de": ""
+  },
+  "targetUrlSessionHint": {
+    "uk": "можна вставити з відповіді: …/s/{'{'}token{'}'}",
+    "en": "",
+    "de": ""
+  },
+  "answerHint": {
+    "uk": "Тіло — відповідь попапа як є: source, id, name, kind, value, locale, page, at (docs/client-api.md).",
+    "en": "",
+    "de": ""
+  },
+  "samples": {
+    "uk": "Тестові значення полів",
+    "en": "",
+    "de": ""
+  },
+  "noFields": {
+    "uk": "Запит не читає жодного поля форми.",
+    "en": "",
+    "de": ""
+  },
   "goesOut": { "uk": "Що піде", "en": "", "de": "" },
   "stepSession": { "uk": "1 — запит сесії", "en": "", "de": "" },
   "stepVisitor": { "uk": "2 — перехід відвідувача", "en": "", "de": "" },
   "check": { "uk": "Перевірити", "en": "", "de": "" },
-  "checkOptions": { "uk": "Отримано варіантів: {count}", "en": "", "de": "" },
-  "checkDays": { "uk": "Вільних днів у цьому місяці: {count}", "en": "", "de": "" },
+  "checkOptions": {
+    "uk": "Отримано варіантів: {count}",
+    "en": "",
+    "de": ""
+  },
+  "checkDays": {
+    "uk": "Вільних днів у цьому місяці: {count}",
+    "en": "",
+    "de": ""
+  },
   "checkStatus": { "uk": "Відповідь: {status}", "en": "", "de": "" },
   "checkHandoff": { "uk": "Відвідувач перейде сюди:", "en": "", "de": "" },
   "checkAnswerName": { "uk": "Перевірка з редактора", "en": "", "de": "" },
@@ -92,6 +230,9 @@
     "settings": { "uk": "Налаштування пошуку", "en": "", "de": "" },
     "destinations": { "uk": "Звідки список міст", "en": "", "de": "" },
     "availability": { "uk": "Звідки вільні дати", "en": "", "de": "" },
+    "roomTypes": { "uk": "Вибір номера картками — звідки", "en": "", "de": "" },
+    "roomsOff": { "uk": "без вибору номера", "en": "", "de": "" },
+    "roomsSample": { "uk": "Приклад: відвідувач побачить ці картки, щойно обере місто й дати.", "en": "", "de": "" },
     "booking": { "uk": "Куди веде «Знайти»", "en": "", "de": "" },
     "calendar": { "uk": "Модель календаря", "en": "", "de": "" },
     "notSet": { "uk": "не вибрано", "en": "", "de": "" },

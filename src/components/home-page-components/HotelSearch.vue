@@ -3,6 +3,7 @@
   import type { PopupCalendarModel, TranslatedModel } from '@/types/TemplateBlockModel'
   import { computed, onMounted, reactive, ref, watch } from 'vue'
   import { useRouter } from 'vue-router'
+  import DockChoiceCards from '@/components/dock/DockChoiceCards.vue'
   import EditableBlockHeading from '@/components/editors/EditableBlockHeading.vue'
   import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
   import { editorDock, editorDockContext, useClientApi } from '@/composables/useClientApi'
@@ -26,7 +27,7 @@
   defineOptions({ inheritAttrs: false })
 
   type Lang = 'uk' | 'en' | 'de'
-  type LabelKey = 'destination' | 'dates' | 'guests' | 'button'
+  type LabelKey = 'destination' | 'dates' | 'guests' | 'button' | 'room'
   interface PropsModel {
     title?: TranslatedModel
     subtitle?: TranslatedModel
@@ -35,6 +36,7 @@
     labels?: Partial<Record<LabelKey, TranslatedModel>>
     destinations?: string
     availability?: string
+    roomTypes?: string
     booking?: string
     calendar?: string
   }
@@ -69,8 +71,11 @@
     noOptions: { uk: 'Нічого не знайдено', en: 'Nothing found', de: 'Nichts gefunden' },
     pickCity: { uk: 'Оберіть місто', en: 'Choose a city', de: 'Stadt wählen' },
     failed: { uk: 'Не вдалося. Спробуйте ще раз трохи згодом.', en: 'That didn’t work. Please try again a little later.', de: 'Das hat nicht geklappt. Bitte versuchen Sie es etwas später noch einmal.' },
+    room: { uk: 'Оберіть номер', en: 'Choose a room', de: 'Zimmer wählen' },
+    perNight: { uk: 'за ніч', en: 'a night', de: 'pro Nacht' },
+    noRooms: { uk: 'На ці дати для такої кількості гостей вільних номерів немає. Спробуйте інші дати.', en: 'No rooms are free for these dates and guests. Try other dates.', de: 'Für diese Daten und Gäste sind keine Zimmer frei. Versuchen Sie andere Daten.' },
   } as const
-  const LABEL_KEYS: LabelKey[] = ['destination', 'dates', 'guests', 'button']
+  const LABEL_KEYS: LabelKey[] = ['destination', 'dates', 'guests', 'button', 'room']
 
   function label (key: LabelKey): string {
     const own = model.value.labels?.[key]?.[lang.value]
@@ -256,6 +261,52 @@
     return parts.join(' · ')
   })
 
+  // --- the room (cards from the client's room categories) ---------------------
+
+  const room = computed({
+    get: () => (typeof values.room === 'string' ? values.room : null),
+    set: value => {
+      values.room = value
+    },
+  })
+  const roomOptions = ref<DockOption[]>([])
+  const roomsLoading = ref(false)
+  const roomsAsked = ref(false)
+  // never set - the docking block's first card list; '' - switched off
+  const roomsRequest = computed(() => model.value.roomTypes ?? editorDock.cardsRequest())
+  const chosen = computed(() => !!destination.value && dates.value.length > 1)
+  // While editing, the cards are there before anything is chosen - for the
+  // first city and three nights a month ahead - so their look can be seen.
+  const roomsSample = computed(() => mode.value === 'edit' && !chosen.value && options.value.length > 0)
+  const roomsShown = computed(() => !!roomsRequest.value && (chosen.value || roomsSample.value))
+
+  function sampleValues (): Record<string, unknown> {
+    const day = (ahead: number) => isoOf(new Date(Date.now() + ahead * 86_400_000))
+    return { ...values, destination: options.value[0]!.value, dates: [day(30), day(33)] }
+  }
+
+  async function loadRooms () {
+    if (!roomsShown.value) {
+      roomOptions.value = []
+      roomsAsked.value = false
+      return
+    }
+    roomsLoading.value = true
+    try {
+      roomOptions.value = await editorDock.options(roomsRequest.value, editorDockContext(roomsSample.value ? sampleValues() : { ...values }, lang.value))
+    } catch (error) {
+      roomOptions.value = []
+      reportDock('hotel search: rooms', error)
+    } finally {
+      roomsLoading.value = false
+      roomsAsked.value = true
+    }
+    if (room.value && !roomOptions.value.some(option => option.value === room.value)) {
+      room.value = null
+    }
+  }
+  watch(() => [roomsRequest.value, roomsSample.value, destination.value, dates.value.join(','), values.adults, values.children, values.rooms, lang.value, clientApi.document.value], loadRooms, { deep: true })
+
   // --- "Знайти": in the editor, the client's engine opens in a new tab ---------
 
   const ready = computed(() => !!destination.value && dates.value.length > 1)
@@ -424,6 +475,18 @@
       </v-btn>
     </div>
 
+    <div v-if="roomsShown" class="pw-search__rooms">
+      <h3 class="pw-search__rooms-title">{{ label('room') }}</h3>
+      <p v-if="roomsSample" class="search-sample-note">{{ t('clientApi.block.roomsSample') }}</p>
+      <DockChoiceCards
+        v-model="room"
+        :empty-text="roomsAsked ? WORDS.noRooms[lang] : ''"
+        :hint-suffix="WORDS.perNight[lang]"
+        :loading="roomsLoading"
+        :options="roomOptions"
+      />
+    </div>
+
     <p v-if="problem" class="pw-search__problem">{{ problem }}</p>
 
     <!-- The block's settings, under the form it changes (edit mode only). -->
@@ -456,6 +519,17 @@
             clearable
             density="compact"
             hide-details
+            :items="requestsOf('options')"
+            :label="t('clientApi.block.roomTypes')"
+            :model-value="roomsRequest || null"
+            :placeholder="t('clientApi.block.roomsOff')"
+            variant="outlined"
+            @update:model-value="value => patch({ roomTypes: value ?? '' })"
+          />
+          <v-select
+            clearable
+            density="compact"
+            hide-details
             :items="requestsOf('handoff')"
             :label="t('clientApi.block.booking')"
             :model-value="model.booking ?? null"
@@ -480,6 +554,7 @@
             :key="key"
             density="compact"
             hide-details
+            :label="WORDS[key][lang]"
             :model-value="model.labels?.[key]?.[lang] ?? ''"
             :placeholder="WORDS[key][lang]"
             variant="outlined"
@@ -656,6 +731,16 @@
   font-weight: 600;
   text-align: center;
 }
+.pw-search__rooms {
+  max-width: 1080px;
+  margin: 28px auto 0;
+}
+.pw-search__rooms-title {
+  margin: 0 0 16px;
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
 .pw-search__problem {
   margin: 12px 0 0;
   color: var(--error);
@@ -676,6 +761,13 @@
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 8px;
 }
+.search-sample-note {
+  margin: -4px 0 12px;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #6B7785;
+}
+
 .search-settings-caption {
   margin: 12px 0 6px;
   font-size: 0.8rem;

@@ -27,7 +27,7 @@
 
   // The keys the site's forms fill in (HotelSearch.vue), plus any a request
   // already reads.
-  const FORM_KEYS = ['destination', 'dates', 'adults', 'children', 'rooms']
+  const FORM_KEYS = ['destination', 'dates', 'adults', 'children', 'rooms', 'room']
   const keys = computed(() => {
     const used = clientApi.document.value.requests.flatMap(request => request.role === 'handoff'
       ? fieldsOf([...(request.session?.query ?? []), ...(request.session?.body ?? []), ...(request.target.query ?? [])])

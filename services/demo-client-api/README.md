@@ -15,8 +15,22 @@ end. A Cloudflare Worker with a D1 database, deployed on its own.
 - **Its admin** (`/admin`) — bookings, sessions and every request, refreshed
   every 2 s. "Почати демо заново" erases them.
 
+- **Its pictures** (`public/rooms/*.jpg`) — room photos, served as static
+  assets; `/hotel/rooms` points at them.
+
 The demo keeps the last 300 requests and 100 bookings, sessions for 14 days.
 No secrets: nothing private goes in here.
+
+## Photo credits
+
+Free licences, used as they allow (no people, no logos; cropped to 3:2):
+
+| File | Photo | Author | Licence |
+| --- | --- | --- | --- |
+| `standard.jpg` | <https://unsplash.com/photos/67-sOi7mVIk> | Sasha Kaunas | Unsplash License |
+| `deluxe.jpg` | <https://unsplash.com/photos/Yrxr3bsPdS0> | Vojtech Bruzek | Unsplash License |
+| `family.jpg` | <https://www.pexels.com/photo/couch-and-double-bed-in-hotel-suite-18801079/> | stiven-rivera (Pexels) | Pexels License |
+| `suite.jpg` | <https://unsplash.com/photos/emqnSQwQQDo> | Roberto Nickson | Unsplash License |
 
 ## Deploy
 

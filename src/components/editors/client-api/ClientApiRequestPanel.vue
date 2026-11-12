@@ -170,6 +170,36 @@
             variant="outlined"
           />
         </div>
+        <p class="dock-panel-caption">{{ t('clientApi.cardsCaption') }}</p>
+        <div class="dock-panel-grid">
+          <v-text-field
+            v-model="request.list.image"
+            density="compact"
+            :hint="t('clientApi.imageHint')"
+            :label="t('clientApi.listImage')"
+            persistent-hint
+            placeholder="image"
+            variant="outlined"
+          />
+          <v-text-field
+            v-model="request.list.details"
+            density="compact"
+            :hint="t('clientApi.detailsHint')"
+            :label="t('clientApi.listDetails')"
+            persistent-hint
+            placeholder="perks"
+            variant="outlined"
+          />
+          <v-text-field
+            v-model="request.list.hint"
+            density="compact"
+            :hint="t('clientApi.cardHintHint')"
+            :label="t('clientApi.listHint')"
+            persistent-hint
+            placeholder="{perNight} €"
+            variant="outlined"
+          />
+        </div>
       </template>
 
       <template v-else-if="request.role === 'dates'">

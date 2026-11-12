@@ -47,6 +47,13 @@ export default defineNuxtConfig({
 
   modules: ['./modules/content-manifest', './modules/content-api-sw', './modules/site-app'],
 
+  // Nuxt leaves out every file whose name starts with "-" - and the build
+  // copies the site's and the editor's own chunks through that same filter.
+  // A chunk's name is a hash, and a hash can start with "-": that chunk
+  // would vanish and the page would not load. No file here is named "-..."
+  // to be left out, so the prefix is one no hash can have.
+  ignorePrefix: '~ignored~',
+
   css: [
     'vuetify/styles',
     // Roboto - the editor's own interface font.

@@ -10,9 +10,10 @@ erDiagram
   POPUP }o--|| LOOK : "look (id)"
   POPUP }o--o| CALENDAR : "calendar (id)"
   POPUP ||--o{ BLOCK : "content: blocks, form fields"
-  POPUP }o--o| ENDPOINT : "deliver (id)"
+  POPUP }o--o| REQUEST : "deliver (id)"
+  BLOCK }o--o| REQUEST : "destinations, availability, booking"
   LOOK }o--o{ SET_BUTTON : "buttons.main, .second"
-  GLOBAL ||--o{ ENDPOINT : "clientApi.endpoints"
+  CLIENT_API ||--o{ REQUEST : "requests"
 
   PAGE {
     string id PK "pages/*.json"
@@ -58,7 +59,12 @@ erDiagram
     string file "settings/global.json"
     string feedbackEndpoint "where forms go"
   }
-  ENDPOINT {
+  CLIENT_API {
+    string file "settings/client-api.json"
+    string baseUrl "base of relative addresses"
+  }
+  REQUEST {
     string id PK
-    string url
+    string role "options, dates, handoff, answer"
+    string mode "link or session"
   }

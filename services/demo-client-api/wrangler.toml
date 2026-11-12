@@ -1,0 +1,26 @@
+# A made-up client for the Pagewright demo: "Kalyna Hotels" (invented - no
+# real company, no real data). Its API, its own request intake (the booking page
+# the site hands the visitor over to) and its admin, where everything the site
+# sent can be watched arriving. See README.md.
+name = "pagewright-demo-api"
+main = "src/index.js"
+compatibility_date = "2025-01-01"
+preview_urls = false
+workers_dev = true
+routes = [
+  { pattern = "demo-api.pagewright.pp.ua", custom_domain = true }
+]
+
+[observability]
+enabled = true
+
+[vars]
+# The sites allowed to call the API from a browser: the published demo, local
+# dev and a local build served by wrangler.
+ALLOWED_ORIGINS = "https://pagewright.pp.ua,https://garevna.github.io,http://localhost:3006,http://localhost:3007,http://127.0.0.1:8787,http://localhost:8787"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "pagewright-demo-api"
+database_id = "63bcde29-343a-4e43-8287-4522bad79913"
+migrations_dir = "migrations"

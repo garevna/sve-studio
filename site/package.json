@@ -6,6 +6,7 @@
   "type": "module",
   "version": "1.0.0",
   "dependencies": {
+    "@sve/dock": "workspace:*",
     "firebase": "^12.19.0",
     "libphonenumber-js": "^1.12.9",
     "pinia": "^3.0.1",

@@ -43,6 +43,7 @@ export const BLOCK_DESCRIPTIONS: Record<string, string> = {
   'popular-destinations': 'blockMenu.about.popularDestinations',
   'transfer-services-steps': 'blockMenu.about.transferServicesSteps',
   'feedback-form': 'blockMenu.about.feedbackForm',
+  'hotel-search': 'blockMenu.about.hotelSearch',
 }
 
 // Blocks whose content is up to the user: shown in the gallery as several

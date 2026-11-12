@@ -1,12 +1,13 @@
 <script setup lang="ts">
   import type { EditorMode } from '@/composables/useEditorMode'
   import type { PopupInputModel, PopupModel, TranslatedModel } from '@/types/TemplateBlockModel'
-  import { computed, ref, watch } from 'vue'
+  import { computed, ref } from 'vue'
   import { useRouter } from 'vue-router'
   import LocaleSwitcher from '@/components/editors/small/LocaleSwitcher.vue'
   import TextFormatMenu from '@/components/editors/text/TextFormatMenu.vue'
   import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
   import PopupFrame from '@/components/templates/popups/PopupFrame.vue'
+  import { useClientApi } from '@/composables/useClientApi'
   import { provideEditorMode } from '@/composables/useEditorMode'
   import { useSitePopups } from '@/composables/useSitePopups'
   import { feedbackFormKind } from '@/configs/feedback-forms'
@@ -14,7 +15,6 @@
   import { CALENDAR_VARIANTS, calendarOf, frameFor, lookOf } from '@/configs/popup-looks'
   import { POPUP_PLACEMENTS } from '@/configs/popup-placements'
   import { t } from '@/i18n'
-  import { useAjaxStore } from '@/stores/ajax'
   import { useCommonStore } from '@/stores/common'
   import { EDITED_APP_SCOPE_CLASS } from '@/utils/edited-app-scope'
   import { emptyTranslatedModel, isTranslatedModel } from '@/utils/locale-text'
@@ -35,7 +35,6 @@
   const popup = computed(() => props.entry)
   const sitePopups = useSitePopups()
   const commonStore = useCommonStore()
-  const ajaxStore = useAjaxStore()
 
   // Everything inside is being edited.
   provideEditorMode(computed<EditorMode>(() => 'edit'))
@@ -90,13 +89,12 @@
     popup.value.options.push({ value: `option-${n}`, label: emptyTranslatedModel() as TranslatedModel })
   }
 
-  // Where else the answer goes: the client's API endpoints (global.json
-  // clientApi, docs/client-api.md). None set up - no choice to show.
-  const endpoints = ref<{ id: string, name?: string }[]>([])
-  watch(() => popup.value.id, async () => {
-    const settings = await ajaxStore.getGlobalSettings().catch(() => null)
-    endpoints.value = settings?.clientApi?.endpoints ?? []
-  }, { immediate: true })
+  // Where else the answer goes: a request of role "Відповідь попапа" in the
+  // docking block ("Підключення API", content/settings/client-api.json).
+  // None set up - no choice to show.
+  const clientApi = useClientApi()
+  void clientApi.load()
+  const endpoints = computed(() => clientApi.ofRole('answer'))
   const answers = computed(() => !['content', 'message', 'feedback', 'form'].includes(kind.value))
 
   // Its look and, for a date, its calendar - from the client's sets in the
@@ -368,7 +366,7 @@
         clearable
         density="compact"
         hide-details
-        :item-title="(endpoint: { id: string, name?: string }) => endpoint.name || endpoint.id"
+        :item-title="(endpoint: { id: string, name: string }) => endpoint.name || endpoint.id"
         item-value="id"
         :items="endpoints"
         :label="t('pagePopups.deliver')"

@@ -200,6 +200,10 @@ function settingsFileName (key: string): string {
   if (key === 'popups') {
     return 'popups.json'
   }
+  // The docking block's settings: the client's API (packages/dock).
+  if (key === 'client-api') {
+    return 'client-api.json'
+  }
   throw new Error(`Unknown settings key: ${key}`)
 }
 

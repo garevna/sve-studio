@@ -1,0 +1,77 @@
+{
+  "baseUrl": "https://demo-api.pagewright.pp.ua",
+  "requests": [
+    {
+      "id": "hotel-destinations",
+      "role": "options",
+      "name": "Міста з готелями",
+      "call": {
+        "url": "hotel/destinations",
+        "method": "GET",
+        "query": [
+          { "name": "lang", "source": { "from": "system", "value": "locale" } }
+        ]
+      },
+      "list": { "path": "items", "value": "id", "label": "{name}, {country}" }
+    },
+    {
+      "id": "hotel-availability",
+      "role": "dates",
+      "name": "Вільні дати й ціна за ніч",
+      "call": {
+        "url": "hotel/availability",
+        "method": "GET",
+        "query": [
+          { "name": "destination", "source": { "from": "field", "key": "destination" } },
+          { "name": "month", "source": { "from": "system", "value": "month" } }
+        ]
+      },
+      "result": { "path": "days", "date": "date", "hint": "{price}" }
+    },
+    {
+      "id": "hotel-booking",
+      "role": "handoff",
+      "name": "Бронювання (посилання)",
+      "mode": "link",
+      "target": {
+        "url": "hotel/book",
+        "query": [
+          { "name": "destination", "source": { "from": "field", "key": "destination" } },
+          { "name": "checkin", "source": { "from": "field", "key": "dates", "pick": "first", "format": "YYYY-MM-DD" } },
+          { "name": "checkout", "source": { "from": "field", "key": "dates", "pick": "last", "format": "YYYY-MM-DD" } },
+          { "name": "adults", "source": { "from": "field", "key": "adults", "format": "number" } },
+          { "name": "children", "source": { "from": "field", "key": "children", "format": "number" } },
+          { "name": "rooms", "source": { "from": "field", "key": "rooms", "format": "number" } },
+          { "name": "lang", "source": { "from": "system", "value": "locale" } },
+          { "name": "return", "source": { "from": "system", "value": "return" } }
+        ]
+      }
+    },
+    {
+      "id": "hotel-booking-session",
+      "role": "handoff",
+      "name": "Бронювання (сесія)",
+      "mode": "session",
+      "session": {
+        "url": "hotel/sessions",
+        "method": "POST",
+        "body": [
+          { "name": "stay.destination", "source": { "from": "field", "key": "destination" } },
+          { "name": "stay.checkin", "source": { "from": "field", "key": "dates", "pick": "first", "format": "DD.MM.YYYY" } },
+          { "name": "stay.checkout", "source": { "from": "field", "key": "dates", "pick": "last", "format": "DD.MM.YYYY" } },
+          { "name": "guests.adults", "source": { "from": "field", "key": "adults", "format": "number" } },
+          { "name": "guests.children", "source": { "from": "field", "key": "children", "format": "number" } },
+          { "name": "rooms", "source": { "from": "field", "key": "rooms", "format": "number" } },
+          { "name": "language", "source": { "from": "system", "value": "locale" } },
+          { "name": "returnUrl", "source": { "from": "system", "value": "return" } }
+        ]
+      },
+      "target": {
+        "url": "hotel/book",
+        "query": [
+          { "name": "session", "source": { "from": "response", "path": "token" } }
+        ]
+      }
+    }
+  ]
+}

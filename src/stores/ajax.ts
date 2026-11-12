@@ -1,4 +1,5 @@
 /* eslint-disable unicorn/no-useless-promise-resolve-reject */
+import type { ClientApiDocument } from '@sve/dock'
 import type { InternalAxiosRequestConfig } from 'axios'
 import type { GlobalSettingsModel } from '@/types/GlobalSettingsModel'
 import type { MenuItemModel } from '@/types/MenuItemModel'
@@ -1415,6 +1416,26 @@ export const useAjaxStore = defineStore('ajax', () => {
     return response ?? { popups: [] }
   }
 
+  // The docking block's settings: the client's API ("Підключення API",
+  // packages/dock).
+  async function getClientApi (): Promise<ClientApiDocument> {
+    const response = await getDynamicFilesData('client-api.json', '/content/settings/client-api') as ClientApiDocument | null
+    return response ?? { requests: [] }
+  }
+
+  async function saveClientApi (document: ClientApiDocument, options: { publish?: boolean } = {}) {
+    await saveDynamicFileData('client-api.json', document, '/content/settings/client-api', { what: t('clientApi.title'), ...options })
+  }
+
+  async function isClientApiUpdated () {
+    return isDynamicFileUpdated('client-api.json')
+  }
+
+  async function undoClientApi (): Promise<ClientApiDocument> {
+    const response = await undoDynamicFileData<ClientApiDocument>('client-api.json', '/content/settings/client-api')
+    return response ?? { requests: [] }
+  }
+
   // Which variant (1, 2, ...) of each "Особистий кабінет" page is selected,
   // keyed by that page's production route name.
   async function getAccountPages () {
@@ -1440,6 +1461,10 @@ export const useAjaxStore = defineStore('ajax', () => {
     savePopups,
     isPopupsUpdated,
     undoPopups,
+    getClientApi,
+    saveClientApi,
+    isClientApiUpdated,
+    undoClientApi,
     error,
     success,
     isLogged,

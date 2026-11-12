@@ -114,6 +114,11 @@
     "en": "Frequently Asked Questions",
     "de": "Häufig gestellte Fragen"
   },
+  "hotelSearch": {
+    "uk": "Пошук готелю",
+    "en": "",
+    "de": ""
+  },
   "transferServicesSteps": {
     "uk": "Кроки в кружках",
     "en": "Transfer Services Steps",
@@ -249,6 +254,11 @@
       "uk": "Кроки процесу в кружечках, один за одним.",
       "en": "Steps of the transfer service process in circles, one after another.",
       "de": "Schritte des Transfer-Service-Prozesses in Kreisen, einer nach dem anderen."
+    },
+    "hotelSearch": {
+      "uk": "Куди, коли, скільки гостей — і далі в систему бронювання клієнта. Міста, вільні дати й ціни бере з API клієнта («Підключення API»).",
+      "en": "",
+      "de": ""
     },
     "feedbackForm": {
       "uk": "Форма, де відвідувач лишає ім’я, телефон і повідомлення. На неї може вести кнопка.",

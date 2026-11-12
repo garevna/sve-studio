@@ -16,6 +16,7 @@ import buttonSet from './buttonSet.json'
 import calendars from './calendars.json'
 import cards from './cards.json'
 import cardStyles from './cardStyles.json'
+import clientApi from './clientApi.json'
 import common from './common.json'
 import confirm from './confirm.json'
 import contacts from './contacts.json'
@@ -94,6 +95,7 @@ export const MESSAGES = {
   linkTarget,
   menuSettings,
   menuStyle,
+  clientApi,
   pagePopups,
   popupLooks,
   calendars,

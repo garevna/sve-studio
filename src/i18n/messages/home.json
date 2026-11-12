@@ -198,6 +198,18 @@
         "de": "Fenster über der Seite: Ihre Öffnung wird durch Schaltflächen auf jeder Seite ausgelöst"
       }
     },
+    "client-api": {
+      "title": {
+        "uk": "Підключення API",
+        "en": "",
+        "de": ""
+      },
+      "description": {
+        "uk": "Стикувальний блок: куди форми сайту звертаються в API клієнта і як відвідувач переходить у систему клієнта",
+        "en": "",
+        "de": ""
+      }
+    },
     "log": {
       "title": {
         "uk": "Журнал помилок",

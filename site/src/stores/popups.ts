@@ -1,7 +1,7 @@
 import type { PopupCalendarModel, PopupLookModel, PopupModel } from '../types/common'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
-import { deliverAnswer } from '../services/client-api'
+import { dock, reportDock } from '../services/dock'
 import { useCommonStore } from './common'
 
 // The site's popups (content/settings/popups.json) and, for each, whether
@@ -11,7 +11,8 @@ import { useCommonStore } from './common'
 //
 // show() also hands back the visitor's answer (configs/popup-kinds.ts):
 // whoever opened the popup may wait for it, and it goes to the client's
-// API endpoint the popup names (services/client-api.ts). Closed without an
+// API request the popup names (`deliver` - a request of role 'answer' in
+// content/settings/client-api.json, services/dock.ts). Closed without an
 // answer - null.
 export const usePopupsStore = defineStore('popups', () => {
   const items = ref<PopupModel[]>([])
@@ -41,7 +42,7 @@ export const usePopupsStore = defineStore('popups', () => {
     const popup = items.value.find(item => item.id === id) as PopupModel | undefined
     if (popup?.deliver && value !== null && value !== undefined) {
       const common = useCommonStore()
-      void deliverAnswer(popup.deliver, {
+      void dock.answer(popup.deliver, {
         source: 'popup',
         id,
         name: popup.name,
@@ -50,7 +51,7 @@ export const usePopupsStore = defineStore('popups', () => {
         locale: common.locale,
         page: typeof location === 'undefined' ? '' : location.pathname,
         at: new Date().toISOString(),
-      })
+      }).catch(error => reportDock(`popup "${popup.name}"`, error))
     }
   }
 

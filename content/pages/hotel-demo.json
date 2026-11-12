@@ -1,0 +1,32 @@
+{
+  "id": "hotel-demo",
+  "title": {
+    "uk": "Готель (демо)",
+    "en": "Hotel (demo)",
+    "de": "Hotel (Demo)"
+  },
+  "breadcrumbs": true,
+  "backButton": false,
+  "hero": false,
+  "blocks": [
+    {
+      "type": "component",
+      "content": "HotelSearch",
+      "props": {
+        "title": {
+          "uk": "Знайдіть свій готель",
+          "en": "Find your hotel",
+          "de": "Finden Sie Ihr Hotel"
+        },
+        "subtitle": {
+          "uk": "Оберіть місто й дати — вільні ночі й ціни видно одразу в календарі",
+          "en": "Pick a city and dates — free nights and prices show right in the calendar",
+          "de": "Stadt und Daten wählen — freie Nächte und Preise sehen Sie direkt im Kalender"
+        },
+        "destinations": "hotel-destinations",
+        "availability": "hotel-availability",
+        "booking": "hotel-booking"
+      }
+    }
+  ]
+}

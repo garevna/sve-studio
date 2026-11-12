@@ -282,6 +282,14 @@ export const listOfComponents = [
         iconClass: 'mr-2',
         image: null,
       },
+      {
+        id: 'hotel-search',
+        title: 'blockMenu.hotelSearch',
+        icon: 'mdi-bed-outline',
+        class: 'ml-12',
+        iconClass: 'mr-2',
+        image: null,
+      },
     ],
   },
 ]

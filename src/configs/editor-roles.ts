@@ -43,6 +43,7 @@ export type EditorSectionKey
     | 'account'
     | 'messages'
     | 'popups'
+    | 'client-api'
     | 'users'
     | 'log'
     | 'architecture'
@@ -81,6 +82,9 @@ export const EDITOR_SECTIONS: EditorSection[] = [
   { key: 'general-settings', icon: 'mdi-cog-outline', to: '/general-settings', group: 'settings' },
   { key: 'seo', icon: 'mdi-magnify', to: '/seo', group: 'settings' },
   { key: 'account', icon: 'mdi-account-circle-outline', to: '/account', group: 'settings' },
+  // The docking block: the client's own API (packages/dock) - for whoever
+  // connects the site to it, the developer.
+  { key: 'client-api', icon: 'mdi-connection', to: '/client-api', group: 'settings' },
   // Not in any role's list below, so only a supervisor (sections: null) and
   // an owner ever see it: handing out roles is the one thing a role cannot
   // be given.
@@ -151,7 +155,7 @@ export const EDITOR_ROLES: EditorRole[] = [
     // below supervisor. Everything except 'seo' - that one belongs to the
     // SEO specialist, and a developer who genuinely needs it is one key
     // away (or one switch to supervisor).
-    sections: ['styles', 'palette', 'ui-kit', 'general-settings', 'pages', 'menu', 'header', 'footer', 'account', 'architecture'],
+    sections: ['styles', 'palette', 'ui-kit', 'general-settings', 'pages', 'menu', 'header', 'footer', 'account', 'client-api', 'architecture'],
     canEditPageContent: true,
     generalSettingsScope: 'full',
   },
@@ -223,6 +227,12 @@ export function sectionForContentPath (path: string): EditorSectionKey | null {
   }
   if (clean.startsWith('/settings/global')) {
     return 'general-settings'
+  }
+  if (clean.startsWith('/settings/popups')) {
+    return 'popups'
+  }
+  if (clean.startsWith('/settings/client-api')) {
+    return 'client-api'
   }
   // An unknown path belongs to no section, so nobody below supervisor
   // writes it - a new route is closed until it is placed here.

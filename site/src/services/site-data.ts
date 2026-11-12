@@ -1,3 +1,4 @@
+import type { ClientApiDocument } from '@sve/dock'
 import type { GlobalSettingsModel, MenuItemModel, PopupsDocument, SeoSettingsModel, TemplateBlockModel, TemplatePageModel } from '../types/common'
 import { withDefaultPopups } from '../configs/default-popups'
 import { withDefaultCalendars, withDefaultLooks } from '../configs/popup-looks'
@@ -62,6 +63,11 @@ export async function getPopups () {
   const document = await dbRequest<PopupsDocument | null>('settings', 'get', { key: 'popups' }).catch(() => null)
   // the base package's popups are there whatever the stored list says
   return { popups: withDefaultPopups(document?.popups ?? []), looks: withDefaultLooks(document), calendars: withDefaultCalendars(document) }
+}
+
+// The docking block's settings: the client's API (packages/dock).
+export async function getClientApi (): Promise<ClientApiDocument | null> {
+  return (await dbRequest<ClientApiDocument | null>('settings', 'get', { key: 'client-api' }).catch(() => null)) ?? null
 }
 
 export async function getSeoSettings (): Promise<SeoSettingsModel | null> {

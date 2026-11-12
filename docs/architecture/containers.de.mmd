@@ -32,4 +32,6 @@ flowchart LR
   site -- "Übersetzung, Texte" --> ai
   site --> fb
   editor --> fb
-  site -- "Popup-Antworten" --> client
+  engine["Anfrageannahme des Kunden<br/>Buchung, Warenkorb, Anfrage"]
+  site -- "Andockblock:<br/>Listen, freie Tage, Antworten" --> client
+  site -- "Besucher geht weiter" --> engine

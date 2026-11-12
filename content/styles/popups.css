@@ -261,7 +261,7 @@
   display: block;
   margin-top: 0;
 }
-.pw-popup .pw-calendar {
+:is(.pw-popup, .pw-calendar-host) .pw-calendar {
   /* the window's corners shape it, not Vuetify's own */
   border-radius: 0 !important;
   width: 100%;
@@ -270,7 +270,7 @@
   background: transparent !important;
   box-shadow: none !important;
 }
-.pw-popup .pw-calendar:not(.pw-calendar--material) .v-date-picker-controls {
+:is(.pw-popup, .pw-calendar-host) .pw-calendar:not(.pw-calendar--material) .v-date-picker-controls {
   /* Vuetify fixes this row at 56px; with room around its content that
      pushed the month and the arrows to the bottom edge - the row takes its
      content's height and centres it */
@@ -282,15 +282,15 @@
   background: var(--pw-cal-head-bg) !important;
   color: var(--pw-cal-head-fg) !important;
 }
-.pw-popup .pw-calendar:not(.pw-calendar--material) .v-date-picker-controls .v-btn {
+:is(.pw-popup, .pw-calendar-host) .pw-calendar:not(.pw-calendar--material) .v-date-picker-controls .v-btn {
   color: var(--pw-cal-head-fg) !important;
 }
 /* the month's name: its weight is the calendar's (--pw-cal-month-weight) */
-.pw-popup .pw-calendar.v-picker .v-date-picker-controls .v-btn {
+:is(.pw-popup, .pw-calendar-host) .pw-calendar.v-picker .v-date-picker-controls .v-btn {
   font-weight: var(--pw-cal-month-weight, 600) !important;
 }
-.pw-popup .pw-calendar .v-date-picker-controls__month,
-.pw-popup .pw-calendar .v-date-picker-controls__year {
+:is(.pw-popup, .pw-calendar-host) .pw-calendar .v-date-picker-controls__month,
+:is(.pw-popup, .pw-calendar-host) .pw-calendar .v-date-picker-controls__year {
   align-items: center;
   height: auto;
 }
@@ -299,92 +299,92 @@
 /* The theme lays every picker out as one "body" area (date-picker.css
    .v-picker.v-sheet), which sent this header to the bottom; it goes back on
    top here. */
-.pw-popup .pw-calendar--material.v-picker.v-sheet {
+:is(.pw-popup, .pw-calendar-host) .pw-calendar--material.v-picker.v-sheet {
   grid-template-areas: "title" "header" "body";
 }
-.pw-popup .pw-calendar--material .v-picker-title { grid-area: title; }
-.pw-popup .pw-calendar--material .v-date-picker-header { grid-area: header; }
-.pw-popup .pw-calendar--material .v-picker__body { grid-area: body; }
-.pw-popup .pw-calendar--material .v-picker-title,
-.pw-popup .pw-calendar--material .v-date-picker-header {
+:is(.pw-popup, .pw-calendar-host) .pw-calendar--material .v-picker-title { grid-area: title; }
+:is(.pw-popup, .pw-calendar-host) .pw-calendar--material .v-date-picker-header { grid-area: header; }
+:is(.pw-popup, .pw-calendar-host) .pw-calendar--material .v-picker__body { grid-area: body; }
+:is(.pw-popup, .pw-calendar-host) .pw-calendar--material .v-picker-title,
+:is(.pw-popup, .pw-calendar-host) .pw-calendar--material .v-date-picker-header {
   background: var(--pw-cal-head-bg) !important;
   color: var(--pw-cal-head-fg) !important;
 }
-.pw-popup .pw-calendar--material .v-picker-title {
+:is(.pw-popup, .pw-calendar-host) .pw-calendar--material .v-picker-title {
   padding: 16px 24px 0;
   margin: 0;
 }
-.pw-popup .pw-calendar--material .v-date-picker-header {
+:is(.pw-popup, .pw-calendar-host) .pw-calendar--material .v-date-picker-header {
   /* Vuetify sets the date at the header's foot; centred, with even room */
   align-items: center;
   min-height: 0;
   padding: 12px 24px;
 }
 /* no title given: no empty band above the date */
-.pw-popup .pw-calendar--material .v-picker-title:has(.v-date-picker__title:empty) {
+:is(.pw-popup, .pw-calendar-host) .pw-calendar--material .v-picker-title:has(.v-date-picker__title:empty) {
   display: none;
 }
-.pw-popup .pw-calendar--material .v-date-picker-controls {
+:is(.pw-popup, .pw-calendar-host) .pw-calendar--material .v-date-picker-controls {
   padding: 8px 12px 0 16px;
 }
 /* weeks: the week numbers, quiet */
-.pw-popup .pw-calendar--weeks .v-date-picker-month__weeks {
+:is(.pw-popup, .pw-calendar-host) .pw-calendar--weeks .v-date-picker-month__weeks {
   color: var(--pw-cal-weekday);
   opacity: 0.7;
 }
-.pw-popup .pw-calendar .v-date-picker-month {
+:is(.pw-popup, .pw-calendar-host) .pw-calendar .v-date-picker-month {
   padding: 0 16px;
 }
-.pw-popup .pw-calendar .v-date-picker-month__weekday {
+:is(.pw-popup, .pw-calendar-host) .pw-calendar .v-date-picker-month__weekday {
   opacity: 1 !important;
   color: var(--pw-cal-weekday) !important;
   text-transform: capitalize;
 }
-.pw-popup .pw-calendar .v-date-picker-month__day .v-btn.v-date-picker-month__day-btn {
+:is(.pw-popup, .pw-calendar-host) .pw-calendar .v-date-picker-month__day .v-btn.v-date-picker-month__day-btn {
   border-radius: var(--pw-cal-day-radius) !important;
 }
-.pw-popup .pw-calendar .v-date-picker-month__day--selected .v-btn.v-date-picker-month__day-btn {
+:is(.pw-popup, .pw-calendar-host) .pw-calendar .v-date-picker-month__day--selected .v-btn.v-date-picker-month__day-btn {
   background: var(--pw-cal-sel-bg) !important;
   color: var(--pw-cal-sel-fg) !important;
 }
-.pw-popup .pw-calendar .v-date-picker-month__day:not(.v-date-picker-month__day--selected) .v-btn[aria-current="date"] {
+:is(.pw-popup, .pw-calendar-host) .pw-calendar .v-date-picker-month__day:not(.v-date-picker-month__day--selected) .v-btn[aria-current="date"] {
   border: solid 2px var(--pw-cal-today);
   color: var(--pw-cal-today) !important;
 }
 /* vertical: turned on its side - the day names down the left, a week a
    column. The days come week by week, so flowing them into columns of 7
    does it; the theme's 7-column rule has to give way. */
-.pw-popup .pw-calendar--vertical .v-date-picker-month__days {
+:is(.pw-popup, .pw-calendar-host) .pw-calendar--vertical .v-date-picker-month__days {
   grid-auto-flow: column;
   grid-template-rows: repeat(7, auto);
   grid-template-columns: none !important;
   justify-content: space-around;
   row-gap: 2px;
 }
-.pw-popup .pw-calendar--vertical .v-date-picker-month__weekday {
+:is(.pw-popup, .pw-calendar-host) .pw-calendar--vertical .v-date-picker-month__weekday {
   justify-content: flex-start;
   padding-right: 12px;
   font-weight: 600;
 }
 /* tiles: every day a tile */
-.pw-popup .pw-calendar--tiles .v-date-picker-month__days {
+:is(.pw-popup, .pw-calendar-host) .pw-calendar--tiles .v-date-picker-month__days {
   gap: 6px;
 }
-.pw-popup .pw-calendar--tiles .v-date-picker-month__day:not(.v-date-picker-month__weekday):not(.v-date-picker-month__day--selected) .v-btn.v-date-picker-month__day-btn {
+:is(.pw-popup, .pw-calendar-host) .pw-calendar--tiles .v-date-picker-month__day:not(.v-date-picker-month__weekday):not(.v-date-picker-month__day--selected) .v-btn.v-date-picker-month__day-btn {
   background: var(--light-grey-2) !important;
 }
-.pw-popup .pw-calendar--tiles .v-date-picker-month__day--adjacent .v-btn.v-date-picker-month__day-btn {
+:is(.pw-popup, .pw-calendar-host) .pw-calendar--tiles .v-date-picker-month__day--adjacent .v-btn.v-date-picker-month__day-btn {
   opacity: 0.45;
 }
 /* lines: the day names in capitals over a thin line, the weekend marked */
-.pw-popup .pw-calendar--lines .v-date-picker-month__weekday {
+:is(.pw-popup, .pw-calendar-host) .pw-calendar--lines .v-date-picker-month__weekday {
   padding-bottom: 6px;
   border-bottom: 1px solid var(--light-grey-1);
   font-size: 11px !important;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
-.pw-popup .pw-calendar--lines .v-date-picker-month__day--week-end:not(.v-date-picker-month__day--selected) .v-btn.v-date-picker-month__day-btn {
+:is(.pw-popup, .pw-calendar-host) .pw-calendar--lines .v-date-picker-month__day--week-end:not(.v-date-picker-month__day--selected) .v-btn.v-date-picker-month__day-btn {
   color: var(--pw-cal-today) !important;
 }
 .pw-popup__text--after {

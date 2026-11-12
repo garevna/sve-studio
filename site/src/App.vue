@@ -21,8 +21,9 @@
   import { siteStyles } from './configs/card-style'
   import { FOOTER_FINAL_FRAME, FOOTER_HORIZON, resolveFooterVariant } from './configs/footer-variants'
   import { HERO_SPLIT_VARIANT, HERO_WITH_TITLE_VARIANT } from './configs/header-layout'
+  import { setClientApiDocument } from './services/dock'
   import { loadCountryList } from './services/load-country-list'
-  import { getFooter, getMenu, getPage, getPageTitles, getPalette, getPopups, getSeoSettings, getSiteSettings } from './services/site-data'
+  import { getClientApi, getFooter, getMenu, getPage, getPageTitles, getPalette, getPopups, getSeoSettings, getSiteSettings } from './services/site-data'
   import { ACCOUNT_PAGE_ID, AUTH_PAGE_ID, parseSitePath } from './services/site-links'
   import { useCommonStore } from './stores/common'
   import { usePopupsStore } from './stores/popups'
@@ -84,7 +85,7 @@
   // --- the site, once ---------------------------------------------------------
 
   async function loadSite () {
-    const [settings, palette, menu, footer, seoSettings, pageTitles, popups] = await Promise.all([
+    const [settings, palette, menu, footer, seoSettings, pageTitles, popups, clientApi] = await Promise.all([
       getSiteSettings(),
       getPalette(),
       getMenu(),
@@ -92,7 +93,9 @@
       getSeoSettings(),
       getPageTitles(),
       getPopups(),
+      getClientApi(),
     ])
+    setClientApiDocument(clientApi)
     popupsStore.items = popups.popups
     popupsStore.looks = popups.looks
     popupsStore.calendars = popups.calendars

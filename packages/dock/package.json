@@ -1,0 +1,12 @@
+{
+  "name": "@sve/dock",
+  "private": true,
+  "license": "SEE LICENSE IN ../../LICENSE",
+  "author": "Irina Fylyppova (https://github.com/garevna)",
+  "type": "module",
+  "version": "0.1.0",
+  "description": "The docking block: one layer between a site's forms and the client's own API. Settings in content/settings/client-api.json; the forms know only field keys.",
+  "exports": {
+    ".": "./src/index.ts"
+  }
+}

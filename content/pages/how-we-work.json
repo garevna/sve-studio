@@ -72,7 +72,10 @@
               "route": "dynamic-page",
               "params": {
                 "pageId": "contacts-page"
-              }
+              },
+              "action": "popup",
+              "popup": "popup-feedback",
+              "icon": "mdi-message-draw"
             }
           ]
         },

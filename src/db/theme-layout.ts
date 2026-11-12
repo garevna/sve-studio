@@ -7,7 +7,7 @@
 //
 // NOTE: site/src/db/theme-layout.ts is an exact copy - keep
 // the two identical.
-const SETTINGS_KEYS = new Set(['global', 'palette', 'seo', 'menu-content', 'popups'])
+const SETTINGS_KEYS = new Set(['global', 'palette', 'seo', 'menu-content', 'popups', 'client-api'])
 
 export function themeFilePath (fileName: string): string {
   if (fileName === 'manifest.json') {

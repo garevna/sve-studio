@@ -32,4 +32,6 @@ flowchart LR
   site -- "translation, texts" --> ai
   site --> fb
   editor --> fb
-  site -- "popup answers" --> client
+  engine["Client's request intake<br/>booking, cart, enquiry"]
+  site -- "docking block:<br/>lists, free days, answers" --> client
+  site -- "the visitor goes on" --> engine

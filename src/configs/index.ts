@@ -8,6 +8,7 @@ import { faq } from './components/faq'
 import { feedbackForm } from './components/feedback-form'
 import { galery1 } from './components/galery-1'
 import { galery2 } from './components/galery-2'
+import { hotelSearch } from './components/hotel-search'
 import { parallaxTemplate } from './components/parallax'
 import { parallaxInsideTemplate } from './components/parallax-inside'
 import { popularDestinations } from './components/popular-destinations'
@@ -60,4 +61,5 @@ export const components = {
   'popular-destinations': popularDestinations,
   'transfer-services-steps': transferServicesSteps,
   'feedback-form': feedbackForm,
+  'hotel-search': hotelSearch,
 }

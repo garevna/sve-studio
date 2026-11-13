@@ -47,3 +47,9 @@ public/images/theme_*/uploads/
 # Cloudflare Worker secrets for local runs - never committed
 .dev.vars
 .wrangler/
+
+# real secret values: an inventory lives in secrets.example.json, the
+# values live in a password manager and are uploaded with `wrangler secret bulk`
+secrets.json
+*/secrets.json
+**/secrets.json

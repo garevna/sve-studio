@@ -56,3 +56,26 @@ service cloud.firestore {
 The service account key: Project settings → Service accounts → Generate new
 private key. Paste the whole file's content as `FIREBASE_SERVICE_ACCOUNT`, then
 delete the downloaded file. Never commit it.
+
+## Секреты
+
+Какие именно нужны — видно в `secrets.example.json` рядом. Значений там нет:
+это опись, а не хранилище.
+
+Реальные значения держатся **вне репозитория** — в менеджере паролей. Чтобы
+залить их в Cloudflare, скопируй опись в `secrets.json`, впиши значения и
+выполни:
+
+```
+npx wrangler secret bulk secrets.json
+```
+
+Одна команда вместо десяти `secret put`, и — главное — при переезде на другой
+аккаунт не приходится вспоминать, что вообще требовалось. `secrets.json` в
+`.gitignore`; после заливки его можно удалить, значения остаются в менеджере
+паролей.
+
+Прочитать секрет обратно из Cloudflare **нельзя** — они пишутся в одну
+сторону. Если значение потерялось, его берут из источника: токен бота у
+@BotFather, ключ сервис-аккаунта в консоли Firebase, id канала у @getidsbot,
+секрет вебхука придумывается новый.

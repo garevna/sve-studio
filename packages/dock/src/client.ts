@@ -96,7 +96,40 @@ export function createDock ({ document, root, fetch: fetcher = (...args) => fetc
     })
   }
 
+  // The field keys a request reads.
+  function reads (id: string | undefined): string[] {
+    const found = id ? document()?.requests.find(item => item.id === id) : undefined
+    if (!found) {
+      return []
+    }
+    const keys = found.role === 'handoff'
+      ? fieldsOf([...(found.session?.query ?? []), ...(found.session?.body ?? []), ...(found.target.query ?? [])])
+      : fieldsOf([...(found.call.query ?? []), ...(found.call.body ?? [])])
+    // a field read twice (a stay's first and last day) is one field
+    return [...new Set(keys)]
+  }
+
   return {
+    reads,
+
+    // The fields a request still waits for (no value yet).
+    missing (id: string | undefined, values: Record<string, unknown>): string[] {
+      return reads(id).filter(key => {
+        const value = values[key]
+        return value === undefined || value === null || value === '' || (Array.isArray(value) && value.length === 0)
+      })
+    },
+
+    // A docking form by its id.
+    form (id: string | undefined) {
+      return id ? document()?.forms?.find(item => item.id === id) ?? null : null
+    },
+
+    // The role of a request (what a form's button does with it).
+    roleOf (id: string | undefined) {
+      return id ? document()?.requests.find(item => item.id === id)?.role ?? null : null
+    },
+
     // The first list set up to be chosen as cards (it names a picture) - a
     // block that was never told which list gives its cards takes this one.
     cardsRequest (): string | undefined {

@@ -1,5 +1,6 @@
-import type { ClientApiDocument } from '@sve/dock'
+import type { ClientApiDocument, FormsDocument } from '@sve/dock'
 import type { GlobalSettingsModel, MenuItemModel, PopupsDocument, SeoSettingsModel, TemplateBlockModel, TemplatePageModel } from '../types/common'
+import { withDefaultFieldLooks } from '@sve/dock'
 import { withDefaultPopups } from '../configs/default-popups'
 import { withDefaultCalendars, withDefaultLooks } from '../configs/popup-looks'
 import { dbRequest } from '../db/client'
@@ -62,12 +63,21 @@ export async function getFooter (): Promise<TemplateBlockModel | null> {
 export async function getPopups () {
   const document = await dbRequest<PopupsDocument | null>('settings', 'get', { key: 'popups' }).catch(() => null)
   // the base package's popups are there whatever the stored list says
-  return { popups: withDefaultPopups(document?.popups ?? []), looks: withDefaultLooks(document), calendars: withDefaultCalendars(document) }
+  return { popups: withDefaultPopups(document?.popups ?? []), looks: withDefaultLooks(document), calendars: withDefaultCalendars(document), fieldLooks: withDefaultFieldLooks(document?.fieldLooks) }
 }
 
-// The docking block's settings: the client's API (packages/dock).
+// The docking block's settings: the client's API (packages/dock), given the
+// site's forms (forms.json) - which fields a request reads is theirs. A
+// client-api.json from before forms.json still carries its own.
 export async function getClientApi (): Promise<ClientApiDocument | null> {
-  return (await dbRequest<ClientApiDocument | null>('settings', 'get', { key: 'client-api' }).catch(() => null)) ?? null
+  const [document, forms] = await Promise.all([
+    dbRequest<ClientApiDocument | null>('settings', 'get', { key: 'client-api' }).catch(() => null),
+    dbRequest<FormsDocument | null>('settings', 'get', { key: 'forms' }).catch(() => null),
+  ])
+  if (!document && !forms) {
+    return null
+  }
+  return { ...document, requests: document?.requests ?? [], forms: document?.forms ?? forms?.forms ?? [] }
 }
 
 export async function getSeoSettings (): Promise<SeoSettingsModel | null> {

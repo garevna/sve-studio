@@ -1,3 +1,4 @@
+import type { DockFieldLook } from '@sve/dock'
 import type { PopupCalendarModel, PopupLookModel, PopupModel } from '../types/common'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
@@ -21,6 +22,8 @@ export const usePopupsStore = defineStore('popups', () => {
   // "Календар"; configs/popup-looks.ts).
   const looks = ref<PopupLookModel[]>([])
   const calendars = ref<PopupCalendarModel[]>([])
+  // ...and of the docking forms' elements (UI Kit "Елементи форми")
+  const fieldLooks = ref<DockFieldLook[]>([])
   // What each open popup is about (a card's title, say): a form shows it and
   // sends it with the answers.
   const context = ref<Record<string, string>>({})
@@ -66,5 +69,5 @@ export const usePopupsStore = defineStore('popups', () => {
     }
   }
 
-  return { items, open, context, looks, calendars, show, answer, hide, hideAll }
+  return { items, open, context, looks, calendars, fieldLooks, show, answer, hide, hideAll }
 })

@@ -1,12 +1,14 @@
 <script lang="ts" setup>
   import type { DockRequest, DockRole } from '@sve/dock'
-  import { fieldsOf } from '@sve/dock'
+  import { fieldsOf, formKeys } from '@sve/dock'
   import { computed, onMounted, ref } from 'vue'
+  import { useRoute } from 'vue-router'
   import ClientApiRequestPanel from '@/components/editors/client-api/ClientApiRequestPanel.vue'
   import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
   import EditorPageHeader from '@/components/special/EditorPageHeader.vue'
   import EditorSaveBar from '@/components/special/EditorSaveBar.vue'
   import { DOCK_ROLES, dockRoleIcon, useClientApi } from '@/composables/useClientApi'
+  import { useSiteForms } from '@/composables/useSiteForms'
   import { DEMO_CLIENT_URL, isDemoClient, openDemoAdmin } from '@/configs/demo-client'
   import { editorUiLocale, t } from '@/i18n'
   import { useUiFeedbackStore } from '@/stores/ui-feedback'
@@ -18,21 +20,31 @@
   // With the demo's made-up client connected, its admin opens in a window of
   // its own: everything the site sends shows up there as it arrives.
   const clientApi = useClientApi()
+  const siteForms = useSiteForms()
+  // ?from=<path>: opened from a docking form's "Підключення" - the back
+  // arrow returns there
+  const route = useRoute()
+  const backTo = computed(() => (typeof route.query.from === 'string' && route.query.from.startsWith('/') ? route.query.from : '/'))
   const demoClient = computed(() => isDemoClient(clientApi.document.value.baseUrl))
   const expanded = ref<string | null>(null)
   const saving = ref(false)
   const undoing = ref(false)
 
-  onMounted(() => clientApi.load())
+  onMounted(() => {
+    void clientApi.load()
+    void siteForms.load()
+  })
 
-  // The keys the site's forms fill in (HotelSearch.vue), plus any a request
-  // already reads.
+  // The keys the site's forms fill in - the docking forms' fields and the
+  // older hotel search block (HotelSearch.vue) - plus any a request already
+  // reads.
   const FORM_KEYS = ['destination', 'dates', 'adults', 'children', 'rooms', 'room']
   const keys = computed(() => {
     const used = clientApi.document.value.requests.flatMap(request => request.role === 'handoff'
       ? fieldsOf([...(request.session?.query ?? []), ...(request.session?.body ?? []), ...(request.target.query ?? [])])
       : fieldsOf([...(request.call.query ?? []), ...(request.call.body ?? [])]))
-    return [...new Set([...FORM_KEYS, ...used])].filter(Boolean)
+    const ofForms = siteForms.document.value.forms.flatMap(form => formKeys(form))
+    return [...new Set([...FORM_KEYS, ...ofForms, ...used])].filter(Boolean)
   })
 
   function toggle (id: string) {
@@ -83,7 +95,7 @@
 <template>
   <v-app>
     <v-main class="editor-page">
-      <EditorPageHeader back-to="/" detail="client-api.json" :title="t('clientApi.title')" />
+      <EditorPageHeader :back-to="backTo" detail="client-api.json" :title="t('clientApi.title')" />
 
       <p class="dock-hint">{{ t('clientApi.hint') }}</p>
       <v-progress-linear v-if="!clientApi.loaded.value" color="primary" indeterminate />

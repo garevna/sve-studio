@@ -14,6 +14,12 @@ erDiagram
   BLOCK }o--o| REQUEST : "destinations, availability, booking"
   LOOK }o--o{ SET_BUTTON : "buttons.main, .second"
   CLIENT_API ||--o{ REQUEST : "requests"
+  FORMS ||--o{ FORM : "forms"
+  BLOCK }o--o| FORM : "form (id)"
+  FORM }o--o{ REQUEST : "request полів і кнопки"
+  FORM }o--o| GLOBAL : "action channel"
+  POPUPS ||--o{ FIELD_LOOK : "fieldLooks"
+  FORM }o--o| FIELD_LOOK : "look (id)"
 
   PAGE {
     string id PK "pages/*.json"
@@ -67,4 +73,18 @@ erDiagram
     string id PK
     string role "options, dates, handoff, answer"
     string mode "link або session"
+  }
+  FORMS {
+    string file "settings/forms.json"
+  }
+  FORM {
+    string id PK
+    string name "назва в редакторі"
+    string layout "bar або stack"
+    json fields "choice, dates, counters, cards, text"
+    string action "channel або api"
+  }
+  FIELD_LOOK {
+    string id PK
+    json closed "закритий і розгорнутий вигляд"
   }

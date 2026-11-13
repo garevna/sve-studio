@@ -7,6 +7,7 @@
   import ButtonSetView from '@/views/ButtonSetView.vue'
   import CalendarsView from '@/views/CalendarsView.vue'
   import CardStylesView from '@/views/CardStylesView.vue'
+  import FieldLooksView from '@/views/FieldLooksView.vue'
   import FooterLayoutView from '@/views/FooterLayoutView.vue'
   import MenuStyleView from '@/views/MenuStyleView.vue'
   import PopupLooksView from '@/views/PopupLooksView.vue'
@@ -22,8 +23,8 @@
   // editor is for the content that goes in them.
   // ?tab=date and so on: a link from elsewhere (a date popup's settings)
   // opens on its tab.
-  type Tab = 'buttons' | 'tabs' | 'cards' | 'footer' | 'spacing' | 'menu' | 'popups' | 'date'
-  const TABS: Tab[] = ['buttons', 'tabs', 'cards', 'footer', 'spacing', 'menu', 'popups', 'date']
+  type Tab = 'buttons' | 'tabs' | 'cards' | 'footer' | 'spacing' | 'menu' | 'popups' | 'date' | 'fields'
+  const TABS: Tab[] = ['buttons', 'tabs', 'cards', 'footer', 'spacing', 'menu', 'popups', 'date', 'fields']
   const asked = useRoute().query.tab
   const tab = ref<Tab>(TABS.includes(asked as Tab) ? asked as Tab : 'buttons')
 </script>
@@ -49,6 +50,7 @@
         <v-tab value="menu">{{ t('common.menu') }}</v-tab>
         <v-tab value="popups">{{ t('popupLooks.tab') }}</v-tab>
         <v-tab value="date">{{ t('common.datePicker') }}</v-tab>
+        <v-tab value="fields">{{ t('fieldLooks.tab') }}</v-tab>
       </v-tabs>
 
       <v-tabs-window v-model="tab">
@@ -79,6 +81,10 @@
         </v-tabs-window-item>
         <v-tabs-window-item value="date">
           <CalendarsView v-if="tab === 'date'" />
+        </v-tabs-window-item>
+        <!-- the docking forms' elements (popups.json fieldLooks) -->
+        <v-tabs-window-item value="fields">
+          <FieldLooksView v-if="tab === 'fields'" />
         </v-tabs-window-item>
       </v-tabs-window>
     </v-main>

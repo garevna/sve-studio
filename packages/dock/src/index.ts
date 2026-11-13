@@ -2,5 +2,7 @@
 // forms and the client's own API. See types.ts for the settings and
 // docs/client-api.md for the whole contract.
 export * from './client'
+export * from './field-looks'
+export * from './form'
 export * from './resolve'
 export * from './types'

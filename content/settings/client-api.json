@@ -9,10 +9,20 @@
         "url": "hotel/destinations",
         "method": "GET",
         "query": [
-          { "name": "lang", "source": { "from": "system", "value": "locale" } }
+          {
+            "name": "lang",
+            "source": {
+              "from": "system",
+              "value": "locale"
+            }
+          }
         ]
       },
-      "list": { "path": "items", "value": "id", "label": "{name}, {country}" }
+      "list": {
+        "path": "items",
+        "value": "id",
+        "label": "{name}, {country}"
+      }
     },
     {
       "id": "hotel-availability",
@@ -22,11 +32,27 @@
         "url": "hotel/availability",
         "method": "GET",
         "query": [
-          { "name": "destination", "source": { "from": "field", "key": "destination" } },
-          { "name": "month", "source": { "from": "system", "value": "month" } }
+          {
+            "name": "destination",
+            "source": {
+              "from": "field",
+              "key": "destination"
+            }
+          },
+          {
+            "name": "month",
+            "source": {
+              "from": "system",
+              "value": "month"
+            }
+          }
         ]
       },
-      "result": { "path": "days", "date": "date", "hint": "{price}" }
+      "result": {
+        "path": "days",
+        "date": "date",
+        "hint": "{price}"
+      }
     },
     {
       "id": "hotel-rooms",
@@ -36,16 +62,72 @@
         "url": "hotel/rooms",
         "method": "GET",
         "query": [
-          { "name": "destination", "source": { "from": "field", "key": "destination" } },
-          { "name": "checkin", "source": { "from": "field", "key": "dates", "pick": "first", "format": "YYYY-MM-DD" } },
-          { "name": "checkout", "source": { "from": "field", "key": "dates", "pick": "last", "format": "YYYY-MM-DD" } },
-          { "name": "adults", "source": { "from": "field", "key": "adults", "format": "number" } },
-          { "name": "children", "source": { "from": "field", "key": "children", "format": "number" } },
-          { "name": "rooms", "source": { "from": "field", "key": "rooms", "format": "number" } },
-          { "name": "lang", "source": { "from": "system", "value": "locale" } }
+          {
+            "name": "destination",
+            "source": {
+              "from": "field",
+              "key": "destination"
+            }
+          },
+          {
+            "name": "checkin",
+            "source": {
+              "from": "field",
+              "key": "dates",
+              "pick": "first",
+              "format": "YYYY-MM-DD"
+            }
+          },
+          {
+            "name": "checkout",
+            "source": {
+              "from": "field",
+              "key": "dates",
+              "pick": "last",
+              "format": "YYYY-MM-DD"
+            }
+          },
+          {
+            "name": "adults",
+            "source": {
+              "from": "field",
+              "key": "adults",
+              "format": "number"
+            }
+          },
+          {
+            "name": "children",
+            "source": {
+              "from": "field",
+              "key": "children",
+              "format": "number"
+            }
+          },
+          {
+            "name": "rooms",
+            "source": {
+              "from": "field",
+              "key": "rooms",
+              "format": "number"
+            }
+          },
+          {
+            "name": "lang",
+            "source": {
+              "from": "system",
+              "value": "locale"
+            }
+          }
         ]
       },
-      "list": { "path": "items", "value": "id", "label": "{name}", "image": "image", "details": "perks", "hint": "{perNight} €" }
+      "list": {
+        "path": "items",
+        "value": "id",
+        "label": "{name}",
+        "image": "image",
+        "details": "perks",
+        "hint": "{perNight} €"
+      }
     },
     {
       "id": "hotel-booking",
@@ -55,15 +137,76 @@
       "target": {
         "url": "hotel/book",
         "query": [
-          { "name": "destination", "source": { "from": "field", "key": "destination" } },
-          { "name": "checkin", "source": { "from": "field", "key": "dates", "pick": "first", "format": "YYYY-MM-DD" } },
-          { "name": "checkout", "source": { "from": "field", "key": "dates", "pick": "last", "format": "YYYY-MM-DD" } },
-          { "name": "adults", "source": { "from": "field", "key": "adults", "format": "number" } },
-          { "name": "children", "source": { "from": "field", "key": "children", "format": "number" } },
-          { "name": "rooms", "source": { "from": "field", "key": "rooms", "format": "number" } },
-          { "name": "roomType", "source": { "from": "field", "key": "room" } },
-          { "name": "lang", "source": { "from": "system", "value": "locale" } },
-          { "name": "return", "source": { "from": "system", "value": "return" } }
+          {
+            "name": "destination",
+            "source": {
+              "from": "field",
+              "key": "destination"
+            }
+          },
+          {
+            "name": "checkin",
+            "source": {
+              "from": "field",
+              "key": "dates",
+              "pick": "first",
+              "format": "YYYY-MM-DD"
+            }
+          },
+          {
+            "name": "checkout",
+            "source": {
+              "from": "field",
+              "key": "dates",
+              "pick": "last",
+              "format": "YYYY-MM-DD"
+            }
+          },
+          {
+            "name": "adults",
+            "source": {
+              "from": "field",
+              "key": "adults",
+              "format": "number"
+            }
+          },
+          {
+            "name": "children",
+            "source": {
+              "from": "field",
+              "key": "children",
+              "format": "number"
+            }
+          },
+          {
+            "name": "rooms",
+            "source": {
+              "from": "field",
+              "key": "rooms",
+              "format": "number"
+            }
+          },
+          {
+            "name": "roomType",
+            "source": {
+              "from": "field",
+              "key": "room"
+            }
+          },
+          {
+            "name": "lang",
+            "source": {
+              "from": "system",
+              "value": "locale"
+            }
+          },
+          {
+            "name": "return",
+            "source": {
+              "from": "system",
+              "value": "return"
+            }
+          }
         ]
       }
     },
@@ -76,21 +219,88 @@
         "url": "hotel/sessions",
         "method": "POST",
         "body": [
-          { "name": "stay.destination", "source": { "from": "field", "key": "destination" } },
-          { "name": "stay.checkin", "source": { "from": "field", "key": "dates", "pick": "first", "format": "DD.MM.YYYY" } },
-          { "name": "stay.checkout", "source": { "from": "field", "key": "dates", "pick": "last", "format": "DD.MM.YYYY" } },
-          { "name": "stay.roomType", "source": { "from": "field", "key": "room" } },
-          { "name": "guests.adults", "source": { "from": "field", "key": "adults", "format": "number" } },
-          { "name": "guests.children", "source": { "from": "field", "key": "children", "format": "number" } },
-          { "name": "rooms", "source": { "from": "field", "key": "rooms", "format": "number" } },
-          { "name": "language", "source": { "from": "system", "value": "locale" } },
-          { "name": "returnUrl", "source": { "from": "system", "value": "return" } }
+          {
+            "name": "stay.destination",
+            "source": {
+              "from": "field",
+              "key": "destination"
+            }
+          },
+          {
+            "name": "stay.checkin",
+            "source": {
+              "from": "field",
+              "key": "dates",
+              "pick": "first",
+              "format": "DD.MM.YYYY"
+            }
+          },
+          {
+            "name": "stay.checkout",
+            "source": {
+              "from": "field",
+              "key": "dates",
+              "pick": "last",
+              "format": "DD.MM.YYYY"
+            }
+          },
+          {
+            "name": "stay.roomType",
+            "source": {
+              "from": "field",
+              "key": "room"
+            }
+          },
+          {
+            "name": "guests.adults",
+            "source": {
+              "from": "field",
+              "key": "adults",
+              "format": "number"
+            }
+          },
+          {
+            "name": "guests.children",
+            "source": {
+              "from": "field",
+              "key": "children",
+              "format": "number"
+            }
+          },
+          {
+            "name": "rooms",
+            "source": {
+              "from": "field",
+              "key": "rooms",
+              "format": "number"
+            }
+          },
+          {
+            "name": "language",
+            "source": {
+              "from": "system",
+              "value": "locale"
+            }
+          },
+          {
+            "name": "returnUrl",
+            "source": {
+              "from": "system",
+              "value": "return"
+            }
+          }
         ]
       },
       "target": {
         "url": "hotel/book",
         "query": [
-          { "name": "session", "source": { "from": "response", "path": "token" } }
+          {
+            "name": "session",
+            "source": {
+              "from": "response",
+              "path": "token"
+            }
+          }
         ]
       }
     }

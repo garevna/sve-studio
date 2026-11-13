@@ -11,7 +11,7 @@
   "blocks": [
     {
       "type": "component",
-      "content": "HotelSearch",
+      "content": "DockForm",
       "props": {
         "title": {
           "uk": "Знайдіть свій готель",
@@ -23,10 +23,7 @@
           "en": "Pick a city and dates — free nights and prices show right in the calendar",
           "de": "Stadt und Daten wählen — freie Nächte und Preise sehen Sie direkt im Kalender"
         },
-        "destinations": "hotel-destinations",
-        "availability": "hotel-availability",
-        "roomTypes": "hotel-rooms",
-        "booking": "hotel-booking"
+        "form": "booking"
       }
     }
   ]

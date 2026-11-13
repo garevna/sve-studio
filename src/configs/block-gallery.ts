@@ -44,6 +44,7 @@ export const BLOCK_DESCRIPTIONS: Record<string, string> = {
   'transfer-services-steps': 'blockMenu.about.transferServicesSteps',
   'feedback-form': 'blockMenu.about.feedbackForm',
   'hotel-search': 'blockMenu.about.hotelSearch',
+  'dock-form': 'blockMenu.about.dockForm',
 }
 
 // Blocks whose content is up to the user: shown in the gallery as several

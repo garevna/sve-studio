@@ -49,7 +49,6 @@
             <v-tabs
               v-model="tab"
               class="auth-page-tabs mb-2"
-              color="dark-grey"
               grow
               hide-slider
               selected-class="tab-button--active"

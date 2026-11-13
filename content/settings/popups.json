@@ -408,7 +408,10 @@
       "buttons": {
         "main": "green-button",
         "second": "simple-button"
-      }
+      },
+      "prevIcon": "mdi-chevron-left",
+      "nextIcon": "mdi-chevron-right",
+      "radius": "large-border-radius"
     },
     {
       "id": "calendar-s8v2p",
@@ -421,11 +424,32 @@
       "weekdayFormat": "short",
       "weekdayColor": "special",
       "dayRadius": 8,
-      "selectedColor": "green-button",
+      "selectedColor": "green",
       "selectedTextColor": "white",
-      "todayColor": "warning",
+      "todayColor": "success",
       "firstDayOfWeek": 1,
       "radius": "small-border-radius"
+    }
+  ],
+  "fieldLooks": [
+    {
+      "id": "plates",
+      "name": "Сірі плашки",
+      "closed": {
+        "variant": "filled",
+        "label": "above",
+        "icon": "left",
+        "background": "light-grey-2",
+        "radius": "extra-small-border-radius"
+      },
+      "opened": {
+        "variant": "dropdown",
+        "background": "white",
+        "radius": "extra-small-border-radius",
+        "shadow": true,
+        "stepper": "outlined",
+        "done": false
+      }
     }
   ]
 }

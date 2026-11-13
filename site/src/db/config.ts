@@ -18,7 +18,7 @@ export interface DbConfig {
 }
 
 // pages: mirrors dynamic-pages/*.json, keyPath = pageId (e.g. "bus-park").
-// settings: the singleton files, keyPath = 'global' | 'palette' | 'menu-content' | 'account-pages' | 'seo' | 'popups' | 'client-api'.
+// settings: the singleton files, keyPath = 'global' | 'palette' | 'menu-content' | 'account-pages' | 'seo' | 'popups' | 'client-api' | 'forms'.
 // styles: no folder structure at all - keyPath = bare file name including
 //   extension (e.g. "buttons.css"). A "vuetify-" name prefix (not a path)
 //   distinguishes the vuetify-component stylesheets from everything else -

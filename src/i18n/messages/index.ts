@@ -20,11 +20,13 @@ import clientApi from './clientApi.json'
 import common from './common.json'
 import confirm from './confirm.json'
 import contacts from './contacts.json'
+import dockForms from './dockForms.json'
 import editor from './editor.json'
 import editorTexts from './editorTexts.json'
 import elements from './elements.json'
 import faq from './faq.json'
 import feedbackForms from './feedbackForms.json'
+import fieldLooks from './fieldLooks.json'
 import fonts from './fonts.json'
 import footer from './footer.json'
 import generalSettings from './generalSettings.json'
@@ -82,6 +84,7 @@ export const MESSAGES = {
   elements,
   faq,
   feedbackForms,
+  fieldLooks,
   fonts,
   footer,
   generalSettings,
@@ -96,6 +99,7 @@ export const MESSAGES = {
   menuSettings,
   menuStyle,
   clientApi,
+  dockForms,
   pagePopups,
   popupLooks,
   calendars,

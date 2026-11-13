@@ -5,6 +5,7 @@
   import IconEditor from '@/components/editors/text/IconEditor.vue'
   import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
   import ButtonVariantSelect from '@/components/special/ButtonVariantSelect.vue'
+  import EditModeScope from '@/components/special/EditModeScope.vue'
   import EditorSaveBar from '@/components/special/EditorSaveBar.vue'
   import PaletteSwatchPicker from '@/components/special/PaletteSwatchPicker.vue'
   import PopupFrame from '@/components/templates/popups/PopupFrame.vue'
@@ -219,19 +220,29 @@
                 </div>
                 <div class="calendars-colors">
                   <span class="calendars-label">{{ t('calendars.prevIcon') }}</span>
-                  <IconEditor
-                    :appearance="false"
-                    :icon="textOf(calendar, 'prevIcon')"
-                    query="arrow-left|chevron-left|arrow-back|menu-left"
-                    @update:icon="(value: string) => calendar.prevIcon = value"
-                  />
+                  <!-- the page is in preview mode for its sample; the icon
+                       choice must still open -->
+                  <EditModeScope>
+                    <IconEditor
+                      :appearance="false"
+                      :icon="textOf(calendar, 'prevIcon')"
+                      icon-color="dark-grey"
+                      :icon-size="28"
+                      query="mdi-arrow-left|mdi-chevron-left|mdi-chevron-double-left|mdi-menu-left|mdi-pan-left"
+                      @update:icon="(value: string) => calendar.prevIcon = value"
+                    />
+                  </EditModeScope>
                   <span class="calendars-label">{{ t('calendars.nextIcon') }}</span>
-                  <IconEditor
-                    :appearance="false"
-                    :icon="textOf(calendar, 'nextIcon')"
-                    query="arrow-right|chevron-right|arrow-forward|menu-right"
-                    @update:icon="(value: string) => calendar.nextIcon = value"
-                  />
+                  <EditModeScope>
+                    <IconEditor
+                      :appearance="false"
+                      :icon="textOf(calendar, 'nextIcon')"
+                      icon-color="dark-grey"
+                      :icon-size="28"
+                      query="mdi-arrow-right|mdi-chevron-right|mdi-chevron-double-right|mdi-menu-right|mdi-pan-right"
+                      @update:icon="(value: string) => calendar.nextIcon = value"
+                    />
+                  </EditModeScope>
                 </div>
 
                 <p class="calendars-group">{{ t('calendars.weekdays') }}</p>

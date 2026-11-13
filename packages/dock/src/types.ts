@@ -1,3 +1,5 @@
+import type { DockForm } from './form'
+
 // The docking block's settings: content/settings/client-api.json.
 //
 // Everything about one client's API lives here - addresses, which value
@@ -111,6 +113,11 @@ export type DockRole = DockRequest['role']
 export interface ClientApiDocument {
   baseUrl?: string
   requests: DockRequest[]
+  // The site's forms (form.ts), stored in forms.json since they became the
+  // site's own (not only the API's): the docking block is given them here,
+  // in memory, to know which fields a request reads. A client-api.json from
+  // before that still carries them - read once into forms.json.
+  forms?: DockForm[]
 }
 
 // What a request is built from at the moment it is sent.

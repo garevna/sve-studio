@@ -14,7 +14,9 @@ const pending = new Map<number, { resolve: (value: unknown) => void, reject: (er
 let initPromise: Promise<void> | null = null
 
 function getWorker (): Worker {
-  if (worker) return worker
+  if (worker) {
+    return worker
+  }
 
   worker = new Worker(new URL('./worker.ts', import.meta.url), { type: 'module' })
   worker.onmessage = (event: MessageEvent<DbResponseMessage>) => {
@@ -25,14 +27,21 @@ function getWorker (): Worker {
     }
     const { id, error, data } = event.data
     const entry = pending.get(id)
-    if (!entry) return
+    if (!entry) {
+      return
+    }
     pending.delete(id)
-    if (error) entry.reject(new Error(error))
-    else entry.resolve(data)
+    if (error) {
+      entry.reject(new Error(error))
+    } else {
+      entry.resolve(data)
+    }
   }
   worker.onerror = event => {
     const error = new Error(event.message || 'DB worker crashed')
-    for (const entry of pending.values()) entry.reject(error)
+    for (const entry of pending.values()) {
+      entry.reject(error)
+    }
     pending.clear()
   }
   return worker

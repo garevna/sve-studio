@@ -1,5 +1,5 @@
 /* eslint-disable unicorn/no-useless-promise-resolve-reject */
-import type { ClientApiDocument } from '@sve/dock'
+import type { ClientApiDocument, FormsDocument } from '@sve/dock'
 import type { InternalAxiosRequestConfig } from 'axios'
 import type { GlobalSettingsModel } from '@/types/GlobalSettingsModel'
 import type { MenuItemModel } from '@/types/MenuItemModel'
@@ -1436,6 +1436,24 @@ export const useAjaxStore = defineStore('ajax', () => {
     return response ?? { requests: [] }
   }
 
+  // The site's forms ("Форми", packages/dock/src/form.ts).
+  async function getForms (): Promise<FormsDocument | null> {
+    return await getDynamicFilesData('forms.json', '/content/settings/forms') as FormsDocument | null
+  }
+
+  async function saveForms (document: FormsDocument, options: { publish?: boolean } = {}) {
+    await saveDynamicFileData('forms.json', document, '/content/settings/forms', { what: t('dockForms.title'), ...options })
+  }
+
+  async function isFormsUpdated () {
+    return isDynamicFileUpdated('forms.json')
+  }
+
+  async function undoForms (): Promise<FormsDocument> {
+    const response = await undoDynamicFileData<FormsDocument>('forms.json', '/content/settings/forms')
+    return response ?? { forms: [] }
+  }
+
   // Which variant (1, 2, ...) of each "Особистий кабінет" page is selected,
   // keyed by that page's production route name.
   async function getAccountPages () {
@@ -1465,6 +1483,10 @@ export const useAjaxStore = defineStore('ajax', () => {
     saveClientApi,
     isClientApiUpdated,
     undoClientApi,
+    getForms,
+    saveForms,
+    isFormsUpdated,
+    undoForms,
     error,
     success,
     isLogged,

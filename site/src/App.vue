@@ -99,6 +99,7 @@
     popupsStore.items = popups.popups
     popupsStore.looks = popups.looks
     popupsStore.calendars = popups.calendars
+    popupsStore.fieldLooks = popups.fieldLooks
     // buttons.css, home.css... read bare var(--primary) and so on.
     for (const [name, value] of Object.entries(palette)) {
       document.documentElement.style.setProperty(`--${name}`, value)

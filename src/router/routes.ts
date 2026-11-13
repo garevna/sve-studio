@@ -98,6 +98,16 @@ export const editorRoutes: RouteRecordRaw[] = [
     component: () => import('@/views/ClientApiView.vue'),
   },
   {
+    path: '/forms',
+    name: 'dock-forms',
+    component: () => import('@/views/DockFormsView.vue'),
+  },
+  // the section's address while it held only the docking forms
+  {
+    path: '/dock-forms',
+    redirect: to => ({ path: '/forms', query: to.query }),
+  },
+  {
     path: '/messages',
     name: 'messages',
     component: () => import('@/views/MessagesView.vue'),

@@ -1,3 +1,4 @@
+import type { DockFieldLook } from '@sve/dock'
 import type { ShallowRef } from 'vue'
 import type { RouteQueryModel } from '../navigation/RouteQueryModel'
 import type { PageSeoModel } from './SeoSettingsModel'
@@ -280,6 +281,8 @@ export interface PopupsDocument {
   looks?: PopupLookModel[]
   // the client's calendars (UI Kit "Календар"); the first is the default
   calendars?: PopupCalendarModel[]
+  // the looks of the docking forms' elements (UI Kit "Елементи форми")
+  fieldLooks?: DockFieldLook[]
   // Before looks: the buttons every popup shared. Read once into the first
   // look (configs/popup-looks.ts withDefaultLooks), not written any more.
   buttons?: { main?: string, second?: string }

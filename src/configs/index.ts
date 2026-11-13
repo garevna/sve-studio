@@ -4,6 +4,7 @@ import { cardWithIconLeftTemplate, cardWithIconRowTemplate, cardWithIconTopTempl
 import { cardWithToolbarImageGroupTemplate } from './components/cards/card-with-toolbar-image'
 import { tabsTemplate } from './components/cards/tabs'
 import { carouselWithCardsTemplate } from './components/carousel-with-cards'
+import { dockForm } from './components/dock-form'
 import { faq } from './components/faq'
 import { feedbackForm } from './components/feedback-form'
 import { galery1 } from './components/galery-1'
@@ -62,4 +63,5 @@ export const components = {
   'transfer-services-steps': transferServicesSteps,
   'feedback-form': feedbackForm,
   'hotel-search': hotelSearch,
+  'dock-form': dockForm,
 }

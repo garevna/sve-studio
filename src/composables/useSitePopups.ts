@@ -1,4 +1,6 @@
+import type { DockFieldLook } from '@sve/dock'
 import type { PopupCalendarModel, PopupKind, PopupLookModel, PopupModel, PopupsDocument, TemplateBlockModel, TemplatePageModel } from '@/types/TemplateBlockModel'
+import { withDefaultFieldLooks } from '@sve/dock'
 import { computed, ref, watch } from 'vue'
 import { BUILT_IN_POPUP_IDS, withDefaultPopups } from '@/configs/default-popups'
 import { withDefaultCalendars, withDefaultLooks } from '@/configs/popup-looks'
@@ -21,6 +23,9 @@ const popups = ref<PopupModel[]>([])
 // "Календар", configs/popup-looks.ts) - kept in the same document.
 const looks = ref<PopupLookModel[]>([])
 const calendars = ref<PopupCalendarModel[]>([])
+// ...and of the docking forms' elements (UI Kit "Елементи форми",
+// packages/dock/src/field-looks.ts)
+const fieldLooks = ref<DockFieldLook[]>([])
 const loaded = ref(false)
 const dirty = ref(false)
 const editingId = ref<string | null>(null)
@@ -61,7 +66,7 @@ function visit (value: unknown, id: string, clear = false): number {
 }
 
 function documentOf (): PopupsDocument {
-  return { popups: popups.value, looks: looks.value, calendars: calendars.value }
+  return { popups: popups.value, looks: looks.value, calendars: calendars.value, fieldLooks: fieldLooks.value }
 }
 
 export function useSitePopups () {
@@ -77,13 +82,14 @@ export function useSitePopups () {
       popups.value = withDefaultPopups(document.popups)
       looks.value = withDefaultLooks(document)
       calendars.value = withDefaultCalendars(document)
+      fieldLooks.value = withDefaultFieldLooks(document.fieldLooks)
       dirty.value = await ajaxStore.isPopupsUpdated()
       loaded.value = true
     })()
     return loading
   }
 
-  watch([popups, looks, calendars], () => {
+  watch([popups, looks, calendars, fieldLooks], () => {
     if (skipNext) {
       skipNext = false
       return
@@ -116,11 +122,12 @@ export function useSitePopups () {
     popups.value = withDefaultPopups(document.popups)
     looks.value = withDefaultLooks(document)
     calendars.value = withDefaultCalendars(document)
+    fieldLooks.value = withDefaultFieldLooks(document.fieldLooks)
     dirty.value = false
   }
 
   function newId (prefix = 'popup'): string {
-    const taken = new Set([...popups.value, ...looks.value, ...calendars.value].map(item => item.id))
+    const taken = new Set([...popups.value, ...looks.value, ...calendars.value, ...fieldLooks.value].map(item => item.id))
     for (;;) {
       const id = `${prefix}-${Math.random().toString(36).slice(2, 7)}`
       if (!taken.has(id)) {
@@ -207,6 +214,7 @@ export function useSitePopups () {
     popups,
     looks,
     calendars,
+    fieldLooks,
     newId,
     loaded,
     dirty,

@@ -1,0 +1,136 @@
+{
+  "forms": [
+    {
+      "id": "booking",
+      "name": "Бронювання готелю (демо)",
+      "preset": "booking",
+      "layout": "bar",
+      "fields": [
+        {
+          "kind": "choice",
+          "key": "destination",
+          "icon": "mdi-map-marker-outline",
+          "required": true,
+          "label": {
+            "uk": "Куди",
+            "en": "Where to",
+            "de": "Wohin"
+          },
+          "placeholder": {
+            "uk": "Оберіть місто",
+            "en": "Choose a city",
+            "de": "Stadt wählen"
+          },
+          "request": "hotel-destinations"
+        },
+        {
+          "kind": "dates",
+          "key": "dates",
+          "icon": "mdi-calendar-range",
+          "required": true,
+          "range": true,
+          "label": {
+            "uk": "Заїзд — виїзд",
+            "en": "Check-in — check-out",
+            "de": "Anreise — Abreise"
+          },
+          "units": {
+            "uk": "ніч|ночі|ночей",
+            "en": "night|nights",
+            "de": "Nacht|Nächte"
+          },
+          "request": "hotel-availability"
+        },
+        {
+          "kind": "counters",
+          "key": "guests",
+          "icon": "mdi-account-multiple-outline",
+          "label": {
+            "uk": "Гості",
+            "en": "Guests",
+            "de": "Gäste"
+          },
+          "items": [
+            {
+              "key": "adults",
+              "label": {
+                "uk": "Дорослі",
+                "en": "Adults",
+                "de": "Erwachsene"
+              },
+              "min": 1,
+              "max": 12,
+              "start": 2,
+              "units": {
+                "uk": "дорослий|дорослі|дорослих",
+                "en": "adult|adults",
+                "de": "Erwachsener|Erwachsene"
+              }
+            },
+            {
+              "key": "children",
+              "label": {
+                "uk": "Діти",
+                "en": "Children",
+                "de": "Kinder"
+              },
+              "min": 0,
+              "max": 8,
+              "start": 0,
+              "units": {
+                "uk": "дитина|дитини|дітей",
+                "en": "child|children",
+                "de": "Kind|Kinder"
+              }
+            },
+            {
+              "key": "rooms",
+              "label": {
+                "uk": "Номери",
+                "en": "Rooms",
+                "de": "Zimmer"
+              },
+              "min": 1,
+              "max": 6,
+              "start": 1,
+              "units": {
+                "uk": "номер|номери|номерів",
+                "en": "room|rooms",
+                "de": "Zimmer|Zimmer"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "cards",
+          "key": "room",
+          "icon": "mdi-bed-outline",
+          "label": {
+            "uk": "Оберіть номер",
+            "en": "Choose a room",
+            "de": "Zimmer wählen"
+          },
+          "suffix": {
+            "uk": "за ніч",
+            "en": "a night",
+            "de": "pro Nacht"
+          },
+          "empty": {
+            "uk": "На ці дати для такої кількості гостей вільних номерів немає. Спробуйте інші дати.",
+            "en": "No rooms are free for these dates and guests. Try other dates.",
+            "de": "Für diese Daten und Gäste sind keine Zimmer frei. Versuchen Sie andere Daten."
+          },
+          "request": "hotel-rooms"
+        }
+      ],
+      "button": {
+        "label": {
+          "uk": "Знайти",
+          "en": "Search",
+          "de": "Suchen"
+        },
+        "request": "hotel-booking"
+      }
+    }
+  ]
+}

@@ -20,32 +20,43 @@ export function pagePreviewUrl (pageId: string | undefined, locale: string): str
   return `${location.origin}${base}/site/${segments.join('/')}?preview`
 }
 
-// Tracks a single "preview" window: reloads it if still open (guaranteed
-// fresh load, unlike navigating to an unchanged URL, which some browsers
-// no-op), or opens a new one if it's closed/never existed.
+// Tracks a single "preview" window: reloads it while it still shows this
+// page (guaranteed fresh load, unlike navigating to an unchanged URL, which
+// some browsers no-op), otherwise sends it to the page, or opens a new one
+// if it's closed/never existed.
 let previewWindow: Window | null = null
 
-function reloadIfOpen (): boolean {
-  if (previewWindow && !previewWindow.closed) {
-    previewWindow.location.reload()
-    previewWindow.focus()
-    return true
+// Where the preview window is now - null when it is closed or has left for
+// another origin (a docking form hands the visitor over to the client's
+// «Прийом запитів»): such a window may be navigated, never read or reloaded.
+function previewHref (): string | null {
+  if (!previewWindow || previewWindow.closed) {
+    return null
   }
-  return false
+  try {
+    return previewWindow.location.href
+  } catch {
+    return null
+  }
 }
 
-// Manual "Переглянути" trigger - opens the window on first use, reloads it
-// on every call after that.
+// Manual "Переглянути" trigger - opens the window on first use; after that
+// reloads it if it shows this very page, else brings it back to the page.
 export function openPreview (url: string): void {
-  if (reloadIfOpen()) {
+  if (previewHref() === url) {
+    previewWindow!.location.reload()
+    previewWindow!.focus()
     return
   }
   previewWindow = window.open(url, 'editor-preview')
+  previewWindow?.focus()
 }
 
 // Best-effort call after any save (page/style/etc.) - a no-op when no
-// preview window is currently open, so wiring this into every save handler
-// is purely additive and never pops up an unrequested window.
+// preview window is open on the site, so wiring this into every save
+// handler is purely additive and never pops up an unrequested window.
 export function refreshPreviewIfOpen (): void {
-  reloadIfOpen()
+  if (previewHref()?.startsWith(location.origin)) {
+    previewWindow!.location.reload()
+  }
 }

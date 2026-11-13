@@ -204,6 +204,10 @@ function settingsFileName (key: string): string {
   if (key === 'client-api') {
     return 'client-api.json'
   }
+  // The site's forms (packages/dock/src/form.ts) - shown by blocks and popups.
+  if (key === 'forms') {
+    return 'forms.json'
+  }
   throw new Error(`Unknown settings key: ${key}`)
 }
 

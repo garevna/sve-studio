@@ -44,6 +44,7 @@ export type EditorSectionKey
     | 'messages'
     | 'popups'
     | 'client-api'
+    | 'dock-forms'
     | 'users'
     | 'log'
     | 'architecture'
@@ -76,6 +77,9 @@ export const EDITOR_SECTIONS: EditorSection[] = [
   { key: 'header', icon: 'mdi-page-layout-header', to: '/header', group: 'content' },
   { key: 'footer', icon: 'mdi-page-layout-footer', to: '/footer', group: 'content' },
   { key: 'popups', icon: 'mdi-dock-window', to: '/popups', group: 'content' },
+  // The site's forms (forms.json): their look is the designer's, where
+  // they send - the site's channel or the client's API - the developer's.
+  { key: 'dock-forms', icon: 'mdi-form-select', to: '/forms', group: 'content' },
   { key: 'palette', icon: 'mdi-palette-outline', to: '/palette', group: 'look' },
   { key: 'ui-kit', icon: 'mdi-view-grid-outline', to: '/ui-kit', group: 'look' },
   { key: 'styles', icon: 'mdi-language-css3', to: '/styles', group: 'look' },
@@ -143,7 +147,7 @@ export const EDITOR_ROLES: EditorRole[] = [
     // intended path for a designer to influence how blocks look is the UI
     // Kit section, which will grow controls for exactly that, over
     // properties whose meaning is visible in the control itself.
-    sections: ['palette', 'ui-kit', 'pages', 'header', 'footer'],
+    sections: ['palette', 'ui-kit', 'pages', 'header', 'footer', 'dock-forms'],
     canEditPageContent: true,
     generalSettingsScope: 'full',
   },
@@ -155,7 +159,7 @@ export const EDITOR_ROLES: EditorRole[] = [
     // below supervisor. Everything except 'seo' - that one belongs to the
     // SEO specialist, and a developer who genuinely needs it is one key
     // away (or one switch to supervisor).
-    sections: ['styles', 'palette', 'ui-kit', 'general-settings', 'pages', 'menu', 'header', 'footer', 'account', 'client-api', 'architecture'],
+    sections: ['styles', 'palette', 'ui-kit', 'general-settings', 'pages', 'menu', 'header', 'footer', 'account', 'client-api', 'dock-forms', 'architecture'],
     canEditPageContent: true,
     generalSettingsScope: 'full',
   },
@@ -233,6 +237,9 @@ export function sectionForContentPath (path: string): EditorSectionKey | null {
   }
   if (clean.startsWith('/settings/client-api')) {
     return 'client-api'
+  }
+  if (clean.startsWith('/settings/forms')) {
+    return 'dock-forms'
   }
   // An unknown path belongs to no section, so nobody below supervisor
   // writes it - a new route is closed until it is placed here.

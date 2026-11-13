@@ -8,7 +8,7 @@ import { createHash } from 'node:crypto'
 import { readdir, readFile, stat, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 
-const SETTINGS_KEYS = ['global', 'palette', 'menu-content', 'seo', 'popups', 'client-api']
+const SETTINGS_KEYS = ['global', 'palette', 'menu-content', 'seo', 'popups', 'client-api', 'forms']
 const PUBLIC_KEYS = ['account-pages']
 const IMAGE_EXTENSION = /\.(webp|avif|png|jpe?g|svg|gif)$/i
 

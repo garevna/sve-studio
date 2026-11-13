@@ -283,9 +283,11 @@ export const listOfComponents = [
         image: null,
       },
       {
-        id: 'hotel-search',
-        title: 'blockMenu.hotelSearch',
-        icon: 'mdi-bed-outline',
+        // one docking form ("Форми стикування"): booking, appointment, shop,
+        // enquiry - which one is the block's setting
+        id: 'dock-form',
+        title: 'blockMenu.dockForm',
+        icon: 'mdi-form-select',
         class: 'ml-12',
         iconClass: 'mr-2',
         image: null,

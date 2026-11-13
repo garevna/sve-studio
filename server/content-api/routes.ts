@@ -4,7 +4,7 @@ import { createRouter, getQuery, readFormData } from 'h3'
 import { apiError, defineApiHandler, imagePathParam, readBodyText, readJsonBody, requireWritable, slugParam, styleNameParam } from './handler'
 import { IMAGE_TYPES } from './repository'
 
-const SETTINGS_KEYS = new Set(['global', 'palette', 'seo', 'menu-content', 'popups', 'client-api'])
+const SETTINGS_KEYS = new Set(['global', 'palette', 'seo', 'menu-content', 'popups', 'client-api', 'forms'])
 const PUBLIC_KEYS = new Set(['account-pages'])
 
 function json (body: string): Response {

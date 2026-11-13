@@ -10,7 +10,7 @@
 // `let` on purpose: main.ts downgrades to 'test' before the app mounts if
 // the service worker is unavailable. Imports see the change (ES live binding).
 // eslint-disable-next-line import/no-mutable-exports
-export let API_REQUEST_MODE: string = 'live'
+export let API_REQUEST_MODE = 'live'
 
 export function useLocalOnlyMode () {
   API_REQUEST_MODE = 'test'

@@ -1,6 +1,7 @@
 import type { ClientApiDocument, DockContext, DockRequest, DockRole } from '@sve/dock'
 import { createDock } from '@sve/dock'
 import { ref, watch } from 'vue'
+import { formsDocument, loadSiteForms } from '@/composables/useSiteForms'
 import { useAjaxStore } from '@/stores/ajax'
 import { appBase } from '@/utils/app-base'
 
@@ -26,8 +27,10 @@ function root (): string {
 }
 
 // The same docking block the site runs - here for the section's preview and
-// "Перевірити", and for a block drawn in the editor.
-export const editorDock = createDock({ document: () => document.value, root })
+// "Перевірити", and for a block drawn in the editor. It is given the site's
+// forms too (forms.json): which fields a request reads is theirs.
+export const editorDock = createDock({ document: () => ({ ...document.value, forms: formsDocument.value.forms }), root })
+watch(formsDocument, () => editorDock.forget(), { deep: true })
 
 export const DOCK_ROLES: { role: DockRole, icon: string }[] = [
   { role: 'options', icon: 'mdi-format-list-bulleted' },
@@ -77,8 +80,10 @@ export function useClientApi () {
 
   function load (): Promise<void> {
     loading ??= (async () => {
+      // forms left in an old client-api.json move to forms.json first
+      await loadSiteForms()
       skipNext = true
-      const loadedDocument = await ajaxStore.getClientApi()
+      const { forms: _moved, ...loadedDocument } = await ajaxStore.getClientApi()
       document.value = { ...loadedDocument, requests: loadedDocument.requests ?? [] }
       dirty.value = await ajaxStore.isClientApiUpdated()
       loaded.value = true
@@ -116,7 +121,7 @@ export function useClientApi () {
 
   async function undo () {
     skipNext = true
-    const restored = await ajaxStore.undoClientApi()
+    const { forms: _moved, ...restored } = await ajaxStore.undoClientApi()
     document.value = { ...restored, requests: restored.requests ?? [] }
     dirty.value = false
   }
@@ -140,5 +145,19 @@ export function useClientApi () {
     return document.value.requests.filter(item => item.role === role) as Extract<DockRequest, { role: R }>[]
   }
 
-  return { document, loaded, dirty, load, save, undo, create, remove, ofRole }
+  // A field's key renamed: the requests that read the old one (those of the
+  // form it belongs to - another form may read the same key) read the new.
+  function renameKey (from: string, to: string, requestIds: string[]) {
+    const ids = new Set(requestIds)
+    const params = document.value.requests.filter(request => ids.has(request.id)).flatMap(request => request.role === 'handoff'
+      ? [...(request.session?.query ?? []), ...(request.session?.body ?? []), ...(request.target.query ?? [])]
+      : [...(request.call.query ?? []), ...(request.call.body ?? [])])
+    for (const param of params) {
+      if (param.source.from === 'field' && param.source.key === from) {
+        param.source.key = to
+      }
+    }
+  }
+
+  return { document, loaded, dirty, load, save, undo, create, remove, ofRole, renameKey }
 }

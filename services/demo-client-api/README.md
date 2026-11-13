@@ -7,7 +7,7 @@ block (`packages/dock`, `content/settings/client-api.json`) can be tried end to
 end. A Cloudflare Worker with a D1 database, deployed on its own.
 
 - **Address:** `https://demo-api.pagewright.pp.ua` (also
-  `https://pagewright-demo-api.garevna.workers.dev`)
+  `https://pagewright-demo-api.garevna-dev.workers.dev`)
 - **Its API** (`/hotel/...`) — called from the visitor's browser; CORS for
   `ALLOWED_ORIGINS` in `wrangler.toml`.
 - **Its booking page** (`/hotel/book`) — the client's own request intake the

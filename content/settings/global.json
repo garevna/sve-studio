@@ -162,7 +162,7 @@
     }
   },
   "feedback": {
-    "endpoint": "https://pagewright-feedback.garevna.workers.dev"
+    "endpoint": "https://pagewright-feedback.garevna-dev.workers.dev"
   },
   "header": {
     "titlePosition": "bottom-left",

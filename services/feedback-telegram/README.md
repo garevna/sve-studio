@@ -28,7 +28,7 @@ site only knows its address (`content/settings/global.json` →
 | `ALLOWED_ORIGINS` | Text | from `wrangler.toml` — the sites allowed to post |
 
 After `TELEGRAM_WEBHOOK_SECRET` is set, register the webhook once by opening
-`https://pagewright-feedback.garevna.workers.dev/telegram/setup?key=<that string>`
+`https://pagewright-feedback.garevna-dev.workers.dev/telegram/setup?key=<that string>`
 (answer: `{"ok":true,...}`).
 
 ## Firestore

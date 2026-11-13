@@ -20,7 +20,7 @@ binding = "AI"
 #   npx wrangler kv namespace create BUDGET
 [[kv_namespaces]]
 binding = "BUDGET"
-id = "03b6d5d3c8914da98cd1e9c97767b5c3"
+id = "ff9a2ef26d52492788554341361ad976"
 
 [vars]
 # The sites allowed to call: the published demo and local dev.

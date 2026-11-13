@@ -26,5 +26,5 @@ ALLOWED_ORIGINS = "https://pagewright.pp.ua,https://garevna.github.io,http://loc
 [[d1_databases]]
 binding = "DB"
 database_name = "pagewright-demo-api"
-database_id = "63bcde29-343a-4e43-8287-4522bad79913"
+database_id = "dd9ae30c-49e4-4b0a-9209-f815d7bf76a0"
 migrations_dir = "migrations"

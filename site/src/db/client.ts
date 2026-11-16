@@ -2,7 +2,9 @@ import type { DbRequestMessage, DbResponseMessage } from './protocol'
 import { getActiveTheme } from '@/utils/active-theme'
 import { PUBLISHED } from '../utils/published'
 import { report } from '../utils/report'
+import { DOCK_ORIGIN } from '../utils/site-source'
 import { sveRoot } from '../utils/sve-root'
+import { bridgeRequest } from './bridge'
 import { publishedRequest } from './published'
 
 // Plain module, not a Pinia store - main.ts needs to read palette/settings/
@@ -87,6 +89,10 @@ function ensureInit (): Promise<void> {
 export async function dbRequest<T> (route: string, action: string, data?: unknown): Promise<T> {
   if (PUBLISHED) {
     return publishedRequest<T>(route, action, data)
+  }
+  // The demo ship on its own address asks the dock (db/bridge.ts).
+  if (DOCK_ORIGIN) {
+    return bridgeRequest<T>(route, action, data)
   }
   await ensureInit()
   return send<T>(route, action, data)

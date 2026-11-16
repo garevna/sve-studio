@@ -8,6 +8,7 @@
   import { loadScopedVuetifyStyles } from '@/utils/load-scoped-vuetify-styles'
   import { loadThemeStyles } from '@/utils/load-theme-styles'
   import { PUBLISHED } from '@/utils/published'
+  import { isBridgePage } from '@/utils/site-source'
   import { applyThemeFonts } from '@/utils/theme-fonts'
   import LiveConnect from './components/buttons/theme_2/LiveConnect.vue'
   import DemoShipNote from './components/DemoShipNote.vue'
@@ -256,6 +257,10 @@
   }
 
   onMounted(async () => {
+    // the bridge frame shows nothing: it only answers the ship (db/bridge.ts)
+    if (isBridgePage()) {
+      return
+    }
     window.addEventListener('message', onEditorMessage)
     window.addEventListener('resize', commonStore.resize)
     commonStore.resize()

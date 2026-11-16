@@ -1,13 +1,30 @@
 import { appBase } from '@/utils/app-base'
 import { defaultSiteLocale } from '@/utils/locale-text'
 
+declare global {
+  interface ImportMetaEnv {
+    readonly VITE_SHIP_ORIGIN?: string
+  }
+}
+
+// The demo ship on an address of its own (dock.pagewright.pp.ua's ship is
+// demo.pagewright.pp.ua - site/src/utils/site-source.ts); unset - the ship
+// is this app's own <base>site/.
+const SHIP_ORIGIN = import.meta.env.VITE_SHIP_ORIGIN || ''
+
 // "Переглянути" opens the site itself (site/ - its own Nuxt app, served at
 // <base>site/ by modules/site-app.ts) on this page: the same address a
 // visitor would use, so from there the whole site can be walked through -
 // menu, links, languages. Address format: site/src/services/site-links.ts
 // (the default language has no prefix, the home page no id).
-export function pagePreviewUrl (pageId: string | undefined, locale: string): string {
-  const base = appBase().replace(/\/$/, '')
+// Where the visitor's ship is: its own address, or this app's <base>site/.
+// inFrame: a frame inside the Верф (the header's live preview) - it talks
+// to the Верф, so it must be this app's own address.
+export function shipBase ({ inFrame = false } = {}): string {
+  return SHIP_ORIGIN && !inFrame ? `${SHIP_ORIGIN}/` : `${location.origin}${appBase().replace(/\/$/, '')}/site/`
+}
+
+export function pagePreviewUrl (pageId: string | undefined, locale: string, options: { inFrame?: boolean } = {}): string {
   const segments = []
   if (locale && locale !== defaultSiteLocale()) {
     segments.push(locale)
@@ -17,7 +34,7 @@ export function pagePreviewUrl (pageId: string | undefined, locale: string): str
   }
   // ?preview: opened from the editor - the site then also shows hidden
   // pages (with a note), for the rest of that tab (site/src/App.vue).
-  return `${location.origin}${base}/site/${segments.join('/')}?preview`
+  return `${shipBase(options)}${segments.join('/')}?preview`
 }
 
 // Tracks a single "preview" window: reloads it while it still shows this
@@ -65,5 +82,10 @@ export function openPreview (url: string): void {
 export function refreshPreviewIfOpen (): void {
   if (previewHref()?.startsWith(location.origin)) {
     previewWindow!.location.reload()
+    return
+  }
+  // the ship on its own address cannot be reloaded from here: it is asked to
+  if (SHIP_ORIGIN && previewWindow && !previewWindow.closed) {
+    previewWindow.postMessage({ type: 'sve:reload' }, SHIP_ORIGIN)
   }
 }

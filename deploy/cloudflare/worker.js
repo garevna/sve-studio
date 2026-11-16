@@ -6,14 +6,13 @@
 //   dock.pagewright.pp.ua  the demo: the Верф (/...) and the visitor's own
 //                          ship (/site/...), living in the visitor's browser,
 //                          files in dist/dock/;
-//   demo.pagewright.pp.ua  only leads to the demo ship (dock…/site/).
+//   demo.pagewright.pp.ua  the visitor's ship at the root of its own address,
+//                          reading what they built from the dock through a
+//                          bridge (site/src/db/bridge.ts), files in dist/ship/.
 // A page address gets its app's start page with status 200 and the app's
 // router shows the page - search engines see real pages.
 
 const DOCK_HOST = 'dock.pagewright.pp.ua'
-// A short address to hand out for the demo ship. The ship itself must stay
-// on the dock's address: it shows what the visitor built in the Верф, kept
-// in their browser for that address only.
 const DEMO_HOST = 'demo.pagewright.pp.ua'
 
 // The Верф's own sections, once at the root of the owner's address
@@ -59,7 +58,34 @@ async function dock (request, env, url) {
   if (looksLikeFile(path)) {
     return new Response('Not found', { status: 404 })
   }
-  return shell(env, url, path === '/site' || path.startsWith('/site/') ? '/dock/site/200.html' : '/dock/200.html')
+  // <dock>/site/ is the bridge the ship reads through (and the frame the
+  // Верф shows the site's header in); a person following an old link to the
+  // ship there goes on to the ship's own address
+  if (path === '/site' || path.startsWith('/site/')) {
+    const framed = request.headers.get('sec-fetch-dest') === 'iframe' || url.searchParams.has('sve-bridge')
+    return framed ? shell(env, url, '/dock/site/200.html') : moved(url, `https://${DEMO_HOST}${path.slice('/site'.length) || '/'}`)
+  }
+  return shell(env, url, '/dock/200.html')
+}
+
+async function ship (request, env, url) {
+  const path = url.pathname
+  const found = await file(env, url, `/ship${path}`)
+  if (found) {
+    return found
+  }
+  // the released content and pictures are the dock's: a picture before the
+  // ship's own worker took the page (public/ship-sw.js) gets the released one
+  if (path.startsWith('/_seed/')) {
+    return (await file(env, url, `/dock${path}`)) ?? new Response('Not found', { status: 404 })
+  }
+  if (path.startsWith('/api/content/images/')) {
+    return (await file(env, url, `/dock/_seed/images/${path.slice('/api/content/images/'.length)}`)) ?? new Response('Not found', { status: 404 })
+  }
+  if (looksLikeFile(path)) {
+    return new Response('Not found', { status: 404 })
+  }
+  return shell(env, url, '/ship/200.html')
 }
 
 async function ownerSite (request, env, url) {
@@ -80,8 +106,8 @@ async function ownerSite (request, env, url) {
   if (VERF_SECTIONS.has(path.split('/')[1])) {
     return moved(url, `https://${DOCK_HOST}${path}`)
   }
-  // the dock's own files are not the site's
-  if (path !== '/dock' && !path.startsWith('/dock/')) {
+  // the dock's and the ship's own files are not the site's
+  if (!/^\/(dock|ship)(\/|$)/.test(path)) {
     const found = await file(env, url, path)
     if (found) {
       return found
@@ -97,7 +123,7 @@ export default {
   async fetch (request, env) {
     const url = new URL(request.url)
     if (url.hostname === DEMO_HOST) {
-      return Response.redirect(`https://${DOCK_HOST}/site${url.pathname === '/' ? '/' : url.pathname}${url.search}`, 302)
+      return ship(request, env, url)
     }
     return url.hostname === DOCK_HOST ? dock(request, env, url) : ownerSite(request, env, url)
   },

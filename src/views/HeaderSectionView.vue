@@ -121,6 +121,8 @@
   const frame = ref<HTMLIFrameElement | null>(null)
   const frameBox = ref<HTMLElement | null>(null)
   const device = ref<'desktop' | 'phone'>('desktop')
+  // the frame below talks to the Верф: the site at this app's own address
+  const framedUrl = computed(() => pagePreviewUrl('home-page', commonStore.locale, { inFrame: true }))
   const previewUrl = computed(() => pagePreviewUrl('home-page', commonStore.locale))
 
   // The site is drawn at a real screen width and scaled down to fit: a
@@ -272,7 +274,7 @@
             <iframe
               ref="frame"
               class="hero-preview-frame"
-              :src="previewUrl"
+              :src="framedUrl"
               :style="frameStyle"
               :title="t('header.preview')"
             />

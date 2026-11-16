@@ -5,7 +5,7 @@ One static build per address (.github/workflows/deploy.yml):
 | Folder | Address | Root |
 | --- | --- | --- |
 | `github-pages/` | https://garevna.github.io/sve-studio/ | `/sve-studio/` |
-| `cloudflare/` | https://pagewright.pp.ua/ - the owner's own site (published content only); https://dock.pagewright.pp.ua/ - the demo | `/` each (scripts/build-cloudflare.mjs) |
+| `cloudflare/` | https://pagewright.pp.ua/ - the owner's own site (published content only); https://dock.pagewright.pp.ua/ - the demo's Верф; https://demo.pagewright.pp.ua/ - the demo's ship | `/` each (scripts/build-cloudflare.mjs) |
 
 `<target>/public/` holds files only that address gets, copied over the
 build: Google Search Console's verification file is a different one for

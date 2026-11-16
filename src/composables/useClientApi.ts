@@ -4,6 +4,7 @@ import { ref, watch } from 'vue'
 import { formsDocument, loadSiteForms } from '@/composables/useSiteForms'
 import { useAjaxStore } from '@/stores/ajax'
 import { appBase } from '@/utils/app-base'
+import { shipBase } from '@/utils/preview-window'
 
 // The docking block's settings (content/settings/client-api.json,
 // packages/dock) - one document for the whole site. The editor's
@@ -46,7 +47,7 @@ export function dockRoleIcon (role: DockRole): string {
 // What the editor builds a request from: sample values for the fields, the
 // site's root as "the site".
 export function editorDockContext (values: Record<string, unknown>, locale: string, month?: string): DockContext {
-  const site = new URL(`${appBase()}site/`, location.origin).toString()
+  const site = shipBase()
   return {
     values,
     system: {

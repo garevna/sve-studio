@@ -54,7 +54,8 @@ export default defineNuxtConfig({
     // Pages (SVE_ROOT, set by modules/site-app.ts when it builds the site).
     // The owner's own site (VITE_SITE_PUBLISHED=1, scripts/build-owner-site.mjs)
     // is the root itself.
-    baseURL: process.env.VITE_SITE_PUBLISHED === '1' ? (process.env.SVE_ROOT || '/') : `${process.env.SVE_ROOT || '/'}site/`,
+    // So is the demo ship on an address of its own (VITE_DOCK_ORIGIN).
+    baseURL: process.env.VITE_SITE_PUBLISHED === '1' || process.env.VITE_DOCK_ORIGIN ? (process.env.SVE_ROOT || '/') : `${process.env.SVE_ROOT || '/'}site/`,
     head: {
       htmlAttrs: { lang: 'uk' },
       // GitHub Pages deep links: see the editor's nuxt.config.ts.

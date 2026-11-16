@@ -93,9 +93,8 @@ jobs:
       - if: steps.ready.outputs.go == 'true'
         run: pnpm install --frozen-lockfile
       # Root "/": no NUXT_APP_BASE_URL.
+      # the owner's own site at /, the demo at /demo/ (into dist/)
       - if: steps.ready.outputs.go == 'true'
-        run: pnpm generate
-      - if: steps.ready.outputs.go == 'true'
-        run: cp -r deploy/cloudflare/public/. .output/public/
+        run: node scripts/build-cloudflare.mjs
       - if: steps.ready.outputs.go == 'true'
         run: pnpm dlx wrangler@4.160.0 deploy --config deploy/cloudflare/wrangler.jsonc

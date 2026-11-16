@@ -7,6 +7,7 @@
   import { computed, provide } from 'vue'
   import { DOCK_FORM_HOST } from '@/components/dock/dock-form-host'
   import DockFormView from '@/components/dock/DockFormView.vue'
+  import PhoneNumberInput from '@/components/inputs/PhoneNumberInput.vue'
   import { calendarProps, newCalendar } from '@/configs/popup-looks'
   import { dock, dockContext, dockValues, reportDock, setDockValue } from '@/services/dock'
   import { useCommonStore } from '@/stores/common'
@@ -24,6 +25,9 @@
     subtitleClass?: string
     // the form's id
     form?: string
+    // in a popup opened about something (a card's title): said with the
+    // message, after the form's name
+    about?: string
   }>()
 
   const { locale, feedbackEndpoint } = storeToRefs(useCommonStore())
@@ -47,11 +51,12 @@
     fieldLook: id => fieldLookOf(popupsStore.fieldLooks as DockFieldLook[], id),
     report: reportDock,
     go: url => location.assign(url),
+    phoneInput: PhoneNumberInput,
     send: message => sendFeedback(feedbackEndpoint.value, {
       kind: 'form',
       locale: lang.value,
       page: location.pathname,
-      fields: { message },
+      fields: { message: props.about ? message.replace(/^.*/, first => `${first} — ${props.about}`) : message },
     }),
   }
   provide(DOCK_FORM_HOST, host)

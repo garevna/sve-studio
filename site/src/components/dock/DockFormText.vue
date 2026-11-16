@@ -4,14 +4,17 @@
   import { computed } from 'vue'
   import { useDockFormScope } from './dock-form-host'
 
-  // A docking form's typed field: a name, a phone, an e-mail, a message.
+  // A docking form's typed field: a name, a phone, an e-mail, a number, a
+  // message. A phone takes the host's field with a country code, if it has
+  // one.
   //
   // NOTE: the editor's copy is src/components/dock/DockFormText.vue - keep
   // the two identical.
   const props = defineProps<{ field: DockTextField }>()
   const scope = useDockFormScope()
   const lang = computed(() => scope.lang())
-  const AUTOCOMPLETE = { text: 'name', tel: 'tel', email: 'email', textarea: 'off' } as const
+  const AUTOCOMPLETE = { text: 'name', tel: 'tel', email: 'email', number: 'off', textarea: 'off' } as const
+  const phoneInput = computed(() => (props.field.input === 'tel' ? scope.phoneInput : undefined))
 
   const closed = computed(() => closedLook(scope.lookOf(props.field)))
   // without a caption over it, the empty field says what it is
@@ -43,6 +46,7 @@
         rows="2"
         variant="plain"
       />
+      <component :is="phoneInput" v-else-if="phoneInput" v-model="value" class="pw-dock__phone" />
       <v-text-field
         v-else
         v-model="value"

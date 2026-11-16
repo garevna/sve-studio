@@ -2,6 +2,7 @@ import type { DockFieldLook } from '@sve/dock'
 import type { PopupCalendarModel, PopupKind, PopupLookModel, PopupModel, PopupsDocument, TemplateBlockModel, TemplatePageModel } from '@/types/TemplateBlockModel'
 import { withDefaultFieldLooks } from '@sve/dock'
 import { computed, ref, watch } from 'vue'
+import { formsDocument, loadSiteForms } from '@/composables/useSiteForms'
 import { BUILT_IN_POPUP_IDS, withDefaultPopups } from '@/configs/default-popups'
 import { withDefaultCalendars, withDefaultLooks } from '@/configs/popup-looks'
 import { t } from '@/i18n'
@@ -76,6 +77,8 @@ export function useSitePopups () {
   function load (): Promise<void> {
     loading ??= (async () => {
       skipNext = true
+      // A form popup's own fields move to "Форми" first.
+      await loadSiteForms()
       // The base package's popups are there whatever the stored list (or
       // a draft from before they existed) says.
       const document = await ajaxStore.getPopups()
@@ -152,6 +155,9 @@ export function useSitePopups () {
     }
     if (kind === 'prompt') {
       popup.input = { format: 'text', required: true }
+    }
+    if (kind === 'form') {
+      popup.form = formsDocument.value.forms[0]?.id
     }
     if (kind === 'select') {
       popup.options = [

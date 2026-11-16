@@ -3,6 +3,7 @@
   import type { PopupFormContext } from '../../utils/popup-form'
   import { storeToRefs } from 'pinia'
   import { computed, provide, reactive, ref } from 'vue'
+  import DockForm from '../../components/template-components/DockForm.vue'
   import { convertInput, defaultOkWords, POPUP_WORDS, popupButtons, popupKind } from '../../configs/popup-kinds'
   import { calendarProps } from '../../configs/popup-looks'
   import { useCommonStore } from '../../stores/common'
@@ -18,7 +19,8 @@
   //   prompt  - a field                                    -> its value
   //   select  - a list                                     -> the chosen value
   //   date    - a calendar                                 -> 'YYYY-MM-DD'
-  //   form    - the client's own fields, sent to the site's channel
+  //   form    - one of the site's forms ("Форми"), with its own button;
+  //             one from before that - its own fields, sent to the channel
   //   content - the popup's blocks, no buttons
   const props = defineProps<{
     popup: PopupModel
@@ -44,7 +46,9 @@
 
   const kind = computed(() => popupKind(props.popup))
   const text = computed(() => words(props.popup.text))
-  const buttons = computed(() => popupButtons(kind.value))
+  // a form of the site's "Форми": it has its own button
+  const ownForm = computed(() => kind.value === 'form' && !!props.popup.form)
+  const buttons = computed(() => (ownForm.value ? [] : popupButtons(kind.value)))
   const okText = computed(() => words(props.popup.okText, defaultOkWords(kind.value)[lang.value]))
   const cancelText = computed(() => words(props.popup.cancelText, POPUP_WORDS.cancel[lang.value]))
   const mainClass = computed(() => props.mainClass || 'primary-button')
@@ -248,6 +252,7 @@
         </v-locale-provider>
       </div>
       <p v-if="text && kind === 'date'" :class="['pw-popup__text pw-popup__text--after', props.textClass, { 'pw-popup__text--own': !!props.textClass }]">{{ text }}</p>
+      <DockForm v-else-if="ownForm" :about="props.about" class="pw-popup__form" :form="popup.form" />
       <template v-else-if="kind === 'form' || kind === 'content'">
         <template-item v-for="(child, index) of popup.content.children || []" :key="index" :item="child" />
       </template>

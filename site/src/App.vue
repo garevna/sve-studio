@@ -7,8 +7,10 @@
   import { getActiveTheme } from '@/utils/active-theme'
   import { loadScopedVuetifyStyles } from '@/utils/load-scoped-vuetify-styles'
   import { loadThemeStyles } from '@/utils/load-theme-styles'
+  import { PUBLISHED } from '@/utils/published'
   import { applyThemeFonts } from '@/utils/theme-fonts'
   import LiveConnect from './components/buttons/theme_2/LiveConnect.vue'
+  import DemoShipNote from './components/DemoShipNote.vue'
   import FooterFinalFrame from './components/FooterFinalFrame.vue'
   import FooterHorizonSignature from './components/FooterHorizonSignature.vue'
   import FooterHorizonWave from './components/FooterHorizonWave.vue'
@@ -134,6 +136,10 @@
   // gets "page not found" for them.
   const PREVIEW_KEY = 'sve-editor-preview'
   function editorPreview (): boolean {
+    // the owner's own site has no editor behind it
+    if (PUBLISHED) {
+      return false
+    }
     try {
       if (route.query.preview !== undefined) sessionStorage.setItem(PREVIEW_KEY, '1')
       return sessionStorage.getItem(PREVIEW_KEY) === '1'
@@ -341,6 +347,8 @@
       <SiteCopyright />
       <FooterHorizonSignature v-if="footerVariant === FOOTER_HORIZON" :text="company?.name || ''" />
     </v-footer>
+    <!-- The demo's ship says what it is and where Pagewright's own site is. -->
+    <DemoShipNote v-if="!PUBLISHED" />
 
     <!-- The site's popups: mounted once, each opened by its flag in the
       popups store (stores/popups.ts). -->

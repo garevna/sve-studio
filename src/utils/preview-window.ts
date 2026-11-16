@@ -25,6 +25,7 @@ export function pagePreviewUrl (pageId: string | undefined, locale: string): str
 // some browsers no-op), otherwise sends it to the page, or opens a new one
 // if it's closed/never existed.
 let previewWindow: Window | null = null
+const PREVIEW_NAME = 'editor-preview'
 
 // Where the preview window is now - null when it is closed or has left for
 // another origin (a docking form hands the visitor over to the client's
@@ -43,12 +44,18 @@ function previewHref (): string | null {
 // Manual "Переглянути" trigger - opens the window on first use; after that
 // reloads it if it shows this very page, else brings it back to the page.
 export function openPreview (url: string): void {
+  // A tab keeps its name through every page it shows: the Верф opened in a
+  // tab that once was the preview would open the site over itself - and
+  // the Верф would be gone.
+  if (window.name === PREVIEW_NAME) {
+    window.name = ''
+  }
   if (previewHref() === url) {
     previewWindow!.location.reload()
     previewWindow!.focus()
     return
   }
-  previewWindow = window.open(url, 'editor-preview')
+  previewWindow = window.open(url, PREVIEW_NAME)
   previewWindow?.focus()
 }
 

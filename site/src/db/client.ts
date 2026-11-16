@@ -1,7 +1,9 @@
 import type { DbRequestMessage, DbResponseMessage } from './protocol'
 import { getActiveTheme } from '@/utils/active-theme'
+import { PUBLISHED } from '../utils/published'
 import { report } from '../utils/report'
 import { sveRoot } from '../utils/sve-root'
+import { publishedRequest } from './published'
 
 // Plain module, not a Pinia store - main.ts needs to read palette/settings/
 // CSS text before Pinia (or the Vue app) exists at all, so this has to be
@@ -80,7 +82,12 @@ function ensureInit (): Promise<void> {
 // The one function every other layer (ajaxStore, main.ts, StyleFileView.vue)
 // calls through - transparently ensures the worker + IndexedDB are open
 // (and seeded) before the first real request goes out.
+// The published site (the owner's own, utils/published.ts) never opens the
+// browser database: it reads the released files.
 export async function dbRequest<T> (route: string, action: string, data?: unknown): Promise<T> {
+  if (PUBLISHED) {
+    return publishedRequest<T>(route, action, data)
+  }
   await ensureInit()
   return send<T>(route, action, data)
 }

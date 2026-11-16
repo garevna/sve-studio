@@ -52,7 +52,9 @@ export default defineNuxtConfig({
   app: {
     // <demo root>site/ - the root is "/" locally, "/sve-studio/" on GitHub
     // Pages (SVE_ROOT, set by modules/site-app.ts when it builds the site).
-    baseURL: `${process.env.SVE_ROOT || '/'}site/`,
+    // The owner's own site (VITE_SITE_PUBLISHED=1, scripts/build-owner-site.mjs)
+    // is the root itself.
+    baseURL: process.env.VITE_SITE_PUBLISHED === '1' ? (process.env.SVE_ROOT || '/') : `${process.env.SVE_ROOT || '/'}site/`,
     head: {
       htmlAttrs: { lang: 'uk' },
       // GitHub Pages deep links: see the editor's nuxt.config.ts.

@@ -9,13 +9,15 @@
   import { useCommonStore } from '@/stores/common'
   import { resolveLocaleText } from '@/utils/locale-text'
   import { FORM_FIELDS_HERE, isEmptyAnswer, POPUP_FORM } from '@/utils/popup-form'
+  import PopupFormView from './PopupFormView.vue'
 
   // The editor's picture of the site's PopupAnswer.vue: the middle and the
   // buttons of every popup but a feedback form, in the same markup and
   // classes (content/styles/popups.css). Being edited, the buttons and the
   // field are only shown; in a preview they work - a field is checked, a
   // choice is made - and the window closes, but nothing is sent anywhere.
-  // A form's or a content popup's blocks are a "Довільний контент" column.
+  // A form popup shows its form ("Форми"); a content popup's blocks (and an
+  // old form popup's fields) are a "Довільний контент" column.
   const props = defineProps<{
     popup: PopupModel
     mainClass?: string
@@ -35,7 +37,9 @@
 
   const kind = computed(() => popupKind(props.popup))
   const text = computed(() => words(props.popup.text))
-  const buttons = computed(() => popupButtons(kind.value))
+  // a form of the site's "Форми": it has its own button
+  const ownForm = computed(() => kind.value === 'form' && !!props.popup.form)
+  const buttons = computed(() => (ownForm.value ? [] : popupButtons(kind.value)))
   const okText = computed(() => words(props.popup.okText, defaultOkWords(kind.value)[lang.value]))
   const cancelText = computed(() => words(props.popup.cancelText, POPUP_WORDS.cancel[lang.value]))
   const mainClass = computed(() => props.mainClass || 'primary-button')
@@ -183,6 +187,7 @@
         </v-locale-provider>
       </div>
       <p v-if="text && kind === 'date'" :class="['pw-popup__text pw-popup__text--after', props.textClass, { 'pw-popup__text--own': !!props.textClass }]">{{ text }}</p>
+      <PopupFormView v-else-if="ownForm" :form="popup.form" />
       <SectionWithFreeContent v-else-if="kind === 'form' || kind === 'content'" :class="{ 'popup-middle-blocks': mode !== 'edit' }" :section="popup.content" />
       <p v-if="problem" class="pw-popup__error" role="alert">{{ problem }}</p>
     </template>

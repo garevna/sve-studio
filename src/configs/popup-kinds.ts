@@ -99,14 +99,16 @@ export function convertInput (input: PopupInputModel | undefined, raw: string): 
 }
 
 // Editor only: the kinds a client can add in the "Попапи" section, with
-// where each appears when new. 'feedback' and 'form' come with the base
-// package (configs/default-popups.ts) and are not added again.
+// where each appears when new. 'feedback' comes with the base package
+// (configs/default-popups.ts) and is not added again; a 'form' popup is the
+// frame of one of the site's forms ("Форми"), as many as there are.
 export const ADDABLE_POPUP_KINDS: { kind: PopupKind, icon: string, placement: PopupModel['placement'] }[] = [
   { kind: 'message', icon: 'mdi-message-alert-outline', placement: 'center' },
   { kind: 'confirm', icon: 'mdi-help-rhombus-outline', placement: 'center' },
   { kind: 'prompt', icon: 'mdi-form-textbox', placement: 'center' },
   { kind: 'select', icon: 'mdi-form-dropdown', placement: 'center' },
   { kind: 'date', icon: 'mdi-calendar-outline', placement: 'center' },
+  { kind: 'form', icon: 'mdi-form-select', placement: 'center' },
   { kind: 'content', icon: 'mdi-view-split-vertical', placement: 'right' },
 ]
 

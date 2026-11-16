@@ -165,6 +165,17 @@
 .pw-popup__answer > .v-input {
   width: 100%;
 }
+/* One of the site's forms ("Форми"): the window is its card - no card,
+   shadow or padding of its own; its button is the window's. */
+.pw-popup .pw-popup__form.pw-dock-block {
+  padding-block: 8px 0;
+}
+.pw-popup__form .pw-dock__stack {
+  max-width: none;
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+}
 /* The theme fixes every field at 56px high; a several-line one grows. */
 .pw-popup .v-textarea .v-field__field {
   height: auto !important;

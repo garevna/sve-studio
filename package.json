@@ -9,6 +9,7 @@
     "dev": "nuxt dev",
     "build": "nuxt build",
     "generate": "nuxt generate",
+    "build:cloudflare": "node scripts/build-cloudflare.mjs",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare && nuxt prepare site",
     "type-check": "nuxt typecheck && nuxt typecheck site",

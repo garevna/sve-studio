@@ -2,7 +2,7 @@ import type { ClientApiDocument, DockContext } from '@sve/dock'
 import { createDock, DockError } from '@sve/dock'
 import { reactive, ref } from 'vue'
 import { report } from '../utils/report'
-import { sveRoot } from '../utils/sve-root'
+import { siteBase, sveRoot } from '../utils/sve-root'
 
 // The site's side of the docking block (packages/dock): the client's API
 // settings (content/settings/client-api.json, read once with the site's
@@ -62,7 +62,7 @@ export function dockContext (locale: string, extra: Partial<DockContext['system'
       locale,
       page: typeof location === 'undefined' ? '' : location.href,
       // the site's home page in this language
-      return: `${origin}${sveRoot()}site/${locale === 'uk' ? '' : `${locale}/`}`,
+      return: `${origin}${siteBase()}${locale === 'uk' ? '' : `${locale}/`}`,
       ...extra,
     },
   }

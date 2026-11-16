@@ -4,8 +4,8 @@
   import { computed, onMounted, ref, watch } from 'vue'
   import { useDockFormScope } from './dock-form-host'
 
-  // A docking form's choice: one value out of a list from the client's API
-  // (a city, a service), typed into or picked.
+  // A docking form's choice: one value out of a list - from the client's API
+  // (a city, a service) or the form's own - typed into or picked.
   //
   // NOTE: the editor's copy is src/components/dock/DockFormChoice.vue - keep
   // the two identical.
@@ -35,6 +35,12 @@
   const inputs = computed(() => scope.dock.reads(props.field.request).map(key => JSON.stringify(scope.values[key] ?? null)).join('|'))
 
   async function load () {
+    // the form's own list: nothing to ask
+    if (!props.field.request && props.field.options?.length) {
+      options.value = props.field.options.map(option => ({ value: option.value, label: textOf(option.label, lang.value, option.value) }))
+      scope.lists[props.field.key] = options.value
+      return
+    }
     loading.value = true
     try {
       options.value = await scope.dock.options(props.field.request, scope.context({ ...scope.values }))
@@ -51,7 +57,7 @@
     }
   }
   onMounted(load)
-  watch(() => [props.field.request, inputs.value, lang.value], load)
+  watch(() => [props.field.request, props.field.options, inputs.value, lang.value], load, { deep: true })
 </script>
 
 <template>

@@ -23,6 +23,7 @@
     { kind: 'counters', icon: 'mdi-counter' },
     { kind: 'cards', icon: 'mdi-view-grid-outline' },
     { kind: 'text', icon: 'mdi-form-textbox' },
+    { kind: 'check', icon: 'mdi-checkbox-marked-outline' },
   ]
 
   const calendars = computed(() => sitePopups.calendars.value.map(item => ({ title: item.name || t(`calendars.variants.${item.variant}`), value: item.id })))

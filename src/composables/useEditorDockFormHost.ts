@@ -2,6 +2,7 @@ import type { DockFormHost } from '@/components/dock/dock-form-host'
 import { fieldLookOf } from '@sve/dock'
 import { computed, provide, reactive } from 'vue'
 import { DOCK_FORM_HOST } from '@/components/dock/dock-form-host'
+import PhoneNumberPreview from '@/components/inputs/PhoneNumberPreview.vue'
 import { editorDock, editorDockContext } from '@/composables/useClientApi'
 import { useSitePopups } from '@/composables/useSitePopups'
 import { calendarProps, newCalendar } from '@/configs/popup-looks'
@@ -41,6 +42,7 @@ export function provideEditorDockFormHost (options: { lang?: () => string, editi
     go: url => window.open(url, '_blank', 'noopener'),
     // trying a form in the editor sends nobody a message
     send: async () => 'sent',
+    phoneInput: PhoneNumberPreview,
     overlayClass: [EDITED_APP_SCOPE_CLASS, themeClass(APP_THEME_NAME)].join(' '),
     overlayTheme: APP_THEME_NAME,
     editing: options.editing,

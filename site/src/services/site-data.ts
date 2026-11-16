@@ -1,6 +1,6 @@
 import type { ClientApiDocument, FormsDocument } from '@sve/dock'
 import type { GlobalSettingsModel, MenuItemModel, PopupsDocument, SeoSettingsModel, TemplateBlockModel, TemplatePageModel } from '../types/common'
-import { withDefaultFieldLooks } from '@sve/dock'
+import { withDefaultFieldLooks, withDefaultForms } from '@sve/dock'
 import { withDefaultPopups } from '../configs/default-popups'
 import { withDefaultCalendars, withDefaultLooks } from '../configs/popup-looks'
 import { dbRequest } from '../db/client'
@@ -67,17 +67,15 @@ export async function getPopups () {
 }
 
 // The docking block's settings: the client's API (packages/dock), given the
-// site's forms (forms.json) - which fields a request reads is theirs. A
-// client-api.json from before forms.json still carries its own.
-export async function getClientApi (): Promise<ClientApiDocument | null> {
+// site's forms (forms.json, with the base package's built-in ones) - which
+// fields a request reads is theirs. A client-api.json from before
+// forms.json still carries its own.
+export async function getClientApi (): Promise<ClientApiDocument> {
   const [document, forms] = await Promise.all([
     dbRequest<ClientApiDocument | null>('settings', 'get', { key: 'client-api' }).catch(() => null),
     dbRequest<FormsDocument | null>('settings', 'get', { key: 'forms' }).catch(() => null),
   ])
-  if (!document && !forms) {
-    return null
-  }
-  return { ...document, requests: document?.requests ?? [], forms: document?.forms ?? forms?.forms ?? [] }
+  return { ...document, requests: document?.requests ?? [], forms: withDefaultForms(document?.forms ?? forms?.forms ?? []) }
 }
 
 export async function getSeoSettings (): Promise<SeoSettingsModel | null> {

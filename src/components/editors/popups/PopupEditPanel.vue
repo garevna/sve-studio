@@ -2,13 +2,14 @@
   import type { EditorMode } from '@/composables/useEditorMode'
   import type { PopupInputModel, PopupModel, TranslatedModel } from '@/types/TemplateBlockModel'
   import { computed, ref } from 'vue'
-  import { useRouter } from 'vue-router'
+  import { useRoute, useRouter } from 'vue-router'
   import LocaleSwitcher from '@/components/editors/small/LocaleSwitcher.vue'
   import TextFormatMenu from '@/components/editors/text/TextFormatMenu.vue'
   import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
   import PopupFrame from '@/components/templates/popups/PopupFrame.vue'
   import { useClientApi } from '@/composables/useClientApi'
   import { provideEditorMode } from '@/composables/useEditorMode'
+  import { useSiteForms } from '@/composables/useSiteForms'
   import { useSitePopups } from '@/composables/useSitePopups'
   import { feedbackFormKind } from '@/configs/feedback-forms'
   import { popupButtons, popupKind } from '@/configs/popup-kinds'
@@ -26,8 +27,9 @@
   // text, and whatever its kind has (an ordinary or an error message, what
   // a field takes, a list's choices, the buttons' words, where else the
   // answer goes) - then, apart from them, the popup itself, as the site
-  // draws it (content/styles/popups.css). A form's or a content popup's
-  // middle is a column of blocks with its own block toolbar. Saving is the
+  // draws it (content/styles/popups.css). A form popup names one of the
+  // site's forms ("Форми"); a content popup's middle is a column of blocks
+  // with its own block toolbar. Saving is the
   // section's own bar; there is nothing to save or close here.
   //
   // `entry` is a live entry of useSitePopups' list, edited in place.
@@ -41,7 +43,8 @@
 
   const kind = computed(() => popupKind(popup.value))
   const sized = computed(() => popup.value.placement !== 'bottom')
-  const buttons = computed(() => popupButtons(kind.value))
+  // a form popup's button is its form's (set up in "Форми")
+  const buttons = computed(() => (kind.value === 'form' && popup.value.form ? [] : popupButtons(kind.value)))
 
   function setPlacement (value: PopupModel['placement']) {
     popup.value.placement = value
@@ -120,6 +123,16 @@
 
   const frameWidth = computed(() => (sized.value ? `${popup.value.width || 480}px` : '100%'))
   const router = useRouter()
+  const route = useRoute()
+
+  // form: which of the site's forms it shows - the fields, the button and
+  // where it sends are the form's, in "Форми"
+  const siteForms = useSiteForms()
+  void siteForms.load()
+  const formItems = computed(() => siteForms.document.value.forms.map(item => ({ title: item.name || item.id, value: item.id })))
+  function setUpForm () {
+    void router.push({ path: '/forms', query: { edit: popup.value.form, from: route.fullPath } })
+  }
 </script>
 
 <template>
@@ -257,6 +270,26 @@
           <v-btn v-if="popup.textClass" size="small" variant="text" @click="popup.textClass = undefined">{{ t('pagePopups.textFormat.asLook') }}</v-btn>
         </div>
       </v-expand-transition>
+
+      <div v-if="kind === 'form'" class="popup-edit-row">
+        <v-select
+          class="popup-edit-wide"
+          density="compact"
+          hide-details
+          :items="formItems"
+          :label="t('pagePopups.form')"
+          :model-value="popup.form"
+          :placeholder="t('pagePopups.formNone')"
+          variant="outlined"
+          @update:model-value="(id: string) => popup.form = id"
+        />
+        <ToolbarIconButton
+          :disabled="!popup.form"
+          icon="mdi-tune-variant"
+          :tooltip="t('pagePopups.formSetUp')"
+          @click="setUpForm"
+        />
+      </div>
 
       <v-btn-toggle
         v-if="kind === 'message'"

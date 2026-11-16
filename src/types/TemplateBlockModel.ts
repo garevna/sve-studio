@@ -242,8 +242,11 @@ export interface PopupModel {
   // 'feedback': which form (configs/feedback-forms.ts) - sent to the
   // site's channel (global.json feedback.endpoint).
   feedbackType?: string
-  // 'content' and 'form': the blocks in the middle ('form': fields among
-  // them, sent to the channel as one message).
+  // 'form': which of the site's forms (forms.json, "Форми") it shows - the
+  // popup is only its frame. A form popup from before it has none: its
+  // "form-field" blocks in `content` (moved to forms.json by the editor).
+  form?: string
+  // 'content': the blocks in the middle.
   content: TemplateBlockModel
   // Where the answer goes besides the page: one of the client's API
   // endpoints (global.json clientApi.endpoints[].id, docs/client-api.md).

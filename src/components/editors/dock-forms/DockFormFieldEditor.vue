@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import type { DockCountersField, DockField, DockText } from '@sve/dock'
+  import type { DockChoiceField, DockCountersField, DockField, DockText } from '@sve/dock'
   import { ref } from 'vue'
   import IconPicker from '@/components/editors/icon/IconPicker.vue'
   import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
@@ -7,7 +7,8 @@
 
   // One field of a docking form on the "Вигляд" tab: its icon, caption,
   // place in the order - and, under "more", what its kind has: a hint in
-  // the empty field, one day or a stretch, the counters, the cards' words.
+  // the empty field, a list of its own, one day or a stretch, the counters,
+  // the cards' words.
   // Texts are edited in the language picked on the tab. The field's key and
   // its request are the "Підключення" tab's.
   const field = defineModel<DockField>({ required: true })
@@ -26,7 +27,19 @@
     texts[prop] = { ...texts[prop], [props.lang]: value }
   }
 
-  const INPUTS = ['text', 'tel', 'email', 'textarea'] as const
+  const INPUTS = ['text', 'tel', 'email', 'number', 'textarea'] as const
+
+  // a choice's own list (when the client's API gives none): its words in
+  // the tab's language, and the value the message and the API get
+  function addOption (field: DockChoiceField) {
+    field.options ??= []
+    const taken = new Set(field.options.map(option => option.value))
+    let index = field.options.length + 1
+    while (taken.has(`option-${index}`)) {
+      index++
+    }
+    field.options.push({ value: `option-${index}`, label: {} })
+  }
 
   function addCounter (field: DockCountersField) {
     const taken = new Set(field.items.map(item => item.key))
@@ -45,7 +58,7 @@
 <template>
   <div class="dock-field">
     <div class="dock-field-head">
-      <v-menu v-model="iconOpen" :close-on-content-click="false" location="bottom start">
+      <v-menu v-if="field.kind !== 'check'" v-model="iconOpen" :close-on-content-click="false" location="bottom start">
         <template #activator="{ props: menuProps }">
           <ToolbarIconButton v-bind="menuProps" :icon="field.icon || 'mdi-shape-outline'" :tooltip="t('dockForms.field.icon')" />
         </template>
@@ -99,6 +112,38 @@
             variant="outlined"
             @update:model-value="value => setText(field, 'placeholder', value)"
           />
+        </template>
+
+        <template v-if="field.kind === 'choice'">
+          <p class="dock-field-note">{{ t('dockForms.field.optionsHint') }}</p>
+          <div v-for="(option, index) of field.options ?? []" :key="index" class="dock-option">
+            <v-text-field
+              class="dock-option-label"
+              density="compact"
+              hide-details
+              :label="t('dockForms.field.option')"
+              :model-value="textOf(option.label)"
+              variant="outlined"
+              @update:model-value="value => setText(option, 'label', value)"
+            />
+            <v-text-field
+              v-model="option.value"
+              class="dock-option-value"
+              density="compact"
+              hide-details
+              :label="t('dockForms.field.optionValue')"
+              variant="outlined"
+            />
+            <ToolbarIconButton icon="mdi-delete-outline" :tooltip="t('common.delete')" @click="field.options?.splice(index, 1)" />
+          </div>
+          <div>
+            <v-btn
+              prepend-icon="mdi-plus"
+              size="small"
+              variant="text"
+              @click="addOption(field)"
+            >{{ t('dockForms.field.addOption') }}</v-btn>
+          </div>
         </template>
 
         <template v-if="field.kind === 'dates'">
@@ -205,7 +250,7 @@
         </template>
 
         <v-select
-          v-if="field.kind !== 'cards'"
+          v-if="field.kind !== 'cards' && field.kind !== 'check'"
           density="compact"
           hide-details
           :items="[{ title: t('fieldLooks.asForm'), value: '' }, ...looks]"
@@ -264,6 +309,25 @@
   padding: 8px;
   border: dashed 1px rgba(58, 74, 88, 0.25);
   border-radius: 8px;
+}
+.dock-field-note {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #7A8699;
+}
+.dock-option {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+.dock-option-label {
+  flex: 1 1 200px;
+  min-width: 0;
+}
+.dock-option-value {
+  flex: 0 1 140px;
+  min-width: 0;
 }
 .dock-counter-numbers {
   display: flex;

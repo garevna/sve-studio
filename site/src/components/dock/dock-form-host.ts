@@ -1,5 +1,5 @@
 import type { Dock, DockContext, DockField, DockFieldLook, DockOption } from '@sve/dock'
-import type { InjectionKey } from 'vue'
+import type { Component, InjectionKey } from 'vue'
 import type { calendarProps } from '@/configs/popup-looks'
 import { inject } from 'vue'
 
@@ -26,6 +26,9 @@ export interface DockFormHost {
   // a form's values, as one message, to the site's own channel (global.json
   // feedback.endpoint) - the button's "channel" action
   send: (message: string) => Promise<'sent' | 'not-configured' | 'failed'>
+  // a phone field with a country code (v-model: "(+380) 99…"); absent - a
+  // plain typed one
+  phoneInput?: Component
   // the editor's overlays (menus) wear the site's look
   overlayClass?: string
   overlayTheme?: string

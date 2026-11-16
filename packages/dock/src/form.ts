@@ -28,12 +28,18 @@ interface DockFieldBase {
   look?: string
 }
 
-// One value out of a list from the client's API (a city, a service, a
-// product), typed into or picked.
+// One value out of a list (a city, a service, a product), typed into or
+// picked: the client's API gives the list (`request`), or the form has its
+// own (`options`) - "who signs the contract: a sole proprietor, a company".
 export interface DockChoiceField extends DockFieldBase {
   kind: 'choice'
   request?: string
+  options?: DockOwnOption[]
   placeholder?: DockText
+}
+export interface DockOwnOption {
+  value: string
+  label?: DockText
 }
 
 // A day or a stretch of days; the client's API can mark which are free and
@@ -73,14 +79,20 @@ export interface DockCardsField extends DockFieldBase {
   empty?: DockText
 }
 
-// Something typed: a name, a phone, an e-mail, a message.
+// Something typed: a name, a phone, an e-mail, a number, a message.
 export interface DockTextField extends DockFieldBase {
   kind: 'text'
-  input?: 'text' | 'email' | 'tel' | 'textarea'
+  input?: 'text' | 'email' | 'tel' | 'number' | 'textarea'
   placeholder?: DockText
 }
 
-export type DockField = DockChoiceField | DockDatesField | DockCountersField | DockCardsField | DockTextField
+// A tick: "I agree with the terms", "no Pagewright mention". Its caption is
+// the label; required - the button waits for it to be ticked.
+export interface DockCheckField extends DockFieldBase {
+  kind: 'check'
+}
+
+export type DockField = DockChoiceField | DockDatesField | DockCountersField | DockCardsField | DockTextField | DockCheckField
 export type DockFieldKind = DockField['kind']
 
 export type DockPreset = 'booking' | 'appointment' | 'shop' | 'enquiry'
@@ -156,6 +168,11 @@ function hasValue (value: unknown): boolean {
   return value !== undefined && value !== null && value !== '' && !(Array.isArray(value) && value.length === 0)
 }
 
+// A phone field starts as its country code alone: "(+380) ".
+function hasPhone (value: unknown): boolean {
+  return typeof value === 'string' && /\d/.test(value.replace(/\(\+\d{1,4}\)/, ''))
+}
+
 // Has the visitor given this field what it needs?
 export function isFilled (field: DockField, values: Record<string, unknown>): boolean {
   switch (field.kind) {
@@ -166,6 +183,12 @@ export function isFilled (field: DockField, values: Record<string, unknown>): bo
       const days = values[field.key]
       return Array.isArray(days) && days.length >= (field.range ? 2 : 1)
     }
+    case 'check': {
+      return values[field.key] === true
+    }
+    case 'text': {
+      return field.input === 'tel' ? hasPhone(values[field.key]) : hasValue(values[field.key])
+    }
     default: {
       return hasValue(values[field.key])
     }
@@ -174,7 +197,7 @@ export function isFilled (field: DockField, values: Record<string, unknown>): bo
 
 // A field stays in the row of a "bar" form, or goes under it.
 export function inBar (field: DockField, form: DockForm): boolean {
-  return (form.layout ?? 'bar') === 'bar' && field.kind !== 'cards' && !(field.kind === 'text' && field.input === 'textarea')
+  return (form.layout ?? 'bar') === 'bar' && field.kind !== 'cards' && field.kind !== 'check' && !(field.kind === 'text' && field.input === 'textarea')
 }
 
 // The keys a form fills in - for the requests' field lists.
@@ -201,11 +224,13 @@ export function formMessage (form: DockForm, values: Record<string, unknown>, la
       continue
     }
     const value = values[field.key]
-    if (!hasValue(value)) {
+    if (!isFilled(field, values)) {
       continue
     }
     let text: string
-    if (field.kind === 'dates' && Array.isArray(value)) {
+    if (field.kind === 'check') {
+      text = '✓'
+    } else if (field.kind === 'dates' && Array.isArray(value)) {
       // the picker holds every day of a stay: its first and its last
       text = field.range && value.length > 1 ? `${day(value[0])} — ${day(value.at(-1))}` : day(value[0])
     } else {
@@ -289,6 +314,37 @@ export function presetForm (preset: DockPreset, id: string, name: string): DockF
   return { id, name, preset, ...PRESETS[preset]() }
 }
 
+// --- the base package's forms ---------------------------------------------------
+
+// The form of the built-in popup "Своя форма" (its id: the popup's `form`).
+export const CLIENT_FORM_ID = 'client-form'
+
+function defaultForms (): DockForm[] {
+  return [
+    {
+      id: CLIENT_FORM_ID,
+      name: 'Заявка',
+      layout: 'stack',
+      fields: [
+        { kind: 'text', key: 'name', input: 'text', icon: 'mdi-account-outline', required: true, label: T('Ваше імʼя', 'Your name', 'Ihr Name') },
+        { kind: 'text', key: 'phone', input: 'tel', icon: 'mdi-phone-outline', required: true, label: T('Телефон', 'Phone', 'Telefon') },
+        { kind: 'text', key: 'comment', input: 'textarea', icon: 'mdi-message-text-outline', label: T('Коментар', 'Comment', 'Kommentar') },
+      ],
+      button: {
+        label: T('Надіслати', 'Send', 'Senden'),
+        action: 'channel',
+        done: T('Дякуємо! Повідомлення надіслано — відповімо найближчим часом.', 'Thank you! Your message has been sent — we’ll get back to you soon.', 'Danke! Ihre Nachricht wurde gesendet – wir melden uns in Kürze.'),
+      },
+    },
+  ]
+}
+
+// The list with every built-in form in it, where it is missing.
+export function withDefaultForms (forms: DockForm[]): DockForm[] {
+  const missing = defaultForms().filter(form => !forms.some(item => item.id === form.id))
+  return [...forms, ...missing]
+}
+
 // A new field of a kind, as the "Вигляд" tab adds it.
 export function blankField (kind: DockFieldKind, key: string): DockField {
   switch (kind) {
@@ -306,6 +362,9 @@ export function blankField (kind: DockFieldKind, key: string): DockField {
     }
     case 'text': {
       return { kind, key, icon: 'mdi-form-textbox', input: 'text', label: {} }
+    }
+    case 'check': {
+      return { kind, key, label: {} }
     }
   }
 }

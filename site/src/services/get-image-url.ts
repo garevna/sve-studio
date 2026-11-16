@@ -1,4 +1,5 @@
 import { contentApiReachable } from '../utils/content-api-state'
+import { PUBLISHED } from '../utils/published'
 import { sveRoot } from '../utils/sve-root'
 import { CONTENT_API_ORIGIN } from './content-api-base'
 
@@ -10,7 +11,8 @@ export function getImageURL (src: string | undefined | null): string {
   // release, DevTools' "Bypass for network"...), /api/... gets no answer on
   // a static host: a picture of the release is read from the published
   // files instead. One uploaded in this browser has to wait for the API.
-  if (import.meta.env.PROD && src.startsWith('/api/content/images/') && typeof location !== 'undefined' && (!contentApiReachable.value || !navigator.serviceWorker?.controller)) {
+  // The published site has only the released files.
+  if (src.startsWith('/api/content/images/') && typeof location !== 'undefined' && (PUBLISHED || (import.meta.env.PROD && (!contentApiReachable.value || !navigator.serviceWorker?.controller)))) {
     return location.origin + sveRoot() + '_seed/images/' + src.slice('/api/content/images/'.length)
   }
   if (src.startsWith('/api/')) {

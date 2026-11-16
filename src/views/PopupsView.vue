@@ -9,6 +9,7 @@
   import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
   import EditorPageHeader from '@/components/special/EditorPageHeader.vue'
   import EditorSaveBar from '@/components/special/EditorSaveBar.vue'
+  import { formsDocument } from '@/composables/useSiteForms'
   import { useSitePopups } from '@/composables/useSitePopups'
   import { BUILT_IN_POPUP_IDS } from '@/configs/default-popups'
   import { ADDABLE_POPUP_KINDS, POPUP_KIND_ICONS, popupKind } from '@/configs/popup-kinds'
@@ -21,7 +22,8 @@
   // same frame (content/styles/popups.css) - a title, the close cross, a
   // text, their own middle, a row of buttons - and differ in what they are
   // for (configs/popup-kinds.ts): a message, a confirmation, a field, a
-  // list, a date, blocks, or one of the base package's forms. Any button on
+  // list, a date, blocks, a form of "Форми" in its frame, or one of the
+  // base package's feedback forms. Any button on
   // any page can open any of them - linked in that button's settings
   // ("Що робить кнопка"), or the popup is started there and finished here.
   // How they look - the frame, the buttons, the formats, the calendar - is
@@ -80,7 +82,11 @@
   function metaOf (popup: PopupModel): string {
     const kind = popupKind(popup)
     const parts = [t(`pagePopups.kinds.${kind}`), t(placementOf(popup).label)]
-    if (kind === 'content' || kind === 'form') {
+    if (kind === 'form' && popup.form) {
+      // the form it shows ("Форми")
+      const form = formsDocument.value.forms.find(item => item.id === popup.form)
+      parts.push(`«${form?.name || popup.form}»`)
+    } else if (kind === 'content' || kind === 'form') {
       parts.push(t('pagePopups.blocks', { count: popup.content.children?.length ?? 0 }))
     }
     return parts.join(' · ')

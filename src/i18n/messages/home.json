@@ -345,5 +345,10 @@
     "uk": "Ви увійшли як {email}",
     "en": "You are signed in as {email}",
     "de": "Sie sind als {email} angemeldet"
+  },
+  "ownerSite": {
+    "uk": "Сайт Pagewright — окремо від цього демо",
+    "en": "",
+    "de": ""
   }
 }

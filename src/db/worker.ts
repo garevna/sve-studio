@@ -517,6 +517,24 @@ async function dropRetiredPaletteKeys (db: IDBDatabase): Promise<void> {
   await putRecord(db, 'settings', { ...record, content: cleaned })
 }
 
+// Service addresses that moved (the feedback channel left the old
+// Cloudflare account on 2026-11-13). A browser's global settings kept as a
+// draft - drafts are never refreshed - would go on sending to the old,
+// gone address; only that address is swapped, the rest of the draft stays.
+const MOVED_SERVICES: Record<string, string> = {
+  'https://pagewright-feedback.garevna.workers.dev': 'https://pagewright-feedback.garevna-dev.workers.dev',
+}
+
+async function followMovedServices (db: IDBDatabase): Promise<void> {
+  const record = await getRecord<SettingsRecord>(db, 'settings', 'global')
+  const feedback = (record?.content as { feedback?: { endpoint?: string } } | undefined)?.feedback
+  const moved = feedback?.endpoint && MOVED_SERVICES[feedback.endpoint.replace(/\/+$/, '')]
+  if (!record || !moved) {
+    return
+  }
+  await putRecord(db, 'settings', { ...record, content: { ...(record.content as object), feedback: { ...feedback, endpoint: moved } } })
+}
+
 // --- Route handlers ---
 
 // data.published distinguishes a live in-progress edit (autosave, keeps
@@ -645,6 +663,7 @@ self.onmessage = async (event: MessageEvent<DbRequestMessage>) => {
         await refreshChangedSeedFiles(db)
         await takeNewRelease(db).catch(error => warn('takeNewRelease', error))
         await dropRetiredPaletteKeys(db).catch(error => warn('dropRetiredPaletteKeys', error))
+        await followMovedServices(db).catch(error => warn('followMovedServices', error))
         return db
       })
       await dbPromise

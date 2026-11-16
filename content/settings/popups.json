@@ -40,48 +40,9 @@
       },
       "content": {
         "type": "section-with-free-content",
-        "children": [
-          {
-            "type": "form-field",
-            "formField": {
-              "input": "text",
-              "label": {
-                "uk": "Ваше імʼя",
-                "en": "Your name",
-                "de": "Ihr Name"
-              },
-              "required": true
-            },
-            "class": "mb-4"
-          },
-          {
-            "type": "form-field",
-            "formField": {
-              "input": "phone",
-              "label": {
-                "uk": "Телефон",
-                "en": "Phone",
-                "de": "Telefon"
-              },
-              "required": true
-            },
-            "class": "mb-7"
-          },
-          {
-            "type": "form-field",
-            "formField": {
-              "input": "textarea",
-              "label": {
-                "uk": "Коментар",
-                "en": "Comment",
-                "de": "Kommentar"
-              },
-              "required": false
-            },
-            "class": "mb-4"
-          }
-        ]
-      }
+        "children": []
+      },
+      "form": "client-form"
     },
     {
       "id": "popup-feedback",
@@ -230,143 +191,11 @@
         "en": "The details for the contract. We will email you a draft contract within a working day; once it is signed, an invoice; once it is paid, access.",
         "de": "Die Angaben für den Vertrag. Den Vertragsentwurf senden wir innerhalb eines Werktags per E-Mail; nach der Unterzeichnung die Rechnung, nach der Zahlung den Zugang."
       },
-      "okText": {
-        "uk": "Надіслати заявку",
-        "en": "Send the request",
-        "de": "Anfrage senden"
-      },
       "content": {
         "type": "section-with-free-content",
-        "children": [
-          {
-            "type": "form-field",
-            "class": "mb-4",
-            "formField": {
-              "input": "select",
-              "label": {
-                "uk": "Хто укладає договір",
-                "en": "Who signs the contract",
-                "de": "Wer schließt den Vertrag"
-              },
-              "required": true,
-              "options": [
-                {
-                  "value": "fop",
-                  "label": {
-                    "uk": "ФОП",
-                    "en": "Sole proprietor",
-                    "de": "Einzelunternehmer"
-                  }
-                },
-                {
-                  "value": "company",
-                  "label": {
-                    "uk": "Компанія (ТОВ)",
-                    "en": "Company (LLC)",
-                    "de": "Unternehmen (GmbH)"
-                  }
-                },
-                {
-                  "value": "person",
-                  "label": {
-                    "uk": "Фізична особа",
-                    "en": "Private person",
-                    "de": "Privatperson"
-                  }
-                }
-              ]
-            }
-          },
-          {
-            "type": "form-field",
-            "class": "mb-4",
-            "formField": {
-              "input": "text",
-              "label": {
-                "uk": "Назва компанії або ПІБ",
-                "en": "Company name or full name",
-                "de": "Firmenname oder vollständiger Name"
-              },
-              "required": true
-            }
-          },
-          {
-            "type": "form-field",
-            "class": "mb-4",
-            "formField": {
-              "input": "text",
-              "label": {
-                "uk": "Код ЄДРПОУ (для компанії)",
-                "en": "Company registration number",
-                "de": "Handelsregisternummer (für Unternehmen)"
-              }
-            }
-          },
-          {
-            "type": "form-field",
-            "class": "mb-4",
-            "formField": {
-              "input": "text",
-              "label": {
-                "uk": "Юридична адреса",
-                "en": "Registered address",
-                "de": "Anschrift"
-              },
-              "required": true
-            }
-          },
-          {
-            "type": "form-field",
-            "class": "mb-4",
-            "formField": {
-              "input": "email",
-              "label": {
-                "uk": "Email для договору й рахунку",
-                "en": "Email for the contract and invoice",
-                "de": "E-Mail für Vertrag und Rechnung"
-              },
-              "required": true
-            }
-          },
-          {
-            "type": "form-field",
-            "class": "mb-4",
-            "formField": {
-              "input": "phone",
-              "label": {
-                "uk": "Телефон",
-                "en": "Phone",
-                "de": "Telefon"
-              },
-              "required": true
-            }
-          },
-          {
-            "type": "form-field",
-            "class": "mb-4",
-            "formField": {
-              "input": "checkbox",
-              "label": {
-                "uk": "Додати «Без згадки про Pagewright»",
-                "en": "Add \"No Pagewright mention\"",
-                "de": "„Ohne Pagewright-Hinweis“ hinzufügen"
-              }
-            }
-          },
-          {
-            "type": "form-field",
-            "class": "mb-4",
-            "formField": {
-              "input": "textarea",
-              "label": {
-                "uk": "Коментар",
-                "en": "Comment",
-                "de": "Kommentar"
-              }
-            }
-          }
-        ]
-      }
+        "children": []
+      },
+      "form": "order"
     },
     {
       "id": "popup-1a5kq",

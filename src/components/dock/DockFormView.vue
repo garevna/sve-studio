@@ -5,6 +5,7 @@
   import { computed, inject, provide, reactive, ref, watch } from 'vue'
   import { DOCK_FORM_HOST, DOCK_FORM_SCOPE, type DockFormScope, isoOf } from './dock-form-host'
   import DockFormCards from './DockFormCards.vue'
+  import DockFormCheck from './DockFormCheck.vue'
   import DockFormChoice from './DockFormChoice.vue'
   import DockFormCounters from './DockFormCounters.vue'
   import DockFormDates from './DockFormDates.vue'
@@ -31,7 +32,7 @@
   } as const
 
   // each field's own component; it takes the field of its kind
-  const KINDS: Record<DockFieldKind, Component> = { choice: DockFormChoice, dates: DockFormDates, counters: DockFormCounters, cards: DockFormCards, text: DockFormText }
+  const KINDS: Record<DockFieldKind, Component> = { choice: DockFormChoice, dates: DockFormDates, counters: DockFormCounters, cards: DockFormCards, text: DockFormText, check: DockFormCheck }
 
   const fields = computed<DockField[]>(() => props.form?.fields ?? [])
   function fieldOf (key: string): DockField | undefined {
@@ -377,6 +378,26 @@
 .pw-dock__button {
   height: auto !important;
   min-height: 60px;
+}
+.pw-dock__check {
+  flex: none;
+}
+/* a phone field with its country code fills the value line: the theme
+   (content/styles/inputs.css) fixes its columns, wider than a phone's
+   field box - here the number takes what the code leaves */
+.pw-dock__phone {
+  width: 100%;
+}
+.pw-dock__phone.phone-number-input {
+  grid-template-columns: 120px minmax(0, 1fr) !important;
+}
+.pw-dock__phone .input-phone-number {
+  grid-template-columns: minmax(0, 1fr) 16px !important;
+  min-width: 0;
+}
+.pw-dock__phone .input-phone-number input {
+  width: 100%;
+  min-width: 0;
 }
 /* What opens from a field, as its look says: --pw-panel-* */
 .pw-dock__panel {

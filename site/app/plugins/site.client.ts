@@ -5,15 +5,17 @@ import { createVuetify } from 'vuetify'
 import { getPalette } from '../../src/services/site-data'
 import { probeContentApi } from '../../src/utils/content-api-state'
 import { installImageFallback } from '../../src/utils/image-fallback'
+import { PUBLISHED } from '../../src/utils/published'
 import { report, reportUncaught } from '../../src/utils/report'
 import { sveRoot } from '../../src/utils/sve-root'
 
 // The editor's content API worker (service-worker/content-api-sw.ts) - it
 // serves the images the visitor uploaded in the editor, which exist only in
 // their browser. Registered here too, for a visitor who opens the site
-// first; nothing waits for it.
+// first; nothing waits for it. Not on the owner's own site: it has only the
+// released files.
 function startContentApi () {
-  if ('serviceWorker' in navigator) {
+  if ('serviceWorker' in navigator && !PUBLISHED) {
     navigator.serviceWorker.register(`${sveRoot()}content-api-sw.js`, { scope: sveRoot() })
       .then(() => navigator.serviceWorker.ready)
       // Does it actually answer? (see utils/content-api-state.ts)

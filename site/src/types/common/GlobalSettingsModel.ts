@@ -27,6 +27,9 @@ export type GlobalSettingsModel = {
   auth?: AuthSettings
   menuStyle?: { dropdown?: Partial<DropdownStyle>, mobile?: Partial<MobileMenuStyle> }
   provider: string
+  // The owner's legal name per language (a sole proprietor, a company),
+  // shown next to the copyright. Absent or empty: the copyright alone.
+  legalName?: Record<string, string>
   logo: {
     src: string
     width: number

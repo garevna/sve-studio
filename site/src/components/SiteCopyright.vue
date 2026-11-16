@@ -16,11 +16,18 @@
     de: 'Erstellt mit Pagewright',
   }
   const madeWith = computed(() => MADE_WITH[locale.value] ?? MADE_WITH.en)
+
+  // The owner by law (global.json legalName), in this language or else the
+  // first one written.
+  const legalName = computed(() => {
+    const names = company.value?.legalName ?? {}
+    return names[locale.value] || Object.values(names).find(Boolean) || ''
+  })
 </script>
 
 <template>
   <div class="site-copyright">
-    <span>© {{ year }} {{ company?.name }}</span>
+    <span>© {{ year }} {{ company?.name }}<template v-if="legalName"> · {{ legalName }}</template></span>
     <span class="site-copyright__editor">{{ madeWith }} · © Irina Fylyppova</span>
   </div>
 </template>

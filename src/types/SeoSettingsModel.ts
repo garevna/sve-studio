@@ -5,7 +5,7 @@
 // its own content would just mean cross-referencing two places for one edit.
 export interface SeoSettingsModel {
   // "%s" is replaced with the page's own title (or defaultTitle, if a page
-  // has none) - e.g. "%s — Virtual Dimension". A page with no "%s" in sight just
+  // has none) - e.g. "%s — Pagewright". A page with no "%s" in sight just
   // shows this template verbatim, which is a reasonable fallback rather
   // than an error case worth guarding against.
   titleTemplate: string

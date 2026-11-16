@@ -36,17 +36,34 @@
   const formOpen = ref(false)
   const popupsStore = usePopupsStore()
   function onButtonClick () {
-    if (props.item.action === 'form') {
-      formOpen.value = true
-    } else if (props.item.action === 'popup') {
-      // One of the site's popups: its flag (stores/popups.ts).
-      // With what it is about (a card's button: the card's title).
-      if (props.item.popup) {
-        const about = props.item.popupContext as Record<string, string> | undefined
-        void popupsStore.show(props.item.popup, about?.[locale.value] || about?.[defaultLocale.value] || '')
+    switch (props.item.action) {
+      case 'form': {
+        formOpen.value = true
+
+        break
       }
-    } else if (targetPath.value) {
-      follow(props.item)
+      case 'popup': {
+        // One of the site's popups: its flag (stores/popups.ts).
+        // With what it is about (a card's button: the card's title).
+        if (props.item.popup) {
+          const about = props.item.popupContext as Record<string, string> | undefined
+          void popupsStore.show(props.item.popup, about?.[locale.value] || about?.[defaultLocale.value] || '')
+        }
+
+        break
+      }
+      case 'url': {
+        // An address outside the site, in its own tab - the site stays open.
+        if (props.item.href) {
+          window.open(props.item.href, '_blank', 'noopener')
+        }
+
+        break
+      }
+      default: { if (targetPath.value) {
+        follow(props.item)
+      }
+      }
     }
   }
 

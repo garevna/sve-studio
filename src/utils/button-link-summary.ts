@@ -2,11 +2,14 @@ import type { PopupModel, TemplateBlockModel } from '@/types/TemplateBlockModel'
 import { t } from '@/i18n'
 
 // Where a button leads, in one line under it in the editor: the form, one
-// of the page's popups, a page, a block on a page, or nowhere yet. Shared
+// of the page's popups, an outside address, a page, a block on a page, or nowhere yet. Shared
 // by every kind of button.
 export function buttonLinkSummary (block: TemplateBlockModel, popups: PopupModel[] = []): string {
   if (block.action === 'form') {
     return t('buttonEditor.opensFeedbackForm')
+  }
+  if (block.action === 'url') {
+    return block.href ? t('buttonEditor.opensUrl', { url: block.href }) : t('buttonEditor.noTarget')
   }
   if (block.action === 'popup') {
     const popup = popups.find(item => item.id === block.popup)

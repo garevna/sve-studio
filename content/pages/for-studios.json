@@ -1,5 +1,5 @@
 {
-  "id": "expert-help",
+  "id": "for-studios",
   "breadcrumbs": false,
   "backButton": false,
   "hero": false,
@@ -15,18 +15,18 @@
         {
           "type": "header",
           "content": {
-            "uk": "",
-            "en": "",
-            "de": ""
+            "uk": "Для студій і агенцій",
+            "en": "For studios and agencies",
+            "de": "Für Studios und Agenturen"
           },
           "class": "mt-16 mb-8 text-center"
         },
         {
           "type": "title",
           "content": {
-            "uk": "",
-            "en": "",
-            "de": ""
+            "uk": "White-label верф під ваш бренд",
+            "en": "A white-label shipyard under your brand",
+            "de": "Eine White-Label-Werft unter Ihrer Marke"
           },
           "class": "my-8 text-center"
         }
@@ -42,27 +42,27 @@
               "type": "title",
               "class": "mb-5 accent-font text-thin text-selected-date-first-fone-color h2",
               "content": {
-                "uk": "Абсолютна адаптивність",
-                "en": "Абсолютна адаптивність",
-                "de": "Absolute Anpassungsfähigkeit"
+                "uk": "Ваш бренд, наш двигун",
+                "en": "Your brand, our engine",
+                "de": "Ihre Marke, unser Motor"
               }
             },
             {
               "type": "text",
               "class": "default-text text-medium text-black",
               "content": {
-                "uk": "Наші інтерфейси підлаштовуються під будь-які екрани — від розумних годинників до міжгалактичних терміналів.",
-                "en": "Наші інтерфейси підлаштовуються під будь-які екрани — від розумних годинників до міжгалактичних терміналів.",
-                "de": "Unsere Benutzeroberflächen passen sich an jeden Bildschirm an, von Smartwatches bis hin zu intergalaktischen Terminals."
+                "uk": "Ліцензія на Pagewright під вашим ім’ям: скільки завгодно клієнтських сайтів, жодного нашого логотипа. Клієнт править контент, а ваш дизайн-код лишається недоторканим.",
+                "en": "A Pagewright licence under your name: as many client sites as you like, not a trace of our logo. The client edits content, your design code stays untouched.",
+                "de": "Eine Pagewright-Lizenz unter Ihrem Namen: beliebig viele Kundenwebsites, keine Spur unseres Logos. Der Kunde pflegt Inhalte, Ihr Design-Code bleibt unangetastet."
               }
             },
             {
               "type": "text",
               "class": "default-text text-medium text-primary mt-5 mb-16 mb-md-0",
               "content": {
-                "uk": "",
-                "en": "",
-                "de": ""
+                "uk": "Деталі й ціна — на сторінці «Замовити корабель».",
+                "en": "Details and price are on the “Order a ship” page.",
+                "de": "Details und Preis auf der Seite „Schiff bestellen“."
               }
             }
           ]
@@ -70,9 +70,9 @@
         {
           "type": "image",
           "content": {
-            "uk": "",
-            "en": "/api/content/images/expert-help/14-2.jpg?v=6c6a8d78",
-            "de": ""
+            "uk": "/api/content/images/expert-help/14-2.webp?v=f89e88e9",
+            "en": "/api/content/images/expert-help/14-2.webp?v=f89e88e9",
+            "de": "/api/content/images/expert-help/14-2.webp?v=f89e88e9"
           }
         }
       ]
@@ -84,9 +84,9 @@
           "type": "image",
           "class": "my-25 my-md-0",
           "content": {
-            "uk": "",
-            "en": "/api/content/images/expert-help/32.jpg?v=0b029374",
-            "de": ""
+            "uk": "/api/content/images/expert-help/32.png?v=2b88ef7c",
+            "en": "/api/content/images/expert-help/32.png?v=2b88ef7c",
+            "de": "/api/content/images/expert-help/32.png?v=2b88ef7c"
           }
         },
         {
@@ -97,18 +97,18 @@
               "type": "title",
               "class": "mb-5 accent-font text-thin text-selected-date-first-fone-color h2",
               "content": {
-                "uk": "Ідемпотентний підхід",
-                "en": "Ідемпотентний підхід",
-                "de": "Idempotenter Ansatz"
+                "uk": "Ролі, а не довіра на слово",
+                "en": "Roles, not blind trust",
+                "de": "Rollen statt blindem Vertrauen"
               }
             },
             {
               "type": "text",
               "class": "default-text text-medium text-black",
               "content": {
-                "uk": "Робимо все красиво з першого разу. Повторні кліки по кнопках не зіпсують вашу карму (і базу даних).",
-                "en": "Робимо все красиво з першого разу. Повторні кліки по кнопках не зіпсують вашу карму (і базу даних).",
-                "de": "Wir machen es auf Anhieb schön. Wiederholte Klicks auf Schaltflächen werden Ihr Karma (und Ihre Datenbank) nicht ruinieren."
+                "uk": "Контент-менеджер бачить тексти й картинки, дизайнер — UI Kit, а палітру, шрифти й CSS — ви. Ніхто не задеплоїть «трохи інший синій» у прод.",
+                "en": "The content manager sees texts and pictures, the designer sees the UI Kit, and the palette, fonts and CSS are yours. Nobody deploys “a slightly different blue” to prod.",
+                "de": "Der Content-Manager sieht Texte und Bilder, der Designer das UI Kit, Palette, Schriften und CSS gehören Ihnen. Niemand deployt „ein etwas anderes Blau“ in die Produktion."
               }
             },
             {
@@ -129,79 +129,78 @@
       "content": "TransferServicesSteps",
       "props": {
         "title": {
-          "uk": "",
-          "en": "",
-          "de": ""
+          "uk": "Онбординг студії",
+          "en": "Studio onboarding",
+          "de": "Studio-Onboarding"
         },
         "subtitle": {
-          "uk": "",
-          "en": "",
-          "de": ""
+          "uk": "Від ліцензії до першого клієнта",
+          "en": "From licence to first client",
+          "de": "Von der Lizenz zum ersten Kunden"
         },
         "circles": [
           {
             "text": {
-              "uk": "",
-              "en": "",
-              "de": ""
+              "uk": "договір, рахунок, доступ до коду",
+              "en": "contract, invoice, access to the code",
+              "de": "Vertrag, Rechnung, Zugang zum Code"
             },
             "bold": {
-              "uk": "",
-              "en": "",
-              "de": ""
+              "uk": "Ліцензія",
+              "en": "Licence",
+              "de": "Lizenz"
             }
           },
           {
             "text": {
-              "uk": "",
-              "en": "",
-              "de": ""
+              "uk": "Cloudflare, Firebase чи ваш сервер — за інструкцією",
+              "en": "Cloudflare, Firebase or your server — by the guide",
+              "de": "Cloudflare, Firebase oder Ihr Server — nach Anleitung"
             },
             "bold": {
-              "uk": "",
-              "en": "",
-              "de": ""
+              "uk": "Деплой",
+              "en": "Deploy",
+              "de": "Deployment"
             }
           },
           {
             "text": {
-              "uk": "",
-              "en": "",
-              "de": ""
+              "uk": "своє API, Worker чи Firebase — за відкритим контрактом",
+              "en": "your own API, a Worker or Firebase — by an open contract",
+              "de": "eigene API, Worker oder Firebase — nach offenem Vertrag"
             },
             "bold": {
-              "uk": "",
-              "en": "",
-              "de": ""
+              "uk": "Бекенд",
+              "en": "Back end",
+              "de": "Backend"
             }
           },
           {
             "text": {
-              "uk": "",
-              "en": "",
-              "de": ""
+              "uk": "Telegram-бот і закритий канал для клієнта",
+              "en": "a Telegram bot and a private channel for the client",
+              "de": "Telegram-Bot und privater Kanal für den Kunden"
             },
             "bold": {
-              "uk": "",
-              "en": "",
-              "de": ""
+              "uk": "Штурвал",
+              "en": "Helm",
+              "de": "Steuerrad"
             }
           },
           {
             "text": {
-              "uk": "",
-              "en": "",
-              "de": ""
+              "uk": "клієнт править сам, ви масштабуєтеся",
+              "en": "the client edits alone, you scale",
+              "de": "der Kunde pflegt selbst, Sie skalieren"
             },
             "bold": {
-              "uk": "",
-              "en": "",
-              "de": ""
+              "uk": "Реліз",
+              "en": "Release",
+              "de": "Release"
             }
           }
         ]
-      },
-      "hidden": true
+      }
     },
     {
       "type": "section",
@@ -212,27 +211,27 @@
             {
               "type": "title",
               "content": {
-                "uk": "Чиста магія",
-                "en": "Чиста магія",
-                "de": "Pure Magie"
+                "uk": "Відкритий контракт",
+                "en": "An open contract",
+                "de": "Ein offener Vertrag"
               },
               "class": "my-8 text-center accent-font text-thin text-selected-date-first-fone-color h2"
             },
             {
               "type": "text",
               "content": {
-                "uk": "(під капотом): компілюємо хаос у структурований користувацький досвід.",
-                "en": "(під капотом): компілюємо хаос у структурований користувацький досвід.",
-                "de": "(unter der Haube): Wir verwandeln Chaos in ein strukturiertes Nutzererlebnis."
+                "uk": "(під капотом): REST-контракт описаний у документації — підключайте свій бекенд, а не підлаштовуйтеся під наш.",
+                "en": "(under the hood): the REST contract is documented — plug in your back end instead of bending to ours.",
+                "de": "(unter der Haube): Der REST-Vertrag ist dokumentiert — binden Sie Ihr Backend an, statt sich unserem anzupassen."
               },
               "class": "default-text text-medium mb-4"
             },
             {
               "type": "text",
               "content": {
-                "uk": "",
-                "en": "",
-                "de": ""
+                "uk": "Vue 3, Nuxt 4, TypeScript, Vuetify. Монорепо без чорних дір, тести в headless Chrome.",
+                "en": "Vue 3, Nuxt 4, TypeScript, Vuetify. A monorepo with no black holes, tests in headless Chrome.",
+                "de": "Vue 3, Nuxt 4, TypeScript, Vuetify. Ein Monorepo ohne schwarze Löcher, Tests in Headless Chrome."
               },
               "class": "default-text text-medium mb-4"
             }
@@ -241,9 +240,9 @@
         {
           "type": "image",
           "content": {
-            "uk": "",
-            "en": "/api/content/images/expert-help/15.jpg?v=ef67b50a",
-            "de": ""
+            "uk": "/api/content/images/expert-help/15.webp?v=2fa481f2",
+            "en": "/api/content/images/expert-help/15.webp?v=2fa481f2",
+            "de": "/api/content/images/expert-help/15.webp?v=2fa481f2"
           }
         }
       ]
@@ -258,26 +257,26 @@
               "type": "title",
               "class": "h3 text-bold text-black my-6",
               "content": {
-                "uk": "",
-                "en": "",
-                "de": ""
+                "uk": "Стек без сюрпризів",
+                "en": "A stack without surprises",
+                "de": "Ein Stack ohne Überraschungen"
               }
             },
             {
               "type": "text",
               "class": "default-text text-thin text-black text-justify mb-8 mb-md-0",
               "content": {
-                "uk": "",
-                "en": "",
-                "de": ""
+                "uk": "Корабель — окремий Nuxt-застосунок: сторінки для пошуковиків, мовні маршрути, картинки, що самі заповнюють усі мови. Верф — окремий застосунок, який у прод можна взагалі не викладати.",
+                "en": "The ship is a separate Nuxt app: pages for search engines, language routes, pictures that fill every language on their own. The Pageyard is a separate app you don’t even have to deploy to prod.",
+                "de": "Das Schiff ist eine eigene Nuxt-App: Seiten für Suchmaschinen, Sprachrouten, Bilder, die alle Sprachen selbst befüllen. Die Werft ist eine eigene App, die Sie gar nicht in Produktion bringen müssen."
               }
             },
             {
               "type": "image",
               "content": {
-                "uk": "/api/content/images/expert-help/14.jpg?v=b5e27ce5",
-                "en": "/api/content/images/expert-help/14.jpg?v=b5e27ce5",
-                "de": "/api/content/images/expert-help/14.jpg?v=b5e27ce5"
+                "uk": "/api/content/images/expert-help/14.jpg?v=7774f9f8",
+                "en": "/api/content/images/expert-help/14.jpg?v=7774f9f8",
+                "de": "/api/content/images/expert-help/14.jpg?v=7774f9f8"
               },
               "height": 523
             }
@@ -302,13 +301,13 @@
                   },
                   "content": {
                     "uk": [
-                      "Ми одержимі піксельною точністю та реактивністю. "
+                      "Піксельна точність і адаптивність — від 320 px до 4K."
                     ],
                     "en": [
-                      "We’re obsessed with pixel-perfect precision and responsiveness."
+                      "Pixel precision and responsiveness — from 320 px to 4K."
                     ],
                     "de": [
-                      "Wir sind besessen von pixelgenauer Präzision und Reaktionsfähigkeit."
+                      "Pixelgenau und responsiv — von 320 px bis 4K."
                     ]
                   }
                 },
@@ -322,13 +321,13 @@
                   },
                   "content": {
                     "uk": [
-                      "Ми знаємо, як змусити елементи на сторінці поводитися належним чином."
+                      "Блоки поводяться однаково на Верфі й у проді — бо це той самий код."
                     ],
                     "en": [
-                      "We know how to make elements on a page behave properly."
+                      "Blocks behave the same in the Pageyard and in prod — because it is the same code."
                     ],
                     "de": [
-                      "Wir wissen, wie man Elemente auf einer Seite dazu bringt, sich anständig zu verhalten."
+                      "Blöcke verhalten sich in der Werft und in Produktion gleich — weil es derselbe Code ist."
                     ]
                   }
                 },
@@ -342,13 +341,13 @@
                   },
                   "content": {
                     "uk": [
-                      "Ми знаємо, як налаштувати монорепозиторій так, щоб він не перетворився на чорну діру."
+                      "Монорепо, яке не стає чорною дірою: Верф, корабель і пакети окремо."
                     ],
                     "en": [
-                      "We know how to set up a monorepository so it doesn’t turn into a black hole."
+                      "A monorepo that doesn’t turn into a black hole: Pageyard, ship and packages apart."
                     ],
                     "de": [
-                      "Wir wissen, wie man ein Monorepository so einrichtet, dass es nicht zu einem schwarzen Loch wird."
+                      "Ein Monorepo, das kein schwarzes Loch wird: Werft, Schiff und Pakete getrennt."
                     ]
                   }
                 },
@@ -362,13 +361,13 @@
                   },
                   "content": {
                     "uk": [
-                      "Ми не обіцяємо, що розробка — це просто, але ми гарантуємо, що результат виглядатиме космічно."
+                      "Відповіді клієнтам — з Telegram, AI-помічник — на ключі клієнта з денною межею."
                     ],
                     "en": [
-                      "We don’t promise that development is easy, but we guarantee the result will look out of this world."
+                      "Replies to customers from Telegram, the AI assistant on the client’s key with a daily cap."
                     ],
                     "de": [
-                      "Wir versprechen nicht, dass die Entwicklung einfach ist, aber wir garantieren, dass das Ergebnis kosmisch gut aussehen wird."
+                      "Antworten an Kunden aus Telegram, KI-Assistent mit dem Schlüssel des Kunden und Tageslimit."
                     ]
                   }
                 }
@@ -392,15 +391,15 @@
     {
       "type": "image",
       "content": {
-        "uk": "/api/content/images/expert-help/28.png?v=74143118",
-        "en": "/api/content/images/expert-help/28.png?v=74143118",
-        "de": "/api/content/images/expert-help/28.png?v=74143118"
+        "uk": "/api/content/images/expert-help/28.jpg?v=564d543a",
+        "en": "/api/content/images/expert-help/28.jpg?v=564d543a",
+        "de": "/api/content/images/expert-help/28.jpg?v=564d543a"
       }
     }
   ],
   "title": {
-    "uk": "Допомога експертів",
-    "en": "Expert Help",
-    "de": "Hilfe von Experten"
+    "uk": "Для студій",
+    "en": "For studios",
+    "de": "Für Studios"
   }
 }

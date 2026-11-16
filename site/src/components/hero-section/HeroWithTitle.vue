@@ -1,8 +1,10 @@
 <script setup lang="ts">
   import { storeToRefs } from 'pinia'
   import { computed } from 'vue'
+  import { useBannerHeight } from '../../composables/useBannerHeight'
   import { TITLE_SIZES } from '../../configs/header-layout'
   import { useCommonStore } from '../../stores/common'
+  import { IMAGE_PLACEHOLDER_CLASS } from '../../utils/image-fallback'
 
   // Layout 2 of the top of the site: the page's top parallax (the
   // full-window one, block type "parallax" - see App.vue) raised above the
@@ -15,6 +17,7 @@
   // configs/header-layout.ts.
   const {
     baners,
+    banerHeight,
     company,
     headerSettings,
     mobileMode,
@@ -26,6 +29,7 @@
     parallaxTitle,
     parallaxText,
     parallaxTheme,
+    winSize,
   } = storeToRefs(useCommonStore())
 
   // Which edge the name takes - on a phone the panel keeps to the other one.
@@ -36,10 +40,11 @@
     return headerSettings.value.titlePosition.startsWith('top') ? 'top' : 'bottom'
   })
 
-  const src = computed(() => parallaxImage.value
-    || (mobileMode.value ? baners.value?.mobile : '')
-    || baners.value?.desktop
-    || '')
+  // The site's banner, for a page without its own parallax: a still picture
+  // as tall as itself (composables/useBannerHeight.ts) - its sides are cut
+  // on a narrower screen, never its top or bottom.
+  const bannerSrc = computed(() => (mobileMode.value ? baners.value?.mobile || baners.value?.desktop : baners.value?.desktop || baners.value?.mobile) || '')
+  const bannerHeight = useBannerHeight(bannerSrc, mobileMode, computed(() => winSize.value.width))
 </script>
 
 <template>
@@ -47,8 +52,8 @@
     <!-- eager: the top of the page is always on screen, and Vuetify's
       wait-until-visible never fires inside the editor's preview frame
       ("Верхня частина сторінки") - the picture then never loads. -->
-    <v-parallax eager :src="src" width="100vw">
-      <div v-if="parallaxImage && (parallaxHeader || parallaxTitle)" :class="[parallaxTheme, 'parallax-panel']">
+    <v-parallax v-if="parallaxImage" eager :src="parallaxImage" width="100vw">
+      <div v-if="parallaxHeader || parallaxTitle" :class="[parallaxTheme, 'parallax-panel']">
         <h2 v-if="parallaxHeader" :class="parallaxHeaderClass">{{ parallaxHeader }}</h2>
         <h4 :class="parallaxTitleClass">{{ parallaxTitle }}</h4>
         <p v-if="parallaxText" :class="parallaxTextClass">{{ parallaxText }}</p>
@@ -57,6 +62,19 @@
         <h1 :class="['h1 text-white hero-with-title-name', headerSettings.titleFont, { 'title-font-own-weight': headerSettings.titleFont }]" :style="{ '--title-scale': TITLE_SIZES[headerSettings.titleSize] }">{{ company?.name }}</h1>
       </div>
     </v-parallax>
+    <v-img
+      v-else
+      :class="{ [IMAGE_PLACEHOLDER_CLASS]: !bannerSrc }"
+      cover
+      eager
+      :height="bannerHeight ?? (bannerSrc ? undefined : banerHeight)"
+      :src="bannerSrc"
+      width="100vw"
+    >
+      <div v-if="headerSettings.showTitle" class="hero-with-title-frame" :class="`hero-with-title-frame--${headerSettings.titlePosition}`">
+        <h1 :class="['h1 text-white hero-with-title-name', headerSettings.titleFont, { 'title-font-own-weight': headerSettings.titleFont }]" :style="{ '--title-scale': TITLE_SIZES[headerSettings.titleSize] }">{{ company?.name }}</h1>
+      </div>
+    </v-img>
   </section>
 </template>
 

@@ -1,9 +1,9 @@
 {
   "id": "advanced-features",
   "title": {
-    "uk": "Просунуті фічі",
-    "en": "Advanced Features",
-    "de": "Erweiterte Funktionen"
+    "uk": "Що на борту",
+    "en": "What’s on board",
+    "de": "Was an Bord ist"
   },
   "visible": true,
   "breadcrumbs": false,
@@ -13,18 +13,18 @@
     {
       "type": "title",
       "content": {
-        "uk": "Virtual Dimension",
-        "en": "Virtual Dimension",
-        "de": "Virtual Dimension"
+        "uk": "Pagewright",
+        "en": "Pagewright",
+        "de": "Pagewright"
       },
       "class": "my-8 text-center accent-font text-selected-date-first-fone-color text-thin h1"
     },
     {
       "type": "title",
       "content": {
-        "uk": "Ми створюємо світи, бо в цьому реальність уже трохи підвисає.",
-        "en": "We create worlds because reality’s already starting to fall a bit short.",
-        "de": "Wir erschaffen Welten, weil die Realität hier schon ein bisschen ins Stocken gerät."
+        "uk": "Усе, що вже є на борту, — і що на стапелі.",
+        "en": "Everything already on board — and what is on the slipway.",
+        "de": "Alles, was schon an Bord ist — und was auf der Helling liegt."
       },
       "class": "my-8 text-center text-selected-date-first-fone-color accent-font-2"
     },
@@ -34,9 +34,9 @@
         {
           "type": "image",
           "content": {
-            "uk": "/api/content/images/advanced-features/09.webp?v=c7662035",
-            "en": "/api/content/images/advanced-features/09.webp?v=c7662035",
-            "de": "/api/content/images/advanced-features/09.webp?v=c7662035"
+            "uk": "/api/content/images/advanced-features/09.png?v=a4ce36cc",
+            "en": "/api/content/images/advanced-features/09.png?v=a4ce36cc",
+            "de": "/api/content/images/advanced-features/09.png?v=a4ce36cc"
           }
         },
         {
@@ -45,9 +45,9 @@
             {
               "type": "title",
               "content": {
-                "uk": "Virtual Dimension",
-                "en": "Virtual Dimension",
-                "de": "Virtual Dimension"
+                "uk": "Pagewright",
+                "en": "Pagewright",
+                "de": "Pagewright"
               },
               "class": "my-8 text-center accent-font text-thin text-selected-date-first-fone-color h2"
             },
@@ -55,63 +55,63 @@
               "type": "text",
               "class": "text-medium accent-font-2 text-primary h5",
               "content": {
-                "uk": "Вимір, де ідеї набувають вектора.",
-                "en": "A dimension where ideas take direction.",
-                "de": "Eine Dimension, in der Ideen Gestalt annehmen."
+                "uk": "Верф: правите, дивлячись на сайт",
+                "en": "The Pageyard: edit while looking at the site",
+                "de": "Die Werft: bearbeiten mit Blick auf die Website"
               }
             },
             {
               "type": "text",
               "class": "default-text text-medium text-black",
               "content": {
-                "uk": "Проектуємо цифрові інтерфейси, які виглядають однаково круто як на темній, так і на світлій стороні браузера.",
-                "en": "We design digital interfaces that look equally cool on both the dark and light modes of the browser.",
-                "de": "Wir entwerfen digitale Benutzeroberflächen, die sowohl auf der dunklen als auch auf der hellen Seite des Browsers gleichermaßen cool aussehen."
+                "uk": "Сторінки з готових блоків: тексти, картинки, картки, каруселі, вкладки, форми й попапи.",
+                "en": "Pages from ready-made blocks: texts, pictures, cards, carousels, tabs, forms and popups.",
+                "de": "Seiten aus fertigen Blöcken: Texte, Bilder, Karten, Karussells, Tabs, Formulare und Pop-ups."
               }
             },
             {
               "type": "text",
               "class": "default-text text-medium text-black",
               "content": {
-                "uk": "Генеруємо ідеальні SVG-контури (з правильним розподілом товщини ліній).",
-                "en": "Generate perfect SVG outlines (with correct line weight distribution).",
-                "de": "Wir generieren perfekte SVG-Konturen (mit korrekter Verteilung der Linienstärke)."
+                "uk": "Кожен текст, назва сторінки й пункт меню — окремо кожною мовою сайту.",
+                "en": "Every text, page name and menu entry — separately in each of the site’s languages.",
+                "de": "Jeder Text, Seitenname und Menüpunkt — einzeln in jeder Sprache der Website."
               }
             },
             {
               "type": "text",
               "class": "default-text text-medium text-black",
               "content": {
-                "uk": "Керуємо глобальним станом додатків без паніки та витоків пам’яті.",
-                "en": "Manage global application state without panic or memory leaks.",
-                "de": "Wir verwalten den globalen Zustand von Anwendungen ohne Panik und ohne Speicherlecks."
+                "uk": "Одна дизайн-система на весь сайт: палітра, шрифти й кнопки — у бібліотеці UI Kit.",
+                "en": "One design system for the whole site: palette, fonts and buttons — in the UI Kit library.",
+                "de": "Ein Designsystem für die ganze Website: Palette, Schriften und Buttons — in der UI-Kit-Bibliothek."
               }
             },
             {
               "type": "text",
               "class": "default-text text-medium text-black",
               "content": {
-                "uk": "Створюємо веб-архітектуру, яка витримає будь-який наплив користувачів.",
-                "en": "Build web architecture that can handle any surge in users.",
-                "de": "Wir erstellen eine Webarchitektur, die jedem Nutzeransturm standhält."
+                "uk": "Ролі: хто пише тексти, той не дістане до палітри й стилів.",
+                "en": "Roles: whoever writes the texts cannot reach the palette or the styles.",
+                "de": "Rollen: Wer Texte schreibt, kommt nicht an Palette und Stile."
               }
             },
             {
               "type": "text",
               "class": "text-medium accent-font-2 h4 text-primary",
               "content": {
-                "uk": "Наш код не горить. Він просто ідеально рендериться.",
-                "en": "Our code doesn’t crash. It just renders perfectly.",
-                "de": "Unser Code brennt nicht. Er wird einfach perfekt gerendert."
+                "uk": "Що бачите на Верфі — те й побачить відвідувач.",
+                "en": "What you see in the Pageyard is what the visitor sees.",
+                "de": "Was Sie in der Werft sehen, sieht auch der Besucher."
               }
             },
             {
               "type": "text",
               "class": "default-text text-medium text-black",
               "content": {
-                "uk": "",
-                "en": "",
-                "de": ""
+                "uk": "Заголовки й описи для пошуку — для кожної сторінки й кожної мови.",
+                "en": "Search titles and descriptions — for every page and every language.",
+                "de": "Titel und Beschreibungen für die Suche — für jede Seite und jede Sprache."
               }
             }
           ]
@@ -119,11 +119,148 @@
       ]
     },
     {
+      "type": "title",
+      "class": "my-8 text-center accent-font-2 text-selected-date-first-fone-color",
+      "content": {
+        "uk": "Штурвал, причали й помічник",
+        "en": "Helm, moorings and assistant",
+        "de": "Steuerrad, Liegeplätze und Assistent"
+      }
+    },
+    {
+      "type": "cards",
+      "id": "on-board",
+      "ver": 1,
+      "size": 56,
+      "children": [
+        {
+          "type": "card",
+          "icon": "mdi-ship-wheel",
+          "title": {
+            "uk": "Штурвал у Telegram",
+            "en": "The helm in Telegram",
+            "de": "Das Steuerrad in Telegram"
+          },
+          "content": {
+            "uk": [
+              "Повідомлення з сайту — у ваш закритий канал. Відповідь звідти з’являється в кабінеті клієнта за секунди."
+            ],
+            "en": [
+              "Messages from the site go to your private channel. Your reply from there appears in the customer’s account within seconds."
+            ],
+            "de": [
+              "Nachrichten von der Website gehen in Ihren privaten Kanal. Ihre Antwort von dort erscheint in Sekunden im Kundenbereich."
+            ]
+          }
+        },
+        {
+          "type": "card",
+          "icon": "mdi-form-select",
+          "title": {
+            "uk": "Форми й заявки",
+            "en": "Forms and requests",
+            "de": "Formulare und Anfragen"
+          },
+          "content": {
+            "uk": [
+              "Форма замовлення, запису чи бронювання передає дані у вашу систему — через ваш власний API."
+            ],
+            "en": [
+              "An order, appointment or booking form sends its data to your system — through your own API."
+            ],
+            "de": [
+              "Ein Bestell-, Termin- oder Buchungsformular sendet die Daten an Ihr System — über Ihre eigene API."
+            ]
+          }
+        },
+        {
+          "type": "card",
+          "icon": "mdi-robot-outline",
+          "title": {
+            "uk": "AI-помічник",
+            "en": "AI assistant",
+            "de": "KI-Assistent"
+          },
+          "content": {
+            "uk": [
+              "Переклад сторінок, тексти, описи для пошуку, чернетки відповідей. Окрема опція: на вашому ключі, з межею витрат."
+            ],
+            "en": [
+              "Page translation, copy, search descriptions, draft replies. An option of its own: on your key, with a spending limit."
+            ],
+            "de": [
+              "Seitenübersetzung, Texte, Suchbeschreibungen, Antwortentwürfe. Eine eigene Option: mit Ihrem Schlüssel und Ausgabenlimit."
+            ]
+          }
+        },
+        {
+          "type": "card",
+          "icon": "mdi-account-key-outline",
+          "title": {
+            "uk": "Кабінет клієнта з входом",
+            "en": "Customer account with sign-in",
+            "de": "Kundenbereich mit Anmeldung"
+          },
+          "content": {
+            "uk": [
+              "Вхід через Google чи пошту; ваш сервер знає клієнта й показує йому його замовлення. На стапелі."
+            ],
+            "en": [
+              "Sign-in with Google or email; your server knows the customer and shows them their orders. On the slipway."
+            ],
+            "de": [
+              "Anmeldung mit Google oder E-Mail; Ihr Server kennt den Kunden und zeigt ihm seine Bestellungen. Auf der Helling."
+            ]
+          }
+        },
+        {
+          "type": "card",
+          "icon": "mdi-credit-card-outline",
+          "title": {
+            "uk": "Оплата",
+            "en": "Payments",
+            "de": "Zahlung"
+          },
+          "content": {
+            "uk": [
+              "Рахунок із QR-кодом для оплати з банківського застосунку, monobank, LiqPay. На стапелі."
+            ],
+            "en": [
+              "An invoice with a QR code to pay from any banking app, monobank, LiqPay. On the slipway."
+            ],
+            "de": [
+              "Rechnung mit QR-Code zum Bezahlen aus jeder Banking-App, monobank, LiqPay. Auf der Helling."
+            ]
+          }
+        },
+        {
+          "type": "card",
+          "icon": "mdi-truck-delivery-outline",
+          "title": {
+            "uk": "Доставка, CRM, документи",
+            "en": "Delivery, CRM, documents",
+            "de": "Versand, CRM, Dokumente"
+          },
+          "content": {
+            "uk": [
+              "Нова Пошта, KeyCRM, договори й акти через «Вчасно». На стапелі."
+            ],
+            "en": [
+              "Nova Poshta, KeyCRM, contracts and acts via Vchasno. On the slipway."
+            ],
+            "de": [
+              "Nova Poshta, KeyCRM, Verträge und Abnahmeprotokolle über Vchasno. Auf der Helling."
+            ]
+          }
+        }
+      ]
+    },
+    {
       "type": "text",
       "content": {
-        "uk": "Коли буденність стає занадто передбачуваною, а закони фізики — занадто нудними, ми відкриваємо портал у дев’ятий вимір.",
-        "en": "When everyday life becomes too predictable and the laws of physics too tedious, we open a portal to the ninth dimension.",
-        "de": "Wenn der Alltag zu vorhersehbar und die Gesetze der Physik zu langweilig werden, öffnen wir ein Portal in die neunte Dimension."
+        "uk": "Кілька кадрів із Верфі та з кораблів, зібраних на ній.",
+        "en": "A few frames from the Pageyard and the ships built in it.",
+        "de": "Ein paar Bilder aus der Werft und von den Schiffen, die dort gebaut wurden."
       },
       "class": "default-text text-medium mb-4"
     },
@@ -131,52 +268,34 @@
       "type": "slider-with-images",
       "images": [
         {
-          "src": "/api/content/images/advanced-features/05.jpg?v=22d86b2b"
+          "src": "/api/content/images/advanced-features/designer.png?v=e3df981f"
         },
         {
-          "src": "/api/content/images/advanced-features/06.webp?v=5a268b48"
+          "src": "/api/content/images/advanced-features/pagewright-01.png?v=4c63e609"
         },
         {
-          "src": "/api/content/images/advanced-features/07.jpg?v=b0a20518"
+          "src": "/api/content/images/advanced-features/pagewright-02.png?v=a4ce36cc"
         },
         {
-          "src": "/api/content/images/advanced-features/08.jpg?v=efca0920"
+          "src": "/api/content/images/advanced-features/pagewright-04.png?v=2222d8e0"
         },
         {
-          "src": "/api/content/images/advanced-features/10.webp?v=c5ea48f6"
+          "src": "/api/content/images/advanced-features/pagewright-06.png?v=2b88ef7c"
         },
         {
-          "src": "/api/content/images/advanced-features/11.jpg?v=580eb84a"
+          "src": "/api/content/images/advanced-features/pagewright-07.webp?v=68b693b2"
         },
         {
-          "src": "/api/content/images/advanced-features/12.webp?v=b612a2aa"
+          "src": "/api/content/images/advanced-features/pagewright-08.webp?v=2fa481f2"
         },
         {
-          "src": "/api/content/images/advanced-features/15.jpg?v=ef67b50a"
+          "src": "/api/content/images/advanced-features/pagewright-10.webp?v=ef1375eb"
         },
         {
-          "src": "/api/content/images/advanced-features/17.jpg?v=d021a659"
+          "src": "/api/content/images/advanced-features/ship-dock-01.jpg?v=7774f9f8"
         },
         {
-          "src": "/api/content/images/advanced-features/19.webp?v=7f1a32fe"
-        },
-        {
-          "src": "/api/content/images/advanced-features/20.jpg?v=588c0533"
-        },
-        {
-          "src": "/api/content/images/advanced-features/22.avif?v=72df4e31"
-        },
-        {
-          "src": "/api/content/images/advanced-features/24.webp?v=c0d3486c"
-        },
-        {
-          "src": "/api/content/images/advanced-features/25.webp?v=905abe9e"
-        },
-        {
-          "src": "/api/content/images/advanced-features/26.webp?v=ea71a76d"
-        },
-        {
-          "src": "/api/content/images/advanced-features/29.webp?v=950bc377"
+          "src": "/api/content/images/advanced-features/ship-dock-02.jpg?v=564d543a"
         }
       ],
       "height": 300

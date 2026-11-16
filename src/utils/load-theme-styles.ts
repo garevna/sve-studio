@@ -5,26 +5,33 @@ import { report } from '@/utils/report'
 // has no editor CSS layer system to coexist with at all (production itself
 // never uses @layer), so it calls this with no layer name and gets the same
 // CSS as a plain, ordinary stylesheet, exactly as production loads it.
+//
+// The sheets are fetched at once but put into the page in the order of
+// styleNames: a later sheet wins over an earlier one, so the order is part
+// of the look. (The browser database answered one by one and kept it by
+// chance; the published site and the demo ship fetch in parallel, and the
+// owner's site lost its menu to a sheet that came in last.)
 export async function loadThemeStyles (activeTheme: number, styleNames: string[], layer?: string): Promise<void> {
-  await Promise.all(styleNames.map(async fileName => {
+  const texts = await Promise.all(styleNames.map(async fileName => {
+    try {
+      return await dbRequest<string>('styles', 'get', { name: `${fileName}.css` })
+    } catch (error) {
+      report('error', 'styles', `Failed to load theme ${activeTheme} style: ${fileName}`, error)
+      return null
+    }
+  }))
+
+  for (const [index, fileName] of styleNames.entries()) {
     const elementId = `theme-style--${fileName}`
     // getElementById, not querySelector('#'+id) - a name with characters
     // invalid in a bare CSS id selector would otherwise throw here and take
     // the whole main() bootstrap down with it.
     // eslint-disable-next-line unicorn/prefer-query-selector
-    const existing = document.getElementById(elementId)
-    if (existing) {
-      existing.remove()
+    document.getElementById(elementId)?.remove()
+    const cssText = texts[index]
+    if (cssText === null || cssText === undefined) {
+      continue
     }
-
-    let cssText: string
-    try {
-      cssText = await dbRequest<string>('styles', 'get', { name: `${fileName}.css` })
-    } catch (error) {
-      report('error', 'styles', `Failed to load theme ${activeTheme} style: ${fileName}`, error)
-      return
-    }
-
     // Fetched (not a plain <link>) and wrapped in the given layer (order
     // locked in by index.html) so it loses to Vuetify's own utility classes
     // when both apply to the same element - a <link layer="..."> was tried
@@ -34,5 +41,5 @@ export async function loadThemeStyles (activeTheme: number, styleNames: string[]
     style.id = elementId
     style.textContent = layer ? `@layer ${layer} {\n${cssText}\n}` : cssText
     document.head.append(style)
-  }))
+  }
 }

@@ -18,9 +18,9 @@
         {
           "type": "button",
           "content": {
-            "uk": "Зробити крок у невідоме",
-            "en": "Take a step into the unknown",
-            "de": "Wage den Schritt ins Ungewisse"
+            "uk": "Вийти в море",
+            "en": "Set sail",
+            "de": "In See stechen"
           },
           "class": "mt-8 mb-6 mb-6 mb-6 primary-button",
           "icon": "mdi-send-variant-outline",
@@ -49,48 +49,48 @@
               "type": "route",
               "class": "default-text text-medium mb-4",
               "content": {
-                "uk": "Асортимент",
-                "en": "Product Range",
-                "de": "Sortiment"
+                "uk": "Що можна збудувати",
+                "en": "What you can build",
+                "de": "Was sich bauen lässt"
               },
               "route": "dynamic-page",
               "params": {
-                "pageId": "products"
+                "pageId": "ships"
               }
             },
             {
               "type": "route",
               "class": "default-text text-medium mb-4",
               "content": {
-                "uk": "Дружні знижки",
-                "en": "Friendly Discounts",
-                "de": "Freundesrabatte"
+                "uk": "Причали",
+                "en": "Moorings",
+                "de": "Liegeplätze"
               },
               "route": "dynamic-page",
               "params": {
-                "pageId": "loyality-program"
+                "pageId": "docking"
               }
             },
             {
               "type": "route",
               "class": "default-text text-medium mb-4",
               "content": {
-                "uk": "Допомога експертів",
-                "en": "Expert Help",
-                "de": "Hilfe von Experten"
+                "uk": "Для студій",
+                "en": "For studios",
+                "de": "Für Studios"
               },
               "route": "dynamic-page",
               "params": {
-                "pageId": "expert-help"
+                "pageId": "for-studios"
               }
             },
             {
               "type": "route",
               "class": "default-text text-medium mb-4",
               "content": {
-                "uk": "Про компанію",
-                "en": "About the company",
-                "de": "Über das Unternehmen"
+                "uk": "Що таке Pagewright",
+                "en": "What Pagewright is",
+                "de": "Was ist Pagewright"
               },
               "route": "dynamic-page",
               "params": {
@@ -133,10 +133,6 @@
                 "de": "Kontakt"
               },
               "id": "footer-contacts-heading"
-            },
-            {
-              "type": "component",
-              "content": "FooterIcons"
             }
           ]
         },

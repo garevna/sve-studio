@@ -57,7 +57,9 @@
 .desktop-menu {
   display: grid;
   width: 100%;
-  grid-template-columns: repeat(3, max-content);
+  /* one column per menu item, however many there are */
+  grid-auto-flow: column;
+  grid-auto-columns: max-content;
   column-gap: 32px;
   height: 48px;
   align-content: center;

@@ -1,9 +1,9 @@
 {
   "id": "how-we-work",
   "title": {
-    "uk": "Як ми працюємо",
-    "en": "How we work",
-    "de": "So arbeiten wir"
+    "uk": "Як спускаємо на воду",
+    "en": "How we launch",
+    "de": "Wie wir vom Stapel lassen"
   },
   "breadcrumbs": false,
   "backButton": false,
@@ -21,18 +21,18 @@
           "type": "header",
           "class": "mt-16 mb-8 text-center text-white",
           "content": {
-            "uk": "Ласкаво просимо в інший вимір",
-            "en": "Welcome to another dimension",
-            "de": "Willkommen in einer anderen Dimension"
+            "uk": "Ласкаво просимо на верф",
+            "en": "Welcome to the shipyard",
+            "de": "Willkommen auf der Werft"
           }
         },
         {
           "type": "title",
           "class": "my-8 text-center text-white",
           "content": {
-            "uk": "Тут ідеї проходять код-рев’ю і виходять у прод",
-            "en": "Where ideas pass code review and ship to prod",
-            "de": "Hier bestehen Ideen das Code-Review und gehen live"
+            "uk": "Тут сайти сходять зі стапеля й виходять у море",
+            "en": "Where sites slide off the slipway and put to sea",
+            "de": "Hier laufen Websites vom Stapel und stechen in See"
           }
         }
       ]
@@ -47,27 +47,27 @@
               "type": "header",
               "class": "mb-5 text-left accent-font text-thin text-primary",
               "content": {
-                "uk": "Ваш тімлід у віртуальному вимірі",
-                "en": "Your team lead in the virtual dimension",
-                "de": "Ihr Teamlead in der virtuellen Dimension"
+                "uk": "Ваш боцман на Верфі",
+                "en": "Your boatswain in the Pageyard",
+                "de": "Ihr Bootsmann in der Werft"
               }
             },
             {
               "type": "text",
               "class": "default-text text-medium text-black",
               "content": {
-                "uk": "Знайомтеся: наш талісман. Обличчя в цей реліз не завезли — зате є бандана, VR-шолом і стовідсоткове покриття тестами оптимізму. Він проведе вас нашим пайплайном: від першого брифу до деплою в прод.",
-                "en": "Meet our mascot. A face didn’t make it into this release — but he ships with a bandana, a VR headset and 100% test coverage of optimism. He’ll walk you through our pipeline: from the first brief to the deploy to prod.",
-                "de": "Darf ich vorstellen: unser Maskottchen. Ein Gesicht hat es nicht ins Release geschafft – dafür gibt es ein Bandana, eine VR-Brille und 100 % Testabdeckung an Optimismus. Er führt Sie durch unsere Pipeline: vom ersten Briefing bis zum Deploy in Prod."
+                "uk": "Знайомтеся: наш талісман. Обличчя в цей реліз не завезли — зате є бандана, VR-шолом і стовідсоткова віра в автотести. Він проведе вас від першого листа до спуску корабля на воду.",
+                "en": "Meet our mascot. No face shipped in this release — but there is a bandana, a VR headset and one hundred per cent faith in automated tests. He will walk you from the first message to the moment your ship hits the water.",
+                "de": "Darf ich vorstellen: unser Maskottchen. Ein Gesicht hat es nicht ins Release geschafft — dafür ein Bandana, ein VR-Headset und hundertprozentiges Vertrauen in automatische Tests. Es begleitet Sie von der ersten Nachricht bis zum Stapellauf."
               }
             },
             {
               "type": "button",
               "class": "primary-button my-8",
               "content": {
-                "uk": "Запушити ідею",
-                "en": "Push your idea",
-                "de": "Idee pushen"
+                "uk": "Розказати про свій сайт",
+                "en": "Tell us about your site",
+                "de": "Erzählen Sie von Ihrer Website"
               },
               "route": "dynamic-page",
               "params": {
@@ -98,74 +98,74 @@
         "circleColor": "light-grey-1",
         "numberColor": "secondary",
         "title": {
-          "uk": "Наш пайплайн",
-          "en": "Our pipeline",
-          "de": "Unsere Pipeline"
+          "uk": "Від заявки до моря",
+          "en": "From request to open sea",
+          "de": "Von der Anfrage bis aufs offene Meer"
         },
         "subtitle": {
-          "uk": "П’ять стейджів, нуль чорних ящиків",
-          "en": "Five stages, zero black boxes",
-          "de": "Fünf Stages, null Blackboxes"
+          "uk": "П’ять кроків, нуль чорних ящиків",
+          "en": "Five steps, zero black boxes",
+          "de": "Fünf Schritte, null Blackboxes"
         },
         "circles": [
           {
             "bold": {
-              "uk": "Бриф",
-              "en": "Brief",
-              "de": "Briefing"
+              "uk": "Заявка",
+              "en": "Request",
+              "de": "Anfrage"
             },
             "text": {
-              "uk": "слухаємо, доки не зрозуміємо, що вам насправді треба",
-              "en": "we listen until we get what you really need",
-              "de": "wir hören zu, bis wir verstehen, was Sie wirklich brauchen"
+              "uk": "розкажіть, що за бізнес і якими мовами ви продаєте",
+              "en": "tell us about your business and the languages you sell in",
+              "de": "erzählen Sie, was Sie tun und in welchen Sprachen Sie verkaufen"
             }
           },
           {
             "bold": {
-              "uk": "Дизайн",
-              "en": "Design",
-              "de": "Design"
+              "uk": "Договір",
+              "en": "Contract",
+              "de": "Vertrag"
             },
             "text": {
-              "uk": "макет, який верстальник не прокляне",
-              "en": "a mock-up the front-end dev won’t curse",
-              "de": "ein Layout, das der Frontendler nicht verflucht"
+              "uk": "фіксована ціна, рахунок і оплата на рахунок ФОП",
+              "en": "a fixed price, an invoice and a bank transfer",
+              "de": "Festpreis, Rechnung und Überweisung"
             }
           },
           {
             "bold": {
-              "uk": "Розробка",
-              "en": "Development",
-              "de": "Entwicklung"
+              "uk": "Налаштування",
+              "en": "Setup",
+              "de": "Einrichtung"
             },
             "text": {
-              "uk": "збираємо сайт із блоків і комітимо щодня",
-              "en": "we build the site from blocks and commit daily",
-              "de": "wir bauen die Website aus Blöcken und committen täglich"
+              "uk": "за день-два: Верф, сайт, Telegram-канал і бекенд",
+              "en": "in a day or two: Pageyard, site, Telegram channel and back end",
+              "de": "in ein, zwei Tagen: Werft, Website, Telegram-Kanal und Backend"
             }
           },
           {
             "bold": {
-              "uk": "QA",
-              "en": "QA",
-              "de": "QA"
+              "uk": "Наповнення",
+              "en": "Content",
+              "de": "Inhalte"
             },
             "text": {
-              "uk": "ловимо баги, поки вони ще личинки",
-              "en": "we catch bugs while they’re still larvae",
-              "de": "wir fangen Bugs, solange sie noch Larven sind"
+              "uk": "сторінки, тексти й фото — ви, на Верфі",
+              "en": "pages, texts and photos — by you, in the Pageyard",
+              "de": "Seiten, Texte und Fotos — von Ihnen, in der Werft"
             }
           },
           {
             "bold": {
-              "uk": "Деплой",
-              "en": "Deploy",
-              "de": "Deploy"
+              "uk": "Спуск на воду",
+              "en": "Launch",
+              "de": "Stapellauf"
             },
             "text": {
-              "uk": "реліз без п’ятничної паніки",
-              "en": "a release without Friday-night panic",
-              "de": "ein Release ohne Freitagabend-Panik"
+              "uk": "домен, публікація — і корабель у морі",
+              "en": "domain, publishing — and the ship is at sea",
+              "de": "Domain, Veröffentlichung — und das Schiff ist auf See"
             }
           }
         ]
@@ -190,18 +190,18 @@
               "type": "title",
               "class": "h3 text-bold text-primary my-6",
               "content": {
-                "uk": "CMS без болю",
-                "en": "A CMS without the pain",
-                "de": "Ein CMS ohne Schmerzen"
+                "uk": "Правки без болю",
+                "en": "Changes without the pain",
+                "de": "Änderungen ohne Schmerzen"
               }
             },
             {
               "type": "text",
               "class": "default-text text-medium text-black",
               "content": {
-                "uk": "Ми не залишаємо вас наодинці з кодом. Кожна сторінка — це набір блоків: тексти, картинки, картки, каруселі, форми. Потрібен новий розділ — drag, drop, «Зберегти». Жодних тікетів у Jira й очікування до наступного спринту.",
-                "en": "We don’t leave you alone with the code. Every page is a set of blocks: text, pictures, cards, carousels, forms. Need a new section? Drag, drop, ‘Save’. No Jira tickets, no waiting for the next sprint.",
-                "de": "Wir lassen Sie mit dem Code nicht allein. Jede Seite ist ein Satz von Blöcken: Texte, Bilder, Karten, Karussells, Formulare. Neuer Abschnitt nötig? Drag, Drop, „Speichern“. Keine Jira-Tickets, kein Warten auf den nächsten Sprint."
+                "uk": "Ми не залишаємо вас наодинці з кодом. Кожна сторінка — набір блоків: тексти, картинки, картки, каруселі, форми. Потрібен новий розділ — додали блок, натиснули «Зберегти». Жодних тікетів і очікування до наступного спринту.",
+                "en": "We don’t leave you alone with code. Every page is a set of blocks: texts, pictures, cards, carousels, forms. Need a new section? Add a block, press “Save”. No tickets, no waiting for the next sprint.",
+                "de": "Wir lassen Sie nicht mit Code allein. Jede Seite ist eine Reihe von Blöcken: Texte, Bilder, Karten, Karussells, Formulare. Neuer Bereich nötig? Block hinzufügen, „Speichern“ drücken. Keine Tickets, kein Warten auf den nächsten Sprint."
               }
             },
             {
@@ -210,7 +210,7 @@
               "content": {
                 "uk": "Спойлер: цю сторінку зібрано саме так.",
                 "en": "Spoiler: this very page was built that way.",
-                "de": "Spoiler: Genau so ist diese Seite entstanden."
+                "de": "Spoiler: Genau so wurde diese Seite gebaut."
               }
             }
           ]
@@ -220,9 +220,9 @@
     {
       "type": "header",
       "content": {
-        "uk": "Під кожен масштаб — свій режим",
-        "en": "A mode for every scale",
-        "de": "Für jede Größe der passende Modus"
+        "uk": "Під кожен масштаб — свій корабель",
+        "en": "A ship for every scale",
+        "de": "Für jede Größe das passende Schiff"
       },
       "class": "text-center my-12 h2 text-primary"
     },
@@ -243,9 +243,9 @@
             "de": "Start-ups"
           },
           "content": {
-            "uk": "MVP за спринт, а не за квартал. Лендінг, форма заявки й аналітика — щоб перевірити ідею до того, як закінчиться раунд.",
-            "en": "An MVP in a sprint, not a quarter. A landing page, a sign-up form and analytics — to test the idea before the funding round runs out.",
-            "de": "Ein MVP in einem Sprint, nicht in einem Quartal. Landingpage, Anmeldeformular und Analytics – um die Idee zu testen, bevor die Finanzierungsrunde aufgebraucht ist."
+            "uk": "Лендінг, форма заявки й аналітика за кілька днів — щоб перевірити ідею до того, як закінчиться раунд.",
+            "en": "A landing page, a request form and analytics in a few days — to test the idea before the funding round runs out.",
+            "de": "Landingpage, Anfrageformular und Analytics in wenigen Tagen — um die Idee zu testen, bevor die Finanzierungsrunde ausläuft."
           }
         },
         {
@@ -253,13 +253,13 @@
           "icon": "mdi-storefront-outline",
           "title": {
             "uk": "Малому бізнесу",
-            "en": "Small business",
-            "de": "Kleine Unternehmen"
+            "en": "Small businesses",
+            "de": "Kleinen Unternehmen"
           },
           "content": {
             "uk": "Сайт, який власник оновлює сам: ціни, фото, графік роботи. Без дзвінків розробнику о десятій вечора.",
-            "en": "A site the owner keeps up to date themselves: prices, photos, opening hours. No calls to a developer at ten at night.",
-            "de": "Eine Website, die der Inhaber selbst pflegt: Preise, Fotos, Öffnungszeiten. Ohne Anruf beim Entwickler um zehn Uhr abends."
+            "en": "A site the owner updates alone: prices, photos, opening hours. No calls to a developer at ten at night.",
+            "de": "Eine Website, die der Inhaber selbst pflegt: Preise, Fotos, Öffnungszeiten. Keine Anrufe beim Entwickler um zehn Uhr abends."
           }
         },
         {
@@ -271,9 +271,9 @@
             "de": "Agenturen"
           },
           "content": {
-            "uk": "Один редактор на всіх клієнтів: ваші шаблони, ваш бренд, жодного нашого логотипа. Клієнт править тексти — дизайн лишається вашим.",
-            "en": "One editor for all your clients: your templates, your brand, not a trace of our logo. The client edits the texts — the design stays yours.",
-            "de": "Ein Editor für alle Ihre Kunden: Ihre Vorlagen, Ihre Marke, keine Spur von unserem Logo. Der Kunde ändert die Texte – das Design bleibt Ihres."
+            "uk": "Одна Верф на всіх клієнтів: ваші шаблони, ваш бренд, жодного нашого логотипа. Клієнт править тексти — дизайн лишається вашим.",
+            "en": "One Pageyard for all your clients: your templates, your brand, not a trace of our logo. The client edits texts — the design stays yours.",
+            "de": "Eine Werft für alle Kunden: Ihre Vorlagen, Ihre Marke, keine Spur unseres Logos. Der Kunde ändert Texte — das Design bleibt Ihres."
           }
         },
         {
@@ -282,12 +282,12 @@
           "title": {
             "uk": "Великим командам",
             "en": "Large teams",
-            "de": "Große Teams"
+            "de": "Großen Teams"
           },
           "content": {
-            "uk": "Кожен бачить своє: маркетинг — тексти, дизайнер — UI Kit. А продакшн ніхто випадково не покладе.",
-            "en": "Everyone sees their own part: marketing the texts, the designer the UI Kit. And nobody takes production down by accident.",
-            "de": "Jeder sieht seinen Teil: das Marketing die Texte, das Design das UI-Kit. Und niemand legt versehentlich die Produktion lahm."
+            "uk": "Кожен бачить своє: маркетинг — тексти, дизайнер — UI Kit. А робочий сайт ніхто випадково не покладе.",
+            "en": "Everyone sees their own part: marketing — texts, designers — the UI Kit. And nobody brings the live site down by accident.",
+            "de": "Jeder sieht seinen Teil: Marketing die Texte, Design das UI Kit. Und niemand legt die Live-Website versehentlich lahm."
           }
         }
       ]
@@ -306,9 +306,9 @@
     {
       "type": "dark-fone-section",
       "title": {
-        "uk": "Наш стек суперсил",
-        "en": "Our stack of superpowers",
-        "de": "Unser Stack an Superkräften"
+        "uk": "Що під палубою",
+        "en": "What’s below deck",
+        "de": "Was unter Deck ist"
       },
       "background": "primary",
       "cardWidth": 320,
@@ -321,14 +321,14 @@
           "size": 110,
           "color": "white",
           "title": {
-            "uk": "VR без морської хвороби",
-            "en": "VR without seasickness",
-            "de": "VR ohne Seekrankheit"
+            "uk": "Сайт окремо від Верфі",
+            "en": "The site apart from the Pageyard",
+            "de": "Website getrennt von der Werft"
           },
           "text": {
-            "uk": "Віртуальні тури, 3D-презентації та ігри з FPS, від якого не нудить.",
-            "en": "Virtual tours, 3D presentations and games with a frame rate that won’t make you queasy.",
-            "de": "Virtuelle Touren, 3D-Präsentationen und Spiele mit einer Framerate, bei der niemandem schlecht wird."
+            "uk": "Корабель можна розгорнути будь-де й віддавати відвідувачам зовсім без Верфі.",
+            "en": "The ship can be deployed anywhere and served to visitors with no Pageyard at all.",
+            "de": "Das Schiff lässt sich überall ausliefern — ganz ohne Werft."
           }
         },
         {
@@ -341,12 +341,12 @@
           "title": {
             "uk": "Код без легасі",
             "en": "Code without legacy",
-            "de": "Code ohne Legacy"
+            "de": "Code ohne Altlasten"
           },
           "text": {
-            "uk": "Vue, Nuxt, TypeScript — і тести, що ловлять баги раніше за ваших юзерів.",
-            "en": "Vue, Nuxt, TypeScript — and tests that catch bugs before your users do.",
-            "de": "Vue, Nuxt, TypeScript – und Tests, die Bugs vor Ihren Usern finden."
+            "uk": "Vue, Nuxt, TypeScript — і тести, що ловлять баги раніше за ваших відвідувачів.",
+            "en": "Vue, Nuxt, TypeScript — and tests that catch bugs before your visitors do.",
+            "de": "Vue, Nuxt, TypeScript — und Tests, die Bugs vor Ihren Besuchern finden."
           }
         },
         {
@@ -357,13 +357,13 @@
           "size": 110,
           "color": "white",
           "title": {
-            "uk": "Lighthouse на сотку",
-            "en": "A Lighthouse score of 100",
-            "de": "Lighthouse-Score 100"
+            "uk": "Швидкий, як вітер",
+            "en": "Fast as the wind",
+            "de": "Schnell wie der Wind"
           },
           "text": {
             "uk": "Сайти вантажаться швидше, ніж ви встигнете сказати «кеш».",
-            "en": "Sites load faster than you can say ‘cache’.",
+            "en": "Sites load faster than you can say “cache”.",
             "de": "Websites laden schneller, als Sie „Cache“ sagen können."
           }
         },
@@ -375,14 +375,14 @@
           "size": 110,
           "color": "white",
           "title": {
-            "uk": "Редактор із коробки",
-            "en": "An editor out of the box",
-            "de": "Ein Editor out of the box"
+            "uk": "Верф із коробки",
+            "en": "A Pageyard out of the box",
+            "de": "Werft ab Werk"
           },
           "text": {
             "uk": "Тексти, картинки й переклади правите самі — без жодного рядка коду.",
-            "en": "You edit texts, pictures and translations yourself — without a single line of code.",
-            "de": "Texte, Bilder und Übersetzungen bearbeiten Sie selbst – ohne eine einzige Codezeile."
+            "en": "Texts, pictures and translations are yours to edit — without a single line of code.",
+            "de": "Texte, Bilder und Übersetzungen bearbeiten Sie selbst — ohne eine Zeile Code."
           }
         }
       ]
@@ -398,9 +398,9 @@
         "de": "/api/content/images/how-we-work/banner-studio-mobile.svg"
       },
       "title": {
-        "uk": "Сайт — як конструктор",
-        "en": "Your site, like a construction kit",
-        "de": "Ihre Website als Baukasten"
+        "uk": "Сайт — із блоків, як корабель із секцій",
+        "en": "A site of blocks, like a ship of sections",
+        "de": "Eine Website aus Blöcken, wie ein Schiff aus Sektionen"
       },
       "titleClass": "h2 text-white text-center accent-font-2 text-bold",
       "titleBackground": "primary",
@@ -410,9 +410,9 @@
           "type": "text",
           "class": "h4 text-medium my-8 text-primary",
           "content": {
-            "uk": "Блоки, кольори, шрифти й переклади — в одному редакторі. WYSIWYG, як і обіцяли: що бачите, те й задеплоїться.",
-            "en": "Blocks, colours, fonts and translations — all in one editor. WYSIWYG, as promised: what you see is what gets deployed.",
-            "de": "Blöcke, Farben, Schriften und Übersetzungen – alles in einem Editor. WYSIWYG, wie versprochen: Was Sie sehen, wird auch deployt."
+            "uk": "Блоки, кольори, шрифти й переклади — на одній Верфі. Що бачите, те й вийде в море.",
+            "en": "Blocks, colours, fonts and translations — all in one Pageyard. What you see is what puts to sea.",
+            "de": "Blöcke, Farben, Schriften und Übersetzungen — alles in einer Werft. Was Sie sehen, sticht in See."
           }
         }
       ]
@@ -456,9 +456,9 @@
               "de": "Was kostet eine Website?"
             },
             "answer": {
-              "uk": "Залежить від скоупу. Лендинг — це один спринт, складний сервіс — ціла сага з епіками. Чесний естімейт дамо після першого дзвінка, без «ну десь два тижні».",
-              "en": "It depends on the scope. A landing page is one sprint; a complex service is a saga full of epics. We’ll give you an honest estimate after the first call — no ‘oh, about two weeks’.",
-              "de": "Kommt auf den Scope an. Eine Landingpage ist ein Sprint, ein komplexer Dienst eine Saga voller Epics. Eine ehrliche Schätzung gibt es nach dem ersten Call – ohne „so ungefähr zwei Wochen“."
+              "uk": "Ціни фіксовані: пакети й суми — на сторінці «Замовити корабель». Без «ну десь два тижні» й без торгу.",
+              "en": "Prices are fixed: packages and amounts are on the “Order a ship” page. No “roughly two weeks”, no haggling.",
+              "de": "Die Preise sind fest: Pakete und Beträge stehen auf der Seite „Schiff bestellen“. Kein „so etwa zwei Wochen“, kein Feilschen."
             }
           },
           {
@@ -468,21 +468,21 @@
               "de": "Kann ich die Website ohne Sie ändern?"
             },
             "answer": {
-              "uk": "Так. Наш редактор — це no-code для людей: тексти, картинки й цілі сторінки ви правите самі, трьома мовами. Розробники потрібні лише для нових фіч.",
-              "en": "Yes. Our editor is no-code for humans: you edit the texts, pictures and whole pages yourself, in three languages. You only need developers for new features.",
-              "de": "Ja. Unser Editor ist No-Code für Menschen: Texte, Bilder und ganze Seiten bearbeiten Sie selbst, in drei Sprachen. Entwickler brauchen Sie nur für neue Features."
+              "uk": "Так. Верф для того й зроблена: тексти, картинки й цілі сторінки ви правите самі, кожною мовою. Розробник потрібен лише для нових можливостей.",
+              "en": "Yes. That is what the Pageyard is for: texts, pictures and whole pages are yours to edit, in every language. A developer is only needed for new features.",
+              "de": "Ja. Genau dafür gibt es die Werft: Texte, Bilder und ganze Seiten bearbeiten Sie selbst, in jeder Sprache. Einen Entwickler braucht es nur für neue Funktionen."
             }
           },
           {
             "question": {
-              "uk": "А якщо мені потрібен VR, а не сайт?",
-              "en": "What if I need VR rather than a website?",
-              "de": "Und wenn ich VR statt einer Website brauche?"
+              "uk": "А якщо мені потрібне щось особливе — бронювання, калькулятор, кабінет?",
+              "en": "What if I need something special — bookings, a calculator, an account area?",
+              "de": "Und wenn ich etwas Besonderes brauche — Buchungen, einen Rechner, einen Kundenbereich?"
             },
             "answer": {
-              "uk": "Тоді шолом на голову — і в продакшн. Віртуальні тури, 3D-презентації та інтерактивні сцени ми робимо так само охоче, як і сайти.",
-              "en": "Then on goes the headset and off to production. We build virtual tours, 3D presentations and interactive scenes just as happily as websites.",
-              "de": "Dann Brille auf und ab in die Produktion. Virtuelle Touren, 3D-Präsentationen und interaktive Szenen bauen wir genauso gern wie Websites."
+              "uk": "Тоді до корабля підводимо причал: ваш сервер чи сервіс підключається до сайту через API, а форми й блоки Верфі працюють із ним. А те, чого немає серед блоків, робиться як новий блок — і лишається у вашій Верфі.",
+              "en": "Then we bring the ship to a mooring: your server or service connects to the site through an API, and the Pageyard’s forms and blocks work with it. Anything the blocks don’t cover becomes a new block — and stays in your Pageyard.",
+              "de": "Dann legen wir das Schiff an einem Liegeplatz an: Ihr Server oder Dienst wird über eine API angebunden, und die Formulare und Blöcke der Werft arbeiten damit. Was die Blöcke nicht abdecken, wird ein neuer Block — und bleibt in Ihrer Werft."
             }
           },
           {
@@ -525,9 +525,9 @@
               "props": {
                 "type": "message",
                 "title": {
-                  "uk": "Готові до деплою в інший вимір?",
-                  "en": "Ready to deploy into another dimension?",
-                  "de": "Bereit für den Deploy in eine andere Dimension?"
+                  "uk": "Готові вийти в море?",
+                  "en": "Ready to set sail?",
+                  "de": "Bereit, in See zu stechen?"
                 },
                 "text": {
                   "uk": "Опишіть задачу — відповімо швидше, ніж пройде білд.",

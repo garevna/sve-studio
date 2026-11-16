@@ -11,7 +11,8 @@
 
   // What a click on a button does: go to a page (or a block on it - the
   // form on the contacts page, say), open the feedback form, or open one of
-  // the site's popups (useSitePopups, the editor's "Попапи" section) -
+  // the site's popups (useSitePopups, the editor's "Попапи" section), or
+  // open an address outside the site in a new tab -
   // picked by the name the client gave it, or started right here. The form has its own texts, set in the same
   // window the footer's card uses. Shared by every kind of button
   // (ButtonEditor, IconButtonEditor) - they differ in what they show, not in
@@ -28,23 +29,47 @@
   void sitePopups.load()
 
   const formOpen = ref(false)
-  type Action = 'link' | 'form' | 'popup'
+  type Action = 'link' | 'form' | 'popup' | 'url'
   const action = computed({
-    get: (): Action => (props.block.action === 'form' || props.block.action === 'popup' ? props.block.action : 'link'),
+    get: (): Action => (props.block.action === 'form' || props.block.action === 'popup' || props.block.action === 'url' ? props.block.action : 'link'),
     set: (value: Action) => {
       /* eslint-disable vue/no-mutating-props -- the block is edited in place, see above */
-      if (value === 'form') {
-        props.block.action = 'form'
-        props.block.form ??= feedbackFormTexts()
-      } else if (value === 'popup') {
-        props.block.action = 'popup'
-        props.block.popup ??= sitePopups.popups.value[0]?.id
-      } else {
-        delete props.block.action
+      switch (value) {
+        case 'form': {
+          props.block.action = 'form'
+          props.block.form ??= feedbackFormTexts()
+
+          break
+        }
+        case 'popup': {
+          props.block.action = 'popup'
+          props.block.popup ??= sitePopups.popups.value[0]?.id
+
+          break
+        }
+        case 'url': {
+          props.block.action = 'url'
+          props.block.href ??= ''
+
+          break
+        }
+        default: {
+          delete props.block.action
+        }
       }
       /* eslint-enable vue/no-mutating-props */
     },
   })
+
+  const href = computed({
+    get: () => props.block.href ?? '',
+    set: (value: string) => {
+      // eslint-disable-next-line vue/no-mutating-props
+      props.block.href = value.trim()
+    },
+  })
+  // An address the browser can open on its own: https://, mailto:, tel:.
+  const hrefRules = [(value: string) => !value || /^(https?:\/\/|mailto:|tel:)/i.test(value.trim()) || t('buttonEditor.urlInvalid')]
 
   const popupId = computed({
     get: () => props.block.popup ?? null,
@@ -85,11 +110,24 @@
       with); a button from before keeps showing what it does. -->
     <v-btn v-if="props.block.action === 'form'" prepend-icon="mdi-message-text-outline" value="form">{{ t('buttonEditor.opensForm') }}</v-btn>
     <v-btn prepend-icon="mdi-dock-window" value="popup">{{ t('pagePopups.opensPopup') }}</v-btn>
+    <v-btn prepend-icon="mdi-open-in-new" value="url">{{ t('buttonEditor.toUrl') }}</v-btn>
   </v-btn-toggle>
 
   <!-- The same three fields the menu and the footer's links use - a page,
     and optionally one block on it to scroll to. -->
   <LinkTargetSettings v-if="action === 'link'" :active="props.active" auto :item="props.block" />
+  <template v-else-if="action === 'url'">
+    <v-text-field
+      v-model="href"
+      density="compact"
+      :hint="t('buttonEditor.urlHint')"
+      :label="t('buttonEditor.url')"
+      persistent-hint
+      placeholder="https://"
+      :rules="hrefRules"
+      variant="outlined"
+    />
+  </template>
   <template v-else-if="action === 'form' && props.block.form">
     <p class="text-body-2 mb-3">{{ t('buttonEditor.formHint') }}</p>
     <v-btn prepend-icon="mdi-playlist-edit" variant="tonal" @click="formOpen = true">{{ t('buttonEditor.formTexts') }}</v-btn>

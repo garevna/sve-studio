@@ -91,6 +91,7 @@ export const useCommonStore = defineStore('common', () => {
 
   const company = ref<{
     name: string
+    legalName?: Record<string, string>
     // The logo for a dark menu bar; empty means the regular one is used.
     logoWhite?: string
     logo: {
@@ -196,8 +197,8 @@ export const useCommonStore = defineStore('common', () => {
   }
 
   async function setGlobalSettings (response: GlobalSettingsModel) {
-    const { provider, logo, logoWhite, links, icons, baner } = response
-    company.value = Object.assign({}, { name: provider, logo, logoWhite, links, icons, baner })
+    const { provider, legalName, logo, logoWhite, links, icons, baner } = response
+    company.value = Object.assign({}, { name: provider, legalName, logo, logoWhite, links, icons, baner })
     applyHeaderSettings(response)
     menuStyle.value = resolveMenuStyle(response.menuStyle)
     contacts.value = Array.isArray(response.contacts) ? response.contacts : []

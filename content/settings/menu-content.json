@@ -1,86 +1,21 @@
 [
   {
     "title": {
-      "uk": "Про нас",
-      "en": "About us",
-      "de": "Über uns"
+      "uk": "Верф",
+      "en": "Pageyard",
+      "de": "Werft"
     },
     "submenu": [
       {
-        "title": {
-          "uk": "Місія",
-          "en": "Mission",
-          "de": "Leitbild"
-        },
         "route": "dynamic-page",
         "params": {
           "pageId": "about-company"
         }
       },
       {
-        "title": {
-          "uk": "Асортимент",
-          "en": "Product range",
-          "de": "Sortiment"
-        },
         "route": "dynamic-page",
         "params": {
-          "pageId": "products"
-        }
-      },
-      {
-        "title": {
-          "uk": "Зробити такий сайт",
-          "en": "Build a site like this",
-          "de": "So eine Website bauen"
-        },
-        "route": "dynamic-page",
-        "params": {
-          "pageId": "pagewright-offer"
-        }
-      }
-    ],
-    "selected": null,
-    "expanded": false
-  },
-  {
-    "title": {
-      "uk": "Для вас",
-      "en": "For You",
-      "de": "Für Sie"
-    },
-    "submenu": [
-      {
-        "title": {
-          "uk": "Особистий кабінет",
-          "en": "Personal account",
-          "de": "Persönliches Konto"
-        },
-        "route": "user-dashboard",
-        "params": {
-          "section": "trips"
-        }
-      },
-      {
-        "title": {
-          "uk": "Дружні знижки",
-          "en": "Loyalty programme",
-          "de": "Treueprogramm"
-        },
-        "route": "dynamic-page",
-        "params": {
-          "pageId": "loyality-program"
-        }
-      },
-      {
-        "title": {
-          "uk": "Допомога експертів",
-          "en": "Training",
-          "de": "Schulungen"
-        },
-        "route": "dynamic-page",
-        "params": {
-          "pageId": "expert-help"
+          "pageId": "advanced-features"
         }
       },
       {
@@ -92,10 +27,58 @@
       {
         "route": "dynamic-page",
         "params": {
-          "pageId": "advanced-features"
+          "pageId": "verf"
         }
       }
     ],
+    "selected": null,
+    "expanded": false
+  },
+  {
+    "title": {
+      "uk": "Для бізнесу",
+      "en": "For business",
+      "de": "Für Unternehmen"
+    },
+    "submenu": [
+      {
+        "route": "dynamic-page",
+        "params": {
+          "pageId": "pagewright-offer"
+        }
+      },
+      {
+        "route": "dynamic-page",
+        "params": {
+          "pageId": "ships"
+        }
+      },
+      {
+        "route": "dynamic-page",
+        "params": {
+          "pageId": "docking"
+        }
+      },
+      {
+        "title": {
+          "uk": "Мій кабінет",
+          "en": "My account",
+          "de": "Mein Bereich"
+        },
+        "route": "user-dashboard",
+        "params": {
+          "section": "trips"
+        }
+      }
+    ],
+    "selected": null,
+    "expanded": false
+  },
+  {
+    "route": "dynamic-page",
+    "params": {
+      "pageId": "for-studios"
+    },
     "selected": null,
     "expanded": false
   },

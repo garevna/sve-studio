@@ -208,7 +208,7 @@ title?: TranslatedModel, content: { type: 'section-with-free-content', children 
 // production рендер один: page.seo?.title ?? "%s".replace("%s", page.seo?.title
 // ?? seoSettings.defaultTitle) і так далі, err-side завжди в бік дефолту.
 interface SeoSettingsModel {
-  titleTemplate: string          // напр. "%s — Virtual Dimension", %s = заголовок сторінки
+  titleTemplate: string          // напр. "%s — Pagewright", %s = заголовок сторінки
   defaultTitle: string
   defaultDescription: string
   defaultOgImage: string

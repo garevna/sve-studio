@@ -10,9 +10,9 @@
     "de": "Website-Name"
   },
   "titleTemplateHint": {
-    "uk": "%s замінюється на заголовок конкретної сторінки. Наприклад: «%s — Virtual Dimension»",
-    "en": "%s is replaced with the title of the specific page. For example: \"%s — Virtual Dimension\"",
-    "de": "%s wird durch den Titel der jeweiligen Seite ersetzt. Beispiel: „%s – Virtual Dimension“"
+    "uk": "%s замінюється на заголовок конкретної сторінки. Наприклад: «%s — Pagewright»",
+    "en": "%s is replaced with the title of the specific page. For example: \"%s — Pagewright\"",
+    "de": "%s wird durch den Titel der jeweiligen Seite ersetzt. Beispiel: „%s – Pagewright“"
   },
   "titleTemplate": {
     "uk": "Шаблон заголовка вкладки (тег title)",

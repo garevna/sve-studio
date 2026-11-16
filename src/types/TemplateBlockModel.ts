@@ -124,7 +124,9 @@ export interface BaseBlock {
   // Button: what a click does. Unset = go to its page (route/params/hash);
   // 'form' = open the feedback form, with the texts in `form`, in a popup.
   // form: opens the feedback form; popup: opens the site's popup `popup`
-  action?: 'form' | 'popup'
+  // url: opens `href` - an address outside the site - in a new tab
+  action?: 'form' | 'popup' | 'url'
+  href?: string
   popup?: string
   // action 'popup': what the popup is opened about (a card's button passes
   // its card's title when this is unset) - a form popup shows it and sends

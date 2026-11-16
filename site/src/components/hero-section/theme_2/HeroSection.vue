@@ -2,6 +2,7 @@
   import { storeToRefs } from 'pinia'
 
   import { computed } from 'vue'
+  import { useBannerHeight } from '../../../composables/useBannerHeight'
   import { useCommonStore } from '../../../stores/common'
   import { IMAGE_PLACEHOLDER_CLASS } from '../../../utils/image-fallback'
   import BannerTexts from '../BannerTexts.vue'
@@ -14,7 +15,7 @@
   // The trip-search panel that used to sit under the banner
   // (SearchPanel.vue) is left out for now: it only fits a carrier. It comes
   // back once the editor has settings for the kind of business a site is for.
-  const { baners, banerSlides, banerHeight, mobileMode } = storeToRefs(useCommonStore())
+  const { baners, banerSlides, banerHeight, banerWidth, mobileMode } = storeToRefs(useCommonStore())
 
   // Each banner with its picture for this screen and the texts laid over it.
   const slides = computed(() => [baners.value, ...banerSlides.value]
@@ -24,8 +25,11 @@
     }))
     .filter(slide => slide.src))
 
-  // No banner picture: the checkerboard, as for any picture not set.
-  const banerStyle = computed(() => ({ height: `${banerHeight.value}px` }))
+  // As tall as the (first) picture - composables/useBannerHeight.ts; the
+  // fixed proportions only until it is loaded, or when there is none (then
+  // the checkerboard, as for any picture not set).
+  const pictureHeight = useBannerHeight(computed(() => slides.value[0]?.src ?? ''), mobileMode, banerWidth)
+  const banerStyle = computed(() => ({ height: `${pictureHeight.value ?? banerHeight.value}px` }))
 </script>
 
 <template>

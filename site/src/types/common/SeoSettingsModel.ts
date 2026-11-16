@@ -3,7 +3,7 @@
 // TemplatePageModel.seo instead (see TemplateBlockModel.ts).
 export interface SeoSettingsModel {
   // "%s" is replaced with the page's own title (or defaultTitle, if a page
-  // has none) - e.g. "%s — Virtual Dimension". A page with no "%s" in sight just
+  // has none) - e.g. "%s — Pagewright". A page with no "%s" in sight just
   // shows this template verbatim.
   titleTemplate: string
   defaultTitle: string

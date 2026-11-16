@@ -1,0 +1,168 @@
+{
+  "id": "verf",
+  "title": {
+    "uk": "Зайти на Верф",
+    "en": "Step into the Pageyard",
+    "de": "Ab in die Werft"
+  },
+  "visible": true,
+  "breadcrumbs": false,
+  "backButton": false,
+  "hero": false,
+  "blocks": [
+    {
+      "type": "title",
+      "class": "my-8 text-center accent-font text-selected-date-first-fone-color text-thin h1",
+      "content": {
+        "uk": "Pagewright",
+        "en": "Pagewright",
+        "de": "Pagewright"
+      }
+    },
+    {
+      "type": "title",
+      "class": "my-8 text-center text-selected-date-first-fone-color accent-font-2",
+      "content": {
+        "uk": "Верф відчинена — заходьте",
+        "en": "The Pageyard is open — come on in",
+        "de": "Die Werft ist offen — kommen Sie rein"
+      }
+    },
+    {
+      "type": "section",
+      "children": [
+        {
+          "type": "section",
+          "children": [
+            {
+              "type": "header",
+              "class": "mb-6 text-left accent-font text-thin text-primary",
+              "content": {
+                "uk": "Що там можна",
+                "en": "What you can do there",
+                "de": "Was Sie dort tun können"
+              }
+            },
+            {
+              "type": "text",
+              "class": "default-text text-thin text-black py-2",
+              "content": {
+                "uk": [
+                  "Верф — місце, де збирають і правлять сайт. Тут вона відчинена для всіх: зайдіть і спробуйте на демо-кораблі.",
+                  "Змініть текст, додайте блок, поміняйте картинку, перемкніть мову, перефарбуйте палітру — і подивіться, як це виглядає на сайті.",
+                  "Нічого не треба встановлювати, ніякої реєстрації й картки. Усе, що ви зміните, лишається тільки у вашому браузері — тож пробуйте сміливо: цей сайт від ваших експериментів не постраждає."
+                ],
+                "en": [
+                  "The Pageyard is where a site is put together and edited. Here it is open to everyone: step in and try it on the demo ship.",
+                  "Change a text, add a block, swap a picture, switch the language, repaint the palette — and see how it looks on the site.",
+                  "Nothing to install, no sign-up, no card. Everything you change stays in your own browser only — so experiment freely: this site won’t be touched."
+                ],
+                "de": [
+                  "Die Werft ist der Ort, an dem eine Website gebaut und bearbeitet wird. Hier steht sie allen offen: Kommen Sie herein und probieren Sie es am Demo-Schiff aus.",
+                  "Ändern Sie einen Text, fügen Sie einen Block hinzu, tauschen Sie ein Bild, wechseln Sie die Sprache, färben Sie die Palette um — und sehen Sie, wie es auf der Website aussieht.",
+                  "Nichts zu installieren, keine Registrierung, keine Karte. Alles, was Sie ändern, bleibt nur in Ihrem Browser — experimentieren Sie also ruhig: Diese Website bleibt unberührt."
+                ]
+              }
+            },
+            {
+              "type": "button",
+              "class": "primary-button my-8",
+              "icon": "mdi-ship-wheel",
+              "action": "url",
+              "href": "https://dock.pagewright.pp.ua/",
+              "content": {
+                "uk": "Відкрити Верф",
+                "en": "Open the Pageyard",
+                "de": "Werft öffnen"
+              }
+            }
+          ]
+        },
+        {
+          "type": "image",
+          "content": {
+            "uk": "/api/content/images/how-we-work/card-builder.svg",
+            "en": "/api/content/images/how-we-work/card-builder.svg",
+            "de": "/api/content/images/how-we-work/card-builder.svg"
+          }
+        }
+      ]
+    },
+    {
+      "type": "title",
+      "class": "my-8 text-center",
+      "content": {
+        "uk": "Що спробувати першим",
+        "en": "What to try first",
+        "de": "Was Sie zuerst ausprobieren sollten"
+      }
+    },
+    {
+      "type": "cards",
+      "ver": 1,
+      "size": 56,
+      "children": [
+        {
+          "type": "card",
+          "icon": "mdi-cursor-default-click-outline",
+          "title": {
+            "uk": "Клікніть по блоку",
+            "en": "Click a block",
+            "de": "Block anklicken"
+          },
+          "content": {
+            "uk": [
+              "Кожен блок відкривається на клік — текст, картинка, кнопка. Правите просто на сторінці."
+            ],
+            "en": [
+              "Every block opens on a click — text, picture, button. You edit right on the page."
+            ],
+            "de": [
+              "Jeder Block öffnet sich per Klick — Text, Bild, Button. Sie bearbeiten direkt auf der Seite."
+            ]
+          }
+        },
+        {
+          "type": "card",
+          "icon": "mdi-translate",
+          "title": {
+            "uk": "Перемкніть мову",
+            "en": "Switch the language",
+            "de": "Sprache wechseln"
+          },
+          "content": {
+            "uk": [
+              "Кожна мова — окремо: змініть текст англійською, і українська лишиться такою, як була."
+            ],
+            "en": [
+              "Each language stands alone: change the English text, and the Ukrainian one stays as it was."
+            ],
+            "de": [
+              "Jede Sprache steht für sich: Ändern Sie den englischen Text, der ukrainische bleibt, wie er war."
+            ]
+          }
+        },
+        {
+          "type": "card",
+          "icon": "mdi-palette-outline",
+          "title": {
+            "uk": "Перефарбуйте сайт",
+            "en": "Repaint the site",
+            "de": "Website umfärben"
+          },
+          "content": {
+            "uk": [
+              "Палітра й шрифти — одні на весь сайт: змініть колір, і він зміниться всюди."
+            ],
+            "en": [
+              "Palette and fonts are shared by the whole site: change a colour, and it changes everywhere."
+            ],
+            "de": [
+              "Palette und Schriften gelten für die ganze Website: Farbe ändern, und sie ändert sich überall."
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

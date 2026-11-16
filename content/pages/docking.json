@@ -1,5 +1,5 @@
 {
-  "id": "loyality-program",
+  "id": "docking",
   "breadcrumbs": false,
   "backButton": false,
   "hero": false,
@@ -10,9 +10,9 @@
         {
           "type": "image",
           "content": {
-            "uk": "/api/content/images/loyality-program/cashback.jpg?v=9018cd0e",
-            "en": "/api/content/images/loyality-program/cashback.jpg?v=9018cd0e",
-            "de": "/api/content/images/loyality-program/cashback.jpg?v=9018cd0e"
+            "uk": "/api/content/images/loyality-program/cashback.jpeg?v=9674d3e0",
+            "en": "/api/content/images/loyality-program/cashback.jpeg?v=9674d3e0",
+            "de": "/api/content/images/loyality-program/cashback.jpeg?v=9674d3e0"
           }
         },
         {
@@ -21,9 +21,9 @@
             {
               "type": "header",
               "content": {
-                "uk": "Багатовимірний кешбек",
-                "en": "Multidimensional Cashback",
-                "de": "Mehrdimensionales Cashback"
+                "uk": "Причали",
+                "en": "Moorings",
+                "de": "Liegeplätze"
               },
               "class": "mt-16 mb-8 text-center"
             },
@@ -31,18 +31,18 @@
               "type": "text",
               "class": "h5 text-medium text-primary my-4",
               "content": {
-                "uk": "Наша лояльність безмежна, як і сам простір.",
-                "en": "Our loyalty is boundless, just like space itself.",
-                "de": "Unsere Treue ist grenzenlos, genau wie der Weltraum selbst."
+                "uk": "Корабель, що вміє причалювати",
+                "en": "A ship that knows how to moor",
+                "de": "Ein Schiff, das anlegen kann"
               }
             },
             {
               "type": "text",
               "class": "h6 text-medium text-black",
               "content": {
-                "uk": "Замість нудних відсотків і балів наші клієнти накопичують рівні цифрового просвітлення",
-                "en": "We value your trust and choice, so we have developed a special Loyalty Program that rewards our regular customers with attractive bonuses and discounts.",
-                "de": "Wir schätzen Ihr Vertrauen und Ihre Wahl unserer Firma, daher haben wir ein spezielles Treueprogramm entwickelt, das unsere regelmäßigen Kunden mit attraktiven Boni und Rabatten belohnt."
+                "uk": "Причал — це місце, де ваш сайт з’єднується з тим, чим ви вже працюєте: банком, службою доставки, CRM, документообігом чи вашим власним сервером. Сайт не дублює ці системи — він передає їм дані й показує клієнту відповідь.",
+                "en": "A mooring is where your site connects to what you already work with: your bank, your delivery service, CRM, document flow or your own server. The site doesn’t duplicate those systems — it hands them the data and shows the customer the answer.",
+                "de": "Ein Liegeplatz ist die Stelle, an der Ihre Website mit dem verbunden wird, womit Sie schon arbeiten: Bank, Versanddienst, CRM, Dokumentenfluss oder Ihr eigener Server. Die Website ersetzt diese Systeme nicht — sie übergibt ihnen die Daten und zeigt dem Kunden die Antwort."
               }
             }
           ]
@@ -53,18 +53,18 @@
       "type": "title",
       "class": "text-left",
       "content": {
-        "uk": "Рівні цифрової еволюції",
-        "en": "Levels of Digital Evolution",
-        "de": "Stufen der digitalen Evolution"
+        "uk": "Як підводимо причал",
+        "en": "How we build a mooring",
+        "de": "Wie wir einen Liegeplatz bauen"
       }
     },
     {
       "type": "text",
       "class": "my-4 text-black",
       "content": {
-        "uk": "",
-        "en": "",
-        "de": ""
+        "uk": "Чотири кроки — від першої розмови до першого замовлення через сайт.",
+        "en": "Four steps — from the first conversation to the first order through the site.",
+        "de": "Vier Schritte — vom ersten Gespräch bis zur ersten Bestellung über die Website."
       }
     },
     {
@@ -88,9 +88,9 @@
               "type": "text",
               "class": "h6 text-medium text-black",
               "content": {
-                "uk": "Ви вперше з’явилися в нашій галактиці, мова якої здається вам художнім свистом.",
-                "en": "You’ve just arrived in our galaxy, where the language sounds like artistic whistling to you.",
-                "de": "Du bist zum ersten Mal in unserer Galaxie aufgetaucht, deren Sprache dir wie kunstvolles Pfeifen vorkommt."
+                "uk": "Розбираємося, з чим ви працюєте: банк, доставка, CRM, облік — і що з цього має бачити клієнт.",
+                "en": "We look at what you work with: bank, delivery, CRM, accounting — and what of it the customer should see.",
+                "de": "Wir sehen uns an, womit Sie arbeiten: Bank, Versand, CRM, Buchhaltung — und was davon der Kunde sehen soll."
               }
             }
           ]
@@ -113,9 +113,9 @@
               "type": "text",
               "class": "h6 text-medium text-black",
               "content": {
-                "uk": "Ви вивчили мову аборигенів нашої галактики настільки, що вам дали чашку кави замість стільця.",
-                "en": "You’ve learnt enough of the language of our galaxy’s natives to be given a cup of coffee instead of a chair.",
-                "de": "Du hast die Sprache der Ureinwohner unserer Galaxie so gut gelernt, dass man dir eine Tasse Kaffee statt eines Stuhls serviert."
+                "uk": "Обираємо готовий причал або описуємо ваш власний API — Верф уміє говорити з будь-яким.",
+                "en": "We pick a ready-made mooring or describe your own API — the Pageyard can talk to any.",
+                "de": "Wir wählen einen fertigen Liegeplatz oder beschreiben Ihre eigene API — die Werft spricht mit jeder."
               }
             }
           ]
@@ -138,9 +138,9 @@
               "type": "text",
               "class": "h6 text-medium text-black",
               "content": {
-                "uk": "Ви настільки опанували мову, що аборигени починають побоюватися вашого впливу на міжпланетні відносини.",
-                "en": "You have mastered the language to such an extent that the natives are beginning to fear your influence on interplanetary relations.",
-                "de": "Sie haben die Sprache so gut gemeistert, dass die Ureinwohner beginnen, Ihren Einfluss auf die interplanetarischen Beziehungen zu fürchten."
+                "uk": "Підключаємо: ключі й доступи лишаються у вас, сайт отримує лише те, що йому потрібно.",
+                "en": "We connect it: keys and access stay with you, the site gets only what it needs.",
+                "de": "Wir binden an: Schlüssel und Zugänge bleiben bei Ihnen, die Website bekommt nur, was sie braucht."
               }
             }
           ]
@@ -163,9 +163,9 @@
               "type": "text",
               "class": "h6 text-medium text-black",
               "content": {
-                "uk": "Ви вільно володієте мовою і можете сміливо балотуватися до парламенту нашої галактики.",
-                "en": "You are fluent in the language and can confidently stand for election to our galaxy’s parliament.",
-                "de": "Sie beherrschen die Sprache fließend und können sich getrost für das Parlament unserer Galaxie bewerben."
+                "uk": "Перевіряємо на живих заявках — і корабель виходить у море вже з причалами.",
+                "en": "We test with real requests — and the ship puts to sea with its moorings.",
+                "de": "Wir testen mit echten Anfragen — und das Schiff sticht samt Liegeplätzen in See."
               }
             }
           ]
@@ -176,25 +176,25 @@
       "type": "baner",
       "class": "bright-grey pa-0",
       "dark": false,
-      "image": "/api/content/images/loyality-program/03.jpeg?v=a41bb90f",
+      "image": "/api/content/images/loyality-program/03.jpeg?v=9674d3e0",
       "content": {
-        "uk": "/api/content/images/loyality-program/14.jpg?v=6c6a8d78",
-        "en": "/api/content/images/loyality-program/14.jpg?v=6c6a8d78",
-        "de": "/api/content/images/loyality-program/14.jpg?v=6c6a8d78"
+        "uk": "/api/content/images/loyality-program/14.jpeg?v=c2fe1f3a",
+        "en": "/api/content/images/loyality-program/14.jpeg?v=c2fe1f3a",
+        "de": "/api/content/images/loyality-program/14.jpeg?v=c2fe1f3a"
       },
       "title": {
         "uk": "Кешбек нервових клітин",
-        "en": "Neuronal Cashback",
-        "de": "Cashback in Form von Nervenzellen"
+        "en": "Cashback in nerve cells",
+        "de": "Cashback in Nervenzellen"
       },
       "children": [
         {
           "type": "text",
           "class": "h4 text-medium my-8 text-light-green",
           "content": {
-            "uk": "Залишаючи свої дані, ви погоджуєтеся з тим, що ваша карма покращується на 15%.",
-            "en": "By providing your details, you agree that your karma will improve by 15 per cent.",
-            "de": "Mit der Angabe Ihrer Daten erklären Sie sich damit einverstanden, dass sich Ihr Karma um 15 % verbessert."
+            "uk": "Замовлення не треба переписувати руками з сайту в CRM, а накладні — з CRM у доставку. Причали роблять це за вас.",
+            "en": "No more copying orders by hand from the site into the CRM, or waybills from the CRM into delivery. Moorings do it for you.",
+            "de": "Kein Abtippen mehr von Bestellungen aus der Website ins CRM oder von Lieferscheinen ins Versandsystem. Liegeplätze erledigen das für Sie."
           }
         }
       ],
@@ -206,9 +206,9 @@
       "type": "text",
       "class": "h6 text-medium text-black mb-n5",
       "content": {
-        "uk": "",
-        "en": "",
-        "de": ""
+        "uk": "Які причали вже працюють, а які — на стапелі. Наступний на черзі — вхід у кабінет клієнта через Google чи пошту.",
+        "en": "Which moorings already work and which are on the slipway. Next in line: signing in to the customer account with Google or email.",
+        "de": "Welche Liegeplätze schon funktionieren und welche auf der Helling liegen. Als Nächstes: Anmeldung im Kundenbereich mit Google oder E-Mail."
       }
     },
     {
@@ -225,19 +225,19 @@
                   "type": "card",
                   "icon": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIj8+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBzdHlsZT0iZGlzcGxheTogYmxvY2s7IiB2aWV3Qm94PSIwIDAgMTM5NCAyMDQ4IiB3aWR0aD0iNDA5IiBoZWlnaHQ9IjYwMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CjxwYXRoIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAsMCkiIGZpbGw9InJnYigyNTMsMjExLDcpIiBkPSJNIDQwOC4wOTQgMCBMIDQ2Mi43ODggMCBDIDQ2Ny4wNzYgMi45Mzk1IDQ5Mi45MDIgNS4yMjI1MyA1MDAuMDY0IDYuNTIxODggQyA1NDYuMjY0IDE0Ljc3OSA1OTAuMzE5IDMzLjIwODQgNjI5LjM1OSA1OS4wODg3IEMgNjQwLjg5MiA2Ni43MzQxIDY1Ny45NTYgODIuMjA4NSA2NjguNDU5IDg4LjI1MDUgQyA3MDUuNDI0IDEwOS41MTcgNzA5LjM0NiAxMTYuNTk4IDcyNC45NDEgMTU1LjE0MiBDIDczNi4wOTYgMTgyLjcxMyA3NTQuNDI4IDIxMS43MjIgNzU5LjY5MSAyNDIuODkzIEMgNzYzLjc2NyAyNjEuMjI0IDc3Mi40NDcgMjk1Ljc5OSA3NjIuODExIDMxMy40MjMgQyA3NjIuMTcgMzE0LjU5NiA3NTguNjY4IDMxOS44NyA3NTcuNzYyIDMyMS4wMjQgQyA3NTMuNzQxIDMzNC41NTYgNzUyLjUzNSAzNDguNjUzIDc0OS43NzYgMzYyLjYzNiBDIDcyOC4xMzQgNDcyLjMyMyA2MzcuMzc3IDU1OS45MSA1MzAuNTE3IDU4Ny43OTEgQyA1MTcuMTY1IDU5MS4yNzUgNTA0LjA3NSA1OTQuMTA5IDQ5MC41MDEgNTk2LjMwNSBDIDQ5MS4wNzMgNjEwLjU4OCA0OTMuNyA2NTQuNjI5IDQ5Mi41NiA2NjcuMyBDIDUxOS40ODkgNjczLjU4MyA1NTAuNTQ4IDY4My43MDUgNTc0LjAyOCA2OTguNTA0IEMgNTk2LjE4IDcxMi40NjYgNjA1LjgyNyA3MjYuOTU4IDYyMy4yNjggNzQ1LjIzOCBDIDYzOS43MjcgNzYyLjI1MiA2NTYuMjkzIDc3OS4xNjEgNjcyLjk2NiA3OTUuOTY1IEMgNjk0LjE5MSA4MTcuNDE5IDcyNi45NyA4NTAuMzkyIDc1Mi4xMTkgODY1Ljc0MyBDIDc4NS42MjMgODQ5LjkzNiA4MTkuMDIzIDgzNC40NTkgODUwLjU0MiA4MTQuODk0IEMgODY1LjQ0MSA4MDUuNjQ1IDg4NS41NDIgNzk2LjkyMiA4OTEuMTMgNzc5LjE4MiBDIDg5Ni43NDggNzYxLjM0NiA4OTguOTAzIDc0OS43MSA5MTMuMzU0IDczNi42IEMgOTMxLjkxOSA3MjcuOTk5IDkzMC41NDkgNzI3LjUxOSA5NTAuNzA3IDcyNS42MjkgQyA5NjYuNzE4IDcyNC4xMjggMTAwMi44MSA2OTguOTA2IDEwMTcuOTMgNjg5Ljk3IEMgMTAzNS43MiA2NzkuNTkyIDEwNTguNTcgNjY0LjY4MyAxMDgwLjEgNjY5LjAxNSBDIDEwOTAuNzMgNjcxLjE1NSAxMDkzLjk5IDY4MC40MTcgMTA5MC43MiA2OTAuMTM1IEMgMTA4NC4xMiA3MDkuNzQ1IDEwNjcuMTQgNzIxLjIxNiAxMDUxLjYzIDczMy4zMTcgQyAxMDQ1LjgyIDczNy4xMzUgMTA0MC4xNSA3NDEuMTYyIDEwMzQuNjMgNzQ1LjM4OCBDIDEwNjEuMzkgNzgxLjg4NyAxMDczLjIzIDg0Mi43MDIgMTAzMC41NCA4NzIuMzg1IEMgMTAxMi4zNSA4ODUuMDM1IDk5My4yMiA4ODguODM3IDk3MS40ODUgODg1LjEzNSBDIDk2NC42MjIgODgzLjk2NCA5NTcuODg3IDg4Mi4xNDIgOTUxLjM3IDg3OS42OTUgQyA5NDMuMzA2IDg4NS4zMjUgOTE2LjgzOSA5MDMuNDAzIDkxMS45MTUgOTEwLjIyMSBDIDkwMi45MzIgOTE1LjYwMiA4OTIuMzQ4IDkyMy42OTkgODgyLjkzNSA5MjkuNzE3IEMgODQ2LjIyMSA5NTMuMzk0IDgwNy4xNTIgOTc4LjIxIDc2NC4wOTEgOTg4LjEwNCBDIDcwOS4yNzMgMTAwMC43IDY2MS45NjggOTQ3LjYyMiA2MjMuNjUgOTE2LjM1NCBDIDYxNS4wOTcgOTA5LjM3NCA2MDguMzcxIDkwMC40NTcgNTk4LjgxOCA4OTQuNCBDIDU5My43NjMgODkwLjMxMiA1ODguNzgyIDg4Ni4xMzUgNTgzLjg3NSA4ODEuODcgQyA1ODUuMzM3IDkwMS4xNDQgNTg3LjQxMiA5MjAuMzY1IDU4OS41NzYgOTM5LjYzMiBDIDYwMi41IDEwNTQuNjQgNjYxLjQwMiAxMTY3Ljg4IDYzMS42OTMgMTI4NS40NSBDIDYyNy45NjYgMTMwMC4yIDYxNi40MDUgMTMxOC41MyA2MTcuMjgyIDEzMzMuMTggQyA2MTkuMDI0IDEzNjIuMzIgNjI0LjA0MiAxMzkyLjE0IDYyNy41OSAxNDIxLjE0IEwgNjQ4LjkyMyAxNTk5LjM3IEwgNjY4LjYyOSAxNzczLjEzIEMgNjcxLjI2NSAxNzk1LjQzIDY3MS41NDcgMTgxOC40MiA2NzYuNDA3IDE4NDAuMzcgQyA2NzkuMTY4IDE4NTIuODUgNjg0LjU4MSAxODYzLjQ5IDY5NC4zNyAxODcxLjkyIEMgNzM5LjgzOSAxOTExLjA3IDg3NS4wNzYgMTkxMC45MyA4ODAuODczIDE5ODMuMDcgQyA4ODEuODk2IDE5OTUuODEgODc4LjU3MyAyMDA4LjMgODcwLjA1NCAyMDE3Ljk4IEMgODUwLjQ3IDIwNDAuMjQgODExLjU2IDIwNDMuNSA3ODMuNzE1IDIwNDQuOTggQyA3MzAuODE4IDIwNDcuNzkgNTkwLjU5NyAyMDQ0LjU1IDU1MC4zNCAyMDA3LjcyIEMgNTM5LjA5IDE5OTcuNDIgNTM0LjQ0MyAxOTgyLjY5IDUzMy45NTkgMTk2Ny43NyBDIDUzMi44IDE5MzIgNTUxLjM3NCAxODk3Ljc1IDU1MC4zMzYgMTg2MS42OSBDIDU0OS42ODggMTgzOS4xOSA1NDUuODMyIDE4MTYuNjIgNTQyLjY0MSAxNzk0LjM4IEMgNTM3LjE5NyAxNzU2LjY2IDUzMS4zNjUgMTcxOSA1MjUuMTQ1IDE2ODEuNCBDIDUwOS45MDggMTU4NS40OSA0OTYuMzcxIDE0OTAuNTkgNDc2Ljg0MiAxMzk1LjI3IEMgNDU5LjgzOCAxMzk5LjI5IDQyMC4wODYgMTM5OC40OCA0MDIuMzc5IDEzOTUuOTcgQyAzOTcuNjQgMTQyOS43IDM5MC40NDEgMTQ2NC45NiAzODQuOTQ2IDE0OTguOSBMIDM1My4xOTMgMTcwMy4xMiBDIDM0Ni45MTMgMTc0My43MyAzMjQuOTQyIDE4NTguNTMgMzM0LjQ2MSAxODkwLjYzIEMgMzY0LjYxOCAxOTkyLjMzIDM1MC42NzkgMjAyMy4zMiAyNDAuMjMgMjAzOC41MiBDIDE5Mi4yOTIgMjA0NS4xMSAtMTIuMzIyNiAyMDcwLjAyIDIuNTY1NiAxOTgwLjE0IEMgMTQuNDA3NiAxOTA4LjY1IDE1MS4yMiAxOTE0LjI5IDE5MS45NDQgMTg2Ni41MiBDIDIxMS4yNDMgMTg0NC4xNCAyMTQuOSAxNzYwLjI0IDIxNy45NDcgMTczMS41NiBMIDIzMy4zNzggMTU5Ny44NyBMIDI1Mi45NTQgMTQyNi45MiBDIDI1Ni41NzEgMTM5NS42MSAyNjEuMzAzIDEzNjMuMzggMjYzLjE4OSAxMzMxLjk5IEMgMjY0LjA3MiAxMzE3LjMgMjUyLjk1MiAxMjk5LjczIDI0OS40MDUgMTI4NS4xOCBDIDI0NS4yMDYgMTI2Ny45NiAyNDIuODM2IDEyNDguNjcgMjQxLjUyOSAxMjMwLjk0IEMgMjM1LjE2MiAxMTQ0LjY0IDI2NS44NjIgMTA2Mi41OSAyODEuNTk2IDk3OS4wNTEgQyAyODQuMjg1IDk2NC43NzcgMjg1LjY0NyA5NTAuMzgzIDI4Ny40NjMgOTM1Ljk5MSBDIDI4OC4zNTMgOTI4LjkzNiAyODguOTA4IDkxOC42NiAyOTAuOTA5IDkxMi4yMDkgQyAyODUuOTM2IDkxNC4yNDMgMjc2LjU1NCA5MzUuNjg0IDI3My41NjMgOTQxLjgyOSBDIDIzOS44NzQgMTAxMC4yNyAyMDkuMDA3IDEwODAuMDcgMTgxLjAzOSAxMTUxLjA0IEMgMTcyLjk5OSAxMTcxLjM0IDE1OC4zNTUgMTIwNS43MiAxNTIuNjQ4IDEyMjYuMTEgQyAxNTUuODY3IDEyMzIuOCAxNjYuNTE5IDEyNDIuOTYgMTcxLjM0NiAxMjQ5LjQgQyAxODYuMjM3IDEyNjkuNTggMTk0LjU1MyAxMjkyLjQ1IDE4Ny41MjggMTMxNy40OSBDIDE4Mi44NzQgMTMzNC4wOCAxNjYuNTQgMTMzOS44NyAxNTkuMzQ3IDEzNDkuOTMgQyAxMzMuMzUgMTM4Ni4yOSA5OS4zMzY3IDEzODUuNzkgNTkuNzQ2MyAxMzcyLjk5IEMgMzUuNzA3NSAxMzY1LjIyIDEyLjM5MTEgMTM0OS44NSAyLjE1NzI5IDEzMjQuNjkgQyAxLjUwNjI0IDEzMjMuMTkgMS4wMTc5NSAxMzIyLjM1IDAgMTMyMS4wMyBMIDAgMTI4NC4zIEMgMS4zOTM0NyAxMjgyLjQ2IDkuMzE4ODYgMTI2MC42OCAxMi4yMTIzIDEyNTQuNzMgQyAxOC41MTIyIDEyNDEuNzcgMzEuNzE4MyAxMjI1LjE1IDM2LjU0NjMgMTIxMy42MiBDIDUwLjYzMjYgMTE3OS45NiA2MS43MTk3IDExNDQuMyA3NC45OTY0IDExMTAuMDYgQyAxMDIuMDk3IDEwMzkuOTMgMTMyLjExIDk3MC45NjQgMTY0Ljk1NyA5MDMuMzM2IEMgMTgzLjE1MSA4NjUuOTQ0IDIwMi40MjkgODI5LjA4OCAyMjIuNzY4IDc5Mi44MTcgQyAyNDIuNDAyIDc1Ny43MzEgMjYzLjcwNSA3MTcuNjc5IDI5OS40NjQgNjk2LjEzOCBDIDMyMi4zNjQgNjgyLjM0NCAzNTIuODY3IDY3NC44NzggMzc4LjU5IDY2Ni4wNjkgQyAzNzcuODE5IDY0Ni4wMjMgMzc1Ljk3NSA2MTUuOTY3IDM3Ni44NjIgNTk2LjY2MyBDIDM2Ny43MjcgNTk1LjM5OSAzNTguMzYzIDU5Mi42NjcgMzQ5LjMzIDU5MC41NjIgQyAyNzguMDU4IDU3My45NTcgMjE2Ljk3MSA1MzMuNzAyIDE3NC4xMTkgNDc0LjMxNSBDIDE3Mi4xNCA0NzEuNTcyIDE3MC41NTMgNDY5LjIgMTY3Ljk5OSA0NjYuOTAzIEwgMTY3LjgwOCA0NjguMjQxIEMgMTY2LjAxOSA0ODEuNzMgMTY4LjU0OCA0OTUuNDUyIDE2Ni45MzkgNTExLjA3NCBDIDE2NC45NTcgNTMwLjMyMiAxNjAuMzQ2IDU4My43NjQgMTQwLjU5MSA1OTMuNzkgQyAxMjguNjAxIDU5OS44NzUgMTIzLjA2MyA1NjUuMjMgMTE5LjE5MyA1NjQuMDU4IEMgMTE1LjEzOCA1NzguMTUgMTEyLjY2NCA1OTMuMDk4IDEwOC41MDggNjA2Ljg3IEwgMTA3LjcwMSA2MDYuNDc5IEMgNzUuNTU3NCA1OTEuMzEyIDg0LjQ3NjggNTQ3LjExOCA4NC44ODgxIDUxOC4wNSBDIDg0Ljk4OCA1MTAuOTg2IDg1Ljk4NDIgNTAxLjY1MyA4Mi44NjcgNDk1LjMwNiBDIDg4LjkxOTYgNDgyLjExNiAxMDAuODM3IDQ2Mi41OCAxMDkuMjc1IDQ1MC43NjkgQyA5NS4xMjMyIDQyOS42MzEgOTMuODM4OSA0MDguMzQgMTE2LjQwOCAzOTIuOTQxIEMgMTEzLjY1MiAzODcuNzUgMTEyLjY5NSAzODYuMjUxIDExMS42NDEgMzgwLjUxOCBDIDk1LjMwMTMgMzI1LjAzNyA5Ni44NjgyIDI2NS44MTcgMTE2LjExOSAyMTEuMjc4IEMgMTU2LjE3MiA5OS44NDk1IDI1Ny4wMDUgMjcuNDI5NiAzNjkuNjIgNi4wMTA3NiBDIDM3OS44ODQgNC4wNTg2NSAzOTkuOTE2IDQuMjI5MDYgNDA4LjA5NCAwIHoiLz4KPHBhdGggdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCwwKSIgZmlsbD0icmdiKDIyOCw0NSw0NSkiIGQ9Ik0gNDA4LjA5NCAwIEwgNDYyLjc4OCAwIEMgNDY3LjA3NiAyLjkzOTUgNDkyLjkwMiA1LjIyMjUzIDUwMC4wNjQgNi41MjE4OCBDIDU0Ni4yNjQgMTQuNzc5IDU5MC4zMTkgMzMuMjA4NCA2MjkuMzU5IDU5LjA4ODcgQyA2NDAuODkyIDY2LjczNDEgNjU3Ljk1NiA4Mi4yMDg1IDY2OC40NTkgODguMjUwNSBDIDcwNS40MjQgMTA5LjUxNyA3MDkuMzQ2IDExNi41OTggNzI0Ljk0MSAxNTUuMTQyIEMgNzM2LjA5NiAxODIuNzEzIDc1NC40MjggMjExLjcyMiA3NTkuNjkxIDI0Mi44OTMgQyA3NjMuNzY3IDI2MS4yMjQgNzcyLjQ0NyAyOTUuNzk5IDc2Mi44MTEgMzEzLjQyMyBDIDc2Mi4xNyAzMTQuNTk2IDc1OC42NjggMzE5Ljg3IDc1Ny43NjIgMzIxLjAyNCBDIDc1MC45NzMgMzE0Ljc4NCA3MjMuNTQ0IDMxMi4zNjQgNzEzLjU4IDMxMS4yNTggQyA2NTUuNjU2IDMwNC41NjkgNTk3LjI5NSAzMDIuNDQ3IDUzOS4wMzggMzA0LjkxMiBDIDQyMS4yNjQgMzA5Ljg5NSAyOTguMzIxIDMzNS4zMTQgMTkxLjQ0NiAzODYuMDIzIEMgMTgzLjIwMyAzODkuOTM0IDE1MC42MzMgNDA2LjczIDE0Ni4zOTUgNDE0LjAwNyBDIDE1MS41MDYgNDI4LjQyMSAxNjEuOTM2IDQ0OC45OTggMTY1LjUxOSA0NjAuNzEzIEMgMTY2Ljk3OSA0NjMuNDc4IDE2Ny4yMTIgNDYzLjkwOCAxNjcuOTk5IDQ2Ni45MDMgTCAxNjcuODA4IDQ2OC4yNDEgQyAxNjYuMDE5IDQ4MS43MyAxNjguNTQ4IDQ5NS40NTIgMTY2LjkzOSA1MTEuMDc0IEMgMTY0Ljk1NyA1MzAuMzIyIDE2MC4zNDYgNTgzLjc2NCAxNDAuNTkxIDU5My43OSBDIDEyOC42MDEgNTk5Ljg3NSAxMjMuMDYzIDU2NS4yMyAxMTkuMTkzIDU2NC4wNTggQyAxMTUuMTM4IDU3OC4xNSAxMTIuNjY0IDU5My4wOTggMTA4LjUwOCA2MDYuODcgTCAxMDcuNzAxIDYwNi40NzkgQyA3NS41NTc0IDU5MS4zMTIgODQuNDc2OCA1NDcuMTE4IDg0Ljg4ODEgNTE4LjA1IEMgODQuOTg4IDUxMC45ODYgODUuOTg0MiA1MDEuNjUzIDgyLjg2NyA0OTUuMzA2IEMgODguOTE5NiA0ODIuMTE2IDEwMC44MzcgNDYyLjU4IDEwOS4yNzUgNDUwLjc2OSBDIDk1LjEyMzIgNDI5LjYzMSA5My44Mzg5IDQwOC4zNCAxMTYuNDA4IDM5Mi45NDEgQyAxMTMuNjUyIDM4Ny43NSAxMTIuNjk1IDM4Ni4yNTEgMTExLjY0MSAzODAuNTE4IEMgOTUuMzAxMyAzMjUuMDM3IDk2Ljg2ODIgMjY1LjgxNyAxMTYuMTE5IDIxMS4yNzggQyAxNTYuMTcyIDk5Ljg0OTUgMjU3LjAwNSAyNy40Mjk2IDM2OS42MiA2LjAxMDc2IEMgMzc5Ljg4NCA0LjA1ODY1IDM5OS45MTYgNC4yMjkwNiA0MDguMDk0IDAgeiIvPgo8cGF0aCB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLDApIiBmaWxsPSJyZ2IoMTgyLDI3LDI2KSIgZD0iTSAxMTEuNjQxIDM4MC41MTggQyAxMjAuMjcgMzcyLjY3OSAxMzAuMTgxIDM2Ni4zNzUgMTM5LjEyIDM1OS4xNzUgQyAxNjUuMjE0IDMzOC4xNTUgMTk0LjI2IDMyMC4xMTQgMjIyLjM1NSAzMDIuMTk4IEMgMzIxLjgxNiAyMzguNzcxIDQyNy4wMzEgMTgwLjc1MiA1NDMuNDk2IDE1Ni4xNTEgQyA1NTguMDY2IDE1My4wNzMgNTczLjI1MiAxNTEuMTczIDU4Ny43MyAxNDguMDEgQyA1NDMuMjk5IDE5MS4wNzQgNDkzLjY4MiAyMzAuNTY0IDQ0NS4xMTUgMjY4Ljg0NSBDIDQzMy40MjYgMjc4LjA1OSA0MDEuMjAxIDMwNC4yNTMgMzg5LjQ0IDMwOC42MzQgQyAzNjguNzA1IDMxNi4zNTkgMzMyLjcyNyAzMTkuMzUyIDMwOS42NzQgMzI0LjI2MyBDIDI2Mi44NTEgMzM0LjIzOCAyMTkuOTQ0IDM0OC4wNjkgMTc1LjY1MiAzNjYuMDUxIEMgMTU0Ljg0MiAzNzQuNDk5IDEzNi4wMjIgMzgxLjUwOCAxMTYuNDA4IDM5Mi45NDEgQyAxMTMuNjUyIDM4Ny43NSAxMTIuNjk1IDM4Ni4yNTEgMTExLjY0MSAzODAuNTE4IHoiLz4KPHBhdGggdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCwwKSIgZmlsbD0icmdiKDE4MiwyNywyNikiIGQ9Ik0gMTI4LjI3OCA0NjIuNTkgQyAxNDEuNDg3IDQ2NC4zIDE1NC43MyA0NjUuNzM4IDE2Ny45OTkgNDY2LjkwMyBMIDE2Ny44MDggNDY4LjI0MSBDIDE2Ni4wMTkgNDgxLjczIDE2OC41NDggNDk1LjQ1MiAxNjYuOTM5IDUxMS4wNzQgQyAxNjQuOTU3IDUzMC4zMjIgMTYwLjM0NiA1ODMuNzY0IDE0MC41OTEgNTkzLjc5IEMgMTI4LjYwMSA1OTkuODc1IDEyMy4wNjMgNTY1LjIzIDExOS4xOTMgNTY0LjA1OCBDIDEyMC44MzEgNTU5Ljc1NiAxMTcuOTc1IDUzNS45MDUgMTE4LjU5IDUyOC4yMyBDIDEyMC4zNzggNTA1Ljg5NyAxMjUuNzI3IDQ4NC41OTEgMTI4LjI3OCA0NjIuNTkgeiIvPgo8cGF0aCB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLDApIiBmaWxsPSJyZ2IoMTgyLDI3LDI2KSIgZD0iTSAxNjUuNTE5IDQ2MC43MTMgTCAxNjQuNjEzIDQ2MS4zMTcgQyAxNTIuOTIgNDU5LjY4NyAxMzAuMTcxIDQzMi40NzUgMTM4LjYzNSA0MTkuOTE3IEMgMTQwLjMxMiA0MTcuNDMgMTQzLjM4NiA0MTQuNDc0IDE0Ni4zOTUgNDE0LjAwNyBDIDE1MS41MDYgNDI4LjQyMSAxNjEuOTM2IDQ0OC45OTggMTY1LjUxOSA0NjAuNzEzIHoiLz4KPHBhdGggdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCwwKSIgZmlsbD0icmdiKDIyNSwxNzMsNCkiIGQ9Ik0gMjk2LjA2NCA4MjIuNTY1IEMgMjk1LjkwOSA4MzguMTA0IDI5NS4zMDkgODUzLjYzNiAyOTQuMjY2IDg2OS4xNDEgQyAyOTMuNzMgODc2LjQyMyAyOTAuMjA1IDkwOC4wNzkgMjkwLjkwOSA5MTIuMjA5IEMgMjg1LjkzNiA5MTQuMjQzIDI3Ni41NTQgOTM1LjY4NCAyNzMuNTYzIDk0MS44MjkgQyAyNjMuOTg0IDkxOC4yOTkgMjg2LjU1MSA4NDYuMDQ5IDI5Ni4wNjQgODIyLjU2NSB6Ii8+CjxwYXRoIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAsMCkiIGZpbGw9InJnYigyMjUsMTczLDQpIiBkPSJNIDU4MC40NTkgODI5Ljk4NyBDIDU4Ni4wNzMgODQzLjgxMyA2MDAuNzg2IDg3OS44ODUgNTk4LjgxOCA4OTQuNCBDIDU5My43NjMgODkwLjMxMiA1ODguNzgyIDg4Ni4xMzUgNTgzLjg3NSA4ODEuODcgQyA1ODAuMzQ2IDg2NS4xMTYgNTgxLjYwNyA4NDYuOTg5IDU4MC40NTkgODI5Ljk4NyB6Ii8+CjxwYXRoIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAsMCkiIGZpbGw9InJnYig2NiwxNDgsMjA0KSIgZD0iTSA5MTMuMTc0IDMwMS4yNzMgTCAxMjQxLjg3IDMwMS4zMiBDIDEyODkuNjkgMzAxLjI5OCAxMzQzLjk4IDMwMi4yNTYgMTM5MS41NSAzMDAuNTk3IEwgMTM5Mi4zOCA3NzcuMzQ4IEMgMTM5Mi4zOCA4MDYuMyAxMzg5LjMzIDEwMjkuMzMgMTM5NCAxMDQwLjY1IEwgMTM5NCAxMDQ0LjMyIEMgMTM4MS43MiAxMDQ1LjkgMTM1Mi44MSAxMDQ1LjI2IDEzMzkuNjEgMTA0NS4xOCBMIDEyNTAuMTggMTA0NC43OCBMIDkxMy40MTQgMTA0NS4wMSBDIDkxMy4zNzQgOTk5LjgyNCA5MTIuNjE2IDk1NS4zMDQgOTExLjkxNSA5MTAuMjIxIEMgOTE2LjgzOSA5MDMuNDAzIDk0My4zMDYgODg1LjMyNSA5NTEuMzcgODc5LjY5NSBDIDk1Ny44ODcgODgyLjE0MiA5NjQuNjIyIDg4My45NjQgOTcxLjQ4NSA4ODUuMTM1IEMgOTkzLjIyIDg4OC44MzcgMTAxMi4zNSA4ODUuMDM1IDEwMzAuNTQgODcyLjM4NSBDIDEwNzMuMjMgODQyLjcwMiAxMDYxLjM5IDc4MS44ODcgMTAzNC42MyA3NDUuMzg4IEMgMTA0MC4xNSA3NDEuMTYyIDEwNDUuODIgNzM3LjEzNSAxMDUxLjYzIDczMy4zMTcgQyAxMDY3LjE0IDcyMS4yMTYgMTA4NC4xMiA3MDkuNzQ1IDEwOTAuNzIgNjkwLjEzNSBDIDEwOTMuOTkgNjgwLjQxNyAxMDkwLjczIDY3MS4xNTUgMTA4MC4xIDY2OS4wMTUgQyAxMDU4LjU3IDY2NC42ODMgMTAzNS43MiA2NzkuNTkyIDEwMTcuOTMgNjg5Ljk3IEMgMTAwMi44MSA2OTguOTA2IDk2Ni43MTggNzI0LjEyOCA5NTAuNzA3IDcyNS42MjkgQyA5MzAuNTQ5IDcyNy41MTkgOTMxLjkxOSA3MjcuOTk5IDkxMy4zNTQgNzM2LjYgQyA5MTAuOTcyIDcxNy44MTggOTEyLjIxIDY3MC43NTIgOTEyLjIyIDY1MC4xMjQgTCA5MTIuMjExIDQ4Ni45MTUgTCA5MTIuMDgxIDM2NS44OTIgQyA5MTIuMDQyIDM1MS44MzUgOTExLjMgMzEyLjM2OCA5MTMuMTc0IDMwMS4yNzMgeiIvPgo8cGF0aCB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLDApIiBmaWxsPSJyZ2IoMjU0LDI1NCwyNTQpIiBkPSJNIDEwMTcuOTMgNjg5Ljk3IEMgOTk5LjA5MyA2NTIuMjIgOTk2LjI0OCA2MDguNDc2IDEwMTAuMDQgNTY4LjYwNSBDIDEwMjIuOCA1MzEuMzU0IDEwNTAuMDMgNTAwLjgxNiAxMDg1LjU5IDQ4My44ODcgQyAxMTIyLjA2IDQ2Ni4wNzIgMTE2NC4xMSA0NjMuNDIyIDEyMDIuNTQgNDc2LjUxNSBDIDEyNDAuNTIgNDg5LjQ4MSAxMjcxLjY5IDUxNy4xNjYgMTI4OS4wNSA1NTMuMzQ3IEMgMTMwNi44NSA1OTAuNDQ3IDEzMDkuMSA2MzMuMTIgMTI5NS4yOSA2NzEuODg0IEMgMTI4MiA3MDkuNjA0IDEyNTQuMzEgNzQwLjUyNyAxMjE4LjI5IDc1Ny44OTIgQyAxMTY4LjQ1IDc4MS40MDggMTA4OS45MyA3NzYuMDA3IDEwNTEuNjMgNzMzLjMxNyBDIDEwNjcuMTQgNzIxLjIxNiAxMDg0LjEyIDcwOS43NDUgMTA5MC43MiA2OTAuMTM1IEMgMTA5My45OSA2ODAuNDE3IDEwOTAuNzMgNjcxLjE1NSAxMDgwLjEgNjY5LjAxNSBDIDEwNTguNTcgNjY0LjY4MyAxMDM1LjcyIDY3OS41OTIgMTAxNy45MyA2ODkuOTcgeiIvPgo8cGF0aCB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLDApIiBmaWxsPSJyZ2IoNjYsMTQ4LDIwNCkiIGQ9Ik0gMTE0Ni40NiA1MDYuNTI4IEMgMTE1Ni4xNCA1MDcuMjYxIDExNzIuNTMgNTA2Ljc1NiAxMTgyLjcxIDUwNi43NjYgTCAxMTgyLjY0IDcyNS43MzkgQyAxMTc1LjM3IDcyNS43ODggMTE0MC4yOSA3MjYuNDQ0IDExMzUuNzkgNzI1LjEzNCBMIDExMzUuMDYgNzIzLjE2NiBMIDExMzQuOTcgNTYwLjk4MyBDIDExMjMuNzEgNTY1Ljk5MyAxMTEzLjQgNTY3LjMzMSAxMTAxLjQxIDU2OC41NDcgQyAxMTAxLjgxIDU1Ni42NTcgMTEwMS43OSA1NDQuNzU2IDExMDEuMzcgNTMyLjg2NyBDIDExMjAuNTYgNTI5LjE1IDExMzQuNjEgNTIyLjM0NCAxMTQ2LjQ2IDUwNi41MjggeiIvPgo8cGF0aCB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLDApIiBmaWxsPSJyZ2IoMTgyLDI3LDI2KSIgZD0iTSAxMDguNTA4IDYwNi44NyBDIDk3LjY5MSA2MzguMDkxIDkyLjg5NDIgNjY1LjE0IDc4LjI3NTYgNjk2Ljc4OSBDIDQ1LjE4MDMgNzY4LjQ0MSAtNC42MTQzNCA3ODAuMjc1IDEyLjYyODkgNjg0Ljg3NiBDIDI1LjAxNTkgNjE2LjM0NCA0OS4wMDc0IDU1Ni4wMDQgODIuODY3IDQ5NS4zMDYgQyA4NS45ODQyIDUwMS42NTMgODQuOTg4IDUxMC45ODYgODQuODg4MSA1MTguMDUgQyA4NC40NzY4IDU0Ny4xMTggNzUuNTU3NCA1OTEuMzEyIDEwNy43MDEgNjA2LjQ3OSBMIDEwOC41MDggNjA2Ljg3IHoiLz4KPC9zdmc+Cg==",
                   "title": {
-                    "uk": "Невипадковий перехожий",
-                    "en": "Non-Random Passer-by",
-                    "de": "Kein zufälliger Passant"
+                    "uk": "Прийом запитів",
+                    "en": "Request intake",
+                    "de": "Anfrageannahme"
                   },
                   "content": {
                     "uk": [
-                      "Ви підписали контракт, внесли передоплату й не злякалися слів «монорепозиторій» та «асинхронність»."
+                      "Форми замовлення, запису й бронювання передають дані у вашу систему через ваш API. Працює вже зараз."
                     ],
                     "en": [
-                      "You’ve signed the contract, paid the deposit and weren’t put off by terms like ‘monorepository’ and ‘asynchronous’."
+                      "Order, appointment and booking forms send data to your system through your API. Works today."
                     ],
                     "de": [
-                      "Sie haben den Vertrag unterzeichnet, eine Vorauszahlung geleistet und sich von Begriffen wie „Monorepository“ und „Asynchronität“ nicht abschrecken lassen."
+                      "Bestell-, Termin- und Buchungsformulare senden Daten über Ihre API an Ihr System. Funktioniert schon heute."
                     ]
                   },
                   "size": 108,
@@ -254,19 +254,19 @@
                   },
                   "content": {
                     "uk": [
-                      "• VIP-перепустка за лаштунки: наш аккаунт-менеджер відповідає на ваші повідомлення зі швидкістю гітарного соло AC/DC.",
-                      "• Акустичний щит: Ви отримуєте фірмовий цифровий медіатор, який автоматично приглушує будь-які дурні запитання під час конференц-дзвінків.",
-                      "• Бонус-трек: Набір стікерів «Кіт-фронтендер трощить монітор після коміту»."
+                      "• Будь-які поля: текст, телефон, дата, вибір, галочка",
+                      "• Форма будується на Верфі, без коду",
+                      "• Відповідь вашої системи бачить клієнт — наприклад, вільні дати й ціни"
                     ],
                     "en": [
-                      "• VIP backstage pass: Our account manager replies to your messages at the speed of an AC/DC guitar solo.",
-                      "• Acoustic shield: You’ll receive our signature digital pick, which automatically mutes any silly questions during conference calls.",
-                      "• Bonus track: A set of stickers titled ‘Front-end cat smashes monitor after commit’."
+                      "• Any fields: text, phone, date, choice, checkbox",
+                      "• The form is built in the Pageyard, no code",
+                      "• The customer sees your system’s answer — free dates and prices, say"
                     ],
                     "de": [
-                      "• VIP-Pass hinter die Kulissen: Unser Kundenbetreuer beantwortet Ihre Nachrichten mit der Geschwindigkeit eines AC/DC-Gitarrensolos.",
-                      "• Akustischer Schutzschild: Sie erhalten ein firmeneigenes digitales Plektrum, das alle dummen Fragen bei Telefonkonferenzen automatisch dämpft.",
-                      "• Bonustrack: Ein Set mit Stickern „Frontend-Entwickler zerschlägt nach dem Commit den Monitor“."
+                      "• Beliebige Felder: Text, Telefon, Datum, Auswahl, Häkchen",
+                      "• Das Formular entsteht in der Werft, ohne Code",
+                      "• Der Kunde sieht die Antwort Ihres Systems — etwa freie Termine und Preise"
                     ]
                   },
                   "titleClass": "text-medium text-center text-light-green",
@@ -295,19 +295,19 @@
                   "type": "card",
                   "icon": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIj8+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBzdHlsZT0iZGlzcGxheTogYmxvY2s7IiB2aWV3Qm94PSIwIDAgMTM5NCAyMDQ4IiB3aWR0aD0iNDA5IiBoZWlnaHQ9IjYwMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CjxwYXRoIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAsMCkiIGZpbGw9InJnYigyNTMsMjExLDcpIiBkPSJNIDQwOC4wOTYgMCBMIDQ2Mi43ODggMCBDIDQ2Ny4wNzYgMi45Mzk1MyA0OTIuOTAyIDUuMjIyNTEgNTAwLjA2NCA2LjUyMTg0IEMgNTQ2LjI2NSAxNC43NzkzIDU5MC4zMTcgMzMuMjA4MiA2MjkuMzU5IDU5LjA4ODYgQyA2NDAuODg0IDY2LjcyODUgNjU3Ljk2NCA4Mi4yMTM1IDY2OC40NTkgODguMjQ5OSBDIDcwNS41MDMgMTA5LjU1NyA3MDkuMjg4IDExNi41NzYgNzI0Ljk0IDE1NS4xNDIgQyA3MzYuMjI5IDE4Mi45NTcgNzU0LjU3OCAyMTIuMDk4IDc1OS44NTUgMjQzLjU1MyBDIDc2My44NzggMjYxLjc4OSA3NzIuMzg0IDI5NS45NjggNzYyLjgxMSAzMTMuNDIzIEMgNzYyLjE1OSAzMTQuNjEyIDc1OC42NzkgMzE5Ljg1NiA3NTcuNzYyIDMyMS4wMjQgQyA3NTMuNjczIDMzNC41NzYgNzUyLjQ4NiAzNDkuMDYxIDc0OS42ODQgMzYzLjExMSBDIDcyNy44NTMgNDcyLjU5NiA2MzcuMjMzIDU1OS45NDEgNTMwLjUxOCA1ODcuNzkxIEMgNTE3LjE2NyA1OTEuMjc1IDUwNC4wNzUgNTk0LjEwOCA0OTAuNTAxIDU5Ni4zMDUgQyA0OTEuMDY5IDYxMC41ODggNDkzLjY5OCA2NTQuNjc0IDQ5Mi41NiA2NjcuMzAyIEMgNTE5LjQ2NiA2NzMuNTY5IDU1MC41NyA2ODMuNzE4IDU3NC4wMjggNjk4LjUwNCBDIDU5Ni4xNzMgNzEyLjQ2MiA2MDUuODMzIDcyNi45NjMgNjIzLjI2OSA3NDUuMjM4IEMgNjM5LjcyNyA3NjIuMjUyIDY1Ni4yOTMgNzc5LjE2MSA2NzIuOTY2IDc5NS45NjUgQyA2OTQuMTg4IDgxNy40MTcgNzI2Ljk3MyA4NTAuMzkzIDc1Mi4xMTkgODY1Ljc0MyBDIDc4NS42MjQgODQ5LjkzOCA4MTkuMDIyIDgzNC40NTkgODUwLjU0MiA4MTQuODk0IEMgODY1LjQ0MiA4MDUuNjQ1IDg4NS41NDEgNzk2LjkyMyA4OTEuMTMgNzc5LjE4MyBDIDg5Ni43NDQgNzYxLjM2MyA4OTguOTA3IDc0OS42OTMgOTEzLjM1NCA3MzYuNjAxIEMgOTMxLjg5NiA3MjguMDA1IDkzMC41NzQgNzI3LjUxMSA5NTAuNzA2IDcyNS42MjYgQyA5NjYuNjUzIDcyNC4xMzQgMTAwMi45OSA2OTguODAzIDEwMTcuOTMgNjg5Ljk3IEMgMTAzNS43NSA2NzkuNTg1IDEwNTguNTUgNjY0LjY4MiAxMDgwLjExIDY2OS4wMTUgQyAxMDkwLjc1IDY3MS4xNTUgMTA5My45MyA2ODAuNDI4IDEwOTAuNjkgNjkwLjEzMSBDIDEwODQuMTYgNzA5LjcwOCAxMDY3LjEzIDcyMS4yNjcgMTA1MS42MiA3MzMuMzA3IEMgMTA0NS44MiA3MzcuMTM3IDEwNDAuMTUgNzQxLjE2NiAxMDM0LjYzIDc0NS4zODkgQyAxMDYxLjM5IDc4MS44OCAxMDczLjIzIDg0Mi43MTEgMTAzMC41NCA4NzIuMzg1IEMgMTAxMi4zNSA4ODUuMDM1IDk5My4yMjIgODg4LjgzNyA5NzEuNDg1IDg4NS4xMzUgQyA5NjQuNjIzIDg4My45NjQgOTU3Ljg4NyA4ODIuMTQzIDk1MS4zNyA4NzkuNjk1IEMgOTQzLjI5IDg4NS4zMzYgOTE2Ljg2MyA5MDMuMzg3IDkxMS45MTQgOTEwLjIxOSBDIDkwMi44NSA5MTUuNjc4IDg5Mi40MDUgOTIzLjY2MiA4ODIuOTM1IDkyOS43MTcgQyA4NDYuMjIyIDk1My4zOTMgODA3LjE1MSA5NzguMjExIDc2NC4wOTEgOTg4LjEwMyBDIDcwOS4yNjggMTAwMC43IDY2MS45NyA5NDcuNjI1IDYyMy42NSA5MTYuMzU0IEMgNjE1LjA5OSA5MDkuMzc2IDYwOC4zNzMgOTAwLjQ1OCA1OTguODIyIDg5NC40MDMgQyA1OTMuNzY2IDg5MC4zMTUgNTg4Ljc4MyA4ODYuMTM2IDU4My44NzYgODgxLjg3IEMgNTg1LjMzNSA5MDEuMTM0IDU4Ny40MDkgOTIwLjM0OCA1ODkuNTcyIDkzOS42MDQgQyA2MDIuNDkxIDEwNTQuNjUgNjYxLjQ3NiAxMTY4LjAxIDYzMS42NTIgMTI4NS42MiBDIDYyNy43MjMgMTMwMS4xMSA2MTYuOTkgMTMxNi44MSA2MTcuMjc5IDEzMzMuMTcgQyA2MTkuMDI5IDEzNjIuMjYgNjI0LjA0NCAxMzkyLjE0IDYyNy41ODggMTQyMS4xMyBMIDY0OC45MjIgMTU5OS4zNyBMIDY2OC42MjkgMTc3My4xMyBDIDY3MS4yNjUgMTc5NS40MyA2NzEuNTQ3IDE4MTguNDIgNjc2LjQwNyAxODQwLjM3IEMgNjc5LjE2OCAxODUyLjg1IDY4NC41ODEgMTg2My40OSA2OTQuMzcgMTg3MS45MiBDIDczOS44MzYgMTkxMS4wNyA4NzUuMDggMTkxMC45MyA4ODAuODczIDE5ODMuMDcgQyA4ODEuODk0IDE5OTUuNzkgODc4LjU1NyAyMDA4LjMgODcwLjA1OSAyMDE3Ljk4IEMgODUwLjcwOSAyMDQwLjAxIDgxMi40MTMgMjA0My4zOSA3ODQuODUgMjA0NC45MiBDIDczMS43MzQgMjA0Ny44NyA1OTAuODM3IDIwNDQuNjggNTUwLjMzOCAyMDA3LjcyIEMgNTM5LjA4MiAxOTk3LjQ0IDUzNC40NDIgMTk4Mi42OCA1MzMuOTU5IDE5NjcuNzcgQyA1MzIuOCAxOTMyIDU1MS4zNzQgMTg5Ny43NSA1NTAuMzM2IDE4NjEuNjkgQyA1NDkuNjg4IDE4MzkuMTkgNTQ1LjgzMiAxODE2LjYyIDU0Mi42NDEgMTc5NC4zOCBDIDUzNy4xOTcgMTc1Ni42NiA1MzEuMzY1IDE3MTkgNTI1LjE0NSAxNjgxLjQgQyA1MDkuOTA3IDE1ODUuNDkgNDk2LjM3IDE0OTAuNiA0NzYuODQzIDEzOTUuMjcgQyA0NTkuODI0IDEzOTkuMjkgNDIwLjA5OCAxMzk4LjQ4IDQwMi4zNzggMTM5NS45NyBDIDM5Ny42NDQgMTQyOS42OSAzOTAuNDQ0IDE0NjQuOTQgMzg0Ljk1MSAxNDk4Ljg3IEwgMzUzLjI1NiAxNzAyLjcyIEMgMzQ2Ljk2OCAxNzQzLjM3IDMyNC45MzYgMTg1OC41IDMzNC40NjEgMTg5MC42MyBDIDM2NC42MDkgMTk5Mi4zMyAzNTAuNjk4IDIwMjMuMzEgMjQwLjIzIDIwMzguNTIgQyAxOTIuMjkzIDIwNDUuMTIgLTEyLjMyNyAyMDcwLjAyIDIuNTY1NiAxOTgwLjE0IEMgMTQuNDEyIDE5MDguNjUgMTUxLjIxNyAxOTE0LjI5IDE5MS45NDQgMTg2Ni41MiBDIDIxMS4yNDMgMTg0NC4xNCAyMTQuOSAxNzYwLjI0IDIxNy45NDcgMTczMS41NiBMIDIzMy4zNzggMTU5Ny44NyBMIDI1Mi45NTQgMTQyNi45MiBDIDI1Ni41OTUgMTM5NS40IDI2MS4zMDIgMTM2My42MiAyNjMuMTg5IDEzMzEuOTkgQyAyNjQuMDc1IDEzMTcuMTMgMjUzLjAyMiAxMjk5Ljc0IDI0OS40MDUgMTI4NS4xOCBDIDI0NS43NzQgMTI3MC41OCAyNDQuMjMgMTI1Ny4wOSAyNDIuNTUgMTI0Mi4wOCBDIDIzMC4zNjIgMTEzMy4xMyAyODAuNjk4IDEwMzEuNDkgMjg4Ljc4OSA5MjQuMzAxIEMgMjg5LjA5MyA5MjAuMjY0IDI4OS43MSA5MTYuMDc0IDI5MC45MDkgOTEyLjIwOSBDIDI4NS45MzYgOTE0LjI0MyAyNzYuNTU0IDkzNS42ODUgMjczLjU2NCA5NDEuODI5IEMgMjM0LjMwOCAxMDIxLjg5IDE5OC42OTkgMTEwMy42OCAxNjYuODQ2IDExODYuOTcgQyAxNjQuMTI2IDExOTMuOTYgMTUzLjIzMSAxMjIwLjIzIDE1My4yNTcgMTIyNy44NSBDIDE1My4yNjMgMTIyOS4zOCAxNjMuOTgzIDEyNDAuNTUgMTY2LjUxNCAxMjQzLjM3IEMgMTgzLjQ0NiAxMjYyLjIzIDE5Ny4xNyAxMjk1LjEgMTg2LjYyOSAxMzE5Ljk4IEMgMTg0Ljk3IDEzMjMuODMgMTgyLjczMyAxMzI3LjQxIDE3OS45OTYgMTMzMC41OSBDIDE3My44ODkgMTMzNy43NSAxNjUuOTU5IDEzNDMuMDYgMTU5LjU5NiAxMzQ5LjcgQyAxNDkuMjQgMTM2MC41IDE0My45NSAxMzcwLjI0IDEyOS4xMjMgMTM3NS45IEMgMTAyLjk1IDEzODUuODggNzIuOTMzOCAxMzc4Ljk3IDQ3Ljk5OTQgMTM2OC4yOSBDIDMwLjMxNTIgMTM2MC41NiAxNy41MTQxIDEzNTEuMzggNy4zMzY0OCAxMzM0LjYxIEMgNS4xOTY0NiAxMzMxLjA4IDEuNzkxODMgMTMyMy4zNCAwIDEzMjEuMDMgTCAwIDEyODQuMyBDIDEuMzkzNDcgMTI4Mi40NiA5LjMxODg2IDEyNjAuNjggMTIuMjEyMyAxMjU0LjczIEMgMTguNTEyMiAxMjQxLjc3IDMxLjcxODMgMTIyNS4xNSAzNi41NDYzIDEyMTMuNjIgQyA1MC42MzI2IDExNzkuOTYgNjEuNzE5NyAxMTQ0LjMgNzQuOTk2NCAxMTEwLjA2IEMgMTAyLjA5NyAxMDM5LjkzIDEzMi4xMSA5NzAuOTY0IDE2NC45NTcgOTAzLjMzNiBDIDE4My4xNTEgODY1Ljk0MyAyMDIuNDI5IDgyOS4wODggMjIyLjc2OCA3OTIuODE3IEMgMjQyLjQwMiA3NTcuNzMxIDI2My43MDUgNzE3LjY3OCAyOTkuNDY0IDY5Ni4xMzggQyAzMjIuMzYzIDY4Mi4zNDUgMzUyLjg2OCA2NzQuODc4IDM3OC41OSA2NjYuMDcgQyAzNzcuODUgNjQ1Ljc3OSAzNzUuOTYzIDYxNi4xOTkgMzc2Ljg2MiA1OTYuNjY1IEMgMzY3LjcyNSA1OTUuMzk2IDM1OC4zNjYgNTkyLjY2NyAzNDkuMzMgNTkwLjU2MiBDIDI3OC4wNTcgNTczLjk1OCAyMTYuOTcxIDUzMy43MDEgMTc0LjExOSA0NzQuMzE1IEMgMTcyLjE0IDQ3MS41NzIgMTcwLjU1MyA0NjkuMiAxNjcuOTk5IDQ2Ni45MDMgTCAxNjcuODA4IDQ2OC4yNDEgQyAxNjYuMDE5IDQ4MS43MjggMTY4LjU0OSA0OTUuNDUyIDE2Ni45MzkgNTExLjA3NCBDIDE2NC45NTYgNTMwLjMyMyAxNjAuMzQ2IDU4My43NjQgMTQwLjU5MSA1OTMuNzkgQyAxMjguNjAyIDU5OS44NzUgMTIzLjA2MiA1NjUuMjMgMTE5LjE5NCA1NjQuMDU4IEMgMTE1LjEzOCA1NzguMTUgMTEyLjY2NCA1OTMuMDk2IDEwOC41MDggNjA2Ljg2OSBMIDEwNy43MDEgNjA2LjQ3OSBDIDc1LjU1OTcgNTkxLjMyMyA4NC40NzU5IDU0Ny4xMDkgODQuODg3OSA1MTguMDUgQyA4NC45ODgxIDUxMC45ODYgODUuOTg0MiA1MDEuNjUzIDgyLjg2NyA0OTUuMzA2IEMgODguOTE5NSA0ODIuMTE2IDEwMC44MzcgNDYyLjU4IDEwOS4yNzUgNDUwLjc2OSBDIDk1LjEyNyA0MjkuNjI4IDkzLjgzNDggNDA4LjM0MyAxMTYuNDA4IDM5Mi45NDEgQyAxMTMuNjc1IDM4Ny43OTQgMTEyLjY5MiAzODYuMjY2IDExMS42NTkgMzgwLjU3OSBDIDk1LjMwMDMgMzI1LjA4MSA5Ni44NjExIDI2NS44MzcgMTE2LjEyIDIxMS4yNzggQyAxNTYuMTcyIDk5Ljg0OTMgMjU3LjAwMyAyNy40MzA5IDM2OS42MjEgNi4wMTA1OCBDIDM3OS44ODkgNC4wNTc1NyAzOTkuOTExIDQuMjMwMDIgNDA4LjA5NiAwIHoiLz4KPHBhdGggdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCwwKSIgZmlsbD0icmdiKDIyOCw0NSw0NSkiIGQ9Ik0gNDA4LjA5NiAwIEwgNDYyLjc4OCAwIEMgNDY3LjA3NiAyLjkzOTUzIDQ5Mi45MDIgNS4yMjI1MSA1MDAuMDY0IDYuNTIxODQgQyA1NDYuMjY1IDE0Ljc3OTMgNTkwLjMxNyAzMy4yMDgyIDYyOS4zNTkgNTkuMDg4NiBDIDY0MC44ODQgNjYuNzI4NSA2NTcuOTY0IDgyLjIxMzUgNjY4LjQ1OSA4OC4yNDk5IEMgNzA1LjUwMyAxMDkuNTU3IDcwOS4yODggMTE2LjU3NiA3MjQuOTQgMTU1LjE0MiBDIDczNi4yMjkgMTgyLjk1NyA3NTQuNTc4IDIxMi4wOTggNzU5Ljg1NSAyNDMuNTUzIEMgNzYzLjg3OCAyNjEuNzg5IDc3Mi4zODQgMjk1Ljk2OCA3NjIuODExIDMxMy40MjMgQyA3NjIuMTU5IDMxNC42MTIgNzU4LjY3OSAzMTkuODU2IDc1Ny43NjIgMzIxLjAyNCBDIDc1MC45NzMgMzE0Ljc4NCA3MjMuNTQ0IDMxMi4zNjQgNzEzLjU4IDMxMS4yNTggQyA2NTUuNjU2IDMwNC41NyA1OTcuMjk1IDMwMi40NDggNTM5LjAzOCAzMDQuOTEyIEMgNDIxLjI5OCAzMDkuODk2IDI5OC40MzUgMzM1LjI5NyAxOTEuNTc5IDM4NS45NTggQyAxODMuMzIzIDM4OS44NzIgMTUwLjY0MyA0MDYuNzEzIDE0Ni4zOTUgNDE0LjAwNyBDIDE1MS41MDUgNDI4LjQxOCAxNjEuOTM4IDQ0OS4wMDEgMTY1LjUxOCA0NjAuNzEzIEMgMTY2Ljk3OSA0NjMuNDc4IDE2Ny4yMTIgNDYzLjkwOCAxNjcuOTk5IDQ2Ni45MDMgTCAxNjcuODA4IDQ2OC4yNDEgQyAxNjYuMDE5IDQ4MS43MjggMTY4LjU0OSA0OTUuNDUyIDE2Ni45MzkgNTExLjA3NCBDIDE2NC45NTYgNTMwLjMyMyAxNjAuMzQ2IDU4My43NjQgMTQwLjU5MSA1OTMuNzkgQyAxMjguNjAyIDU5OS44NzUgMTIzLjA2MiA1NjUuMjMgMTE5LjE5NCA1NjQuMDU4IEMgMTE1LjEzOCA1NzguMTUgMTEyLjY2NCA1OTMuMDk2IDEwOC41MDggNjA2Ljg2OSBMIDEwNy43MDEgNjA2LjQ3OSBDIDc1LjU1OTcgNTkxLjMyMyA4NC40NzU5IDU0Ny4xMDkgODQuODg3OSA1MTguMDUgQyA4NC45ODgxIDUxMC45ODYgODUuOTg0MiA1MDEuNjUzIDgyLjg2NyA0OTUuMzA2IEMgODguOTE5NSA0ODIuMTE2IDEwMC44MzcgNDYyLjU4IDEwOS4yNzUgNDUwLjc2OSBDIDk1LjEyNyA0MjkuNjI4IDkzLjgzNDggNDA4LjM0MyAxMTYuNDA4IDM5Mi45NDEgQyAxMTMuNjc1IDM4Ny43OTQgMTEyLjY5MiAzODYuMjY2IDExMS42NTkgMzgwLjU3OSBDIDk1LjMwMDMgMzI1LjA4MSA5Ni44NjExIDI2NS44MzcgMTE2LjEyIDIxMS4yNzggQyAxNTYuMTcyIDk5Ljg0OTMgMjU3LjAwMyAyNy40MzA5IDM2OS42MjEgNi4wMTA1OCBDIDM3OS44ODkgNC4wNTc1NyAzOTkuOTExIDQuMjMwMDIgNDA4LjA5NiAwIHoiLz4KPHBhdGggdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCwwKSIgZmlsbD0icmdiKDE4MiwyNywyNikiIGQ9Ik0gMTExLjY1OSAzODAuNTc5IEMgMTE5LjA0OCAzNzMuNTgxIDEyOS45MjkgMzY1LjczMSAxMzguNjE2IDM1OS41MzEgQyAyNjAuNTAxIDI3Mi41MzYgMzk0LjY4OSAxODguOTg4IDU0Mi42NzUgMTU2LjMzNCBDIDU1OC4yMDMgMTUyLjkwNyA1NzIuOTQ5IDE1MS4yNDYgNTg3LjcyOSAxNDguMDExIEMgNTQzLjU1NCAxOTAuODMyIDQ5NC4xNzQgMjMwLjE3MSA0NDUuODg4IDI2OC4yMzggQyA0MzQuMDQ0IDI3Ny41NzUgNDAxLjM0MiAzMDQuMTggMzg5LjQ0IDMwOC42MzIgQyAzNjguOTA0IDMxNi4zMTUgMzMyLjU4NCAzMTkuMzgyIDMwOS42NzQgMzI0LjI2MyBDIDI2Mi44NDYgMzM0LjI0IDIxOS45NTMgMzQ4LjA2OCAxNzUuNjUyIDM2Ni4wNTEgQyAxNTQuODQgMzc0LjUgMTM2LjAyNyAzODEuNTA1IDExNi40MDggMzkyLjk0MSBDIDExMy42NzUgMzg3Ljc5NCAxMTIuNjkyIDM4Ni4yNjYgMTExLjY1OSAzODAuNTc5IHoiLz4KPHBhdGggdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCwwKSIgZmlsbD0icmdiKDE4MiwyNywyNikiIGQ9Ik0gMTI4LjI3OCA0NjIuNTkgQyAxNDEuNDg4IDQ2NC4zIDE1NC43MyA0NjUuNzM4IDE2Ny45OTkgNDY2LjkwMyBMIDE2Ny44MDggNDY4LjI0MSBDIDE2Ni4wMTkgNDgxLjcyOCAxNjguNTQ5IDQ5NS40NTIgMTY2LjkzOSA1MTEuMDc0IEMgMTY0Ljk1NiA1MzAuMzIzIDE2MC4zNDYgNTgzLjc2NCAxNDAuNTkxIDU5My43OSBDIDEyOC42MDIgNTk5Ljg3NSAxMjMuMDYyIDU2NS4yMyAxMTkuMTk0IDU2NC4wNTggQyAxMjAuODgzIDU1OS42NDcgMTE3Ljk4NCA1MzYuNTg2IDExOC41MTggNTI5LjI4NCBDIDEyMC4xNzEgNTA2LjY2OSAxMjUuNjkzIDQ4NC44ODkgMTI4LjI3OCA0NjIuNTkgeiIvPgo8cGF0aCB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLDApIiBmaWxsPSJyZ2IoMTgyLDI3LDI2KSIgZD0iTSAxNjUuNTE4IDQ2MC43MTMgTCAxNjQuNjE1IDQ2MS4zMTcgQyAxNTIuOTI2IDQ1OS42OTEgMTMwLjE2NyA0MzIuNDcxIDEzOC42MzUgNDE5LjkxNiBDIDE0MC4zMTMgNDE3LjQyOSAxNDMuMzg2IDQxNC40NzQgMTQ2LjM5NSA0MTQuMDA3IEMgMTUxLjUwNSA0MjguNDE4IDE2MS45MzggNDQ5LjAwMSAxNjUuNTE4IDQ2MC43MTMgeiIvPgo8cGF0aCB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLDApIiBmaWxsPSJyZ2IoMjI1LDE3Myw0KSIgZD0iTSAyOTYuMDYyIDgyMi41NyBDIDI5NS45MDYgODM4LjEwNyAyOTUuMzA2IDg1My42MzcgMjk0LjI2NCA4NjkuMTQxIEMgMjkzLjcyOSA4NzYuNDIyIDI5MC4yMDUgOTA4LjA4NCAyOTAuOTA5IDkxMi4yMDkgQyAyODUuOTM2IDkxNC4yNDMgMjc2LjU1NCA5MzUuNjg1IDI3My41NjQgOTQxLjgyOSBDIDI2My45ODUgOTE4LjMwNSAyODYuNTUgODQ2LjA0OSAyOTYuMDYyIDgyMi41NyB6Ii8+CjxwYXRoIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAsMCkiIGZpbGw9InJnYigyMjUsMTczLDQpIiBkPSJNIDU4MC40NjcgODMwLjAwNSBDIDU4Ni4xMDEgODQzLjg4NyA2MDAuNzc0IDg3OS44NjUgNTk4LjgyMiA4OTQuNDAzIEMgNTkzLjc2NiA4OTAuMzE1IDU4OC43ODMgODg2LjEzNiA1ODMuODc2IDg4MS44NyBDIDU4MC4zNTUgODY1LjE1MSA1ODEuNTg3IDg0Ni45NzMgNTgwLjQ2NyA4MzAuMDA1IHoiLz4KPHBhdGggdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCwwKSIgZmlsbD0icmdiKDY2LDE0OCwyMDQpIiBkPSJNIDkxMy4xNzMgMzAxLjI3MiBMIDEyNDEuNDEgMzAxLjMxOCBDIDEyODkuMzkgMzAxLjI5NiAxMzQzLjgzIDMwMi4yNjEgMTM5MS41NSAzMDAuNTk3IEwgMTM5Mi4zOCA3NzYuMTY1IEMgMTM5Mi4zOSA4MDYuNzM0IDEzODkuMzQgMTAyOS4zOCAxMzk0IDEwNDAuNjUgTCAxMzk0IDEwNDQuMzIgQyAxMzgxLjczIDEwNDUuOSAxMzUyLjgxIDEwNDUuMjYgMTMzOS42MSAxMDQ1LjE4IEwgMTI1MC4xOCAxMDQ0Ljc4IEwgOTEzLjQxNCAxMDQ1LjAxIEMgOTEzLjU2OCAxMDAwLjA4IDkxMy4wNjggOTU1LjE0MSA5MTEuOTE0IDkxMC4yMTkgQyA5MTYuODYzIDkwMy4zODcgOTQzLjI5IDg4NS4zMzYgOTUxLjM3IDg3OS42OTUgQyA5NTcuODg3IDg4Mi4xNDMgOTY0LjYyMyA4ODMuOTY0IDk3MS40ODUgODg1LjEzNSBDIDk5My4yMjIgODg4LjgzNyAxMDEyLjM1IDg4NS4wMzUgMTAzMC41NCA4NzIuMzg1IEMgMTA3My4yMyA4NDIuNzExIDEwNjEuMzkgNzgxLjg4IDEwMzQuNjMgNzQ1LjM4OSBDIDEwNDAuMTUgNzQxLjE2NiAxMDQ1LjgyIDczNy4xMzcgMTA1MS42MiA3MzMuMzA3IEMgMTA2Ny4xMyA3MjEuMjY3IDEwODQuMTYgNzA5LjcwOCAxMDkwLjY5IDY5MC4xMzEgQyAxMDkzLjkzIDY4MC40MjggMTA5MC43NSA2NzEuMTU1IDEwODAuMTEgNjY5LjAxNSBDIDEwNTguNTUgNjY0LjY4MiAxMDM1Ljc1IDY3OS41ODUgMTAxNy45MyA2ODkuOTcgQyAxMDAyLjk5IDY5OC44MDMgOTY2LjY1MyA3MjQuMTM0IDk1MC43MDYgNzI1LjYyNiBDIDkzMC41NzQgNzI3LjUxMSA5MzEuODk2IDcyOC4wMDUgOTEzLjM1NCA3MzYuNjAxIEMgOTEwLjk4MSA3MTcuODY1IDkxMi4yMDcgNjcxLjIzNSA5MTIuMjE5IDY1MC43MDIgTCA5MTIuMjExIDQ4Ni40MDMgTCA5MTIuMDgxIDM2NS41IEMgOTEyLjA0MiAzNTEuMzk2IDkxMS4yODUgMzEyLjQ3MiA5MTMuMTczIDMwMS4yNzIgeiIvPgo8cGF0aCB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLDApIiBmaWxsPSJyZ2IoMjU0LDI1NCwyNTQpIiBkPSJNIDEwMTcuOTMgNjg5Ljk3IEMgOTk5LjA5MyA2NTIuMjE5IDk5Ni4yNDggNjA4LjQ3NiAxMDEwLjAzIDU2OC42MDQgQyAxMDIyLjggNTMxLjM1MyAxMDUwLjAzIDUwMC44MTYgMTA4NS41OSA0ODMuODg3IEMgMTEyMi4wNyA0NjYuMDcyIDExNjQuMTEgNDYzLjQyMiAxMjAyLjU0IDQ3Ni41MTQgQyAxMjQwLjUyIDQ4OS40NzkgMTI3MS42OSA1MTcuMTY1IDEyODkuMDUgNTUzLjM0NyBDIDEzMDYuODUgNTkwLjQ0NyAxMzA5LjEgNjMzLjEyIDEyOTUuMjkgNjcxLjg4NCBDIDEyODIgNzA5LjYwNCAxMjU0LjMxIDc0MC41MjcgMTIxOC4yOSA3NTcuODkxIEMgMTE2OC40OCA3ODEuMzk2IDEwODkuODcgNzc2LjAxMiAxMDUxLjYyIDczMy4zMDcgQyAxMDY3LjEzIDcyMS4yNjcgMTA4NC4xNiA3MDkuNzA4IDEwOTAuNjkgNjkwLjEzMSBDIDEwOTMuOTMgNjgwLjQyOCAxMDkwLjc1IDY3MS4xNTUgMTA4MC4xMSA2NjkuMDE1IEMgMTA1OC41NSA2NjQuNjgyIDEwMzUuNzUgNjc5LjU4NSAxMDE3LjkzIDY4OS45NyB6Ii8+CjxwYXRoIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAsMCkiIGZpbGw9InJnYig2NiwxNDgsMjA0KSIgZD0iTSAxMTQzLjk0IDUwNS4zNTQgQyAxMTU5LjU3IDUwMy4zMTYgMTE3Ny40NSA1MDQuNDQzIDExOTEuNSA1MTIuMTI0IEMgMTIxOC4xMiA1MjYuNjgxIDEyMTkuMjEgNTYxLjgzNyAxMjE0LjU2IDU4OC4yMDcgQyAxMjA5LjY2IDYxNS44OTggMTE4OC4wMyA2MzUuNDM3IDExNzEuNDcgNjU2LjU0NiBDIDExNjMuOTYgNjY2LjA0OSAxMTU4LjY3IDY3NC40MiAxMTUyLjY2IDY4NS4wMzYgQyAxMTczLjIyIDY4NS40MzkgMTE5NC41IDY4NS4yMjMgMTIxNS4xMyA2ODUuMjc1IEwgMTIxNS4wNyA3MjUuNjM1IEMgMTE4MS4wMSA3MjYuMTU4IDExNDUuODkgNzI1Ljc1MSAxMTExLjc1IDcyNS43NzMgTCAxMDk1LjY2IDcyNS44MDggQyAxMDk1LjUzIDY3NC42MzIgMTExNy4yOCA2NTEuODI1IDExNDguMDcgNjE0LjQyMyBDIDExNjIuMTcgNTk3LjI5NSAxMTc3LjY2IDU3MC43MzQgMTE2NC45MiA1NDguMDcgQyAxMTYyLjk5IDU0NC42MTggMTE1OS44IDU0Mi4wMzcgMTE1NS44NCA1NDEuMTY3IEMgMTE0MS42OCA1NDQuMjM2IDExNDQuOTYgNTc4LjM5NiAxMTQ0Ljk4IDU5MC4wMjEgTCAxMDk3LjY0IDU5MC4wMzYgQyAxMDk3LjUgNTUwLjM1NCAxMDkzLjkxIDUxMS45NzIgMTE0My45NCA1MDUuMzU0IHoiLz4KPHBhdGggdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCwwKSIgZmlsbD0icmdiKDE4MiwyNywyNikiIGQ9Ik0gMTA4LjUwOCA2MDYuODY5IEMgOTkuODMxNyA2MzEuOTMgOTQuOTk1NyA2NjAuMzEzIDgyLjk2MDkgNjg2LjI3OCBDIDczLjc1MjUgNzA3LjM2NyA1Ni4wMzEgNzQ0LjQ4MSAzMi43MTgyIDc1Mi42MTUgQyAxLjA5NzU3IDc2My42NDggMTAuMTg5OCA2OTguMzg2IDEyLjY3NzMgNjg0LjU3NSBDIDI0LjcyMDIgNjE3LjcxMiA0OS45NDc2IDU1NC4zMzggODIuODY3IDQ5NS4zMDYgQyA4NS45ODQyIDUwMS42NTMgODQuOTg4MSA1MTAuOTg2IDg0Ljg4NzkgNTE4LjA1IEMgODQuNDc1OSA1NDcuMTA5IDc1LjU1OTcgNTkxLjMyMyAxMDcuNzAxIDYwNi40NzkgTCAxMDguNTA4IDYwNi44NjkgeiIvPgo8L3N2Zz4K",
                   "title": {
-                    "uk": "Повелитель комітів",
-                    "en": "Lord of Commits",
-                    "de": "Herr der Commits"
+                    "uk": "Оплата",
+                    "en": "Payments",
+                    "de": "Zahlung"
                   },
                   "content": {
                     "uk": [
-                      "Ви пережили з нами перший масштабний реліз і не влаштовували стейдж-дайвінг у продакшні без каски."
+                      "Рахунок із QR-кодом, monobank, LiqPay. На стапелі."
                     ],
                     "en": [
-                      "You’ve survived your first major release with us and didn’t go stage-diving into production without a helmet."
+                      "Invoice with a QR code, monobank, LiqPay. On the slipway."
                     ],
                     "de": [
-                      "Sie haben mit uns das erste große Release überstanden und kein Stage-Diving in der Produktion ohne Helm veranstaltet."
+                      "Rechnung mit QR-Code, monobank, LiqPay. Auf der Helling."
                     ]
                   },
                   "size": 108,
@@ -324,19 +324,19 @@
                   },
                   "content": {
                     "uk": [
-                      "• Кешбек «Дим над водою»: 5% знижки на розробку будь-якої складної та божевільної фічі (на кшталт інтерактивної карти місць або покрокового майстра з динамічними знижками).",
-                      "• Імунітет від лажі: Якщо наш джун випадково зіграє фальшиву ноту в коді, ми виправимо це швидше, ніж Оззі Осборн встигне відкусити голову кажану.",
-                      "• Безкоштовний хедлайнінг: Якщо у вас горить — ми кидаємо все, вмикаємо овердрайв і пишемо код прямо з коліс гастрольного автобуса."
+                      "• Оплата за рахунком — для ФОП і компаній",
+                      "• QR-код за стандартом НБУ: клієнт сканує й платить зі свого банку",
+                      "• monobank і LiqPay — оплата карткою просто на сайті"
                     ],
                     "en": [
-                      "• ‘Smoke Over Water’ cashback: 5% discount on the development of any complex and crazy feature (such as an interactive map of locations or a step-by-step wizard with dynamic discounts).",
-                      "• Immunity from screw-ups: If our junior developer accidentally hits a wrong note in the code, we’ll fix it faster than Ozzy Osbourne can bite a bat’s head off.",
-                      "• Free headlining: If you’re on fire — we’ll drop everything, kick it into overdrive and write code straight from the back of the tour bus."
+                      "• Payment by invoice — for sole proprietors and companies",
+                      "• A QR code to the National Bank standard: scan and pay from any bank",
+                      "• monobank and LiqPay — card payment right on the site"
                     ],
                     "de": [
-                      "• Cashback „Rauch über dem Wasser“: 5 % Rabatt auf die Entwicklung jeder komplexen und verrückten Funktion (wie zum Beispiel eine interaktive Standortkarte oder einen Schritt-für-Schritt-Assistenten mit dynamischen Rabatten).",
-                      "• Immunität gegen Pannen: Sollte unser Junior versehentlich eine falsche Note im Code spielen, beheben wir das schneller, als Ozzy Osbourne einer Fledermaus den Kopf abbeißen kann.",
-                      "• Kostenloses Headlining: Wenn bei euch der Feueralarm losgeht – wir lassen alles stehen und liegen, schalten den Overdrive ein und schreiben Code direkt aus dem Tourbus heraus."
+                      "• Zahlung per Rechnung — für Einzelunternehmer und Firmen",
+                      "• QR-Code nach Standard der Nationalbank: scannen und aus jeder Bank zahlen",
+                      "• monobank und LiqPay — Kartenzahlung direkt auf der Website"
                     ]
                   },
                   "contentClass": "default-text text-bright-grey text-left text-medium",
@@ -362,19 +362,19 @@
                   "type": "card",
                   "icon": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIj8+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBzdHlsZT0iZGlzcGxheTogYmxvY2s7IiB2aWV3Qm94PSIwIDAgMTM5NCAyMDQ4IiB3aWR0aD0iNDA5IiBoZWlnaHQ9IjYwMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CjxwYXRoIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAsMCkiIGZpbGw9InJnYigyNTMsMjExLDcpIiBkPSJNIDQwOC4wOTQgMCBMIDQ2Mi43OTIgMCBDIDQ2Ny4wODIgMi45Mzk1MiA0OTIuOTAyIDUuMjIzMTIgNTAwLjA2NCA2LjUyMjE4IEMgNTQ2LjI2NCAxNC43NzgxIDU5MC4zMTkgMzMuMjA5NCA2MjkuMzU5IDU5LjA4ODQgQyA2NDAuODkzIDY2LjczMzggNjU3Ljk1NyA4Mi4yMDg3IDY2OC40NTkgODguMjUwNCBDIDcwNS40MjUgMTA5LjUxOSA3MDkuMzQ2IDExNi41OTYgNzI0Ljk0IDE1NS4xNDIgQyA3MzYuMDk0IDE4Mi43MTIgNzU0LjQzIDIxMS43MjEgNzU5LjY5MSAyNDIuODkzIEMgNzYzLjc2NiAyNjEuMjI0IDc3Mi40NDggMjk1Ljc5OSA3NjIuODExIDMxMy40MjMgQyA3NjIuMTcgMzE0LjU5NiA3NTguNjY4IDMxOS44NyA3NTcuNzYyIDMyMS4wMjQgQyA3NTMuNzQyIDMzNC41NTcgNzUyLjUzNSAzNDguNjUzIDc0OS43NzYgMzYyLjYzNSBDIDcyOC4xMzMgNDcyLjMyMyA2MzcuMzc4IDU1OS45MSA1MzAuNTE3IDU4Ny43OTEgQyA1MTcuMTY1IDU5MS4yNzQgNTA0LjA3NiA1OTQuMTA4IDQ5MC41MDEgNTk2LjMwNCBDIDQ5MS4wNjYgNjEwLjUwNyA0OTMuNjk4IDY1NC43NjkgNDkyLjU1NiA2NjcuMzAxIEMgNTE5LjQ1OSA2NzMuNTY3IDU1MC41NzQgNjgzLjcxOCA1NzQuMDI4IDY5OC41MDQgQyA1OTYuMTYzIDcxMi40NTggNjA1LjgzOSA3MjYuOTY5IDYyMy4yNjkgNzQ1LjIzOCBDIDYzOS43OTEgNzYyLjMxOSA2NTYuNDIzIDc3OS4yOTUgNjczLjE2MSA3OTYuMTY0IEMgNjk0LjM0NiA4MTcuNTcyIDcyNy4wMjkgODUwLjQyOCA3NTIuMTIgODY1Ljc0NCBDIDc4NS42MjIgODQ5LjkzNCA4MTkuMDIzIDgzNC40NiA4NTAuNTQyIDgxNC44OTQgQyA4NjUuNDQzIDgwNS42NDQgODg1LjU0MSA3OTYuOTI0IDg5MS4xMjkgNzc5LjE4MiBDIDg5Ni43NDUgNzYxLjM1MiA4OTguOTA3IDc0OS43MDQgOTEzLjM1NCA3MzYuNiBDIDkzMS44OTggNzI4LjAwNyA5MzAuNTY5IDcyNy41MTMgOTUwLjcwNiA3MjUuNjI3IEMgOTY2LjcyMSA3MjQuMTI4IDEwMDIuODEgNjk4LjkwMyAxMDE3Ljk0IDY4OS45NjUgQyAxMDMzLjYyIDY4MC44MyAxMDY0LjcgNjYyLjI5IDEwODAuODUgNjY5LjE4OSBDIDExMTUuNzkgNjg0LjEwOSAxMDYyLjE0IDcyNS4zMjggMTA1MS42MiA3MzMuMzE2IEMgMTA0NS44MiA3MzcuMTM4IDEwNDAuMTUgNzQxLjE2NCAxMDM0LjYzIDc0NS4zODggQyAxMDYxLjM5IDc4MS44ODkgMTA3My4yMyA4NDIuNyAxMDMwLjU0IDg3Mi4zODUgQyAxMDEyLjM1IDg4NS4wMzggOTkzLjIyMyA4ODguODM3IDk3MS40ODUgODg1LjEzNSBDIDk2NC42MjQgODgzLjk2NCA5NTcuODg5IDg4Mi4xNDMgOTUxLjM3MyA4NzkuNjk2IEMgOTQzLjI1NyA4ODUuMzU4IDkxNi44NzggOTAzLjM4NSA5MTEuOTEzIDkxMC4yMTkgQyA5MDIuODI1IDkxNS42OTQgODkyLjM5NSA5MjMuNjcyIDg4Mi45IDkyOS43NDIgQyA4NDYuMTk0IDk1My40MDcgODA3LjE0IDk3OC4yMTMgNzY0LjA5MSA5ODguMTAzIEMgNzA5LjI2IDEwMDAuNyA2NjEuOTc3IDk0Ny42MjQgNjIzLjY0OSA5MTYuMzUzIEMgNjE1LjA5NyA5MDkuMzc1IDYwOC4zNzIgOTAwLjQ1OSA1OTguODIgODk0LjQwMSBDIDU5My43NjUgODkwLjMxMyA1ODguNzgyIDg4Ni4xMzYgNTgzLjg3NCA4ODEuODcgQyA1ODUuMzM3IDkwMS4xNDUgNTg3LjQxMyA5MjAuMzY0IDU4OS41NzcgOTM5LjYzMiBDIDYwMi40OTQgMTA1NC42NSA2NjEuNDI4IDExNjcuOTMgNjMxLjY3OSAxMjg1LjUgQyA2MjcuOTY3IDEzMDAuMTcgNjE2LjQwMyAxMzE4LjYgNjE3LjI3OSAxMzMzLjE3IEMgNjE5LjAzMyAxMzYyLjMxIDYyNC4wNDEgMTM5Mi4xMiA2MjcuNTg4IDE0MjEuMTIgTCA2NDguOTIxIDE1OTkuMzcgTCA2NjguNjI5IDE3NzMuMTQgQyA2NzEuMjY1IDE3OTUuNDMgNjcxLjU0NyAxODE4LjQyIDY3Ni40MDcgMTg0MC4zNyBDIDY3OS4xNjggMTg1Mi44NSA2ODQuNTgxIDE4NjMuNDkgNjk0LjM3IDE4NzEuOTIgQyA3MzkuODM2IDE5MTEuMDcgODc1LjA4IDE5MTAuOTMgODgwLjg3MyAxOTgzLjA3IEMgODgxLjg5NCAxOTk1Ljc5IDg3OC41NTcgMjAwOC4zIDg3MC4wNTkgMjAxNy45OCBDIDg1MC43MDkgMjA0MC4wMSA4MTIuNDEzIDIwNDMuMzkgNzg0Ljg1IDIwNDQuOTIgQyA3MzEuNzM0IDIwNDcuODcgNTkwLjgzNyAyMDQ0LjY4IDU1MC4zMzggMjAwNy43MiBDIDUzOS4wODIgMTk5Ny40NCA1MzQuNDQyIDE5ODIuNjggNTMzLjk1OSAxOTY3Ljc3IEMgNTMyLjggMTkzMiA1NTEuMzc0IDE4OTcuNzUgNTUwLjMzNiAxODYxLjY5IEMgNTQ5LjY4OCAxODM5LjE5IDU0NS44MzIgMTgxNi42MiA1NDIuNjQxIDE3OTQuMzggQyA1MzcuMTk3IDE3NTYuNjYgNTMxLjM2NSAxNzE5IDUyNS4xNDUgMTY4MS40IEMgNTA5LjkwNyAxNTg1LjQ5IDQ5Ni4zNyAxNDkwLjYgNDc2Ljg0MyAxMzk1LjI3IEMgNDU5LjgzNSAxMzk5LjI5IDQyMC4wODggMTM5OC40OCA0MDIuMzc5IDEzOTUuOTcgQyAzOTcuNjQzIDE0MjkuNjkgMzkwLjQ0NCAxNDY0Ljk0IDM4NC45NTEgMTQ5OC44NyBMIDM1My4yNTYgMTcwMi43MiBDIDM0Ni45NjggMTc0My4zNyAzMjQuOTM2IDE4NTguNSAzMzQuNDYxIDE4OTAuNjMgQyAzNjQuNjA5IDE5OTIuMzMgMzUwLjY5OCAyMDIzLjMxIDI0MC4yMyAyMDM4LjUyIEMgMTkyLjI5MyAyMDQ1LjEyIC0xMi4zMjcgMjA3MC4wMiAyLjU2NTYgMTk4MC4xNCBDIDE0LjQxMiAxOTA4LjY1IDE1MS4yMTcgMTkxNC4yOSAxOTEuOTQ0IDE4NjYuNTIgQyAyMTEuMjQzIDE4NDQuMTQgMjE0LjkgMTc2MC4yNCAyMTcuOTQ3IDE3MzEuNTYgTCAyMzMuMzc4IDE1OTcuODcgTCAyNTIuOTU0IDE0MjYuOTIgQyAyNTYuNTcxIDEzOTUuNjEgMjYxLjMwNCAxMzYzLjM4IDI2My4xODkgMTMzMS45OSBDIDI2NC4wNzEgMTMxNy4zIDI1Mi45NTEgMTI5OS43MyAyNDkuNDA1IDEyODUuMTggQyAyNDUuMjAxIDEyNjcuOTQgMjQyLjgzNCAxMjQ4LjYyIDI0MS41MjcgMTIzMC45IEMgMjM1LjIzMiAxMTQ1LjUzIDI2NS4yNDUgMTA2NC4yNyAyODEuMDg0IDk4MS42NzQgQyAyODQuMDQgOTY2LjI2MiAyODUuNTUxIDk1Mi4xMTkgMjg3LjM3MiA5MzYuNTAxIEMgMjg4LjA4NCA5MzAuMzkgMjg5LjIwNyA5MTcuNzcgMjkwLjkwOSA5MTIuMjA5IEMgMjg1LjkzNiA5MTQuMjQzIDI3Ni41NTUgOTM1LjY4MyAyNzMuNTYzIDk0MS44MjggQyAyMzkuODc0IDEwMTAuMjcgMjA5LjAwNyAxMDgwLjA3IDE4MS4wMzkgMTE1MS4wNCBDIDE3My4wMDEgMTE3MS4zMyAxNTguMzUyIDEyMDUuNzIgMTUyLjY0OCAxMjI2LjExIEMgMTU1Ljg2NyAxMjMyLjgxIDE2Ni41MTggMTI0Mi45NiAxNzEuMzQ2IDEyNDkuNCBDIDE4Ni4yMzYgMTI2OS41OCAxOTQuNTU0IDEyOTIuNDUgMTg3LjUyOCAxMzE3LjQ5IEMgMTgyLjg3NCAxMzM0LjA4IDE2Ni41NDEgMTMzOS44NyAxNTkuMzQ3IDEzNDkuOTMgQyAxMzMuMzUgMTM4Ni4yOSA5OS4zMzY3IDEzODUuNzkgNTkuNzQ2MyAxMzcyLjk5IEMgMzUuNzA3NSAxMzY1LjIyIDEyLjM5MTEgMTM0OS44NSAyLjE1NzI5IDEzMjQuNjkgQyAxLjUwNjI0IDEzMjMuMTkgMS4wMTc5NSAxMzIyLjM1IDAgMTMyMS4wMyBMIDAgMTI4NC4zIEMgMS4zOTM0NyAxMjgyLjQ2IDkuMzE4ODUgMTI2MC42OCAxMi4yMTIzIDEyNTQuNzMgQyAxOC41MTIyIDEyNDEuNzcgMzEuNzE4MyAxMjI1LjE1IDM2LjU0NjIgMTIxMy42MiBDIDUwLjYzMjYgMTE3OS45NiA2MS43MTk3IDExNDQuMyA3NC45OTY0IDExMTAuMDYgQyAxMDIuMDE1IDEwNDAuMTUgMTMxLjkyNiA5NzEuMzkgMTY0LjY1MSA5MDMuOTYxIEMgMTgyLjkzNiA4NjYuMzU1IDIwMi4zMTcgODI5LjI5MSAyMjIuNzY4IDc5Mi44MTcgQyAyNDIuNCA3NTcuNzM0IDI2My43MDggNzE3LjY3NyAyOTkuNDYzIDY5Ni4xMzggQyAzMjIuMzYyIDY4Mi4zNDMgMzUyLjg2OCA2NzQuODgyIDM3OC41OSA2NjYuMDY0IEMgMzc3Ljg0NiA2NDUuNzk0IDM3NS45NjUgNjE2LjE4IDM3Ni44NjIgNTk2LjY2NSBDIDM2Ny43MjQgNTk1LjM5MiAzNTguMzY2IDU5Mi42NjggMzQ5LjMzIDU5MC41NjIgQyAyNzguMDU4IDU3My45NTggMjE2Ljk3MSA1MzMuNzAxIDE3NC4xMTkgNDc0LjMxNSBDIDE3Mi4xNCA0NzEuNTcyIDE3MC41NTMgNDY5LjIgMTY3Ljk5OSA0NjYuOTAzIEwgMTY3LjgwOCA0NjguMjQxIEMgMTY2LjAxOSA0ODEuNzI5IDE2OC41NDggNDk1LjQ1MiAxNjYuOTM5IDUxMS4wNzQgQyAxNjQuOTU3IDUzMC4zMjEgMTYwLjM0NSA1ODMuNzY2IDE0MC41OTEgNTkzLjc5IEMgMTI4LjYwMiA1OTkuODc0IDEyMy4wNjIgNTY1LjIyOSAxMTkuMTk0IDU2NC4wNTggQyAxMTUuMTM3IDU3OC4xNSAxMTIuNjY0IDU5My4wOTcgMTA4LjUwOCA2MDYuODY5IEwgMTA3LjcwMSA2MDYuNDc5IEMgNzUuNTU5MSA1OTEuMzIyIDg0LjQ3NjggNTQ3LjEwOSA4NC44ODczIDUxOC4wNSBDIDg0Ljk4NyA1MTAuOTg4IDg1Ljk4MyA1MDEuNjQ5IDgyLjg2NyA0OTUuMzA2IEMgODguOTE5IDQ4Mi4xMTcgMTAwLjgzNyA0NjIuNTc5IDEwOS4yNzUgNDUwLjc2OSBDIDk1LjEyMzQgNDI5LjYzMSA5My44Mzg3IDQwOC4zNDEgMTE2LjQwOCAzOTIuOTQxIEMgMTEzLjY3NSAzODcuNzk0IDExMi42OTIgMzg2LjI2NiAxMTEuNjU5IDM4MC41NzkgQyA5NS4zMDAzIDMyNS4wODEgOTYuODYxMSAyNjUuODM3IDExNi4xMiAyMTEuMjc4IEMgMTU2LjE3MiA5OS44NDg1IDI1Ny4wMDQgMjcuNDMwMSAzNjkuNjIxIDYuMDEwODMgQyAzNzkuODgzIDQuMDU5MDIgMzk5LjkxOCA0LjIyODI1IDQwOC4wOTQgMCB6Ii8+CjxwYXRoIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAsMCkiIGZpbGw9InJnYigyMjgsNDUsNDUpIiBkPSJNIDQwOC4wOTQgMCBMIDQ2Mi43OTIgMCBDIDQ2Ny4wODIgMi45Mzk1MiA0OTIuOTAyIDUuMjIzMTIgNTAwLjA2NCA2LjUyMjE4IEMgNTQ2LjI2NCAxNC43NzgxIDU5MC4zMTkgMzMuMjA5NCA2MjkuMzU5IDU5LjA4ODQgQyA2NDAuODkzIDY2LjczMzggNjU3Ljk1NyA4Mi4yMDg3IDY2OC40NTkgODguMjUwNCBDIDcwNS40MjUgMTA5LjUxOSA3MDkuMzQ2IDExNi41OTYgNzI0Ljk0IDE1NS4xNDIgQyA3MzYuMDk0IDE4Mi43MTIgNzU0LjQzIDIxMS43MjEgNzU5LjY5MSAyNDIuODkzIEMgNzYzLjc2NiAyNjEuMjI0IDc3Mi40NDggMjk1Ljc5OSA3NjIuODExIDMxMy40MjMgQyA3NjIuMTcgMzE0LjU5NiA3NTguNjY4IDMxOS44NyA3NTcuNzYyIDMyMS4wMjQgQyA3NTAuOTc1IDMxNC43ODUgNzIzLjU0MiAzMTIuMzY0IDcxMy41OCAzMTEuMjU3IEMgNjU1LjY1NiAzMDQuNTY4IDU5Ny4yOTUgMzAyLjQ0NyA1MzkuMDM4IDMwNC45MTMgQyA0MjEuMjk3IDMwOS45MDIgMjk4LjQzMiAzMzUuMjkyIDE5MS41NzYgMzg1Ljk2IEMgMTgzLjMxNSAzODkuODc4IDE1MC42NDYgNDA2LjcwOCAxNDYuMzk1IDQxNC4wMDYgQyAxNTEuNTA3IDQyOC40MjQgMTYxLjkzNSA0NDguOTk1IDE2NS41MTkgNDYwLjcxNCBDIDE2Ni45NzkgNDYzLjQ3OSAxNjcuMjEyIDQ2My45MDggMTY3Ljk5OSA0NjYuOTAzIEwgMTY3LjgwOCA0NjguMjQxIEMgMTY2LjAxOSA0ODEuNzI5IDE2OC41NDggNDk1LjQ1MiAxNjYuOTM5IDUxMS4wNzQgQyAxNjQuOTU3IDUzMC4zMjEgMTYwLjM0NSA1ODMuNzY2IDE0MC41OTEgNTkzLjc5IEMgMTI4LjYwMiA1OTkuODc0IDEyMy4wNjIgNTY1LjIyOSAxMTkuMTk0IDU2NC4wNTggQyAxMTUuMTM3IDU3OC4xNSAxMTIuNjY0IDU5My4wOTcgMTA4LjUwOCA2MDYuODY5IEwgMTA3LjcwMSA2MDYuNDc5IEMgNzUuNTU5MSA1OTEuMzIyIDg0LjQ3NjggNTQ3LjEwOSA4NC44ODczIDUxOC4wNSBDIDg0Ljk4NyA1MTAuOTg4IDg1Ljk4MyA1MDEuNjQ5IDgyLjg2NyA0OTUuMzA2IEMgODguOTE5IDQ4Mi4xMTcgMTAwLjgzNyA0NjIuNTc5IDEwOS4yNzUgNDUwLjc2OSBDIDk1LjEyMzQgNDI5LjYzMSA5My44Mzg3IDQwOC4zNDEgMTE2LjQwOCAzOTIuOTQxIEMgMTEzLjY3NSAzODcuNzk0IDExMi42OTIgMzg2LjI2NiAxMTEuNjU5IDM4MC41NzkgQyA5NS4zMDAzIDMyNS4wODEgOTYuODYxMSAyNjUuODM3IDExNi4xMiAyMTEuMjc4IEMgMTU2LjE3MiA5OS44NDg1IDI1Ny4wMDQgMjcuNDMwMSAzNjkuNjIxIDYuMDEwODMgQyAzNzkuODgzIDQuMDU5MDIgMzk5LjkxOCA0LjIyODI1IDQwOC4wOTQgMCB6Ii8+CjxwYXRoIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAsMCkiIGZpbGw9InJnYigxODIsMjcsMjYpIiBkPSJNIDExMS42NTkgMzgwLjU3OSBDIDExOS4wNDggMzczLjU4MSAxMjkuOTI2IDM2NS43MzMgMTM4LjYxNiAzNTkuNTMxIEMgMjYwLjY1NCAyNzIuNDI4IDM5NS4wMzIgMTg4Ljc3IDU0My4yNDMgMTU2LjIxMyBDIDU1OC41NzEgMTUyLjg0NSA1NzMuMTQgMTUxLjIwMyA1ODcuNzI3IDE0OC4wMTIgQyA1NDMuNDI2IDE5MC45NzQgNDkzLjg0IDIzMC40MjkgNDQ1LjQwOSAyNjguNjE1IEMgNDMzLjQ0NyAyNzguMDQ2IDQwMS4wMjMgMzA0LjQ2NiAzODguOTA0IDMwOC44NTggQyAzNjguMjI3IDMxNi4zNTIgMzMyLjcwMiAzMTkuMzc2IDMwOS44MjYgMzI0LjIzNCBDIDI2Mi45NzcgMzM0LjE4MyAyMTkuOTY1IDM0OC4wNyAxNzUuNjUyIDM2Ni4wNTEgQyAxNTQuODUzIDM3NC40OTEgMTM2LjAwOSAzODEuNTE2IDExNi40MDggMzkyLjk0MSBDIDExMy42NzUgMzg3Ljc5NCAxMTIuNjkyIDM4Ni4yNjYgMTExLjY1OSAzODAuNTc5IHoiLz4KPHBhdGggdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCwwKSIgZmlsbD0icmdiKDE4MiwyNywyNikiIGQ9Ik0gMTI4LjI3OCA0NjIuNTkgQyAxNDEuNDg3IDQ2NC4zIDE1NC43MyA0NjUuNzM4IDE2Ny45OTkgNDY2LjkwMyBMIDE2Ny44MDggNDY4LjI0MSBDIDE2Ni4wMTkgNDgxLjcyOSAxNjguNTQ4IDQ5NS40NTIgMTY2LjkzOSA1MTEuMDc0IEMgMTY0Ljk1NyA1MzAuMzIxIDE2MC4zNDUgNTgzLjc2NiAxNDAuNTkxIDU5My43OSBDIDEyOC42MDIgNTk5Ljg3NCAxMjMuMDYyIDU2NS4yMjkgMTE5LjE5NCA1NjQuMDU4IEMgMTIwLjg4MyA1NTkuNjQ3IDExNy45ODUgNTM2LjU4NSAxMTguNTE4IDUyOS4yODQgQyAxMjAuMTcgNTA2LjY2OSAxMjUuNjkzIDQ4NC44ODkgMTI4LjI3OCA0NjIuNTkgeiIvPgo8cGF0aCB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLDApIiBmaWxsPSJyZ2IoMTgyLDI3LDI2KSIgZD0iTSAxNjUuNTE5IDQ2MC43MTQgTCAxNjQuNjExIDQ2MS4zMTcgQyAxNTIuOTE3IDQ1OS42ODUgMTMwLjE3NCA0MzIuNDc3IDEzOC42MzUgNDE5LjkxOCBDIDE0MC4zMTEgNDE3LjQzIDE0My4zODcgNDE0LjQ3MyAxNDYuMzk1IDQxNC4wMDYgQyAxNTEuNTA3IDQyOC40MjQgMTYxLjkzNSA0NDguOTk1IDE2NS41MTkgNDYwLjcxNCB6Ii8+CjxwYXRoIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAsMCkiIGZpbGw9InJnYigyMjUsMTczLDQpIiBkPSJNIDI5Ni4wNjMgODIyLjU3IEMgMjk1Ljg5OSA4MzguMTE5IDI5NS4zIDg1My42NjEgMjk0LjI2NSA4NjkuMTc4IEMgMjkzLjcyOCA4NzYuNDczIDI5MC4yMDIgOTA4LjA2NyAyOTAuOTA5IDkxMi4yMDkgQyAyODUuOTM2IDkxNC4yNDMgMjc2LjU1NSA5MzUuNjgzIDI3My41NjMgOTQxLjgyOCBDIDI2My45ODQgOTE4LjMwNSAyODYuNTUxIDg0Ni4wNDggMjk2LjA2MyA4MjIuNTcgeiIvPgo8cGF0aCB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLDApIiBmaWxsPSJyZ2IoMjI1LDE3Myw0KSIgZD0iTSA1ODAuNDU5IDgyOS45ODUgQyA1ODYuMDg3IDg0My44NTYgNjAwLjc4NCA4NzkuODc5IDU5OC44MiA4OTQuNDAxIEMgNTkzLjc2NSA4OTAuMzEzIDU4OC43ODIgODg2LjEzNiA1ODMuODc0IDg4MS44NyBDIDU4MC4zNTEgODY1LjA5MSA1ODEuNjA2IDg0Ny4wMDEgNTgwLjQ1OSA4MjkuOTg1IHoiLz4KPHBhdGggdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCwwKSIgZmlsbD0icmdiKDY2LDE0OCwyMDQpIiBkPSJNIDkxMy4xNzQgMzAxLjI3MyBMIDEyNDEuNzMgMzAxLjMyIEMgMTI4OS41NiAzMDEuMjk4IDEzNDMuOTkgMzAyLjI3MiAxMzkxLjU1IDMwMC41OTMgTCAxMzkyLjM4IDc3Ni4xNjkgQyAxMzkyLjM5IDgwOC43MzMgMTM4OS4zMiAxMDI5LjMzIDEzOTQgMTA0MC42NSBMIDEzOTQgMTA0NC4zMiBDIDEzODEuNzIgMTA0NS45IDEzNTIuODEgMTA0NS4yNiAxMzM5LjYxIDEwNDUuMTggTCAxMjUwLjIzIDEwNDQuNzggTCA5MTMuNDE0IDEwNDUuMDEgQyA5MTMuNTY4IDEwMDAuMDggOTEzLjA2NyA5NTUuMTQgOTExLjkxMyA5MTAuMjE5IEMgOTE2Ljg3OCA5MDMuMzg1IDk0My4yNTcgODg1LjM1OCA5NTEuMzczIDg3OS42OTYgQyA5NTcuODg5IDg4Mi4xNDMgOTY0LjYyNCA4ODMuOTY0IDk3MS40ODUgODg1LjEzNSBDIDk5My4yMjMgODg4LjgzNyAxMDEyLjM1IDg4NS4wMzggMTAzMC41NCA4NzIuMzg1IEMgMTA3My4yMyA4NDIuNyAxMDYxLjM5IDc4MS44ODkgMTAzNC42MyA3NDUuMzg4IEMgMTA0MC4xNSA3NDEuMTY0IDEwNDUuODIgNzM3LjEzOCAxMDUxLjYyIDczMy4zMTYgQyAxMDYyLjE0IDcyNS4zMjggMTExNS43OSA2ODQuMTA5IDEwODAuODUgNjY5LjE4OSBDIDEwNjQuNyA2NjIuMjkgMTAzMy42MiA2ODAuODMgMTAxNy45NCA2ODkuOTY1IEMgMTAwMi44MSA2OTguOTAzIDk2Ni43MjEgNzI0LjEyOCA5NTAuNzA2IDcyNS42MjcgQyA5MzAuNTY5IDcyNy41MTMgOTMxLjg5OCA3MjguMDA3IDkxMy4zNTQgNzM2LjYgQyA5MTAuOTczIDcxNy44MTcgOTEyLjIxIDY3MC43NTIgOTEyLjIyIDY1MC4xMjMgTCA5MTIuMjExIDQ4Ny4wMzMgTCA5MTIuMDgzIDM2NS42MjMgQyA5MTIuMDQzIDM1MS40ODIgOTExLjI2NiAzMTIuNTg1IDkxMy4xNzQgMzAxLjI3MyB6Ii8+CjxwYXRoIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAsMCkiIGZpbGw9InJnYigyNTQsMjU0LDI1NCkiIGQ9Ik0gMTAxNy45NCA2ODkuOTY1IEMgOTk5LjEzIDY1Mi4yNzcgOTk2LjI2NCA2MDguNjEyIDEwMDkuOTggNTY4Ljc4OSBDIDEwMjIuNjEgNTMxLjczIDEwNDkuNTUgNTAxLjI3NiAxMDg0LjggNDg0LjIzNSBDIDExMjEuNDQgNDY2LjE0MSAxMTYzLjc4IDQ2My4zNTkgMTIwMi40OCA0NzYuNTA0IEMgMTI0MC4xNyA0ODkuMzYgMTI3MS4xNyA1MTYuNzIgMTI4OC42MiA1NTIuNTE4IEMgMTMwNi42IDU4OS4zIDEzMDkuMiA2MzEuNzI1IDEyOTUuODUgNjcwLjQyNyBDIDEyODIuODcgNzA4LjMwMSAxMjU1LjQ2IDczOS41MTYgMTIxOS41OCA3NTcuMjc1IEMgMTE2OS41NCA3ODEuNTM2IDEwOTAuMzEgNzc2LjMwNSAxMDUxLjYyIDczMy4zMTYgQyAxMDYyLjE0IDcyNS4zMjggMTExNS43OSA2ODQuMTA5IDEwODAuODUgNjY5LjE4OSBDIDEwNjQuNyA2NjIuMjkgMTAzMy42MiA2ODAuODMgMTAxNy45NCA2ODkuOTY1IHoiLz4KPHBhdGggdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCwwKSIgZmlsbD0icmdiKDY2LDE0OCwyMDQpIiBkPSJNIDExNDYuNjMgNTA1LjM3NSBDIDEyMDQuNzYgNDk3LjQzNyAxMjIzLjc0IDUzNS42NDYgMTIxNS4zNSA1ODYuNiBDIDEyMTMuNzcgNTk2LjEzNSAxMjA5LjUyIDYwMC4zNjYgMTIwMS43MSA2MDUuMTc3IEMgMTIxMi4zNiA2MTIuMzM3IDEyMTYuMzMgNjE5LjY4OCAxMjE2LjIyIDYzMi45NzggQyAxMjE2LjA3IDY1Ny4xMTMgMTIyMC4zNCA2OTIuOTE5IDEyMDIuNjMgNzExLjc1NiBDIDExODEuOTkgNzMzLjcwOCAxMTMwLjQxIDczNS41MDkgMTEwOC43MyA3MTQuMjQ5IEMgMTA5MC45OCA2OTYuODQ1IDEwOTQuMDYgNjY2LjQ3MSAxMDk0LjA5IDY0My42NTUgTCAxMTA2Ljc1IDY0My42MzIgTCAxMTQxLjgyIDY0My41ODIgQyAxMTQxLjc0IDY1MS4yMDYgMTE0MC4zNSA2ODAuNDY2IDExNDUuNzMgNjg0LjgxMSBDIDExNzUuNTMgNzA4Ljg5IDExNzMuMDMgNjM4LjEwNCAxMTYxLjkgNjI4LjE2OCBDIDExNTUuOTEgNjIyLjgxNyAxMTM2LjI0IDYyNC41NDYgMTEyOC4yNSA2MjQuODIzIEwgMTEyOC4xNyA1ODYuOTg1IEMgMTEzOS40OSA1ODcuMTkyIDExNTAuOTMgNTg3LjQ1MyAxMTYwLjcxIDU4Mi44MDYgQyAxMTc3Ljc5IDU3NC42ODkgMTE2OC45MiA1MzMuMjE0IDExNDkuNCA1NDUuMDc5IEMgMTE0My41MiA1NDguNjUzIDExNDMuOCA1NjMuMTQyIDExNDMuNzIgNTY5LjkyMSBMIDEwOTUuODYgNTY5LjkxIEMgMTA5NS42NyA1MjkuMjI3IDExMDIuMDUgNTEwLjM1IDExNDYuNjMgNTA1LjM3NSB6Ii8+CjxwYXRoIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAsMCkiIGZpbGw9InJnYigxODIsMjcsMjYpIiBkPSJNIDEwOC41MDggNjA2Ljg2OSBDIDk0LjAwMTEgNjQ4Ljc1MSA3OC44MDc2IDczMi43ODYgMzEuMjM0OCA3NTIuNzQzIEMgMi42MTI5NiA3NjQuNzQ5IDEwLjAxNTkgNjk5LjI0OCAxMi42MjczIDY4NC44NzkgQyAyNC44MTgzIDYxNy43OTcgNDkuNzA0NCA1NTQuNzU5IDgyLjg2NyA0OTUuMzA2IEMgODUuOTgzIDUwMS42NDkgODQuOTg3IDUxMC45ODggODQuODg3MyA1MTguMDUgQyA4NC40NzY4IDU0Ny4xMDkgNzUuNTU5MSA1OTEuMzIyIDEwNy43MDEgNjA2LjQ3OSBMIDEwOC41MDggNjA2Ljg2OSB6Ii8+Cjwvc3ZnPgo=",
                   "title": {
-                    "uk": "Мешканець Четвертого Виміру",
-                    "en": "Inhabitant of the Fourth Dimension",
-                    "de": "Bewohner der vierten Dimension"
+                    "uk": "Доставка й документи",
+                    "en": "Delivery and documents",
+                    "de": "Versand und Dokumente"
                   },
                   "content": {
                     "uk": [
-                      "Ви з нами більше року або довірили нам проєкт розміром з дискографію Rolling Stones. Ви стали частиною нашої екосистеми. Ви знаєте імена наших тестувальників."
+                      "Нова Пошта, KeyCRM, «Вчасно». На стапелі."
                     ],
                     "en": [
-                      "You’ve been with us for over a year or entrusted us with a project the size of the Rolling Stones’ discography. You’ve become part of our ecosystem. You know the names of our testers."
+                      "Nova Poshta, KeyCRM, Vchasno. On the slipway."
                     ],
                     "de": [
-                      "Ihr seid schon seit über einem Jahr bei uns oder habt uns ein Projekt anvertraut, das so groß ist wie die Diskografie der Rolling Stones. Ihr seid Teil unseres Ökosystems geworden. Ihr kennt die Namen unserer Tester."
+                      "Nova Poshta, KeyCRM, Vchasno. Auf der Helling."
                     ]
                   },
                   "titleClass": "text-medium text-center text-bright-grey accent-font-2",
@@ -392,19 +392,19 @@
                   },
                   "content": {
                     "uk": [
-                      "• Безкоштовний довічний аудит від наших headless-браузерів",
-                      "• Пріоритет у черзі завдань рівня «Мені горить, потрібно вчора»",
-                      "• Секретна пасхалка у вашому проєкті, про яку знатимете лише ви та консоль розробника"
+                      "• Нова Пошта: відділення й накладні просто із замовлення",
+                      "• KeyCRM: замовлення одразу в CRM",
+                      "• «Вчасно»: договори й акти з електронним підписом"
                     ],
                     "en": [
-                      "• A free lifetime audit using our headless browsers",
-                      "• Priority in the ‘It’s urgent, I need it yesterday’ task queue",
-                      "• A secret Easter egg in your project that only you and the developer console will know about."
+                      "• Nova Poshta: branches and waybills straight from the order",
+                      "• KeyCRM: orders go straight into the CRM",
+                      "• Vchasno: contracts and acts with an electronic signature"
                     ],
                     "de": [
-                      "• Kostenloses lebenslanges Audit durch unsere Headless-Browser",
-                      "• Vorrang in der Aufgabenwarteschlange der Stufe „Es brennt, das muss gestern fertig sein“",
-                      "• Ein geheimes Easter-Egg in Ihrem Projekt, von dem nur Sie und die Entwicklerkonsole wissen"
+                      "• Nova Poshta: Filialen und Lieferscheine direkt aus der Bestellung",
+                      "• KeyCRM: Bestellungen direkt ins CRM",
+                      "• Vchasno: Verträge und Abnahmeprotokolle mit elektronischer Signatur"
                     ]
                   },
                   "contentClass": "default-text text-light-warning text-left text-medium",
@@ -422,8 +422,8 @@
     }
   ],
   "title": {
-    "uk": "Дружні знижки",
-    "en": "Friendly Discounts",
-    "de": "Freundliche Rabatte"
+    "uk": "Причали",
+    "en": "Moorings",
+    "de": "Liegeplätze"
   }
 }

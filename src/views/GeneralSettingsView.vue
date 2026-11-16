@@ -14,6 +14,7 @@
   import { useAjaxStore } from '@/stores/ajax'
   import { useCommonStore } from '@/stores/common'
   import { useUiFeedbackStore } from '@/stores/ui-feedback'
+  import { BANNER_MAX_WIDTH, fitImage } from '@/utils/fit-image'
   import { defaultSiteLocale, isLocaleCode, localeDisplayName, setSiteLocales, siteLocales } from '@/utils/locale-text'
   import { readImageFile } from '@/utils/read-image-file'
   import { accentFontsOf, applyThemeFonts } from '@/utils/theme-fonts'
@@ -151,9 +152,16 @@
       throw error
     }
   }
-  async function readBanner (file: File): Promise<string> {
+  // Who stands behind the site, by law - shown next to the copyright.
+  function setLegalName (locale: string, value: string) {
+    if (settings.value) settings.value.legalName = { ...settings.value.legalName, [locale]: value }
+  }
+
+  // Made no bigger than its screen needs (utils/fit-image.ts): a phone
+  // banner far smaller than a desktop one.
+  async function readBanner (file: File, variant: 'desktop' | 'mobile' = 'desktop'): Promise<string> {
     try {
-      return (await readImageFile(file)).dataUrl
+      return (await readImageFile(await fitImage(file, BANNER_MAX_WIDTH[variant]))).dataUrl
     } catch (error) {
       feedback.notifyError(t('popups.bannerUploadFailed'), error instanceof Error ? error.message : String(error))
       throw error
@@ -182,10 +190,9 @@
     const slide = settings.value?.banerSlides?.[index]
     if (!file || !slide) return
     try {
-      const { dataUrl } = await readImageFile(file)
-      slide[variant] = dataUrl
-    } catch (error) {
-      feedback.notifyError(t('popups.bannerUploadFailed'), error instanceof Error ? error.message : String(error))
+      slide[variant] = await readBanner(file, variant)
+    } catch {
+      // Already reported.
     }
   }
   // The banner whose texts are being edited (BannerTextsEditor).
@@ -248,6 +255,17 @@
               v-model="settings.provider"
               :label="t('common.companyName')"
               variant="outlined"
+            />
+          </v-col>
+        </v-row>
+        <p class="editor-section-hint">{{ t('generalSettings.legalNameHint') }}</p>
+        <v-row>
+          <v-col v-for="locale of siteLocalesModel" :key="locale" cols="12" md="4">
+            <v-text-field
+              :label="`${t('generalSettings.legalName')} · ${locale.toUpperCase()}`"
+              :model-value="settings.legalName?.[locale] ?? ''"
+              variant="outlined"
+              @update:model-value="setLegalName(locale, $event)"
             />
           </v-col>
         </v-row>
@@ -365,7 +383,7 @@
           </v-col>
           <v-col cols="12" md="6">
             <p class="settings-image-label">{{ t('generalSettings.bannerMobile') }}</p>
-            <ImageEditor v-model:height="bannerBox" v-model:src="settings.baner.mobile" :read="readBanner" />
+            <ImageEditor v-model:height="bannerBox" v-model:src="settings.baner.mobile" :read="file => readBanner(file, 'mobile')" />
           </v-col>
         </v-row>
         <v-btn class="mt-2" prepend-icon="mdi-format-text" variant="tonal" @click="textsOf = settings.baner">

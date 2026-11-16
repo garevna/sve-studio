@@ -90,42 +90,42 @@
                 "type": "card",
                 "icon": "mdi-clipboard-text-outline",
                 "title": {
-                  "uk": "Бриф",
-                  "en": "Brief",
-                  "de": "Briefing"
+                  "uk": "Заявка",
+                  "en": "Request",
+                  "de": "Anfrage"
                 },
                 "content": {
-                  "uk": "Тридцять хвилин розмови замість анкети на сорок питань. Ви розповідаєте, що болить, ми — що з цього вийде сайтом.",
-                  "en": "Thirty minutes of conversation instead of a forty-question form. You tell us what hurts; we tell you what of it becomes a website.",
-                  "de": "Dreißig Minuten Gespräch statt eines Fragebogens mit vierzig Fragen. Sie erzählen, wo es hakt, wir sagen, was davon eine Website wird."
+                  "uk": "Кілька рядків про ваш бізнес замість анкети на сорок питань. Ви розповідаєте, що потрібно, ми — що з цього вийде.",
+                  "en": "A few lines about your business instead of a forty-question form. You tell us what you need, we tell you what it will become.",
+                  "de": "Ein paar Zeilen über Ihr Unternehmen statt eines Fragebogens mit vierzig Fragen. Sie sagen, was Sie brauchen, wir sagen, was daraus wird."
                 }
               },
               {
                 "type": "card",
                 "icon": "mdi-palette-outline",
                 "title": {
-                  "uk": "Дизайн",
-                  "en": "Design",
-                  "de": "Design"
+                  "uk": "Налаштування",
+                  "en": "Setup",
+                  "de": "Einrichtung"
                 },
                 "content": {
-                  "uk": "Збираємо сторінки з готових блоків у ваших кольорах. Правки — прямо в редакторі, без пересилання макетів туди-сюди.",
-                  "en": "We put the pages together from ready blocks in your colours. Changes happen right in the editor, with no mock-ups going back and forth.",
-                  "de": "Wir setzen die Seiten aus fertigen Blöcken in Ihren Farben zusammen. Änderungen direkt im Editor, ohne Entwürfe hin und her zu schicken."
+                  "uk": "За день-два налаштовуємо Верф, сайт у ваших кольорах, Telegram-канал і бекенд.",
+                  "en": "In a day or two we set up the Pageyard, the site in your colours, the Telegram channel and the back end.",
+                  "de": "In ein, zwei Tagen richten wir die Werft, die Website in Ihren Farben, den Telegram-Kanal und das Backend ein."
                 }
               },
               {
                 "type": "card",
                 "icon": "mdi-rocket-launch-outline",
                 "title": {
-                  "uk": "Запуск",
+                  "uk": "Спуск на воду",
                   "en": "Launch",
-                  "de": "Start"
+                  "de": "Stapellauf"
                 },
                 "content": {
-                  "uk": "Публікуємо, підключаємо домен і форму зв’язку. Далі сайт ваш: тексти й ціни змінюєте самі.",
-                  "en": "We publish, connect the domain and the contact form. From then on the site is yours: you change the texts and prices yourself.",
-                  "de": "Wir veröffentlichen, verbinden Domain und Kontaktformular. Danach gehört die Website Ihnen: Texte und Preise ändern Sie selbst."
+                  "uk": "Підключаємо домен і публікуємо. Далі корабель ваш: тексти, ціни й сторінки змінюєте самі.",
+                  "en": "We connect the domain and publish. From then on the ship is yours: texts, prices and pages are changed by you.",
+                  "de": "Wir verbinden die Domain und veröffentlichen. Ab dann gehört das Schiff Ihnen: Texte, Preise und Seiten ändern Sie selbst."
                 }
               }
             ]

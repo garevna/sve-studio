@@ -1,9 +1,9 @@
 {
-  "id": "products",
+  "id": "ships",
   "title": {
-    "uk": "Асортимент",
-    "en": "Product Range",
-    "de": "Sortiment"
+    "uk": "Що можна збудувати",
+    "en": "What you can build",
+    "de": "Was sich bauen lässt"
   },
   "breadcrumbs": false,
   "backButton": false,
@@ -18,27 +18,27 @@
               "type": "header",
               "class": "mb-8",
               "content": {
-                "uk": "Virtual Dimension. Офіційні постачальники паралельних реальностей.",
-                "en": "",
-                "de": ""
+                "uk": "Кораблі на будь-який курс",
+                "en": "Ships for any course",
+                "de": "Schiffe für jeden Kurs"
               }
             },
             {
               "type": "text",
               "class": "default-text text-medium text-black mb-5",
               "content": {
-                "uk": "Коли буденність стає занадто передбачуваною, а закони фізики — занадто нудними, ми відкриваємо портал у дев’ятий вимір.",
-                "en": "When everyday life becomes too predictable and the laws of physics too tedious, we open a portal to the ninth dimension. No, we don’t sell VR headsets. We sell one-way tickets to a place where gravity is merely a suggestion.",
-                "de": "Wenn der Alltag zu vorhersehbar und die Gesetze der Physik zu langweilig werden, öffnen wir ein Portal in die neunte Dimension. Nein, wir verkaufen keine VR-Brillen. Wir verkaufen One-Way-Tickets dorthin, wo die Schwerkraft nur eine Empfehlung ist."
+                "uk": "Pagewright будує сайти й веб-застосунки, які можна правити самому і які вміють більше, ніж показувати текст. Ось що сходить із нашої верфі.",
+                "en": "Pagewright builds websites and web apps you can edit yourself — and that do more than display text. Here is what leaves our shipyard.",
+                "de": "Pagewright baut Websites und Web-Apps, die Sie selbst bearbeiten können — und die mehr können, als Text anzuzeigen. Das läuft bei uns vom Stapel."
               }
             },
             {
               "type": "text",
               "class": "default-text text-medium text-black mb-5 mb-md-0",
               "content": {
-                "uk": "",
-                "en": "",
-                "de": ""
+                "uk": "Кожен корабель — багатомовний, швидкий і ваш.",
+                "en": "Every ship is multilingual, fast and yours.",
+                "de": "Jedes Schiff ist mehrsprachig, schnell und Ihres."
               }
             }
           ]
@@ -65,19 +65,19 @@
           "size": 90,
           "icon": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjxzdmcNCiAgdmVyc2lvbj0iMS4xIg0KICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciDQogIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIg0KICB4PSIwIg0KICB5PSIwIg0KICB2aWV3Qm94PSIwIDAgMTE5LjM2IDEyMi44OCINCiAgZmlsbD0iI2ZmZiINCiAgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMTE5LjM2IDEyMi44OCINCiAgeG1sOnNwYWNlPSJwcmVzZXJ2ZSINCj4NCiAgPHN0eWxlIHR5cGU9InRleHQvY3NzIj4NCiAgICAuc3QwIHsNCiAgICAgIGZpbGwtcnVsZTpldmVub2RkO2NsaXAtcnVsZTpldmVub2RkOw0KICAgIH0NCiAgPC9zdHlsZT4NCiAgDQogIDxnPg0KICAgIDxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik02Ljg5LDQwLjAyaDYuOTF2LTEuNmMwLTIuMTQsMC40My00LjE4LDEuMi02LjA0YzAuODEtMS45MywxLjk4LTMuNjgsMy40NS01LjE0IGMxLjQ2LTEuNDYsMy4yMS0yLjY0LDUuMTQtMy40NWMxLjg2LTAuNzgsMy45LTEuMjEsNi4wNC0xLjIxaDI3LjQ4di0wLjE0di03LjI3Yy0wLjQ1LTAuMTYtMC44Ny0wLjM3LTEuMjgtMC42IGMtMC41Ny0wLjM0LTEuMS0wLjc1LTEuNTYtMS4yMWMtMC43Mi0wLjcyLTEuMy0xLjU4LTEuNy0yLjU0Yy0wLjM4LTAuOTItMC41OS0xLjk0LTAuNTktMi45OWMwLTEuMDYsMC4yMS0yLjA3LDAuNTktMi45OSBjMC40LTAuOTYsMC45OC0xLjgzLDEuNy0yLjU1YzAuNzItMC43MiwxLjU4LTEuMywyLjU0LTEuN0M1Ny43MywwLjIsNTguNzUsMCw1OS44LDBjMS4wNSwwLDIuMDcsMC4yMSwyLjk5LDAuNTkgYzAuOTYsMC40LDEuODMsMC45OCwyLjU1LDEuN2MwLjcyLDAuNzIsMS4zLDEuNTgsMS43LDIuNTVjMC4zOCwwLjkyLDAuNTksMS45NCwwLjU5LDIuOTljMCwxLjA2LTAuMjEsMi4wNy0wLjU5LDIuOTkgYy0wLjQsMC45Ni0wLjk4LDEuODMtMS43LDIuNTRsLTAuMDQsMC4wNGMtMC40NiwwLjQ1LTAuOTcsMC44NS0xLjUzLDEuMThjLTAuNDEsMC4yNC0wLjg0LDAuNDUtMS4yOCwwLjZ2Ny4yN3YwLjE0aDI3LjQ4IGMyLjE0LDAsNC4xOCwwLjQzLDYuMDQsMS4yMWMxLjk0LDAuODEsMy42OCwxLjk4LDUuMTQsMy40NWMxLjQ2LDEuNDYsMi42NCwzLjIxLDMuNDUsNS4xNGMwLjc4LDEuODcsMS4yLDMuOSwxLjIsNi4wNHYxLjZoNi42NiBjMC45MiwwLDEuODIsMC4xOCwyLjYzLDAuNTJjMC44NSwwLjM1LDEuNiwwLjg2LDIuMjMsMS41bDAuMDQsMC4wNGMwLjYyLDAuNjMsMS4xMiwxLjM3LDEuNDYsMi4yYzAuMzQsMC44MiwwLjUyLDEuNywwLjUyLDIuNjMgdjE4LjM4YzAsMC45Mi0wLjE4LDEuODItMC41MiwyLjYzYy0wLjM1LDAuODQtMC44NiwxLjYtMS41LDIuMjNsMCwwYy0xLjI0LDEuMjQtMi45NywyLjAyLTQuODcsMi4wMmgtNi42NyBjLTAuMDMsMi4wNS0wLjQ2LDQuMDItMS4yMSw1LjgyYy0wLjgxLDEuOTQtMS45OCwzLjY4LTMuNDUsNS4xNGMtMS40NiwxLjQ2LTMuMjEsMi42NC01LjE0LDMuNDVjLTEuODcsMC43OC0zLjksMS4yLTYuMDQsMS4yIEg3OS4zNnYyNi41NGgxNi42OGMwLjA5LTAuMTQsMC4xOC0wLjI5LDAuMjgtMC40M2MwLjItMC4yOSwwLjQyLTAuNTUsMC42Ni0wLjhjMC41Mi0wLjUyLDEuMTUtMC45NSwxLjg2LTEuMjQgYzAuNjgtMC4yOCwxLjQyLTAuNDMsMi4xOS0wLjQzYzAuNzYsMCwxLjUyLDAuMTUsMi4xOSwwLjQzYzAuNzEsMC4yOSwxLjMzLDAuNzIsMS44NiwxLjI0YzAuNTIsMC41MiwwLjk1LDEuMTUsMS4yNCwxLjg2IGMwLjI4LDAuNjgsMC40MywxLjQyLDAuNDMsMi4xOWMwLDAuNzctMC4xNiwxLjUtMC40MywyLjE5Yy0wLjI5LDAuNzEtMC43MiwxLjM0LTEuMjQsMS44NmMtMC41MiwwLjUyLTEuMTUsMC45NS0xLjg2LDEuMjQgYy0wLjY4LDAuMjgtMS40MiwwLjQzLTIuMTksMC40M2MtMC43NSwwLTEuNDctMC4xNC0yLjE1LTAuNDJsLTAuMDQtMC4wMWMtMC43MS0wLjI5LTEuMzMtMC43Mi0xLjg2LTEuMjQgYy0wLjMyLTAuMzItMC42MS0wLjctMC44NS0xLjA5Yy0wLjEzLTAuMjItMC4yNi0wLjQ2LTAuMzUtMC43SDc2LjgxYy0wLjcxLDAtMS4zNC0wLjI5LTEuODEtMC43NWMtMC40OC0wLjQ3LTAuNzYtMS4xMS0wLjc2LTEuODIgbDAsMFY4Ny43OUg2MS44M3YyNC4yM2MwLjE5LDAuMSwwLjM4LDAuMiwwLjU2LDAuMzJjMC4zNCwwLjIxLDAuNjYsMC40OCwwLjk0LDAuNzVjMC41MywwLjUzLDAuOTUsMS4xNSwxLjI0LDEuODYgYzAuMjgsMC42OCwwLjQzLDEuNDIsMC40MywyLjE5YzAsMC43NS0wLjE0LDEuNDctMC40MiwyLjE1bC0wLjAxLDAuMDRjLTAuMjksMC43MS0wLjcyLDEuMzMtMS4yNCwxLjg2IGMtMC41MiwwLjUyLTEuMTUsMC45NS0xLjg2LDEuMjRjLTAuNjgsMC4yOC0xLjQyLDAuNDMtMi4xOSwwLjQzYy0wLjc3LDAtMS41MS0wLjE2LTIuMTktMC40M2MtMC43MS0wLjI5LTEuMzQtMC43Mi0xLjg2LTEuMjQgYy0wLjUyLTAuNTItMC45NS0xLjE1LTEuMjQtMS44NmMtMC4yNy0wLjY4LTAuNDMtMS40Mi0wLjQzLTIuMTljMC0wLjc1LDAuMTQtMS40NywwLjQyLTIuMTVsMC4wMS0wLjA0IGMwLjI5LTAuNzEsMC43Mi0xLjMzLDEuMjQtMS44NmMwLjI3LTAuMjgsMC41OC0wLjUyLDAuOTEtMC43M2wwLjA0LTAuMDNjMC4xOC0wLjEsMC4zNy0wLjIsMC41Ni0wLjNsMCwwVjg3Ljc5SDQwLjE4djEzLjM3IGMwLDAuNzEtMC4yOSwxLjM0LTAuNzUsMS44Yy0wLjQ3LDAuNDctMS4xLDAuNzUtMS44MSwwLjc1SDI1Ljg4Yy0wLjA5LDAuMTgtMC4xOSwwLjM0LTAuMywwLjUyYy0wLjIsMC4zLTAuNDMsMC41OS0wLjcsMC44NSBsLTAuMDUsMC4wNGMtMC41MiwwLjUyLTEuMTUsMC45NS0xLjg2LDEuMjRjLTAuNjgsMC4yOC0xLjQyLDAuNDMtMi4xOSwwLjQzYy0wLjc1LDAtMS40Ny0wLjE1LTIuMTUtMC40MmwtMC4wNC0wLjAxIGMtMC43MS0wLjI5LTEuMzMtMC43Mi0xLjg2LTEuMjRjLTAuNTItMC41Mi0wLjk1LTEuMTUtMS4yNC0xLjg2Yy0wLjI4LTAuNjgtMC40My0xLjQyLTAuNDMtMi4xOWMwLTAuNzYsMC4xNi0xLjUxLDAuNDMtMi4yIGMwLjI5LTAuNzEsMC43Mi0xLjM0LDEuMjQtMS44NmMwLjU0LTAuNTEsMS4xOS0wLjk0LDEuOS0xLjIzbDAsMGMwLjY4LTAuMjgsMS40Mi0wLjQzLDIuMTktMC40M2MwLjc4LDAsMS41MiwwLjE2LDIuMTksMC40MyBjMC42OCwwLjI5LDEuMywwLjcsMS44MSwxLjIybDAuMDQsMC4wM2MwLjI5LDAuMjksMC41NiwwLjYyLDAuNzgsMC45N2MwLjExLDAuMTksMC4yMywwLjM5LDAuMzMsMC42MWg5LjExVjg3Ljc5aC01LjQ0IGMtMi4xNCwwLTQuMTgtMC40My02LjA0LTEuMmMtMS45NC0wLjgxLTMuNjgtMS45OC01LjE0LTMuNDVDMTYuOTksODEuNjgsMTUuODEsNzkuOTMsMTUsNzhjLTAuNzUtMS44LTEuMTctMy43Ny0xLjItNS44Mkg2Ljg5IGMtMC45MiwwLTEuODItMC4xOC0yLjYzLTAuNTJjLTAuODUtMC4zNS0xLjYtMC44Ni0yLjIzLTEuNWwtMC4wNC0wLjA0Yy0wLjYyLTAuNjMtMS4xMi0xLjM3LTEuNDYtMi4yQzAuMTgsNjcuMTEsMCw2Ni4yMSwwLDY1LjI5IFY0Ni45MWMwLTAuOTIsMC4xOC0xLjgyLDAuNTMtMi42M2MwLjM1LTAuODQsMC44Ni0xLjYsMS41LTIuMjNsMCwwYzAuNjMtMC42MywxLjM5LTEuMTUsMi4yMy0xLjUgQzUuMDcsNDAuMjEsNS45Niw0MC4wMiw2Ljg5LDQwLjAyTDYuODksNDAuMDJMNi44OSw0MC4wMnogTTQ1LjY2LDY5LjU5Yy0wLjE0LTAuMTEtMC4yNS0wLjIyLTAuMzYtMC4zNiBjLTAuMzItMC4zOS0wLjQ5LTAuODQtMC41LTEuMjljLTAuMDEtMC40NiwwLjE0LTAuOTEsMC40NC0xLjMxYzAuMTEtMC4xNCwwLjIyLTAuMjYsMC4zNy0wLjM4YzAuNTEtMC40MiwxLjE4LTAuNjQsMS44NC0wLjY1IGMwLjY2LTAuMDEsMS4zMiwwLjE4LDEuODUsMC41OGMxLjgxLDEuMzksMy41OSwyLjQsNS4zNiwzLjA3YzEuNzUsMC42NiwzLjQ4LDAuOTcsNS4xOSwwLjk1YzEuNzItMC4wMiwzLjQ2LTAuMzgsNS4yNC0xLjA1IGMxLjgtMC42OCwzLjYtMS43LDUuNDQtMy4wMWMwLjU0LTAuMzksMS4yMS0wLjU2LDEuODctMC41M2MwLjY2LDAuMDMsMS4zMiwwLjI2LDEuODIsMC43YzAuMTMsMC4xMiwwLjI0LDAuMjQsMC4zNSwwLjM5IGMwLjI5LDAuNDEsMC40MywwLjg3LDAuNCwxLjMzYy0wLjAzLDAuNDYtMC4yMSwwLjktMC41NCwxLjI4Yy0wLjEyLDAuMTMtMC4yNSwwLjI1LTAuNDEsMC4zNmMtMi4zLDEuNjYtNC42MSwyLjkyLTYuOTYsMy43OSBjLTIuMzUsMC44Ni00LjczLDEuMzItNy4xNCwxLjM1Yy0yLjQyLDAuMDMtNC44MS0wLjM4LTcuMTktMS4yNGMtMi4zNi0wLjg1LTQuNzEtMi4xNy03LjAyLTMuOTRMNDUuNjYsNjkuNTlMNDUuNjYsNjkuNTkgTDQ1LjY2LDY5LjU5eiBNMzkuNjEsMzkuODhjMC41OCwwLDEuMTcsMC4wNiwxLjcyLDAuMTdjMC41NiwwLjEyLDEuMTIsMC4yOCwxLjY1LDAuNWMwLjU0LDAuMjIsMS4wNiwwLjUsMS41MywwLjgyIGMwLjQ3LDAuMzEsMC45LDAuNjYsMS4yOSwxLjA1bDAuMDYsMC4wNWMwLjQxLDAuNDEsMC43OCwwLjg1LDEuMSwxLjM0bDAuMDIsMC4wM2MwLjMxLDAuNDcsMC41OCwwLjk3LDAuOCwxLjUxIGMwLjIyLDAuNTMsMC4zOSwxLjA5LDAuNSwxLjY1YzAuMTEsMC41NiwwLjE4LDEuMTQsMC4xOCwxLjcyYzAsMC41OC0wLjA2LDEuMTctMC4xOCwxLjcyQzQ4LjE3LDUxLDQ4LDUxLjU1LDQ3Ljc4LDUyLjEgYy0wLjIyLDAuNTQtMC41LDEuMDYtMC44MiwxLjUzYy0wLjk3LDEuNDYtMi4zNiwyLjU5LTMuOTgsMy4yNWMtMC41MywwLjIyLTEuMDksMC4zOS0xLjY2LDAuNTFjLTAuNTYsMC4xMS0xLjE0LDAuMTYtMS43MiwwLjE2IGMtMC41OCwwLTEuMTctMC4wNi0xLjcyLTAuMTZjLTAuNTYtMC4xMi0xLjEyLTAuMjgtMS42Ni0wLjUxYy0wLjU0LTAuMjItMS4wNi0wLjUtMS41NC0wLjgyYy0wLjUtMC4zMy0wLjk0LTAuNy0xLjM0LTEuMSBjLTAuNDEtMC40MS0wLjc4LTAuODUtMS4xLTEuMzRsLTAuMDItMC4wM2MtMC4zMS0wLjQ3LTAuNTgtMC45Ny0wLjgtMS41MWMtMC4yMi0wLjUzLTAuMzktMS4wOS0wLjUxLTEuNjUgYy0wLjExLTAuNTYtMC4xNi0xLjE0LTAuMTYtMS43MmMwLTAuNTgsMC4wNi0xLjE3LDAuMTYtMS43MmMwLjEyLTAuNTYsMC4yOC0xLjEyLDAuNTEtMS42NWMwLjIyLTAuNTQsMC41LTEuMDYsMC44Mi0xLjUzIGMwLjMzLTAuNSwwLjctMC45NCwxLjEtMS4zNGMwLjQxLTAuNDEsMC44NS0wLjc4LDEuMzQtMS4xbDAuMDMtMC4wMmMwLjQ3LTAuMzEsMC45Ny0wLjU4LDEuNTEtMC44YzAuNTMtMC4yMiwxLjA5LTAuMzksMS42NS0wLjUgQzM4LjQ0LDM5Ljk0LDM5LjAyLDM5Ljg4LDM5LjYxLDM5Ljg4TDM5LjYxLDM5Ljg4TDM5LjYxLDM5Ljg4eiBNODAsMzkuODhjMC41OCwwLDEuMTcsMC4wNiwxLjcyLDAuMTcgYzAuNTYsMC4xMiwxLjEyLDAuMjgsMS42NSwwLjVjMC41NCwwLjIyLDEuMDYsMC41LDEuNTMsMC44MmMwLjQ2LDAuMzEsMC44OCwwLjY1LDEuMjcsMS4wNGMwLjAyLDAuMDIsMC4wNSwwLjA0LDAuMDcsMC4wNiBjMC40MSwwLjQxLDAuNzgsMC44NSwxLjEsMS4zNGwwLjAyLDAuMDNjMC4zMSwwLjQ3LDAuNTgsMC45NywwLjgsMS41MWMwLjIyLDAuNTMsMC4zOSwxLjA5LDAuNTEsMS42NSBjMC4xMSwwLjU2LDAuMTYsMS4xNCwwLjE2LDEuNzJjMCwwLjU4LTAuMDYsMS4xNy0wLjE2LDEuNzJjLTAuMTIsMC41Ni0wLjI4LDEuMTItMC41MSwxLjY2Yy0wLjIyLDAuNTQtMC41LDEuMDYtMC44MiwxLjUzIGMtMC4zMywwLjUtMC43LDAuOTQtMS4xLDEuMzRjLTAuNDEsMC40MS0wLjg1LDAuNzgtMS4zNCwxLjFsLTAuMDMsMC4wMmMtMC40OCwwLjMxLTAuOTcsMC41OC0xLjUxLDAuOCBjLTAuNTMsMC4yMi0xLjA5LDAuMzktMS42NiwwLjUxYy0wLjU2LDAuMTEtMS4xNCwwLjE2LTEuNzIsMC4xNmMtMC41OCwwLTEuMTctMC4wNi0xLjcyLTAuMTZjLTAuNTYtMC4xMi0xLjEyLTAuMjgtMS42Ni0wLjUxIGMtMC41NS0wLjIzLTEuMDctMC41MS0xLjUzLTAuODJsLTAuMDUtMC4wNGMtMC40Ny0wLjMyLTAuOS0wLjY3LTEuMjktMS4wNmMtMC40MS0wLjQxLTAuNzgtMC44NS0xLjEtMS4zNGwtMC4wMi0wLjAzIGMtMC4zMS0wLjQ3LTAuNTgtMC45Ny0wLjgtMS41MWMtMC4yMi0wLjUzLTAuMzktMS4wOS0wLjUxLTEuNjVjLTAuMTEtMC41Ni0wLjE3LTEuMTQtMC4xNy0xLjcyYzAtMC41OCwwLjA2LTEuMTcsMC4xNy0xLjcyIGMwLjEyLTAuNTYsMC4yOC0xLjEyLDAuNTEtMS42NWMwLjIyLTAuNTQsMC41LTEuMDYsMC44Mi0xLjUzYzAuMzMtMC41LDAuNy0wLjk0LDEuMS0xLjM0YzAuNC0wLjQsMC44NS0wLjc3LDEuMzQtMS4xIGMwLjQ4LTAuMzIsMC45OS0wLjU5LDEuNTMtMC44M2MwLjUzLTAuMjIsMS4wOS0wLjM5LDEuNjUtMC41Qzc4Ljg0LDM5Ljk0LDc5LjQyLDM5Ljg4LDgwLDM5Ljg4TDgwLDM5Ljg4TDgwLDM5Ljg4eiBNMTcuNjcsNDEuOTcgdjI5Ljk5YzAsMS42MSwwLjMyLDMuMTUsMC45LDQuNTZjMC42MSwxLjQ2LDEuNSwyLjc4LDIuNiwzLjg5YzEuMTEsMS4xMSwyLjQzLDIsMy44OSwyLjZjMS40LDAuNTgsMi45NCwwLjksNC41NiwwLjloNjAuMzYgYzEuNjEsMCwzLjE1LTAuMzIsNC41Ni0wLjljMS40Ni0wLjYxLDIuNzgtMS41LDMuODktMi42YzEuMTEtMS4xMSwyLTIuNDMsMi42LTMuODljMC41OC0xLjQsMC45LTIuOTQsMC45LTQuNTZWMzguNDIgYzAtMS42MS0wLjMyLTMuMTYtMC45LTQuNTZjLTAuNjEtMS40Ni0xLjUtMi43OC0yLjYtMy44OWMtMS4xMS0xLjExLTIuNDMtMi0zLjg5LTIuNmMtMS40LTAuNTgtMi45NC0wLjktNC41Ni0wLjlIMjkuNjMgYy0xLjYxLDAtMy4xNSwwLjMyLTQuNTYsMC45Yy0xLjQ2LDAuNjEtMi43OCwxLjUtMy44OSwyLjZjLTEuMTEsMS4xMS0yLDIuNDMtMi42LDMuODljLTAuNTgsMS40LTAuOSwyLjk0LTAuOSw0LjU2TDE3LjY3LDQxLjk3IEwxNy42Nyw0MS45N0wxNy42Nyw0MS45N3ogTTEzLjc5LDQzLjlINi44OWMtMC40MSwwLTAuOCwwLjA4LTEuMTUsMC4yMmMtMC4zNywwLjE2LTAuNywwLjM4LTAuOTgsMC42NmwtMC4wNCwwLjAzIGMtMC4yNiwwLjI3LTAuNDgsMC41OS0wLjYyLDAuOTRjLTAuMTUsMC4zNS0wLjIyLDAuNzQtMC4yMiwxLjE1djE4LjM4YzAsMC40MSwwLjA4LDAuOCwwLjIyLDEuMTVjMC4xNiwwLjM3LDAuMzgsMC43LDAuNjYsMC45OCBjMC41NCwwLjU0LDEuMjksMC44OCwyLjEyLDAuODhoNi45MUwxMy43OSw0My45TDEzLjc5LDQzLjlMMTMuNzksNDMuOXogTTExMi40OCw0My45aC02LjY2djI0LjM5aDYuNjZjMC40MSwwLDAuOC0wLjA4LDEuMTUtMC4yMiBjMC4zNy0wLjE2LDAuNy0wLjM4LDAuOTgtMC42NmMwLjI4LTAuMjgsMC41MS0wLjYxLDAuNjYtMC45OGMwLjE1LTAuMzUsMC4yMi0wLjc0LDAuMjItMS4xNVY0Ni45MWMwLTAuNDEtMC4wOC0wLjgtMC4yMi0xLjE1IGMtMC4xNi0wLjM3LTAuMzgtMC43LTAuNjYtMC45OGwwLDBjLTAuMjgtMC4yOC0wLjYxLTAuNTEtMC45OC0wLjY2QzExMy4yOCw0My45OSwxMTIuODksNDMuOSwxMTIuNDgsNDMuOUwxMTIuNDgsNDMuOUwxMTIuNDgsNDMuOSB6IiAvPg0KICA8L2c+DQo8L3N2Zz4=",
           "title": {
-            "uk": "Команда",
-            "en": "Team",
-            "de": "Team"
+            "uk": "Візитівка й лендінг",
+            "en": "Business card and landing page",
+            "de": "Visitenkarte und Landingpage"
           },
           "content": {
             "uk": [
-              "Ми — команда цифрових алхіміків, які обідали з ШІ ще до того, як це стало трендом."
+              "Одна-дві сторінки, форма заявки, кілька мов. Запуск за кілька днів."
             ],
             "en": [
-              "We’re a team of digital alchemists who were having lunch with AI even before it became a trend."
+              "One or two pages, a request form, several languages. Live in a few days."
             ],
             "de": [
-              "Wir sind ein Team von digitalen Alchemisten, die schon mit KI zu Mittag gegessen haben, bevor das zum Trend wurde."
+              "Ein, zwei Seiten, Anfrageformular, mehrere Sprachen. Online in wenigen Tagen."
             ]
           }
         },
@@ -88,19 +88,19 @@
           "size": 90,
           "icon": "data:image/svg+xml;base64,PHN2ZyBmaWxsPSJ3aGl0ZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgMTIyLjg4IDY2LjY4Ij4NCiAgPGRlZnM+DQogICAgPHN0eWxlPi5jbHMtMXtmaWxsLXJ1bGU6ZXZlbm9kZDt9PC9zdHlsZT4NCiAgPC9kZWZzPg0KICA8cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik0yLjYyLDMuNTZIMTUuMzZWMS45M0ExLjkzLDEuOTMsMCwwLDEsMTcuMjksMGgwYTEuOTQsMS45NCwwLDAsMSwxLjkzLDEuOTNWMy41NkgzMmMxLjQ0LDAsMi42MiwxLjYsMi42MiwzaDBjMCwxLjQ0LTEuMTgsMy0yLjYyLDNIMTkuMjJ2M2EyLjQsMi40LDAsMCwxLDIuMTEsMi4zN3Y1LjQ5SDQwLjExVjEzLjQzYTIuNzksMi43OSwwLDAsMSwyLjc4LTIuNzhIODBhMi43OSwyLjc5LDAsMCwxLDIuNzgsMi43OHY3LjExaDE4Ljc4VjE1LjA1YTIuNCwyLjQsMCwwLDEsMi4xMS0yLjM3di0zSDkwLjkyYy0xLjQ0LDAtMi42Mi0xLjYtMi42Mi0zaDBjMC0xLjQ0LDEuMTgtMywyLjYyLTNoMTIuNzRWMS45M0ExLjk0LDEuOTQsMCwwLDEsMTA1LjU5LDBoMGExLjk0LDEuOTQsMCwwLDEsMS45MywxLjkzVjMuNTZoMTIuNzRjMS40NCwwLDIuNjIsMS42LDIuNjIsM2gwYzAsMS40NC0xLjE4LDMtMi42MiwzSDEwNy41MnYzYTIuMzksMi4zOSwwLDAsMSwyLjExLDIuMzd2MTYuMmEyLjM5LDIuMzksMCwwLDEtMi4zOCwyLjM5aC0zLjMxYTIuNCwyLjQsMCwwLDEtMi4zOS0yLjM5VjI4LjQ3SDgwLjA2Yy0uMjUuMjctLjQ5LjU0LS43MS44MWExOS43NiwxOS43NiwwLDAsMC0xLjUxLDIsMzYuMzYsMzYuMzYsMCwwLDEsMTYuODgsMTIsMzIsMzIsMCwwLDEsNi40MiwxOS43OSwzLjYyLDMuNjIsMCwwLDEtNy4yNCwwQTI1LDI1LDAsMCwwLDg5LDQ3LjYyYTI5LjM1LDI5LjM1LDAsMCwwLTEzLjcxLTkuNTZjLS4zNywxLjkxLS41OCwzLjkzLS45Miw2LjItLjMsMi4wNy0xLjcxLDMuOC0zLjc5LDMuOEg1Mi43OGMtMi4wOSwwLTMuNDktMS43My0zLjgtMy44LS4zNS0yLjQtLjU1LTQuNDQtLjk1LTYuMzVhMjkuNTgsMjkuNTgsMCwwLDAtMTMuOSw5LjQzQTI0Ljg2LDI0Ljg2LDAsMCwwLDI5LDYzLjA2YTMuNjIsMy42MiwwLDAsMS03LjI0LDAsMzIsMzIsMCwwLDEsNi43MS0yMC4xOUEzNi42NywzNi42NywwLDAsMSw0NS4yMiwzMS4yNWMtLjI5LS40MS0uNi0uODMtLjk1LTEuMjZzLS44OC0xLTEuMzYtMS41NHYwSDIxLjMzdjIuNzhhMi40LDIuNCwwLDAsMS0yLjM5LDIuMzlIMTUuNjNhMi4zOSwyLjM5LDAsMCwxLTIuMzgtMi4zOVYxNS4wNWEyLjM5LDIuMzksMCwwLDEsMi4xMS0yLjM3di0zSDIuNjJDMS4xOCw5LjY0LDAsOCwwLDYuNkgwYzAtMS40NCwxLjE4LTMsMi42Mi0zWk02MS40NCwyMi43OWE0LjU5LDQuNTksMCwxLDEtNC41OCw0LjU5LDQuNTksNC41OSwwLDAsMSw0LjU4LTQuNTlabTAtNS45MmExMC41MSwxMC41MSwwLDEsMS0xMC41LDEwLjUxLDEwLjUxLDEwLjUxLDAsMCwxLDEwLjUtMTAuNTFaIiAvPg0KPC9zdmc+",
           "title": {
-            "uk": "Завтра",
-            "en": "Tomorrow",
-            "de": ""
+            "uk": "Сайт компанії",
+            "en": "Company website",
+            "de": "Unternehmenswebsite"
           },
           "content": {
             "uk": [
-              "Ми не знаємо, що саме принесе завтрашній день, але ми вже написали для нього код."
+              "Послуги, ціни, команда, контакти — і все це власник оновлює сам."
             ],
             "en": [
-              "We don’t know exactly what tomorrow will bring, but we’ve already written the code for it."
+              "Services, prices, team, contacts — all updated by the owner."
             ],
             "de": [
-              "Wir wissen nicht, was genau der morgige Tag bringen wird, aber wir haben bereits den Code dafür geschrieben."
+              "Leistungen, Preise, Team, Kontakte — alles pflegt der Inhaber selbst."
             ]
           }
         },
@@ -111,19 +111,19 @@
           "size": 90,
           "icon": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjxzdmcNCiAgdmVyc2lvbj0iMS4xIg0KICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciDQogIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIg0KICB4PSIwIg0KICB5PSIwIg0KICB2aWV3Qm94PSIwIDAgMTIyLjg4IDU5LjgxIg0KICBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAxMjIuODggNTkuODEiDQogIHhtbDpzcGFjZT0icHJlc2VydmUiDQo+DQogIDxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+DQogICAgLndoaXRlLWZpZ3VyZSB7DQogICAgICBmaWxsOiAjZmZmOw0KICAgICAgZmlsbC1ydWxlOmV2ZW5vZGQ7DQogICAgICBjbGlwLXJ1bGU6ZXZlbm9kZDsNCiAgICB9DQogIDwvc3R5bGU+DQogIDxnPg0KICAgIDxwYXRoIGNsYXNzPSJ3aGl0ZS1maWd1cmUiIGQ9Ik0yMC43Miw4LjAzVjQuOTJMMy43OSw2LjU0QzAuNTMsNi45LTAuMTQsNS43OCwwLjAyLDQuNTlDMC40MywxLjY0LDIsMi4zMyw0LjI1LDIuNDVsMTYuNDYsMC44M1YxLjE2IGMwLTAuNjQsMC41Mi0xLjE2LDEuMTYtMS4xNmgwLjk4YzAuNjQsMCwxLjE2LDAuNTIsMS4xNiwxLjE2djIuMTFMNDAuNTIsMS44YzIuMjUtMC4xMiwzLjgyLTAuODEsNC4yMywyLjE1IGMwLjE2LDEuMTgtMC41MSwyLjMxLTMuNzcsMS45NEwyNC4wMyw0LjkydjMuMTFoMS4yM2MwLjg4LDAsMS42LDAuNzIsMS42LDEuNnY1Ljc3aDY5LjE1VjkuNjhjMC0wLjksMC43NC0xLjY1LDEuNjUtMS42NWgxLjE3IFY0LjkyTDgxLjksNi41NGMtMy4yNywwLjM3LTMuOTMtMC43Ni0zLjc3LTEuOTRjMC40MS0yLjk2LDEuOTgtMi4yNiw0LjIzLTIuMTVsMTYuNDYsMC44M1YxLjE2YzAtMC42NCwwLjUyLTEuMTYsMS4xNi0xLjE2aDAuOTggYzAuNjQsMCwxLjE2LDAuNTIsMS4xNiwxLjE2djIuMTFsMTYuNDktMS40N2MyLjI1LTAuMTIsMy44Mi0wLjgxLDQuMjMsMi4xNWMwLjE2LDEuMTgtMC41MSwyLjMxLTMuNzcsMS45NGwtMTYuOTUtMC45N3YzLjExaDEuMjMgYzAuODgsMCwxLjYsMC43MiwxLjYsMS42djUuNzdoMTMuODVjMS42NywwLDMuMDQsMS4zNywzLjA0LDMuMDRsMCwwYzAsMS42Ny0xLjM3LDMuMDQtMy4wNCwzLjA0SDkzLjg1IGMtMi4zMiwzLjI5LTguOTQsNC41Ni0xOC42Niw0LjM4YzMuMzIsMy4xLDYuNTIsNi42LDkuNTQsMTAuNzdjNC4wMSw1LjM5LDcuMzgsMTEuMDcsOS4yNiwxNy4zOGMwLjY1LDcuMjgtNi42OSw2LjA1LTkuMDcsNC42MyBjLTMuNDktMC40NC0zLjQ4LTYuMDQtMy43Ni0xMS4yMmMtMC4yNS00LjU3LTAuNzQtOC45OS00LjI0LTEyLjM1Yy0xLjczLTEuNjYtNC4xNC0zLjA4LTcuMzktNC4yYy0wLjc3LDAuNzQtMS43LDEuNDEtMi43NywyLjAyIGMtNSwyLjgzLTkuNjYsMy42MS0xMy41NS0yLjQ5Yy0yLjI3LDAuNjctNC4yMiwxLjY5LTUuODcsMy4wM2MtNi42OSw1LjQtNi40NCwxMi45Mi02Ljc4LDIxLjE1Yy0wLjgyLDUuNzItMTMuMzUsOC40Ni0xMi4zMy0wLjkxIGMwLjItMS44NiwxLjA1LTMuNTQsMi4yMy01LjEzYzQuNjItOC45OCw5Ljk4LTE2Ljc4LDE2LjU5LTIyLjU1Yy04LjQ4LDAuMTgtMTUuMDUtMS4wNi0xOC43LTQuNUgzLjEzYy0xLjY3LDAtMy4wNC0xLjM3LTMuMDQtMy4wNCBsMCwwYzAtMS42NywxLjM3LTMuMDQsMy4wNC0zLjA0SDE3LjlWOS42OGMwLTAuOSwwLjc0LTEuNjUsMS42NS0xLjY1SDIwLjcyTDIwLjcyLDguMDN6IE01OC40NCwyMy45MWg1LjA2IGMwLjc1LDAsMS4zNiwwLjYxLDEuMzYsMS4zNmwwLDBjMCwwLjc1LTAuNjEsMS4zNi0xLjM2LDEuMzZoLTUuMDZjLTAuNzQsMC0xLjM2LTAuNjEtMS4zNi0xLjM2bDAsMCBDNTcuMDksMjQuNTIsNTcuNywyMy45MSw1OC40NCwyMy45MUw1OC40NCwyMy45MXoiLz4NCiAgPC9nPg0KPC9zdmc+",
           "title": {
-            "uk": "",
-            "en": "",
-            "de": ""
+            "uk": "Бронювання",
+            "en": "Bookings",
+            "de": "Buchungen"
           },
           "content": {
             "uk": [
-              "Ні, ми не продаємо VR-окуляри. Ми продаємо квитки в один кінець туди, де гравітація — це лише рекомендація."
+              "Календар вільних дат і цін, вибір і заявка — одразу у вашу систему."
             ],
             "en": [
-              "No, we don’t sell VR headsets. We sell one-way tickets to a place where gravity is merely a suggestion."
+              "A calendar of free dates and prices, a choice and a request — straight into your system."
             ],
             "de": [
-              "Nein, wir verkaufen keine VR-Brillen. Wir verkaufen One-Way-Tickets dorthin, wo die Schwerkraft nur eine Empfehlung ist."
+              "Ein Kalender mit freien Terminen und Preisen, Auswahl und Anfrage — direkt in Ihr System."
             ]
           }
         },
@@ -134,19 +134,19 @@
           "size": 90,
           "icon": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KCjwhLS0gVXBsb2FkZWQgdG86IFNWRyBSZXBvLCB3d3cuc3ZncmVwby5jb20sIEdlbmVyYXRvcjogU1ZHIFJlcG8gTWl4ZXIgVG9vbHMgLS0+CjxzdmcKICB3aWR0aD0iMjAwIgogIGhlaWdodD0iMjAwIgogIHZpZXdCb3g9Ii0wLjk1IDAgMTE3Ljg1OCAxMTcuODU4IgogIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICBmaWxsPSJub25lIgogIHN0cm9rZT0iI2ZmZiIKICBzdHJva2UtbGluZWNhcD0icm91bmQiCiAgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIKICBzdHJva2Utd2lkdGg9IjMiCj4KICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMzMuNTIyIC0zNzYuODIxKSI+CiAgICA8cGF0aCBkPSJNNjIuNjQ5LDQzMC43YTE4LjA3NSwxOC4wNzUsMCwwLDAsMi44MDksOC43bDUuMTkyLDguMTI0YTE5LjQ4MiwxOS40ODIsMCwwLDAsMTYuNDE1LDguOTkxaDguODY5YTE5LjQ4MSwxOS40ODEsMCwwLDAsMTYuNDE1LTguOTkxbDUuMTkzLTguMTI0YTE4LjA4NCwxOC4wODQsMCwwLDAsMi44MDgtOC43IiAvPgogICAgPHBhdGggZD0iTTYyLjg1LDM5OS4yNzVhMjQuMjI3LDI0LjIyNywwLDAsMSwyNC4wMTgtMjAuOTU0aDkuMjczYTI0LjIyNiwyNC4yMjYsMCwwLDEsMjQuMDA5LDIwLjk1NCIgLz4KICAgIDxwYXRoIGQ9Ik01Ny40NDYsNDAyLjE2MnYyNS40MjlhMi44OTEsMi44OTEsMCwwLDAsMi42MzksMi44OGwxNi4xNTcsMS40MTRhNi40ODIsNi40ODIsMCwwLDAsNS4yNjMtMS45OTNsNi41ODgtNi45MzRhNC43LDQuNywwLDAsMSw2LjgxNCwwbDYuNTg4LDYuOTM0YTYuNDgsNi40OCwwLDAsMCw1LjI2MywxLjk5M2wxNi4xNTctMS40MTRhMi44OTEsMi44OTEsMCwwLDAsMi42MzktMi44OFY0MDIuMTYyYTIuODkyLDIuODkyLDAsMCwwLTIuODkxLTIuODkxSDYwLjMzN0EyLjg5MSwyLjg5MSwwLDAsMCw1Ny40NDYsNDAyLjE2MloiIC8+CiAgICA8cGF0aCBkPSJNMTE1LDQwNS4yODFINjhhMy4wODcsMy4wODcsMCwxLDAsMCw2LjE3NUgxMTVhMy4wODcsMy4wODcsMCwxLDAsMC02LjE3NVoiIC8+CiAgICA8cGF0aCBkPSJNNTMuNDMyLDQwOC4zNjlhLjUxOC41MTgsMCwwLDAtLjUxOC41MThWNDIyLjlhLjUxOC41MTgsMCwwLDAsLjUxOC41MThoNC4wMTRWNDA4LjM2OVoiIC8+CiAgICA8cGF0aCBkPSJNMTI5LjU2OCw0MjMuNDIyYS41MTguNTE4LDAsMCwwLC41MTgtLjUxOFY0MDguODg3YS41MTguNTE4LDAsMCwwLS41MTgtLjUxOGgtNC4wMTR2MTUuMDUzWiIgLz4KICAgIDxwYXRoIGQ9Ik03NS42NSw0NTIuOTIzdjkuNzlhNC4yMjIsNC4yMjIsMCwwLDEtMi43NTUsMy45NThsLTI5Ljk0NiwxMS4xYTEyLjE0OCwxMi4xNDgsMCwwLDAtNy45MjcsMTEuMzkxdjQuMDIxSDE0Ny45Nzh2LTQuMDIxYTEyLjE0OCwxMi4xNDgsMCwwLDAtNy45MjctMTEuMzkxbC0yOS45NDYtMTEuMWE0LjIyMiw0LjIyMiwwLDAsMS0yLjc1NS0zLjk1OHYtOS43OSIgLz4KICA8L2c+Cjwvc3ZnPg==",
           "title": {
-            "uk": "Тюнінг свідомості",
-            "en": "Mind tuning",
-            "de": "Bewusstseins-Tuning"
+            "uk": "Запис на прийом",
+            "en": "Appointments",
+            "de": "Terminbuchung"
           },
           "content": {
             "uk": [
-              "Інтегруємо технології так, що ваші конкуренти подумають, ніби ви використовуєте магію поза Гоґвортсом."
+              "Клініка, салон, майстерня: послуга, час, контакти — і заявка вже у вас."
             ],
             "en": [
-              "We integrate technology in such a way that your competitors will think you’re using magic outside Hogwarts."
+              "A clinic, a salon, a workshop: service, time, contact details — and the request is with you."
             ],
             "de": [
-              "Wir integrieren Technologien so, dass Ihre Konkurrenten denken, Sie würden Magie außerhalb von Hogwarts einsetzen."
+              "Praxis, Salon, Werkstatt: Leistung, Uhrzeit, Kontakt — und die Anfrage ist bei Ihnen."
             ]
           }
         },
@@ -157,19 +157,19 @@
           "size": 90,
           "icon": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZwogIHdpZHRoPSIyMDAiCiAgaGVpZ2h0PSIyMDAiCiAgdmlld0JveD0iMCAtOC4zMiAxMTguOTIxIDExOC45MjEiCiAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogIGZpbGw9Im5vbmUiCiAgc3Ryb2tlPSIjZmZmIgogIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIKICBzdHJva2UtbGluZWpvaW49InJvdW5kIgogIHN0cm9rZS13aWR0aD0iMyIKPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0zMi4wNCAtNTU1LjYyMikiPgogICAgPGNpcmNsZSBjeD0iMTcuOTQzIiBjeT0iMTcuOTQzIiByPSIxNy45NDMiIHRyYW5zZm9ybT0ibWF0cml4KDAuOTYxLCAtMC4yNzUsIDAuMjc1LCAwLjk2MSwgMzMuODk0LCA1OTMuMjMpIiAvPgogICAgPHBhdGggZD0iTTYwLjg0NSw1OTguNDVhMi45MywyLjkzLDAsMSwxLTIuMTQ1LTMuNTQ1QTIuOTI5LDIuOTI5LDAsMCwxLDYwLjg0NSw1OTguNDVaIiAvPgogICAgPHBhdGggZD0iTTU3LjAwOCw2MTQuMDRhMi45MjksMi45MjksMCwxLDEtMi4xNDQtMy41NDVBMi45MywyLjkzLDAsMCwxLDU3LjAwOCw2MTQuMDRaIiAvPgogICAgPHBhdGggZD0iTTYzLjE3Nyw2MTAuMzA4YTIuOTMsMi45MywwLDEsMSwzLjU0NS0yLjE0NUEyLjkzLDIuOTMsMCwwLDEsNjMuMTc3LDYxMC4zMDhaIiAvPgogICAgPHBhdGggZD0iTTQ3LjU4Nyw2MDYuNDcxYTIuOTI5LDIuOTI5LDAsMSwxLDMuNTQ0LTIuMTQ0QTIuOTI4LDIuOTI4LDAsMCwxLDQ3LjU4Nyw2MDYuNDcxWiIgLz4KICAgIDxwYXRoIGQ9Ik0zOC4xNTgsNjA2LjQ4M2wtMy4zODcsMzUuNDExLjAwOSwwYTEyLDEyLDAsMCwwLDIzLjMsNS43MzNMNzIuNDksNjEyLjgxMiIgLz4KICAgIDxjaXJjbGUgY3g9IjE3Ljk0MyIgY3k9IjE3Ljk0MyIgcj0iMTcuOTQzIiB0cmFuc2Zvcm09Im1hdHJpeCgwLjI3NSwgLTAuOTYxLCAwLjk2MSwgMC4yNzUsIDEwNC43MzEsIDYxNy44NTkpIiAvPgogICAgPHBhdGggZD0iTTEyMi4xNTUsNTk4LjQ1YTIuOTMsMi45MywwLDEsMCwyLjE0NS0zLjU0NUEyLjkyOSwyLjkyOSwwLDAsMCwxMjIuMTU1LDU5OC40NVoiIC8+CiAgICA8cGF0aCBkPSJNMTI1Ljk5Miw2MTQuMDRhMi45MjksMi45MjksMCwxLDAsMi4xNDQtMy41NDVBMi45MjksMi45MjksMCwwLDAsMTI1Ljk5Miw2MTQuMDRaIiAvPgogICAgPHBhdGggZD0iTTExOS44MjMsNjEwLjMwOGEyLjkzLDIuOTMsMCwxLDAtMy41NDUtMi4xNDVBMi45MywyLjkzLDAsMCwwLDExOS44MjMsNjEwLjMwOFoiIC8+CiAgICA8cGF0aCBkPSJNMTM1LjQxMyw2MDYuNDcxYTIuOTI5LDIuOTI5LDAsMSwwLTMuNTQ1LTIuMTQ0QTIuOTI4LDIuOTI4LDAsMCwwLDEzNS40MTMsNjA2LjQ3MVoiIC8+CiAgICA8cGF0aCBkPSJNMTQ0Ljg0MSw2MDYuNDgzbDMuMzg4LDM1LjQxMS0uMDA5LDBhMTIsMTIsMCwwLDEtMjMuMyw1LjczM0wxMTAuNTEsNjEyLjgxMiIgLz4KICAgIDxwYXRoIGQ9Ik04NC43NjksNjE4LjQ5MmE3LjAzMyw3LjAzMywwLDEsMS03LjAzMy03LjAzNEE3LjAzMyw3LjAzMywwLDAsMSw4NC43NjksNjE4LjQ5MloiIC8+CiAgICA8cGF0aCBkPSJNMTEyLjIxOSw2MTguNDkyYTcuMDM0LDcuMDM0LDAsMSwxLTcuMDMzLTcuMDM0QTcuMDMzLDcuMDMzLDAsMCwxLDExMi4yMTksNjE4LjQ5MloiIC8+CiAgICA8bGluZSB4MT0iMTUuMDQ0IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg4My45MzkgNjIxLjgwNykiIC8+CiAgICA8bGluZSB4Mj0iNTQuNTM3IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg2NC4yMzIgNTg5LjU1NikiIC8+CiAgICA8bGluZSB4Mj0iMy42MDYiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDgzLjYwMSA2MDYuMjM0KSIgLz4KICAgIDxsaW5lIHgyPSIzLjYwNiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoOTUuNzkzIDYwNi4yMzQpIiAvPgogICAgPHJlY3Qgd2lkdGg9IjkuNjI5IiBoZWlnaHQ9IjQuMzgyIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg4Ni42ODUgNTg1LjE3MykiIC8+CiAgICA8cGF0aCBkPSJNMTE2LjE5Myw1NTcuMTIySDEwNS4yNjZBMTMuNzY2LDEzLjc2NiwwLDAsMCw5MS41LDU3MC44ODh2MTQuMjg1IiAvPgogIDwvZz4KPC9zdmc+",
           "title": {
-            "uk": "",
-            "en": "",
-            "de": ""
+            "uk": "Вітрина й каталог",
+            "en": "Showcase and catalogue",
+            "de": "Schaufenster und Katalog"
           },
           "content": {
             "uk": [
-              "Ласкаво просимо до виміру, де баги стають «фічами», а кава перетворюється на чистий креатив."
+              "Товари з фото й цінами, а з причалом оплати — і кошик з оплатою."
             ],
             "en": [
-              "Welcome to a dimension where bugs become ‘features’ and coffee turns into pure creativity."
+              "Products with photos and prices — and, with the payments mooring, a basket and checkout."
             ],
             "de": [
-              "Willkommen in einer Dimension, in der Bugs zu „Features“ werden und Kaffee zu purer Kreativität."
+              "Produkte mit Fotos und Preisen — und mit dem Zahlungs-Liegeplatz auch Warenkorb und Bezahlung."
             ]
           }
         },
@@ -180,37 +180,20 @@
           "size": 90,
           "icon": "data:image/svg+xml;base64,PHN2Zw0KICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciDQogIHNoYXBlLXJlbmRlcmluZz0iZ2VvbWV0cmljUHJlY2lzaW9uIg0KICB0ZXh0LXJlbmRlcmluZz0iZ2VvbWV0cmljUHJlY2lzaW9uIg0KICBpbWFnZS1yZW5kZXJpbmc9Im9wdGltaXplUXVhbGl0eSINCiAgZmlsbC1ydWxlPSJldmVub2RkIg0KICBjbGlwLXJ1bGU9ImV2ZW5vZGQiDQogIHZpZXdCb3g9IjAgMCA1MTIgNDUwLjk3Ig0KICBmaWxsPSIjZmZmIg0KPg0KICA8cGF0aCBmaWxsLXJ1bGU9Im5vbnplcm8iIGQ9Ik01MDIuNDUgMzM4LjUxVjEzLjcyYy0yMi4xNCAxNC4wNy00OC4zNSAyNC4xMS03Ni42MSAzMC43M3YyNDYuMjlsLjA1LjAyYzI4LjY2IDkuNTIgNTQuNzMgMjUuOTggNzYuNTYgNDcuNzV6bS0yOS4wNiA5Mi43Ni0uNzQtMjcuMzYtNDQuOTUgMTIuOTljLTguMTIgMS43Ni0xNi4yMyAxLjc1LTI0LjM2IDBsLTQyLjk1LTEzLjEzdjI3Ljc0YzEuMjIgMTQuNDEgNDIuNTYgMTguODIgNTUuMjUgMTkuNDMgMTAuMTguNDkgNTAuMzUtNC44IDU1LjYyLTEzLjEgMS4xNS0xLjgxIDEuODUtNCAyLjEzLTYuNTd6bTE4LjIyLTQ3LjA1djMzLjQzYy45NyAwIDIuMzctLjEgMi4zNyAxLjMydjguOTljMCAxLjQyLTEuNDEgMS4zMS0yLjM4IDEuMzF2My4xNWMxLjMzLjI0IDIuMzYgMS40NCAyLjM2IDIuODYgMCAxLjU4LTEuMzEgMi45LTIuOTEgMi45aC01LjJjLTEuNTggMC0yLjktMS4zLTIuOS0yLjkgMC0xLjQyIDEuMDMtMi41OSAyLjM3LTIuODZ2LTMuMTVjLS45NyAwLTIuMzcuMTEtMi4zNy0xLjMxdi04Ljk5YzAtMS40NCAxLjQyLTEuMzIgMi40LTEuMzJ2LTMxLjQ4bC01NC43MiAxNy4wMWMtOS45MSAyLjM3LTE5LjgyIDIuNTItMjkuNzMgMGwtNjAuMzctMTguMDMtNS40Ny0xLjY0Yy02LjgxLTIuNzgtNS4xLTkuMyAxLjIyLTEwLjgxbDY4LjMxLTI1LjIyYzcuMDUtMiAxNC4wNy0yLjMyIDIxLjEzIDBsNjcuMDcgMjQuOThjNy4yOSAxLjc4IDguNzMgOC41MS4yNCAxMS4zbC0xLjQyLjQ2em0tMjIzLjg2LTIxLjExYzExLjI5LjQyIDIyLjctLjE2IDMyLjg3LTEuMzEgMTMuNjEtMS41NCAyNS44Ny00LjY2IDM1LjA0LTkuNCA3LjAzLTMuNjQgMTIuNC04LjMxIDE1LjQzLTE0LjAzIDMuMjItNi4xIDMuNzUtMTMuMDguODUtMjAuOS0xLjk1LTUuMjgtNS41NC0xMC45Ny0xMC45OC0xNy4wMy0xLjU2LTE3LjU3LTYuNDMtMzUuNzYtMTEuMjYtNTIuNzFsMTIuMDMtNC4zOWM2LjM0LTIuMTIgMTEuMDMtNy4xNSAxMi4xNC0xMy44LjQ5LTIuOTIuMjctNi4xLS43Ny05LjMtMS40MS00LjQtNC4zOC04LjkyLTkuMTItMTMuMDFsLTE0Ljg2LTE2LjA5YzIuNDgtNC40NSAzLjQ3LTkuNDcgMS42OS0xNS40NGwtMTYuNDItNTQuODJjLTIuMDUtNi44OS03Ljk2LTExLjk0LTE1LjAzLTEzLjAxbDkuNjItOC4xNGMyLjYtMi4yIDIuOTMtNi4xLjczLTguN2wtMS0uOTRjLTgzLjI0LTYyLjktMTU2LjczLTY1LjA3LTIwOS45NC0zNy0zMS4wOSAxNi40MS01NS4xNiA0My4xNy03MC4xMiA3NC4xOC0xNC41NSAzMC4xNC0yMC41NSA2NC4zNi0xNi4xMiA5Ny4wNi00LjAxIDIuNDQtNy4yMSA1LjktOS4zNyA5LjkxLTkuNzggMTguMjQgNC40NyAzOS41MyAyNC41MyAzOC4zMyAxOC4yNCAzNC45OSA1Mi4xMSA2My45NSAxMDQuNjQgNzcuODYtLjI0IDMuNDEtLjU3IDYuNzgtLjk4IDEwLjExLTEuOSAxNS41NS01LjU1IDMwLjE0LTEwLjcyIDQzLjg1LTEuMiAzLjE5LjQyIDYuNzUgMy42MSA3Ljk1IDMuMTkgMS4yMSA2Ljc1LS40MSA3Ljk1LTMuNiA1LjUzLTE0LjY2IDkuNDMtMzAuMiAxMS40NS00Ni43IDIuMDEtMTYuNDQgMi4xNi0zMy45My4yNS01Mi41Ni0uMzUtMy4zOC0zLjM4LTUuODYtNi43Ny01LjUxLTMuMzkuMzQtNS44NiAzLjM4LTUuNTIgNi43Ny45NiA5LjMgMS4zNiAxOC4zMiAxLjI1IDI3LjA2LTQ1Ljc4LTEyLjc3LTc1Ljg3LTM3LjkxLTkyLjY5LTY4LjI2bDk3LjI5LTI5LjEyYzQuMjIgMTAuNzIgMTIuMDkgMTkuMiAyMS43IDI0LjM3IDEwLjcgNS43NiAyMy42MiA3LjQ4IDM2LjEzIDMuNzMgMTYuODEtNS4wMyAzMy42My0xMC4wNiA1MC40NC0xNS4xbDQzLjI3LTEyLjk1YzkuMTEtMi43MiAxMS43Ni0xMC4xMiAxNC41Ni0xNy45NiAxLjQ1LTQuMDcgMi45OC04LjMyIDUuNDktMTAuOSAxLjc2LTEuODEgNC4wMi0zLjc2IDYuMzItNS43NCAxLjk1LTEuNjcgMy45My0zLjM4IDUuODEtNS4xNGwxNC41MSAxNS42NmMzLjA3IDIuNTggNC45IDUuMjIgNS42NiA3LjYxIDEuMTMgMy41Mi4wNSA2LjQyLTMuNDggNy42Mi0xMC40NCAzLjQyLTIxLjU5IDcuODYtMzIuMDIgMTEuNjZsNC4yMSAxMS42MSA4LTIuOTJjMi4wNSA3LjQ3IDQuMjIgMTQuNzUgNS44NCAyMi4zNC0zLjE1IDIuOC02LjM3IDQuOTItOS42OCA2LjI4LTMuODkgMS42LTguMDMgMi4xNy0xMi4zNiAxLjYzLTMuMzktLjQxLTYuNDggMi4wMS02Ljg5IDUuMzktLjQxIDMuMzkgMiA2LjQ4IDUuMzkgNi45IDYuNDUuOCAxMi42NC0uMDggMTguNTUtMi41MSAyLjcxLTEuMTEgNS4zNC0yLjU2IDcuOS00LjMxbC41MSAyLjk4Yy42OCA0LjE2IDEuMTcgOC40NSAxLjQ5IDEyLjgzYTYuMTcgNi4xNyAwIDAgMCAxLjg3IDMuOThjNC45OSA1LjMyIDguMTMgMTAuMDcgOS42NyAxNC4yNCAxLjU4IDQuMjggMS4zOSA3LjkxLS4xOCAxMC45LTEuNzggMy4zNS01LjMzIDYuMzEtMTAuMTcgOC44MS03Ljc3IDQuMDItMTguNTUgNi43MS0zMC43MyA4LjA5LTExLjY0IDEuMzEtMjUuMDMgMS44NS0zNy43OC44NC0xMC4zNy0uODItMjAuMjctMi42Ni0yOC4zMS01LjktMTAuOTItNC40LTIxLjE2LTIyLjA3LTI5LjE2LTMxLjc3LTUuMjMtNi4zNC0xMS40My0xMi43MS0xNy4xNC0xNC44OS0zLjE5LTEuMjEtNi43Ny4zOS03Ljk4IDMuNTgtMS4yMSAzLjE5LjM5IDYuNzcgMy41OCA3Ljk4IDMuMDUgMS40MyA2LjY2IDQuOTMgMTAuMDYgOC44MSAxMS4xMSAxMi43MSAyMC4wMyAzMS4zIDM2LjA1IDM3Ljc1IDcuOTkgMy4yMyAxNy4zMSA1LjIzIDI3LjA0IDYuMzEtLjMgMS4xMy0uMzEgMi43OS0uMzcgMy45Ny0uMzUgNi4yNy0uNTYgMTYtLjI5IDI1LjA3LjI0IDcuOTIuODYgMTUuNCAyLjA1IDE5Ljg3Ljg4IDMuMyA0LjI4IDUuMjYgNy41NyA0LjM4IDMuMjktLjg4IDUuMjUtNC4yNyA0LjM4LTcuNTctLjk1LTMuNTUtMS40Ni0xMC4wMy0xLjY3LTE3LjAyLS4yNS04LjQ3LS4wNi0xNy42OC4yOC0yMy43Mi4wNy0xLjI3LjMtMi44Ny4xOC00LjF6bS00NC4zOS0xNDIuNTNjLTQuMTEgMS4yNC02LjQ1IDUuNTktNS4yMiA5LjcxYTcuNzk3IDcuNzk3IDAgMCAwIDkuNyA1LjIzIDcuODAyIDcuODAyIDAgMCAwIDUuMjMtOS43Yy0xLjIzLTQuMTMtNS41OC02LjQ2LTkuNzEtNS4yNHptMzUuNDEtMTAuNTljLTQuMTIgMS4yMy02LjQ2IDUuNTctNS4yMyA5LjdhNy44MDIgNy44MDIgMCAwIDAgOS43IDUuMjNjNC4xMi0xLjI0IDYuNDctNS41NyA1LjIzLTkuN2E3Ljc3NyA3Ljc3NyAwIDAgMC05LjctNS4yM3ptNTIuOTMtMTcuMzRjLTEuNDEgMS4yOS0yLjkxIDIuNTgtNC4zNyAzLjg0LTIuNTEgMi4xNS00Ljk3IDQuMjctNy4xNSA2LjUxLTQuNDEgNC41NS02LjM5IDEwLjA3LTguMjggMTUuMzUtMS43MiA0LjgxLTMuMzUgOS4zNi02LjQ0IDEwLjI4bC00MS4zNSAxMi4zOGMtNy40MSAyLjIyLTE2LjU4IDUuNzItMjQuNTIgNS41MS01LjU2LS4xNS0xMC45OC0xLjY0LTE1LjgtNC4yMy03LjktNC4yNi0xNC4yMS0xMS41MS0xNi45OC0yMC43MmwtMTcuMTctNTcuMzRjLS40OC0xLjYyLS4yNS0zLjMxLjUtNC43MSAxLjY5LTMuMTIgNS45OC0zLjY5IDkuMDUtNC42MWw5OC45OC0yOS42MyAxMi44My0zLjg0YzQuMjUtMS4yNyA5Ljc3LTMuMDQgMTEuNTUgMi45OGwxNS4yMyA1MC44NWMyLjY5IDkuMDEuNjIgMTEuMi02LjA4IDE3LjM4em0tMTg5LjM1LTIuMDktOTcuOTEgMjkuMzFjLTMuNC0yOS40NyAyLjI0LTYwLjEyIDE1LjMzLTg3LjIzIDEzLjg3LTI4Ljc0IDM2LjEtNTMuNDkgNjQuNzYtNjguNjIgNDgtMjUuMzMgMTE0LjQtMjMuNjQgMTkwLjUxIDMxLjMzbC0yMC44MSAxNy42N2MtLjIuMjMtLjM5LjQ3LS41NS43MWwtOTguNTYgMjkuNWMtNi4wMyAxLjgyLTEyLjA3IDMuNjItMTguMTEgNS40M2wtMjUuNTYgNy42NWMtOS43NiAyLjkyLTE1LjM4IDEzLjMtMTIuNDUgMjMuMDZsMy4zNSAxMS4xOXptMjIuNzQgMzIuODRjLTQuNzUtMTUuODUtOS41MS0zMS43LTE0LjI1LTQ3LjU2LS45Ny0zLjIzLjktNi43MiA0LjE0LTcuNjlsMjIuMDctNi42MWMtLjEgMi4wNS4xMyA0LjE1Ljc1IDYuMjJsMTcuMjggNTcuNzFjMy44MSAxMi4zIDEyLjI3IDIyIDIyLjg2IDI3LjcuNjguMzcgMS4zNS43MSAyLjA1IDEuMDVsLTguMjQgMi40NmMtOS4yNSAyLjc3LTE4LjgyIDEuNS0yNi43NS0yLjc3LTEzLjg2LTcuNDctMTYuMS0xNy43OS0xOS45MS0zMC41MXptLTE5LjItMjEuMDEgNy44NiAyNi4yNC05OS4xMiAyOS42OGMtMjMuMDcgNi4zMy0yOC4zNS0xNy4yMy0xMy4zMy0yNC4yNiAxLjYtLjc1IDMuMzEtMS4zOSA1LjExLTEuODdsOTkuNDgtMjkuNzl6bTI5MC40LTE1NS44NWMtNy45OCAxLjY0LTE2LjExIDMtMjQuMzMgNC4xMy0zNC4wMiA0LjY2LTY5Ljc3IDUuMTItMTA0LjEgMi4zMi03LjI3LTQuMzUtMTQuNDctOC4yNy0yMS41OC0xMS43OSA0MC4yNSA1LjA1IDgzLjYgNS42MyAxMjQuNDEuMDMgNDIuOTQtNS44OCA4My4wMS0xOC42IDExMy40OS00MC4xNEE0Ljc4IDQuNzggMCAwIDEgNTEyIDQuNzh2MzQ1LjY4Yy0uMDMgMS4zLS41NiAyLjYxLTEuNjEgMy41NC0xLjk1IDEuNzUtNC45NiAxLjU4LTYuNzEtLjM3LTIyLjMtMjQuOTItNDkuOTctNDMuNjItODAuNzgtNTMuODUtMjAuMTEtNi42OC00MS41OC05Ljc4LTYzLjgtOC42NmwtLjgtNS4zNmMtLjIzLTEuNDEtLjQ2LTIuNzctLjcxLTQuMDggMjAuMjgtMS4xNCAzOS45OSAxLjA2IDU4LjcgNi4xN1Y0Ni41NHptLTQyLjggNjUuMmgtNDIuMTRjLjUgMS4yLjk0IDIuNDMgMS4zMiAzLjdsMTYuNDIgNTQuODFjMS41OSA1LjM1IDEuOTggMTAuNDggMS40NCAxNS40MmwtLjA1LjVjNC43MyA1LjEzIDEwLjg5IDEwLjc2IDE0Ljc3IDE2LjI5YTQ2LjE2IDQ2LjE2IDAgMCAxIDIuNjkgNC4zM2g1LjU1YzEuODMgMCAzLjM5LTEuNjggMy4zOS0zLjczdi04Ny41OWMwLTIuMDUtMS41Mi0zLjczLTMuMzktMy43M3ptMTA2Ljk1LTUwLjE3LTI3Ljk3IDIxLjExYy0xLjk5IDEuNS00LjQ3IDIuMjUtNC40NyA0Ljl2MTQxLjA0YzAgMi42NiAyLjUzIDMuMzQgNC40NyA0LjlsMjcuOTcgMjIuNjFjMS45MyAxLjU2IDQuNDctMi4yMSA0LjQ3LTQuOTFWNjYuNDljMC0yLjctMi40OS02LjQxLTQuNDctNC45MnpNMzcyLjc2IDIzMi4xNGgxOS4yOGMyLjI4IDAgNC40LS45NiA1Ljk3LTIuNTIgMS42NS0xLjYzIDIuNjktMy45NiAyLjY5LTYuNTJWOTYuNTVjMC0yLjU2LTEuMDItNC44Ny0yLjY3LTYuNTEtMS41Ni0xLjU1LTMuNjgtMi41Mi01Ljk5LTIuNTJIMzI5LjFjLjg0IDIuNjkgMS4yMiA1LjQ5IDEuMTQgOC4yNWg2MS44Yy4zOCAwIC43Mi4xNC45NS4zNi4xMi4xMy4yLjI5LjIuNDJWMjIzLjFjMCAuNS0uNzQuNzktMS4xNS43OWgtMTguOTNjLjE5IDIuNzQuMDcgNS41Mi0uMzUgOC4yNXoiLz4NCjwvc3ZnPg==",
           "title": {
-            "uk": "Викривлення простору",
-            "en": "Space distortion",
-            "de": "Raumverzerrung"
+            "uk": "Кабінет клієнта",
+            "en": "Customer account",
+            "de": "Kundenbereich"
           },
           "content": {
             "uk": [
-              "Перетворюємо нудні сайти та додатки на захопливі цифрові всесвіти."
+              "Клієнт бачить свої заявки й ваші відповіді з Telegram."
             ],
             "en": [
-              "We transform boring websites and apps into captivating digital universes."
+              "The customer sees their requests and your replies from Telegram."
             ],
             "de": [
-              "Wir verwandeln langweilige Websites und Apps in faszinierende digitale Universen."
+              "Der Kunde sieht seine Anfragen und Ihre Antworten aus Telegram."
             ]
-          }
-        },
-        {
-          "type": "card",
-          "ver": 1,
-          "width": 310,
-          "size": 90,
-          "icon": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KCjxzdmcKICB3aWR0aD0iMjAwIgogIGhlaWdodD0iMjAwIgogIHZpZXdCb3g9Ii0yNC4yOCAwIDExOS42NzMgMTE5LjY3MyIKICBmaWxsPSJub25lIgogIHN0cm9rZS13aWR0aD0iMyIKICBzdHJva2U9IiNmZmYiCiAgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIgogIHN0cm9rZS1saW5lam9pbj0icm91bmQiCiAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgo+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTQwMC42MDcgLTM3NS45MTQpIj4KICAgIDxyZWN0IHdpZHRoPSI2OC4xMiIgaGVpZ2h0PSIxMTYuNjczIiByeD0iNi4yMzIiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDQwMi4xMDcgMzc3LjQxNCkiIC8+CiAgICA8bGluZSB4Mj0iNjguMTIiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDQwMi4xMDcgMzkyLjczKSIgLz4KICAgIDxsaW5lIHgyPSI2OC4xMiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNDAyLjEwNyA0NzguNzcpIiAvPgogICAgPGxpbmUgeDI9IjYuMjQ5IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0MjkuNTk2IDM4NS4zOTUpIiAvPgogICAgPGxpbmUgeDI9IjEuNjA3IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0NDEuMTMxIDM4NS4zOTUpIiAvPgogICAgPGxpbmUgeDI9IjkuNzg5IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0MzEuMjcyIDQ4Ni40MDUpIiAvPgogICAgPHBhdGggZD0iTTQ1MC4yMjksNDQ5LjQwOVY0MzMuMTcxbC0xNC4wNjItOC4xMTlMNDIyLjEsNDMzLjE3MXYxNi4yMzhsMTQuMDYyLDguMTE5WiIgLz4KICAgIDxwYXRoIGQ9Ik00MjIuMSw0MzMuMTcxbDE0LjA2Miw4LjExOSwxNC4wNjItOC4xMTkiIC8+CiAgICA8bGluZSB5MT0iMTYuMjM4IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0MzYuMTY3IDQ0MS4yOSkiIC8+CiAgICA8cGF0aCBkPSJNNDQwLjI3Miw0MTcuOTI3YzEzLjQsMS4wNjUsMjMuNjc4LDcuMjYsMjMuNjc4LDE0Ljc0MywwLDguMjMxLTEyLjQzOSwxNC45LTI3Ljc4MywxNC45cy0yNy43ODQtNi42NzMtMjcuNzg0LTE0LjljMC04LjEsMTIuMDMxLTE0LjY4MywyNy4wMjQtMTQuOSIgLz4KICAgIDxwYXRoIGQ9Ik00MzIuMTUzLDQxMy45NzJsMy4yNTMsMy44LTMuMjUzLDMuOCIgLz4KICA8L2c+Cjwvc3ZnPg==",
-          "title": {
-            "uk": "",
-            "en": "",
-            "de": ""
-          },
-          "content": {
-            "uk": [],
-            "en": [],
-            "de": []
           }
         },
         {
@@ -220,19 +203,19 @@
           "size": 90,
           "icon": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KCjwhLS0gVXBsb2FkZWQgdG86IFNWRyBSZXBvLCB3d3cuc3ZncmVwby5jb20sIEdlbmVyYXRvcjogU1ZHIFJlcG8gTWl4ZXIgVG9vbHMgLS0+CjxzdmcKICB3aWR0aD0iMjAwIgogIGhlaWdodD0iMjAwIgogIHZpZXdCb3g9IjAgLTIxLjgzIDExOS4xNyAxMTkuMTciCiAgZmlsbD0ibm9uZSIKICBzdHJva2U9IiNmZmYiCiAgc3Ryb2tlLXdpZHRoPSIzIgogIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIKICBzdHJva2UtbGluZWpvaW49InJvdW5kIgogIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKPgoKICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMzc2LjU4MiAtNTY4Ljk5OSkiPgoKICAgIDxyZWN0IHdpZHRoPSIxMTYuMTciIGhlaWdodD0iNDAuMDgzIiByeD0iMy43MTEiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDM3OC4wODIgNTcwLjQ5OSkiIC8+CgogICAgPHBhdGggZD0iTTQwNS42MjYsNTkwLjU0MWE0LjE3NCw0LjE3NCwwLDEsMS00LjE3My00LjE3NEE0LjE3Myw0LjE3MywwLDAsMSw0MDUuNjI2LDU5MC41NDFaIiAvPgoKICAgIDxjaXJjbGUgY3g9IjQuMTc0IiBjeT0iNC4xNzQiIHI9IjQuMTc0IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0MzAuNzY1IDU4Ni4zNjcpIiAvPgoKICAgIDxwYXRoIGQ9Ik00NTkuODIyLDU5MC41NDFhNC4xNzQsNC4xNzQsMCwxLDEtNC4xNzQtNC4xNzRBNC4xNzQsNC4xNzQsMCwwLDEsNDU5LjgyMiw1OTAuNTQxWiIgLz4KCiAgICA8cGF0aCBkPSJNNDgwLjUzMSw1OTAuNTQxYTQuMTc0LDQuMTc0LDAsMSwxLTQuMTc0LTQuMTc0QTQuMTc0LDQuMTc0LDAsMCwxLDQ4MC41MzEsNTkwLjU0MVoiIC8+CgogICAgPGNpcmNsZSBjeD0iOS42NSIgY3k9IjkuNjUiIHI9IjkuNjUiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDM5MS44MDIgNTgwLjg5KSIgLz4KCiAgICA8bGluZSB4Mj0iMi41MjMiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDQxOC44NjYgNTkwLjU0MSkiIC8+CgogICAgPGxpbmUgeDE9IjE3LjkiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDQ2Mi42MzEgNjAxLjgyMykiIC8+CgogICAgPGxpbmUgeDE9IjMuNjY3IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0NDkuNTE4IDYwMS44MjMpIiAvPgoKICAgIDxwYXRoIGQ9Ik00MTguMjQ3LDYxMC41ODJWNjE0LjZhMi40MDgsMi40MDgsMCwwLDAsMi40MDgsMi40MDdoMzEuMDI0YTIuNDA3LDIuNDA3LDAsMCwwLDIuNDA3LTIuNDA3di00LjAxOFoiIC8+CgogICAgPHJlY3Qgd2lkdGg9IjE3LjQ2NiIgaGVpZ2h0PSIxOC4yOTMiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDQyNy40MzQgNjE3LjAwNykiIC8+CgogICAgPHBhdGggZD0iTTQ1Ny4wOTEsNjM1LjNINDE1LjI0MmE3LjcsNy43LDAsMCwwLTcuNyw3LjdoNTcuMjUxQTcuNyw3LjcsMCwwLDAsNDU3LjA5MSw2MzUuM1oiIC8+Cgo8L2c+Cgo8L3N2Zz4=",
           "title": {
-            "uk": "Генерація мурашок",
-            "en": "Goosebumps",
-            "de": "Gänsehaut-Effekt"
+            "uk": "Сайт для кількох ринків",
+            "en": "A site for several markets",
+            "de": "Eine Website für mehrere Märkte"
           },
           "content": {
             "uk": [
-              "Створюємо візуальний контент, від якого серце б'ється частіше, а процесор комп'ютера починає благати про кулер."
+              "Різні тексти для різних країн, а не один переказаний."
             ],
             "en": [
-              "We create visual content that makes your heart beat faster and your computer’s processor start begging for a cooler."
+              "Different copy for different countries, not one text retold."
             ],
             "de": [
-              "Wir erstellen visuelle Inhalte, bei denen das Herz schneller schlägt und der Computerprozessor nach einem Kühler schreit."
+              "Verschiedene Texte für verschiedene Länder, nicht ein nacherzählter."
             ]
           }
         },
@@ -243,37 +226,20 @@
           "size": 90,
           "icon": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZwogIHdpZHRoPSIyMDAiCiAgaGVpZ2h0PSIyMDAiCiAgdmlld0JveD0iMCAtMC4wNSAxMTIuNDUxIDExMi40NTEiCiAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogIGZpbGw9Im5vbmUiCiAgc3Ryb2tlPSIjZmZmIgogIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIKICBzdHJva2UtbGluZWpvaW49InJvdW5kIgogIHN0cm9rZS13aWR0aD0iMyIKPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0yMDcuNjA4IC01NTEuMDg3KSI+CiAgICA8cGF0aCBkPSJNMjE5LjMyNCw1ODUuMTRhMzcuNjM5LDM3LjYzOSwwLDAsMSwzNy4zMTMtMzIuNTUzaDE0LjQwNmEzNy42MzcsMzcuNjM3LDAsMCwxLDM3LjMsMzIuNTUzIiAvPgogICAgPHBhdGggZD0iTTIxNS41MzUsNTg5LjI0MVY2MjUuM2E0LjEsNC4xLDAsMCwwLDMuNzQzLDQuMDg1bDIyLjkxNSwyLjAwNWE5LjE5Miw5LjE5MiwwLDAsMCw3LjQ2NC0yLjgyNUwyNTksNjE4LjczNWE2LjY2Niw2LjY2NiwwLDAsMSw5LjY2NSwwbDkuMzQzLDkuODM1YTkuMTkzLDkuMTkzLDAsMCwwLDcuNDY1LDIuODI1bDIyLjkxNS0yLjAwNWE0LjEsNC4xLDAsMCwwLDMuNzQzLTQuMDg1VjU4OS4yNDFhNC4xLDQuMSwwLDAsMC00LjEtNC4xaC04OC40QTQuMSw0LjEsMCwwLDAsMjE1LjUzNSw1ODkuMjQxWiIgLz4KICAgIDxwYXRoIGQ9Ik0yOTcuMTY4LDU5My42NjRIMjMwLjVhNC4zNzksNC4zNzksMCwxLDAsMCw4Ljc1OGg2Ni42NjlhNC4zNzksNC4zNzksMCwxLDAsMC04Ljc1OFoiIC8+CiAgICA8cGF0aCBkPSJNMjEyLjU1Nyw1OTguMDQzYTMuNDUsMy40NSwwLDAsMC0zLjQ0OSwzLjQ1djE0LjQ1YTMuNDQ5LDMuNDQ5LDAsMCwwLDMuNDQ5LDMuNDVoMi45Nzh2LTIxLjM1WiIgLz4KICAgIDxwYXRoIGQ9Ik0zMTUuMTA5LDU5OC4wNDNoLTIuOTc3djIxLjM1aDIuOTc4YTMuNDQ5LDMuNDQ5LDAsMCwwLDMuNDQ5LTMuNDQ5VjYwMS40OTNBMy40NSwzLjQ1LDAsMCwwLDMxNS4xMDksNTk4LjA0M1oiIC8+CiAgICA8cGF0aCBkPSJNMjg5LjcxLDU1Ny41NGwtLjAyMi4wNjNhNS42MzMsNS42MzMsMCwwLDEtNy40MzEsMy4zMTgsMzMuMDcyLDMzLjA3MiwwLDAsMC0xMi4wNjctMi4yNjFoLTEyLjdhMzMuMTU0LDMzLjE1NCwwLDAsMC0xMi4wODEsMi4yNjIsNS42MzEsNS42MzEsMCwwLDEtNy40My0zLjMyN2wtLjAxOS0uMDU1IiAvPgogICAgPHBhdGggZD0iTTI2My44MzUsNjYxLjkzN0gyMzYuNzA3YTIxLjE3MiwyMS4xNzIsMCwwLDEtMjEuMTcyLTIxLjE3MlY2MjEuODA3IiAvPgogICAgPHBhdGggZD0iTTI2MC43NjQsNjU1LjAzNmgtNS42YTMuMDcxLDMuMDcxLDAsMCwwLTMuMDcxLDMuMDcxdjMuODNoMTEuNzM4di0zLjgzQTMuMDcxLDMuMDcxLDAsMCwwLDI2MC43NjQsNjU1LjAzNloiIC8+CgogIDwvZz4KPC9zdmc+",
           "title": {
-            "uk": "Ми слухаємо",
-            "en": "We listen",
-            "de": "Wir hören zu"
+            "uk": "Сайти для студії",
+            "en": "Sites for a studio",
+            "de": "Websites für ein Studio"
           },
           "content": {
             "uk": [
-              "І, що найважливіше, чуємо ваші побажання, навіть коли ви кажете: «Зробіть мені якось так... ну, щоб ух!»."
+              "Ваш бренд, ваші шаблони, ваші клієнти — на одній Верфі."
             ],
             "en": [
-              "And, most importantly, we hear your requests, even when you say: ‘Make it something like this… well, you know, wow!’\n"
+              "Your brand, your templates, your clients — in one Pageyard."
             ],
             "de": [
-              "Und vor allem nehmen wir eure Wünsche wahr, selbst wenn ihr sagt: „Macht das irgendwie so … na ja, damit es ‚Wow!‘ macht.“\n"
+              "Ihre Marke, Ihre Vorlagen, Ihre Kunden — in einer Werft."
             ]
-          }
-        },
-        {
-          "type": "card",
-          "ver": 1,
-          "width": 310,
-          "size": 90,
-          "icon": "data:image/svg+xml;base64,PHN2Zw0KICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciDQogIHNoYXBlLXJlbmRlcmluZz0iZ2VvbWV0cmljUHJlY2lzaW9uIg0KICB0ZXh0LXJlbmRlcmluZz0iZ2VvbWV0cmljUHJlY2lzaW9uIg0KICBpbWFnZS1yZW5kZXJpbmc9Im9wdGltaXplUXVhbGl0eSINCiAgZmlsbC1ydWxlPSJldmVub2RkIg0KICBjbGlwLXJ1bGU9ImV2ZW5vZGQiDQogIHZpZXdCb3g9IjAgMCA1MTIgMjQ3LjIzIg0KICBmaWxsPSIjZmZmIg0KPg0KICA8Zz4NCiAgICA8cGF0aCBkPSJNNDczLjg3IDEwOS43OWwxOS4wNiAwYzEwLjQ5LDAgMTkuMDcsOC41OCAxOS4wNywxOS4wN2wwIDYxYzAsMTAuNDkgLTguNTgsMTkuMDcgLTE5LjA3LDE5LjA3bC0xOS4wNiAwYzUuOTYsLTQxLjY0IDYuMTYsLTc0Ljk5IDAsLTk5LjE0em0tNDM1Ljc0IDBsLTE5LjA3IDBjLTEwLjQ5LDAgLTE5LjA2LDguNTggLTE5LjA2LDE5LjA3bDAgNjFjMCwxMC40OSA4LjU3LDE5LjA3IDE5LjA2LDE5LjA3bDE5LjA3IDBjLTUuOTYsLTQxLjY0IC02LjE2LC03NC45OSAwLC05OS4xNHptNy44OSAxMDAuMDJsMCAtOTUuNTVjMy4wMiwtMjQuNSAxNi42OSwtMzcuMTggMzYuNzUsLTQyLjc3bDEyOS43MiAwIDAgLTU4LjM3YzAsLTcuMjIgNS45LC0xMy4xMiAxMy4xMiwtMTMuMTJsNTYuNzkgMGM5LjQxLDAgMTcuMSw3LjcyIDE3LjEsMTcuMWwwIDU0LjM5IDEyMi43MiAwYzI2LjM2LDIuMiA0My42OSwxMy42NCA0My43NSw0Mi43N2wwIDkwLjg3YzAuMzIsMzIuNTQgLTE2Ljc4LDQzLjg4IC00NS43NSw0MC43NmwtNjguODMgMGMtNDQuNjcsMCAtNTEuMDEsLTI2LjA0IC03MC4yOCwtMzguNCAtMTIuNzgsLTguMiAtMzEuNzMsLTguNDcgLTQ1LjAzLC0xLjM1IC0yMS4yNywxMS4zOCAtMjcuMzcsMzguMzcgLTc2LjQ2LDQxLjA5bC03Ni4xOCAwYy0yMC4zMywtMS44NCAtMzMuOTgsLTEyLjcyIC0zNy40MiwtMzcuNDJ6bTE4Ny40NiAtMTM4LjMybDQ1LjAzIDAgMCAtMjcuNjFjMCwtMy43OSAtMy4xLC02LjkgLTYuOSwtNi45bC0zMi44NCAwYy0yLjkxLDAgLTUuMjksMi4zOCAtNS4yOSw1LjI5bDAgMjkuMjJ6bTE5NC43MiA4Ny43OWMtMi4wOSwtNDcuOSAtMTQuMDgsLTYzLjIyIC0yOC45NiwtNjMuNDUgNy40OCwzOC4xMiAxMC4yNSw3Ny40NiAtMC41LDEyNC4wMSAxNi42LDEuMTIgMjcuMzgsLTE4LjY3IDI5LjQ2LC02MC41NnoiLz4NCiAgPC9nPg0KPC9zdmc+DQo=",
-          "title": {
-            "uk": "",
-            "en": "",
-            "de": ""
-          },
-          "content": {
-            "uk": [],
-            "en": [],
-            "de": []
           }
         }
       ],
@@ -329,9 +295,9 @@
             {
               "type": "title",
               "content": {
-                "uk": "Хто ми такі? Хороше запитання. Ми самі іноді шукаємо відповідь на нього в гуглі.",
-                "en": "",
-                "de": "Хто ми такі? Хороше запитання. Ми самі іноді шукаємо відповідь на нього в гуглі."
+                "uk": "А можна своє, особливе?",
+                "en": "And something special of my own?",
+                "de": "Und etwas ganz Eigenes?"
               },
               "class": "my-8 text-left"
             },
@@ -339,27 +305,27 @@
               "type": "text",
               "class": "default-text text-medium text-primary my-2",
               "content": {
-                "uk": "Якщо офіційно: Virtual Dimension — це креативне цифрове агентство повного (і трохи переповненого) циклу. ",
-                "en": "",
-                "de": "Якщо офіційно: Virtual Dimension — це креативне цифрове агентство повного (і трохи переповненого) циклу. "
+                "uk": "Можна. Якщо вам потрібне те, чого немає серед блоків, — калькулятор, карта місць, складний майстер замовлення, — це робиться як окремий блок і стає частиною вашої Верфі.",
+                "en": "Yes. If you need something the blocks don’t have — a calculator, a seat map, a complex order wizard — it is made as a block of its own and becomes part of your Pageyard.",
+                "de": "Ja. Wenn Sie etwas brauchen, das die Blöcke nicht haben — einen Rechner, einen Sitzplan, einen komplexen Bestellassistenten —, wird es als eigener Block gebaut und Teil Ihrer Werft."
               }
             },
             {
               "type": "text",
               "class": "default-text text-medium text-special my-3",
               "content": {
-                "uk": "Якщо неофіційно: ми група ентузіастів, яка вміє загортати складні технології в красиву та зрозумілу обгортку. ",
-                "en": "",
-                "de": "Якщо неофіційно: ми група ентузіастів, яка вміє загортати складні технології в красиву та зрозумілу обгортку. "
+                "uk": "Якщо дані живуть на вашому сервері — підводимо причал: сайт говорить із ним через API.",
+                "en": "If your data lives on your own server, we build a mooring: the site talks to it through an API.",
+                "de": "Liegen Ihre Daten auf Ihrem eigenen Server, bauen wir einen Liegeplatz: Die Website spricht über eine API mit ihm."
               }
             },
             {
               "type": "text",
               "class": "default-text text-thin text-black",
               "content": {
-                "uk": "Ми не обіцяємо успішний успіх, але ми гарантуємо, що ваш цифровий продукт буде виглядати на мільйон (навіть якщо бюджет був дещо скромнішим).",
-                "en": "",
-                "de": "Ми не обіцяємо успішний успіх, але ми гарантуємо, що ваш цифровий продукт буде виглядати на мільйон (навіть якщо бюджет був дещо скромнішим)."
+                "uk": "Не обіцяємо «успішний успіх», але обіцяємо, що ваш корабель слухатиметься штурвала.",
+                "en": "We don’t promise “successful success”, but we do promise your ship will answer to the helm.",
+                "de": "Wir versprechen keinen „erfolgreichen Erfolg“, aber wir versprechen, dass Ihr Schiff aufs Steuer hört."
               }
             },
             {

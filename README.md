@@ -2,7 +2,7 @@
 
 **English** | [Українська](README.uk.md)
 
-**Live demo:** <https://pagewright.pp.ua/> - the editor; the site it builds is at <https://pagewright.pp.ua/site/>. Everything you change stays in your own browser. The same demo also runs on GitHub Pages: <https://garevna.github.io/sve-studio/>.
+**Live demo:** <https://dock.pagewright.pp.ua/> - the Pageyard (the editor); the site it builds is at <https://dock.pagewright.pp.ua/site/>. Everything you change stays in your own browser. Pagewright's own site: <https://pagewright.pp.ua/>. The same demo also runs on GitHub Pages: <https://garevna.github.io/sve-studio/>.
 
 A visual editor for multilingual websites: pages are assembled from ready-made blocks, edited in place and published - without touching code.
 

@@ -21,7 +21,7 @@ enabled = true
 [vars]
 # The sites allowed to call the API from a browser: the published demo, local
 # dev and a local build served by wrangler.
-ALLOWED_ORIGINS = "https://pagewright.pp.ua,https://garevna.github.io,http://localhost:3006,http://localhost:3007,http://127.0.0.1:8787,http://localhost:8787"
+ALLOWED_ORIGINS = "https://pagewright.pp.ua,https://dock.pagewright.pp.ua,https://garevna.github.io,http://localhost:3006,http://localhost:3007,http://127.0.0.1:8787,http://localhost:8787"
 
 [[d1_databases]]
 binding = "DB"

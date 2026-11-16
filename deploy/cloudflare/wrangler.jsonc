@@ -1,5 +1,9 @@
-// Pagewright on Cloudflare (pagewright.pp.ua) - deployed by
-// .github/workflows/deploy.yml after `pnpm generate` (root "/").
+// Pagewright on Cloudflare - deployed by .github/workflows/deploy.yml after
+// scripts/build-cloudflare.mjs (dist/):
+//   pagewright.pp.ua       the owner's own site (dist/)
+//   dock.pagewright.pp.ua  the demo: the Верф and the visitor's ship (dist/dock/)
+//   demo.pagewright.pp.ua  a short address for the demo ship (redirects)
+// The custom domains are made by the deploy itself (their DNS records too).
 {
   "name": "pagewright",
   "compatibility_date": "2026-10-01",
@@ -7,16 +11,20 @@
   "assets": {
     "directory": "../../dist",
     "binding": "ASSETS",
-    // Addresses with no file go to worker.js (the apps' start pages).
+    // Every request goes to worker.js first: which folder of dist/ answers
+    // depends on the host, and the owner's site must not show the demo's
+    // files (nor the dock the site's).
+    "run_worker_first": true,
     "not_found_handling": "none",
     // A file is served at its own name, never redirected: Google's
     // verification file must answer at google….html itself, not with a
-    // redirect to google… . Folders ("/", "/site/") are pages too and go to
-    // worker.js.
+    // redirect to google… .
     "html_handling": "none"
   },
   "routes": [
-    { "pattern": "pagewright.pp.ua", "custom_domain": true }
+    { "pattern": "pagewright.pp.ua", "custom_domain": true },
+    { "pattern": "dock.pagewright.pp.ua", "custom_domain": true },
+    { "pattern": "demo.pagewright.pp.ua", "custom_domain": true }
   ],
   "workers_dev": false,
   "preview_urls": false

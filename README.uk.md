@@ -2,7 +2,7 @@
 
 [English](README.md) | **Українська**
 
-**Демо:** <https://pagewright.pp.ua/> - редактор; сайт, який він створює, - <https://pagewright.pp.ua/site/>. Усе, що ви змінюєте, лишається у вашому браузері. Те саме демо працює й на GitHub Pages: <https://garevna.github.io/sve-studio/>.
+**Демо:** <https://dock.pagewright.pp.ua/> - Верф; корабель (сайт), який вона будує, - <https://dock.pagewright.pp.ua/site/>. Усе, що ви змінюєте, лишається у вашому браузері. Сайт Pagewright: <https://pagewright.pp.ua/>. Те саме демо працює й на GitHub Pages: <https://garevna.github.io/sve-studio/>.
 
 Візуальний редактор багатомовних сайтів: сторінки складаються з готових блоків, редагуються на місці й публікуються без жодного коду.
 

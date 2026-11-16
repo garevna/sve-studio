@@ -2,7 +2,8 @@
 # build per address (each has its own root):
 #   GitHub Pages - https://garevna.github.io/sve-studio/
 #                  (Settings > Pages > Source must be "GitHub Actions");
-#   Cloudflare   - https://pagewright.pp.ua/ (deploy/cloudflare/), runs
+#   Cloudflare   - https://pagewright.pp.ua/ (the owner's own site) and
+#                  https://dock.pagewright.pp.ua/ (the demo) - deploy/cloudflare/, runs
 #                  once the repository has the secrets CLOUDFLARE_ACCOUNT_ID
 #                  and CLOUDFLARE_API_TOKEN.
 #

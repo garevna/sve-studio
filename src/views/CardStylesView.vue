@@ -1,15 +1,17 @@
 <script lang="ts" setup>
+  import type { SiteStyle } from '@/configs/site-style'
   import type { CardStyleEntry } from '@/utils/card-style-entry'
   import type { CssNode } from '@/utils/css-rules'
   import { computed, onMounted, ref, watch } from 'vue'
   import EditorSaveBar from '@/components/special/EditorSaveBar.vue'
   import PaletteSwatchPicker from '@/components/special/PaletteSwatchPicker.vue'
-  import { CARD_STYLE_BY_VARIANT } from '@/configs/card-style'
+  import { useSiteStyle } from '@/composables/useSiteStyle'
+  import { CARD_STYLE_BY_SITE_STYLE, CARD_STYLE_BY_VARIANT } from '@/configs/card-style'
   import { t } from '@/i18n'
   import { useAjaxStore } from '@/stores/ajax'
   import { useUiFeedbackStore } from '@/stores/ui-feedback'
   import { getActiveTheme } from '@/utils/active-theme'
-  import { CARD_SHADOWS, cardStyleInline, extractCardStyles, serializeCardStyles } from '@/utils/card-style-entry'
+  import { CARD_SHADOWS, cardStyleInline, extractCardStyles, serializeCardStyles, STROKE_WIDTHS } from '@/utils/card-style-entry'
   import { loadThemeStyles } from '@/utils/load-theme-styles'
   import { parsePaletteEntry } from '@/utils/palette-entry'
   import { APP_THEME_NAME, themeClass } from '@/utils/vuetify-theme-names'
@@ -123,6 +125,21 @@
     value: key,
   })))
 
+  // The list shows the styles of the site's style (UI Kit > Стиль сайту):
+  // «Штрих» the ones with the stroke, «Хвиля» the ones with the wave,
+  // «Класика» the plain ones. A style belongs to one of them - which one is
+  // what it is, so the stroke's and the wave's settings are simply there
+  // in their group, not switched on and off.
+  const siteStyle = useSiteStyle()
+  function groupOf (entry: CardStyleEntry): SiteStyle {
+    if (entry.stroke) return 'stroke'
+    if (entry.wave) return 'wave'
+    return 'classic'
+  }
+  const shown = computed(() => entries.value.filter(entry => groupOf(entry) === siteStyle.style.value))
+  // The style the site's style gives a block that names none.
+  const siteDefault = computed(() => CARD_STYLE_BY_SITE_STYLE[siteStyle.style.value])
+
   async function removeEntry (entry: CardStyleEntry) {
     if (!await feedback.confirmDelete('cardStyle', { name: entry.label })) return
     entries.value = entries.value.filter(item => item.className !== entry.className)
@@ -142,7 +159,21 @@
     let index = entries.value.length + 1
     while (entries.value.some(entry => entry.className === `card-style-${index}`)) index++
     const className = `card-style-${index}`
-    entries.value.push({ className, label, background: '', border: 'light-border', radius: 'default-border-radius', shadow: 'none', raw: [] })
+    // made in the group on screen: a stroke in «Штрих» (primary, 2px,
+    // top-left and bottom-right), a light wave in «Хвиля» - a light colour
+    // keeps the card's text readable over it
+    const group = siteStyle.style.value
+    entries.value.push({
+      className,
+      label,
+      background: '',
+      border: group === 'stroke' ? '' : 'light-border',
+      radius: 'default-border-radius',
+      shadow: 'none',
+      stroke: group === 'stroke' ? { color: 'primary', width: 2, corners: 'tl-br' } : null,
+      wave: group === 'wave' ? { color: 'light-grey-2' } : null,
+      raw: [],
+    })
     expanded.value = className
     addOpen.value = false
   }
@@ -156,12 +187,12 @@
       <p class="card-styles-hint">{{ t('cardStyles.hint') }}</p>
 
       <div class="card-styles-list">
-        <div v-for="entry of entries" :key="entry.className" class="card-styles-row">
+        <div v-for="entry of shown" :key="entry.className" class="card-styles-row">
           <div class="card-styles-row-head" @click="expanded = expanded === entry.className ? null : entry.className">
             <!-- The sample stands on the site's own theme, like the button
               previews, so radius and colours resolve as on the site. -->
             <v-theme-provider :theme="APP_THEME_NAME">
-              <div :class="['card-styles-sample', themeClass(APP_THEME_NAME)]" :style="cardStyleInline(entry)">
+              <div :class="['card-styles-sample', themeClass(APP_THEME_NAME), { [entry.className]: !!entry.wave }]" :style="cardStyleInline(entry)">
                 <v-icon color="primary" icon="mdi-star-outline" size="28" />
                 <div>
                   <div class="card-styles-sample-title">{{ t('cardStyles.sampleTitle') }}</div>
@@ -171,7 +202,8 @@
             </v-theme-provider>
             <div class="card-styles-name">
               <span class="card-styles-label">{{ entry.label }}</span>
-              <span v-for="ver of variantsByStyle[entry.className] || []" :key="ver" class="card-styles-chip">
+              <span v-if="entry.className === siteDefault" class="card-styles-chip">{{ t('cardStyles.siteDefault') }}</span>
+              <span v-for="ver of siteDefault ? [] : variantsByStyle[entry.className] || []" :key="ver" class="card-styles-chip">
                 {{ t('cardStyles.usedBy', { ver }) }}
               </span>
             </div>
@@ -196,6 +228,7 @@
               <v-select
                 v-model="entry.border"
                 density="compact"
+                :disabled="!!entry.stroke"
                 hide-details
                 :items="borderItems"
                 :label="t('cardStyles.border')"
@@ -217,6 +250,35 @@
                 :label="t('cardStyles.shadow')"
                 variant="outlined"
               />
+
+              <!-- «Штрих»: two opposite corners instead of a frame. -->
+              <div v-if="entry.stroke" class="card-styles-stroke">
+                <span class="card-styles-group">{{ t('cardStyles.stroke') }}</span>
+                <template v-if="entry.stroke">
+                  <div class="card-styles-field">
+                    <span>{{ t('cardStyles.strokeColor') }}</span>
+                    <PaletteSwatchPicker v-model="entry.stroke.color" />
+                  </div>
+                  <v-btn-toggle v-model="entry.stroke.width" density="compact" mandatory variant="outlined">
+                    <v-btn v-for="width of STROKE_WIDTHS" :key="width" :value="width">{{ width }}</v-btn>
+                  </v-btn-toggle>
+                  <v-btn-toggle v-model="entry.stroke.corners" density="compact" mandatory variant="outlined">
+                    <v-btn :title="t('cardStyles.strokeTlBr')" value="tl-br"><v-icon icon="mdi-arrow-top-left-bottom-right" /></v-btn>
+                    <v-btn :title="t('cardStyles.strokeTrBl')" value="tr-bl"><v-icon icon="mdi-arrow-top-right-bottom-left" /></v-btn>
+                  </v-btn-toggle>
+                </template>
+                <p class="card-styles-stroke-hint">{{ t('cardStyles.strokeHint') }}</p>
+              </div>
+
+              <!-- «Хвиля»: a wave of colour fills the card on hover. -->
+              <div v-if="entry.wave" class="card-styles-stroke">
+                <span class="card-styles-group">{{ t('cardStyles.wave') }}</span>
+                <div class="card-styles-field">
+                  <span>{{ t('cardStyles.waveColor') }}</span>
+                  <PaletteSwatchPicker v-model="entry.wave.color" />
+                </div>
+                <p class="card-styles-stroke-hint">{{ t('cardStyles.waveHint') }}</p>
+              </div>
             </div>
           </v-expand-transition>
         </div>
@@ -326,6 +388,22 @@
   align-items: center;
   padding: 16px;
   border-top: solid 1px rgba(0, 0, 0, 0.08);
+}
+.card-styles-stroke {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+}
+.card-styles-group {
+  font-weight: 600;
+}
+.card-styles-stroke-hint {
+  flex-basis: 100%;
+  margin: 0;
+  font-size: 0.8rem;
+  color: #7A8699;
 }
 .card-styles-field {
   display: flex;

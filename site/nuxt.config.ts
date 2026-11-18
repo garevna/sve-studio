@@ -65,8 +65,11 @@ export default defineNuxtConfig({
         ...(verification ? [{ name: 'google-site-verification', content: verification }] : []),
       ],
       link: [
-        // The site's own logo replaces this once its settings are in (App.vue).
+        // The site's own icons, made from its logo (site/public) - not the
+        // Верф's round badge, which only the Верф wears. The logo itself
+        // replaces the tab's icon once the settings are in (App.vue).
         { rel: 'icon', href: `${process.env.SVE_ROOT || '/'}favicon.ico`, key: 'favicon' },
+        { rel: 'apple-touch-icon', href: `${process.env.SVE_ROOT || '/'}apple-touch-icon.png`, sizes: '180x180' },
         { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css' },
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
         { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },

@@ -380,6 +380,9 @@
   position: absolute;
   inset: 0;
   display: flex;
+  /* the name's size is a share of the picture's width (cqw), as on the site
+     it is of the screen's: here the picture is narrower than the screen */
+  container-type: inline-size;
   padding: 48px 36px;
   pointer-events: none;
 }
@@ -408,11 +411,11 @@
 /* Same size rule as the site - the name's size (header.titleSize): a multiple of the h1's own 96px,
    never wider than the screen allows - a big name wraps, it doesn't spill. */
 .hero-name {
-  font-size: min(calc(96px * var(--title-scale, 1)), 14vw);
+  font-size: min(calc(96px * var(--title-scale, 1)), 14cqw);
 }
 @media screen and (max-width: 600px) {
   .hero-name {
-    font-size: min(calc(68px * var(--title-scale, 1)), 14vw);
+    font-size: min(calc(68px * var(--title-scale, 1)), 14cqw);
   }
 }
 /* Same rule as the site: a decorative font keeps its own weight. */
@@ -446,6 +449,19 @@
 }
 .rounded-border-image {
   border-radius: var(--v-default-border-radius);
+}
+/* On a narrower screen, the site's proportions (parallax.css: 60% of the
+   width up to 960px, 120% on a phone) - the picture's own, wide ones made
+   a thin strip there, the name and the panel spilling over it. */
+@media screen and (max-width: 960px) {
+  .rounded-border-image :deep(.v-responsive__sizer) {
+    padding-bottom: 60% !important;
+  }
+}
+@media screen and (max-width: 520px) {
+  .rounded-border-image :deep(.v-responsive__sizer) {
+    padding-bottom: 120% !important;
+  }
 }
 
 /*

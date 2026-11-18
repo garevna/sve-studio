@@ -1,5 +1,6 @@
 import type { ButtonEntry, ButtonStateStyle } from './button-style-entry'
 import { BUTTON_CATALOG, templateOf } from '@/configs/button-catalog'
+import { SITE_STYLE_BUTTON_KIND } from '@/configs/site-style'
 import { serializeButtonEntries } from './button-style-entry'
 
 // The client's own buttons - their "arsenal": each one a kind from our
@@ -115,9 +116,13 @@ export function kindClass (templateId: string): string {
   return `button-kind-${templateId}`
 }
 
+const SITE_STYLE_KINDS = new Set(Object.values(SITE_STYLE_BUTTON_KIND).filter(Boolean))
+
 function kindsCss (buttons: SetButton[]): string {
   return BUTTON_CATALOG
-    .filter(template => template.component)
+    // the site styles' kinds too (configs/site-style.ts) - a page's button
+    // with no button of its own takes the site style's
+    .filter(template => template.component || SITE_STYLE_KINDS.has(template.id))
     .map(template => {
       const own = buttons.find(button => button.template === template.id) ?? newSetButton(template.id, '', [])
       return buttonCss({ ...own, className: kindClass(template.id) })

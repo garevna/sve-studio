@@ -388,6 +388,78 @@ ${NO_MOTION([`.${c}::before`])}`
   to { background-position: 100% 50%; }
 }`,
   },
+  {
+    // «Штрих», as for cards (utils/card-style-entry.ts): no frame, two
+    // opposite corners in a line that fades out halfway along the edges.
+    // The line is the button's own border (its colour and width, as set in
+    // the UI Kit), drawn as a ring over it - a transparent button stays
+    // transparent. Top-left and bottom-right; on hover the other two, in
+    // the hover border's colour.
+    id: 'stroke',
+    name: 'buttonSet.kind.stroke',
+    look: {
+      base: { background: 'transparent', color: 'primary', border: line('solid', 2, 'primary'), borderRadius: 'var(--default-border-radius)' },
+      hover: { color: 'secondary', border: line('solid', 2, 'secondary') },
+      disabled: { color: 'grey', border: line('solid', 2, 'grey') },
+    },
+    own: ['position: relative', 'isolation: isolate', 'transition: color 0.3s ease'],
+    extra: (c, entry) => {
+      const width = entry.base.border?.width || 2
+      const ring = (direction: string, color: string) => `linear-gradient(${direction}, ${color}, transparent 50%, ${color})`
+      const base = colorOf(entry.base.border?.color, 'primary')
+      const hover = colorOf(entry.hover.border?.color || entry.base.border?.color, 'secondary')
+      const off = colorOf(entry.disabled.border?.color || entry.base.border?.color, 'grey')
+      return `${ABOVE_EFFECT(c)}
+
+/* the border keeps its width (the button's size), its colour goes to the ring */
+.${c},
+.${c}:hover,
+.${c}:focus-visible,
+.${c}:disabled {
+  border-color: transparent !important;
+}
+
+.${c}::before,
+.${c}::after {
+  content: "";
+  position: absolute;
+  inset: -${width}px;
+  z-index: 0;
+  padding: ${width}px;
+  border-radius: inherit;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.${c}::before {
+  background: ${ring('to bottom right', base)};
+}
+
+.${c}::after {
+  background: ${ring('to bottom left', hover)};
+  opacity: 0;
+}
+
+.${c}:hover::before,
+.${c}:focus-visible::before {
+  opacity: 0;
+}
+
+.${c}:hover::after,
+.${c}:focus-visible::after {
+  opacity: 1;
+}
+
+.${c}:disabled::before {
+  background: ${ring('to bottom right', off)};
+}
+
+${NO_MOTION([`.${c}::before`, `.${c}::after`], 'transition: none;')}`
+    },
+  },
 ]
 
 // The sign-in buttons' starting look is the sign-in page's own, so taking

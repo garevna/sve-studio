@@ -3,7 +3,8 @@
   import type { CardStyleEntry } from '@/utils/card-style-entry'
   import { computed, ref } from 'vue'
   import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
-  import { CARD_STYLE_BY_VARIANT } from '@/configs/card-style'
+  import { useSiteStyle } from '@/composables/useSiteStyle'
+  import { CARD_STYLE_BY_SITE_STYLE, CARD_STYLE_BY_VARIANT } from '@/configs/card-style'
   import { t } from '@/i18n'
   import { useAjaxStore } from '@/stores/ajax'
   import { cardStyleInline, extractCardStyles } from '@/utils/card-style-entry'
@@ -26,7 +27,11 @@
     styles.value = extractCardStyles(await ajaxStore.getStyleFile('cards.css') ?? '').entries
   }
 
-  const variantStyle = computed(() => CARD_STYLE_BY_VARIANT[props.block.ver || 2])
+  // What a block with no style of its own wears: the site style's card
+  // (UI Kit > Стиль сайту), or else its variant's.
+  const siteStyle = useSiteStyle()
+  const bySiteStyle = computed(() => CARD_STYLE_BY_SITE_STYLE[siteStyle.style.value])
+  const variantStyle = computed(() => bySiteStyle.value || CARD_STYLE_BY_VARIANT[props.block.ver || 2])
 
   /* eslint-disable vue/no-mutating-props */
   function pick (className: string | undefined) {
@@ -60,7 +65,7 @@
           @click="pick(undefined)"
           @keydown.enter="pick(undefined)"
         >
-          {{ t('cardStyles.byVariant') }}
+          {{ bySiteStyle ? t('cardStyles.bySiteStyle') : t('cardStyles.byVariant') }}
           <span v-if="variantStyle" class="card-style-menu-sub">
             ({{ styles.find(entry => entry.className === variantStyle)?.label || variantStyle }})
           </span>

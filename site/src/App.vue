@@ -24,6 +24,7 @@
   import { siteStyles } from './configs/card-style'
   import { FOOTER_FINAL_FRAME, FOOTER_HORIZON, resolveFooterVariant } from './configs/footer-variants'
   import { HERO_SPLIT_VARIANT, HERO_WITH_TITLE_VARIANT } from './configs/header-layout'
+  import { applySiteStyle } from './configs/site-style'
   import { setClientApiDocument } from './services/dock'
   import { loadCountryList } from './services/load-country-list'
   import { getClientApi, getFooter, getMenu, getPage, getPageTitles, getPalette, getPopups, getSeoSettings, getSiteSettings } from './services/site-data'
@@ -68,6 +69,23 @@
   const footerVariant = computed(() => resolveFooterVariant(dynamicFooterContent.value?.ver))
   const footerBackground = computed(() => `var(--${dynamicFooterContent.value?.background || 'primary'})`)
 
+  // Whether the footer is on screen - the «Хвиля» style raises its wave
+  // then on a phone, where nothing hovers (content/styles/site-styles.css).
+  const footerRef = ref<{ $el?: Element } | null>(null)
+  const footerInView = ref(false)
+  let footerObserver: IntersectionObserver | null = null
+  watch(footerRef, footer => {
+    footerObserver?.disconnect()
+    const element = footer?.$el
+    if (!element || typeof IntersectionObserver === 'undefined') {
+      return
+    }
+    footerObserver = new IntersectionObserver(([entry]) => {
+      footerInView.value = !!entry?.isIntersecting
+    }, { threshold: 0.3 })
+    footerObserver.observe(element)
+  })
+
   const headerVisibility = computed(() => dynamicPageContent.value?.hero)
 
   // Layout 2: the banner with the company name comes first and the menu bar
@@ -108,6 +126,8 @@
       document.documentElement.style.setProperty(`--${name}`, value)
     }
     commonStore.setGlobalSettings(settings)
+    // The site's style (UI Kit): its class on <html> - configs/site-style.ts.
+    applySiteStyle(document.documentElement, settings.siteStyle)
     // A menu item leading to a page says the page's name (utils/page-title.ts).
     commonStore.mainMenuContent = withMenuLabels(menu, pageTitles.titles as Record<string, PageTitle>, commonStore.siteLocales, commonStore.defaultLocale, pageTitles.hidden)
     commonStore.dynamicFooterContent = footer
@@ -269,6 +289,7 @@
     loadCountryList(locale.value)
   })
   onBeforeUnmount(() => {
+    footerObserver?.disconnect()
     window.removeEventListener('message', onEditorMessage)
     window.removeEventListener('resize', commonStore.resize)
   })
@@ -338,7 +359,8 @@
     <v-footer
       v-if="dynamicFooterContent?.visible !== false"
       id="app-footer"
-      :class="['app-footer mt-4 py-8', `app-footer--v${footerVariant}`]"
+      ref="footerRef"
+      :class="['app-footer mt-4 py-8', `app-footer--v${footerVariant}`, { 'app-footer--in-view': footerInView }]"
       :style="{ backgroundColor: footerBackground, '--footer-bg': footerBackground }"
     >
       <!-- The look the footer's own `ver` picks (configs/footer-variants.ts). -->

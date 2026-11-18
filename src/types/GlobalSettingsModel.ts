@@ -21,6 +21,8 @@ export interface GlobalSettingsModel {
   // The owner's legal name per language (a sole proprietor, a company),
   // shown next to the copyright. Absent or empty: the copyright alone.
   legalName?: Record<string, string>
+  // The site's style - «Класика», «Штрих», «Хвиля» (configs/site-style.ts).
+  siteStyle?: 'classic' | 'stroke' | 'wave'
   logo: {
     src: string
     width: number

@@ -10,14 +10,21 @@ export const CARD_STYLE_BY_VARIANT: Record<number, string> = {
   4: 'card-filled',
 }
 
-export function resolveCardStyle (cardStyle: string | undefined, ver: number): string {
-  return cardStyle || CARD_STYLE_BY_VARIANT[ver] || ''
+// The site's style (configs/site-style.ts) has a card of its own - a block
+// that names no style takes it, before its variant's.
+export const CARD_STYLE_BY_SITE_STYLE: Record<string, string> = {
+  stroke: 'card-stroke',
+  wave: 'card-wave',
+}
+
+export function resolveCardStyle (cardStyle: string | undefined, ver: number, siteStyle?: string): string {
+  return cardStyle || (siteStyle && CARD_STYLE_BY_SITE_STYLE[siteStyle]) || CARD_STYLE_BY_VARIANT[ver] || ''
 }
 
 // UI Kit stylesheets the site always needs, whatever global.json's `styles`
 // list says - a list saved before the file existed would otherwise leave
 // every card unstyled.
-export const UI_KIT_STYLES = ['cards', 'button-set', 'popups']
+export const UI_KIT_STYLES = ['cards', 'button-set', 'popups', 'site-styles']
 
 export function withUiKitStyles (styles: string[]): string[] {
   return [...styles, ...UI_KIT_STYLES.filter(name => !styles.includes(name))]

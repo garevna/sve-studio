@@ -1,6 +1,7 @@
 <script setup lang="ts">
   import { storeToRefs } from 'pinia'
-  import { computed } from 'vue'
+  import { computed, ref } from 'vue'
+  import { useWaveEdge, WAVE_DEPTH, type WaveEdge } from '../../composables/useWaveEdge'
   import { mobilePanelStyle } from '../../configs/menu-style'
   import { useCommonStore } from '../../stores/common'
   import MobileMenuButton from './MobileMenuButton.vue'
@@ -10,8 +11,16 @@
   // all of it set in the UI Kit (global.json menuStyle.mobile, see
   // configs/menu-style.ts) - where it comes from, its corners and fill,
   // and which rows it has in which order.
-  const { menuStyle } = storeToRefs(useCommonStore())
+  const commonStore = useCommonStore()
+  const { menuStyle } = storeToRefs(commonStore)
   const look = computed(() => menuStyle.value.mobile)
+
+  // In the «Хвиля» style the panel's inner edge is a wave (useWaveEdge):
+  // the side facing the page - none for a panel over the whole screen.
+  const WAVE_SIDE: Record<string, WaveEdge | null> = { right: 'left', left: 'right', bottom: 'top', full: null }
+  const waveEdge = computed(() => commonStore.siteStyle === 'wave' ? WAVE_SIDE[look.value.placement] ?? null : null)
+  const panel = ref<HTMLElement | null>(null)
+  useWaveEdge(panel, () => waveEdge.value)
 
   const mobileMenuState = defineModel({ default: false })
 
@@ -41,8 +50,9 @@
       beside a smaller panel closes the menu. -->
     <div class="mobile-menu-stage" @click.self="close">
       <nav
-        :class="['mobile-menu-panel', `mobile-menu-panel--${look.placement}`]"
-        :style="mobilePanelStyle(look)"
+        ref="panel"
+        :class="['mobile-menu-panel', `mobile-menu-panel--${look.placement}`, { [`mobile-menu-panel--wave-${waveEdge}`]: waveEdge }]"
+        :style="[mobilePanelStyle(look), { '--wave-depth': `${WAVE_DEPTH}px` }]"
       >
         <v-btn
           aria-label="Close"
@@ -109,6 +119,25 @@
 }
 .mobile-menu-panel--right {
   right: 0;
+}
+/* «Хвиля»: room on the wavy side, so the wave cuts nothing but the panel's
+   own fill - the panel grows by it rather than its rows shrinking. */
+.mobile-menu-panel--wave-left {
+  padding-left: var(--wave-depth);
+  width: calc(min(var(--mobile-menu-width, 320px), calc(100% - 48px)) + var(--wave-depth));
+}
+.mobile-menu-panel--wave-right {
+  padding-right: var(--wave-depth);
+  width: calc(min(var(--mobile-menu-width, 320px), calc(100% - 48px)) + var(--wave-depth));
+}
+.mobile-menu-panel--wave-right > .mobile-menu-close {
+  right: calc(8px + var(--wave-depth));
+}
+.mobile-menu-panel--wave-top {
+  padding-top: var(--wave-depth);
+}
+.mobile-menu-panel--wave-top > .mobile-menu-close {
+  top: calc(8px + var(--wave-depth));
 }
 /* Quiet, not black (see the feedback popup's own). */
 .mobile-menu-close {

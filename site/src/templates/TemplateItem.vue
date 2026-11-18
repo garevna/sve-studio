@@ -2,15 +2,16 @@
   import type { TemplateBlockModel } from '../types/common'
   // import type { RouteQueryModel } from '../types/navigation/RouteQueryModel.ts'
   import { storeToRefs } from 'pinia'
-
   import { computed, defineAsyncComponent, ref, shallowRef, watch } from 'vue'
 
   import ButtonIcon from '../components/small/ButtonIcon.vue'
+
   import IconVariant from '../components/small/IconVariant.vue'
   import FeedbackPopup from '../components/template-components/FeedbackPopup.vue'
   // import { scrollByRef } from '@/utils/scroll-by-ref'
   // import { getDynamicPageContent } from '@/services/ajax/get-dynamic-page-content'
   import { useSiteNavigation } from '../composables/site-navigation'
+  import { siteStyleButtonClass } from '../configs/site-style'
 
   import { getImageURL } from '../services/get-image-url'
   import { useCommonStore } from '../stores/common'
@@ -20,7 +21,10 @@
   import ErrorComponent from './ErrorComponent.vue'
   import LoadingComponent from './LoadingComponent.vue'
 
-  const { locale, defaultLocale } = storeToRefs(useCommonStore())
+  const commonStore = useCommonStore()
+  const { locale, defaultLocale } = storeToRefs(commonStore)
+  // see TemplateCard.vue: the editor's own store has no siteStyle
+  const siteStyle = computed(() => commonStore.siteStyle)
   const { linkPath, follow } = useSiteNavigation()
 
   const props = defineProps<{ item: TemplateBlockModel }>()
@@ -68,13 +72,14 @@
   }
 
   // The look picked in the editor is one of the UI Kit's button classes
-  // (buttons.css) - every one of them has "button" in its name. primary-button is only the fallback for a block that has
-  // none - added on top of another look it would mix the two (its blue
+  // (buttons.css) - every one of them has "button" in its name. A block that
+  // has none wears the site style's button (configs/site-style.ts) -
+  // primary-button in «Класика» - added on top of another look it would mix the two (its blue
   // background under an outlined button), while the editor shows the
   // picked one alone.
   const buttonClass = computed(() => {
     const own = props.item.class || ''
-    return own.split(' ').some(token => token.includes('button')) ? own : ['primary-button', own]
+    return own.split(' ').some(token => token.includes('button')) ? own : [siteStyleButtonClass(siteStyle.value), own]
   })
 
   // An icon button's tooltip, in this language or the site's main one.

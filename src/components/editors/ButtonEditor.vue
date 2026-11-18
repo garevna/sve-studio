@@ -10,6 +10,8 @@
   import { lookNeedsIcon } from '@/composables/useButtonVariants'
   import { useEditorMode } from '@/composables/useEditorMode'
   import { useSitePopups } from '@/composables/useSitePopups'
+  import { useSiteStyle } from '@/composables/useSiteStyle'
+  import { siteStyleButtonClass } from '@/configs/site-style'
   import { t } from '@/i18n'
   import { useUiFeedbackStore } from '@/stores/ui-feedback'
   import { buttonLinkSummary } from '@/utils/button-link-summary'
@@ -54,6 +56,12 @@
   // icon window straight away, and until there is an icon the field says
   // why it is wanted.
   const needsIcon = computed(() => lookNeedsIcon(className.value))
+  // As on the site (TemplateItem): a button with none of the set's buttons
+  // picked wears the site style's button (UI Kit > Стиль сайту).
+  const siteStyle = useSiteStyle()
+  const shownClass = computed(() => className.value.split(' ').some(token => token.includes('button'))
+    ? className.value
+    : [siteStyleButtonClass(siteStyle.style.value), className.value])
   const iconEditorRef = ref<{ openMenu: () => void } | null>(null)
   watch(needsIcon, (now, before) => {
     if (now && !before && !icon.value) {
@@ -92,7 +100,7 @@
         never actually be edited in place - and a field next to the icon and
         the link is where the rest of what this button says already lives. -->
       <div class="button-editor-face-slot">
-        <v-btn :class="className">
+        <v-btn :class="shownClass">
           <ButtonIcon v-if="icon" :icon="icon" />
           {{ content }}
         </v-btn>

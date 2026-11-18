@@ -12,7 +12,98 @@ export interface CardStyleEntry {
   border: string // palette border key, 'none', or '' (not set)
   radius: string // palette radius key, '0', or '' (not set)
   shadow: string // CARD_SHADOWS key, or a literal value read from the file
+  // «Штрих»: instead of a frame, two opposite corners drawn in a line that
+  // fades out along the edges - full colour at the corner, gone halfway.
+  stroke: CardStroke | null
+  // «Хвиля»: on hover a wave of colour rises from the bottom and fills the
+  // card - the motion of the «Хвиля» button (configs/button-catalog.ts).
+  wave: CardWave | null
   raw: CssDeclaration[]
+}
+
+export interface CardWave {
+  color: string // palette colour key - a light one keeps the text readable
+}
+
+// The wave is the card's ::before, behind its content; its colour is kept
+// as a custom property, the rules for it are written from it.
+const WAVE_COLOR = '--card-wave-color'
+const WAVE_OWN = ['position', 'overflow', 'isolation']
+
+function waveNodes (className: string): CssNode[] {
+  const c = `.${className}`
+  return [
+    { kind: 'rule', selectors: [`${c}::before`], declarations: [
+      ['content', '""'],
+      ['position', 'absolute'],
+      ['left', '50%'],
+      ['top', '105%'],
+      ['z-index', '-1'],
+      ['width', '220%'],
+      ['aspect-ratio', '1'],
+      ['border-radius', '42%'],
+      ['background', `var(${WAVE_COLOR})`],
+      ['transform', 'translateX(-50%) rotate(0deg)'],
+      ['transition', 'top 0.9s ease, transform 1.4s ease'],
+      ['pointer-events', 'none'],
+    ].map(([property, value]) => ({ property: property as string, value: value as string, important: false })) },
+    { kind: 'rule', selectors: [`${c}:hover::before`, `${c}:focus-within::before`], declarations: [
+      { property: 'top', value: '-60%', important: false },
+      { property: 'transform', value: 'translateX(-50%) rotate(180deg)', important: false },
+    ] },
+    { kind: 'raw', text: `@media (prefers-reduced-motion: reduce) {\n  ${c}::before {\n    transition: none;\n  }\n}` },
+  ]
+}
+
+// The wave's own rules, as read back from the file - written anew from
+// the entry, so not kept as they were.
+function isWaveNode (node: CssNode, className: string): boolean {
+  const c = `.${className}`
+  if (node.kind === 'rule') {
+    return node.selectors.every(selector => selector.startsWith(`${c}::before`) || selector.startsWith(`${c}:hover::before`) || selector.startsWith(`${c}:focus-within::before`))
+  }
+  return node.text.includes('prefers-reduced-motion') && node.text.includes(`${c}::before`)
+}
+
+export type StrokeCorners = 'tl-br' | 'tr-bl'
+
+export interface CardStroke {
+  color: string // palette colour key
+  width: number // px
+  corners: StrokeCorners
+}
+
+export const STROKE_WIDTHS = [1, 2, 3, 4, 6]
+
+// The line is the card's border, painted with a corner-to-corner gradient
+// (border-box), the card's fill laid over it (padding-box) - so it follows
+// rounded corners and needs no extra element. Its settings are kept as
+// custom properties; background and border are written from them.
+const STROKE_COLOR = '--card-stroke-color'
+const STROKE_WIDTH = '--card-stroke-width'
+const STROKE_CORNERS = '--card-stroke-corners'
+const STROKE_FILL = '--card-stroke-fill'
+
+// A palette key holding a gradient is an image already; a colour is made
+// one, as a layer under a gradient must be. No fill: white, or the line's
+// gradient would show through the whole card.
+function fillLayer (key: string): string {
+  if (!key || key === 'transparent') {
+    return 'linear-gradient(var(--white), var(--white))'
+  }
+  return key.includes('gradient') ? `var(--${key})` : `linear-gradient(var(--${key}), var(--${key}))`
+}
+
+function strokeDeclarations (stroke: CardStroke, background: string): [string, string][] {
+  const direction = stroke.corners === 'tl-br' ? 'to bottom right' : 'to bottom left'
+  return [
+    [STROKE_COLOR, stroke.color],
+    [STROKE_WIDTH, String(stroke.width)],
+    [STROKE_CORNERS, stroke.corners],
+    [STROKE_FILL, background || 'none'],
+    ['border', `${stroke.width}px solid transparent`],
+    ['background', `${fillLayer(background)} padding-box, linear-gradient(${direction}, var(--${stroke.color}), transparent 50%, var(--${stroke.color})) border-box`],
+  ]
 }
 
 export const CARD_SHADOWS: Record<string, string> = {
@@ -40,6 +131,25 @@ function unquote (value: string): string {
   return value.trim().replace(/^["']|["']$/g, '')
 }
 
+// «Штрих» and «Хвиля» are kept as custom properties; read back from them.
+function readEffects (entry: CardStyleEntry, declarations: CssDeclaration[]) {
+  const declared = (property: string) => declarations.find(item => item.property === property)?.value.trim()
+  const strokeColor = declared(STROKE_COLOR)
+  if (strokeColor) {
+    entry.stroke = {
+      color: strokeColor,
+      width: Number(declared(STROKE_WIDTH)) || 2,
+      corners: declared(STROKE_CORNERS) === 'tr-bl' ? 'tr-bl' : 'tl-br',
+    }
+    const fill = declared(STROKE_FILL)
+    entry.background = fill && fill !== 'none' ? fill : ''
+  }
+  const waveColor = declared(WAVE_COLOR)
+  if (waveColor) {
+    entry.wave = { color: varKey(waveColor) ?? waveColor }
+  }
+}
+
 export function extractCardStyles (cssText: string): { entries: CardStyleEntry[], otherNodes: CssNode[] } {
   const entries: CardStyleEntry[] = []
   const otherNodes: CssNode[] = []
@@ -49,10 +159,15 @@ export function extractCardStyles (cssText: string): { entries: CardStyleEntry[]
       otherNodes.push(node)
       continue
     }
-    const entry: CardStyleEntry = { className, label: className, background: '', border: '', radius: '', shadow: '', raw: [] }
+    const entry: CardStyleEntry = { className, label: className, background: '', border: '', radius: '', shadow: '', stroke: null, wave: null, raw: [] }
+    readEffects(entry, node.declarations)
     for (const declaration of node.declarations) {
       const { property, value } = declaration
-      if (property === LABEL_PROPERTY) {
+      if (entry.stroke && [STROKE_COLOR, STROKE_WIDTH, STROKE_CORNERS, STROKE_FILL, 'background', 'border'].includes(property)) {
+        // written from the stroke's settings (strokeDeclarations)
+      } else if (entry.wave && [WAVE_COLOR, ...WAVE_OWN].includes(property)) {
+        // written from the wave's settings (cardStyleDeclarations)
+      } else if (property === LABEL_PROPERTY) {
         entry.label = unquote(value) || className
       } else if (property === 'background' && varKey(value)) {
         entry.background = varKey(value) as string
@@ -69,24 +184,37 @@ export function extractCardStyles (cssText: string): { entries: CardStyleEntry[]
     }
     entries.push(entry)
   }
-  return { entries, otherNodes }
+  const waved = entries.filter(entry => entry.wave).map(entry => entry.className)
+  return { entries, otherNodes: otherNodes.filter(node => !waved.some(className => isWaveNode(node, className))) }
 }
 
 export function cardStyleDeclarations (entry: CardStyleEntry): CssDeclaration[] {
   const declarations: CssDeclaration[] = []
   const add = (property: string, value: string) => declarations.push({ property, value, important: false })
   add(LABEL_PROPERTY, JSON.stringify(entry.label))
-  if (entry.background) {
-    add('background', entry.background === 'transparent' ? 'transparent' : `var(--${entry.background})`)
-  }
-  if (entry.border) {
-    add('border', entry.border === 'none' ? 'none' : `var(--${entry.border})`)
+  if (entry.stroke) {
+    for (const [property, value] of strokeDeclarations(entry.stroke, entry.background)) {
+      add(property, value)
+    }
+  } else {
+    if (entry.background) {
+      add('background', entry.background === 'transparent' ? 'transparent' : `var(--${entry.background})`)
+    }
+    if (entry.border) {
+      add('border', entry.border === 'none' ? 'none' : `var(--${entry.border})`)
+    }
   }
   if (entry.radius) {
     add('border-radius', entry.radius === '0' ? '0' : `var(--${entry.radius})`)
   }
   if (entry.shadow) {
     add('box-shadow', CARD_SHADOWS[entry.shadow] ?? entry.shadow)
+  }
+  if (entry.wave) {
+    add(WAVE_COLOR, `var(--${entry.wave.color})`)
+    add('position', 'relative')
+    add('overflow', 'hidden')
+    add('isolation', 'isolate')
   }
   declarations.push(...entry.raw)
   return declarations
@@ -104,6 +232,9 @@ export function cardStyleInline (entry: CardStyleEntry): Record<string, string> 
 }
 
 export function serializeCardStyles (entries: CardStyleEntry[], otherNodes: CssNode[]): string {
-  const nodes: CssNode[] = entries.map(entry => ({ kind: 'rule', selectors: [`.${entry.className}`], declarations: cardStyleDeclarations(entry) }))
+  const nodes: CssNode[] = entries.flatMap(entry => [
+    { kind: 'rule', selectors: [`.${entry.className}`], declarations: cardStyleDeclarations(entry) } as CssNode,
+    ...(entry.wave ? waveNodes(entry.className) : []),
+  ])
   return `${FILE_HEADER}\n${serializeCss([...nodes, ...otherNodes])}\n`
 }

@@ -19,6 +19,7 @@ import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 import { resolveHeaderSettings, resolveHeroVariant } from '@/configs/header-layout'
 import { type MenuStyleModel, resolveMenuStyle } from '@/configs/menu-style'
+import { resolveSiteStyle, type SiteStyle } from '@/configs/site-style'
 
 import { popularTrips } from '../configs/popular-trips'
 
@@ -81,6 +82,8 @@ export const useCommonStore = defineStore('common', () => {
   const headerSettings = ref<HeaderSettingsModel>(resolveHeaderSettings())
   // The menus' look (global.json menuStyle) - see configs/menu-style.ts.
   const menuStyle = ref<MenuStyleModel>(resolveMenuStyle())
+  // The site's style (global.json siteStyle) - configs/site-style.ts.
+  const siteStyle = ref<SiteStyle>(resolveSiteStyle(undefined))
   // Phones, emails, the address (global.json contacts).
   const contacts = ref<SiteContact[]>([])
   // Where the feedback forms send (global.json feedback.endpoint).
@@ -202,6 +205,7 @@ export const useCommonStore = defineStore('common', () => {
     company.value = Object.assign({}, { name: provider, legalName, logo, logoWhite, links, icons, baner })
     applyHeaderSettings(response)
     menuStyle.value = resolveMenuStyle(response.menuStyle)
+    siteStyle.value = resolveSiteStyle(response.siteStyle)
     contacts.value = Array.isArray(response.contacts) ? response.contacts : []
     feedbackEndpoint.value = response.feedback?.endpoint || ''
     aiEndpoint.value = response.ai?.endpoint || ''
@@ -279,6 +283,7 @@ export const useCommonStore = defineStore('common', () => {
     heroVariant,
     headerSettings,
     menuStyle,
+    siteStyle,
     contacts,
     feedbackEndpoint,
     aiEndpoint,

@@ -120,6 +120,11 @@
       "en": "Shimmering",
       "de": "Farbverlauf"
     },
+    "stroke": {
+      "uk": "Штрих",
+      "en": "",
+      "de": ""
+    },
     "signInGoogle": {
       "uk": "Вхід через Google",
       "en": "Sign in with Google",

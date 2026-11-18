@@ -1,0 +1,80 @@
+/* The site's styles - «Класика», «Штрих», «Хвиля» (UI Kit > Стиль сайту,
+   configs/site-style.ts). The site wears the chosen one as a class on
+   <html>: site-style-classic, site-style-stroke, site-style-wave. Here: what
+   the parts that have no look of their own become in each. Cards and
+   buttons take theirs from cards.css and button-set.css (the style's card
+   and button); this file has the rest.
+   «Класика» is the site as it always was - nothing here.
+   The footer is .app-footer on the site and .footer-editor-root in the
+   editor; its columns are .footer-column in both. */
+
+/* ---- «Штрих»: the footer's columns framed by two opposite corners ---- */
+
+.site-style-stroke :is(.app-footer, .footer-editor-root) .footer-column {
+  position: relative;
+  padding: 20px 24px;
+}
+
+.site-style-stroke :is(.app-footer, .footer-editor-root) .footer-column::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 2px;
+  border-radius: var(--default-border-radius);
+  /* shorter than a card's: a column has no fill of its own, and a line
+     fading only at the middle read as a whole frame */
+  background: linear-gradient(to bottom right, var(--white), transparent 30% 70%, var(--white));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* ---- «Хвиля»: a wave of colour rises over the footer ---- */
+
+/* How high the wave stands, 0% to 100% of the footer - animated. */
+@property --site-wave-level {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 0%;
+}
+
+.site-style-wave :is(.app-footer, .footer-editor-root) {
+  position: relative;
+  isolation: isolate;
+}
+
+/* Drawn inside the footer's own box (the "Горизонт" footer's wave sits
+   above the box, so the footer is never clipped): an ellipse standing on
+   the footer's bottom edge, its top the wave's crest. */
+.site-style-wave :is(.app-footer, .footer-editor-root)::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: radial-gradient(160% calc(var(--site-wave-level) * 2.2) at 50% 100%, color-mix(in srgb, var(--secondary) 55%, transparent) 99%, transparent 100%);
+  transition: --site-wave-level 1.1s ease;
+  pointer-events: none;
+}
+
+/* With a mouse: while it is over the footer. */
+@media (hover: hover) {
+  .site-style-wave :is(.app-footer, .footer-editor-root):hover::before {
+    --site-wave-level: 100%;
+  }
+}
+
+/* On a phone: once the footer is on screen (the site sets the class). */
+@media (hover: none) {
+  .site-style-wave .app-footer.app-footer--in-view::before {
+    --site-wave-level: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-style-wave :is(.app-footer, .footer-editor-root)::before {
+    transition: none;
+  }
+}

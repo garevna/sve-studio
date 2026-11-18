@@ -20,6 +20,7 @@ export const STYLE_FILE_TITLES: Record<string, string> = {
   'parallax.css': 'styleFiles.parallaxCss',
   'popups.css': 'styleFiles.popupsCss',
   'root.css': 'styleFiles.rootCss',
+  'site-styles.css': 'styleFiles.siteStylesCss',
   'search-for-trip.css': 'styleFiles.searchForTripCss',
   'typographics.css': 'styleFiles.typographicsCss',
   'user-dashboard.css': 'styleFiles.userDashboardCss',

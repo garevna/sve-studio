@@ -412,6 +412,165 @@
   }
 }
 
+.button-kind-wave {
+  font-family: var(--main-font) !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  text-transform: none !important;
+  letter-spacing: normal !important;
+  box-shadow: none !important;
+  border-radius: var(--default-border-radius) !important;
+  padding: 12px 24px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transition: color 0.45s ease;
+}
+
+.button-kind-wave {
+  background: transparent !important;
+  color: var(--primary) !important;
+  border: solid 1px var(--primary) !important;
+  border-radius: var(--default-border-radius) !important;
+}
+
+.button-kind-wave:hover {
+  background: transparent !important;
+  color: var(--white) !important;
+}
+
+.button-kind-wave:disabled {
+  color: var(--grey) !important;
+  border: solid 1px var(--grey) !important;
+}
+
+.button-kind-wave > .v-btn__content {
+  position: relative;
+  z-index: 1;
+}
+
+.button-kind-wave::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 110%;
+  z-index: 0;
+  width: 170%;
+  aspect-ratio: 1;
+  border-radius: 42%;
+  background: var(--primary);
+  transform: translateX(-50%) rotate(0deg);
+  transition: top 0.8s ease, transform 1.2s ease;
+  pointer-events: none;
+}
+
+.button-kind-wave:hover::before,
+.button-kind-wave:focus-visible::before {
+  top: -80%;
+  transform: translateX(-50%) rotate(180deg);
+}
+
+.button-kind-wave:disabled::before {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button-kind-wave::before {
+    transition: none;
+  }
+}
+
+.button-kind-stroke {
+  font-family: var(--main-font) !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  text-transform: none !important;
+  letter-spacing: normal !important;
+  box-shadow: none !important;
+  border-radius: var(--default-border-radius) !important;
+  padding: 12px 24px;
+  width: 100%;
+  position: relative;
+  isolation: isolate;
+  transition: color 0.3s ease;
+}
+
+.button-kind-stroke {
+  background: transparent !important;
+  color: var(--primary) !important;
+  border: solid 2px var(--primary) !important;
+  border-radius: var(--default-border-radius) !important;
+}
+
+.button-kind-stroke:hover {
+  color: var(--secondary) !important;
+  border: solid 2px var(--secondary) !important;
+}
+
+.button-kind-stroke:disabled {
+  color: var(--grey) !important;
+  border: solid 2px var(--grey) !important;
+}
+
+.button-kind-stroke > .v-btn__content {
+  position: relative;
+  z-index: 1;
+}
+
+/* the border keeps its width (the button's size), its colour goes to the ring */
+.button-kind-stroke,
+.button-kind-stroke:hover,
+.button-kind-stroke:focus-visible,
+.button-kind-stroke:disabled {
+  border-color: transparent !important;
+}
+
+.button-kind-stroke::before,
+.button-kind-stroke::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  z-index: 0;
+  padding: 2px;
+  border-radius: inherit;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.button-kind-stroke::before {
+  background: linear-gradient(to bottom right, var(--primary), transparent 50%, var(--primary));
+}
+
+.button-kind-stroke::after {
+  background: linear-gradient(to bottom left, var(--secondary), transparent 50%, var(--secondary));
+  opacity: 0;
+}
+
+.button-kind-stroke:hover::before,
+.button-kind-stroke:focus-visible::before {
+  opacity: 0;
+}
+
+.button-kind-stroke:hover::after,
+.button-kind-stroke:focus-visible::after {
+  opacity: 1;
+}
+
+.button-kind-stroke:disabled::before {
+  background: linear-gradient(to bottom right, var(--grey), transparent 50%, var(--grey));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button-kind-stroke::before,
+  .button-kind-stroke::after {
+    transition: none;
+  }
+}
+
 .button-kind-sign-in-google {
   font-family: var(--main-font) !important;
   font-size: 16px !important;

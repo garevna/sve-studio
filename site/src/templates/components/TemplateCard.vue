@@ -10,7 +10,12 @@
   import { useCommonStore } from '../../stores/common'
   import TemplateItem from '../TemplateItem.vue'
 
-  const { locale, winSize } = storeToRefs(useCommonStore())
+  const commonStore = useCommonStore()
+  const { locale, winSize } = storeToRefs(commonStore)
+  // read through the store, not storeToRefs: inside the editor a component
+  // of the site may meet the editor's own 'common' store, which has no
+  // siteStyle - then the site's style is «Класика»
+  const siteStyle = computed(() => commonStore.siteStyle)
 
   const props = defineProps<{ item: TemplateBlockModel }>()
 
@@ -52,7 +57,7 @@
   // gets its variant's style. The fill stays an inline override, applied
   // only when the block sets one.
   const cardBackground = computed(() => props.item.cardBackground ? `var(--${props.item.cardBackground})` : undefined)
-  const cardStyleClass = computed(() => resolveCardStyle(props.item.cardStyle, ver.value))
+  const cardStyleClass = computed(() => resolveCardStyle(props.item.cardStyle, ver.value, siteStyle.value))
 
   const alignClass = computed(() => ver.value === 1 ? 'text-center' : 'text-left')
   // ver 4 carries its whole text in the title and nothing below it, so the

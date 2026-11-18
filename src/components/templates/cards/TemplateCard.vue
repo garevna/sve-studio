@@ -2,6 +2,7 @@
   import type { TemplateBlockModel, TranslatedModel } from '@/types/TemplateBlockModel'
   import { computed } from 'vue'
   import IconVariant from '@/components/small/IconVariant.vue'
+  import { useSiteStyle } from '@/composables/useSiteStyle'
   import { resolveCardStyle } from '@/configs/card-style'
   import { useCommonStore } from '@/stores/common'
   import { cardTitleGapClass, defaultCardContentClass, defaultCardTitleClass } from '@/utils/card-text-defaults'
@@ -88,7 +89,8 @@
     const key = props.item.cardBackground || props.defaults?.cardBackground
     return key ? `var(--${key})` : undefined
   })
-  const cardStyleClass = computed(() => resolveCardStyle(props.item.cardStyle || props.defaults?.cardStyle, ver.value))
+  const siteStyle = useSiteStyle()
+  const cardStyleClass = computed(() => resolveCardStyle(props.item.cardStyle || props.defaults?.cardStyle, ver.value, siteStyle.style.value))
   const iconSize = computed(() => (props.item.size ?? 0) > 0 ? props.item.size as number : props.defaults?.size || 52)
 
   // Vertical gap between the icon and the text below it - ver 1 stacks them

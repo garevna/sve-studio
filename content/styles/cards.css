@@ -34,3 +34,51 @@
     border-radius: var(--small-border-radius);
   }
 }
+
+.card-stroke {
+  --card-style-label: "Штрих";
+  --card-stroke-color: primary;
+  --card-stroke-width: 2;
+  --card-stroke-corners: tl-br;
+  --card-stroke-fill: none;
+  border: 2px solid transparent;
+  background: linear-gradient(var(--white), var(--white)) padding-box, linear-gradient(to bottom right, var(--primary), transparent 50%, var(--primary)) border-box;
+  border-radius: var(--default-border-radius);
+}
+
+.card-wave {
+  --card-style-label: "Хвиля";
+  border: var(--light-border);
+  border-radius: var(--default-border-radius);
+  --card-wave-color: var(--light-grey-2);
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.card-wave::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 105%;
+  z-index: -1;
+  width: 220%;
+  aspect-ratio: 1;
+  border-radius: 42%;
+  background: var(--card-wave-color);
+  transform: translateX(-50%) rotate(0deg);
+  transition: top 0.9s ease, transform 1.4s ease;
+  pointer-events: none;
+}
+
+.card-wave:hover::before,
+.card-wave:focus-within::before {
+  top: -60%;
+  transform: translateX(-50%) rotate(180deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-wave::before {
+    transition: none;
+  }
+}

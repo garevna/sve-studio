@@ -1,7 +1,10 @@
 <script lang="ts" setup>
+  import type { SiteStyle } from '@/configs/site-style'
   import { ref } from 'vue'
   import { useRoute } from 'vue-router'
   import EditorPageHeader from '@/components/special/EditorPageHeader.vue'
+  import { useSiteStyle } from '@/composables/useSiteStyle'
+  import { SITE_STYLES } from '@/configs/site-style'
   import { t } from '@/i18n'
   import ButtonPaletteView from '@/views/ButtonPaletteView.vue'
   import ButtonSetView from '@/views/ButtonSetView.vue'
@@ -27,12 +30,32 @@
   const TABS: Tab[] = ['buttons', 'tabs', 'cards', 'footer', 'spacing', 'menu', 'popups', 'date', 'fields']
   const asked = useRoute().query.tab
   const tab = ref<Tab>(TABS.includes(asked as Tab) ? asked as Tab : 'buttons')
+
+  const siteStyle = useSiteStyle()
+  void siteStyle.load()
 </script>
 
 <template>
   <v-app>
     <v-main class="editor-page">
       <EditorPageHeader back-to="/" title="UI Kit" />
+
+      <!-- The site's style: the default look of its cards, buttons and
+        footer (configs/site-style.ts). A part given a look of its own in
+        the tabs below keeps it. -->
+      <div class="ui-kit-site-style">
+        <span class="ui-kit-site-style-label">{{ t('kit.siteStyle') }}</span>
+        <v-btn-toggle
+          class="editor-panel"
+          density="comfortable"
+          mandatory
+          :model-value="siteStyle.style.value"
+          @update:model-value="(value: SiteStyle) => siteStyle.set(value)"
+        >
+          <v-btn v-for="name of SITE_STYLES" :key="name" :value="name">{{ t(`kit.siteStyles.${name}`) }}</v-btn>
+        </v-btn-toggle>
+        <p class="ui-kit-site-style-hint">{{ t('kit.siteStyleHint') }}</p>
+      </div>
 
       <v-tabs
         v-model="tab"
@@ -92,6 +115,25 @@
 </template>
 
 <style scoped>
+.ui-kit-site-style {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px 16px;
+  margin-bottom: 24px;
+}
+.ui-kit-site-style-label {
+  font-weight: 600;
+}
+.ui-kit-site-style-hint {
+  flex-basis: 100%;
+  margin: 0;
+  text-align: center;
+  font-size: 0.8rem;
+  color: #7A8699;
+}
+
 /*
  * A compact centered "pill" panel (width hugs the tabs themselves, not the
  * full page) reads as a distinct, more prominent control than a full-width

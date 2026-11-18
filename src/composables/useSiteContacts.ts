@@ -7,10 +7,12 @@ import { useAjaxStore } from '@/stores/ajax'
 // shows a contact line - loaded once, and updated by the general settings
 // page as they are edited, so a changed number shows everywhere at once.
 const contacts = shallowRef<SiteContact[]>([])
+const loaded = shallowRef(false)
 let loading: Promise<void> | null = null
 
 export function setSiteContacts (list: SiteContact[] | undefined) {
   contacts.value = Array.isArray(list) ? [...list] : []
+  loaded.value = true
 }
 
 export function useSiteContacts () {
@@ -25,5 +27,12 @@ export function useSiteContacts () {
     const contact = contactOf(id, contacts.value)
     return id ? (contact ? contactText(contact, locale) : '') : null
   }
-  return { contacts, lineText }
+  // A contact line whose contact was deleted in the general settings. The
+  // site leaves such a line out; the editor's lists show it marked, so it
+  // can be found and deleted (it used to stay invisible here while the site
+  // still showed its last text).
+  function isMissing (id: string | undefined): boolean {
+    return !!id && loaded.value && !contactOf(id, contacts.value)
+  }
+  return { contacts, lineText, isMissing }
 }

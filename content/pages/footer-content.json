@@ -22,7 +22,7 @@
             "en": "Set sail",
             "de": "In See stechen"
           },
-          "class": "mt-8 mb-6 green-button",
+          "class": "mt-8 mb-6 button-1glzb",
           "icon": "mdi-send-variant-outline",
           "route": "dynamic-page",
           "params": {
@@ -129,6 +129,10 @@
                 "de": "Kontakt"
               },
               "id": "footer-contacts-heading"
+            },
+            {
+              "type": "component",
+              "content": "FooterIcons"
             }
           ]
         },
@@ -176,10 +180,6 @@
               "text": "default-text text-medium text-light-green"
             }
           ]
-        },
-        {
-          "type": "component",
-          "content": "FooterIcons"
         }
       ]
     }

@@ -44,6 +44,7 @@
   const siteContacts = useSiteContacts()
   function getText (item: TemplateBlockModel): string {
     // A contact line shows the contact from the general settings.
+    if (siteContacts.isMissing(item.contact)) return t('contacts.removedLine')
     return siteContacts.lineText(item.contact, commonStore.locale) ?? resolveLocaleText(item.content, commonStore.locale)
   }
   function setText (item: TemplateBlockModel, value: string | undefined) {

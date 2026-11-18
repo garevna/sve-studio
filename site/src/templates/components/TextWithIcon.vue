@@ -24,6 +24,9 @@
   // A contact line (item.contact) shows the contact from global.json and
   // leads to a call / a letter / the map, unless it has a link of its own.
   const contact = computed(() => contactOf(props.item.contact, contacts.value))
+  // Its contact was deleted in the general settings: the line goes too,
+  // rather than showing the last text it was saved with.
+  const gone = computed(() => !!props.item.contact && !contact.value)
   const shownText = computed(() => contact.value ? contactText(contact.value, lang.value) : props.item.content[lang.value])
   const href = computed(() => resolveLink(props.item.link, company.value?.links as Record<string, string> | undefined) || (contact.value ? contactHref(contact.value) : ''))
   const external = computed(() => /^https?:/i.test(href.value))
@@ -32,6 +35,7 @@
 <template>
   <component
     :is="href ? 'a' : 'div'"
+    v-if="!gone"
     :class="['text-with-icon', props.item.class, { 'text-with-icon--link': href }]"
     :href="href || undefined"
     :rel="external ? 'noopener' : undefined"
@@ -63,13 +67,24 @@
   column-gap: 16px;
   align-content: center;
   margin-top: 12px;
+  /* The icon sits on the middle of the text's FIRST line. Centred on the
+     whole row it was not: the text's own bottom margin (mb-4 - the gap set
+     with the spacing button) is part of the row, so the text sat 8px above
+     the icon's middle. Whichever of the two is smaller is moved down by
+     half the difference. */
+  align-items: start;
+}
+.text-with-icon > :first-child {
+  margin-top: max(0px, calc((1lh - v-bind(iconSize)) / 2));
+}
+.text-with-icon > p {
+  margin-top: max(0px, calc((v-bind(iconSize) - 1lh) / 2));
 }
 
 .text-with-icon--link {
   color: inherit;
   text-decoration: none;
   cursor: pointer;
-  align-items: center;
 }
 .text-with-icon--link:hover p {
   text-decoration: underline;

@@ -1,29 +1,37 @@
 <script setup lang="ts">
-  import { computed } from 'vue'
-  // Editor-side preview of client-side's own FooterIcons.vue - a faithful
-  // visual clone (same grid, real click-through to whichever URL is
-  // configured). Links AND icon glyphs both live in global.json
-  // (GlobalSettingsModel.links/socialIcons), a site-wide setting - not this
-  // component's own concern, so both come in as props from whoever calls it
-  // (FooterEditor.vue, which fetches global settings directly). `icons`
-  // falls back to the bundled default SVGs when a network has no custom
-  // glyph set.
+  import { computed, onMounted, ref } from 'vue'
+  // Editor-side preview of the site's FooterIcons.vue - same grid, real
+  // click-through to whichever URL is configured. Links AND icon glyphs both
+  // live in global.json (GlobalSettingsModel.links/socialIcons), a site-wide
+  // setting: read here from the general settings unless a caller hands them
+  // in. `icons` falls back to the bundled default SVGs when a network has no
+  // custom glyph set.
   import { footerIcons } from '@/assets/footer-icons'
   import { SOCIAL_NETWORK_LABELS, SOCIAL_NETWORKS, socialAddress } from '@/configs/social-networks'
   import { t } from '@/i18n'
+  import { useAjaxStore } from '@/stores/ajax'
 
   type PropsModel = { links?: Record<string, string>, icons?: Record<string, string> }
 
   const props = defineProps<PropsModel>()
 
+  const settingsLinks = ref<Record<string, string>>({})
+  const settingsIcons = ref<Record<string, string>>({})
+  onMounted(async () => {
+    const settings = await useAjaxStore().getGlobalSettings()
+    settingsLinks.value = settings?.links || {}
+    settingsIcons.value = settings?.socialIcons || {}
+  })
+  const links = computed(() => props.links ?? settingsLinks.value)
+
   function iconSrc (name: string): string {
-    return props.icons?.[name] || footerIcons[name as keyof typeof footerIcons]
+    return (props.icons ?? settingsIcons.value)[name] || footerIcons[name as keyof typeof footerIcons]
   }
 
   // Real links, as on the site: a web address in a new tab, an app's
   // (viber:, tg:...) handed to the app in place.
   function href (name: string): string | undefined {
-    return socialAddress(name, props.links) || undefined
+    return socialAddress(name, links.value) || undefined
   }
   // As on the site: only the networks with an address (Загальні
   // налаштування -> Соціальні мережі). With none at all the place stays

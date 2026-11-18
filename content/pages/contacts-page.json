@@ -186,7 +186,7 @@
           "type": "card-with-toolbar-image",
           "width": 390,
           "height": 200,
-          "image": "/api/content/images/contacts-page/17.png?v=560f68b5",
+          "image": "/api/content/images/contacts-page/17.png?v=648acbbb",
           "children": [
             {
               "type": "title",

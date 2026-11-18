@@ -85,6 +85,7 @@
     <div class="footer-contacts-list">
       <div
         v-for="(item, index) of section.children"
+        v-show="!siteContacts.isMissing(item.contact)"
         :key="index"
         class="footer-contact-row"
         :style="{ '--icon-size': iconSize(index) + 'px' }"
@@ -114,6 +115,7 @@
   <div v-else class="footer-contacts-list">
     <div
       v-for="(item, index) of section.children"
+      v-show="!siteContacts.isMissing(item.contact)"
       :key="index"
       class="footer-contact-row"
       :style="{ '--icon-size': iconSize(index) + 'px' }"

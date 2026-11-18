@@ -2,40 +2,26 @@
   import { storeToRefs } from 'pinia'
   import { computed } from 'vue'
 
-  import { contactsIcons } from '../../../assets'
-
-  // import facebook from '@/assets/contacts/facebook-color.svg'
-  // import instagram from '@/assets/contacts/instagram-color.svg'
-  // import telegram from '@/assets/contacts/telegram-color.svg'
-  // import viber from '@/assets/contacts/viber-color.svg'
-  // import whatsApp from '@/assets/contacts/whats-app-color.svg'
-  // import tiktok from '@/assets/contacts/tik-tok.svg'
-
+  import { SOCIAL_ICONS } from '../../../configs/social-icons'
+  import { SOCIAL_NETWORK_LABELS, SOCIAL_NETWORKS, socialAddress } from '../../../configs/social-networks'
   import { useCommonStore } from '../../../stores/common'
 
   import LiveChat from '../../small/LiveChat.vue'
 
-  const icons = { ...contactsIcons }
-  const tooltips = {
-    facebook: 'Facebook',
-    instagram: 'Instagram',
-    telegram: 'Telegram',
-    viber: 'Viber',
-    whatsApp: 'Whatsapp',
-    tiktok: 'Tiltok',
-  }
-
   const { company } = storeToRefs(useCommonStore())
 
-  const links = computed(() => company.value?.links || {})
-
-  const items = computed(() => {
-    return Object.keys(links.value).map(key => ({
-      tooltip: tooltips[key as keyof typeof tooltips],
-      icon: icons[key as keyof typeof icons],
-      link: links.value[key as keyof typeof links.value] as string | undefined,
-    })).filter(item => item.link)
-  })
+  // Every network with an address in the general settings (Загальні
+  // налаштування -> Соціальні мережі), in the settings' order, with the
+  // network's own colour icon - the same list, names and addresses as the
+  // footer (configs/social-networks.ts), so a network added there shows
+  // here too.
+  const items = computed(() => SOCIAL_NETWORKS
+    .map(network => ({
+      tooltip: SOCIAL_NETWORK_LABELS[network],
+      icon: SOCIAL_ICONS[network].color || SOCIAL_ICONS[network].mono,
+      link: socialAddress(network, company.value?.links as Record<string, string> | undefined),
+    }))
+    .filter(item => item.link))
 
   // function callback () {}
 

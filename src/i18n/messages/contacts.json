@@ -72,5 +72,10 @@
     "uk": "Текст контакту змінюється в загальних налаштуваннях.",
     "en": "The contact text is changed in the general settings.",
     "de": "Der Kontakttext wird in den allgemeinen Einstellungen geändert."
+  },
+  "removedLine": {
+    "uk": "Контакт видалено в загальних налаштуваннях — на сайті цього рядка немає. Видаліть його.",
+    "en": "",
+    "de": ""
   }
 }

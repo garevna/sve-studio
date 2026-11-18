@@ -102,10 +102,78 @@
       "disabled": {
         "opacity": 30
       }
+    },
+    {
+      "className": "button-2hlyg",
+      "name": "Пульс, контурна",
+      "template": "pulse-outlined",
+      "base": {
+        "background": "transparent",
+        "color": "light-grey-2",
+        "border": {
+          "style": "solid",
+          "width": 1,
+          "color": "light-grey-2"
+        },
+        "borderRadius": "var(--default-border-radius)"
+      },
+      "hover": {
+        "color": "secondary",
+        "border": {
+          "style": "solid",
+          "width": 1,
+          "color": "secondary"
+        }
+      },
+      "disabled": {
+        "color": "grey",
+        "border": {
+          "style": "solid",
+          "width": 1,
+          "color": "grey"
+        }
+      }
+    },
+    {
+      "className": "button-1glzb",
+      "name": "Вогник по контуру",
+      "template": "orbit",
+      "base": {
+        "background": "transparent",
+        "color": "accent",
+        "border": {
+          "style": "solid",
+          "width": 1,
+          "color": "accent"
+        },
+        "borderRadius": "var(--default-border-radius)"
+      },
+      "hover": {
+        "background": "light-grey-2"
+      },
+      "disabled": {
+        "color": "grey"
+      }
     }
   ]
 }
 */
+
+@keyframes pw-btn-pulse {
+  0% { inset: -1px; opacity: 0.8; }
+  75% { inset: -12px; opacity: 0; }
+  100% { inset: -12px; opacity: 0; }
+}
+
+@property --pw-orbit-angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes pw-btn-orbit {
+  to { --pw-orbit-angle: 360deg; }
+}
 
 .primary-button {
   font-family: var(--main-font) !important;
@@ -225,6 +293,123 @@
 
 .green-button:disabled {
   opacity: 0.3 !important;
+}
+
+.button-2hlyg {
+  font-family: var(--main-font) !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  text-transform: none !important;
+  letter-spacing: normal !important;
+  box-shadow: none !important;
+  border-radius: var(--default-border-radius) !important;
+  padding: 12px 24px;
+  width: 100%;
+  position: relative;
+}
+
+.button-2hlyg {
+  background: transparent !important;
+  color: var(--light-grey-2) !important;
+  border: solid 1px var(--light-grey-2) !important;
+  border-radius: var(--default-border-radius) !important;
+}
+
+.button-2hlyg:hover {
+  color: var(--secondary) !important;
+  border: solid 1px var(--secondary) !important;
+}
+
+.button-2hlyg:disabled {
+  color: var(--grey) !important;
+  border: solid 1px var(--grey) !important;
+}
+
+.button-2hlyg::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-style: solid;
+  border-width: 2px;
+  border-color: inherit;
+  border-radius: inherit;
+  animation: pw-btn-pulse 2.4s ease-out infinite;
+  pointer-events: none;
+}
+
+.button-2hlyg:disabled::before {
+  animation: none;
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button-2hlyg::before {
+    animation: none !important;
+  }
+}
+
+.button-1glzb {
+  font-family: var(--main-font) !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  text-transform: none !important;
+  letter-spacing: normal !important;
+  box-shadow: none !important;
+  border-radius: var(--default-border-radius) !important;
+  padding: 12px 24px;
+  width: 100%;
+  position: relative;
+  isolation: isolate;
+}
+
+.button-1glzb {
+  background: transparent !important;
+  color: var(--accent) !important;
+  border: solid 1px var(--accent) !important;
+  border-radius: var(--default-border-radius) !important;
+}
+
+.button-1glzb:hover {
+  background: var(--light-grey-2) !important;
+}
+
+.button-1glzb:disabled {
+  color: var(--grey) !important;
+}
+
+.button-1glzb > .v-btn__content {
+  position: relative;
+  z-index: 1;
+}
+
+.button-1glzb::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  z-index: 0;
+  border-style: solid;
+  border-width: 3px;
+  border-color: inherit;
+  border-radius: inherit;
+  -webkit-mask: conic-gradient(from var(--pw-orbit-angle), transparent 0deg 220deg, #000 360deg);
+  mask: conic-gradient(from var(--pw-orbit-angle), transparent 0deg 220deg, #000 360deg);
+  animation: pw-btn-orbit 3s linear infinite;
+  pointer-events: none;
+}
+
+.button-1glzb:hover::before {
+  animation-duration: 1.2s;
+}
+
+.button-1glzb:disabled::before {
+  animation: none;
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button-1glzb::before {
+    animation: none !important;
+  }
 }
 
 .button-kind-sign-in-google {

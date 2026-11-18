@@ -23,6 +23,7 @@
       <v-img
         class="rounded-toolbar"
         cover
+        height="100%"
         :src="getImageURL(props.item.image)"
       />
     </v-toolbar>

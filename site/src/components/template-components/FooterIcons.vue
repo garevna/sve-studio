@@ -63,7 +63,6 @@
         >
       </a>
     </div>
-    <v-divider class="mt-4" />
   </div>
 </template>
 

@@ -136,6 +136,12 @@
     observer?.disconnect()
     observer = null
   })
+  // The block's look when nothing else is picked: gear badges and waves -
+  // the component as it is meant to be seen, so a block inserted on any
+  // page looks like the one on the demo. A block keeps only what someone
+  // picked in its toolbar (StepBadgeShape / lift).
+  const badge = computed(() => model.value.badge ?? 'gear')
+  const hover = computed(() => model.value.hover ?? 'waves')
 </script>
 
 <template>
@@ -152,7 +158,7 @@
       <Teleport :disabled="!blockActionsTarget" :to="blockActionsTarget || 'body'">
         <TransferStepsActions
           v-model:drag-active="dragActive"
-          :badge="model.badge"
+          :badge="badge"
           :colors="colors"
           :hover="model.hover"
           @add="addStep"
@@ -171,15 +177,15 @@
           :class="['transfer-steps-item', dragClass]"
           :style="{ '--step-index': index }"
         >
-          <div :class="['transfer-steps-lift', contentClass, { 'transfer-steps-lift--still': model.hover === 'waves' }]">
+          <div :class="['transfer-steps-lift', contentClass, { 'transfer-steps-lift--still': hover === 'waves' }]">
             <TransferServicesCircle
-              :badge="model.badge"
+              :badge="badge"
               :bold="localized((step as StepModel).bold)"
               :circle-color="circleBackground"
               :index="index"
               :number-color="numberBackground"
               :text="localized((step as StepModel).text)"
-              :waves="model.hover === 'waves'"
+              :waves="hover === 'waves'"
             />
           </div>
           <!-- The circle is round and its number badge already occupies the
@@ -206,7 +212,7 @@
         :style="{ '--step-index': index }"
       >
         <TransferServicesCircle
-          :badge="model.badge"
+          :badge="badge"
           :bold="localized(step.bold)"
           :circle-color="circleBackground"
           :index="index"

@@ -30,7 +30,7 @@
   // What a block with no style of its own wears: the site style's card
   // (UI Kit > Стиль сайту), or else its variant's.
   const siteStyle = useSiteStyle()
-  const bySiteStyle = computed(() => CARD_STYLE_BY_SITE_STYLE[siteStyle.style.value])
+  const bySiteStyle = computed(() => CARD_STYLE_BY_SITE_STYLE[siteStyle.of('cards')])
   const variantStyle = computed(() => bySiteStyle.value || CARD_STYLE_BY_VARIANT[props.block.ver || 2])
 
   /* eslint-disable vue/no-mutating-props */

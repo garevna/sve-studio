@@ -35,8 +35,8 @@
     { value: 'lift', icon: 'mdi-arrow-up-bold-outline', label: () => t('transferSteps.hoverLift') },
     { value: 'waves', icon: 'mdi-waves', label: () => t('transferSteps.hoverWaves') },
   ]
-  const badgeIcon = () => BADGES.find(item => item.value === (props.badge || 'circle'))!.icon
-  const hoverIcon = () => HOVERS.find(item => item.value === (props.hover || 'lift'))!.icon
+  const badgeIcon = () => BADGES.find(item => item.value === (props.badge || 'gear'))!.icon
+  const hoverIcon = () => HOVERS.find(item => item.value === (props.hover || 'waves'))!.icon
 
   const dragActive = defineModel<boolean>('dragActive', { default: false })
 </script>
@@ -85,7 +85,7 @@
         <v-list-item
           v-for="item of BADGES"
           :key="item.value"
-          :active="(badge || 'circle') === item.value"
+          :active="(badge || 'gear') === item.value"
           :prepend-icon="item.icon"
           :title="item.label()"
           @click="emit('update', { badge: item.value })"
@@ -103,7 +103,7 @@
         <v-list-item
           v-for="item of HOVERS"
           :key="item.value"
-          :active="(hover || 'lift') === item.value"
+          :active="(hover || 'waves') === item.value"
           :prepend-icon="item.icon"
           :title="item.label()"
           @click="emit('update', { hover: item.value })"

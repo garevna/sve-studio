@@ -6,6 +6,7 @@
 
   import IconVariant from '../../components/small/IconVariant.vue'
   import { resolveCardStyle } from '../../configs/card-style'
+  import { partStyle } from '../../configs/site-style'
 
   import { useCommonStore } from '../../stores/common'
   import TemplateItem from '../TemplateItem.vue'
@@ -15,7 +16,7 @@
   // read through the store, not storeToRefs: inside the editor a component
   // of the site may meet the editor's own 'common' store, which has no
   // siteStyle - then the site's style is «Класика»
-  const siteStyle = computed(() => commonStore.siteStyle)
+  const siteStyle = computed(() => partStyle(commonStore.siteStyle, commonStore.siteStyleParts, 'cards'))
 
   const props = defineProps<{ item: TemplateBlockModel }>()
 

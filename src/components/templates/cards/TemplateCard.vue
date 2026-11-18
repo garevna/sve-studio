@@ -90,7 +90,7 @@
     return key ? `var(--${key})` : undefined
   })
   const siteStyle = useSiteStyle()
-  const cardStyleClass = computed(() => resolveCardStyle(props.item.cardStyle || props.defaults?.cardStyle, ver.value, siteStyle.style.value))
+  const cardStyleClass = computed(() => resolveCardStyle(props.item.cardStyle || props.defaults?.cardStyle, ver.value, siteStyle.of('cards')))
   const iconSize = computed(() => (props.item.size ?? 0) > 0 ? props.item.size as number : props.defaults?.size || 52)
 
   // Vertical gap between the icon and the text below it - ver 1 stacks them

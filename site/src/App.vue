@@ -58,6 +58,7 @@
     parallaxTheme,
     dynamicFooterContent,
     dynamicPageContent,
+    footerSettings,
     heroVariant,
     headerSettings,
     locale,
@@ -127,7 +128,7 @@
     }
     commonStore.setGlobalSettings(settings)
     // The site's style (UI Kit): its class on <html> - configs/site-style.ts.
-    applySiteStyle(document.documentElement, settings.siteStyle)
+    applySiteStyle(document.documentElement, settings.siteStyle, settings.siteStyleParts)
     // A menu item leading to a page says the page's name (utils/page-title.ts).
     commonStore.mainMenuContent = withMenuLabels(menu, pageTitles.titles as Record<string, PageTitle>, commonStore.siteLocales, commonStore.defaultLocale, pageTitles.hidden)
     commonStore.dynamicFooterContent = footer
@@ -360,9 +361,12 @@
       v-if="dynamicFooterContent?.visible !== false"
       id="app-footer"
       ref="footerRef"
-      :class="['app-footer mt-4 py-8', `app-footer--v${footerVariant}`, { 'app-footer--in-view': footerInView }]"
+      :class="['app-footer mt-4 py-8', `app-footer--v${footerVariant}`, { 'app-footer--in-view': footerInView, 'app-footer--full': footerSettings?.fullWidth }]"
       :style="{ backgroundColor: footerBackground, '--footer-bg': footerBackground }"
     >
+      <!-- The «Хвиля» site style's wave - drawn only under that style
+        (content/styles/site-styles.css). -->
+      <div aria-hidden="true" class="site-wave-fill" />
       <!-- The look the footer's own `ver` picks (configs/footer-variants.ts). -->
       <FooterHorizonWave v-if="footerVariant === FOOTER_HORIZON" :color="footerBackground" />
       <FooterFinalFrame
@@ -422,6 +426,18 @@
 /* "Горизонт": the wave is the footer's top edge (it sits above the box, so
    the box keeps room for it), straight corners, and the signature reaching
    the very bottom. */
+/* UI Kit > Футер > «На всю ширину»: the fill from edge to edge, the content
+   kept to the menu bar's width (1440px, 40px inside it). */
+.v-footer.app-footer--full {
+  max-width: none;
+  border-radius: 0;
+}
+/* narrower, the footer spans the window anyway */
+@media screen and (min-width: 1440px) {
+  .v-footer.app-footer--full {
+    padding-inline: calc((100% - 1440px) / 2 + 40px) !important;
+  }
+}
 .v-footer.app-footer--v2 {
   position: relative;
   margin-top: calc(clamp(40px, 6vw, 96px) + 24px) !important;

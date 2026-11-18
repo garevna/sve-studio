@@ -37,6 +37,10 @@ export function transferServicesSteps (): TemplateBlockModel {
       title: structuredClone(seedTitle),
       subtitle: structuredClone(seedSubtitle),
       circles: [emptyStep(), emptyStep(), emptyStep()],
+      // the block's whole look, written out (the components default to it
+      // too - TransferServicesSteps.vue)
+      badge: 'gear',
+      hover: 'waves',
     },
   }
 }

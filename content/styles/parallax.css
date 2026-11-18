@@ -7,7 +7,9 @@
   flex-direction: column;
   justify-content: space-between;
   background: #00000040;
-  right: 20px;
+  /* On a wide screen the panel keeps to the menu bar's content (max 1440px,
+     36px side padding) - the picture spans the window, the text does not. */
+  right: max(20px, calc((100% - 1440px) / 2 + 36px));
   top: 40px;
   bottom: 20px;
 }

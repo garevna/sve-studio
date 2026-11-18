@@ -1,7 +1,8 @@
 <script setup lang="ts">
   // The "Горизонт" footer's top edge: the page flows into the footer over a
   // soft wave in the footer's own colour (two layers, the back one fainter,
-  // for depth). Sits above the footer, outside its box.
+  // for depth). Sits above the footer, outside its box. In the «Хвиля»
+  // site style the two layers sway (content/styles/site-styles.css).
   defineProps<{ color: string }>()
 </script>
 
@@ -12,8 +13,8 @@
     preserveAspectRatio="none"
     viewBox="0 0 1440 100"
   >
-    <path d="M0,58 C220,10 470,4 720,40 C980,78 1210,92 1440,30 L1440,100 L0,100 Z" :fill="color" opacity="0.45" />
-    <path d="M0,72 C260,26 520,30 760,62 C1000,94 1230,84 1440,52 L1440,100 L0,100 Z" :fill="color" />
+    <path class="footer-horizon-wave__back" d="M0,58 C220,10 470,4 720,40 C980,78 1210,92 1440,30 L1440,100 L0,100 Z" :fill="color" opacity="0.45" />
+    <path class="footer-horizon-wave__front" d="M0,72 C260,26 520,30 760,62 C1000,94 1230,84 1440,52 L1440,100 L0,100 Z" :fill="color" />
   </svg>
 </template>
 

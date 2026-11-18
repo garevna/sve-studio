@@ -370,6 +370,9 @@
     :class="['footer-editor-root', `footer-editor-root--v${variant}`]"
     :style="{ background: `var(--${block.background || 'primary'})`, '--footer-bg': `var(--${block.background || 'primary'})`, marginTop: `${commonStore.currentBlockSpacing}px` }"
   >
+    <!-- The «Хвиля» site style's wave - drawn only under that style
+      (content/styles/site-styles.css), as on the site. -->
+    <div aria-hidden="true" class="site-wave-fill" />
     <!-- The look the footer's `ver` picks (configs/footer-variants.ts) -
       the same pieces the site draws. -->
     <FooterHorizonWave v-if="variant === FOOTER_HORIZON" :color="`var(--${block.background || 'primary'})`" />

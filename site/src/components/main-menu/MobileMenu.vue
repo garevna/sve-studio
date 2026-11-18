@@ -3,6 +3,7 @@
   import { computed, ref } from 'vue'
   import { useWaveEdge, WAVE_DEPTH, type WaveEdge } from '../../composables/useWaveEdge'
   import { mobilePanelStyle } from '../../configs/menu-style'
+  import { partStyle } from '../../configs/site-style'
   import { useCommonStore } from '../../stores/common'
   import MobileMenuButton from './MobileMenuButton.vue'
   import MobileMenuRow from './MobileMenuRow.vue'
@@ -18,7 +19,7 @@
   // In the «Хвиля» style the panel's inner edge is a wave (useWaveEdge):
   // the side facing the page - none for a panel over the whole screen.
   const WAVE_SIDE: Record<string, WaveEdge | null> = { right: 'left', left: 'right', bottom: 'top', full: null }
-  const waveEdge = computed(() => commonStore.siteStyle === 'wave' ? WAVE_SIDE[look.value.placement] ?? null : null)
+  const waveEdge = computed(() => partStyle(commonStore.siteStyle, commonStore.siteStyleParts, 'menu') === 'wave' ? WAVE_SIDE[look.value.placement] ?? null : null)
   const panel = ref<HTMLElement | null>(null)
   useWaveEdge(panel, () => waveEdge.value)
 

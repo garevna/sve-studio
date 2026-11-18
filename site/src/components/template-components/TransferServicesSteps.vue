@@ -70,6 +70,12 @@
     observer?.disconnect()
     observer = null
   })
+  // The block's look when nothing else is picked: gear badges and waves -
+  // the component as it is meant to be seen, so a block inserted on any
+  // page looks like the one on the demo. A block keeps only what someone
+  // picked in its toolbar (StepBadgeShape / lift).
+  const badge = computed(() => props.badge ?? 'gear')
+  const hover = computed(() => props.hover ?? 'waves')
 </script>
 
 <template>
@@ -90,15 +96,15 @@
         class="transfer-steps-item"
         :style="{ '--step-index': index }"
       >
-        <div :class="['transfer-steps-lift', { 'transfer-steps-lift--still': props.hover === 'waves' }]">
+        <div :class="['transfer-steps-lift', { 'transfer-steps-lift--still': hover === 'waves' }]">
           <TransferServicesCircle
-            :badge="props.badge"
+            :badge="badge"
             :bold="circle.bold[lang]"
             :circle-color="circleBackground"
             :index="index"
             :number-color="numberBackground"
             :text="circle.text[lang]"
-            :waves="props.hover === 'waves'"
+            :waves="hover === 'waves'"
           />
         </div>
       </div>
@@ -112,7 +118,7 @@
         :style="{ '--step-index': index }"
       >
         <TransferServicesCircle
-          :badge="props.badge"
+          :badge="badge"
           :bold="circle.bold[lang]"
           :circle-color="circleBackground"
           :index="index"

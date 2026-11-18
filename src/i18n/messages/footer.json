@@ -32,6 +32,16 @@
     }
   },
   "layout": {
+    "fullWidth": {
+      "uk": "На всю ширину",
+      "en": "",
+      "de": ""
+    },
+    "fullWidthHint": {
+      "uk": "Фон футера — від краю до краю вікна, а вміст тримається ширини панелі меню, як і сама панель.",
+      "en": "",
+      "de": ""
+    },
     "widthHint": {
       "uk": "Порожньо — за вмістом. Мінімум {FOOTER_MIN_COLUMN_WIDTH}px",
       "en": "Empty — based on content. Minimum {FOOTER_MIN_COLUMN_WIDTH}px",

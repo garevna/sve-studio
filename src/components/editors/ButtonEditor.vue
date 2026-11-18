@@ -61,7 +61,7 @@
   const siteStyle = useSiteStyle()
   const shownClass = computed(() => className.value.split(' ').some(token => token.includes('button'))
     ? className.value
-    : [siteStyleButtonClass(siteStyle.style.value), className.value])
+    : [siteStyleButtonClass(siteStyle.of('buttons')), className.value])
   const iconEditorRef = ref<{ openMenu: () => void } | null>(null)
   watch(needsIcon, (now, before) => {
     if (now && !before && !icon.value) {

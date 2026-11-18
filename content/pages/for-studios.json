@@ -199,7 +199,9 @@
               "de": "Release"
             }
           }
-        ]
+        ],
+        "circleColor": "light-grey-1",
+        "numberColor": "secondary"
       }
     },
     {

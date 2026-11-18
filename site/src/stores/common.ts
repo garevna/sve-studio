@@ -19,7 +19,7 @@ import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 import { resolveHeaderSettings, resolveHeroVariant } from '@/configs/header-layout'
 import { type MenuStyleModel, resolveMenuStyle } from '@/configs/menu-style'
-import { resolveSiteStyle, type SiteStyle } from '@/configs/site-style'
+import { resolveSiteStyle, type SiteStyle, type SiteStyleParts } from '@/configs/site-style'
 
 import { popularTrips } from '../configs/popular-trips'
 
@@ -84,6 +84,8 @@ export const useCommonStore = defineStore('common', () => {
   const menuStyle = ref<MenuStyleModel>(resolveMenuStyle())
   // The site's style (global.json siteStyle) - configs/site-style.ts.
   const siteStyle = ref<SiteStyle>(resolveSiteStyle(undefined))
+  // Each part's own style, if it has one (global.json siteStyleParts).
+  const siteStyleParts = ref<SiteStyleParts>({})
   // Phones, emails, the address (global.json contacts).
   const contacts = ref<SiteContact[]>([])
   // Where the feedback forms send (global.json feedback.endpoint).
@@ -206,6 +208,7 @@ export const useCommonStore = defineStore('common', () => {
     applyHeaderSettings(response)
     menuStyle.value = resolveMenuStyle(response.menuStyle)
     siteStyle.value = resolveSiteStyle(response.siteStyle)
+    siteStyleParts.value = response.siteStyleParts ?? {}
     contacts.value = Array.isArray(response.contacts) ? response.contacts : []
     feedbackEndpoint.value = response.feedback?.endpoint || ''
     aiEndpoint.value = response.ai?.endpoint || ''
@@ -284,6 +287,7 @@ export const useCommonStore = defineStore('common', () => {
     headerSettings,
     menuStyle,
     siteStyle,
+    siteStyleParts,
     contacts,
     feedbackEndpoint,
     aiEndpoint,

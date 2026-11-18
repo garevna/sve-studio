@@ -11,7 +11,7 @@
   // import { scrollByRef } from '@/utils/scroll-by-ref'
   // import { getDynamicPageContent } from '@/services/ajax/get-dynamic-page-content'
   import { useSiteNavigation } from '../composables/site-navigation'
-  import { siteStyleButtonClass } from '../configs/site-style'
+  import { partStyle, siteStyleButtonClass } from '../configs/site-style'
 
   import { getImageURL } from '../services/get-image-url'
   import { useCommonStore } from '../stores/common'
@@ -24,7 +24,7 @@
   const commonStore = useCommonStore()
   const { locale, defaultLocale } = storeToRefs(commonStore)
   // see TemplateCard.vue: the editor's own store has no siteStyle
-  const siteStyle = computed(() => commonStore.siteStyle)
+  const siteStyle = computed(() => partStyle(commonStore.siteStyle, commonStore.siteStyleParts, 'buttons'))
   const { linkPath, follow } = useSiteNavigation()
 
   const props = defineProps<{ item: TemplateBlockModel }>()

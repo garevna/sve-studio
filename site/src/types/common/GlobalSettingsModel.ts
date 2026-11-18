@@ -33,6 +33,8 @@ export type GlobalSettingsModel = {
   legalName?: Record<string, string>
   // The site's style - «Класика», «Штрих», «Хвиля» (configs/site-style.ts).
   siteStyle?: 'classic' | 'stroke' | 'wave'
+  // A part's own style, mixed into the site's (configs/site-style.ts).
+  siteStyleParts?: Partial<Record<'cards' | 'buttons' | 'footer' | 'menu', 'classic' | 'stroke' | 'wave'>>
   logo: {
     src: string
     width: number

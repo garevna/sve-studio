@@ -18,6 +18,9 @@ export type FooterSettingsModel = {
   columns?: number
   gap?: number
   widths?: number[]
+  // The footer's fill from edge to edge of the window, its content kept to
+  // the menu bar's width (max 1440px) - like the menu bar itself.
+  fullWidth?: boolean
 }
 
 export type FooterLayoutModel = {

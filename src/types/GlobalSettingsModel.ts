@@ -23,6 +23,8 @@ export interface GlobalSettingsModel {
   legalName?: Record<string, string>
   // The site's style - «Класика», «Штрих», «Хвиля» (configs/site-style.ts).
   siteStyle?: 'classic' | 'stroke' | 'wave'
+  // A part's own style, mixed into the site's (configs/site-style.ts).
+  siteStyleParts?: Partial<Record<'cards' | 'buttons' | 'footer' | 'menu', 'classic' | 'stroke' | 'wave'>>
   logo: {
     src: string
     width: number
@@ -71,6 +73,9 @@ export interface GlobalSettingsModel {
     // One entry per column, in order. Shorter than `columns` (or missing
     // entirely) means the remaining columns share the space equally.
     widths?: number[]
+    // The footer's fill from edge to edge of the window, its content kept to
+    // the menu bar's width (max 1440px) - like the menu bar itself.
+    fullWidth?: boolean
   }
   footerVariant?: number
   // Which hero component the site uses - see configs/hero-variants.ts. Same

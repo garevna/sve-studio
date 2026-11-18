@@ -136,9 +136,9 @@
     if (entry.wave) return 'wave'
     return 'classic'
   }
-  const shown = computed(() => entries.value.filter(entry => groupOf(entry) === siteStyle.style.value))
+  const shown = computed(() => entries.value.filter(entry => groupOf(entry) === siteStyle.of('cards')))
   // The style the site's style gives a block that names none.
-  const siteDefault = computed(() => CARD_STYLE_BY_SITE_STYLE[siteStyle.style.value])
+  const siteDefault = computed(() => CARD_STYLE_BY_SITE_STYLE[siteStyle.of('cards')])
 
   async function removeEntry (entry: CardStyleEntry) {
     if (!await feedback.confirmDelete('cardStyle', { name: entry.label })) return
@@ -162,7 +162,7 @@
     // made in the group on screen: a stroke in «Штрих» (primary, 2px,
     // top-left and bottom-right), a light wave in «Хвиля» - a light colour
     // keeps the card's text readable over it
-    const group = siteStyle.style.value
+    const group = siteStyle.of('cards')
     entries.value.push({
       className,
       label,
@@ -185,6 +185,7 @@
 
     <template v-else>
       <p class="card-styles-hint">{{ t('cardStyles.hint') }}</p>
+      <p class="card-styles-hint">{{ t('kit.siteStyleCardsShown', { style: t(`kit.siteStyles.${siteStyle.of('cards')}`) }) }}</p>
 
       <div class="card-styles-list">
         <div v-for="entry of shown" :key="entry.className" class="card-styles-row">

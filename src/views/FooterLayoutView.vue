@@ -97,6 +97,16 @@
     dirty.value = true
   }
 
+  function setFullWidth (value: boolean | null) {
+    const bag = footerBag()
+    if (value) {
+      bag.fullWidth = true
+    } else {
+      delete bag.fullWidth
+    }
+    dirty.value = true
+  }
+
   function gapField (): number | null {
     return layout.value.gapSet ? layout.value.gap : null
   }
@@ -205,6 +215,18 @@
           />
         </v-col>
       </v-row>
+
+      <v-switch
+        class="mt-4"
+        color="primary"
+        density="compact"
+        :hint="t('footer.layout.fullWidthHint')"
+        inset
+        :label="t('footer.layout.fullWidth')"
+        :model-value="!!settings?.footer?.fullWidth"
+        persistent-hint
+        @update:model-value="setFullWidth"
+      />
 
       <h2 class="editor-section-title">{{ t('footer.layout.widths') }}</h2>
       <v-row>

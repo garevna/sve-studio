@@ -71,11 +71,13 @@ export default defineNuxtConfig({
       // ?__sve_path=... - the address is put back before the router starts.
       script: [{ innerHTML: String.raw`(function(){var p=new URLSearchParams(location.search).get('__sve_path');if(p!==null){history.replaceState(null,'',location.pathname+p.replace(/^\//,''))}})()`, tagPosition: 'head' }],
       link: [
-        // The editor's icon: the owner's logo. The GIF walks in Firefox (other
-        // browsers show its first frame); the .ico and PNGs are the still version.
+        // The Верф's icon: a round badge - the mascot's head in a ship's
+        // wheel, told apart from a square icon even at 16px. The SVG is
+        // sharp at any size; the .ico (16/32/48) and the PNG are for the
+        // rest.
+        { rel: 'icon', type: 'image/svg+xml', href: `${root}favicon.svg` },
         { rel: 'icon', href: `${root}favicon.ico`, sizes: '48x48' },
         { rel: 'icon', type: 'image/png', href: `${root}favicon-96x96.png`, sizes: '96x96' },
-        { rel: 'icon', type: 'image/gif', href: `${root}favicon.gif` },
         { rel: 'apple-touch-icon', href: `${root}apple-touch-icon.png`, sizes: '180x180' },
         { rel: 'manifest', href: `${root}site.webmanifest` },
         { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css' },

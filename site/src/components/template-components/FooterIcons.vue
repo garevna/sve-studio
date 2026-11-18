@@ -4,11 +4,10 @@
 
   import { footerIcons } from '../../assets/footer-icons'
 
+  import { SOCIAL_NETWORK_LABELS, SOCIAL_NETWORKS, type SocialNetwork } from '../../configs/social-networks'
   import { useCommonStore } from '../../stores/common'
 
-  const linkNames = ['facebook', 'instagram', 'tiktok', 'whatsApp', 'viber', 'telegram'] as const
-
-  type LinkNameModel = typeof linkNames[number]
+  type LinkNameModel = SocialNetwork
 
   // Both links and icon glyphs live in global.json (GlobalSettingsModel.links/
   // socialIcons) - a site-wide setting, not something specific to one footer
@@ -23,6 +22,11 @@
   }
 
   const links = computed(() => company.value?.links || {})
+
+  // Only the networks the site has an address for (Загальні налаштування ->
+  // Соціальні мережі): an empty field means the site has no such account,
+  // and an icon leading nowhere is not shown.
+  const linkNames = computed(() => SOCIAL_NETWORKS.filter(name => href(name)))
 
   function iconSrc (name: LinkNameModel): string {
     return company.value?.socialIcons?.[name] || footerIcons[name]
@@ -41,14 +45,14 @@
 
 <template>
   <div>
-    <div class="footer-mobile-icons mb-4 text-center">
+    <div v-if="linkNames.length > 0" class="footer-mobile-icons mb-4 text-center">
       {{ mobileIconsLabel[locale as keyof typeof mobileIconsLabel] }}
     </div>
     <div class="grid-icons">
       <a
         v-for="(linkName, index) in linkNames"
         :key="index"
-        :aria-label="linkName"
+        :aria-label="SOCIAL_NETWORK_LABELS[linkName]"
         class="footer-icon-link"
         :href="href(linkName)"
         :rel="isWeb(linkName) ? 'noopener' : undefined"
@@ -75,9 +79,10 @@
   line-height: 0;
 }
 .grid-icons {
-  display: grid;
-  grid-template-columns: 36px 36px 36px 36px 36px 36px;
-  grid-column-gap: 16px;
+  /* as many as there are addresses, wrapping on a narrow column */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
 }
 
 @media screen and (max-width: 640px) {

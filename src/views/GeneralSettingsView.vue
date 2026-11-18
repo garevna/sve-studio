@@ -361,6 +361,7 @@
         </p> -->
         <p class="editor-section-hint">
           {{ t('generalSettings.socialHint2') }}
+          {{ t('generalSettings.socialEmptyHidden') }}
         </p>
         <v-row>
           <v-col v-for="name in SOCIAL_NETWORKS" :key="name" cols="12" md="4">

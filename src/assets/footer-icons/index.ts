@@ -1,5 +1,7 @@
 import { default as facebook } from './facebook.svg'
+import { default as github } from './github.svg'
 import { default as instagram } from './instagram.svg'
+import { default as linkedin } from './linkedin.svg'
 import { default as telegram } from './telegram.svg'
 import { default as tiktok } from './tiktok.svg'
 import { default as viber } from './viber.svg'
@@ -10,6 +12,8 @@ export const footerIcons = {
   facebook,
   instagram,
   tiktok,
+  linkedin,
+  github,
   whatsApp,
   viber,
   telegram,

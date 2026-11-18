@@ -26,9 +26,8 @@
     "telegram": "https://telegram.me/garevna",
     "whatsApp": "https://wa.me/380994912753",
     "viber": "viber://add?number=380994912753",
-    "facebook": "https://www.facebook.com/virtuallineband/?locale=hr_HR",
-    "tiktok": "https://www.tiktok.com/tag/virtualline",
-    "instagram": "https://www.instagram.com/popular/virtualline/"
+    "github": "https://github.com/garevna",
+    "linkedin": "https://www.linkedin.com/in/garevna"
   },
   "styles": [
     "root",
@@ -80,11 +79,6 @@
       "id": "contact-1",
       "kind": "phone",
       "value": "(+380) 99 491 27 53"
-    },
-    {
-      "id": "contact-2",
-      "kind": "phone",
-      "value": "(+380) 50 986 40 13"
     },
     {
       "id": "contact-3",

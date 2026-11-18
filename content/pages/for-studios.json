@@ -7,9 +7,9 @@
     {
       "type": "parallax",
       "content": {
-        "uk": "/api/content/images/expert-help/doctor-2.jpg?v=3e9ba038",
-        "en": "/api/content/images/expert-help/doctor-2.jpg?v=3e9ba038",
-        "de": "/api/content/images/expert-help/doctor-2.jpg?v=3e9ba038"
+        "uk": "/api/content/images/for-studios/top-header-baner-1.jpeg?v=913bd14d",
+        "en": "/api/content/images/for-studios/top-header-baner-1.jpeg?v=913bd14d",
+        "de": "/api/content/images/for-studios/top-header-baner-1.jpeg?v=913bd14d"
       },
       "children": [
         {
@@ -70,9 +70,9 @@
         {
           "type": "image",
           "content": {
-            "uk": "/api/content/images/expert-help/14-2.webp?v=f89e88e9",
-            "en": "/api/content/images/expert-help/14-2.webp?v=f89e88e9",
-            "de": "/api/content/images/expert-help/14-2.webp?v=f89e88e9"
+            "uk": "/api/content/images/for-studios/pagewright-14.jpeg?v=d9fd61d4",
+            "en": "/api/content/images/for-studios/pagewright-14.jpeg?v=d9fd61d4",
+            "de": "/api/content/images/for-studios/pagewright-14.jpeg?v=d9fd61d4"
           }
         }
       ]
@@ -84,9 +84,9 @@
           "type": "image",
           "class": "my-25 my-md-0",
           "content": {
-            "uk": "/api/content/images/expert-help/32.png?v=2b88ef7c",
-            "en": "/api/content/images/expert-help/32.png?v=2b88ef7c",
-            "de": "/api/content/images/expert-help/32.png?v=2b88ef7c"
+            "uk": "/api/content/images/for-studios/pagewright-14-2.png?v=c674115c",
+            "en": "/api/content/images/for-studios/pagewright-14-2.png?v=c674115c",
+            "de": "/api/content/images/for-studios/pagewright-14-2.png?v=c674115c"
           }
         },
         {
@@ -240,9 +240,9 @@
         {
           "type": "image",
           "content": {
-            "uk": "/api/content/images/expert-help/15.webp?v=2fa481f2",
-            "en": "/api/content/images/expert-help/15.webp?v=2fa481f2",
-            "de": "/api/content/images/expert-help/15.webp?v=2fa481f2"
+            "uk": "/api/content/images/for-studios/pagewright-01.png?v=4c63e609",
+            "en": "/api/content/images/for-studios/pagewright-01.png?v=4c63e609",
+            "de": "/api/content/images/for-studios/pagewright-01.png?v=4c63e609"
           }
         }
       ]

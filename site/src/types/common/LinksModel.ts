@@ -5,4 +5,6 @@ export type LinksModel = {
   viber?: string
   tiktok?: string
   facebook?: string
+  linkedin?: string
+  github?: string
 }

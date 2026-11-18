@@ -59,6 +59,16 @@
     "en": "Links are used to navigate when clicking on the social media icons or messengers.",
     "de": "Links werden verwendet, um zu navigieren, wenn auf die Social-Media-Icons oder Messenger geklickt wird."
   },
+  "socialEmptyHidden": {
+    "uk": "Мережа з порожнім посиланням на сайті не показується — залиште порожніми ті, яких у вас немає.",
+    "en": "",
+    "de": ""
+  },
+  "socialNone": {
+    "uk": "Іконки соцмереж з'являться тут, коли ви вкажете посилання в «Загальних налаштуваннях» → «Соціальні мережі».",
+    "en": "",
+    "de": ""
+  },
   "heroBanner": {
     "uk": "Банер hero-секції",
     "en": "Hero Banner",

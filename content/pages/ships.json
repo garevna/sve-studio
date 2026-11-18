@@ -46,9 +46,9 @@
         {
           "type": "image",
           "content": {
-            "uk": "/api/content/images/products/08.jpg?v=b5e27ce5",
-            "en": "/api/content/images/products/08.jpg?v=b5e27ce5",
-            "de": "/api/content/images/products/08.jpg?v=b5e27ce5"
+            "uk": "/api/content/images/ships/pagewright-10.jpeg?v=82d38fe1",
+            "en": "/api/content/images/ships/pagewright-10.jpeg?v=82d38fe1",
+            "de": "/api/content/images/ships/pagewright-10.jpeg?v=82d38fe1"
           }
         }
       ]
@@ -250,9 +250,9 @@
     {
       "type": "image",
       "content": {
-        "uk": "/api/content/images/products/31.webp?v=83dfd397",
-        "en": "/api/content/images/products/31.webp?v=83dfd397",
-        "de": "/api/content/images/products/31.webp?v=83dfd397"
+        "uk": "/api/content/images/ships/ship-dock-02.jpg?v=564d543a",
+        "en": "/api/content/images/ships/ship-dock-02.jpg?v=564d543a",
+        "de": "/api/content/images/ships/ship-dock-02.jpg?v=564d543a"
       }
     },
     {
@@ -263,28 +263,31 @@
           "switchOrder": true,
           "images": [
             {
-              "src": "/api/content/images/products/07.jpg?v=b0a20518"
+              "src": "/api/content/images/ships/designer-2.png?v=e3df981f"
             },
             {
-              "src": "/api/content/images/products/09.webp?v=c7662035"
+              "src": "/api/content/images/ships/pagewright-02-3.png?v=a4ce36cc"
             },
             {
-              "src": "/api/content/images/products/10.webp?v=c5ea48f6"
+              "src": "/api/content/images/ships/pagewright-06.png?v=2b88ef7c"
             },
             {
-              "src": "/api/content/images/products/11.jpg?v=580eb84a"
+              "src": "/api/content/images/ships/pagewright-07-2.webp?v=68b693b2"
             },
             {
-              "src": "/api/content/images/products/12.webp?v=b612a2aa"
+              "src": "/api/content/images/ships/pagewright-09-2.webp?v=f89e88e9"
             },
             {
-              "src": "/api/content/images/products/15.jpg?v=ef67b50a"
+              "src": "/api/content/images/ships/pagewright-10-2.webp?v=ef1375eb"
             },
             {
-              "src": "/api/content/images/products/16.jpg?v=05d6af55"
+              "src": "/api/content/images/ships/pagewright-11-2.jpeg?v=9674d3e0"
             },
             {
-              "src": "/api/content/images/products/17.jpg?v=d021a659"
+              "src": "/api/content/images/ships/pagewright-15.jpeg?v=8be09424"
+            },
+            {
+              "src": "/api/content/images/ships/pagewright-16.jpeg?v=4e2e9fef"
             }
           ]
         },

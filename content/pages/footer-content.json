@@ -10,9 +10,9 @@
         {
           "type": "image",
           "content": {
-            "uk": "/api/content/images/footer-content/21.png?v=38f51c1a",
-            "en": "/api/content/images/footer-content/21.png?v=38f51c1a",
-            "de": "/api/content/images/footer-content/21.png?v=38f51c1a"
+            "uk": "/api/content/images/footer-content/21.png?v=2b88ef7c",
+            "en": "/api/content/images/footer-content/21.png?v=2b88ef7c",
+            "de": "/api/content/images/footer-content/21.png?v=2b88ef7c"
           }
         },
         {
@@ -22,7 +22,7 @@
             "en": "Set sail",
             "de": "In See stechen"
           },
-          "class": "mt-8 mb-6 mb-6 mb-6 primary-button",
+          "class": "mt-8 mb-6 green-button",
           "icon": "mdi-send-variant-outline",
           "route": "dynamic-page",
           "params": {
@@ -30,10 +30,6 @@
           },
           "action": "popup",
           "popup": "popup-feedback"
-        },
-        {
-          "type": "component",
-          "content": "FooterIcons"
         }
       ]
     },
@@ -180,6 +176,10 @@
               "text": "default-text text-medium text-light-green"
             }
           ]
+        },
+        {
+          "type": "component",
+          "content": "FooterIcons"
         }
       ]
     }

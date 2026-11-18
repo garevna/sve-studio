@@ -4,6 +4,7 @@ import type { IconSetModel } from './IconSetModel'
 import type { LinksModel } from './LinksModel'
 import type { DropdownStyle, MobileMenuStyle } from '@/configs/menu-style'
 import type { SiteContact } from '@/configs/site-contacts'
+import type { SocialNetwork } from '@/configs/social-networks'
 
 export type GlobalSettingsModel = {
   styles?: string[]
@@ -42,7 +43,7 @@ export type GlobalSettingsModel = {
   // Social-network icon glyphs (base64 SVG data-uris), keyed by network name -
   // optional, falls back to the bundled default SVGs (src/assets/footer-icons)
   // when unset. See FooterIcons.vue.
-  socialIcons?: Partial<Record<'facebook' | 'instagram' | 'tiktok' | 'whatsApp' | 'viber' | 'telegram', string>>
+  socialIcons?: Partial<Record<SocialNetwork, string>>
   langs: string[]
   locales: string[]
   // The language of addresses without a language prefix (/site/...).

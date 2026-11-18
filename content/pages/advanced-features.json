@@ -34,9 +34,9 @@
         {
           "type": "image",
           "content": {
-            "uk": "/api/content/images/advanced-features/09.png?v=a4ce36cc",
-            "en": "/api/content/images/advanced-features/09.png?v=a4ce36cc",
-            "de": "/api/content/images/advanced-features/09.png?v=a4ce36cc"
+            "uk": "/api/content/images/advanced-features/09.png?v=2222d8e0",
+            "en": "/api/content/images/advanced-features/09.png?v=2222d8e0",
+            "de": "/api/content/images/advanced-features/09.png?v=2222d8e0"
           }
         },
         {
@@ -268,34 +268,28 @@
       "type": "slider-with-images",
       "images": [
         {
-          "src": "/api/content/images/advanced-features/designer.png?v=e3df981f"
+          "src": "/api/content/images/advanced-features/designer-2.png?v=e3df981f"
         },
         {
-          "src": "/api/content/images/advanced-features/pagewright-01.png?v=4c63e609"
+          "src": "/api/content/images/advanced-features/pagewright-01-2.png?v=4c63e609"
         },
         {
-          "src": "/api/content/images/advanced-features/pagewright-02.png?v=a4ce36cc"
+          "src": "/api/content/images/advanced-features/pagewright-06-3.png?v=2b88ef7c"
         },
         {
-          "src": "/api/content/images/advanced-features/pagewright-04.png?v=2222d8e0"
+          "src": "/api/content/images/advanced-features/pagewright-07-2.webp?v=68b693b2"
         },
         {
-          "src": "/api/content/images/advanced-features/pagewright-06.png?v=2b88ef7c"
+          "src": "/api/content/images/advanced-features/pagewright-09.webp?v=f89e88e9"
         },
         {
-          "src": "/api/content/images/advanced-features/pagewright-07.webp?v=68b693b2"
+          "src": "/api/content/images/advanced-features/pagewright-12-2.jpeg?v=d9fd61d4"
         },
         {
-          "src": "/api/content/images/advanced-features/pagewright-08.webp?v=2fa481f2"
+          "src": "/api/content/images/advanced-features/pagewright-13-2.jpeg?v=82d38fe1"
         },
         {
-          "src": "/api/content/images/advanced-features/pagewright-10.webp?v=ef1375eb"
-        },
-        {
-          "src": "/api/content/images/advanced-features/ship-dock-01.jpg?v=7774f9f8"
-        },
-        {
-          "src": "/api/content/images/advanced-features/ship-dock-02.jpg?v=564d543a"
+          "src": "/api/content/images/advanced-features/pagewright-16.jpeg?v=4e2e9fef"
         }
       ],
       "height": 300

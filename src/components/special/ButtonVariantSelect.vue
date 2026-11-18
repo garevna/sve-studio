@@ -47,10 +47,15 @@
   })
 
   // Every look's class has "button" in it - one that is not in the set any
-  // more goes too, rather than lingering next to the new one.
+  // more goes too, rather than lingering next to the new one. A class twice
+  // is kept once.
+  //
+  // NOTE: a caller must not put class="..." on this component - with the
+  // model named `class`, Vue merges it into the model and it is saved into
+  // the block (one more "mb-6" on every pick). Wrap it in a div instead.
   function select (variant: string) {
     const kept = (className.value || '').split(' ').filter(token => token && !token.includes('button'))
-    className.value = [...kept, variant].join(' ').trim()
+    className.value = [...new Set([...kept, variant])].join(' ').trim()
   }
 </script>
 

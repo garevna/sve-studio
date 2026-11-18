@@ -33,6 +33,10 @@
     return child.id === 'footer-contacts-list' ? 'footer-contacts-list' : 'footer-inner-list'
   }
 
+  function isButton (child: { type?: string }): boolean {
+    return child.type === 'button' || child.type === 'icon-button'
+  }
+
   function columnStyle (index: number) {
     const width = layout.value.widths[index]
     return width === null || width === undefined
@@ -98,7 +102,10 @@
                     <template-item :item="grandchild as any" />
                   </div>
                 </div>
-                <div v-else :class="child.class">
+                <!-- A button's class is its look (green-button...) and goes
+                  on the button itself (TemplateItem) - on this wrapper too
+                  it drew a second, taller green box around the button. -->
+                <div v-else :class="isButton(child) ? undefined : child.class">
                   <template-item :item="child as any" />
                 </div>
               </template>

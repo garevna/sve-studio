@@ -2,8 +2,12 @@ import type { SocialNetwork } from './social-networks'
 import { footerIcons } from '../assets/footer-icons'
 import facebookColor from '../assets/social-icons/facebook-color.svg'
 import facebook from '../assets/social-icons/facebook.svg'
+import githubColor from '../assets/social-icons/github-color.svg'
+import github from '../assets/social-icons/github.svg'
 import instagramColor from '../assets/social-icons/instagram-color.svg'
 import instagram from '../assets/social-icons/instagram.svg'
+import linkedinColor from '../assets/social-icons/linkedin-color.svg'
+import linkedin from '../assets/social-icons/linkedin.svg'
 import telegramColor from '../assets/social-icons/telegram-color.svg'
 import telegram from '../assets/social-icons/telegram.svg'
 import tiktokColor from '../assets/social-icons/tiktok-color.svg'
@@ -32,6 +36,8 @@ export const SOCIAL_ICONS: Record<SocialNetwork, Partial<Record<SocialIconLook, 
   facebook: { color: facebookColor, mono: facebook, circle: footerIcons.facebook },
   instagram: { color: instagramColor, mono: instagram, circle: footerIcons.instagram },
   tiktok: { color: tiktokColor, mono: tiktok, circle: footerIcons.tiktok },
+  linkedin: { color: linkedinColor, mono: linkedin, circle: footerIcons.linkedin },
+  github: { color: githubColor, mono: github, circle: footerIcons.github },
   whatsApp: { color: whatsAppColor, mono: whatsApp, circle: footerIcons.whatsApp },
   viber: { color: viberColor, mono: viber, circle: footerIcons.viber },
   telegram: { color: telegramColor, mono: telegram, circle: footerIcons.telegram },

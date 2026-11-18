@@ -186,7 +186,9 @@
             variant="outlined"
             @update:model-value="(value: string) => setTooltip(locale, value)"
           />
-          <ButtonVariantSelect v-model:class="blockClass" class="mt-4 mb-2" kind="icon-button" />
+          <div class="mt-4 mb-2">
+            <ButtonVariantSelect v-model:class="blockClass" kind="icon-button" />
+          </div>
           <p v-if="missingTooltips.length > 0" class="icon-button-editor-needed mb-6">
             {{ t('iconButton.tooltipNeeded') }}
           </p>

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+  import { computed } from 'vue'
   // Editor-side preview of client-side's own FooterIcons.vue - a faithful
   // visual clone (same grid, real click-through to whichever URL is
   // configured). Links AND icon glyphs both live in global.json
@@ -8,7 +9,8 @@
   // falls back to the bundled default SVGs when a network has no custom
   // glyph set.
   import { footerIcons } from '@/assets/footer-icons'
-  import { SOCIAL_NETWORKS } from '@/configs/social-networks'
+  import { SOCIAL_NETWORK_LABELS, SOCIAL_NETWORKS } from '@/configs/social-networks'
+  import { t } from '@/i18n'
 
   type PropsModel = { links?: Record<string, string>, icons?: Record<string, string> }
 
@@ -23,17 +25,23 @@
   function href (name: string): string | undefined {
     return props.links?.[name] || undefined
   }
+  // As on the site: only the networks with an address (Загальні
+  // налаштування -> Соціальні мережі). With none at all the place stays
+  // visible, saying where they are set.
+  const shown = computed(() => SOCIAL_NETWORKS.filter(name => href(name)))
+
   function isWeb (name: string): boolean {
     return /^https?:/i.test(href(name) ?? '')
   }
 </script>
 
 <template>
-  <div class="grid-icons">
+  <div v-if="shown.length === 0" class="footer-icons-empty">{{ t('generalSettings.socialNone') }}</div>
+  <div v-else class="grid-icons">
     <a
-      v-for="name in SOCIAL_NETWORKS"
+      v-for="name in shown"
       :key="name"
-      :aria-label="name"
+      :aria-label="SOCIAL_NETWORK_LABELS[name]"
       class="footer-icon-link"
       :href="href(name)"
       :rel="isWeb(name) ? 'noopener' : undefined"
@@ -56,8 +64,16 @@
   line-height: 0;
 }
 .grid-icons {
-  display: grid;
-  grid-template-columns: repeat(6, 36px);
-  grid-column-gap: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.footer-icons-empty {
+  min-height: 36px;
+  padding: 6px 12px;
+  border: 1px dashed currentColor;
+  border-radius: 8px;
+  font-size: 13px;
+  opacity: 0.7;
 }
 </style>

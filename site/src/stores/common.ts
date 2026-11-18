@@ -13,6 +13,7 @@ import type {
 import type { FooterSettingsModel } from '@/configs/footer-layout'
 import type { HeaderSettingsModel } from '@/configs/header-layout'
 import type { SiteContact } from '@/configs/site-contacts'
+import type { SocialNetwork } from '@/configs/social-networks'
 import type { Banner } from '@/types/common/GlobalSettingsModel'
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
@@ -101,7 +102,7 @@ export const useCommonStore = defineStore('common', () => {
     }
     links: LinksModel | null
     icons: IconSetModel | null
-    socialIcons?: Partial<Record<'facebook' | 'instagram' | 'tiktok' | 'whatsApp' | 'viber' | 'telegram', string>>
+    socialIcons?: Partial<Record<SocialNetwork, string>>
   } | null>(null)
 
   const userDashBreackpoint = ref(880)

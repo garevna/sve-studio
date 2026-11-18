@@ -26,9 +26,9 @@ function nuxtCli (): string {
 // The site is built under <root>site/: its base comes from SVE_ROOT, and the
 // editor's own NUXT_APP_BASE_URL must not reach it (Nuxt would take it as
 // the site's base too).
-function run (args: string[], cwd: string): ChildProcess {
+function run (args: string[], cwd: string, extraEnv: NodeJS.ProcessEnv = {}): ChildProcess {
   const root = process.env.NUXT_APP_BASE_URL || '/'
-  const env: NodeJS.ProcessEnv = { ...process.env, SVE_ROOT: root.endsWith('/') ? root : `${root}/` }
+  const env: NodeJS.ProcessEnv = { ...process.env, ...extraEnv, SVE_ROOT: root.endsWith('/') ? root : `${root}/` }
   delete env.NUXT_APP_BASE_URL
   return spawn(process.execPath, [nuxtCli(), ...args], { cwd, stdio: 'inherit', env })
 }
@@ -48,7 +48,11 @@ export default defineNuxtModule({
       // changes); one site server is enough.
       const state = globalThis as { __sveSiteDev?: ChildProcess }
       if (!state.__sveSiteDev || state.__sveSiteDev.exitCode !== null) {
-        state.__sveSiteDev = run(['dev', 'site', '--port', String(SITE_DEV_PORT)], repoRoot)
+        // SVE_EDITOR_ORIGIN: a page opened on the site's own port is sent
+        // over to the editor's /site/ (site/server/middleware/editor-origin.ts).
+        state.__sveSiteDev = run(['dev', 'site', '--port', String(SITE_DEV_PORT)], repoRoot, {
+          SVE_EDITOR_ORIGIN: `http://localhost:${nuxt.options.devServer.port}`,
+        })
         const stop = () => state.__sveSiteDev?.kill()
         process.once('exit', stop)
         process.once('SIGINT', stop)
@@ -61,6 +65,8 @@ export default defineNuxtModule({
         target: `http://localhost:${SITE_DEV_PORT}/site/`,
         changeOrigin: true,
         ws: true,
+        // what came through here is not sent back (editor-origin.ts)
+        headers: { 'x-sve-editor': '1' },
       }
       return
     }

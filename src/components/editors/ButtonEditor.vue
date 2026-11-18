@@ -145,7 +145,9 @@
             variant="outlined"
           />
 
-          <ButtonVariantSelect v-model:class="className" class="mb-6" />
+          <div class="mb-6">
+            <ButtonVariantSelect v-model:class="className" />
+          </div>
 
           <!-- The icon is chosen in the dialog that already exists for it,
             not in a picker inlined here. That picker loads its 7500-name mdi

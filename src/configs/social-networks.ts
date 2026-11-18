@@ -10,13 +10,15 @@
 // NOTE: site/src/configs/social-networks.ts is an exact copy - keep
 // the two identical.
 
-export const SOCIAL_NETWORKS = ['facebook', 'instagram', 'tiktok', 'whatsApp', 'viber', 'telegram'] as const
+export const SOCIAL_NETWORKS = ['facebook', 'instagram', 'tiktok', 'linkedin', 'github', 'whatsApp', 'viber', 'telegram'] as const
 export type SocialNetwork = typeof SOCIAL_NETWORKS[number]
 
 export const SOCIAL_NETWORK_LABELS: Record<SocialNetwork, string> = {
   facebook: 'Facebook',
   instagram: 'Instagram',
   tiktok: 'TikTok',
+  linkedin: 'LinkedIn',
+  github: 'GitHub',
   whatsApp: 'WhatsApp',
   viber: 'Viber',
   telegram: 'Telegram',

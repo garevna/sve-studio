@@ -166,44 +166,30 @@
             {
               "type": "text-with-icon",
               "content": {
-                "uk": "TikTok",
-                "en": "TikTok",
-                "de": "TikTok"
+                "uk": "LinkedIn",
+                "en": "LinkedIn",
+                "de": "LinkedIn"
               },
               "class": "default-text text-medium mb-4",
-              "icon": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzciIGhlaWdodD0iMzYiIHZpZXdCb3g9IjAgMCAzNyAzNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0zNi42NjcgNS4wODMyOUMzNi42NjcgMi4yNzU4OCAzNC4zOTExIDAgMzEuNTgzNyAwSDUuNzUwMjhDMi45NDI4NyAwIDAuNjY2OTkyIDIuMjc1ODggMC42NjY5OTIgNS4wODMyOVYzMC45MTY3QzAuNjY2OTkyIDMzLjcyNDIgMi45NDI4NyAzNiA1Ljc1MDI4IDM2SDMxLjU4MzdDMzQuMzkxMSAzNiAzNi42NjcgMzMuNzI0MiAzNi42NjcgMzAuOTE2N1Y1LjA4MzI5Wk0zMC40OTExIDE1LjcwMTJDMjguMTY4NSAxNS43MjcyIDI2LjAwNDIgMTUuMDI1IDI0LjEwMzkgMTMuNzI0NVYyMi44NTM4QzI0LjEwMzkgMjYuOTExMyAyMS4zMjY1IDMwLjM5NjcgMTcuMzk5MSAzMS4zMDdDMTIuMDQxMSAzMi41Mjk0IDcuNTA1MjQgMjguNjU0MSA2LjkzMzE1IDI0LjAyNDRDNi4zMzQ5MiAxOS4zOTQ2IDkuMjg3NjQgMTUuMzM3MSAxMy44MTMzIDE0LjQyNjhDMTQuNjk3NiAxNC4yNDQ4IDE2LjAyNzcgMTQuMjQ0OCAxNi43MTM5IDE0LjQwMDhWMTkuMjkwNkMxNi41MDI4IDE5LjIzODcgMTYuMzA1IDE5LjE4NjYgMTYuMDk3IDE5LjE2MDZDMTQuMzI4MyAxOC44NDg0IDEyLjYxNTMgMTkuNzMyOCAxMS45MTMgMjEuMzQ1M0MxMS4yMTA4IDIyLjk1ODEgMTEuNjgwOCAyNC44MzA2IDEzLjExMTMgMjUuOTIzMkMxNC4zMDc3IDI2Ljg1OTUgMTUuNjM1MiAyNi45ODk0IDE2Ljk4NzYgMjYuMzY1MkMxOC4zNDAyIDI1Ljc2NzEgMTkuMDY3MSAyNC42NzQ3IDE5LjIyMzEgMjMuMTkyMUMxOS4yNDkxIDIyLjk4NDIgMTkuMjQ3NiAyMi43NSAxOS4yNDc2IDIyLjUxNTlWNC45NTkyN0MxOS4yNDc2IDQuNDY1MTIgMTkuMjUxNSA0LjQ4NjY4IDE5Ljc0NTcgNC40ODY2OEgyMy42MjExQzIzLjkwNzMgNC40ODY2OCAyNC4wMTE0IDQuNTI3ODUgMjQuMDM3MyA0Ljg2NjE2QzI0LjI0NTMgNy44ODMyOCAyNi41MzYgMTAuNDUyOCAyOS40NzUgMTAuODQzQzI5Ljc4NzIgMTAuODk0OSAzMC4xMjE2IDEwLjkxNTYgMzAuNDkxMSAxMC45NDE1VjE1LjcwMTJaIiBmaWxsPSIjMkE2N0RBIi8+Cjwvc3ZnPgo=",
+              "icon": "social-icon:linkedin:mono",
               "size": 24,
               "color": "grey",
               "text": "default-text text-medium mb-4 text-dark-grey",
-              "link": "social:tiktok"
+              "link": "social:linkedin"
             },
             {
               "type": "text-with-icon",
               "content": {
-                "uk": "Instagram",
-                "en": "Instagram",
-                "de": "Instagram"
+                "uk": "GitHub",
+                "en": "GitHub",
+                "de": "GitHub"
               },
               "class": "default-text text-medium mb-4",
-              "icon": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzciIGhlaWdodD0iMzYiIHZpZXdCb3g9IjAgMCAzNyAzNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXAwXzg3Ml80ODUxMCkiPgo8cGF0aCBkPSJNMTguNTA4OCAxMkMxNi45MTc1IDEyIDE1LjM5MTQgMTIuNjMyMSAxNC4yNjYxIDEzLjc1NzRDMTMuMTQwOSAxNC44ODI2IDEyLjUwODggMTYuNDA4NyAxMi41MDg4IDE4QzEyLjUwODggMTkuNTkxMyAxMy4xNDA5IDIxLjExNzQgMTQuMjY2MSAyMi4yNDI2QzE1LjM5MTQgMjMuMzY3OSAxNi45MTc1IDI0IDE4LjUwODggMjRDMjAuMTAwMSAyNCAyMS42MjYyIDIzLjM2NzkgMjIuNzUxNCAyMi4yNDI2QzIzLjg3NjYgMjEuMTE3NCAyNC41MDg4IDE5LjU5MTMgMjQuNTA4OCAxOEMyNC41MDg4IDE2LjQwODcgMjMuODc2NiAxNC44ODI2IDIyLjc1MTQgMTMuNzU3NEMyMS42MjYyIDEyLjYzMjEgMjAuMTAwMSAxMiAxOC41MDg4IDEyWiIgZmlsbD0iIzJBNjdEQSIvPgo8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTguNDI1NTIgMC41NjQ2QzE1LjIzMjQgLTAuMTg4MiAyMi4xMDE3IC0wLjE4ODIgMjguOTA4NiAwLjU2NDZDMzIuNjI3MyAwLjk3OTA1MiAzNS42MjUzIDMuOTAxNzIgMzYuMDYyIDcuNjI3ODlDMzYuODY4NyAxNC41MTg1IDM2Ljg2ODcgMjEuNDc5NSAzNi4wNjIgMjguMzcwMUMzNS42MjUzIDMyLjA5NjIgMzIuNjI3MyAzNS4wMTg5IDI4LjkxMDUgMzUuNDM1M0MyMi4xMDMgMzYuMTg4MiAxNS4yMzMgMzYuMTg4MiA4LjQyNTUyIDM1LjQzNTNDNC43MDY4NCAzNS4wMTg5IDEuNzA4OCAzMi4wOTYyIDEuMjcyMTEgMjguMzcyQzAuNDY1Mjg2IDIxLjQ4MDggMC40NjUyODYgMTQuNTE5MSAxLjI3MjExIDcuNjI3ODlDMS43MDg4IDMuOTAxNzIgNC43MDY4NCAwLjk3OTA1MiA4LjQyNTUyIDAuNTY0NlpNMjguNDU4MiA2LjI2OTE5QzI3LjkzODggNi4yNjkxOSAyNy40NDA3IDYuNDc1MTUgMjcuMDczNSA2Ljg0MTc4QzI2LjcwNjMgNy4yMDg0MSAyNi41IDcuNzA1NjYgMjYuNSA4LjIyNDE1QzI2LjUgOC43NDI2NCAyNi43MDYzIDkuMjM5ODkgMjcuMDczNSA5LjYwNjUyQzI3LjQ0MDcgOS45NzMxNCAyNy45Mzg4IDEwLjE3OTEgMjguNDU4MiAxMC4xNzkxQzI4Ljk3NzUgMTAuMTc5MSAyOS40NzU2IDkuOTczMTQgMjkuODQyOSA5LjYwNjUyQzMwLjIxMDEgOS4yMzk4OSAzMC40MTY0IDguNzQyNjQgMzAuNDE2NCA4LjIyNDE1QzMwLjQxNjQgNy43MDU2NiAzMC4yMTAxIDcuMjA4NDEgMjkuODQyOSA2Ljg0MTc4QzI5LjQ3NTYgNi40NzUxNSAyOC45Nzc1IDYuMjY5MTkgMjguNDU4MiA2LjI2OTE5Wk05LjM2NTQ3IDE3Ljk5OUM5LjM2NTQ3IDE1LjUzNjEgMTAuMzQ1NSAxMy4xNzQyIDEyLjA4OTggMTEuNDMyN0MxMy44MzQyIDkuNjkxMjQgMTYuMjAwMSA4LjcxMjg5IDE4LjY2NyA4LjcxMjg5QzIxLjEzNCA4LjcxMjg5IDIzLjQ5OTkgOS42OTEyNCAyNS4yNDQzIDExLjQzMjdDMjYuOTg4NiAxMy4xNzQyIDI3Ljk2ODYgMTUuNTM2MSAyNy45Njg2IDE3Ljk5OUMyNy45Njg2IDIwLjQ2MTggMjYuOTg4NiAyMi44MjM3IDI1LjI0NDMgMjQuNTY1MkMyMy40OTk5IDI2LjMwNjcgMjEuMTM0IDI3LjI4NSAxOC42NjcgMjcuMjg1QzE2LjIwMDEgMjcuMjg1IDEzLjgzNDIgMjYuMzA2NyAxMi4wODk4IDI0LjU2NTJDMTAuMzQ1NSAyMi44MjM3IDkuMzY1NDcgMjAuNDYxOCA5LjM2NTQ3IDE3Ljk5OVoiIGZpbGw9IiMyQTY3REEiLz4KPC9nPgo8ZGVmcz4KPGNsaXBQYXRoIGlkPSJjbGlwMF84NzJfNDg1MTAiPgo8cmVjdCB3aWR0aD0iMzYiIGhlaWdodD0iMzYiIGZpbGw9IndoaXRlIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLjY2Njk5MikiLz4KPC9jbGlwUGF0aD4KPC9kZWZzPgo8L3N2Zz4K",
+              "icon": "social-icon:github:mono",
               "size": 24,
               "color": "grey",
               "text": "default-text text-medium mb-4 text-dark-grey",
-              "link": "social:instagram"
-            },
-            {
-              "type": "text-with-icon",
-              "content": {
-                "uk": "Facebook",
-                "en": "Facebook",
-                "de": "Facebook"
-              },
-              "class": "default-text text-medium mb-4",
-              "icon": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzciIGhlaWdodD0iMzYiIHZpZXdCb3g9IjAgMCAzNyAzNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPG1hc2sgaWQ9Im1hc2swXzUxMjRfNDE5MDQiIHN0eWxlPSJtYXNrLXR5cGU6bHVtaW5hbmNlIiBtYXNrVW5pdHM9InVzZXJTcGFjZU9uVXNlIiB4PSIwIiB5PSIwIiB3aWR0aD0iMzciIGhlaWdodD0iMzYiPgo8cGF0aCBkPSJNMC42NjY5OTIgMEgzNi42NjdWMzZIMC42NjY5OTJWMFoiIGZpbGw9IndoaXRlIi8+CjwvbWFzaz4KPGcgbWFzaz0idXJsKCNtYXNrMF81MTI0XzQxOTA0KSI+CjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMC42NjY5OTIgMTguMTAwNUMwLjY2Njk5MiAyNy4wNTEgNy4xNjY0OSAzNC40OTEgMTUuNjY3IDM2VjIyLjk5OTVIMTEuMTY3VjE4SDE1LjY2N1YxMy45OTk1QzE1LjY2NyA5LjQ5OTUgMTguNTY2NSA3LjAwMDUgMjIuNjY3NSA3LjAwMDVDMjMuOTY2NSA3LjAwMDUgMjUuMzY3NSA3LjIgMjYuNjY2NSA3LjM5OTVWMTJIMjQuMzY3QzIyLjE2NjUgMTIgMjEuNjY3IDEzLjA5OTUgMjEuNjY3IDE0LjUwMDVWMThIMjYuNDY3TDI1LjY2NzUgMjIuOTk5NUgyMS42NjdWMzZDMzAuMTY3NSAzNC40OTEgMzYuNjY3IDI3LjA1MSAzNi42NjcgMTguMTAwNUMzNi42NjcgOC4xNDUgMjguNTY3IDAgMTguNjY3IDBDOC43NjY5OSAwIDAuNjY2OTkyIDguMTQ1IDAuNjY2OTkyIDE4LjEwMDVaIiBmaWxsPSIjMkE2N0RBIi8+CjwvZz4KPC9zdmc+Cg==",
-              "size": 24,
-              "color": "grey",
-              "text": "default-text text-medium mb-4 text-dark-grey",
-              "link": "social:facebook"
+              "link": "social:github"
             },
             {
               "type": "text-with-icon",

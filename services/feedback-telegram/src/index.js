@@ -457,6 +457,8 @@ async function repostAnswer (env, chatId, thread, answer) {
   return shown?.result?.message_id || 0
 }
 
+const DIVIDER = '──────────────'
+
 // The answer written into the post itself, each one a paragraph after 🤝:
 // question and answers stay one message, and its "⚠️" turns "✅". Its own
 // formatting and the button are kept (the swap keeps the length, the answer
@@ -468,7 +470,10 @@ async function appendToPost (env, chatId, thread, answer, messageId) {
   }
   const time = new Date().toLocaleTimeString('uk-UA', { timeZone: 'Europe/Kyiv', hour: '2-digit', minute: '2-digit' })
   const status = thread.text.startsWith(WAITING) ? ANSWERED + thread.text.slice(WAITING.length) : thread.text
-  const text = `${status}\n\n🤝 ${time} · ${answer}`
+  // A line between the message and its answers - once, above the first one
+  // (Telegram has no rule of its own; plain text keeps the offsets above).
+  const divider = thread.text.includes(DIVIDER) ? '' : `\n\n${DIVIDER}`
+  const text = `${status}${divider}\n\n🤝 ${time} · ${answer}`
   if (text.length > 4096) {
     return false
   }

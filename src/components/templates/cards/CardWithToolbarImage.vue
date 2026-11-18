@@ -198,6 +198,11 @@
   .card-with-toolbar-image {
     position: relative;
   }
+  /* Its own padding: Vuetify keeps .v-card-text's in the v-card sheet,
+     which a page without a v-card never loads in a built app. */
+  .card-lines {
+    padding: 16px;
+  }
   .card-lines > * {
     margin-top: 0;
   }

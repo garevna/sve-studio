@@ -55,8 +55,10 @@ export default defineNuxtModule({
         process.once('SIGTERM', stop)
       }
       nuxt.options.nitro.devProxy ||= {}
+      // The target ends with a slash: without it /site/ reached the site
+      // server as /site, which sends it back to /site/ - round and round.
       nuxt.options.nitro.devProxy['/site'] = {
-        target: `http://localhost:${SITE_DEV_PORT}/site`,
+        target: `http://localhost:${SITE_DEV_PORT}/site/`,
         changeOrigin: true,
         ws: true,
       }

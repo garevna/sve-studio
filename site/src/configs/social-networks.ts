@@ -26,6 +26,16 @@ export const SOCIAL_NETWORK_LABELS: Record<SocialNetwork, string> = {
 
 const PREFIX = 'social:'
 
+// A network's address as it should be opened. Viber's "add?number=" asks
+// the app to add a contact - the desktop app answers it with "the requested
+// page is unavailable"; "chat?number=" opens the chat everywhere. An address
+// typed the old way still works.
+export function socialAddress (network: string, links: Partial<Record<string, string>> | null | undefined): string {
+  const address = links?.[network]?.trim() || ''
+  const viberAdd = /^viber:\/\/add\?number=(?:%2B|\+)?(\d+)/i.exec(address)
+  return viberAdd ? `viber://chat?number=%2B${viberAdd[1]}` : address
+}
+
 export function socialLink (network: SocialNetwork): string {
   return PREFIX + network
 }
@@ -49,5 +59,5 @@ export function resolveLink (link: string | undefined, links: Partial<Record<str
     return link
   }
   const network = socialNetworkOf(link)
-  return network ? (links?.[network] || '') : ''
+  return network ? socialAddress(network, links) : ''
 }

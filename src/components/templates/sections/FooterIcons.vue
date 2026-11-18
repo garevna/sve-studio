@@ -9,7 +9,7 @@
   // falls back to the bundled default SVGs when a network has no custom
   // glyph set.
   import { footerIcons } from '@/assets/footer-icons'
-  import { SOCIAL_NETWORK_LABELS, SOCIAL_NETWORKS } from '@/configs/social-networks'
+  import { SOCIAL_NETWORK_LABELS, SOCIAL_NETWORKS, socialAddress } from '@/configs/social-networks'
   import { t } from '@/i18n'
 
   type PropsModel = { links?: Record<string, string>, icons?: Record<string, string> }
@@ -23,7 +23,7 @@
   // Real links, as on the site: a web address in a new tab, an app's
   // (viber:, tg:...) handed to the app in place.
   function href (name: string): string | undefined {
-    return props.links?.[name] || undefined
+    return socialAddress(name, props.links) || undefined
   }
   // As on the site: only the networks with an address (Загальні
   // налаштування -> Соціальні мережі). With none at all the place stays

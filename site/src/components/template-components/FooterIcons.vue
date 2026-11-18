@@ -4,7 +4,7 @@
 
   import { footerIcons } from '../../assets/footer-icons'
 
-  import { SOCIAL_NETWORK_LABELS, SOCIAL_NETWORKS, type SocialNetwork } from '../../configs/social-networks'
+  import { SOCIAL_NETWORK_LABELS, SOCIAL_NETWORKS, socialAddress, type SocialNetwork } from '../../configs/social-networks'
   import { useCommonStore } from '../../stores/common'
 
   type LinkNameModel = SocialNetwork
@@ -36,7 +36,7 @@
   // whatsapp:...) is handed to the app in place - opened in a new tab it
   // left a tab saying the page is unavailable.
   function href (link: LinkNameModel): string | undefined {
-    return (links.value as Record<string, string>)[link] || undefined
+    return socialAddress(link, links.value as Record<string, string>) || undefined
   }
   function isWeb (link: LinkNameModel): boolean {
     return /^https?:/i.test(href(link) ?? '')

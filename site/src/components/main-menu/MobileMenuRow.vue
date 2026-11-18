@@ -6,7 +6,7 @@
   import { useSiteNavigation } from '../../composables/site-navigation'
   import { LOCALE_LABEL, rowStyle, translated } from '../../configs/menu-style'
   import { defaultSocialIcon, socialIconRef } from '../../configs/social-icons'
-  import { SOCIAL_NETWORK_LABELS, SOCIAL_NETWORKS } from '../../configs/social-networks'
+  import { SOCIAL_NETWORK_LABELS, SOCIAL_NETWORKS, socialAddress } from '../../configs/social-networks'
   import { ACCOUNT_PAGE_ID } from '../../services/site-links'
   import { useAuthStore } from '../../stores/auth'
   import { useCommonStore } from '../../stores/common'
@@ -85,7 +85,7 @@
         v-for="name of networks"
         :key="name"
         :aria-label="SOCIAL_NETWORK_LABELS[name]"
-        :href="links[name]"
+        :href="socialAddress(name, links)"
         rel="noopener"
         target="_blank"
       >

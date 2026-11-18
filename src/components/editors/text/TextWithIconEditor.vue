@@ -84,9 +84,13 @@
   // deliberate, requested divergence from that (buggy) production spacing,
   // not a fidelity slip - see IconEditor.vue's own "backSize" for the
   // matching +32 formula.
+  //
+  // While editing, the icon is a clickable circle of size+32 whether or not
+  // it has a background (IconEditor.vue) - a column only as wide as the bare
+  // icon let that circle run 32px into the text being typed.
   const iconColumnWidth = computed(() => {
     const size = iconSize.value || 24
-    return (iconBackground.value ? size + 32 : size) + 'px'
+    return (iconBackground.value || mode.value === 'edit' ? size + 32 : size) + 'px'
   })
 </script>
 
@@ -187,6 +191,14 @@
   grid-template-columns: v-bind(iconColumnWidth) 1fr;
   column-gap: 16px;
   align-content: center;
+  align-items: center;
+}
+
+/* The line's own bottom margin (mb-4 in its class) pushed the text above
+   the icon's middle; the rows here are spaced by the icon's circle. */
+.text-with-icon--editing :deep(.editing-text),
+.text-with-icon--editing :deep(.text-before-edit) {
+  margin-bottom: 0 !important;
 }
 
 .text-with-icon--editing {

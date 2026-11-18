@@ -53,8 +53,7 @@
   "images": [
     "about-company/04.png",
     "about-company/05.png",
-    "about-company/07.jpg",
-    "about-company/07.webp",
+    "about-company/07.png",
     "about-company/08.webp",
     "about-company/11.png",
     "about-company/12.webp",
@@ -70,7 +69,7 @@
     "advanced-features/pagewright-16.jpeg",
     "contacts-page/02.jpg",
     "contacts-page/09.jpg",
-    "contacts-page/12.webp",
+    "contacts-page/12.png",
     "contacts-page/17.png",
     "docking/pagewright-04.png",
     "expert-help/14.jpg",
@@ -105,9 +104,9 @@
     "ships/ship-dock-02.jpg"
   ],
   "hashes": {
-    "pages/about-company.json": "3b8b99d2e6b91d1c",
+    "pages/about-company.json": "7a6f77c1f445e34b",
     "pages/advanced-features.json": "7a4bf38397a31718",
-    "pages/contacts-page.json": "a9dac407e17e7cfd",
+    "pages/contacts-page.json": "f40760746cd8c33d",
     "pages/docking.json": "2d146cb36d1cf57f",
     "pages/footer-content.json": "76b1eefdffa2d354",
     "pages/for-studios.json": "27d0a0658d7a8614",

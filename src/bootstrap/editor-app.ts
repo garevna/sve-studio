@@ -14,13 +14,15 @@ import { createVuetify } from 'vuetify'
 import { mdi } from 'vuetify/iconsets/mdi'
 import SelectColorFromPalette from '@/components/special/SelectColorFromPalette.vue'
 import { siteStyles } from '@/configs/card-style'
+import { sitePalette } from '@/configs/neon-palette'
+import { neonGlowDeclarations } from '@/configs/site-style'
 import { onSeedProblems } from '@/db/client'
 import { i18n, t } from '@/i18n'
 import { useAjaxStore } from '@/stores/ajax'
 import { useUiFeedbackStore } from '@/stores/ui-feedback'
-import { buildColorScheme, isHexColor } from '@/utils/build-color-scheme'
+import { buildColorScheme } from '@/utils/build-color-scheme'
 import { EDITED_APP_SCOPE_CLASS } from '@/utils/edited-app-scope'
-import { hexToRgbTriple } from '@/utils/hex-to-rgb-triple'
+import { applyEditedPalette } from '@/utils/edited-palette'
 import { loadScopedVuetifyStyles } from '@/utils/load-scoped-vuetify-styles'
 import { loadThemeStyles } from '@/utils/load-theme-styles'
 import { setSiteLocales } from '@/utils/locale-text'
@@ -53,27 +55,16 @@ export async function prepareEditor (pinia: Pinia, theme: number) {
   ])
 
   // The site's CSS reads bare var(--grey), var(--light-border)... - defined
-  // here from palette.json, like the site's own setupPalette().
-  for (const [name, value] of Object.entries(palette)) {
-    document.documentElement.style.setProperty(`--${name}`, value)
-  }
-
-  // Vuetify's .text-{name}/.bg-{name} utilities read --v-theme-{name} as an
-  // "R,G,B" triple, which Vuetify only defines on .v-theme--{name}
-  // elements - set them on the edited-content scope directly instead.
-  const themeVarRules = Object.entries(palette)
-    .filter(([, value]) => isHexColor(value))
-    .map(([name, value]) => `--v-theme-${name}: ${hexToRgbTriple(value)};`)
-    .join('\n  ')
-  const themeVarStyle = document.createElement('style')
-  themeVarStyle.textContent = `.${EDITED_APP_SCOPE_CLASS} {\n  ${themeVarRules}\n}`
-  document.head.append(themeVarStyle)
+  // here from palette.json, like the site's own setupPalette(); «Неон»'s
+  // colours instead while the site wears it (configs/neon-palette.ts).
+  const worn = sitePalette(palette, globalSettings)
+  applyEditedPalette(worn, palette, neonGlowDeclarations(globalSettings.neonGlow))
 
   // Main + accent font, and the site's content languages, from global.json.
   applyThemeFonts(globalSettings)
   setSiteLocales(globalSettings.locales, globalSettings.defaultLocale)
 
-  return { globalSettings, palette }
+  return { globalSettings, palette: worn }
 }
 
 export function createEditorVuetify (palette: Record<string, string>) {

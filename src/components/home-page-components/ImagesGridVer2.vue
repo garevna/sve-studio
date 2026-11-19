@@ -93,10 +93,12 @@
         <image-editor
           v-model:src="model.images.mobile[0]"
           :fallback="model.images.desktop[0]"
+          wave
         />
         <image-editor
           v-model:src="model.images.mobile[1]"
           :fallback="model.images.desktop[1]"
+          wave
         />
         <text-editor
           v-if="model.text"
@@ -108,13 +110,13 @@
       </template>
       <template v-else>
         <img
-          class="rounded-border-image"
+          class="wave-image rounded-border-image"
           :class="placeholderClass(model.images.mobile[0] || model.images.desktop[0])"
           :src="ajaxStore.getImageURL(model.images.mobile[0] || model.images.desktop[0] || '')"
           @error="onImageError(model.images.mobile[0] || model.images.desktop[0])"
         >
         <img
-          class="rounded-border-image"
+          class="wave-image rounded-border-image"
           :class="placeholderClass(model.images.mobile[1] || model.images.desktop[1])"
           :src="ajaxStore.getImageURL(model.images.mobile[1] || model.images.desktop[1] || '')"
           @error="onImageError(model.images.mobile[1] || model.images.desktop[1])"
@@ -130,11 +132,11 @@
     <v-row id="md-variant" class="align-stretch">
       <v-col cols="6">
         <template v-if="mode === 'edit'">
-          <image-editor v-model:src="model.images.desktop[0]" :resize="false" />
+          <image-editor v-model:src="model.images.desktop[0]" :resize="false" wave />
         </template>
         <template v-else>
           <v-img
-            class="rounded-border-image"
+            class="wave-image rounded-border-image"
             :class="placeholderClass(model.images.desktop[0])"
             cover
             height="624"
@@ -166,11 +168,11 @@
         <v-row style="height: 50%">
           <v-col cols="12">
             <template v-if="mode === 'edit'">
-              <image-editor v-model:src="model.images.desktop[3]" :resize="false" />
+              <image-editor v-model:src="model.images.desktop[3]" :resize="false" wave />
             </template>
             <template v-else>
               <v-img
-                class="rounded-border-image"
+                class="wave-image rounded-border-image"
                 :class="placeholderClass(model.images.desktop[3])"
                 cover
                 height="300"
@@ -185,11 +187,11 @@
     <v-row id="below-line" class="align-stretch">
       <v-col cols="8">
         <template v-if="mode === 'edit'">
-          <image-editor v-model:src="model.images.desktop[1]" :resize="false" />
+          <image-editor v-model:src="model.images.desktop[1]" :resize="false" wave />
         </template>
         <template v-else>
           <v-img
-            class="rounded-border-image"
+            class="wave-image rounded-border-image"
             :class="placeholderClass(model.images.desktop[1])"
             cover
             height="300"
@@ -201,11 +203,11 @@
 
       <v-col cols="4">
         <template v-if="mode === 'edit'">
-          <image-editor v-model:src="model.images.desktop[2]" :resize="false" />
+          <image-editor v-model:src="model.images.desktop[2]" :resize="false" wave />
         </template>
         <template v-else>
           <v-img
-            class="rounded-border-image"
+            class="wave-image rounded-border-image"
             :class="placeholderClass(model.images.desktop[2])"
             cover
             height="300"
@@ -218,11 +220,11 @@
     <v-row id="below-line-sm" class="align-stretch">
       <v-col cols="12">
         <template v-if="mode === 'edit'">
-          <image-editor v-model:src="model.images.desktop[1]" :resize="false" />
+          <image-editor v-model:src="model.images.desktop[1]" :resize="false" wave />
         </template>
         <template v-else>
           <v-img
-            class="rounded-border-image"
+            class="wave-image rounded-border-image"
             :class="placeholderClass(model.images.desktop[1])"
             cover
             :src="ajaxStore.getImageURL(model.images.desktop[1] || '')"

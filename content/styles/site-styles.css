@@ -1,6 +1,6 @@
-/* The site's styles - «Класика», «Штрих», «Хвиля» (the page editor's
-   «Стиль» button, configs/site-style.ts). The site wears them as classes on
-   <html>: site-style-<style>, and site-style-<part>-<style> for each part
+/* The site's styles - «Класика», «Штрих», «Хвиля», «Неон» (the «Стиль
+   сайту» button on the Верф's top bar, configs/site-style.ts). The site
+   wears them as classes on <html>: site-style-<style>, and site-style-<part>-<style> for each part
    as it actually is - its own style, or the site's. Here: what the parts
    that have no look of their own become in each. Cards and
    buttons take theirs from cards.css and button-set.css (the style's card
@@ -154,40 +154,131 @@
 
 /* ---- «Неон»: glass panes with a glowing outline ---- */
 
-/* The footer's columns, each a pane of dark glass lit in gold (the
-   palette's warning); brighter under the pointer. */
+/* The glow's colour: the site's (the «Стиль сайту» menu, global.json
+   `neonGlow`, put on <html> as --neon-glow and, for the colour classes,
+   --neon-glow-theme), gold (the palette's warning) when none is chosen.
+
+   The footer's columns, each a pane of dark glass lit in the glow;
+   brighter under the pointer. */
 .site-style-footer-neon :is(.app-footer, .footer-editor-root) .footer-column {
   padding: 20px 24px;
   border-radius: var(--default-border-radius);
   background:
     linear-gradient(160deg, color-mix(in srgb, var(--white) 10%, transparent), transparent 45%),
-    color-mix(in srgb, var(--black) 45%, transparent);
-  border: 1px solid color-mix(in srgb, var(--warning) 70%, transparent);
+    color-mix(in srgb, var(--neon-night, var(--black)) 45%, transparent);
+  border: 1px solid color-mix(in srgb, var(--neon-glow, var(--warning)) 70%, transparent);
   box-shadow:
-    0 0 4px color-mix(in srgb, var(--warning) 60%, transparent),
-    0 0 18px color-mix(in srgb, var(--warning) 28%, transparent),
-    inset 0 0 18px color-mix(in srgb, var(--warning) 14%, transparent);
+    0 0 4px color-mix(in srgb, var(--neon-glow, var(--warning)) 60%, transparent),
+    0 0 18px color-mix(in srgb, var(--neon-glow, var(--warning)) 28%, transparent),
+    inset 0 0 18px color-mix(in srgb, var(--neon-glow, var(--warning)) 14%, transparent);
   transition: box-shadow 0.35s ease;
 }
 
 .site-style-footer-neon :is(.app-footer, .footer-editor-root) .footer-column:hover {
   box-shadow:
-    0 0 6px color-mix(in srgb, var(--warning) 90%, transparent),
-    0 0 28px color-mix(in srgb, var(--warning) 45%, transparent),
-    inset 0 0 22px color-mix(in srgb, var(--warning) 22%, transparent);
+    0 0 6px color-mix(in srgb, var(--neon-glow, var(--warning)) 90%, transparent),
+    0 0 28px color-mix(in srgb, var(--neon-glow, var(--warning)) 45%, transparent),
+    inset 0 0 22px color-mix(in srgb, var(--neon-glow, var(--warning)) 22%, transparent);
+}
+
+/* The glass's night: «black» on a light site; on a site that is «Неон»
+   as a whole, whose palette turns «black» into the light text, its
+   «homefone» (configs/neon-palette.ts). Declared on the page too: in the
+   Верф the night's colours are worn by the edited page, not by <html>. */
+.site-style-neon,
+.site-style-neon :is(#app, .edited-app-scope) {
+  --neon-night: var(--homefone);
+}
+
+/* The footer itself: the night, whatever colour the footer is given - the
+   glass panes need it around them. */
+.site-style-footer-neon :is(.app-footer, .footer-editor-root) {
+  background: var(--deep-space-gradient) !important;
+}
+
+.site-style-footer-neon .footer-horizon-wave :is(.footer-horizon-wave__back, .footer-horizon-wave__front) {
+  fill: var(--neon-night, var(--black)) !important;
+}
+
+/* The menu bar: a strip of dark glass, its lower edge lit; its words
+   light, the current page's in the glow's colour. The colour classes read
+   --v-theme-<colour>, pointed here at the light ones. */
+.site-style-menu-neon .main-menu-bar {
+  background: color-mix(in srgb, var(--neon-night, var(--black)) 82%, transparent) !important;
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid color-mix(in srgb, var(--neon-glow, var(--warning)) 70%, transparent);
+  box-shadow:
+    0 0 4px color-mix(in srgb, var(--neon-glow, var(--warning)) 55%, transparent),
+    0 6px 22px color-mix(in srgb, var(--neon-glow, var(--warning)) 22%, transparent);
+  color: var(--white);
+}
+
+.site-style-menu-neon .main-menu-bar [class*="text-"]:not([class*="bg-"]) {
+  --v-theme-black: var(--v-theme-white);
+  --v-theme-dark: var(--v-theme-white);
+  --v-theme-dark-grey: var(--v-theme-white);
+  --v-theme-primary: var(--neon-glow-theme, var(--v-theme-warning));
 }
 
 /* The phone's menu: its panel's edge lit, the light spilling inside. */
 .site-style-menu-neon .mobile-menu-panel {
-  border: 1px solid color-mix(in srgb, var(--warning) 70%, transparent);
+  border: 1px solid color-mix(in srgb, var(--neon-glow, var(--warning)) 70%, transparent);
   box-shadow:
-    0 0 6px color-mix(in srgb, var(--warning) 60%, transparent),
-    0 0 26px color-mix(in srgb, var(--warning) 30%, transparent),
-    inset 0 0 26px color-mix(in srgb, var(--warning) 14%, transparent);
+    0 0 6px color-mix(in srgb, var(--neon-glow, var(--warning)) 60%, transparent),
+    0 0 26px color-mix(in srgb, var(--neon-glow, var(--warning)) 30%, transparent),
+    inset 0 0 26px color-mix(in srgb, var(--neon-glow, var(--warning)) 14%, transparent);
 }
 
 @media (prefers-reduced-motion: reduce) {
   .site-style-footer-neon .footer-column {
     transition: none;
   }
+}
+
+/* ---- «Хвиля» on the edges of pictures and cards ----
+   An element whose own --wave-edge is top / right / bottom / left gets
+   that edge waving under the pointer (utils/wave-edge.ts). Not inherited:
+   only the element itself answers, never its children. Cards take it from
+   their «Хвиля» card style (cards.css); the pictures - .wave-image, the
+   content pictures of the blocks - here, while the site's pictures wear
+   «Хвиля»: the site's edge (--site-wave-edge, the «Стиль сайту» menu), or a
+   picture's own wave-edge-<side> class, on the picture or on its frame. */
+
+@property --wave-edge {
+  syntax: "*";
+  inherits: false;
+}
+
+.site-style-images-wave .wave-image {
+  --wave-edge: var(--site-wave-edge, bottom);
+}
+
+.site-style-images-wave :is(.wave-edge-bottom.wave-image, .wave-edge-bottom .wave-image) {
+  --wave-edge: bottom;
+}
+
+.site-style-images-wave :is(.wave-edge-top.wave-image, .wave-edge-top .wave-image) {
+  --wave-edge: top;
+}
+
+.site-style-images-wave :is(.wave-edge-left.wave-image, .wave-edge-left .wave-image) {
+  --wave-edge: left;
+}
+
+.site-style-images-wave :is(.wave-edge-right.wave-image, .wave-edge-right .wave-image) {
+  --wave-edge: right;
+}
+
+.site-style-images-wave :is(.wave-edge-none.wave-image, .wave-edge-none .wave-image) {
+  --wave-edge: none;
+}
+
+/* ---- «Неон»: the night behind the glass ----
+   The whole site in «Неон» wears «Неон»'s palette (configs/neon-palette.ts:
+   a dark page, light text, bright light). Here only the page's depth: the
+   palette's deep-space gradient instead of a flat colour. #app is the site,
+   .edited-app-scope the page in the Верф. */
+
+.site-style-neon :is(#app, .edited-app-scope) {
+  background: var(--deep-space-gradient) fixed;
 }

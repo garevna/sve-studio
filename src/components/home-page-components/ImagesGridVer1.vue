@@ -135,6 +135,7 @@
               v-model:height="desktopHeight1"
               v-model:src="model.images.desktop[0]"
               :resize="false"
+              wave
             />
           </v-col>
           <v-col class="d-flex flex-column justify-space-between gr-6" cols="3">
@@ -142,11 +143,13 @@
               v-model:height="desktopHeight2"
               v-model:src="model.images.desktop[1]"
               :resize="false"
+              wave
             />
             <image-editor
               v-model:height="desktopHeight2"
               v-model:src="model.images.desktop[2]"
               :resize="false"
+              wave
             />
           </v-col>
 
@@ -155,6 +158,7 @@
               v-model:height="desktopHeight1"
               v-model:src="model.images.desktop[3]"
               :resize="false"
+              wave
             />
           </v-col>
         </v-row>
@@ -168,6 +172,7 @@
               v-model:src="model.images.mobile[0]"
               :fallback="model.images.desktop[0]"
               :resize="false"
+              wave
             />
           </v-col>
           <v-col cols="5">
@@ -177,12 +182,14 @@
                 v-model:src="model.images.mobile[1]"
                 :fallback="model.images.desktop[1]"
                 :resize="false"
+                wave
               />
               <image-editor
                 v-model:height="mobileHeight2"
                 v-model:src="model.images.mobile[2]"
                 :fallback="model.images.desktop[2]"
                 :resize="false"
+                wave
               />
             </div>
           </v-col>
@@ -192,6 +199,7 @@
           v-model:src="model.images.mobile[3]"
           :fallback="model.images.desktop[3]"
           :resize="false"
+          wave
         />
       </template>
     </template>

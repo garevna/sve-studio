@@ -132,7 +132,7 @@
         v-if="mode === 'preview'"
       >
         <v-img
-          class="rounded-toolbar"
+          class="wave-image rounded-toolbar"
           cover
           height="100%"
           :src="imageSrc"
@@ -144,6 +144,7 @@
           v-model:src="imageSrc"
           :height="card.height as number"
           :resize="false"
+          wave
           :width="card.width + 'px'"
           @update:height="onHeightChange"
         />

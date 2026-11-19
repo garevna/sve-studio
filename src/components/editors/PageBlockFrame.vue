@@ -81,7 +81,15 @@
       <i class="sve-icon mdi mdi-pencil-outline" />
       <span>{{ t('block.empty') }}</span>
     </div>
-    <div v-if="!active" class="sve-block__shield" :title="t('block.edit')" @click="pageBlocks.edit(block)" />
+    <!-- data-wave-through: the block's pictures and cards still answer the
+      pointer under it (utils/wave-edge.ts) -->
+    <div
+      v-if="!active"
+      class="sve-block__shield"
+      data-wave-through
+      :title="t('block.edit')"
+      @click="pageBlocks.edit(block)"
+    />
   </div>
   <slot v-else :mode="mode" />
 </template>

@@ -39,6 +39,7 @@
   import PageNotFound from './templates/PageNotFound.vue'
   import { type PageTitle, pageTitleText, withMenuLabels } from './utils/page-title'
   import { sveRoot } from './utils/sve-root'
+  import { startWaveEdges } from './utils/wave-edge'
 
   // The whole site around the page the address names: menu, top of the
   // page, the page's blocks, footer. Stays mounted while the visitor moves
@@ -128,7 +129,7 @@
     }
     commonStore.setGlobalSettings(settings)
     // The site's style (UI Kit): its class on <html> - configs/site-style.ts.
-    applySiteStyle(document.documentElement, settings.siteStyle, settings.siteStyleParts)
+    applySiteStyle(document.documentElement, settings.siteStyle, settings.siteStyleParts, settings.siteStyleWaveEdge, settings.neonGlow)
     // A menu item leading to a page says the page's name (utils/page-title.ts).
     commonStore.mainMenuContent = withMenuLabels(menu, pageTitles.titles as Record<string, PageTitle>, commonStore.siteLocales, commonStore.defaultLocale, pageTitles.hidden)
     commonStore.dynamicFooterContent = footer
@@ -284,6 +285,8 @@
     }
     window.addEventListener('message', onEditorMessage)
     window.addEventListener('resize', commonStore.resize)
+    // «Хвиля» on the edges of pictures and cards (utils/wave-edge.ts).
+    startWaveEdges()
     commonStore.resize()
     await loadSite()
     await showPage()

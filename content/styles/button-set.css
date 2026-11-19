@@ -603,7 +603,7 @@
 
 /* the glass and the light - after the common rule, which takes every shadow away */
 .button-kind-neon {
-  background: linear-gradient(160deg, color-mix(in srgb, var(--white) 12%, transparent), transparent 50%), color-mix(in srgb, var(--black) 55%, transparent) !important;
+  background: linear-gradient(160deg, color-mix(in srgb, var(--white) 12%, transparent), transparent 50%), color-mix(in srgb, var(--neon-night, var(--black)) 55%, transparent) !important;
   backdrop-filter: blur(8px);
   box-shadow: 0 0 4px color-mix(in srgb, var(--warning) 70%, transparent), 0 0 16px color-mix(in srgb, var(--warning) 35%, transparent), inset 0 0 12px color-mix(in srgb, var(--warning) 20%, transparent) !important;
   text-shadow: 0 0 6px color-mix(in srgb, var(--warning) 80%, transparent);

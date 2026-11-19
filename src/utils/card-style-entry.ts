@@ -25,7 +25,13 @@ export interface CardStyleEntry {
 }
 
 export interface CardGlow {
-  color: string // palette colour key
+  // palette colour key, or 'site': the site's glow (the «Стиль сайту»
+  // menu, --neon-glow), gold when it has none
+  color: string
+}
+
+function glowVar (color: string): string {
+  return color === 'site' ? 'var(--neon-glow, var(--warning))' : `var(--${color})`
 }
 
 // The glow's colour is kept as a marker property; every declaration names
@@ -35,7 +41,7 @@ const GLOW_COLOR = '--card-glow-color'
 const GLOW_OWN = ['background', 'border', 'box-shadow', 'backdrop-filter', 'color', 'transition']
 
 function glowShadow (color: string, strength: number): string {
-  const c = (share: number) => `color-mix(in srgb, var(--${color}) ${Math.min(100, Math.round(share * strength))}%, transparent)`
+  const c = (share: number) => `color-mix(in srgb, ${glowVar(color)} ${Math.min(100, Math.round(share * strength))}%, transparent)`
   return `0 0 4px ${c(70)}, 0 0 18px ${c(35)}, inset 0 0 18px ${c(18)}`
 }
 
@@ -43,9 +49,9 @@ function glowDeclarations (glow: CardGlow): [string, string][] {
   return [
     [GLOW_COLOR, glow.color],
     // dark glass, a little light caught at its top-left
-    ['background', 'linear-gradient(160deg, color-mix(in srgb, var(--white) 12%, transparent), transparent 45%), color-mix(in srgb, var(--black) 62%, transparent)'],
+    ['background', 'linear-gradient(160deg, color-mix(in srgb, var(--white) 12%, transparent), transparent 45%), color-mix(in srgb, var(--neon-night, var(--black)) 62%, transparent)'],
     ['backdrop-filter', 'blur(10px)'],
-    ['border', `1px solid color-mix(in srgb, var(--${glow.color}) 75%, transparent)`],
+    ['border', `1px solid color-mix(in srgb, ${glowVar(glow.color)} 75%, transparent)`],
     ['box-shadow', glowShadow(glow.color, 1)],
     ['color', 'var(--white)'],
     ['transition', 'box-shadow 0.35s ease'],
@@ -73,12 +79,19 @@ function isGlowNode (node: CssNode, className: string): boolean {
 
 export interface CardWave {
   color: string // palette colour key - a light one keeps the text readable
+  // the edge of the card's outline that bends into a wave under the
+  // pointer (utils/wave-edge.ts); 'none': the outline stays as it is
+  edge: CardWaveEdge
 }
+
+export const CARD_WAVE_EDGES = ['bottom', 'top', 'left', 'right', 'none'] as const
+export type CardWaveEdge = typeof CARD_WAVE_EDGES[number]
 
 // The wave is the card's ::before, behind its content; its colour is kept
 // as a custom property, the rules for it are written from it.
 const WAVE_COLOR = '--card-wave-color'
-const WAVE_OWN = ['position', 'overflow', 'isolation']
+const WAVE_EDGE = '--wave-edge'
+const WAVE_OWN = ['position', 'overflow', 'isolation', WAVE_EDGE]
 
 function waveNodes (className: string): CssNode[] {
   const c = `.${className}`
@@ -196,7 +209,8 @@ function readEffects (entry: CardStyleEntry, declarations: CssDeclaration[]) {
   }
   const waveColor = declared(WAVE_COLOR)
   if (waveColor) {
-    entry.wave = { color: varKey(waveColor) ?? waveColor }
+    const edge = declared(WAVE_EDGE) as CardWaveEdge
+    entry.wave = { color: varKey(waveColor) ?? waveColor, edge: CARD_WAVE_EDGES.includes(edge) ? edge : 'bottom' }
   }
   const glowColor = declared(GLOW_COLOR)
   if (glowColor) {
@@ -279,6 +293,7 @@ export function cardStyleDeclarations (entry: CardStyleEntry): CssDeclaration[] 
     add('position', 'relative')
     add('overflow', 'hidden')
     add('isolation', 'isolate')
+    add(WAVE_EDGE, entry.wave.edge)
   }
   declarations.push(...entry.raw)
   return declarations
@@ -288,7 +303,8 @@ export function cardStyleDeclarations (entry: CardStyleEntry): CssDeclaration[] 
 export function cardStyleInline (entry: CardStyleEntry): Record<string, string> {
   const style: Record<string, string> = {}
   for (const { property, value } of cardStyleDeclarations(entry)) {
-    if (!property.startsWith('--')) {
+    // the wave's edge too: utils/wave-edge.ts reads it off the sample
+    if (!property.startsWith('--') || property === WAVE_EDGE) {
       style[property] = value
     }
   }

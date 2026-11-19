@@ -5,15 +5,22 @@
   import EditorSaveBar from '@/components/special/EditorSaveBar.vue'
   import PaletteColorPicker from '@/components/special/PaletteColorPicker.vue'
   import PaletteSwatchPicker from '@/components/special/PaletteSwatchPicker.vue'
+  import { neonPalette } from '@/configs/neon-palette'
   import { t } from '@/i18n'
   import { useAjaxStore } from '@/stores/ajax'
   import { useUiFeedbackStore } from '@/stores/ui-feedback'
+  import { refreshEditedPalette } from '@/utils/edited-palette'
   import { BORDER_STYLES, borderEntryCss, gradientCss, parsePaletteEntry, serializePaletteEntry } from '@/utils/palette-entry'
 
   const ajaxStore = useAjaxStore()
   const feedback = useUiFeedbackStore()
 
   const entries = ref<PaletteEntry[]>([])
+  // Which set is edited: palette.json, or «Неон»'s own colours
+  // (configs/neon-palette.ts) - the same keys, kept in global.json
+  // `neonPalette`. In «Неон» nothing is added or deleted: the keys are
+  // palette.json's.
+  const set = ref<'base' | 'neon'>('base')
   const loading = ref(true)
   const saving = ref(false)
   const undoing = ref(false)
@@ -36,13 +43,42 @@
   // preview follows a colour changed above before anything is saved.
   const paletteVars = computed(() => Object.fromEntries(colorEntries.value.map(entry => [`--${entry.key}`, entry.color])))
 
-  onMounted(async () => {
+  function toEntries (palette: Record<string, string> | null | undefined): PaletteEntry[] {
+    return Object.entries(palette || {}).map(([key, value]) => parsePaletteEntry(key, value))
+  }
+
+  async function load () {
+    loading.value = true
     const palette = await ajaxStore.getPalette()
     skipNextAutoSave = true
-    entries.value = Object.entries(palette || {}).map(([key, value]) => parsePaletteEntry(key, value))
-    dirty.value = await ajaxStore.isPaletteUpdated()
+    if (set.value === 'neon') {
+      const settings = await ajaxStore.getGlobalSettings()
+      entries.value = toEntries(neonPalette(palette ?? {}, settings?.neonPalette))
+      dirty.value = await ajaxStore.isGlobalSettingsUpdated()
+    } else {
+      entries.value = toEntries(palette)
+      dirty.value = await ajaxStore.isPaletteUpdated()
+    }
     loading.value = false
+  }
+
+  onMounted(load)
+
+  // Another set: what is still waiting to be kept goes first.
+  watch(set, async () => {
+    await flushAutoSave()
+    await load()
   })
+
+  // Kept where the set lives - palette.json, or global.json's neonPalette.
+  async function store (palette: Record<string, string>, publish: boolean) {
+    if (set.value === 'neon') {
+      const settings = await ajaxStore.getGlobalSettings()
+      await ajaxStore.saveGlobalSettings({ ...settings, neonPalette: palette }, { publish })
+    } else {
+      await ajaxStore.savePalette(palette, { publish })
+    }
+  }
 
   // Borders: a palette colour + width + line style, under a name.
   const BORDER_KEY_RE = /^[a-z][\w-]*$/i
@@ -111,7 +147,7 @@
     try {
       // Reported centrally by the store - see ajax.ts's reportSaved /
       // reportSaveFailed. Nothing local to say here.
-      await ajaxStore.savePalette(serializeEntries(), { publish: true })
+      await store(serializeEntries(), true)
       dirty.value = false
     } finally {
       saving.value = false
@@ -122,8 +158,13 @@
     undoing.value = true
     try {
       skipNextAutoSave = true
-      const palette = await ajaxStore.undoPalette()
-      entries.value = Object.entries(palette || {}).map(([key, value]) => parsePaletteEntry(key, value))
+      if (set.value === 'neon') {
+        const settings = await ajaxStore.undoGlobalSettings()
+        entries.value = toEntries(neonPalette(await ajaxStore.getPalette() ?? {}, settings?.neonPalette))
+      } else {
+        entries.value = toEntries(await ajaxStore.undoPalette())
+      }
+      void refreshEditedPalette()
       dirty.value = false
       feedback.notifySuccess(t('popups.undoDone'))
     } catch {
@@ -144,23 +185,40 @@
     }
     dirty.value = true
     if (autoSaveTimer) clearTimeout(autoSaveTimer)
-    autoSaveTimer = setTimeout(() => {
-      autoSaveTimer = null
-      const palette = serializeEntries()
-      ajaxStore.savePalette(palette, { publish: false })
-      // The editor's own CSS variables (set once at startup, editor-app.ts)
-      // follow, so a new gradient can be picked as a fill right away.
-      for (const [name, value] of Object.entries(palette)) {
-        document.documentElement.style.setProperty(`--${name}`, value)
-      }
-    }, 800)
+    autoSaveTimer = setTimeout(() => void flushAutoSave(), 800)
   }, { deep: true })
+
+  async function flushAutoSave () {
+    if (!autoSaveTimer) {
+      return
+    }
+    clearTimeout(autoSaveTimer)
+    autoSaveTimer = null
+    await store(serializeEntries(), false)
+    // The page's colours follow (utils/edited-palette.ts) - the set that is
+    // worn, whichever was edited - so a new gradient can be picked as a
+    // fill right away.
+    await refreshEditedPalette()
+  }
 </script>
 
 <template>
   <v-app>
     <v-main class="editor-page">
       <EditorPageHeader back-to="/" detail="palette.json" :title="t('common.palette')" />
+
+      <v-tabs
+        v-model="set"
+        centered
+        class="editor-panel editor-tabs mb-2"
+        height="40"
+        hide-slider
+        selected-class="editor-tab--active"
+      >
+        <v-tab prepend-icon="mdi-white-balance-sunny" value="base">{{ t('palette.sets.base') }}</v-tab>
+        <v-tab prepend-icon="mdi-weather-night" value="neon">{{ t('palette.sets.neon') }}</v-tab>
+      </v-tabs>
+      <p class="palette-hint palette-set-hint">{{ t(`palette.setHints.${set}`) }}</p>
 
       <v-progress-linear v-if="loading" color="primary" indeterminate />
 
@@ -205,6 +263,7 @@
             <div class="border-preview" :style="{ borderBottom: borderEntryCss(entry) }" />
 
             <v-btn
+              v-if="set === 'base'"
               density="comfortable"
               icon="mdi-delete"
               :title="t('palette.deleteBorder')"
@@ -214,6 +273,7 @@
           </div>
         </div>
         <v-btn
+          v-if="set === 'base'"
           class="mb-8"
           color="secondary"
           prepend-icon="mdi-plus"
@@ -261,6 +321,7 @@
               </v-btn-toggle>
               <v-spacer />
               <v-btn
+                v-if="set === 'base'"
                 density="comfortable"
                 icon="mdi-delete"
                 :title="t('palette.deleteGradient')"
@@ -317,6 +378,7 @@
           </div>
         </div>
         <v-btn
+          v-if="set === 'base'"
           class="mb-8"
           color="secondary"
           prepend-icon="mdi-plus"
@@ -410,6 +472,10 @@
     color: #7A8699;
     margin-bottom: 12px;
     max-width: 900px;
+  }
+  .palette-set-hint {
+    margin-inline: auto;
+    text-align: center;
   }
   .border-row {
     flex-wrap: wrap;

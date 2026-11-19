@@ -482,7 +482,7 @@ ${NO_MOTION([`.${c}::before`, `.${c}::after`], 'transition: none;')}`
       const hover = glow(entry.hover.border?.color || entry.base.border?.color, 'warning', 1.6)
       return `/* the glass and the light - after the common rule, which takes every shadow away */
 .${c} {
-  background: linear-gradient(160deg, color-mix(in srgb, var(--white) 12%, transparent), transparent 50%), color-mix(in srgb, var(--black) 55%, transparent) !important;
+  background: linear-gradient(160deg, color-mix(in srgb, var(--white) 12%, transparent), transparent 50%), color-mix(in srgb, var(--neon-night, var(--black)) 55%, transparent) !important;
   backdrop-filter: blur(8px);
   box-shadow: ${base.box} !important;
   text-shadow: ${base.text};

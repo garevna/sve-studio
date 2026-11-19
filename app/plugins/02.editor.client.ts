@@ -13,9 +13,11 @@ import { i18n, t } from '@/i18n'
 import { useUiFeedbackStore } from '@/stores/ui-feedback'
 import { getActiveTheme } from '@/utils/active-theme'
 import { syncContentImages } from '@/utils/dev-content-images'
+import { followEditedPalette } from '@/utils/edited-palette'
 import { installImageFallback } from '@/utils/image-fallback'
 import { reportUncaught, setReportNotice } from '@/utils/report'
 import { EDITOR_THEME_NAME } from '@/utils/vuetify-theme-names'
+import { startWaveEdges } from '@/utils/wave-edge'
 
 export default defineNuxtPlugin({
   name: 'editor',
@@ -30,6 +32,8 @@ export default defineNuxtPlugin({
 
     // A picture not set or not found shows the checkerboard.
     installImageFallback()
+    // «Хвиля» on the edges of pictures and cards, as on the site.
+    startWaveEdges()
 
     const theme = getActiveTheme()
     const pinia = createPinia()
@@ -37,6 +41,8 @@ export default defineNuxtPlugin({
     nuxtApp.vueApp.use(pinia)
     const { palette } = await prepareEditor(pinia, theme)
     const vuetify = createEditorVuetify(palette)
+    // the edited site's theme follows the palette and «Неон» from now on
+    followEditedPalette(vuetify)
     installEditor(nuxtApp.vueApp, { pinia, vuetify, theme })
     // The editor's own look (packages/editor-ui): its CSS variables, and the
     // same colours for the editor's Vuetify theme - now and on every switch.

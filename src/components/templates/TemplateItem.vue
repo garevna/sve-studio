@@ -5,8 +5,10 @@
   import TemplateParallax from '@/components/templates/sections/TemplateParallax.vue'
   import SliderWithImages from '@/components/templates/sliders/SliderWithImages.vue'
   import SliderWithThumbnails from '@/components/templates/sliders/SliderWithThumbnails.vue'
+  import { useBlockActionsTarget } from '@/composables/useEditableBlockActions'
   import { useEditorMode } from '@/composables/useEditorMode'
   import { useSiteContacts } from '@/composables/useSiteContacts'
+  import { useSiteStyle } from '@/composables/useSiteStyle'
   import { defaultTextClass } from '@/configs/defaults/default-classes'
   import { useCommonStore } from '@/stores/common'
   import { emptyTranslatedModel, fillEmptyLocaleSlots, isTranslatedModel, localeTextStrict, resolveLocaleAsset, translationHint } from '@/utils/locale-text'
@@ -19,6 +21,7 @@
   import RouteEditor from '../editors/RouteEditor.vue'
   import SwiperImagesEditor from '../editors/SwiperImagesEditor.vue'
   import TextWithIconEditor from '../editors/text/TextWithIconEditor.vue'
+  import WaveEdgeMenu from '../editors/WaveEdgeMenu.vue'
   import CardSet from './cards/CardSet.vue'
   import CardWithToolbarImage from './cards/CardWithToolbarImage.vue'
   import TabSet from './cards/TabSet.vue'
@@ -126,6 +129,10 @@
   // CSS override - it's simply never on the DOM while editing, so there's
   // no cascade/specificity question. Preview mode (in-app toggle or the
   // standalone window) passes the class through unchanged.
+  const blockActionsTarget = useBlockActionsTarget()
+  const siteStyle = useSiteStyle()
+  void siteStyle.load()
+
   const displayClass = computed(() => {
     const raw = item.value?.class
     if (!raw || mode.value !== 'edit') return raw
@@ -293,9 +300,14 @@
         :class="displayClass"
         natural-size
         :resize="true"
+        wave
         :width="item.width ? item.width + 'px' : ''"
         @uploaded="fillEmptyLocales"
       />
+      <!-- «Хвиля» on the pictures: this one's own edge, next to its camera -->
+      <Teleport v-if="mode === 'edit' && blockActionsTarget && siteStyle.of('images') === 'wave'" :to="blockActionsTarget">
+        <WaveEdgeMenu v-model="item.class" />
+      </Teleport>
     </template>
     <template v-else-if="item.type === 'button'">
       <button-editor

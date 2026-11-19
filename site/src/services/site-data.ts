@@ -2,6 +2,7 @@ import type { ClientApiDocument, FormsDocument } from '@sve/dock'
 import type { GlobalSettingsModel, MenuItemModel, PopupsDocument, SeoSettingsModel, TemplateBlockModel, TemplatePageModel } from '../types/common'
 import { withDefaultFieldLooks, withDefaultForms } from '@sve/dock'
 import { withDefaultPopups } from '../configs/default-popups'
+import { sitePalette } from '../configs/neon-palette'
 import { withDefaultCalendars, withDefaultLooks } from '../configs/popup-looks'
 import { dbRequest } from '../db/client'
 
@@ -20,8 +21,14 @@ export function getSiteSettings (): Promise<SiteSettings> {
   return dbRequest<SiteSettings>('settings', 'get', { key: 'global' })
 }
 
-export function getPalette (): Promise<Record<string, string>> {
-  return dbRequest<Record<string, string>>('settings', 'get', { key: 'palette' })
+// The colours the site wears: palette.json's, or «Неон»'s while the whole
+// site wears it (configs/neon-palette.ts).
+export async function getPalette (): Promise<Record<string, string>> {
+  const [palette, settings] = await Promise.all([
+    dbRequest<Record<string, string>>('settings', 'get', { key: 'palette' }),
+    getSiteSettings(),
+  ])
+  return sitePalette(palette ?? {}, settings)
 }
 
 export async function getMenu (): Promise<MenuItemModel[]> {

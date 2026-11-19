@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-  import { computed, onMounted, ref } from 'vue'
+  import { computed, onMounted, ref, watch } from 'vue'
   import { t } from '@/i18n'
   import { useAjaxStore } from '@/stores/ajax'
   import { isHexColor } from '@/utils/build-color-scheme'
@@ -30,6 +30,9 @@
     // The palette's gradients too - only for fills drawn with `background:`
     // (a gradient is an image, it cannot be a text or border colour).
     gradients?: boolean
+    // The colours to show instead of palette.json's - the same keys with
+    // other values («Неон»'s set, configs/neon-palette.ts).
+    colors?: Record<string, string>
   }>()
   const emit = defineEmits<{ 'update:modelValue': [value: string] }>()
 
@@ -38,7 +41,12 @@
   const menuOpen = ref(false)
 
   onMounted(async () => {
-    palette.value = await ajaxStore.getPalette()
+    palette.value = props.colors ?? await ajaxStore.getPalette()
+  })
+  watch(() => props.colors, value => {
+    if (value) {
+      palette.value = value
+    }
   })
 
   // The theme's palette.json has plenty of exact-duplicate hex values -

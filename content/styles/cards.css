@@ -47,6 +47,7 @@
   position: relative;
   overflow: hidden;
   isolation: isolate;
+  --wave-edge: bottom;
 }
 
 .card-wave::before {
@@ -78,11 +79,11 @@
 
 .card-neon {
   --card-style-label: "Неон";
-  --card-glow-color: warning;
-  background: linear-gradient(160deg, color-mix(in srgb, var(--white) 12%, transparent), transparent 45%), color-mix(in srgb, var(--black) 62%, transparent);
+  --card-glow-color: site;
+  background: linear-gradient(160deg, color-mix(in srgb, var(--white) 12%, transparent), transparent 45%), color-mix(in srgb, var(--neon-night, var(--black)) 62%, transparent);
   backdrop-filter: blur(10px);
-  border: 1px solid color-mix(in srgb, var(--warning) 75%, transparent);
-  box-shadow: 0 0 4px color-mix(in srgb, var(--warning) 70%, transparent), 0 0 18px color-mix(in srgb, var(--warning) 35%, transparent), inset 0 0 18px color-mix(in srgb, var(--warning) 18%, transparent);
+  border: 1px solid color-mix(in srgb, var(--neon-glow, var(--warning)) 75%, transparent);
+  box-shadow: 0 0 4px color-mix(in srgb, var(--neon-glow, var(--warning)) 70%, transparent), 0 0 18px color-mix(in srgb, var(--neon-glow, var(--warning)) 35%, transparent), inset 0 0 18px color-mix(in srgb, var(--neon-glow, var(--warning)) 18%, transparent);
   color: var(--white);
   transition: box-shadow 0.35s ease;
   border-radius: var(--default-border-radius);
@@ -90,7 +91,7 @@
 
 .card-neon:hover,
 .card-neon:focus-within {
-  box-shadow: 0 0 4px color-mix(in srgb, var(--warning) 100%, transparent), 0 0 18px color-mix(in srgb, var(--warning) 56%, transparent), inset 0 0 18px color-mix(in srgb, var(--warning) 29%, transparent);
+  box-shadow: 0 0 4px color-mix(in srgb, var(--neon-glow, var(--warning)) 100%, transparent), 0 0 18px color-mix(in srgb, var(--neon-glow, var(--warning)) 56%, transparent), inset 0 0 18px color-mix(in srgb, var(--neon-glow, var(--warning)) 29%, transparent);
 }
 
 .card-neon * {

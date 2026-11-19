@@ -187,7 +187,7 @@
       <v-img
         :id="item.id"
         :aspect-ratio="imageURL ? undefined : 1.6"
-        :class="[props.item.class, 'h-100 rounded', { [IMAGE_PLACEHOLDER_CLASS]: !imageURL }]"
+        :class="[props.item.class, 'h-100 rounded wave-image', { [IMAGE_PLACEHOLDER_CLASS]: !imageURL }]"
         cover
         :src="imageURL || ''"
         style="display: block"

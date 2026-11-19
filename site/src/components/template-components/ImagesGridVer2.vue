@@ -24,8 +24,8 @@
     <p v-if="props.subheader" :class="props.subheaderClass || 'h5 text-medium text-special text-center mb-8'">{{ props.subheader }}</p>
 
     <div id="theme-2-mobile-mode" class="d-flex flex-column gr-5">
-      <img class="rounded-border-image" :src="getImageURL(props.images.mobile[0] || props.images.desktop[0])">
-      <img class="rounded-border-image" :src="getImageURL(props.images.mobile[1] || props.images.desktop[1])">
+      <img class="wave-image rounded-border-image" :src="getImageURL(props.images.mobile[0] || props.images.desktop[0])">
+      <img class="wave-image rounded-border-image" :src="getImageURL(props.images.mobile[1] || props.images.desktop[1])">
       <p v-if="props.text" :class="props.textClass || 'default-text text-medium text-black mt-2 text-justify'">
         {{ props.text }}
       </p>
@@ -33,7 +33,7 @@
     <v-row id="md-variant" class="align-stretch">
       <v-col cols="6">
         <v-img
-          class="rounded-border-image"
+          class="wave-image rounded-border-image"
           cover
           height="624"
           :src="getImageURL(props.images.desktop[0])"
@@ -51,7 +51,7 @@
         <v-row style="height: 50%">
           <v-col cols="12">
             <v-img
-              class="rounded-border-image"
+              class="wave-image rounded-border-image"
               cover
               height="300"
               :src="getImageURL(props.images.desktop[3])"
@@ -63,7 +63,7 @@
     <v-row id="below-line" class="align-stretch">
       <v-col cols="8">
         <v-img
-          class="rounded-border-image"
+          class="wave-image rounded-border-image"
           cover
           height="300"
           :src="getImageURL(props.images.desktop[1])"
@@ -72,7 +72,7 @@
 
       <v-col cols="4">
         <v-img
-          class="rounded-border-image"
+          class="wave-image rounded-border-image"
           cover
           height="300"
           :src="getImageURL(props.images.desktop[2])"
@@ -82,7 +82,7 @@
     <v-row id="below-line-sm" class="align-stretch">
       <v-col cols="12">
         <v-img
-          class="rounded-border-image"
+          class="wave-image rounded-border-image"
           cover
           :src="getImageURL(props.images.desktop[1])"
         />

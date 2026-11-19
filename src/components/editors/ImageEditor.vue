@@ -40,8 +40,12 @@
   // global.json, see GeneralSettingsView.vue).
   // folder: content/images/<folder>/ for the upload, when the picture
   // belongs to a page other than the one being edited (a page's SEO image).
+  // wave: a content picture of a block - «Хвиля» may wave its edge
+  // (utils/wave-edge.ts, content/styles/site-styles.css); not the pictures
+  // of the settings screens.
   const props = defineProps<{
     naturalSize?: boolean
+    wave?: boolean
     fallback?: string
     fit?: 'cover' | 'contain'
     read?: (file: File) => Promise<string>
@@ -117,7 +121,7 @@
     v-if="naturalSize && mode !== 'edit'"
     :aspect-ratio="!shownSrc || imageFailed ? 1.6 : undefined"
     class="rounded-border-image"
-    :class="{ 'image-placeholder-bg': !shownSrc || imageFailed }"
+    :class="{ 'image-placeholder-bg': !shownSrc || imageFailed, 'wave-image': wave }"
     cover
     :src="resolvedSrc"
     @error="imageFailed = true"
@@ -133,7 +137,7 @@
         @change="onFileChange"
       >
       <v-img
-        :class="['rounded-border-image', { 'image-editor-contain': fit === 'contain' }]"
+        :class="['rounded-border-image', { 'image-editor-contain': fit === 'contain', 'wave-image': wave }]"
         :cover="fit !== 'contain'"
         :src="resolvedSrc"
         @error="imageFailed = true"

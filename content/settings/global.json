@@ -112,7 +112,7 @@
       "itemClass": "default-text text-medium text-black",
       "activeClass": "default-text text-medium text-primary",
       "subItemClass": "default-text text-thin text-black",
-      "userNameClass": "default-text text-medium text-black",
+      "userNameClass": "default-text text-medium text-white",
       "placement": "full",
       "rows": [
         {
@@ -140,11 +140,16 @@
           "type": "spacer"
         },
         {
-          "type": "divider",
-          "color": "light-grey-1"
+          "type": "social",
+          "align": "center",
+          "iconLook": "mono",
+          "iconColor": "white",
+          "iconSize": 32,
+          "background": "primary"
         },
         {
-          "type": "user"
+          "type": "user",
+          "background": "primary"
         }
       ]
     },

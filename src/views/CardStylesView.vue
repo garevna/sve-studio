@@ -2,6 +2,7 @@
   import type { SiteStyle } from '@/configs/site-style'
   import type { CardStyleEntry } from '@/utils/card-style-entry'
   import type { CssNode } from '@/utils/css-rules'
+  import { SveSegmented } from '@sve/editor-ui'
   import { computed, onMounted, ref, watch } from 'vue'
   import EditorSaveBar from '@/components/special/EditorSaveBar.vue'
   import PaletteSwatchPicker from '@/components/special/PaletteSwatchPicker.vue'
@@ -11,7 +12,7 @@
   import { useAjaxStore } from '@/stores/ajax'
   import { useUiFeedbackStore } from '@/stores/ui-feedback'
   import { getActiveTheme } from '@/utils/active-theme'
-  import { CARD_SHADOWS, cardStyleInline, extractCardStyles, serializeCardStyles, STROKE_WIDTHS } from '@/utils/card-style-entry'
+  import { CARD_SHADOWS, CARD_WAVE_EDGES, cardStyleInline, extractCardStyles, serializeCardStyles, STROKE_WIDTHS } from '@/utils/card-style-entry'
   import { loadThemeStyles } from '@/utils/load-theme-styles'
   import { parsePaletteEntry } from '@/utils/palette-entry'
   import { APP_THEME_NAME, themeClass } from '@/utils/vuetify-theme-names'
@@ -172,14 +173,17 @@
       radius: 'default-border-radius',
       shadow: 'none',
       stroke: group === 'stroke' ? { color: 'primary', width: 2, corners: 'tl-br' } : null,
-      wave: group === 'wave' ? { color: 'light-grey-2' } : null,
+      wave: group === 'wave' ? { color: 'light-grey-2', edge: 'bottom' } : null,
       // gold, as on the glass panels it imitates
-      glow: group === 'neon' ? { color: 'warning' } : null,
+      glow: group === 'neon' ? { color: 'site' } : null,
       raw: [],
     })
     expanded.value = className
     addOpen.value = false
   }
+
+  // The edge of the card's outline that waves under the pointer.
+  const waveEdgeOptions = computed(() => CARD_WAVE_EDGES.map(value => ({ value, label: t(`cardStyles.waveEdges.${value}`) })))
 </script>
 
 <template>
@@ -277,7 +281,16 @@
               <!-- «Неон»: dark glass with a glowing outline. -->
               <div v-if="entry.glow" class="card-styles-stroke">
                 <span class="card-styles-group">{{ t('cardStyles.glow') }}</span>
-                <div class="card-styles-field">
+                <v-switch
+                  color="primary"
+                  density="compact"
+                  hide-details
+                  inset
+                  :label="t('cardStyles.glowSite')"
+                  :model-value="entry.glow.color === 'site'"
+                  @update:model-value="value => entry.glow!.color = value ? 'site' : 'warning'"
+                />
+                <div v-if="entry.glow.color !== 'site'" class="card-styles-field">
                   <span>{{ t('cardStyles.glowColor') }}</span>
                   <PaletteSwatchPicker v-model="entry.glow.color" />
                 </div>
@@ -290,6 +303,10 @@
                 <div class="card-styles-field">
                   <span>{{ t('cardStyles.waveColor') }}</span>
                   <PaletteSwatchPicker v-model="entry.wave.color" />
+                </div>
+                <div class="card-styles-field card-styles-field--column">
+                  <span>{{ t('cardStyles.waveEdge') }}</span>
+                  <SveSegmented v-model="entry.wave.edge" :options="waveEdgeOptions" />
                 </div>
                 <p class="card-styles-stroke-hint">{{ t('cardStyles.waveHint') }}</p>
               </div>
@@ -423,5 +440,10 @@
   display: flex;
   align-items: center;
   gap: 12px;
+}
+.card-styles-field--column {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
 }
 </style>

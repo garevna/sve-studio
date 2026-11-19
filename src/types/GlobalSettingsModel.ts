@@ -24,7 +24,14 @@ export interface GlobalSettingsModel {
   // The site's style - «Класика», «Штрих», «Хвиля» (configs/site-style.ts).
   siteStyle?: 'classic' | 'stroke' | 'wave' | 'neon'
   // A part's own style, mixed into the site's (configs/site-style.ts).
-  siteStyleParts?: Partial<Record<'cards' | 'buttons' | 'footer' | 'menu', 'classic' | 'stroke' | 'wave' | 'neon'>>
+  siteStyleParts?: Partial<Record<'cards' | 'buttons' | 'footer' | 'menu' | 'images', 'classic' | 'stroke' | 'wave' | 'neon'>>
+  // «Хвиля» on the pictures: which edge waves under the pointer (bottom when unset).
+  siteStyleWaveEdge?: 'bottom' | 'top' | 'left' | 'right'
+  // «Неон»'s own colours over its starting set (configs/neon-palette.ts) -
+  // palette.json's keys, worn while the whole site is «Неон».
+  neonPalette?: Record<string, string>
+  // «Неон»'s glow: a palette colour key (gold - warning - when unset).
+  neonGlow?: string
   logo: {
     src: string
     width: number

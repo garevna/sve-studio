@@ -15,13 +15,13 @@
 <template>
   <div class="card-with-toolbar-image" :style="{ width: props.item.width || 360, height: '100%' }">
     <v-toolbar
-      class="rounded-toolbar"
+      class="wave-image rounded-toolbar"
       color="transparent"
       flat
       :height="props.item.height || 200"
     >
       <v-img
-        class="rounded-toolbar"
+        class="wave-image rounded-toolbar"
         cover
         height="100%"
         :src="getImageURL(props.item.image)"

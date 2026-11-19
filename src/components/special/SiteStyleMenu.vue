@@ -1,11 +1,14 @@
 <script setup lang="ts">
-  import type { SiteStyle, SiteStylePart } from '@/configs/site-style'
+  import type { SiteStyle, SiteStylePart, WaveEdgeSide } from '@/configs/site-style'
   import { SveIconButton, SveMenu, SveMenuDivider, SveMenuLabel, SveSegmented } from '@sve/editor-ui'
-  import { computed, onMounted } from 'vue'
+  import { computed, onMounted, ref, watch } from 'vue'
+  import PaletteSwatchPicker from '@/components/special/PaletteSwatchPicker.vue'
   import SiteStyleIcon from '@/components/special/SiteStyleIcon.vue'
   import { useSiteStyle } from '@/composables/useSiteStyle'
-  import { SITE_STYLE_PARTS, SITE_STYLES } from '@/configs/site-style'
+  import { sitePalette } from '@/configs/neon-palette'
+  import { SITE_STYLE_PARTS, SITE_STYLES, WAVE_EDGE_SIDES } from '@/configs/site-style'
   import { t } from '@/i18n'
+  import { useAjaxStore } from '@/stores/ajax'
 
   // The site's style - «Класика», «Штрих», «Хвиля», «Неон»
   // (configs/site-style.ts) - on the top bar of every screen of the Верф
@@ -37,6 +40,29 @@
     if (!value) return
     void siteStyle.setPart(part, value === 'site' ? null : value as SiteStyle)
   }
+  // «Хвиля» on the pictures: which edge waves - shown while they wear it.
+  const edgeOptions = computed(() => WAVE_EDGE_SIDES.map(value => ({ value, label: t(`kit.waveEdges.${value}`) })))
+  function setWaveEdge (value: WaveEdgeSide | undefined) {
+    if (!value) return
+    void siteStyle.setWaveEdge(value)
+  }
+
+  // «Неон»'s glow - shown while any part wears «Неон»; gold when unset.
+  // Its swatches in the colours the site wears: «Неон»'s while the whole
+  // site is «Неон» (configs/neon-palette.ts).
+  const ajaxStore = useAjaxStore()
+  const wornPalette = ref<Record<string, string>>()
+  async function loadWornPalette () {
+    const [palette, settings] = await Promise.all([ajaxStore.getPalette(), ajaxStore.getGlobalSettings()])
+    wornPalette.value = sitePalette(palette ?? {}, { ...settings, siteStyle: siteStyle.style.value })
+  }
+  watch(siteStyle.style, () => void loadWornPalette(), { immediate: true })
+  const anyNeon = computed(() => SITE_STYLE_PARTS.some(part => siteStyle.of(part) === 'neon'))
+  const glowColor = computed({
+    get: () => siteStyle.neonGlow.value || 'warning',
+    set: value => void siteStyle.setNeonGlow(value === 'warning' ? '' : value),
+  })
+
   function setSite (value: SiteStyle | undefined) {
     if (!value) return
     void siteStyle.set(value)
@@ -61,6 +87,14 @@
         <span class="site-style-menu-part-name">{{ t(`kit.siteStylePart.${part}`) }}</span>
         <SveSegmented :model-value="partValue(part)" :options="partOptions" @update:model-value="value => setPart(part, value)" />
       </div>
+      <div v-if="siteStyle.of('images') === 'wave'" class="site-style-menu-part">
+        <span class="site-style-menu-part-name">{{ t('kit.waveEdge') }}</span>
+        <SveSegmented :model-value="siteStyle.waveEdge.value" :options="edgeOptions" @update:model-value="setWaveEdge" />
+      </div>
+      <div v-if="anyNeon" class="site-style-menu-glow">
+        <span class="site-style-menu-part-name">{{ t('kit.neonGlow') }}</span>
+        <PaletteSwatchPicker v-model="glowColor" :colors="wornPalette" no-transparent />
+      </div>
       <p class="site-style-menu-hint">{{ t('kit.siteStyleHint') }}</p>
     </div>
   </SveMenu>
@@ -82,6 +116,12 @@
 .site-style-menu-part-name {
   font-size: 0.8rem;
   font-weight: 600;
+}
+.site-style-menu-glow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
 }
 .site-style-menu-hint {
   margin: 4px 0 0;

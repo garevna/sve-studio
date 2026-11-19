@@ -73,8 +73,8 @@ export const READY_PALETTES: ReadyPalette[] = [
 
 // The palette key that holds a ready palette's glow at night - the
 // «Стиль сайту» menu's glow is a palette key, and picking a ready palette
-// sets it to this one.
-export const READY_GLOW_KEY = 'special'
+// sets it to this one. Not special: that is a text colour on the site.
+export const READY_GLOW_KEY = 'blue'
 
 export function findReadyPalette (id: unknown): ReadyPalette | undefined {
   return READY_PALETTES.find(palette => palette.id === id)
@@ -139,15 +139,17 @@ export function readyNight (ready: ReadyPalette, palette: Record<string, string>
     'secondary': mixHex(n.primary, n.bg, 0.55),
     'dark': n.muted,
     'dark-grey': n.muted,
-    'blue': n.secondary,
+    'special': mixHex(n.text, n.primary, 0.4),
     [READY_GLOW_KEY]: n.glow,
+    'yellow': '#FFD60A',
     'grey': mixHex(n.muted, n.bg, 0.45),
     'accent': mixHex(n.primary, n.bg, 0.78),
     'bright-grey': mixHex(n.primary, n.bg, 0.78),
     'soft-grey': mixHex(n.text, n.bg, 0.88),
     'light-grey-1': mixHex(n.text, n.bg, 0.9),
     'light-grey-2': mixHex(n.text, n.bg, 0.93),
-    'light-green': mixHex(palette.success ?? '#17A473', n.bg, 0.8),
+    // a text colour too (the footer's contacts): light, on the night
+    'light-green': mixHex(palette.success ?? '#17A473', '#FFFFFF', 0.45),
     'light-warning': mixHex(palette.warning ?? '#C3840F', n.bg, 0.8),
     'available-date-fone-color': mixHex(n.primary, n.bg, 0.78),
     'selected-date-first-fone-color': mixHex(n.primary, n.bg, 0.2),

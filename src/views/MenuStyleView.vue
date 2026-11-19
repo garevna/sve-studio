@@ -1,6 +1,8 @@
 <script lang="ts" setup>
-  import type { DropdownStyle, MobileMenuStyle, MobilePlacement, MobilePreset } from '@/configs/menu-style'
+  import type { DropdownStyle, MenuBarLook, MobileMenuStyle, MobilePlacement, MobilePreset } from '@/configs/menu-style'
   import type { GlobalSettingsModel } from '@/types/GlobalSettingsModel'
+  import type { MenuItemModel } from '@/types/MenuItemModel'
+  import { SveSegmented } from '@sve/editor-ui'
   import { computed, onMounted, ref, watch } from 'vue'
   import TextEditor from '@/components/editors/text/TextEditor.vue'
   import ConfirmDialog from '@/components/special/ConfirmDialog.vue'
@@ -9,7 +11,7 @@
   import MobileMenuPreview from '@/components/ui-kit/MobileMenuPreview.vue'
   import MobileMenuRowsEditor from '@/components/ui-kit/MobileMenuRowsEditor.vue'
   import { provideEditorMode } from '@/composables/useEditorMode'
-  import { dropdownVars, MOBILE_PRESETS, mobilePreset, resolveMenuStyle, resolveMobileStyle } from '@/configs/menu-style'
+  import { dropdownVars, MENU_BAR_LOOKS, MOBILE_PRESETS, mobilePreset, resolveMenuStyle, resolveMobileStyle } from '@/configs/menu-style'
   import { t } from '@/i18n'
   import { useAjaxStore } from '@/stores/ajax'
   import { useUiFeedbackStore } from '@/stores/ui-feedback'
@@ -78,6 +80,23 @@
     feedback.notifySuccess(t('popups.undoDone'))
   }
 
+  // The menu bar's look: a line of words, or a control panel of keys. Its
+  // sample shows the site's own top entries with their icons.
+  const bar = computed(() => resolveMenuStyle(settings.value?.menuStyle).bar)
+  const barOptions = computed(() => MENU_BAR_LOOKS.map(value => ({ value, label: t(`menuStyle.barLooks.${value}`) })))
+  function setBarLook (look: MenuBarLook | undefined) {
+    if (!settings.value || !look) return
+    settings.value.menuStyle = { ...settings.value.menuStyle, bar: { look } }
+  }
+  const menuItems = ref<MenuItemModel[]>([])
+  void ajaxStore.getMenuContent().then(items => {
+    menuItems.value = (items ?? []).slice(0, 6)
+  })
+  function itemName (item: MenuItemModel): string {
+    const title = item.title as Record<string, string> | undefined
+    return title?.uk || Object.values(title ?? {}).find(Boolean) || String((item.params as { pageId?: string } | undefined)?.pageId ?? '…')
+  }
+
   const dropdown = computed(() => resolveMenuStyle(settings.value?.menuStyle).dropdown)
   function setDropdown (key: keyof DropdownStyle, value: string) {
     if (!settings.value) return
@@ -127,7 +146,33 @@
     <v-progress-linear v-if="loading" color="primary" indeterminate />
 
     <template v-else-if="settings">
-      <h2 class="menu-style-title">{{ t('menuStyle.dropdownTitle') }}</h2>
+      <h2 class="menu-style-title">{{ t('menuStyle.barTitle') }}</h2>
+      <p class="menu-style-hint">{{ t('menuStyle.barHint') }}</p>
+      <SveSegmented class="mb-3" :model-value="bar.look" :options="barOptions" @update:model-value="setBarLook" />
+      <!-- the bar as the site draws it (main-menu.css), on the edited page's
+        scope - «Неон»'s night when the site wears it -->
+      <div :class="['menu-style-bar-stage', EDITED_APP_SCOPE_CLASS, themeClass(APP_THEME_NAME)]">
+        <div :class="['main-menu-bar', 'main-menu-bar--dark', 'menu-style-bar-sample', { 'main-menu-bar--console': bar.look === 'console' }]">
+          <div class="menu-style-bar-items">
+            <div
+              v-for="(item, index) of menuItems"
+              :key="index"
+              :class="['menu-item', { 'menu-key': bar.look === 'console', 'menu-key--current': bar.look === 'console' && index === 0 }]"
+            >
+              <div v-if="bar.look === 'console'" class="menu-key__face">
+                <span class="menu-key__lamp" />
+                <v-icon v-if="(item.icon || '').startsWith('mdi-')" class="menu-key__icon" :icon="item.icon" />
+                <img v-else-if="item.icon" alt="" class="menu-key__icon" :src="item.icon">
+                <span v-else class="menu-key__icon menu-key__letter">{{ itemName(item).charAt(0).toUpperCase() }}</span>
+                <span class="menu-key__label">{{ itemName(item) }}</span>
+              </div>
+              <span v-else>{{ itemName(item) }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h2 class="menu-style-title mt-8">{{ t('menuStyle.dropdownTitle') }}</h2>
       <p class="menu-style-hint">{{ t('menuStyle.dropdownHint') }}</p>
 
       <div class="menu-style-dropdown-row">
@@ -277,6 +322,38 @@
 </template>
 
 <style scoped>
+.menu-style-bar-stage {
+  margin-bottom: 8px;
+  padding: 16px;
+  border-radius: 16px;
+  overflow-x: auto;
+}
+/* the site's bar is fixed to the window - its sample stays in place */
+.menu-style-bar-sample.main-menu-bar {
+  position: relative;
+  top: auto;
+  left: auto;
+  z-index: 0;
+  width: max-content;
+  min-width: 100%;
+  height: auto;
+  min-height: 64px;
+  padding: 10px 20px;
+  transform: none;
+  border-radius: 14px;
+}
+.menu-style-bar-items {
+  display: flex;
+  align-items: stretch;
+  gap: 12px;
+}
+.menu-style-bar-items .menu-item {
+  display: flex;
+  align-items: center;
+  color: var(--white);
+  font-weight: 500;
+  white-space: nowrap;
+}
 .menu-style-title {
   font-size: 1.05rem;
   font-weight: 600;

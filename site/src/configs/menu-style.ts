@@ -72,9 +72,22 @@ export interface MobileMenuStyle {
   rows: MobileMenuRow[]
 }
 
+// bar - the menu bar on a wide screen:
+//   look - 'line': the entries as words in a row (as it always was);
+//          'console': a control panel - every entry a key with its icon
+//          (menu-content.json `icon`) and its name under it, the current
+//          page's key pressed in with its lamp lit.
+export type MenuBarLook = 'line' | 'console'
+export const MENU_BAR_LOOKS: MenuBarLook[] = ['line', 'console']
+
+export interface MenuBarStyle {
+  look: MenuBarLook
+}
+
 export interface MenuStyleModel {
   dropdown: DropdownStyle
   mobile: MobileMenuStyle
+  bar: MenuBarStyle
 }
 
 // What the menu looked like before it could be changed.
@@ -184,7 +197,7 @@ export function resolveMobileStyle (stored?: Partial<MobileMenuStyle> | null): M
   }
 }
 
-export function resolveMenuStyle (stored?: { dropdown?: Partial<DropdownStyle>, mobile?: Partial<MobileMenuStyle> } | null): MenuStyleModel {
+export function resolveMenuStyle (stored?: { dropdown?: Partial<DropdownStyle>, mobile?: Partial<MobileMenuStyle>, bar?: Partial<MenuBarStyle> } | null): MenuStyleModel {
   const dropdown = stored?.dropdown
   return {
     dropdown: {
@@ -194,6 +207,7 @@ export function resolveMenuStyle (stored?: { dropdown?: Partial<DropdownStyle>, 
       activeClass: text(dropdown?.activeClass, DROPDOWN_DEFAULTS.activeClass),
     },
     mobile: resolveMobileStyle(stored?.mobile),
+    bar: { look: stored?.bar?.look === 'console' ? 'console' : 'line' },
   }
 }
 

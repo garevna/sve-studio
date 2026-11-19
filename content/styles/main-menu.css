@@ -231,3 +231,121 @@
 .main-menu-bar--dark #menu-toggle input:checked ~ span {
   background: var(--white);
 }
+
+
+/* ---- «Пульт»: the menu bar as a control panel (menuStyle.bar 'console') ----
+   A dark console whatever the bar's theme (App.vue gives it the dark one):
+   every entry a key - its icon, its name under it - raised off the panel;
+   under the pointer it lifts and its edge catches the light; the current
+   page's key is pressed in and its lamp is lit (the «Неон» glow, else the
+   palette's success - a lamp's green). The night is «Неон»'s when the site
+   wears it (--neon-night), else the palette's black. */
+
+.main-menu-bar.main-menu-bar--console {
+  height: auto;
+  padding-block: 10px;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--white) 8%, var(--neon-night, var(--black))), var(--neon-night, var(--black)));
+  border-bottom: 1px solid color-mix(in srgb, var(--white) 12%, transparent);
+  box-shadow: 0 8px 22px rgb(0 0 0 / 0.35), inset 0 1px 0 color-mix(in srgb, var(--white) 10%, transparent);
+}
+
+.main-menu-bar--console .desktop-menu {
+  column-gap: 12px;
+  align-items: stretch;
+}
+
+.main-menu-bar--console .menu-item.menu-key {
+  position: relative;
+  min-width: 88px;
+  padding: 10px 14px 8px;
+  border-radius: 14px;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--white) 11%, transparent), color-mix(in srgb, var(--white) 3%, transparent));
+  border: 1px solid color-mix(in srgb, var(--white) 14%, transparent);
+  box-shadow:
+    0 3px 0 rgb(0 0 0 / 0.55),
+    0 8px 14px rgb(0 0 0 / 0.35),
+    inset 0 1px 0 color-mix(in srgb, var(--white) 16%, transparent);
+  color: color-mix(in srgb, var(--white) 78%, transparent);
+  transition: transform 0.15s ease, box-shadow 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.main-menu-bar--console .menu-item.menu-key:hover {
+  transform: translateY(-1px);
+  color: var(--white);
+  border-color: color-mix(in srgb, var(--neon-glow, var(--success)) 55%, transparent);
+  box-shadow:
+    0 4px 0 rgb(0 0 0 / 0.55),
+    0 10px 18px rgb(0 0 0 / 0.4),
+    0 0 14px color-mix(in srgb, var(--neon-glow, var(--success)) 30%, transparent),
+    inset 0 1px 0 color-mix(in srgb, var(--white) 20%, transparent);
+}
+
+.main-menu-bar--console .menu-item.menu-key.menu-key--current {
+  transform: translateY(2px);
+  color: var(--white);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--white) 4%, transparent), color-mix(in srgb, var(--white) 9%, transparent));
+  box-shadow:
+    0 1px 0 rgb(0 0 0 / 0.55),
+    inset 0 3px 8px rgb(0 0 0 / 0.55);
+}
+
+.menu-key__face {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.menu-key__lamp {
+  position: absolute;
+  top: 7px;
+  right: 9px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--white) 20%, transparent);
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.menu-key--current .menu-key__lamp {
+  background: var(--neon-glow, var(--success));
+  box-shadow: 0 0 6px var(--neon-glow, var(--success)), 0 0 14px color-mix(in srgb, var(--neon-glow, var(--success)) 60%, transparent);
+}
+
+.main-menu-bar--console .menu-key__icon {
+  width: 26px;
+  height: 26px;
+  font-size: 26px;
+  color: inherit;
+  object-fit: contain;
+}
+
+.menu-key__letter {
+  display: grid;
+  place-items: center;
+  box-sizing: border-box;
+  border: 1.5px solid currentColor;
+  border-radius: 8px;
+  overflow: hidden;
+  font-family: var(--main-font, inherit);
+  font-size: 13px !important;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.menu-key__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .main-menu-bar--console .menu-item.menu-key,
+  .menu-key__lamp {
+    transition: none;
+  }
+}

@@ -21,6 +21,9 @@ export type MenuItemModel = {
     en: string
     de: string
   }
+  // The key's icon when the menu bar is a control panel (menuStyle.bar
+  // 'console'): an mdi name or a picture.
+  icon?: string
   route?: string
   params?: object
   hash?: string

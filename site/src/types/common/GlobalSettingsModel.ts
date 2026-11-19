@@ -2,7 +2,7 @@ import type { HeaderSettingsModel } from '../../configs/header-layout'
 import type { AuthSettings } from '../../services/auth/types'
 import type { IconSetModel } from './IconSetModel'
 import type { LinksModel } from './LinksModel'
-import type { DropdownStyle, MobileMenuStyle } from '@/configs/menu-style'
+import type { DropdownStyle, MenuBarStyle, MobileMenuStyle } from '@/configs/menu-style'
 import type { SiteContact } from '@/configs/site-contacts'
 import type { SocialNetwork } from '@/configs/social-networks'
 
@@ -26,7 +26,7 @@ export type GlobalSettingsModel = {
   // Signing in on the site (services/auth): which service, and its
   // settings. Absent: no sign-in.
   auth?: AuthSettings
-  menuStyle?: { dropdown?: Partial<DropdownStyle>, mobile?: Partial<MobileMenuStyle> }
+  menuStyle?: { dropdown?: Partial<DropdownStyle>, mobile?: Partial<MobileMenuStyle>, bar?: Partial<MenuBarStyle> }
   provider: string
   // The owner's legal name per language (a sole proprietor, a company),
   // shown next to the copyright. Absent or empty: the copyright alone.

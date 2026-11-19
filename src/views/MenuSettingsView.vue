@@ -1,6 +1,7 @@
 <script lang="ts" setup>
   import type { MenuItemModel, SubmenuItemModel } from '@/types/MenuItemModel'
   import { onMounted, ref, watch } from 'vue'
+  import IconPicker from '@/components/editors/icon/IconPicker.vue'
   import LocaleSwitcher from '@/components/editors/small/LocaleSwitcher.vue'
   import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
   import EditorPageHeader from '@/components/special/EditorPageHeader.vue'
@@ -147,6 +148,9 @@
       undoing.value = false
     }
   }
+
+  // Which entry's icon picker is open.
+  const iconOpen = ref<number | null>(null)
 </script>
 
 <template>
@@ -164,6 +168,28 @@
         <div class="d-flex flex-column ga-4">
           <div v-for="(item, index) of items" :key="index" class="editor-panel pa-4">
             <div class="d-flex align-center ga-3 mb-3">
+              <!-- the key's icon on a control-panel menu bar (UI Kit > Меню) -->
+              <v-menu
+                :close-on-content-click="false"
+                location="bottom start"
+                :model-value="iconOpen === index"
+                @update:model-value="(open: boolean) => iconOpen = open ? index : null"
+              >
+                <template #activator="{ props: menuProps }">
+                  <ToolbarIconButton v-bind="menuProps" :icon="(item.icon || '').startsWith('mdi-') ? item.icon : 'mdi-shape-outline'" :tooltip="t('menuSettings.icon')" />
+                </template>
+                <div class="menu-item-icons editor-panel">
+                  <IconPicker v-model:icon="item.icon" />
+                  <v-btn
+                    v-if="item.icon"
+                    class="mt-2"
+                    prepend-icon="mdi-close"
+                    size="small"
+                    variant="text"
+                    @click="item.icon = undefined"
+                  >{{ t('menuSettings.noIcon') }}</v-btn>
+                </div>
+              </v-menu>
               <v-text-field
                 density="compact"
                 hide-details
@@ -255,6 +281,10 @@
 </template>
 
 <style scoped>
+.menu-item-icons {
+  width: min(360px, calc(100vw - 32px));
+  padding: 12px;
+}
   .submenu-list {
     margin-bottom: 12px;
   }

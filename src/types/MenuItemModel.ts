@@ -34,6 +34,9 @@ export type SubmenuItemModel = {
 
 export type MenuItemModel = {
   title?: TranslatedModel
+  // The key's icon when the menu bar is a control panel (menuStyle.bar
+  // 'console'): an mdi name or a picture.
+  icon?: string
   route?: string
   params?: object
   hash?: string

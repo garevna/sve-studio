@@ -18,10 +18,11 @@
   // The logo leads home.
   const { pagePath } = useSiteNavigation()
 
-  const { company, headerSettings } = storeToRefs(useCommonStore())
+  const { company, headerSettings, menuStyle } = storeToRefs(useCommonStore())
 
   // A dark bar shows the light version of the logo when the site has one.
-  const logoSrc = computed(() => (headerSettings.value.menuTheme === 'dark' && company.value?.logoWhite) || company.value?.logo.src)
+  // The control panel is always dark.
+  const logoSrc = computed(() => ((headerSettings.value.menuTheme === 'dark' || menuStyle.value.bar.look === 'console') && company.value?.logoWhite) || company.value?.logo.src)
   // const { name: companyName, logo } = company.value
 
   // const router = useRouter()

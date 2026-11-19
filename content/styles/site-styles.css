@@ -330,8 +330,78 @@
   }
 }
 
+/* The banner (the «Банер» block, .baner-card) on a «Неон» site: like the
+   coloured section, no fill of its own - the night shows through, its
+   outline glows, its words light; the title's plate a pane of the night
+   with the glow's edge. Its colours stay chosen for the other styles. */
+.site-style-neon .baner-card {
+  background:
+    linear-gradient(160deg, color-mix(in srgb, var(--white) 7%, transparent), transparent 45%),
+    color-mix(in srgb, var(--neon-night, var(--black)) 55%, transparent) !important;
+  border: 1px solid color-mix(in srgb, var(--neon-glow, var(--warning)) 75%, transparent);
+  box-shadow:
+    0 0 6px color-mix(in srgb, var(--neon-glow, var(--warning)) 65%, transparent),
+    0 0 30px color-mix(in srgb, var(--neon-glow, var(--warning)) 30%, transparent),
+    inset 0 0 30px color-mix(in srgb, var(--neon-glow, var(--warning)) 14%, transparent) !important;
+  color: var(--white) !important;
+}
+
+.site-style-neon .baner-card [class*="text-"]:not([class*="bg-"]) {
+  --v-theme-black: var(--v-theme-white);
+  --v-theme-dark: var(--v-theme-white);
+  --v-theme-primary: var(--v-theme-white);
+}
+
+.site-style-neon .baner-title-plate {
+  background: color-mix(in srgb, var(--neon-night, var(--black)) 80%, transparent) !important;
+  border: 1px solid color-mix(in srgb, var(--neon-glow, var(--warning)) 55%, transparent);
+  box-shadow: 0 0 12px color-mix(in srgb, var(--neon-glow, var(--warning)) 25%, transparent);
+}
+
+/* Forms and popups on a «Неон» site (.footer-feedback-card - the feedback
+   form on a page and in the footer; .pw-popup - every popup's frame): a
+   pane of the night with the glow's edge, as the cards - the white they are
+   given would carry the night's light text. */
+.site-style-neon :is(.footer-feedback-card, .pw-popup) {
+  background:
+    linear-gradient(160deg, color-mix(in srgb, var(--white) 8%, transparent), transparent 45%),
+    var(--neon-night, var(--black)) !important;
+  border: 1px solid color-mix(in srgb, var(--neon-glow, var(--warning)) 60%, transparent);
+  box-shadow:
+    0 0 6px color-mix(in srgb, var(--neon-glow, var(--warning)) 50%, transparent),
+    0 0 26px color-mix(in srgb, var(--neon-glow, var(--warning)) 22%, transparent) !important;
+}
+
+/* The menu's dropdown on a «Неон» site (.site-dropdown, and the UI Kit's
+   sample .menu-style-dropdown): the night under its light words. */
+.site-style-neon .v-menu > .v-overlay__content.site-dropdown > .v-list,
+.site-style-neon .menu-style-dropdown {
+  background: var(--neon-night, var(--black)) !important;
+  border: 1px solid color-mix(in srgb, var(--neon-glow, var(--warning)) 45%, transparent);
+}
+
+/* The phone's menu (.mobile-menu-panel on the site, .mobile-preview-panel
+   in the UI Kit's sample): a pane of the night, whatever colour the panel
+   is given - on a «Неон» site the texts are light, and in a «Неон» menu
+   the glass needs the dark. Its words light (the colour classes pointed at
+   the light colours, as on the menu bar); a row with a fill of its own
+   keeps it. */
+.site-style-neon :is(.mobile-menu-panel, .mobile-preview-panel),
+.site-style-menu-neon :is(.mobile-menu-panel, .mobile-preview-panel) {
+  background:
+    linear-gradient(160deg, color-mix(in srgb, var(--white) 8%, transparent), transparent 45%),
+    var(--neon-night, var(--black)) !important;
+  color: var(--white);
+}
+
+.site-style-menu-neon :is(.mobile-menu-panel, .mobile-preview-panel) [class*="text-"]:not([class*="bg-"]) {
+  --v-theme-black: var(--v-theme-white);
+  --v-theme-dark: var(--v-theme-white);
+  --v-theme-dark-grey: var(--v-theme-white);
+}
+
 /* The phone's menu: its panel's edge lit, the light spilling inside. */
-.site-style-menu-neon .mobile-menu-panel {
+.site-style-menu-neon :is(.mobile-menu-panel, .mobile-preview-panel) {
   border: 1px solid color-mix(in srgb, var(--neon-glow, var(--warning)) 70%, transparent);
   box-shadow:
     0 0 6px color-mix(in srgb, var(--neon-glow, var(--warning)) 60%, transparent),

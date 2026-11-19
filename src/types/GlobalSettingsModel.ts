@@ -1,5 +1,5 @@
 import type { HeaderSettingsModel } from '@/configs/header-layout'
-import type { DropdownStyle, MobileMenuStyle } from '@/configs/menu-style'
+import type { DropdownStyle, MenuBarStyle, MobileMenuStyle } from '@/configs/menu-style'
 import type { SiteContact } from '@/configs/site-contacts'
 export interface GlobalSettingsModel {
   activeTheme: number
@@ -12,7 +12,7 @@ export interface GlobalSettingsModel {
   // Phones, emails, the address... - one source for every page and the
   // footer (see configs/site-contacts.ts).
   contacts?: SiteContact[]
-  menuStyle?: { dropdown?: Partial<DropdownStyle>, mobile?: Partial<MobileMenuStyle> }
+  menuStyle?: { dropdown?: Partial<DropdownStyle>, mobile?: Partial<MobileMenuStyle>, bar?: Partial<MenuBarStyle> }
   // The site's content languages and the one shown when a text has no
   // translation (see utils/locale-text.ts). Missing = uk/en/de.
   locales?: string[]

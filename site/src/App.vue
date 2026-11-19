@@ -95,10 +95,13 @@
   const heroWithTitle = computed(() => heroVariant.value === HERO_WITH_TITLE_VARIANT)
   // Layout 3: the menu bar first, in the page's flow, then the split banner.
   const heroSplit = computed(() => heroVariant.value === HERO_SPLIT_VARIANT)
+  // The control panel (menuStyle.bar 'console') is a dark console whatever
+  // the bar's theme: its words and logo take the dark bar's light ones.
+  const menuConsole = computed(() => commonStore.menuStyle.bar.look === 'console')
   const menuBarClass = computed(() => [
     'main-menu-bar',
-    `main-menu-bar--${headerSettings.value.menuTheme}`,
-    { 'main-menu-bar--in-flow': heroWithTitle.value || heroSplit.value },
+    `main-menu-bar--${menuConsole.value ? 'dark' : headerSettings.value.menuTheme}`,
+    { 'main-menu-bar--in-flow': heroWithTitle.value || heroSplit.value, 'main-menu-bar--console': menuConsole.value },
   ])
 
   // 'loading' until the site's settings are in; then per page.

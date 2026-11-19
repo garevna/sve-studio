@@ -5,6 +5,7 @@
 
   import { useSiteNavigation } from '../../composables/site-navigation'
   import { dropdownVars } from '../../configs/menu-style'
+  import { getImageURL } from '../../services/get-image-url'
   import { useCommonStore } from '../../stores/common'
 
   const { locale, menuStyle } = storeToRefs(useCommonStore())
@@ -22,6 +23,13 @@
   const props = defineProps<PropsModel>()
 
   const expanded = ref(false)
+
+  // A control panel (menuStyle.bar 'console'): the entry is a key - its
+  // icon, its name under it, a lamp lit on the current page's key.
+  const isConsole = computed(() => menuStyle.value.bar.look === 'console')
+  const icon = computed(() => props.item.icon || '')
+  const mdiIcon = computed(() => icon.value.startsWith('mdi-'))
+  const initial = computed(() => (props.item.title[lang.value] || '').trim().charAt(0).toUpperCase())
 
   // The entry of the page shown (or the group holding it) is highlighted.
   const color = computed(() => {
@@ -42,9 +50,19 @@
 </script>
 
 <template>
-  <div class="menu-item text-center">
+  <div :class="['menu-item text-center', { 'menu-key': isConsole, 'menu-key--current': isConsole && (expanded || isCurrent(props.item)) }]">
     <div v-if="props.item.submenu && props.item.submenu.length > 0">
-      <div style="display: grid; grid-template-columns: max-content max-content">
+      <div v-if="isConsole" class="menu-key__face">
+        <span aria-hidden="true" class="menu-key__lamp" />
+        <v-icon v-if="mdiIcon" class="menu-key__icon" :icon="icon" />
+        <img v-else-if="icon" alt="" class="menu-key__icon" :src="getImageURL(icon)">
+        <span v-else aria-hidden="true" class="menu-key__icon menu-key__letter">{{ initial }}</span>
+        <span class="menu-key__label">
+          {{ props.item.title[lang] }}
+          <v-icon size="14">{{ expanded ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
+        </span>
+      </div>
+      <div v-else style="display: grid; grid-template-columns: max-content max-content">
         {{ props.item.title[lang] }}
         <v-icon v-if="props.item.submenu" class="ml-4">
           {{ expanded ? 'mdi-chevron-up' : 'mdi-chevron-down' }}
@@ -64,6 +82,13 @@
           </v-list-item>
         </v-list>
       </v-menu>
+    </div>
+    <div v-else-if="isConsole" class="menu-key__face" @click="selectItem">
+      <span aria-hidden="true" class="menu-key__lamp" />
+      <v-icon v-if="mdiIcon" class="menu-key__icon" :icon="icon" />
+      <img v-else-if="icon" alt="" class="menu-key__icon" :src="getImageURL(icon)">
+      <span v-else aria-hidden="true" class="menu-key__icon menu-key__letter">{{ initial }}</span>
+      <span class="menu-key__label">{{ props.item.title[lang] }}</span>
     </div>
     <div v-else @click="selectItem">
       {{ props.item.title[lang] }}

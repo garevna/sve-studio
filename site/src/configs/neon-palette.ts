@@ -27,10 +27,12 @@ export const NEON_PALETTE: Record<string, string> = {
   'secondary': '#2A2F7F',
   'dark': '#A9B4E8',
   'dark-grey': '#B8C2EE',
-  // two more lights for the glow to choose from (the «Стиль сайту»
-  // menu): cyan and magenta, beside gold (warning) and green
-  'special': '#E040FB',
+  // special is a text colour on the site (subheadings, notes): a calm
+  // light blue. blue is one more light for the glow (the «Стиль сайту»
+  // menu): cyan, beside gold (warning), yellow, green and white.
+  'special': '#9AA8D8',
   'blue': '#22D3EE',
+  'yellow': '#FFD60A',
   'grey': '#6B7598',
   // what were light fills and lines: dark tones now
   'accent': '#2A3466',
@@ -38,7 +40,8 @@ export const NEON_PALETTE: Record<string, string> = {
   'soft-grey': '#1C2342',
   'light-grey-1': '#1A2140',
   'light-grey-2': '#141A33',
-  'light-green': '#0F2A22',
+  // the footer's contacts are written in it, on the dark: a light green
+  'light-green': '#7CE0A8',
   'light-warning': '#2E2410',
   'available-date-fone-color': '#2A3466',
   // a section's fill and a subheading's colour at once - a violet that

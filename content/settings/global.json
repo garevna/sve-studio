@@ -106,14 +106,14 @@
   ],
   "menuStyle": {
     "mobile": {
+      "placement": "full",
       "radius": "default-border-radius",
       "background": "white",
       "width": 320,
       "itemClass": "default-text text-medium text-black",
       "activeClass": "default-text text-medium text-primary",
       "subItemClass": "default-text text-thin text-black",
-      "userNameClass": "default-text text-medium text-white",
-      "placement": "full",
+      "userNameClass": "default-text text-medium text-black",
       "rows": [
         {
           "type": "logo",
@@ -140,24 +140,19 @@
           "type": "spacer"
         },
         {
-          "type": "social",
-          "align": "center",
-          "iconLook": "mono",
-          "iconColor": "white",
-          "iconSize": 32,
-          "background": "primary"
+          "type": "divider",
+          "color": "light-grey-1"
         },
         {
-          "type": "user",
-          "background": "primary"
+          "type": "user"
         }
       ]
     },
     "dropdown": {
       "radius": "extra-small-border-radius",
       "background": "light-grey-2",
-      "itemClass": "default-text text-medium text-special",
-      "activeClass": "default-text text-medium text-primary"
+      "itemClass": "default-text text-medium text-dark",
+      "activeClass": "default-text text-medium text-special"
     }
   },
   "feedback": {

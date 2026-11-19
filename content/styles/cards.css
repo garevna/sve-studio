@@ -140,6 +140,27 @@
   color: var(--white) !important;
 }
 
+.card-style-10 {
+  --card-style-label: "Green";
+  --card-glow-color: green;
+  background: linear-gradient(160deg, color-mix(in srgb, var(--white) 12%, transparent), transparent 45%), color-mix(in srgb, var(--neon-night, var(--black)) 62%, transparent);
+  backdrop-filter: blur(10px);
+  border: 1px solid color-mix(in srgb, var(--green) 75%, transparent);
+  box-shadow: 0 0 4px color-mix(in srgb, var(--green) 70%, transparent), 0 0 18px color-mix(in srgb, var(--green) 35%, transparent), inset 0 0 18px color-mix(in srgb, var(--green) 18%, transparent);
+  color: var(--white);
+  transition: box-shadow 0.35s ease;
+  border-radius: var(--super-border-radius);
+}
+
+.card-style-10:hover,
+.card-style-10:focus-within {
+  box-shadow: 0 0 4px color-mix(in srgb, var(--green) 100%, transparent), 0 0 18px color-mix(in srgb, var(--green) 56%, transparent), inset 0 0 18px color-mix(in srgb, var(--green) 29%, transparent);
+}
+
+.card-style-10 * {
+  color: var(--white) !important;
+}
+
 @media screen and (max-width: 600px) {
   .card-pill {
     border-radius: var(--small-border-radius);

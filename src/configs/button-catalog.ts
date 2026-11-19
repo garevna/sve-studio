@@ -61,6 +61,16 @@ const OUTLINED: StartingLook = {
   hover: { color: 'secondary', border: line('solid', 1, 'secondary') },
   disabled: { color: 'grey', border: line('solid', 1, 'grey') },
 }
+// The spark running round the outline («Вогник по контуру», and «Неон»'s).
+const ORBIT_SHARED = `@property --pw-orbit-angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes pw-btn-orbit {
+  to { --pw-orbit-angle: 360deg; }
+}`
 const ABOVE_EFFECT = (c: string) => `.${c} > .v-btn__content {\n  position: relative;\n  z-index: 1;\n}`
 function NO_MOTION (selectors: string[], what = 'animation: none !important;') {
   return `@media (prefers-reduced-motion: reduce) {\n  ${selectors.join(',\n  ')} {\n    ${what}\n  }\n}`
@@ -341,15 +351,7 @@ ${NO_MOTION([`.${c}::before`])}`,
 }
 
 ${NO_MOTION([`.${c}::before`])}`,
-    shared: `@property --pw-orbit-angle {
-  syntax: '<angle>';
-  inherits: false;
-  initial-value: 0deg;
-}
-
-@keyframes pw-btn-orbit {
-  to { --pw-orbit-angle: 360deg; }
-}`,
+    shared: ORBIT_SHARED,
   },
   {
     id: 'aurora',
@@ -471,37 +473,78 @@ ${NO_MOTION([`.${c}::before`, `.${c}::after`], 'transition: none;')}`
       hover: { color: 'white', border: line('solid', 1, 'warning') },
       disabled: { color: 'grey', border: line('solid', 1, 'grey') },
     },
-    own: ['transition: color 0.3s ease'],
+    own: ['transition: color 0.3s ease', 'position: relative', 'isolation: isolate'],
+    // No solid fill: under the pointer the glass takes a see-through wash
+    // of the glow's own colour. A spark runs round the outline, as on
+    // «Вогник по контуру» - faster under the pointer. The kind's gold (warning, its starting
+    // colour) means «the site's glow» - the «Стиль сайту» menu's
+    // --neon-glow, gold when the site has none; any other colour picked
+    // for the button is its own.
     extra: (c, entry) => {
-      const glow = (key: string | undefined, fallback: string, strength: number) => {
-        const color = colorOf(key, fallback)
+      const lightOf = (key: string | undefined) => !key || key === 'warning' ? 'var(--neon-glow, var(--warning))' : colorOf(key, 'warning')
+      const glow = (key: string | undefined, strength: number) => {
+        const color = lightOf(key)
         const mix = (share: number) => `color-mix(in srgb, ${color} ${Math.min(100, Math.round(share * strength))}%, transparent)`
-        return { box: `0 0 4px ${mix(70)}, 0 0 16px ${mix(35)}, inset 0 0 12px ${mix(20)}`, text: `0 0 6px ${mix(80)}` }
+        return { color, box: `0 0 4px ${mix(70)}, 0 0 16px ${mix(35)}, inset 0 0 12px ${mix(20)}`, text: `0 0 6px ${mix(80)}`, wash: `color-mix(in srgb, ${color} 24%, transparent)` }
       }
-      const base = glow(entry.base.border?.color, 'warning', 1)
-      const hover = glow(entry.hover.border?.color || entry.base.border?.color, 'warning', 1.6)
+      const base = glow(entry.base.border?.color, 1)
+      const hover = glow(entry.hover.border?.color || entry.base.border?.color, 1.6)
+      const text = !entry.base.color || entry.base.color === 'warning' ? `\n  color: ${base.color} !important;` : ''
       return `/* the glass and the light - after the common rule, which takes every shadow away */
 .${c} {
   background: linear-gradient(160deg, color-mix(in srgb, var(--white) 12%, transparent), transparent 50%), color-mix(in srgb, var(--neon-night, var(--black)) 55%, transparent) !important;
   backdrop-filter: blur(8px);
+  border-color: ${base.color} !important;${text}
   box-shadow: ${base.box} !important;
   text-shadow: ${base.text};
-  transition: color 0.3s ease, box-shadow 0.35s ease, text-shadow 0.35s ease !important;
+  transition: color 0.3s ease, background 0.35s ease, box-shadow 0.35s ease, text-shadow 0.35s ease !important;
 }
 
 .${c}:hover,
 .${c}:focus-visible {
+  background: ${hover.wash} !important;
+  border-color: ${hover.color} !important;
+  color: var(--white) !important;
   box-shadow: ${hover.box} !important;
   text-shadow: ${hover.text};
 }
 
 .${c}:disabled {
+  border-color: var(--grey) !important;
+  color: var(--grey) !important;
   box-shadow: none !important;
   text-shadow: none;
 }
 
-${NO_MOTION([`.${c}`], 'transition: none !important;')}`
+${ABOVE_EFFECT(c)}
+
+.${c}::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  z-index: 0;
+  border: 2px solid ${base.color};
+  border-radius: inherit;
+  filter: drop-shadow(0 0 4px ${base.color});
+  -webkit-mask: conic-gradient(from var(--pw-orbit-angle), transparent 0deg 250deg, #000 360deg);
+  mask: conic-gradient(from var(--pw-orbit-angle), transparent 0deg 250deg, #000 360deg);
+  animation: pw-btn-orbit 3s linear infinite;
+  pointer-events: none;
+}
+
+.${c}:hover::before {
+  animation-duration: 1.2s;
+}
+
+.${c}:disabled::before {
+  animation: none;
+  opacity: 0;
+}
+
+${NO_MOTION([`.${c}`], 'transition: none !important;')}
+${NO_MOTION([`.${c}::before`])}`
     },
+    shared: ORBIT_SHARED,
   },
 ]
 

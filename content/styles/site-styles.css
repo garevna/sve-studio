@@ -220,6 +220,116 @@
   --v-theme-primary: var(--neon-glow-theme, var(--v-theme-warning));
 }
 
+/* A coloured section (the «Темна секція» block, .dark-fone-section) on a
+   site that is «Неон» as a whole: no fill - the night shows through, and
+   only its outline glows, in the glow's colour. Its colour stays chosen
+   for the other styles. */
+/* the block's own colour lies on its frame (.colored-block) too */
+.site-style-neon .colored-block:has(.dark-fone-section) {
+  background: transparent !important;
+}
+
+.site-style-neon .dark-fone-section {
+  background: transparent !important;
+  border: 1px solid color-mix(in srgb, var(--neon-glow, var(--warning)) 75%, transparent);
+  box-shadow:
+    0 0 6px color-mix(in srgb, var(--neon-glow, var(--warning)) 65%, transparent),
+    0 0 30px color-mix(in srgb, var(--neon-glow, var(--warning)) 30%, transparent),
+    inset 0 0 30px color-mix(in srgb, var(--neon-glow, var(--warning)) 14%, transparent);
+}
+
+/* The site's main button (.primary-button - the default of the blocks that
+   have no button picked, and of forms, calculators, popups) while the
+   site's buttons wear «Неон»: no solid fill, a glowing outline on dark
+   glass; under the pointer a see-through wash of the glow. As the «Неон»
+   kind of the button set (configs/button-catalog.ts). A button picked
+   from the set keeps its own look - a filled one stays filled. */
+.site-style-buttons-neon .primary-button {
+  background:
+    linear-gradient(160deg, color-mix(in srgb, var(--white) 12%, transparent), transparent 50%),
+    color-mix(in srgb, var(--neon-night, var(--black)) 55%, transparent) !important;
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--neon-glow, var(--warning)) !important;
+  color: var(--neon-glow, var(--warning)) !important;
+  box-shadow:
+    0 0 4px color-mix(in srgb, var(--neon-glow, var(--warning)) 70%, transparent),
+    0 0 16px color-mix(in srgb, var(--neon-glow, var(--warning)) 35%, transparent),
+    inset 0 0 12px color-mix(in srgb, var(--neon-glow, var(--warning)) 20%, transparent) !important;
+  text-shadow: 0 0 6px color-mix(in srgb, var(--neon-glow, var(--warning)) 80%, transparent);
+  transition: color 0.3s ease, background 0.35s ease, box-shadow 0.35s ease, text-shadow 0.35s ease !important;
+}
+
+.site-style-buttons-neon .primary-button:is(:hover, :focus-visible) {
+  background: color-mix(in srgb, var(--neon-glow, var(--warning)) 24%, transparent) !important;
+  color: var(--white) !important;
+  box-shadow:
+    0 0 4px color-mix(in srgb, var(--neon-glow, var(--warning)) 100%, transparent),
+    0 0 26px color-mix(in srgb, var(--neon-glow, var(--warning)) 56%, transparent),
+    inset 0 0 14px color-mix(in srgb, var(--neon-glow, var(--warning)) 32%, transparent) !important;
+}
+
+/* and a spark running round the outline, as on the «Неон» and «Вогник
+   по контуру» buttons of the set */
+@property --pw-orbit-angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes pw-btn-orbit {
+  to { --pw-orbit-angle: 360deg; }
+}
+
+.site-style-buttons-neon .primary-button {
+  position: relative;
+  isolation: isolate;
+}
+
+.site-style-buttons-neon .primary-button > .v-btn__content {
+  position: relative;
+  z-index: 1;
+}
+
+.site-style-buttons-neon .primary-button::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  z-index: 0;
+  border: 2px solid var(--neon-glow, var(--warning));
+  border-radius: inherit;
+  filter: drop-shadow(0 0 4px var(--neon-glow, var(--warning)));
+  -webkit-mask: conic-gradient(from var(--pw-orbit-angle), transparent 0deg 250deg, #000 360deg);
+  mask: conic-gradient(from var(--pw-orbit-angle), transparent 0deg 250deg, #000 360deg);
+  animation: pw-btn-orbit 3s linear infinite;
+  pointer-events: none;
+}
+
+.site-style-buttons-neon .primary-button:hover::before {
+  animation-duration: 1.2s;
+}
+
+.site-style-buttons-neon .primary-button:is(:disabled, .v-btn--disabled)::before {
+  animation: none;
+  opacity: 0;
+}
+
+.site-style-buttons-neon .primary-button:is(:disabled, .v-btn--disabled) {
+  border-color: var(--grey) !important;
+  color: var(--grey) !important;
+  box-shadow: none !important;
+  text-shadow: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-style-buttons-neon .primary-button {
+    transition: none !important;
+  }
+
+  .site-style-buttons-neon .primary-button::before {
+    animation: none;
+  }
+}
+
 /* The phone's menu: its panel's edge lit, the light spilling inside. */
 .site-style-menu-neon .mobile-menu-panel {
   border: 1px solid color-mix(in srgb, var(--neon-glow, var(--warning)) 70%, transparent);

@@ -58,7 +58,7 @@
 
 <template>
   <div
-    :class="[section.class || 'my-16 pa-10', { 'dark-fone-section--edit': mode === 'edit' }]"
+    :class="['dark-fone-section', section.class || 'my-16 pa-10', { 'dark-fone-section--edit': mode === 'edit' }]"
     :style="{ background: `var(--${props.section.background || 'primary'})`, color: 'var(--white)', borderRadius: 'var(--v-default-border-radius)' }"
   >
     <template v-if="mode === 'edit'">

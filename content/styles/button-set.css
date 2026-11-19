@@ -582,6 +582,8 @@
   padding: 12px 24px;
   width: 100%;
   transition: color 0.3s ease;
+  position: relative;
+  isolation: isolate;
 }
 
 .button-kind-neon {
@@ -605,25 +607,65 @@
 .button-kind-neon {
   background: linear-gradient(160deg, color-mix(in srgb, var(--white) 12%, transparent), transparent 50%), color-mix(in srgb, var(--neon-night, var(--black)) 55%, transparent) !important;
   backdrop-filter: blur(8px);
-  box-shadow: 0 0 4px color-mix(in srgb, var(--warning) 70%, transparent), 0 0 16px color-mix(in srgb, var(--warning) 35%, transparent), inset 0 0 12px color-mix(in srgb, var(--warning) 20%, transparent) !important;
-  text-shadow: 0 0 6px color-mix(in srgb, var(--warning) 80%, transparent);
-  transition: color 0.3s ease, box-shadow 0.35s ease, text-shadow 0.35s ease !important;
+  border-color: var(--neon-glow, var(--warning)) !important;
+  color: var(--neon-glow, var(--warning)) !important;
+  box-shadow: 0 0 4px color-mix(in srgb, var(--neon-glow, var(--warning)) 70%, transparent), 0 0 16px color-mix(in srgb, var(--neon-glow, var(--warning)) 35%, transparent), inset 0 0 12px color-mix(in srgb, var(--neon-glow, var(--warning)) 20%, transparent) !important;
+  text-shadow: 0 0 6px color-mix(in srgb, var(--neon-glow, var(--warning)) 80%, transparent);
+  transition: color 0.3s ease, background 0.35s ease, box-shadow 0.35s ease, text-shadow 0.35s ease !important;
 }
 
 .button-kind-neon:hover,
 .button-kind-neon:focus-visible {
-  box-shadow: 0 0 4px color-mix(in srgb, var(--warning) 100%, transparent), 0 0 16px color-mix(in srgb, var(--warning) 56%, transparent), inset 0 0 12px color-mix(in srgb, var(--warning) 32%, transparent) !important;
-  text-shadow: 0 0 6px color-mix(in srgb, var(--warning) 100%, transparent);
+  background: color-mix(in srgb, var(--neon-glow, var(--warning)) 24%, transparent) !important;
+  border-color: var(--neon-glow, var(--warning)) !important;
+  color: var(--white) !important;
+  box-shadow: 0 0 4px color-mix(in srgb, var(--neon-glow, var(--warning)) 100%, transparent), 0 0 16px color-mix(in srgb, var(--neon-glow, var(--warning)) 56%, transparent), inset 0 0 12px color-mix(in srgb, var(--neon-glow, var(--warning)) 32%, transparent) !important;
+  text-shadow: 0 0 6px color-mix(in srgb, var(--neon-glow, var(--warning)) 100%, transparent);
 }
 
 .button-kind-neon:disabled {
+  border-color: var(--grey) !important;
+  color: var(--grey) !important;
   box-shadow: none !important;
   text-shadow: none;
+}
+
+.button-kind-neon > .v-btn__content {
+  position: relative;
+  z-index: 1;
+}
+
+.button-kind-neon::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  z-index: 0;
+  border: 2px solid var(--neon-glow, var(--warning));
+  border-radius: inherit;
+  filter: drop-shadow(0 0 4px var(--neon-glow, var(--warning)));
+  -webkit-mask: conic-gradient(from var(--pw-orbit-angle), transparent 0deg 250deg, #000 360deg);
+  mask: conic-gradient(from var(--pw-orbit-angle), transparent 0deg 250deg, #000 360deg);
+  animation: pw-btn-orbit 3s linear infinite;
+  pointer-events: none;
+}
+
+.button-kind-neon:hover::before {
+  animation-duration: 1.2s;
+}
+
+.button-kind-neon:disabled::before {
+  animation: none;
+  opacity: 0;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .button-kind-neon {
     transition: none !important;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .button-kind-neon::before {
+    animation: none !important;
   }
 }
 

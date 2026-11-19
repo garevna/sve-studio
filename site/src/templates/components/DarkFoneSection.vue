@@ -14,7 +14,7 @@
 
 <template>
   <div
-    :class="[props.item.class, 'px-8 py-16']"
+    :class="['dark-fone-section', props.item.class, 'px-8 py-16']"
     :style="{ background: `var(--${props.item.background || 'primary'})`, color: 'var(--white)', borderRadius: 'var(--default-border-radius)' }"
   >
     <h2 v-if="props.item.title" class="text-white text-center my-10">

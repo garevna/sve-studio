@@ -153,6 +153,9 @@
       "background": "light-grey-2",
       "itemClass": "default-text text-medium text-dark",
       "activeClass": "default-text text-medium text-special"
+    },
+    "bar": {
+      "look": "console"
     }
   },
   "feedback": {

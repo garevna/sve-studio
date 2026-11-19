@@ -27,6 +27,8 @@ export interface GlobalSettingsModel {
   siteStyleParts?: Partial<Record<'cards' | 'buttons' | 'footer' | 'menu' | 'images', 'classic' | 'stroke' | 'wave' | 'neon'>>
   // «Хвиля» on the pictures: which edge waves under the pointer (bottom when unset).
   siteStyleWaveEdge?: 'bottom' | 'top' | 'left' | 'right'
+  // «Хвиля» on the pictures: their edge waves, or a band runs across them (edge when unset).
+  siteStyleWaveMode?: 'edge' | 'band'
   // «Неон»'s own colours over its starting set (configs/neon-palette.ts) -
   // palette.json's keys, worn while the whole site is «Неон».
   neonPalette?: Record<string, string>

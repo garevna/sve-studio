@@ -345,12 +345,13 @@
   white-space: nowrap;
 }
 
-/* The console on a phone (and any screen up to 1080px): no burger - the
+/* The console on a phone (and any screen up to 1250px, where the site's
+   common.css swaps the menu for the burger): no burger - the
    keys stay, smaller, in one row that is swiped sideways (snapping to a
    key; the next one peeking in at the edge says there is more), the logo
    before them and the languages after. A key with a submenu still opens
    its list. */
-@media screen and (max-width: 1080px) {
+@media screen and (max-width: 1250px) {
   .main-menu-bar--console .mobile-menu {
     display: none !important;
   }
@@ -371,9 +372,10 @@
   }
   .main-menu-bar--console .desktop-app-bar > .desktop-menu {
     display: flex !important;
-    /* from the start: a row that overflows from the end (or the centre)
-       hides its first keys where no swipe reaches them */
-    justify-content: flex-start;
+    /* at the end, by the languages, as on a wide screen - but safely: a
+       row that overflows starts at its first key (overflowing from the
+       end would hide the first keys where no swipe reaches them) */
+    justify-content: safe flex-end;
     gap: 8px;
     overflow-x: auto;
     overscroll-behavior-x: contain;

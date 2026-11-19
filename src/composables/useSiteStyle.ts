@@ -1,6 +1,6 @@
-import type { SiteStyle, SiteStylePart, SiteStyleParts, WaveEdgeSide } from '@/configs/site-style'
+import type { SiteStyle, SiteStylePart, SiteStyleParts, WaveEdgeSide, WaveModeSetting } from '@/configs/site-style'
 import { shallowRef } from 'vue'
-import { applySiteStyle, partStyle, resolveSiteStyle, resolveWaveEdge } from '@/configs/site-style'
+import { applySiteStyle, partStyle, resolveSiteStyle, resolveWaveEdge, resolveWaveMode } from '@/configs/site-style'
 import { useAjaxStore } from '@/stores/ajax'
 import { refreshEditedPalette } from '@/utils/edited-palette'
 
@@ -12,6 +12,7 @@ import { refreshEditedPalette } from '@/utils/edited-palette'
 const style = shallowRef<SiteStyle>(resolveSiteStyle(undefined))
 const parts = shallowRef<SiteStyleParts>({})
 const waveEdge = shallowRef<WaveEdgeSide>(resolveWaveEdge(undefined))
+const waveMode = shallowRef<WaveModeSetting>(resolveWaveMode(undefined))
 // «Неон»'s glow: a palette colour key, '' for the default gold
 const neonGlow = shallowRef('')
 let loading: Promise<void> | null = null
@@ -20,7 +21,7 @@ export function useSiteStyle () {
   const ajaxStore = useAjaxStore()
 
   function apply () {
-    applySiteStyle(document.documentElement, style.value, parts.value, waveEdge.value, neonGlow.value)
+    applySiteStyle(document.documentElement, style.value, parts.value, waveEdge.value, neonGlow.value, waveMode.value)
   }
 
   function load () {
@@ -29,6 +30,7 @@ export function useSiteStyle () {
         style.value = resolveSiteStyle(settings?.siteStyle)
         parts.value = settings?.siteStyleParts ?? {}
         waveEdge.value = resolveWaveEdge(settings?.siteStyleWaveEdge)
+        waveMode.value = resolveWaveMode(settings?.siteStyleWaveMode)
         neonGlow.value = settings?.neonGlow ?? ''
         apply()
       })
@@ -47,7 +49,8 @@ export function useSiteStyle () {
     const siteStyleParts = Object.keys(parts.value).length > 0 ? parts.value : undefined
     // bottom, the default, is not written down
     const siteStyleWaveEdge = waveEdge.value === 'bottom' ? undefined : waveEdge.value
-    await ajaxStore.saveGlobalSettings({ ...settings, siteStyle: style.value, siteStyleParts, siteStyleWaveEdge, neonGlow: neonGlow.value || undefined }, { publish: true })
+    const siteStyleWaveMode = waveMode.value === 'edge' ? undefined : waveMode.value
+    await ajaxStore.saveGlobalSettings({ ...settings, siteStyle: style.value, siteStyleParts, siteStyleWaveEdge, siteStyleWaveMode, neonGlow: neonGlow.value || undefined }, { publish: true })
   }
 
   // «Неон» brings its own palette (configs/neon-palette.ts): the page's
@@ -78,6 +81,12 @@ export function useSiteStyle () {
     await save()
   }
 
+  async function setWaveMode (value: WaveModeSetting) {
+    waveMode.value = value
+    apply()
+    await save()
+  }
+
   async function setNeonGlow (value: string) {
     neonGlow.value = value
     apply()
@@ -99,5 +108,5 @@ export function useSiteStyle () {
     return partStyle(style.value, parts.value, part)
   }
 
-  return { style, parts, waveEdge, neonGlow, load, set, setPart, setWaveEdge, setNeonGlow, reloadGlow, of }
+  return { style, parts, waveEdge, waveMode, setWaveMode, neonGlow, load, set, setPart, setWaveEdge, setNeonGlow, reloadGlow, of }
 }

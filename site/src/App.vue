@@ -37,6 +37,7 @@
   import DynamicPageTemplate from './templates/DynamicPageTemplate.vue'
   import FooterTemplate from './templates/FooterTemplate.vue'
   import PageNotFound from './templates/PageNotFound.vue'
+  import { startNightSvgs } from './utils/night-svgs'
   import { type PageTitle, pageTitleText, withMenuLabels } from './utils/page-title'
   import { sveRoot } from './utils/sve-root'
   import { startWaveEdges } from './utils/wave-edge'
@@ -132,7 +133,7 @@
     }
     commonStore.setGlobalSettings(settings)
     // The site's style (UI Kit): its class on <html> - configs/site-style.ts.
-    applySiteStyle(document.documentElement, settings.siteStyle, settings.siteStyleParts, settings.siteStyleWaveEdge, settings.neonGlow)
+    applySiteStyle(document.documentElement, settings.siteStyle, settings.siteStyleParts, settings.siteStyleWaveEdge, settings.neonGlow, settings.siteStyleWaveMode)
     // A menu item leading to a page says the page's name (utils/page-title.ts).
     commonStore.mainMenuContent = withMenuLabels(menu, pageTitles.titles as Record<string, PageTitle>, commonStore.siteLocales, commonStore.defaultLocale, pageTitles.hidden)
     commonStore.dynamicFooterContent = footer
@@ -290,6 +291,8 @@
     window.addEventListener('resize', commonStore.resize)
     // «Хвиля» on the edges of pictures and cards (utils/wave-edge.ts).
     startWaveEdges()
+    // «Неон»: the illustrations without their light ground (utils/night-svgs.ts)
+    startNightSvgs()
     commonStore.resize()
     await loadSite()
     await showPage()

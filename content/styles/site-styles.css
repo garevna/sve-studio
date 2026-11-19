@@ -252,6 +252,17 @@
     0 6px 20px color-mix(in srgb, var(--white) 6%, transparent) !important;
 }
 
+/* The steps' circles (the «Кроки в кружках» block, .circle-with-text) on a
+   «Неон» site: their outline glows, as the cards' - the number's gear
+   keeps its own look. */
+.site-style-neon .circle-with-text.step-disc {
+  border: 1px solid color-mix(in srgb, var(--neon-glow, var(--warning)) 70%, transparent);
+  box-shadow:
+    0 0 6px color-mix(in srgb, var(--neon-glow, var(--warning)) 60%, transparent),
+    0 0 24px color-mix(in srgb, var(--neon-glow, var(--warning)) 26%, transparent),
+    inset 0 0 22px color-mix(in srgb, var(--neon-glow, var(--warning)) 14%, transparent);
+}
+
 /* The site's main button (.primary-button - the default of the blocks that
    have no button picked, and of forms, calculators, popups) while the
    site's buttons wear «Неон»: no solid fill, a glowing outline on dark
@@ -443,8 +454,45 @@
   inherits: false;
 }
 
+@property --wave-mode {
+  syntax: "*";
+  inherits: false;
+}
+
+/* how the pictures wave: their edge, or a band of water across them
+   (--wave-mode: edge | band - the site's, «Стиль сайту», or a picture's
+   own wave-mode-<mode> class) */
 .site-style-images-wave .wave-image {
   --wave-edge: var(--site-wave-edge, bottom);
+  --wave-mode: var(--site-wave-mode, edge);
+}
+
+.site-style-images-wave :is(.wave-mode-band.wave-image, .wave-mode-band .wave-image) {
+  --wave-mode: band;
+}
+
+.site-style-images-wave :is(.wave-mode-edge.wave-image, .wave-mode-edge .wave-image) {
+  --wave-mode: edge;
+}
+
+/* The band's two layers (utils/wave-edge.ts puts them in the picture's
+   box and cuts them to the band): the picture under it softly blurred,
+   and lit - an overlay wash of white, or of the «Неон» glow. */
+.wave-band {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.wave-band--blur {
+  -webkit-backdrop-filter: blur(3px) saturate(1.3);
+  backdrop-filter: blur(3px) saturate(1.3);
+}
+
+.wave-band--tint {
+  background: color-mix(in srgb, var(--neon-glow, var(--white)) 55%, transparent);
+  mix-blend-mode: overlay;
 }
 
 .site-style-images-wave :is(.wave-edge-bottom.wave-image, .wave-edge-bottom .wave-image) {

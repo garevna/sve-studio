@@ -19,8 +19,14 @@
 // side gets a line drawn along the wave in the border's colour - it is the
 // outline itself that bends, not just the fill.
 //
-// Someone who asked their system for less motion sees the edge waved but
-// still while the pointer is on it.
+// A picture may wave the other way (its --wave-mode 'band'): not its edge
+// but a band of water running across it from that edge to the opposite
+// one, again and again while the pointer is on it - two wavy fronts, the
+// picture inside softly blurred and lit (an overlay wash: white, or the
+// «Неон» glow). Its outline stays as it is.
+//
+// Someone who asked their system for less motion sees the edge waved (or
+// the band standing in the middle) but still while the pointer is on it.
 //
 // NOTE: src/utils/wave-edge.ts and site/src/utils/wave-edge.ts are
 // identical - keep them so.
@@ -36,9 +42,15 @@ const STEP = 6
 // how far up from the pointed-at element a waving one is looked for
 const SEARCH_DEPTH = 10
 
+export type WaveMode = 'edge' | 'band'
+
 type Wave = {
   el: HTMLElement
   edge: WaveEdge
+  mode: WaveMode
+  // the band: how far its front has run (px), and its two layers
+  run: number
+  band: HTMLElement[]
   amp: number // 0 straight .. 1 full wave
   goal: number
   time: number
@@ -59,6 +71,12 @@ function still (): boolean {
 function edgeOf (el: Element): WaveEdge | null {
   const value = getComputedStyle(el).getPropertyValue('--wave-edge').trim()
   return (WAVE_EDGES as readonly string[]).includes(value) ? value as WaveEdge : null
+}
+
+// A band needs room inside the element for its layers - a bare <img> has
+// none, and waves its edge.
+function modeOf (el: Element): WaveMode {
+  return el.tagName !== 'IMG' && getComputedStyle(el).getPropertyValue('--wave-mode').trim() === 'band' ? 'band' : 'edge'
 }
 
 function waving (node: EventTarget | null): HTMLElement | null {
@@ -98,7 +116,68 @@ function radiusOf (style: CSSStyleDeclaration, edge: WaveEdge): number {
   return Number.parseFloat(corner) || 0
 }
 
-function draw (wave: Wave) {
+// The band: its front and back are wavy lines across the picture, the
+// front at `run` px from the edge it comes from; it starts beyond that
+// edge and leaves past the opposite one, then comes again.
+function drawBand (wave: Wave, calm: boolean) {
+  const { el, edge } = wave
+  const width = el.offsetWidth
+  const height = el.offsetHeight
+  if (!width || !height) {
+    return
+  }
+  const across = edge === 'bottom' || edge === 'top'
+  const length = across ? width : height
+  const travel = across ? height : width
+  const thick = Math.max(36, travel * 0.3)
+  const depth = Math.min(22, Math.max(8, travel * 0.06))
+  const front = calm ? (travel + thick) / 2 : wave.run % (travel + thick + depth * 2)
+  if (wave.band.length === 0) {
+    if (getComputedStyle(el).position === 'static') {
+      el.style.position = 'relative'
+      wave.madeRelative = true
+    }
+    // two layers straight in the picture's box - no wrapper: a wrapper of
+    // their own would cut the blend and the blur off from the picture
+    for (const kind of ['blur', 'tint']) {
+      const layer = document.createElement('span')
+      layer.setAttribute('aria-hidden', 'true')
+      layer.className = `wave-band wave-band--${kind}`
+      el.append(layer)
+      wave.band.push(layer)
+    }
+  }
+  const at = (u: number, s: number): string => {
+    const [x, y] = {
+      bottom: [u, height - s],
+      top: [u, s],
+      left: [s, u],
+      right: [width - s, u],
+    }[edge] as [number, number]
+    return `${x.toFixed(1)}px ${y.toFixed(1)}px`
+  }
+  const count = Math.max(2, Math.ceil(length / STEP))
+  const points: string[] = []
+  for (let i = 0; i <= count; i++) {
+    const u = length * i / count
+    points.push(at(u, front + depth * (shape(u, length, wave.time, wave.seed) - 0.5) * 2))
+  }
+  for (let i = count; i >= 0; i--) {
+    const u = length * i / count
+    points.push(at(u, front - thick + depth * (shape(u, length, wave.time * 1.3, wave.seed + 2.4) - 0.5) * 2))
+  }
+  const clip = `polygon(${points.join(', ')})`
+  for (const layer of wave.band) {
+    layer.style.clipPath = clip
+    layer.style.opacity = String(wave.amp)
+  }
+}
+
+function draw (wave: Wave, calm: boolean) {
+  if (wave.mode === 'band') {
+    drawBand(wave, calm)
+    return
+  }
   const { el, edge } = wave
   const width = el.offsetWidth
   const height = el.offsetHeight
@@ -170,6 +249,9 @@ function drawLine (wave: Wave, style: CSSStyleDeclaration, line: [number, number
 function settle (wave: Wave) {
   wave.el.style.clipPath = ''
   wave.line?.remove()
+  for (const layer of wave.band) {
+    layer.remove()
+  }
   if (wave.madeRelative) {
     wave.el.style.position = ''
   }
@@ -184,12 +266,14 @@ function tick (now: number) {
     wave.amp = calm ? wave.goal : wave.amp + (wave.goal - wave.amp) * Math.min(1, dt * 4)
     if (!calm) {
       wave.time += dt
+      // the band crosses the picture in about two and a half seconds
+      wave.run += dt * Math.max(wave.el.offsetWidth, wave.el.offsetHeight) / 2.5
     }
     if (wave.goal === 0 && wave.amp < 0.01) {
       settle(wave)
       continue
     }
-    draw(wave)
+    draw(wave, calm)
   }
   // Still motion: drawn once, nothing moves until the pointer leaves.
   frame = waves.size > 0 && !calm ? requestAnimationFrame(tick) : 0
@@ -207,7 +291,7 @@ function enter (el: HTMLElement) {
   if (!edge) {
     return
   }
-  const wave = waves.get(el) ?? { el, edge, amp: 0, goal: 1, time: 0, seed: Math.random() * 6.28, line: null, madeRelative: false }
+  const wave = waves.get(el) ?? { el, edge, mode: modeOf(el), run: 0, band: [], amp: 0, goal: 1, time: 0, seed: Math.random() * 6.28, line: null, madeRelative: false }
   wave.edge = edge
   wave.goal = 1
   waves.set(el, wave)

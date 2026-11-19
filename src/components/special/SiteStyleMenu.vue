@@ -1,12 +1,12 @@
 <script setup lang="ts">
-  import type { SiteStyle, SiteStylePart, WaveEdgeSide } from '@/configs/site-style'
+  import type { SiteStyle, SiteStylePart, WaveEdgeSide, WaveModeSetting } from '@/configs/site-style'
   import { SveIconButton, SveMenu, SveMenuDivider, SveMenuLabel, SveSegmented } from '@sve/editor-ui'
   import { computed, onMounted, ref, watch } from 'vue'
   import PaletteSwatchPicker from '@/components/special/PaletteSwatchPicker.vue'
   import SiteStyleIcon from '@/components/special/SiteStyleIcon.vue'
   import { useSiteStyle } from '@/composables/useSiteStyle'
   import { sitePalette } from '@/configs/neon-palette'
-  import { SITE_STYLE_PARTS, SITE_STYLES, WAVE_EDGE_SIDES } from '@/configs/site-style'
+  import { SITE_STYLE_PARTS, SITE_STYLES, WAVE_EDGE_SIDES, WAVE_MODES } from '@/configs/site-style'
   import { t } from '@/i18n'
   import { useAjaxStore } from '@/stores/ajax'
 
@@ -42,6 +42,12 @@
   }
   // «Хвиля» on the pictures: which edge waves - shown while they wear it.
   const edgeOptions = computed(() => WAVE_EDGE_SIDES.map(value => ({ value, label: t(`kit.waveEdges.${value}`) })))
+  // ... and how: the edge, or a band across the picture
+  const modeOptions = computed(() => WAVE_MODES.map(value => ({ value, label: t(`kit.waveModes.${value}`) })))
+  function setWaveMode (value: WaveModeSetting | undefined) {
+    if (!value) return
+    void siteStyle.setWaveMode(value)
+  }
   function setWaveEdge (value: WaveEdgeSide | undefined) {
     if (!value) return
     void siteStyle.setWaveEdge(value)
@@ -88,7 +94,11 @@
         <SveSegmented :model-value="partValue(part)" :options="partOptions" @update:model-value="value => setPart(part, value)" />
       </div>
       <div v-if="siteStyle.of('images') === 'wave'" class="site-style-menu-part">
-        <span class="site-style-menu-part-name">{{ t('kit.waveEdge') }}</span>
+        <span class="site-style-menu-part-name">{{ t('kit.waveMode') }}</span>
+        <SveSegmented :model-value="siteStyle.waveMode.value" :options="modeOptions" @update:model-value="setWaveMode" />
+      </div>
+      <div v-if="siteStyle.of('images') === 'wave'" class="site-style-menu-part">
+        <span class="site-style-menu-part-name">{{ siteStyle.waveMode.value === 'band' ? t('kit.waveEdgeBand') : t('kit.waveEdge') }}</span>
         <SveSegmented :model-value="siteStyle.waveEdge.value" :options="edgeOptions" @update:model-value="setWaveEdge" />
       </div>
       <div v-if="anyNeon" class="site-style-menu-glow">

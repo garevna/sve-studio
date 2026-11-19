@@ -45,24 +45,35 @@ export const WAVE_EDGE_SIDES = ['bottom', 'top', 'left', 'right'] as const
 export type WaveEdgeSide = typeof WAVE_EDGE_SIDES[number]
 export const DEFAULT_WAVE_EDGE: WaveEdgeSide = 'bottom'
 
+// How the pictures wave: their edge, or a band of water running across
+// them from that edge (utils/wave-edge.ts) - global.json siteStyleWaveMode.
+export const WAVE_MODES = ['edge', 'band'] as const
+export type WaveModeSetting = typeof WAVE_MODES[number]
+
+export function resolveWaveMode (value: unknown): WaveModeSetting {
+  return value === 'band' ? 'band' : 'edge'
+}
+
 export function resolveWaveEdge (value: unknown): WaveEdgeSide {
   return WAVE_EDGE_SIDES.includes(value as WaveEdgeSide) ? value as WaveEdgeSide : DEFAULT_WAVE_EDGE
 }
 
 // «Неон»'s glow: a palette colour (global.json `neonGlow`), as
 // --neon-glow for the stylesheets and --neon-glow-theme for the colour
-// classes, which read Vuetify's "R,G,B" triples. Unset: gold, the
-// stylesheets' own fallback.
-export function neonGlowDeclarations (glow: unknown): Record<string, string> | null {
-  return typeof glow === 'string' && /^[a-z][\w-]*$/i.test(glow)
-    ? { '--neon-glow': `var(--${glow})`, '--neon-glow-theme': `var(--v-theme-${glow})` }
-    : null
+// classes, which read Vuetify's "R,G,B" triples. Unset: gold.
+// Always set - gold when none is chosen - so the variable is never
+// missing (a browser's tools flag a var() that falls back as undefined).
+export const DEFAULT_NEON_GLOW = 'warning'
+
+export function neonGlowDeclarations (glow: unknown): Record<string, string> {
+  const key = typeof glow === 'string' && /^[a-z][\w-]*$/i.test(glow) ? glow : DEFAULT_NEON_GLOW
+  return { '--neon-glow': `var(--${key})`, '--neon-glow-theme': `var(--v-theme-${key})` }
 }
 
 // Puts the classes on an element (the site and the editor: <html>), taking
 // the others off; the pictures' wave edge as --site-wave-edge, «Неон»'s
 // glow as --neon-glow.
-export function applySiteStyle (element: HTMLElement, value: unknown, parts?: SiteStyleParts | null, waveEdge?: unknown, neonGlow?: unknown) {
+export function applySiteStyle (element: HTMLElement, value: unknown, parts?: SiteStyleParts | null, waveEdge?: unknown, neonGlow?: unknown, waveMode?: unknown) {
   const style = resolveSiteStyle(value)
   for (const other of SITE_STYLES) {
     element.classList.toggle(siteStyleClass(other), other === style)
@@ -71,13 +82,9 @@ export function applySiteStyle (element: HTMLElement, value: unknown, parts?: Si
     }
   }
   element.style.setProperty('--site-wave-edge', resolveWaveEdge(waveEdge))
-  const glow = neonGlowDeclarations(neonGlow)
-  for (const name of ['--neon-glow', '--neon-glow-theme']) {
-    if (glow) {
-      element.style.setProperty(name, glow[name]!)
-    } else {
-      element.style.removeProperty(name)
-    }
+  element.style.setProperty('--site-wave-mode', resolveWaveMode(waveMode))
+  for (const [name, value] of Object.entries(neonGlowDeclarations(neonGlow))) {
+    element.style.setProperty(name, value)
   }
 }
 

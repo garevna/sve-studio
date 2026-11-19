@@ -30,12 +30,12 @@
 
 .card-stroke {
   --card-style-label: "Штрих";
-  --card-stroke-color: primary;
+  --card-stroke-color: blue;
   --card-stroke-width: 2;
-  --card-stroke-corners: tl-br;
+  --card-stroke-corners: tr-bl;
   --card-stroke-fill: none;
   border: 2px solid transparent;
-  background: linear-gradient(var(--white), var(--white)) padding-box, linear-gradient(to bottom right, var(--primary), transparent 50%, var(--primary)) border-box;
+  background: linear-gradient(var(--white), var(--white)) padding-box, linear-gradient(to bottom left, var(--blue), transparent 50%, var(--blue)) border-box;
   border-radius: var(--default-border-radius);
 }
 
@@ -77,8 +77,8 @@
   }
 }
 
-.card-neon {
-  --card-style-label: "Неон";
+.card-style-7 {
+  --card-style-label: "Yellow";
   --card-glow-color: site;
   background: linear-gradient(160deg, color-mix(in srgb, var(--white) 12%, transparent), transparent 45%), color-mix(in srgb, var(--neon-night, var(--black)) 62%, transparent);
   backdrop-filter: blur(10px);
@@ -89,9 +89,51 @@
   border-radius: var(--default-border-radius);
 }
 
+.card-style-7:hover,
+.card-style-7:focus-within {
+  box-shadow: 0 0 4px color-mix(in srgb, var(--neon-glow, var(--warning)) 100%, transparent), 0 0 18px color-mix(in srgb, var(--neon-glow, var(--warning)) 56%, transparent), inset 0 0 18px color-mix(in srgb, var(--neon-glow, var(--warning)) 29%, transparent);
+}
+
+.card-style-7 * {
+  color: var(--white) !important;
+}
+
+.card-style-8 {
+  --card-style-label: "Blue";
+  --card-glow-color: black;
+  background: linear-gradient(160deg, color-mix(in srgb, var(--white) 12%, transparent), transparent 45%), color-mix(in srgb, var(--neon-night, var(--black)) 62%, transparent);
+  backdrop-filter: blur(10px);
+  border: 1px solid color-mix(in srgb, var(--black) 75%, transparent);
+  box-shadow: 0 0 4px color-mix(in srgb, var(--black) 70%, transparent), 0 0 18px color-mix(in srgb, var(--black) 35%, transparent), inset 0 0 18px color-mix(in srgb, var(--black) 18%, transparent);
+  color: var(--white);
+  transition: box-shadow 0.35s ease;
+  border-radius: var(--small-border-radius);
+}
+
+.card-style-8:hover,
+.card-style-8:focus-within {
+  box-shadow: 0 0 4px color-mix(in srgb, var(--black) 100%, transparent), 0 0 18px color-mix(in srgb, var(--black) 56%, transparent), inset 0 0 18px color-mix(in srgb, var(--black) 29%, transparent);
+}
+
+.card-style-8 * {
+  color: var(--white) !important;
+}
+
+.card-neon {
+  --card-style-label: "Неон";
+  --card-glow-color: primary;
+  background: linear-gradient(160deg, color-mix(in srgb, var(--white) 12%, transparent), transparent 45%), color-mix(in srgb, var(--neon-night, var(--black)) 62%, transparent);
+  backdrop-filter: blur(10px);
+  border: 1px solid color-mix(in srgb, var(--primary) 75%, transparent);
+  box-shadow: 0 0 4px color-mix(in srgb, var(--primary) 70%, transparent), 0 0 18px color-mix(in srgb, var(--primary) 35%, transparent), inset 0 0 18px color-mix(in srgb, var(--primary) 18%, transparent);
+  color: var(--white);
+  transition: box-shadow 0.35s ease;
+  border-radius: var(--default-border-radius);
+}
+
 .card-neon:hover,
 .card-neon:focus-within {
-  box-shadow: 0 0 4px color-mix(in srgb, var(--neon-glow, var(--warning)) 100%, transparent), 0 0 18px color-mix(in srgb, var(--neon-glow, var(--warning)) 56%, transparent), inset 0 0 18px color-mix(in srgb, var(--neon-glow, var(--warning)) 29%, transparent);
+  box-shadow: 0 0 4px color-mix(in srgb, var(--primary) 100%, transparent), 0 0 18px color-mix(in srgb, var(--primary) 56%, transparent), inset 0 0 18px color-mix(in srgb, var(--primary) 29%, transparent);
 }
 
 .card-neon * {

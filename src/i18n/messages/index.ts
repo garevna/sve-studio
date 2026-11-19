@@ -48,6 +48,7 @@ import popularDestinations from './popularDestinations.json'
 import popupLooks from './popupLooks.json'
 import popups from './popups.json'
 import problemLog from './problemLog.json'
+import readyPalettes from './readyPalettes.json'
 import saveTargets from './saveTargets.json'
 import seo from './seo.json'
 import siteSettings from './siteSettings.json'
@@ -106,6 +107,7 @@ export const MESSAGES = {
   problemLog,
   pages,
   palette,
+  readyPalettes,
   parallax,
   popularDestinations,
   popups,

@@ -54,6 +54,15 @@ export function followEditedPalette (instance: ReturnType<typeof createVuetify>)
   vuetify = instance
 }
 
+// The colours the site wears now: palette.json's, a ready palette's, or
+// «Неон»'s (configs/neon-palette.ts) - what a colour picker should show,
+// since a key is drawn on the page in these.
+export async function wornPalette (): Promise<Record<string, string>> {
+  const ajaxStore = useAjaxStore()
+  const [palette, settings] = await Promise.all([ajaxStore.getPalette(), ajaxStore.getGlobalSettings()])
+  return sitePalette(palette ?? {}, settings)
+}
+
 // The palette and the general settings read anew, and worn.
 export async function refreshEditedPalette () {
   const ajaxStore = useAjaxStore()

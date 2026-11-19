@@ -32,6 +32,7 @@ export type EditorRoleModel = 'content-manager' | 'seo' | 'designer' | 'develope
 // against these keys by the type system.
 export type EditorSectionKey
   = | 'palette'
+    | 'ready-palettes'
     | 'ui-kit'
     | 'general-settings'
     | 'seo'
@@ -80,6 +81,10 @@ export const EDITOR_SECTIONS: EditorSection[] = [
   // The site's forms (forms.json): their look is the designer's, where
   // they send - the site's channel or the client's API - the developer's.
   { key: 'dock-forms', icon: 'mdi-form-select', to: '/forms', group: 'content' },
+  // Ready palettes: a look picked, not built - for a client with no
+  // designer. Writes only global.json's readyPalette (the general
+  // settings), never palette.json.
+  { key: 'ready-palettes', icon: 'mdi-palette-swatch-variant', to: '/ready-palettes', group: 'look' },
   { key: 'palette', icon: 'mdi-palette-outline', to: '/palette', group: 'look' },
   { key: 'ui-kit', icon: 'mdi-view-grid-outline', to: '/ui-kit', group: 'look' },
   { key: 'styles', icon: 'mdi-language-css3', to: '/styles', group: 'look' },
@@ -125,7 +130,7 @@ export const EDITOR_ROLES: EditorRole[] = [
     icon: 'mdi-account-edit',
     // 'menu' is here provisionally - the project owner wasn't sure whether
     // main-menu editing belongs to this role; drop the key to take it away.
-    sections: ['messages', 'pages', 'menu', 'header', 'footer', 'popups', 'general-settings'],
+    sections: ['messages', 'pages', 'menu', 'header', 'footer', 'popups', 'general-settings', 'ready-palettes'],
     canEditPageContent: true,
     generalSettingsScope: 'basic',
   },
@@ -147,7 +152,7 @@ export const EDITOR_ROLES: EditorRole[] = [
     // intended path for a designer to influence how blocks look is the UI
     // Kit section, which will grow controls for exactly that, over
     // properties whose meaning is visible in the control itself.
-    sections: ['palette', 'ui-kit', 'pages', 'header', 'footer', 'dock-forms'],
+    sections: ['ready-palettes', 'palette', 'ui-kit', 'pages', 'header', 'footer', 'dock-forms'],
     canEditPageContent: true,
     generalSettingsScope: 'full',
   },
@@ -159,7 +164,7 @@ export const EDITOR_ROLES: EditorRole[] = [
     // below supervisor. Everything except 'seo' - that one belongs to the
     // SEO specialist, and a developer who genuinely needs it is one key
     // away (or one switch to supervisor).
-    sections: ['styles', 'palette', 'ui-kit', 'general-settings', 'pages', 'menu', 'header', 'footer', 'account', 'client-api', 'dock-forms', 'architecture'],
+    sections: ['styles', 'ready-palettes', 'palette', 'ui-kit', 'general-settings', 'pages', 'menu', 'header', 'footer', 'account', 'client-api', 'dock-forms', 'architecture'],
     canEditPageContent: true,
     generalSettingsScope: 'full',
   },

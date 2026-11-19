@@ -13,6 +13,7 @@
   import { useUiFeedbackStore } from '@/stores/ui-feedback'
   import { getActiveTheme } from '@/utils/active-theme'
   import { CARD_SHADOWS, CARD_WAVE_EDGES, cardStyleInline, extractCardStyles, serializeCardStyles, STROKE_WIDTHS } from '@/utils/card-style-entry'
+  import { EDITED_APP_SCOPE_CLASS } from '@/utils/edited-app-scope'
   import { loadThemeStyles } from '@/utils/load-theme-styles'
   import { parsePaletteEntry } from '@/utils/palette-entry'
   import { APP_THEME_NAME, themeClass } from '@/utils/vuetify-theme-names'
@@ -35,10 +36,42 @@
   const undoing = ref(false)
   const dirty = ref(false)
 
-  function loadFrom (cssText: string) {
+  // The styles the site's styles put on a block that names none
+  // (CARD_STYLE_BY_SITE_STYLE: card-stroke, card-wave, card-neon) have to
+  // exist - without card-neon a «Неон» site's cards are bare. One that is
+  // missing (deleted before it was protected) comes back in its starting
+  // look; true when any did.
+  function siteStyleEntry (style: SiteStyle, className: string): CardStyleEntry {
+    return {
+      className,
+      label: t(`kit.siteStyles.${style}`),
+      background: '',
+      border: style === 'stroke' ? '' : 'light-border',
+      radius: 'default-border-radius',
+      shadow: '',
+      stroke: style === 'stroke' ? { color: 'primary', width: 2, corners: 'tl-br' } : null,
+      wave: style === 'wave' ? { color: 'light-grey-2', edge: 'bottom' } : null,
+      glow: style === 'neon' ? { color: 'site' } : null,
+      raw: [],
+    }
+  }
+  function ensureSiteStyleEntries (): boolean {
+    let added = false
+    for (const [style, className] of Object.entries(CARD_STYLE_BY_SITE_STYLE)) {
+      if (className && !entries.value.some(entry => entry.className === className)) {
+        entries.value.push(siteStyleEntry(style as SiteStyle, className))
+        added = true
+      }
+    }
+    return added
+  }
+  const SITE_STYLE_CLASSES = new Set(Object.values(CARD_STYLE_BY_SITE_STYLE))
+
+  function loadFrom (cssText: string): boolean {
     const parsed = extractCardStyles(cssText)
     entries.value = parsed.entries
     otherNodes.value = parsed.otherNodes
+    return ensureSiteStyleEntries()
   }
 
   onMounted(async () => {
@@ -48,8 +81,13 @@
       paletteBorders.value = paletteEntries.filter(entry => entry.kind === 'border').map(entry => entry.key)
       paletteRadii.value = paletteEntries.filter(entry => entry.kind === 'radius').map(entry => entry.key)
       skipNextAutoSave = true
-      loadFrom(content ?? '')
-      dirty.value = await ajaxStore.isStyleFileUpdated(FILE_NAME)
+      const restored = loadFrom(content ?? '')
+      dirty.value = restored || await ajaxStore.isStyleFileUpdated(FILE_NAME)
+      // a site style's card came back: kept as a draft at once
+      if (restored) {
+        await ajaxStore.saveStyleFile(FILE_NAME, serialize(), { publish: false })
+        applyToEditor()
+      }
     } finally {
       loading.value = false
     }
@@ -200,11 +238,15 @@
             <!-- The sample stands on the site's own theme, like the button
               previews, so radius and colours resolve as on the site. -->
             <v-theme-provider :theme="APP_THEME_NAME">
-              <div :class="['card-styles-sample', themeClass(APP_THEME_NAME), { [entry.className]: !!entry.wave || !!entry.glow }]" :style="cardStyleInline(entry)">
-                <v-icon color="primary" icon="mdi-star-outline" size="28" />
-                <div>
-                  <div class="card-styles-sample-title">{{ t('cardStyles.sampleTitle') }}</div>
-                  <div class="card-styles-sample-text">{{ t('cardStyles.sampleText') }}</div>
+              <!-- on the page the site wears: the edited scope, «Неон»'s night
+                and colours when the site is «Неон» -->
+              <div :class="['card-styles-stage', EDITED_APP_SCOPE_CLASS]">
+                <div :class="['card-styles-sample', themeClass(APP_THEME_NAME), { [entry.className]: !!entry.wave || !!entry.glow }]" :style="cardStyleInline(entry)">
+                  <v-icon color="primary" icon="mdi-star-outline" size="28" />
+                  <div>
+                    <div class="card-styles-sample-title">{{ t('cardStyles.sampleTitle') }}</div>
+                    <div class="card-styles-sample-text">{{ t('cardStyles.sampleText') }}</div>
+                  </div>
                 </div>
               </div>
             </v-theme-provider>
@@ -216,7 +258,15 @@
               </span>
             </div>
             <v-spacer />
-            <v-btn density="comfortable" icon="mdi-delete" variant="text" @click.stop="removeEntry(entry)" />
+            <!-- a site style's own card is not deleted: the style puts it on
+              every block that names no card style -->
+            <v-btn
+              v-if="!SITE_STYLE_CLASSES.has(entry.className)"
+              density="comfortable"
+              icon="mdi-delete"
+              variant="text"
+              @click.stop="removeEntry(entry)"
+            />
             <v-btn density="comfortable" :icon="expanded === entry.className ? 'mdi-chevron-up' : 'mdi-chevron-down'" variant="text" />
           </div>
 
@@ -281,6 +331,16 @@
               <!-- «Неон»: dark glass with a glowing outline. -->
               <div v-if="entry.glow" class="card-styles-stroke">
                 <span class="card-styles-group">{{ t('cardStyles.glow') }}</span>
+                <!-- the colour is always at hand: picking one gives the style its
+                  own glow; the switch takes the site's back -->
+                <div class="card-styles-field">
+                  <span>{{ t('cardStyles.glowColor') }}</span>
+                  <PaletteSwatchPicker
+                    :model-value="entry.glow.color === 'site' ? (siteStyle.neonGlow.value || 'warning') : entry.glow.color"
+                    no-transparent
+                    @update:model-value="(key: string) => entry.glow!.color = key"
+                  />
+                </div>
                 <v-switch
                   color="primary"
                   density="compact"
@@ -288,12 +348,8 @@
                   inset
                   :label="t('cardStyles.glowSite')"
                   :model-value="entry.glow.color === 'site'"
-                  @update:model-value="value => entry.glow!.color = value ? 'site' : 'warning'"
+                  @update:model-value="value => entry.glow!.color = value ? 'site' : (siteStyle.neonGlow.value || 'warning')"
                 />
-                <div v-if="entry.glow.color !== 'site'" class="card-styles-field">
-                  <span>{{ t('cardStyles.glowColor') }}</span>
-                  <PaletteSwatchPicker v-model="entry.glow.color" />
-                </div>
                 <p class="card-styles-stroke-hint">{{ t('cardStyles.glowHint') }}</p>
               </div>
 
@@ -383,6 +439,10 @@
   gap: 16px;
   padding: 16px;
   cursor: pointer;
+}
+.card-styles-stage {
+  padding: 14px;
+  border-radius: 14px;
 }
 .card-styles-sample {
   display: flex;

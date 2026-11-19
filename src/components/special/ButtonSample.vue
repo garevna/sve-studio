@@ -71,9 +71,19 @@
 </template>
 
 <style scoped>
+/* Padded and rounded: the sample stands on the page the site wears - in
+   «Неон» the night (site-styles.css paints the edited scope) - and a
+   button's edges, glow and pulse need room on it. */
 .button-sample {
   display: block;
+  box-sizing: border-box;
   width: 100%;
+  padding: 16px 20px;
+  border-radius: 12px;
+}
+.button-sample--small {
+  padding: 4px 6px;
+  border-radius: 8px;
 }
 /* The set's own padding is a full-size button's - a sample this small
    would push its label off the middle. */

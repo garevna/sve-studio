@@ -12,6 +12,7 @@
 //
 // NOTE: src/configs/neon-palette.ts and site/src/configs/neon-palette.ts
 // are identical - keep them so.
+import { findReadyPalette, readyDay, readyNight } from './ready-palettes'
 import { resolveSiteStyle } from './site-style'
 
 export const NEON_PALETTE: Record<string, string> = {
@@ -55,7 +56,15 @@ export function neonPalette (palette: Record<string, string>, own?: Record<strin
   return Object.fromEntries(Object.entries(palette).map(([key, value]) => [key, own?.[key] ?? NEON_PALETTE[key] ?? value]))
 }
 
-// The colours the site wears: «Неон»'s while the whole site wears it.
-export function sitePalette (palette: Record<string, string>, settings?: { siteStyle?: unknown, neonPalette?: Record<string, string> } | null): Record<string, string> {
-  return resolveSiteStyle(settings?.siteStyle) === 'neon' ? neonPalette(palette, settings?.neonPalette) : palette
+// The colours the site wears: a ready palette's when one is picked
+// (configs/ready-palettes.ts) - its day, or its night while the whole site
+// is «Неон»; else palette.json's, or «Неон»'s own set over it.
+export function sitePalette (palette: Record<string, string>, settings?: { siteStyle?: unknown, neonPalette?: Record<string, string>, readyPalette?: unknown } | null): Record<string, string> {
+  const neon = resolveSiteStyle(settings?.siteStyle) === 'neon'
+  const ready = findReadyPalette(settings?.readyPalette)
+  if (ready) {
+    const day = { ...palette, ...readyDay(ready, palette) }
+    return neon ? { ...day, ...readyNight(ready, palette) } : day
+  }
+  return neon ? neonPalette(palette, settings?.neonPalette) : palette
 }

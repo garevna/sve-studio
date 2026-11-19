@@ -18,6 +18,11 @@ export const editorRoutes: RouteRecordRaw[] = [
     component: () => import('@/views/PaletteView.vue'),
   },
   {
+    path: '/ready-palettes',
+    name: 'ready-palettes',
+    component: () => import('@/views/ReadyPalettesView.vue'),
+  },
+  {
     path: '/general-settings',
     name: 'general-settings',
     component: () => import('@/views/GeneralSettingsView.vue'),

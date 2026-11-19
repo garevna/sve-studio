@@ -1,9 +1,9 @@
 <script lang="ts" setup>
   import { computed, onMounted, ref, watch } from 'vue'
   import { t } from '@/i18n'
-  import { useAjaxStore } from '@/stores/ajax'
   import { isHexColor } from '@/utils/build-color-scheme'
   import { isColorDarkEnoughForWhiteText } from '@/utils/color-luminance'
+  import { wornPalette } from '@/utils/edited-palette'
   import { isGradientValue, parseGradient } from '@/utils/palette-entry'
 
   // A dedicated literal value, not a palette key - present in the swatch
@@ -36,12 +36,14 @@
   }>()
   const emit = defineEmits<{ 'update:modelValue': [value: string] }>()
 
-  const ajaxStore = useAjaxStore()
   const palette = ref<Record<string, string>>({})
   const menuOpen = ref(false)
 
+  // The colours as the site wears them now (a ready palette, «Неон»'s
+  // night) - the same key looks different there, and the swatch must show
+  // what the page will.
   onMounted(async () => {
-    palette.value = props.colors ?? await ajaxStore.getPalette()
+    palette.value = props.colors ?? await wornPalette()
   })
   watch(() => props.colors, value => {
     if (value) {

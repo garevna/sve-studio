@@ -86,10 +86,18 @@ export function useSiteStyle () {
     await refreshEditedPalette()
   }
 
+  // The glow read anew - after something else wrote it (a ready palette
+  // picked, ReadyPalettesView.vue), so the next save keeps it.
+  async function reloadGlow () {
+    const settings = await ajaxStore.getGlobalSettings()
+    neonGlow.value = settings?.neonGlow ?? ''
+    apply()
+  }
+
   // The style a part actually wears.
   function of (part: SiteStylePart): SiteStyle {
     return partStyle(style.value, parts.value, part)
   }
 
-  return { style, parts, waveEdge, neonGlow, load, set, setPart, setWaveEdge, setNeonGlow, of }
+  return { style, parts, waveEdge, neonGlow, load, set, setPart, setWaveEdge, setNeonGlow, reloadGlow, of }
 }

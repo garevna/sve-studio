@@ -41,6 +41,10 @@
 
   // The colours as they are being edited, as CSS variables - so a gradient
   // preview follows a colour changed above before anything is saved.
+  // The swatches of the borders and gradients: the colours being edited
+  // (this set's), not the ones the site wears now.
+  const editedColors = computed(() => Object.fromEntries(colorEntries.value.map(entry => [entry.key, entry.color])))
+
   const paletteVars = computed(() => Object.fromEntries(colorEntries.value.map(entry => [`--${entry.key}`, entry.color])))
 
   function toEntries (palette: Record<string, string> | null | undefined): PaletteEntry[] {
@@ -258,7 +262,7 @@
             <!-- A palette swatch, not a free colour picker: the line takes
               its colour FROM the palette, so recolouring that swatch
               recolours every border built on it. -->
-            <PaletteSwatchPicker v-model="entry.color" />
+            <PaletteSwatchPicker v-model="entry.color" :colors="editedColors" />
 
             <div class="border-preview" :style="{ borderBottom: borderEntryCss(entry) }" />
 
@@ -345,7 +349,7 @@
             </div>
             <div class="gradient-stops">
               <div v-for="(stop, index) in entry.stops" :key="index" class="gradient-stop">
-                <PaletteSwatchPicker v-model="stop.color" no-transparent />
+                <PaletteSwatchPicker v-model="stop.color" :colors="editedColors" no-transparent />
                 <v-slider
                   v-model="stop.at"
                   color="primary"

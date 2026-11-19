@@ -3,6 +3,7 @@
   import { computed, ref, watch } from 'vue'
   import { t } from '@/i18n'
   import { resolveCssVarValue } from '@/utils/css-var-value'
+  import { EDITED_APP_SCOPE_CLASS } from '@/utils/edited-app-scope'
   import { BORDER_STYLES, resolveSwatchValue } from '@/utils/palette-entry'
   import PaletteSwatchPicker from './PaletteSwatchPicker.vue'
 
@@ -161,6 +162,10 @@
       : [...RADIUS_OPTIONS, { title: current, value: current }]
   })
 
+  // The swatches are drawn under the edited page's scope (EDITED_APP_SCOPE_CLASS):
+  // var(--key) there is the colour the page wears - «Неон»'s night, a ready
+  // palette's - not the editor's own copy of palette.json on <html>.
+
   // The token's real value, read from the live stylesheet - the names alone
   // say nothing about which radius is bigger. Shown, never typed: a free
   // text field next to a named token invited setting the two to disagree,
@@ -207,7 +212,7 @@
       <span class="button-style-picker-label">{{ t('common.background') }}</span>
       <PaletteSwatchPicker :model-value="effectiveStyle.background || ''" @update:model-value="(key: string) => activeStyle.background = key">
         <template #activator="{ menuProps }">
-          <button class="button-style-picker-swatch" v-bind="menuProps" :style="{ background: effectiveStyle.background ? resolveSwatchValue(effectiveStyle.background) : 'transparent' }" />
+          <button :class="['button-style-picker-swatch', EDITED_APP_SCOPE_CLASS]" v-bind="menuProps" :style="{ background: effectiveStyle.background ? resolveSwatchValue(effectiveStyle.background) : 'transparent' }" />
         </template>
       </PaletteSwatchPicker>
       <v-btn
@@ -224,7 +229,7 @@
       <span class="button-style-picker-label">{{ t('textFormat.color') }}</span>
       <PaletteSwatchPicker :model-value="effectiveStyle.color || ''" @update:model-value="(key: string) => activeStyle.color = key">
         <template #activator="{ menuProps }">
-          <button class="button-style-picker-swatch" v-bind="menuProps" :style="{ background: effectiveStyle.color ? resolveSwatchValue(effectiveStyle.color) : 'transparent' }" />
+          <button :class="['button-style-picker-swatch', EDITED_APP_SCOPE_CLASS]" v-bind="menuProps" :style="{ background: effectiveStyle.color ? resolveSwatchValue(effectiveStyle.color) : 'transparent' }" />
         </template>
       </PaletteSwatchPicker>
       <v-btn
@@ -281,7 +286,7 @@
         />
         <PaletteSwatchPicker :model-value="effectiveStyle.border?.color || ''" @update:model-value="(key: string) => (ensureBorder().color = key)">
           <template #activator="{ menuProps }">
-            <button class="button-style-picker-swatch" v-bind="menuProps" :style="{ background: effectiveStyle.border?.color ? resolveSwatchValue(effectiveStyle.border.color) : 'transparent' }" />
+            <button :class="['button-style-picker-swatch', EDITED_APP_SCOPE_CLASS]" v-bind="menuProps" :style="{ background: effectiveStyle.border?.color ? resolveSwatchValue(effectiveStyle.border.color) : 'transparent' }" />
           </template>
         </PaletteSwatchPicker>
       </div>

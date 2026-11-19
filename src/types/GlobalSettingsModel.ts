@@ -32,6 +32,9 @@ export interface GlobalSettingsModel {
   neonPalette?: Record<string, string>
   // «Неон»'s glow: a palette colour key (gold - warning - when unset).
   neonGlow?: string
+  // A ready palette's id (configs/ready-palettes.ts), worn over palette.json;
+  // unset: palette.json itself.
+  readyPalette?: string
   logo: {
     src: string
     width: number

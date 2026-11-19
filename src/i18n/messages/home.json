@@ -90,6 +90,18 @@
         "de": "Kontakte, Links und Icons unten"
       }
     },
+    "ready-palettes": {
+      "title": {
+        "uk": "Готові палітри",
+        "en": "",
+        "de": ""
+      },
+      "description": {
+        "uk": "Вибрати вигляд сайту з готових — удень і в «Неоні»",
+        "en": "",
+        "de": ""
+      }
+    },
     "palette": {
       "title": {
         "uk": "Палітра",

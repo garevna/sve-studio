@@ -35,11 +35,11 @@
         "boxShadow": "none"
       },
       "hover": {
-        "color": "secondary",
+        "color": "blue",
         "border": {
           "style": "solid",
           "width": 1,
-          "color": "secondary"
+          "color": "blue"
         },
         "opacity": 92
       },
@@ -91,13 +91,23 @@
       "template": "filled",
       "fullWidth": false,
       "base": {
-        "background": "green-button",
-        "color": "white",
-        "borderRadius": "var(--large-border-radius)"
+        "background": "transparent",
+        "color": "green-button",
+        "borderRadius": "var(--large-border-radius)",
+        "border": {
+          "style": "solid",
+          "width": 1,
+          "color": "green-button"
+        }
       },
       "hover": {
-        "background": "green",
-        "color": "white"
+        "background": "light-green",
+        "color": "success",
+        "border": {
+          "style": "solid",
+          "width": 1,
+          "color": "success"
+        }
       },
       "disabled": {
         "opacity": 30
@@ -109,20 +119,20 @@
       "template": "pulse-outlined",
       "base": {
         "background": "transparent",
-        "color": "light-grey-2",
+        "color": "dark-grey",
         "border": {
           "style": "solid",
           "width": 1,
-          "color": "light-grey-2"
+          "color": "dark"
         },
         "borderRadius": "var(--default-border-radius)"
       },
       "hover": {
-        "color": "secondary",
+        "color": "light-green",
         "border": {
           "style": "solid",
           "width": 1,
-          "color": "secondary"
+          "color": "light-green"
         }
       },
       "disabled": {
@@ -140,11 +150,11 @@
       "template": "orbit",
       "base": {
         "background": "transparent",
-        "color": "accent",
+        "color": "black",
         "border": {
           "style": "solid",
           "width": 1,
-          "color": "accent"
+          "color": "special"
         },
         "borderRadius": "var(--default-border-radius)"
       },
@@ -226,8 +236,8 @@
 }
 
 .outlined-button:hover {
-  color: var(--secondary) !important;
-  border: solid 1px var(--secondary) !important;
+  color: var(--blue) !important;
+  border: solid 1px var(--blue) !important;
   opacity: 0.92 !important;
 }
 
@@ -281,14 +291,16 @@
 }
 
 .green-button {
-  background: var(--green-button) !important;
-  color: var(--white) !important;
+  background: transparent !important;
+  color: var(--green-button) !important;
+  border: solid 1px var(--green-button) !important;
   border-radius: var(--large-border-radius) !important;
 }
 
 .green-button:hover {
-  background: var(--green) !important;
-  color: var(--white) !important;
+  background: var(--light-green) !important;
+  color: var(--success) !important;
+  border: solid 1px var(--success) !important;
 }
 
 .green-button:disabled {
@@ -310,14 +322,14 @@
 
 .button-2hlyg {
   background: transparent !important;
-  color: var(--light-grey-2) !important;
-  border: solid 1px var(--light-grey-2) !important;
+  color: var(--dark-grey) !important;
+  border: solid 1px var(--dark) !important;
   border-radius: var(--default-border-radius) !important;
 }
 
 .button-2hlyg:hover {
-  color: var(--secondary) !important;
-  border: solid 1px var(--secondary) !important;
+  color: var(--light-green) !important;
+  border: solid 1px var(--light-green) !important;
 }
 
 .button-2hlyg:disabled {
@@ -364,8 +376,8 @@
 
 .button-1glzb {
   background: transparent !important;
-  color: var(--accent) !important;
-  border: solid 1px var(--accent) !important;
+  color: var(--black) !important;
+  border: solid 1px var(--special) !important;
   border-radius: var(--default-border-radius) !important;
 }
 

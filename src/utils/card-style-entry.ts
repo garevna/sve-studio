@@ -18,7 +18,57 @@ export interface CardStyleEntry {
   // «Хвиля»: on hover a wave of colour rises from the bottom and fills the
   // card - the motion of the «Хвиля» button (configs/button-catalog.ts).
   wave: CardWave | null
+  // «Неон»: a pane of dark glass with a glowing outline - the light inside
+  // and around it in the glow's colour, brighter on hover. Its text white.
+  glow: CardGlow | null
   raw: CssDeclaration[]
+}
+
+export interface CardGlow {
+  color: string // palette colour key
+}
+
+// The glow's colour is kept as a marker property; every declaration names
+// the colour itself (the UI Kit's sample is inline style, which has no
+// custom properties to read).
+const GLOW_COLOR = '--card-glow-color'
+const GLOW_OWN = ['background', 'border', 'box-shadow', 'backdrop-filter', 'color', 'transition']
+
+function glowShadow (color: string, strength: number): string {
+  const c = (share: number) => `color-mix(in srgb, var(--${color}) ${Math.min(100, Math.round(share * strength))}%, transparent)`
+  return `0 0 4px ${c(70)}, 0 0 18px ${c(35)}, inset 0 0 18px ${c(18)}`
+}
+
+function glowDeclarations (glow: CardGlow): [string, string][] {
+  return [
+    [GLOW_COLOR, glow.color],
+    // dark glass, a little light caught at its top-left
+    ['background', 'linear-gradient(160deg, color-mix(in srgb, var(--white) 12%, transparent), transparent 45%), color-mix(in srgb, var(--black) 62%, transparent)'],
+    ['backdrop-filter', 'blur(10px)'],
+    ['border', `1px solid color-mix(in srgb, var(--${glow.color}) 75%, transparent)`],
+    ['box-shadow', glowShadow(glow.color, 1)],
+    ['color', 'var(--white)'],
+    ['transition', 'box-shadow 0.35s ease'],
+  ]
+}
+
+// Brighter on hover; the card's texts white on the glass, whatever colour
+// their own classes give them.
+function glowNodes (className: string, glow: CardGlow): CssNode[] {
+  const c = `.${className}`
+  return [
+    { kind: 'rule', selectors: [`${c}:hover`, `${c}:focus-within`], declarations: [
+      { property: 'box-shadow', value: glowShadow(glow.color, 1.6), important: false },
+    ] },
+    { kind: 'rule', selectors: [`${c} *`], declarations: [
+      { property: 'color', value: 'var(--white)', important: true },
+    ] },
+  ]
+}
+
+function isGlowNode (node: CssNode, className: string): boolean {
+  const c = `.${className}`
+  return node.kind === 'rule' && node.selectors.every(selector => selector.startsWith(`${c}:hover`) || selector.startsWith(`${c}:focus-within`) || selector === `${c} *`)
 }
 
 export interface CardWave {
@@ -148,6 +198,10 @@ function readEffects (entry: CardStyleEntry, declarations: CssDeclaration[]) {
   if (waveColor) {
     entry.wave = { color: varKey(waveColor) ?? waveColor }
   }
+  const glowColor = declared(GLOW_COLOR)
+  if (glowColor) {
+    entry.glow = { color: varKey(glowColor) ?? glowColor }
+  }
 }
 
 export function extractCardStyles (cssText: string): { entries: CardStyleEntry[], otherNodes: CssNode[] } {
@@ -159,12 +213,14 @@ export function extractCardStyles (cssText: string): { entries: CardStyleEntry[]
       otherNodes.push(node)
       continue
     }
-    const entry: CardStyleEntry = { className, label: className, background: '', border: '', radius: '', shadow: '', stroke: null, wave: null, raw: [] }
+    const entry: CardStyleEntry = { className, label: className, background: '', border: '', radius: '', shadow: '', stroke: null, wave: null, glow: null, raw: [] }
     readEffects(entry, node.declarations)
     for (const declaration of node.declarations) {
       const { property, value } = declaration
       if (entry.stroke && [STROKE_COLOR, STROKE_WIDTH, STROKE_CORNERS, STROKE_FILL, 'background', 'border'].includes(property)) {
         // written from the stroke's settings (strokeDeclarations)
+      } else if (entry.glow && [GLOW_COLOR, ...GLOW_OWN].includes(property)) {
+        // written from the glow's settings (glowDeclarations)
       } else if (entry.wave && [WAVE_COLOR, ...WAVE_OWN].includes(property)) {
         // written from the wave's settings (cardStyleDeclarations)
       } else if (property === LABEL_PROPERTY) {
@@ -185,14 +241,22 @@ export function extractCardStyles (cssText: string): { entries: CardStyleEntry[]
     entries.push(entry)
   }
   const waved = entries.filter(entry => entry.wave).map(entry => entry.className)
-  return { entries, otherNodes: otherNodes.filter(node => !waved.some(className => isWaveNode(node, className))) }
+  const glowing = entries.filter(entry => entry.glow).map(entry => entry.className)
+  return {
+    entries,
+    otherNodes: otherNodes.filter(node => !waved.some(className => isWaveNode(node, className)) && !glowing.some(className => isGlowNode(node, className))),
+  }
 }
 
 export function cardStyleDeclarations (entry: CardStyleEntry): CssDeclaration[] {
   const declarations: CssDeclaration[] = []
   const add = (property: string, value: string) => declarations.push({ property, value, important: false })
   add(LABEL_PROPERTY, JSON.stringify(entry.label))
-  if (entry.stroke) {
+  if (entry.glow) {
+    for (const [property, value] of glowDeclarations(entry.glow)) {
+      add(property, value)
+    }
+  } else if (entry.stroke) {
     for (const [property, value] of strokeDeclarations(entry.stroke, entry.background)) {
       add(property, value)
     }
@@ -207,7 +271,7 @@ export function cardStyleDeclarations (entry: CardStyleEntry): CssDeclaration[] 
   if (entry.radius) {
     add('border-radius', entry.radius === '0' ? '0' : `var(--${entry.radius})`)
   }
-  if (entry.shadow) {
+  if (entry.shadow && !entry.glow) {
     add('box-shadow', CARD_SHADOWS[entry.shadow] ?? entry.shadow)
   }
   if (entry.wave) {
@@ -235,6 +299,7 @@ export function serializeCardStyles (entries: CardStyleEntry[], otherNodes: CssN
   const nodes: CssNode[] = entries.flatMap(entry => [
     { kind: 'rule', selectors: [`.${entry.className}`], declarations: cardStyleDeclarations(entry) } as CssNode,
     ...(entry.wave ? waveNodes(entry.className) : []),
+    ...(entry.glow ? glowNodes(entry.className, entry.glow) : []),
   ])
   return `${FILE_HEADER}\n${serializeCss([...nodes, ...otherNodes])}\n`
 }

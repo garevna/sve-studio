@@ -132,6 +132,7 @@
   // in their group, not switched on and off.
   const siteStyle = useSiteStyle()
   function groupOf (entry: CardStyleEntry): SiteStyle {
+    if (entry.glow) return 'neon'
     if (entry.stroke) return 'stroke'
     if (entry.wave) return 'wave'
     return 'classic'
@@ -172,6 +173,8 @@
       shadow: 'none',
       stroke: group === 'stroke' ? { color: 'primary', width: 2, corners: 'tl-br' } : null,
       wave: group === 'wave' ? { color: 'light-grey-2' } : null,
+      // gold, as on the glass panels it imitates
+      glow: group === 'neon' ? { color: 'warning' } : null,
       raw: [],
     })
     expanded.value = className
@@ -193,7 +196,7 @@
             <!-- The sample stands on the site's own theme, like the button
               previews, so radius and colours resolve as on the site. -->
             <v-theme-provider :theme="APP_THEME_NAME">
-              <div :class="['card-styles-sample', themeClass(APP_THEME_NAME), { [entry.className]: !!entry.wave }]" :style="cardStyleInline(entry)">
+              <div :class="['card-styles-sample', themeClass(APP_THEME_NAME), { [entry.className]: !!entry.wave || !!entry.glow }]" :style="cardStyleInline(entry)">
                 <v-icon color="primary" icon="mdi-star-outline" size="28" />
                 <div>
                   <div class="card-styles-sample-title">{{ t('cardStyles.sampleTitle') }}</div>
@@ -269,6 +272,16 @@
                   </v-btn-toggle>
                 </template>
                 <p class="card-styles-stroke-hint">{{ t('cardStyles.strokeHint') }}</p>
+              </div>
+
+              <!-- «Неон»: dark glass with a glowing outline. -->
+              <div v-if="entry.glow" class="card-styles-stroke">
+                <span class="card-styles-group">{{ t('cardStyles.glow') }}</span>
+                <div class="card-styles-field">
+                  <span>{{ t('cardStyles.glowColor') }}</span>
+                  <PaletteSwatchPicker v-model="entry.glow.color" />
+                </div>
+                <p class="card-styles-stroke-hint">{{ t('cardStyles.glowHint') }}</p>
               </div>
 
               <!-- «Хвиля»: a wave of colour fills the card on hover. -->

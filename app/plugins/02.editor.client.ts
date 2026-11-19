@@ -7,6 +7,7 @@ import { watch } from 'vue'
 import { createEditorVuetify, installEditor, prepareEditor } from '@/bootstrap/editor-app'
 import EditorLocaleMenu from '@/components/special/EditorLocaleMenu.vue'
 import OwnerSiteLink from '@/components/special/OwnerSiteLink.vue'
+import SiteStyleMenu from '@/components/special/SiteStyleMenu.vue'
 import { useLocalOnlyMode } from '@/configs/api-mode'
 import { i18n, t } from '@/i18n'
 import { useUiFeedbackStore } from '@/stores/ui-feedback'
@@ -41,6 +42,8 @@ export default defineNuxtPlugin({
     // same colours for the editor's Vuetify theme - now and on every switch.
     // The interface language, on every top bar next to the colour scheme.
     addTopBarItem(EditorLocaleMenu)
+    // The site's style - the whole site's, so on every screen.
+    addTopBarItem(SiteStyleMenu)
     // Pagewright's own site, apart from this demo.
     addTopBarItem(OwnerSiteLink)
     // The kit's own words (Back, Close...) in the interface language.

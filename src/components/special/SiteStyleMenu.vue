@@ -1,20 +1,24 @@
 <script setup lang="ts">
   import type { SiteStyle, SiteStylePart } from '@/configs/site-style'
-  import { SveButton, SveDockItem, SveMenu, SveMenuDivider, SveMenuLabel, SveSegmented } from '@sve/editor-ui'
+  import { SveIconButton, SveMenu, SveMenuDivider, SveMenuLabel, SveSegmented } from '@sve/editor-ui'
   import { computed, onMounted } from 'vue'
+  import SiteStyleIcon from '@/components/special/SiteStyleIcon.vue'
   import { useSiteStyle } from '@/composables/useSiteStyle'
   import { SITE_STYLE_PARTS, SITE_STYLES } from '@/configs/site-style'
   import { t } from '@/i18n'
 
-  // The site's style - «Класика», «Штрих», «Хвиля» (configs/site-style.ts) -
-  // in the page editor's own bar, where it is clearly about the whole site:
-  // one style for all of it, and below, each part either following it or
-  // wearing a style of its own (a client who likes the wave footer and the
-  // classic cards mixes them). Saved at once (useSiteStyle).
+  // The site's style - «Класика», «Штрих», «Хвиля», «Неон»
+  // (configs/site-style.ts) - on the top bar of every screen of the Верф
+  // (addTopBarItem, app/plugins/02.editor.client.ts): it is the whole site's,
+  // not one page's. One style for all of it, and below, each part either
+  // following it or wearing a style of its own (a client who likes the wave
+  // footer and the classic cards mixes them). Saved at once (useSiteStyle).
+  // Its own icon (SiteStyleIcon, a brush on a page) - the Верф's own look
+  // next to it has another (SveLookIcon). Its name and the current style are
+  // the button's tooltip, as on every top-bar button.
   //
   // The rows are several choices in a row, so a click inside does not close
   // the menu (SveMenu closes on a click in its content).
-  const props = defineProps<{ variant?: 'dock' | 'bar' }>()
 
   const siteStyle = useSiteStyle()
   onMounted(() => void siteStyle.load())
@@ -29,27 +33,22 @@
   function partValue (part: SiteStylePart): string {
     return siteStyle.parts.value[part] ?? 'site'
   }
-  function setPart (part: SiteStylePart, value: string) {
+  function setPart (part: SiteStylePart, value: string | undefined) {
+    if (!value) return
     void siteStyle.setPart(part, value === 'site' ? null : value as SiteStyle)
   }
-  function setSite (value: SiteStyle) {
+  function setSite (value: SiteStyle | undefined) {
+    if (!value) return
     void siteStyle.set(value)
   }
 </script>
 
 <template>
-  <SveMenu :location="props.variant === 'dock' ? 'top' : 'bottom end'" :min-width="320">
+  <SveMenu location="bottom end" :min-width="320">
     <template #activator="{ props: menuProps }">
-      <SveDockItem v-if="props.variant === 'dock'" icon="mdi-palette-swatch-variant" :label="t('kit.siteStyleShort')" v-bind="menuProps" />
-      <SveButton
-        v-else
-        class="sve-wide-only"
-        icon="mdi-palette-swatch-variant"
-        variant="ghost"
-        v-bind="menuProps"
-      >
-        {{ t('kit.siteStyleShort') }}: {{ t(`kit.siteStyles.${siteStyle.style.value}`) }}
-      </SveButton>
+      <SveIconButton :label="`${t('kit.siteStyle')}: ${t(`kit.siteStyles.${siteStyle.style.value}`)}`" v-bind="menuProps">
+        <SiteStyleIcon />
+      </SveIconButton>
     </template>
 
     <div class="site-style-menu" @click.stop>

@@ -1,10 +1,10 @@
 {
-  "default": "clarity",
+  "default": "graphite",
   "looks": [
     {
       "id": "clarity",
       "name": "Clarity",
-      "description": "Світлий і стриманий: білі поверхні, тонкі лінії, синій акцент. Шрифт Inter.",
+      "description": "Світлий і стриманий: білі поверхні, тонкі лінії, сіро-синій акцент. Шрифт Inter.",
       "font": "inter",
       "colors": {
         "bg": "#F6F7F9",
@@ -16,21 +16,21 @@
         "text": "#16181D",
         "text-muted": "#5E6573",
         "text-subtle": "#8A909C",
-        "primary": "#2F6BFF",
-        "primary-hover": "#1F57E0",
-        "primary-soft": "#E8EFFF",
+        "primary": "#4F6A8A",
+        "primary-hover": "#3E5673",
+        "primary-soft": "#EAEEF3",
         "on-primary": "#FFFFFF",
         "danger": "#D93838",
         "danger-soft": "#FDECEC",
         "success": "#1E9E5A",
         "warning": "#C98A12",
-        "focus": "#2F6BFF59",
+        "focus": "#4F6A8A59",
         "topbar-bg": "#FFFFFF",
         "topbar-text": "#16181D",
         "topbar-muted": "#5E6573",
         "topbar-border": "#E3E6EB",
         "topbar-hover": "#F1F3F6",
-        "block-outline": "#2F6BFF",
+        "block-outline": "#4F6A8A",
         "backdrop": "#0E111733"
       },
       "radius": {

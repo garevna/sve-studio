@@ -1,4 +1,4 @@
-// The site's style - «Класика», «Штрих» or «Хвиля» - one look for the whole
+// The site's style - «Класика», «Штрих», «Хвиля» or «Неон» - one look for the whole
 // site, kept in global.json `siteStyle`. A client who likes some of one and
 // some of another mixes them: each part of the site (cards, buttons,
 // footer, menu...) can take a style of its own (`siteStyleParts`), or, left
@@ -14,7 +14,7 @@
 // NOTE: src/configs/site-style.ts and site/src/configs/site-style.ts are
 // identical - keep them so.
 
-export const SITE_STYLES = ['classic', 'stroke', 'wave'] as const
+export const SITE_STYLES = ['classic', 'stroke', 'wave', 'neon'] as const
 export type SiteStyle = typeof SITE_STYLES[number]
 
 export const SITE_STYLE_PARTS = ['cards', 'buttons', 'footer', 'menu'] as const
@@ -57,6 +57,7 @@ export const SITE_STYLE_BUTTON_KIND: Record<SiteStyle, string> = {
   classic: '',
   stroke: 'stroke',
   wave: 'wave',
+  neon: 'neon',
 }
 
 export function siteStyleButtonClass (value: unknown): string {

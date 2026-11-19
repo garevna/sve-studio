@@ -15,6 +15,7 @@ export const CARD_STYLE_BY_VARIANT: Record<number, string> = {
 export const CARD_STYLE_BY_SITE_STYLE: Record<string, string> = {
   stroke: 'card-stroke',
   wave: 'card-wave',
+  neon: 'card-neon',
 }
 
 export function resolveCardStyle (cardStyle: string | undefined, ver: number, siteStyle?: string): string {

@@ -151,3 +151,43 @@
     animation: none;
   }
 }
+
+/* ---- «Неон»: glass panes with a glowing outline ---- */
+
+/* The footer's columns, each a pane of dark glass lit in gold (the
+   palette's warning); brighter under the pointer. */
+.site-style-footer-neon :is(.app-footer, .footer-editor-root) .footer-column {
+  padding: 20px 24px;
+  border-radius: var(--default-border-radius);
+  background:
+    linear-gradient(160deg, color-mix(in srgb, var(--white) 10%, transparent), transparent 45%),
+    color-mix(in srgb, var(--black) 45%, transparent);
+  border: 1px solid color-mix(in srgb, var(--warning) 70%, transparent);
+  box-shadow:
+    0 0 4px color-mix(in srgb, var(--warning) 60%, transparent),
+    0 0 18px color-mix(in srgb, var(--warning) 28%, transparent),
+    inset 0 0 18px color-mix(in srgb, var(--warning) 14%, transparent);
+  transition: box-shadow 0.35s ease;
+}
+
+.site-style-footer-neon :is(.app-footer, .footer-editor-root) .footer-column:hover {
+  box-shadow:
+    0 0 6px color-mix(in srgb, var(--warning) 90%, transparent),
+    0 0 28px color-mix(in srgb, var(--warning) 45%, transparent),
+    inset 0 0 22px color-mix(in srgb, var(--warning) 22%, transparent);
+}
+
+/* The phone's menu: its panel's edge lit, the light spilling inside. */
+.site-style-menu-neon .mobile-menu-panel {
+  border: 1px solid color-mix(in srgb, var(--warning) 70%, transparent);
+  box-shadow:
+    0 0 6px color-mix(in srgb, var(--warning) 60%, transparent),
+    0 0 26px color-mix(in srgb, var(--warning) 30%, transparent),
+    inset 0 0 26px color-mix(in srgb, var(--warning) 14%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-style-footer-neon .footer-column {
+    transition: none;
+  }
+}

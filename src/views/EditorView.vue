@@ -11,7 +11,6 @@
   import PageSeoDialog from '@/components/special/PageSeoDialog.vue'
   import PageTitleDialog from '@/components/special/PageTitleDialog.vue'
   import SelectColorFromPalette from '@/components/special/SelectColorFromPalette.vue'
-  import SiteStyleMenu from '@/components/special/SiteStyleMenu.vue'
   import DynamicPageTemplate from '@/components/templates/DynamicPageTemplate.vue'
   import HeroParallax from '@/components/templates/sections/HeroParallax.vue'
   import { usePageBlocks } from '@/composables/usePageBlocks'
@@ -444,7 +443,6 @@
               {{ t('blockMenu.addBlock') }}
             </SveButton>
           </template>
-          <SiteStyleMenu v-if="pageId && canEditContent" />
           <template v-if="pageId && !isFooterPseudoPage">
             <SveIconButton class="sve-wide-only" icon="mdi-search-web" :label="t('pages.seoOfPage')" @click="openSeoDialog" />
             <SveIconButton class="sve-wide-only" icon="mdi-open-in-new" :label="t('editor.openOnSite')" @click="openPreviewWindow" />
@@ -490,7 +488,6 @@
             <SveMenuItem :hint="titleGaps.join(', ')" icon="mdi-alert-circle-outline" @click="titleDialog = true">{{ t('pages.name') }}</SveMenuItem>
           </template>
         </LocaleSwitcher>
-        <SiteStyleMenu v-if="canEditContent" variant="dock" />
         <template v-if="!isFooterPseudoPage">
           <SveDockItem icon="mdi-search-web" label="SEO" @click="openSeoDialog" />
           <SveDockItem icon="mdi-open-in-new" :label="t('editor.onSite')" @click="openPreviewWindow" />

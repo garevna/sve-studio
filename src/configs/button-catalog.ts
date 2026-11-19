@@ -460,6 +460,49 @@ ${NO_MOTION([`.${c}::before`])}`
 ${NO_MOTION([`.${c}::before`, `.${c}::after`], 'transition: none;')}`
     },
   },
+  {
+    // «Неон», as for cards (utils/card-style-entry.ts): a glowing outline
+    // and glowing text on a dark glass - the outline's colour is the
+    // button's border colour, brighter on hover in the hover border's.
+    id: 'neon',
+    name: 'buttonSet.kind.neon',
+    look: {
+      base: { background: 'transparent', color: 'warning', border: line('solid', 1, 'warning'), borderRadius: 'var(--default-border-radius)' },
+      hover: { color: 'white', border: line('solid', 1, 'warning') },
+      disabled: { color: 'grey', border: line('solid', 1, 'grey') },
+    },
+    own: ['transition: color 0.3s ease'],
+    extra: (c, entry) => {
+      const glow = (key: string | undefined, fallback: string, strength: number) => {
+        const color = colorOf(key, fallback)
+        const mix = (share: number) => `color-mix(in srgb, ${color} ${Math.min(100, Math.round(share * strength))}%, transparent)`
+        return { box: `0 0 4px ${mix(70)}, 0 0 16px ${mix(35)}, inset 0 0 12px ${mix(20)}`, text: `0 0 6px ${mix(80)}` }
+      }
+      const base = glow(entry.base.border?.color, 'warning', 1)
+      const hover = glow(entry.hover.border?.color || entry.base.border?.color, 'warning', 1.6)
+      return `/* the glass and the light - after the common rule, which takes every shadow away */
+.${c} {
+  background: linear-gradient(160deg, color-mix(in srgb, var(--white) 12%, transparent), transparent 50%), color-mix(in srgb, var(--black) 55%, transparent) !important;
+  backdrop-filter: blur(8px);
+  box-shadow: ${base.box} !important;
+  text-shadow: ${base.text};
+  transition: color 0.3s ease, box-shadow 0.35s ease, text-shadow 0.35s ease !important;
+}
+
+.${c}:hover,
+.${c}:focus-visible {
+  box-shadow: ${hover.box} !important;
+  text-shadow: ${hover.text};
+}
+
+.${c}:disabled {
+  box-shadow: none !important;
+  text-shadow: none;
+}
+
+${NO_MOTION([`.${c}`], 'transition: none !important;')}`
+    },
+  },
 ]
 
 // The sign-in buttons' starting look is the sign-in page's own, so taking

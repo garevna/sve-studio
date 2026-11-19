@@ -32,9 +32,9 @@ export type GlobalSettingsModel = {
   // shown next to the copyright. Absent or empty: the copyright alone.
   legalName?: Record<string, string>
   // The site's style - «Класика», «Штрих», «Хвиля» (configs/site-style.ts).
-  siteStyle?: 'classic' | 'stroke' | 'wave'
+  siteStyle?: 'classic' | 'stroke' | 'wave' | 'neon'
   // A part's own style, mixed into the site's (configs/site-style.ts).
-  siteStyleParts?: Partial<Record<'cards' | 'buttons' | 'footer' | 'menu', 'classic' | 'stroke' | 'wave'>>
+  siteStyleParts?: Partial<Record<'cards' | 'buttons' | 'footer' | 'menu', 'classic' | 'stroke' | 'wave' | 'neon'>>
   logo: {
     src: string
     width: number

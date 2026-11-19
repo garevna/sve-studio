@@ -571,6 +571,62 @@
   }
 }
 
+.button-kind-neon {
+  font-family: var(--main-font) !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  text-transform: none !important;
+  letter-spacing: normal !important;
+  box-shadow: none !important;
+  border-radius: var(--default-border-radius) !important;
+  padding: 12px 24px;
+  width: 100%;
+  transition: color 0.3s ease;
+}
+
+.button-kind-neon {
+  background: transparent !important;
+  color: var(--warning) !important;
+  border: solid 1px var(--warning) !important;
+  border-radius: var(--default-border-radius) !important;
+}
+
+.button-kind-neon:hover {
+  color: var(--white) !important;
+  border: solid 1px var(--warning) !important;
+}
+
+.button-kind-neon:disabled {
+  color: var(--grey) !important;
+  border: solid 1px var(--grey) !important;
+}
+
+/* the glass and the light - after the common rule, which takes every shadow away */
+.button-kind-neon {
+  background: linear-gradient(160deg, color-mix(in srgb, var(--white) 12%, transparent), transparent 50%), color-mix(in srgb, var(--black) 55%, transparent) !important;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 0 4px color-mix(in srgb, var(--warning) 70%, transparent), 0 0 16px color-mix(in srgb, var(--warning) 35%, transparent), inset 0 0 12px color-mix(in srgb, var(--warning) 20%, transparent) !important;
+  text-shadow: 0 0 6px color-mix(in srgb, var(--warning) 80%, transparent);
+  transition: color 0.3s ease, box-shadow 0.35s ease, text-shadow 0.35s ease !important;
+}
+
+.button-kind-neon:hover,
+.button-kind-neon:focus-visible {
+  box-shadow: 0 0 4px color-mix(in srgb, var(--warning) 100%, transparent), 0 0 16px color-mix(in srgb, var(--warning) 56%, transparent), inset 0 0 12px color-mix(in srgb, var(--warning) 32%, transparent) !important;
+  text-shadow: 0 0 6px color-mix(in srgb, var(--warning) 100%, transparent);
+}
+
+.button-kind-neon:disabled {
+  box-shadow: none !important;
+  text-shadow: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button-kind-neon {
+    transition: none !important;
+  }
+}
+
 .button-kind-sign-in-google {
   font-family: var(--main-font) !important;
   font-size: 16px !important;

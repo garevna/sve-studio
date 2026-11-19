@@ -1,8 +1,7 @@
 /* Card styles - the UI Kit's "Картки" tab edits this file. A cards block
    refers to one of these classes by name (block.cardStyle); a block that
-   names none uses the style of its layout variant (see card-style.ts).
-   Only the LOOK lives here - fill, border, corners, shadow. Where the icon
-   and text sit is the variant's job (TemplateCard.vue).
+   names none uses the style of its layout variant (configs/card-style.ts).
+   Only the LOOK lives here - fill, border, corners, shadow.
    --card-style-label is the name shown in the editor. */
 .card-elevated {
   --card-style-label: "Тінь без рамки";
@@ -27,12 +26,6 @@
   --card-style-label: "Заливка";
   background: var(--light-grey-2);
   border-radius: var(--default-border-radius);
-}
-
-@media screen and (max-width: 600px) {
-  .card-pill {
-    border-radius: var(--small-border-radius);
-  }
 }
 
 .card-stroke {
@@ -80,5 +73,32 @@
 @media (prefers-reduced-motion: reduce) {
   .card-wave::before {
     transition: none;
+  }
+}
+
+.card-neon {
+  --card-style-label: "Неон";
+  --card-glow-color: warning;
+  background: linear-gradient(160deg, color-mix(in srgb, var(--white) 12%, transparent), transparent 45%), color-mix(in srgb, var(--black) 62%, transparent);
+  backdrop-filter: blur(10px);
+  border: 1px solid color-mix(in srgb, var(--warning) 75%, transparent);
+  box-shadow: 0 0 4px color-mix(in srgb, var(--warning) 70%, transparent), 0 0 18px color-mix(in srgb, var(--warning) 35%, transparent), inset 0 0 18px color-mix(in srgb, var(--warning) 18%, transparent);
+  color: var(--white);
+  transition: box-shadow 0.35s ease;
+  border-radius: var(--default-border-radius);
+}
+
+.card-neon:hover,
+.card-neon:focus-within {
+  box-shadow: 0 0 4px color-mix(in srgb, var(--warning) 100%, transparent), 0 0 18px color-mix(in srgb, var(--warning) 56%, transparent), inset 0 0 18px color-mix(in srgb, var(--warning) 29%, transparent);
+}
+
+.card-neon * {
+  color: var(--white) !important;
+}
+
+@media screen and (max-width: 600px) {
+  .card-pill {
+    border-radius: var(--small-border-radius);
   }
 }

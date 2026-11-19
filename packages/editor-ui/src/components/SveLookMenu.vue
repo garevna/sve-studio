@@ -3,6 +3,7 @@
   import { LOOKS } from '../looks'
   import { useLook } from '../use-look'
   import SveIconButton from './SveIconButton.vue'
+  import SveLookIcon from './SveLookIcon.vue'
   import SveMenu from './SveMenu.vue'
   import SveMenuItem from './SveMenuItem.vue'
   import SveMenuLabel from './SveMenuLabel.vue'
@@ -16,7 +17,9 @@
 <template>
   <SveMenu :min-width="240">
     <template #activator="{ props: activator }">
-      <SveIconButton icon="mdi-palette-outline" :label="kitLabels.look" v-bind="activator" />
+      <SveIconButton :label="kitLabels.look" v-bind="activator">
+        <SveLookIcon />
+      </SveIconButton>
     </template>
     <SveMenuLabel>{{ kitLabels.look }}</SveMenuLabel>
     <SveMenuItem

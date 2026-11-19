@@ -4,9 +4,10 @@
   import { RouterLink } from 'vue-router'
 
   // An icon-only button. `label` is what it does - read aloud by screen
-  // readers and shown as a tooltip.
+  // readers and shown as a tooltip. An icon of its own (an SVG) goes in the
+  // default slot instead of the mdi `icon`.
   const props = withDefaults(defineProps<{
-    icon: string
+    icon?: string
     label: string
     variant?: 'ghost' | 'soft'
     size?: 'sm' | 'md'
@@ -37,7 +38,7 @@
     :title="props.label"
     :to="props.to"
   >
-    <i :class="['sve-icon mdi', props.icon]" />
+    <slot><i :class="['sve-icon mdi', props.icon]" /></slot>
   </RouterLink>
   <button
     v-else
@@ -49,6 +50,6 @@
     type="button"
     @click="$emit('click', $event)"
   >
-    <i :class="['sve-icon mdi', props.icon]" />
+    <slot><i :class="['sve-icon mdi', props.icon]" /></slot>
   </button>
 </template>

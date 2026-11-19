@@ -416,3 +416,216 @@
     transition: none;
   }
 }
+
+
+/* ---- «Буйки»: the entries as buoys on a wave (menuStyle.bar 'buoys') ----
+   The bar rises over the banner's bottom: its water - a wave of the page's
+   own colour, running sideways - is the banner's new lower edge, and the
+   buoys ride it, each bobbing in its own time. Under the pointer a buoy
+   stops and its name shows below it (on a touch screen the names always
+   show); the current page's buoy has its beacon lit (the «Неон» glow, else
+   the palette's success). The bar stays in its place on the page (no
+   sticking to the top: its water would hang over the content). */
+
+.main-menu-bar.main-menu-bar--buoys {
+  position: relative !important;
+  top: auto;
+  height: auto;
+  margin-top: -64px;
+  padding-block: 12px 8px;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.main-menu-bar--buoys::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 22px;
+  z-index: -1;
+  width: calc(100% + 480px);
+  height: calc(100% - 22px + 48px);
+  background: var(--homefone);
+  -webkit-mask:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 480 48' preserveAspectRatio='none'%3E%3Cpath d='M0 24 C 80 0 160 0 240 24 S 400 48 480 24 V 48 H 0 Z'/%3E%3C/svg%3E") repeat-x 0 0 / 480px 48px,
+    linear-gradient(#000 0 0) no-repeat 0 47px / 100% 100%;
+  mask:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 480 48' preserveAspectRatio='none'%3E%3Cpath d='M0 24 C 80 0 160 0 240 24 S 400 48 480 24 V 48 H 0 Z'/%3E%3C/svg%3E") repeat-x 0 0 / 480px 48px,
+    linear-gradient(#000 0 0) no-repeat 0 47px / 100% 100%;
+  animation: buoys-water-run 9s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes buoys-water-run {
+  to { transform: translateX(-480px); }
+}
+
+.main-menu-bar--buoys .desktop-menu {
+  column-gap: 18px;
+  align-items: start;
+  height: auto;
+}
+
+.main-menu-bar--buoys .menu-item.menu-buoy {
+  position: relative;
+  min-width: 78px;
+  padding: 0;
+  background: none;
+  border: none;
+  box-shadow: none;
+  color: var(--black);
+  transform-origin: 50% 80%;
+  animation: buoy-bob 3.4s ease-in-out infinite;
+}
+
+.main-menu-bar--buoys .menu-buoy:nth-child(3n + 2) {
+  animation-duration: 2.9s;
+  animation-delay: -1.1s;
+}
+
+.main-menu-bar--buoys .menu-buoy:nth-child(3n + 3) {
+  animation-duration: 3.8s;
+  animation-delay: -2.3s;
+}
+
+.main-menu-bar--buoys .menu-buoy:hover {
+  animation-play-state: paused;
+}
+
+@keyframes buoy-bob {
+  0%, 100% { transform: translateY(0) rotate(-5deg); }
+  50% { transform: translateY(-7px) rotate(5deg); }
+}
+
+/* the float: a round buoy - the action colour above a white band - with
+   the icon on it, and its beacon on top */
+.main-menu-bar--buoys .menu-buoy .menu-key__face {
+  gap: 4px;
+}
+
+.main-menu-bar--buoys .menu-buoy .menu-key__icon {
+  display: grid;
+  place-items: center;
+  box-sizing: border-box;
+  width: 48px;
+  height: 48px;
+  padding: 11px;
+  border: 3px solid var(--white);
+  border-radius: 50%;
+  background: linear-gradient(180deg, var(--primary) 0 58%, var(--white) 58% 70%, var(--primary) 70%);
+  box-shadow: 0 6px 10px rgb(0 0 0 / 0.25), inset 0 -4px 0 rgb(0 0 0 / 0.15);
+  color: var(--white);
+  font-size: 22px;
+}
+
+.main-menu-bar--buoys .menu-buoy .menu-key__letter {
+  font-size: 15px !important;
+}
+
+.main-menu-bar--buoys .menu-buoy .menu-key__lamp {
+  top: -6px;
+  right: auto;
+  left: calc(50% - 4px);
+  width: 8px;
+  height: 8px;
+  background: color-mix(in srgb, var(--black) 25%, transparent);
+}
+
+.main-menu-bar--buoys .menu-buoy.menu-key--current .menu-key__lamp {
+  background: var(--neon-glow, var(--warning));
+  box-shadow: 0 0 8px var(--neon-glow, var(--warning)), 0 0 18px color-mix(in srgb, var(--neon-glow, var(--warning)) 60%, transparent);
+}
+
+.main-menu-bar--buoys .menu-buoy .menu-key__label {
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--black);
+}
+
+.main-menu-bar--buoys .menu-buoy:is(:hover, :focus-within, .menu-key--current) .menu-key__label {
+  opacity: 1;
+  transform: none;
+}
+
+@media (hover: none) {
+  .main-menu-bar--buoys .menu-buoy .menu-key__label {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* «Неон»: glass buoys with a glowing band */
+.site-style-neon .main-menu-bar--buoys .menu-buoy .menu-key__icon {
+  background: color-mix(in srgb, var(--neon-night, var(--black)) 70%, transparent);
+  border-color: var(--neon-glow, var(--warning));
+  box-shadow: 0 0 8px color-mix(in srgb, var(--neon-glow, var(--warning)) 60%, transparent), inset 0 0 10px color-mix(in srgb, var(--neon-glow, var(--warning)) 25%, transparent);
+}
+
+/* a phone: the buoys in one row swiped sideways, as the console's keys */
+@media screen and (max-width: 1250px) {
+  .main-menu-bar--buoys .mobile-menu {
+    display: none !important;
+  }
+  .main-menu-bar--buoys .app-menu-bar {
+    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-areas: 'logo menu-controls';
+    column-gap: 12px;
+    padding-inline: 12px;
+  }
+  .main-menu-bar--buoys .main-menu-controls {
+    min-width: 0;
+    margin-top: 0 !important;
+  }
+  .main-menu-bar--buoys .desktop-app-bar {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) max-content !important;
+    column-gap: 8px;
+  }
+  .main-menu-bar--buoys .desktop-app-bar > .desktop-menu {
+    display: flex !important;
+    justify-content: safe flex-end;
+    gap: 10px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+    padding: 10px 2px 6px;
+  }
+  .main-menu-bar--buoys .desktop-app-bar > .desktop-menu::-webkit-scrollbar {
+    display: none;
+  }
+  .main-menu-bar--buoys .menu-item.menu-buoy {
+    flex: none;
+    min-width: 64px;
+    scroll-snap-align: start;
+  }
+  .main-menu-bar--buoys .menu-buoy .menu-key__icon {
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+    font-size: 18px;
+  }
+  .main-menu-bar--buoys .menu-buoy .menu-key__label {
+    font-size: 11px;
+  }
+  .main-menu-bar--buoys .user-preferences {
+    grid-template-columns: max-content;
+    grid-template-areas: 'lang-switcher';
+  }
+  .main-menu-bar--buoys .desktop-lang-switcher {
+    display: grid !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .main-menu-bar--buoys::before,
+  .main-menu-bar--buoys .menu-item.menu-buoy {
+    animation: none;
+  }
+}

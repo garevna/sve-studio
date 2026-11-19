@@ -152,14 +152,14 @@
       <!-- the bar as the site draws it (main-menu.css), on the edited page's
         scope - «Неон»'s night when the site wears it -->
       <div :class="['menu-style-bar-stage', EDITED_APP_SCOPE_CLASS, themeClass(APP_THEME_NAME)]">
-        <div :class="['main-menu-bar', 'main-menu-bar--dark', 'menu-style-bar-sample', { 'main-menu-bar--console': bar.look === 'console' }]">
+        <div :class="['main-menu-bar', bar.look === 'buoys' ? 'main-menu-bar--light' : 'main-menu-bar--dark', 'menu-style-bar-sample', { 'main-menu-bar--console': bar.look === 'console', 'main-menu-bar--buoys': bar.look === 'buoys' }]">
           <div class="menu-style-bar-items">
             <div
               v-for="(item, index) of menuItems"
               :key="index"
-              :class="['menu-item', { 'menu-key': bar.look === 'console', 'menu-key--current': bar.look === 'console' && index === 0 }]"
+              :class="['menu-item', { 'menu-key': bar.look !== 'line', 'menu-buoy': bar.look === 'buoys', 'menu-key--current': bar.look !== 'line' && index === 0 }]"
             >
-              <div v-if="bar.look === 'console'" class="menu-key__face">
+              <div v-if="bar.look !== 'line'" class="menu-key__face">
                 <span class="menu-key__lamp" />
                 <v-icon v-if="(item.icon || '').startsWith('mdi-')" class="menu-key__icon" :icon="item.icon" />
                 <img v-else-if="item.icon" alt="" class="menu-key__icon" :src="item.icon">

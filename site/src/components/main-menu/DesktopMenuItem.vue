@@ -26,7 +26,10 @@
 
   // A control panel (menuStyle.bar 'console'): the entry is a key - its
   // icon, its name under it, a lamp lit on the current page's key.
-  const isConsole = computed(() => menuStyle.value.bar.look === 'console')
+  // A buoy (menuStyle.bar 'buoys') is drawn from the same face - its own
+  // look is main-menu.css's.
+  const isConsole = computed(() => menuStyle.value.bar.look !== 'line')
+  const isBuoy = computed(() => menuStyle.value.bar.look === 'buoys')
   const icon = computed(() => props.item.icon || '')
   const mdiIcon = computed(() => icon.value.startsWith('mdi-'))
   const initial = computed(() => (props.item.title[lang.value] || '').trim().charAt(0).toUpperCase())
@@ -50,7 +53,7 @@
 </script>
 
 <template>
-  <div :class="['menu-item text-center', { 'menu-key': isConsole, 'menu-key--current': isConsole && (expanded || isCurrent(props.item)) }]">
+  <div :class="['menu-item text-center', { 'menu-key': isConsole, 'menu-buoy': isBuoy, 'menu-key--current': isConsole && (expanded || isCurrent(props.item)) }]">
     <div v-if="props.item.submenu && props.item.submenu.length > 0">
       <div v-if="isConsole" class="menu-key__face">
         <span aria-hidden="true" class="menu-key__lamp" />

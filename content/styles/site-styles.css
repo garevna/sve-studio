@@ -114,7 +114,7 @@
   display: none;
 }
 
-.site-style-footer-wave .footer-horizon-wave :is(.footer-horizon-wave__back, .footer-horizon-wave__front) {
+.site-style-footer-wave .footer-horizon-wave :is(.footer-horizon-wave__back, .footer-horizon-wave__front, .footer-horizon-wave__crest) {
   transform-box: fill-box;
   transform-origin: 50% 100%;
   animation: site-horizon-sway 3.6s ease-in-out infinite alternate paused;
@@ -136,19 +136,19 @@
 }
 
 @media (hover: hover) {
-  .site-style-footer-wave :is(.app-footer, .footer-editor-root):hover .footer-horizon-wave :is(.footer-horizon-wave__back, .footer-horizon-wave__front) {
+  .site-style-footer-wave :is(.app-footer, .footer-editor-root):hover .footer-horizon-wave :is(.footer-horizon-wave__back, .footer-horizon-wave__front, .footer-horizon-wave__crest) {
     animation-play-state: running;
   }
 }
 
 @media (hover: none) {
-  .site-style-footer-wave .app-footer.app-footer--in-view .footer-horizon-wave :is(.footer-horizon-wave__back, .footer-horizon-wave__front) {
+  .site-style-footer-wave .app-footer.app-footer--in-view .footer-horizon-wave :is(.footer-horizon-wave__back, .footer-horizon-wave__front, .footer-horizon-wave__crest) {
     animation-play-state: running;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .site-style-footer-wave .footer-horizon-wave :is(.footer-horizon-wave__back, .footer-horizon-wave__front) {
+  .site-style-footer-wave .footer-horizon-wave :is(.footer-horizon-wave__back, .footer-horizon-wave__front, .footer-horizon-wave__crest) {
     animation: none;
   }
 }
@@ -191,16 +191,16 @@
   position: absolute;
   left: 0;
   top: 0;
-  width: calc(100% + 480px);
-  height: calc(100% + 48px);
+  width: calc(100% + 1600px);
+  height: calc(100% + 64px);
   background: color-mix(in srgb, var(--neon-glow, var(--warning)) 6%, transparent);
   -webkit-mask:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 480 48' preserveAspectRatio='none'%3E%3Cpath d='M0 24 C 80 0 160 0 240 24 S 400 48 480 24 V 48 H 0 Z'/%3E%3C/svg%3E") repeat-x 0 0 / 480px 48px,
-    linear-gradient(#000 0 0) no-repeat 0 47px / 100% 100%;
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 64' preserveAspectRatio='none'%3E%3Cpath d='M0 32 C 266 2 533 2 800 32 S 1333 62 1600 32 V 64 H 0 Z'/%3E%3C/svg%3E") repeat-x 0 0 / 1600px 64px,
+    linear-gradient(#000 0 0) no-repeat 0 63px / 100% 100%;
   mask:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 480 48' preserveAspectRatio='none'%3E%3Cpath d='M0 24 C 80 0 160 0 240 24 S 400 48 480 24 V 48 H 0 Z'/%3E%3C/svg%3E") repeat-x 0 0 / 480px 48px,
-    linear-gradient(#000 0 0) no-repeat 0 47px / 100% 100%;
-  animation: site-wave-run 3.2s linear infinite;
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 64' preserveAspectRatio='none'%3E%3Cpath d='M0 32 C 266 2 533 2 800 32 S 1333 62 1600 32 V 64 H 0 Z'/%3E%3C/svg%3E") repeat-x 0 0 / 1600px 64px,
+    linear-gradient(#000 0 0) no-repeat 0 63px / 100% 100%;
+  animation: site-wave-run-long 14s linear infinite;
 }
 
 /* the wave: a glowing crest, not a fill - always there, running sideways */
@@ -209,23 +209,36 @@
 }
 
 .site-style-neon.site-style-footer-wave .site-wave-fill::before {
-  height: 48px;
+  width: calc(100% + 1600px);
+  height: 64px;
   background: var(--neon-glow, var(--warning));
-  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 480 48' preserveAspectRatio='none'%3E%3Cpath d='M0 24 C 80 0 160 0 240 24 S 400 48 480 24' fill='none' stroke='%23000' stroke-width='3'/%3E%3C/svg%3E") repeat-x 0 0 / 480px 48px;
-  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 480 48' preserveAspectRatio='none'%3E%3Cpath d='M0 24 C 80 0 160 0 240 24 S 400 48 480 24' fill='none' stroke='%23000' stroke-width='3'/%3E%3C/svg%3E") repeat-x 0 0 / 480px 48px;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 64' preserveAspectRatio='none'%3E%3Cpath d='M0 32 C 266 2 533 2 800 32 S 1333 62 1600 32' fill='none' stroke='%23000' stroke-width='3'/%3E%3C/svg%3E") repeat-x 0 0 / 1600px 64px;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 64' preserveAspectRatio='none'%3E%3Cpath d='M0 32 C 266 2 533 2 800 32 S 1333 62 1600 32' fill='none' stroke='%23000' stroke-width='3'/%3E%3C/svg%3E") repeat-x 0 0 / 1600px 64px;
   translate: 0 0;
   transition: none;
+  animation: site-wave-run-long 14s linear infinite;
 }
 
-/* «Горизонт», with a wave of its own: here the shared one instead - the
-   glowing crest along its top and the wash under it, as on every footer;
-   its own filled wave would bring the straight edges back. */
-.site-style-neon.site-style-footer-wave .footer-horizon-wave {
-  display: none;
+@keyframes site-wave-run-long {
+  to { transform: translateX(-1600px); }
 }
 
-.site-style-neon.site-style-footer-wave :is(.app-footer--v2, .footer-editor-root--v2) .site-wave-fill {
-  display: block;
+/* «Горизонт» (the footer with a wave of its own on top) on a «Неон»
+   site, whatever the footer's style: its one wave stays - the night, as
+   the footer under it, with its crest glowing; in «Хвиля» it sways too. */
+.site-style-neon :is(.app-footer.app-footer--v2, .footer-editor-root.footer-editor-root--v2) {
+  background: var(--neon-night, var(--black)) !important;
+}
+
+.site-style-neon .footer-horizon-wave .footer-horizon-wave__back {
+  fill: color-mix(in srgb, var(--neon-glow, var(--warning)) 10%, transparent) !important;
+}
+
+.site-style-neon .footer-horizon-wave .footer-horizon-wave__crest {
+  stroke: var(--neon-glow, var(--warning));
+  stroke-width: 2.5;
+  vector-effect: non-scaling-stroke;
+  filter: drop-shadow(0 0 4px var(--neon-glow, var(--warning))) drop-shadow(0 0 10px color-mix(in srgb, var(--neon-glow, var(--warning)) 50%, transparent));
 }
 
 /* ---- «Неон»: glass panes with a glowing outline ---- */
@@ -279,7 +292,7 @@
 /* The menu bar: a strip of dark glass, its lower edge lit; its words
    light, the current page's in the glow's colour. The colour classes read
    --v-theme-<colour>, pointed here at the light ones. */
-.site-style-menu-neon .main-menu-bar {
+.site-style-menu-neon .main-menu-bar:not(.main-menu-bar--buoys) {
   background: color-mix(in srgb, var(--neon-night, var(--black)) 82%, transparent) !important;
   backdrop-filter: blur(12px);
   border-bottom: 1px solid color-mix(in srgb, var(--neon-glow, var(--warning)) 70%, transparent);

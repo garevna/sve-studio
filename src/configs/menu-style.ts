@@ -76,9 +76,13 @@ export interface MobileMenuStyle {
 //   look - 'line': the entries as words in a row (as it always was);
 //          'console': a control panel - every entry a key with its icon
 //          (menu-content.json `icon`) and its name under it, the current
-//          page's key pressed in with its lamp lit.
-export type MenuBarLook = 'line' | 'console'
-export const MENU_BAR_LOOKS: MenuBarLook[] = ['line', 'console']
+//          page's key pressed in with its lamp lit;
+//          'buoys': the banner's bottom edge a wave of the page's own colour
+//          running sideways, the entries buoys riding it - each bobbing in
+//          its own time, still under the pointer with its name below, the
+//          current page's buoy with its beacon lit.
+export type MenuBarLook = 'line' | 'console' | 'buoys'
+export const MENU_BAR_LOOKS: MenuBarLook[] = ['line', 'console', 'buoys']
 
 export interface MenuBarStyle {
   look: MenuBarLook
@@ -207,7 +211,7 @@ export function resolveMenuStyle (stored?: { dropdown?: Partial<DropdownStyle>, 
       activeClass: text(dropdown?.activeClass, DROPDOWN_DEFAULTS.activeClass),
     },
     mobile: resolveMobileStyle(stored?.mobile),
-    bar: { look: stored?.bar?.look === 'console' ? 'console' : 'line' },
+    bar: { look: MENU_BAR_LOOKS.includes(stored?.bar?.look as MenuBarLook) ? stored!.bar!.look as MenuBarLook : 'line' },
   }
 }
 

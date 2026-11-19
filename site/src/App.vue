@@ -98,11 +98,21 @@
   const heroSplit = computed(() => heroVariant.value === HERO_SPLIT_VARIANT)
   // The control panel (menuStyle.bar 'console') is a dark console whatever
   // the bar's theme: its words and logo take the dark bar's light ones.
-  const menuConsole = computed(() => commonStore.menuStyle.bar.look === 'console')
+  // The buoys ride water of the page's own colour: the page's words.
+  const menuLook = computed(() => commonStore.menuStyle.bar.look)
+  const menuBarTheme = computed(() => {
+    if (menuLook.value === 'console') return 'dark'
+    if (menuLook.value === 'buoys') return 'light'
+    return headerSettings.value.menuTheme
+  })
   const menuBarClass = computed(() => [
     'main-menu-bar',
-    `main-menu-bar--${menuConsole.value ? 'dark' : headerSettings.value.menuTheme}`,
-    { 'main-menu-bar--in-flow': heroWithTitle.value || heroSplit.value, 'main-menu-bar--console': menuConsole.value },
+    `main-menu-bar--${menuBarTheme.value}`,
+    {
+      'main-menu-bar--in-flow': heroWithTitle.value || heroSplit.value,
+      'main-menu-bar--console': menuLook.value === 'console',
+      'main-menu-bar--buoys': menuLook.value === 'buoys',
+    },
   ])
 
   // 'loading' until the site's settings are in; then per page.

@@ -22,7 +22,9 @@
 
   // A dark bar shows the light version of the logo when the site has one.
   // The control panel is always dark.
-  const logoSrc = computed(() => ((headerSettings.value.menuTheme === 'dark' || menuStyle.value.bar.look === 'console') && company.value?.logoWhite) || company.value?.logo.src)
+  // (the buoys float on the page's own colour: the logo as it is)
+  const lightLogo = computed(() => menuStyle.value.bar.look !== 'buoys' && (headerSettings.value.menuTheme === 'dark' || menuStyle.value.bar.look === 'console'))
+  const logoSrc = computed(() => (lightLogo.value && company.value?.logoWhite) || company.value?.logo.src)
   // const { name: companyName, logo } = company.value
 
   // const router = useRouter()

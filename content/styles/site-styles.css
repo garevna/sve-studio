@@ -98,7 +98,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .site-style-footer-wave .site-wave-fill::before {
+  .site-style-footer-wave .site-wave-fill::before,
+  .site-style-footer-wave .site-wave-fill::after {
     transition: none;
     animation: none;
   }
@@ -150,6 +151,81 @@
   .site-style-footer-wave .footer-horizon-wave :is(.footer-horizon-wave__back, .footer-horizon-wave__front) {
     animation: none;
   }
+}
+
+/* ---- A «Неон» site's footer, whatever style the footer itself wears ----
+   On the night the footer's own colours (its fill, the coloured tiles of
+   its columns - palette keys) would be slabs of the night palette's light
+   or violet. So: the footer on the night's gradient, its columns panes of
+   dark glass; then each footer style adds its own - «Неон» the glowing
+   outline, «Штрих» its corners, «Класика» nothing more, «Хвиля» a nearly
+   clear wash of the glow and a glowing wave running along its top. */
+
+.site-style-neon :is(.app-footer, .footer-editor-root) {
+  background: var(--deep-space-gradient) !important;
+}
+
+.site-style-neon :is(.app-footer, .footer-editor-root) .footer-column {
+  background:
+    linear-gradient(160deg, color-mix(in srgb, var(--white) 7%, transparent), transparent 45%),
+    color-mix(in srgb, var(--neon-night, var(--black)) 70%, transparent) !important;
+  border: 1px solid color-mix(in srgb, var(--white) 10%, transparent);
+  border-radius: var(--default-border-radius);
+  padding: 20px 24px;
+}
+
+/* «Горизонт»'s own wave, on top of the footer: the night too */
+.site-style-neon .footer-horizon-wave :is(.footer-horizon-wave__back, .footer-horizon-wave__front) {
+  fill: var(--neon-night, var(--black));
+}
+
+/* No straight top edge: the footer itself is clear, and its wash lies
+   under the wave's crest, running with it (.site-wave-fill::after) - the
+   only edge is the wave. */
+.site-style-neon.site-style-footer-wave :is(.app-footer, .footer-editor-root) {
+  background: transparent !important;
+}
+
+.site-style-neon.site-style-footer-wave .site-wave-fill::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: calc(100% + 480px);
+  height: calc(100% + 48px);
+  background: color-mix(in srgb, var(--neon-glow, var(--warning)) 6%, transparent);
+  -webkit-mask:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 480 48' preserveAspectRatio='none'%3E%3Cpath d='M0 24 C 80 0 160 0 240 24 S 400 48 480 24 V 48 H 0 Z'/%3E%3C/svg%3E") repeat-x 0 0 / 480px 48px,
+    linear-gradient(#000 0 0) no-repeat 0 47px / 100% 100%;
+  mask:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 480 48' preserveAspectRatio='none'%3E%3Cpath d='M0 24 C 80 0 160 0 240 24 S 400 48 480 24 V 48 H 0 Z'/%3E%3C/svg%3E") repeat-x 0 0 / 480px 48px,
+    linear-gradient(#000 0 0) no-repeat 0 47px / 100% 100%;
+  animation: site-wave-run 3.2s linear infinite;
+}
+
+/* the wave: a glowing crest, not a fill - always there, running sideways */
+.site-style-neon.site-style-footer-wave .site-wave-fill {
+  filter: drop-shadow(0 0 3px var(--neon-glow, var(--warning))) drop-shadow(0 0 10px color-mix(in srgb, var(--neon-glow, var(--warning)) 55%, transparent));
+}
+
+.site-style-neon.site-style-footer-wave .site-wave-fill::before {
+  height: 48px;
+  background: var(--neon-glow, var(--warning));
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 480 48' preserveAspectRatio='none'%3E%3Cpath d='M0 24 C 80 0 160 0 240 24 S 400 48 480 24' fill='none' stroke='%23000' stroke-width='3'/%3E%3C/svg%3E") repeat-x 0 0 / 480px 48px;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 480 48' preserveAspectRatio='none'%3E%3Cpath d='M0 24 C 80 0 160 0 240 24 S 400 48 480 24' fill='none' stroke='%23000' stroke-width='3'/%3E%3C/svg%3E") repeat-x 0 0 / 480px 48px;
+  translate: 0 0;
+  transition: none;
+}
+
+/* «Горизонт», with a wave of its own: here the shared one instead - the
+   glowing crest along its top and the wash under it, as on every footer;
+   its own filled wave would bring the straight edges back. */
+.site-style-neon.site-style-footer-wave .footer-horizon-wave {
+  display: none;
+}
+
+.site-style-neon.site-style-footer-wave :is(.app-footer--v2, .footer-editor-root--v2) .site-wave-fill {
+  display: block;
 }
 
 /* ---- «Неон»: glass panes with a glowing outline ---- */

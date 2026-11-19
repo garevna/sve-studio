@@ -221,21 +221,35 @@
 }
 
 /* A coloured section (the «Темна секція» block, .dark-fone-section) on a
-   site that is «Неон» as a whole: no fill - the night shows through, and
-   only its outline glows, in the glow's colour. Its colour stays chosen
-   for the other styles. */
+   site that is «Неон» as a whole: not its own colour but a see-through
+   wash of the glow's (7%), its outline glowing, its cards edged in light.
+   Its colour stays chosen for the other styles. */
 /* the block's own colour lies on its frame (.colored-block) too */
 .site-style-neon .colored-block:has(.dark-fone-section) {
   background: transparent !important;
 }
 
 .site-style-neon .dark-fone-section {
-  background: transparent !important;
+  /* a see-through wash of the glow: the panel stands off the night, in
+     the glow's own tint (gold - warm, cyan - cold) */
+  background:
+    linear-gradient(160deg, color-mix(in srgb, var(--white) 5%, transparent), transparent 45%),
+    color-mix(in srgb, var(--neon-glow, var(--warning)) 7%, transparent) !important;
   border: 1px solid color-mix(in srgb, var(--neon-glow, var(--warning)) 75%, transparent);
   box-shadow:
     0 0 6px color-mix(in srgb, var(--neon-glow, var(--warning)) 65%, transparent),
     0 0 30px color-mix(in srgb, var(--neon-glow, var(--warning)) 30%, transparent),
     inset 0 0 30px color-mix(in srgb, var(--neon-glow, var(--warning)) 14%, transparent);
+}
+
+/* Its cards: a light edge and a light shadow - the dark one they have by
+   default is lost on the night. */
+.site-style-neon .dark-fone-section :is(.v-card, .dark-fone-editor-card) {
+  padding: 16px;
+  border-radius: var(--default-border-radius);
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--white) 9%, transparent),
+    0 6px 20px color-mix(in srgb, var(--white) 6%, transparent) !important;
 }
 
 /* The site's main button (.primary-button - the default of the blocks that
@@ -336,8 +350,8 @@
    with the glow's edge. Its colours stay chosen for the other styles. */
 .site-style-neon .baner-card {
   background:
-    linear-gradient(160deg, color-mix(in srgb, var(--white) 7%, transparent), transparent 45%),
-    color-mix(in srgb, var(--neon-night, var(--black)) 55%, transparent) !important;
+    linear-gradient(160deg, color-mix(in srgb, var(--white) 5%, transparent), transparent 45%),
+    color-mix(in srgb, var(--neon-glow, var(--warning)) 7%, transparent) !important;
   border: 1px solid color-mix(in srgb, var(--neon-glow, var(--warning)) 75%, transparent);
   box-shadow:
     0 0 6px color-mix(in srgb, var(--neon-glow, var(--warning)) 65%, transparent),

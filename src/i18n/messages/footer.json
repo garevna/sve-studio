@@ -271,5 +271,10 @@
     "uk": "Видалити колонку",
     "en": "Delete column",
     "de": "Spalte löschen"
+  },
+  "waveLine": {
+    "uk": "Колір лінії хвилі",
+    "en": "",
+    "de": ""
   }
 }

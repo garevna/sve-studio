@@ -342,6 +342,17 @@
   transform: none;
   border-radius: 14px;
 }
+/* the buoys rise over a banner on the site - here over a stand-in for one */
+.menu-style-bar-stage:has(.main-menu-bar--buoys) {
+  padding-top: 56px;
+  background: linear-gradient(160deg, var(--primary), var(--secondary));
+}
+.menu-style-bar-sample.main-menu-bar--buoys {
+  margin-top: -40px;
+  min-height: 110px;
+  overflow: visible;
+  border-radius: 0 0 14px 14px;
+}
 .menu-style-bar-items {
   display: flex;
   align-items: stretch;

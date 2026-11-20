@@ -150,5 +150,22 @@
     "uk": "Розмір назви",
     "en": "Title size",
     "de": "Größe des Titels"
+  },
+  "heroEffect": {
+    "uk": "Ефект банера",
+    "en": "",
+    "de": ""
+  },
+  "heroEffects": {
+    "none": {
+      "uk": "Без",
+      "en": "",
+      "de": ""
+    },
+    "waterline": {
+      "uk": "Ватерлінія",
+      "en": "",
+      "de": ""
+    }
   }
 }

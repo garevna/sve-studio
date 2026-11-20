@@ -431,7 +431,7 @@
   position: relative !important;
   top: auto;
   height: auto;
-  margin-top: -64px;
+  margin-top: 0;
   padding-block: 12px 8px;
   background: transparent;
   border: none;
@@ -457,6 +457,13 @@
     linear-gradient(#000 0 0) no-repeat 0 47px / 100% 100%;
   animation: buoys-water-run 9s linear infinite;
   pointer-events: none;
+}
+
+/* Only with a banner right above (#app-hero-section, layout 2) the water
+   rises over its bottom; a page without one has nothing to rise over -
+   the buoys float on the page itself. */
+#app-hero-section + .main-menu-bar.main-menu-bar--buoys {
+  margin-top: -64px;
 }
 
 @keyframes buoys-water-run {

@@ -381,7 +381,7 @@
       id="app-footer"
       ref="footerRef"
       :class="['app-footer mt-4 py-8', `app-footer--v${footerVariant}`, { 'app-footer--in-view': footerInView, 'app-footer--full': footerSettings?.fullWidth }]"
-      :style="{ backgroundColor: footerBackground, '--footer-bg': footerBackground }"
+      :style="{ backgroundColor: footerBackground, '--footer-bg': footerBackground, '--footer-wave-line': dynamicFooterContent?.waveLine ? `var(--${dynamicFooterContent.waveLine})` : undefined }"
     >
       <!-- The «Хвиля» site style's wave - drawn only under that style
         (content/styles/site-styles.css). -->

@@ -4,6 +4,7 @@
   import { useI18n } from 'vue-i18n'
   import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
   import PaletteSwatchPicker from '@/components/special/PaletteSwatchPicker.vue'
+  import { useSiteStyle } from '@/composables/useSiteStyle'
   import { BENTO_TILE_SETS, bentoTile, FOOTER_BENTO, FOOTER_VARIANTS, resolveFooterVariant } from '@/configs/footer-variants'
   import { useAjaxStore } from '@/stores/ajax'
 
@@ -56,6 +57,18 @@
     props.block.background = tiles[0]
   }
 
+  // A «Неон» site's footer stands on the night whatever its fill (content/
+  // styles/site-styles.css) - the fill means nothing there; the colour of
+  // its wave's glowing line does (block.waveLine, a palette key; unset -
+  // the site's glow).
+  const siteStyle = useSiteStyle()
+  void siteStyle.load()
+  const neon = computed(() => siteStyle.style.value === 'neon')
+  function setWaveLine (value: string) {
+    // eslint-disable-next-line vue/no-mutating-props -- the footer block is edited in place, like its background
+    props.block.waveLine = value
+  }
+
   function toggleVisible () {
     // eslint-disable-next-line vue/no-mutating-props
     props.block.visible = props.block.visible === false
@@ -73,7 +86,16 @@
     :tooltip="t('footer.look', { title: item.title })"
     @click="setVariant(item.id)"
   />
-  <v-menu v-if="variant === FOOTER_BENTO" location="bottom">
+  <PaletteSwatchPicker v-if="neon" :model-value="block.waveLine || 'warning'" no-transparent @update:model-value="setWaveLine">
+    <template #activator="{ menuProps }">
+      <v-tooltip location="top" :text="t('footer.waveLine')" theme="editorTheme">
+        <template #activator="{ props: tooltipProps }">
+          <v-btn v-bind="{ ...tooltipProps, ...menuProps }" icon="mdi-wave" variant="text" />
+        </template>
+      </v-tooltip>
+    </template>
+  </PaletteSwatchPicker>
+  <v-menu v-else-if="variant === FOOTER_BENTO" location="bottom">
     <template #activator="{ props: menuProps }">
       <v-tooltip location="top" :text="t('footer.tileSets')" theme="editorTheme">
         <template #activator="{ props: tooltipProps }">

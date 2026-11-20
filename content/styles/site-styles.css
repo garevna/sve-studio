@@ -193,7 +193,7 @@
   top: 0;
   width: calc(100% + 1600px);
   height: calc(100% + 64px);
-  background: color-mix(in srgb, var(--neon-glow, var(--warning)) 6%, transparent);
+  background: color-mix(in srgb, var(--footer-wave-line, var(--neon-glow, var(--warning))) 6%, transparent);
   -webkit-mask:
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 64' preserveAspectRatio='none'%3E%3Cpath d='M0 32 C 266 2 533 2 800 32 S 1333 62 1600 32 V 64 H 0 Z'/%3E%3C/svg%3E") repeat-x 0 0 / 1600px 64px,
     linear-gradient(#000 0 0) no-repeat 0 63px / 100% 100%;
@@ -205,13 +205,13 @@
 
 /* the wave: a glowing crest, not a fill - always there, running sideways */
 .site-style-neon.site-style-footer-wave .site-wave-fill {
-  filter: drop-shadow(0 0 3px var(--neon-glow, var(--warning))) drop-shadow(0 0 10px color-mix(in srgb, var(--neon-glow, var(--warning)) 55%, transparent));
+  filter: drop-shadow(0 0 3px var(--footer-wave-line, var(--neon-glow, var(--warning)))) drop-shadow(0 0 10px color-mix(in srgb, var(--footer-wave-line, var(--neon-glow, var(--warning))) 55%, transparent));
 }
 
 .site-style-neon.site-style-footer-wave .site-wave-fill::before {
   width: calc(100% + 1600px);
   height: 64px;
-  background: var(--neon-glow, var(--warning));
+  background: var(--footer-wave-line, var(--neon-glow, var(--warning)));
   -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 64' preserveAspectRatio='none'%3E%3Cpath d='M0 32 C 266 2 533 2 800 32 S 1333 62 1600 32' fill='none' stroke='%23000' stroke-width='3'/%3E%3C/svg%3E") repeat-x 0 0 / 1600px 64px;
   mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 64' preserveAspectRatio='none'%3E%3Cpath d='M0 32 C 266 2 533 2 800 32 S 1333 62 1600 32' fill='none' stroke='%23000' stroke-width='3'/%3E%3C/svg%3E") repeat-x 0 0 / 1600px 64px;
   translate: 0 0;
@@ -225,7 +225,9 @@
 
 /* «Горизонт» (the footer with a wave of its own on top) on a «Неон»
    site, whatever the footer's style: its one wave stays - the night, as
-   the footer under it, with its crest glowing; in «Хвиля» it sways too. */
+   the footer under it, with its crest glowing (the footer's own line
+   colour, --footer-wave-line, else the site's glow); in «Хвиля» it sways
+   too. */
 .site-style-neon :is(.app-footer.app-footer--v2, .footer-editor-root.footer-editor-root--v2) {
   background: var(--neon-night, var(--black)) !important;
 }
@@ -235,10 +237,10 @@
 }
 
 .site-style-neon .footer-horizon-wave .footer-horizon-wave__crest {
-  stroke: var(--neon-glow, var(--warning));
+  stroke: var(--footer-wave-line, var(--neon-glow, var(--warning)));
   stroke-width: 2.5;
   vector-effect: non-scaling-stroke;
-  filter: drop-shadow(0 0 4px var(--neon-glow, var(--warning))) drop-shadow(0 0 10px color-mix(in srgb, var(--neon-glow, var(--warning)) 50%, transparent));
+  filter: drop-shadow(0 0 4px var(--footer-wave-line, var(--neon-glow, var(--warning)))) drop-shadow(0 0 10px color-mix(in srgb, var(--footer-wave-line, var(--neon-glow, var(--warning))) 50%, transparent));
 }
 
 /* ---- «Неон»: glass panes with a glowing outline ---- */

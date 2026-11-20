@@ -368,7 +368,7 @@
 <template>
   <div
     :class="['footer-editor-root', `footer-editor-root--v${variant}`]"
-    :style="{ background: `var(--${block.background || 'primary'})`, '--footer-bg': `var(--${block.background || 'primary'})`, marginTop: `${commonStore.currentBlockSpacing}px` }"
+    :style="{ background: `var(--${block.background || 'primary'})`, '--footer-bg': `var(--${block.background || 'primary'})`, '--footer-wave-line': block.waveLine ? `var(--${block.waveLine})` : undefined, marginTop: `${commonStore.currentBlockSpacing}px` }"
   >
     <!-- The «Хвиля» site style's wave - drawn only under that style
       (content/styles/site-styles.css), as on the site. -->

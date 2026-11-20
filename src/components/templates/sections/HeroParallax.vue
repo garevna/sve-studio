@@ -21,6 +21,7 @@
   import { resolveThemeAssetPath } from '@/utils/theme-asset-path'
   import { themeFonts } from '@/utils/theme-fonts'
   import { uploadImage } from '@/utils/upload-image'
+  import HeroWaterline from './HeroWaterline.vue'
 
   // The page's single top-of-page hero parallax - mirrors production's
   // App.vue exactly (see the "parallax" block extracted via .find() there).
@@ -249,7 +250,9 @@
             @error="imageFailed = true"
           />
           <div v-if="uploadError" class="hero-parallax-upload-error">{{ uploadError }}</div>
-          <div v-if="showsName && globalSettings" class="hero-name-frame" :class="`hero-name-frame--${header.titlePosition}`">
+          <!-- «Ватерлінія» (header.heroEffect), as on the site -->
+          <HeroWaterline v-if="showsName && header.heroEffect === 'waterline' && imageContent" :src="imageContent" />
+          <div v-if="showsName && globalSettings" class="hero-name-frame" :class="[`hero-name-frame--${header.titlePosition}`, { 'hero-name-frame--waterline': header.heroEffect === 'waterline' }]">
             <button
               v-if="!header.showTitle"
               class="hero-name-ghost"
@@ -390,6 +393,16 @@
 .hero-name-frame--top-right { align-items: flex-start; justify-content: flex-end; text-align: right; }
 .hero-name-frame--bottom-left { align-items: flex-end; justify-content: flex-start; }
 .hero-name-frame--bottom-right { align-items: flex-end; justify-content: flex-end; text-align: right; }
+/* «Ватерлінія»: a name in a bottom corner stands on the water's line, as on
+   the site (HeroWaterline.vue: the water is the lower 38%). */
+.hero-name-frame--waterline:is(.hero-name-frame--bottom-left, .hero-name-frame--bottom-right) {
+  inset: 0 0 38% 0;
+  padding-bottom: 0;
+  z-index: 2;
+}
+.hero-name-frame--waterline:is(.hero-name-frame--bottom-left, .hero-name-frame--bottom-right) .hero-name {
+  transform: translateY(42%);
+}
 .hero-name {
   margin: 0;
   /* The editor's own heading style would make it dark; the site's is white. */

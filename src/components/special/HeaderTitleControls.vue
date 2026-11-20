@@ -1,6 +1,7 @@
 <script setup lang="ts">
   import type { HeaderSettingsModel, TitlePosition, TitleSize } from '@/configs/header-layout'
   import type { ThemeFont } from '@/utils/theme-fonts'
+  import { HERO_EFFECTS } from '@/configs/header-layout'
   import { t } from '@/i18n'
 
   // How the company name looks over the top of the site: shown or not, its
@@ -98,6 +99,21 @@
         </v-btn-toggle>
       </div>
     </template>
+
+    <!-- the banner's own effect - the layout with the name over it -->
+    <div v-if="corners">
+      <p class="header-title-label">{{ t('header.heroEffect') }}</p>
+      <v-btn-toggle
+        color="primary"
+        density="comfortable"
+        mandatory
+        :model-value="header.heroEffect"
+        variant="outlined"
+        @update:model-value="emit('update', { heroEffect: $event })"
+      >
+        <v-btn v-for="effect of HERO_EFFECTS" :key="effect" :value="effect">{{ t(`header.heroEffects.${effect}`) }}</v-btn>
+      </v-btn-toggle>
+    </div>
   </div>
 </template>
 

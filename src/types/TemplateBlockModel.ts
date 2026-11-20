@@ -114,6 +114,8 @@ export interface BaseBlock {
   // Footer root block, "Bento" variant: the palette keys of its tile
   // colours, as a set (configs/footer-variants.ts BENTO_TILE_SETS).
   tiles?: string[]
+  // footer, on a «Неон» site: the colour of its wave's glowing line (a palette key)
+  waveLine?: string
   // Text with icon: where a click leads - a web address (a social network,
   // say), tel:... or mailto:... (utils/link-href.ts). Opened by the site.
   link?: string

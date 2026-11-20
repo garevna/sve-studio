@@ -5,6 +5,7 @@
   import { TITLE_SIZES } from '../../configs/header-layout'
   import { useCommonStore } from '../../stores/common'
   import { IMAGE_PLACEHOLDER_CLASS } from '../../utils/image-fallback'
+  import HeroWaterline from './HeroWaterline.vue'
 
   // Layout 2 of the top of the site: the page's top parallax (the
   // full-window one, block type "parallax" - see App.vue) raised above the
@@ -44,11 +45,13 @@
   // as tall as itself (composables/useBannerHeight.ts) - its sides are cut
   // on a narrower screen, never its top or bottom.
   const bannerSrc = computed(() => (mobileMode.value ? baners.value?.mobile || baners.value?.desktop : baners.value?.desktop || baners.value?.mobile) || '')
+  // «Ватерлінія» (header.heroEffect): water under the picture.
+  const waterline = computed(() => headerSettings.value.heroEffect === 'waterline')
   const bannerHeight = useBannerHeight(bannerSrc, mobileMode, computed(() => winSize.value.width))
 </script>
 
 <template>
-  <section :class="['hero-with-title', `hero-with-title--name-${nameSide}`]">
+  <section :class="['hero-with-title', `hero-with-title--name-${nameSide}`, { 'hero-with-title--waterline': waterline }]">
     <!-- eager: the top of the page is always on screen, and Vuetify's
       wait-until-visible never fires inside the editor's preview frame
       ("Верхня частина сторінки") - the picture then never loads. -->
@@ -58,6 +61,7 @@
         <h4 :class="parallaxTitleClass">{{ parallaxTitle }}</h4>
         <p v-if="parallaxText" :class="parallaxTextClass">{{ parallaxText }}</p>
       </div>
+      <HeroWaterline v-if="waterline" :src="parallaxImage" />
       <div v-if="headerSettings.showTitle" class="hero-with-title-frame" :class="`hero-with-title-frame--${headerSettings.titlePosition}`">
         <h1 :class="['h1 text-white hero-with-title-name', headerSettings.titleFont, { 'title-font-own-weight': headerSettings.titleFont }]" :style="{ '--title-scale': TITLE_SIZES[headerSettings.titleSize] }">{{ company?.name }}</h1>
       </div>
@@ -71,6 +75,7 @@
       :src="bannerSrc"
       width="100vw"
     >
+      <HeroWaterline v-if="waterline && bannerSrc" :src="bannerSrc" />
       <div v-if="headerSettings.showTitle" class="hero-with-title-frame" :class="`hero-with-title-frame--${headerSettings.titlePosition}`">
         <h1 :class="['h1 text-white hero-with-title-name', headerSettings.titleFont, { 'title-font-own-weight': headerSettings.titleFont }]" :style="{ '--title-scale': TITLE_SIZES[headerSettings.titleSize] }">{{ company?.name }}</h1>
       </div>
@@ -118,6 +123,17 @@
 .hero-with-title-frame--top-right { align-items: flex-start; justify-content: flex-end; text-align: right; }
 .hero-with-title-frame--bottom-left { align-items: flex-end; justify-content: flex-start; }
 .hero-with-title-frame--bottom-right { align-items: flex-end; justify-content: flex-end; text-align: right; }
+
+/* «Ватерлінія»: a name in a bottom corner stands on the water's line
+   (38% up from the bottom, HeroWaterline.vue), above the water layer. */
+.hero-with-title--waterline :is(.hero-with-title-frame--bottom-left, .hero-with-title-frame--bottom-right) {
+  inset: 0 0 38% 0;
+  padding-bottom: 0;
+  z-index: 2;
+}
+.hero-with-title--waterline :is(.hero-with-title-frame--bottom-left, .hero-with-title-frame--bottom-right) .hero-with-title-name {
+  transform: translateY(42%);
+}
 
 /* A decorative font (Rubik Dirt and the like) usually has one weight: the
    h1's bold would be faked by the browser, which fills in the very holes

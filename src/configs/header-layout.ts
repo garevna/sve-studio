@@ -16,12 +16,17 @@
 //                     ...), empty for the main font;
 //     showTitle     - whether the company name is shown at all (2, 3);
 //     titleSize     - how big the name is: s, m (the h1's own size), l,
-//                     xl, xxl - see TITLE_SIZES.
+//                     xl, xxl - see TITLE_SIZES;
+//     heroEffect    - the banner's own effect (2): none, or 'waterline' -
+//                     its lower part water mirroring the picture, the name
+//                     standing on the line (HeroWaterline.vue).
 
 export type TitlePosition = 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'
 export type MenuTheme = 'light' | 'dark'
 export type HeaderTagline = { uk: string, en: string, de: string }
 export type TitleSize = 's' | 'm' | 'l' | 'xl' | 'xxl'
+export type HeroEffect = 'none' | 'waterline'
+export const HERO_EFFECTS: HeroEffect[] = ['none', 'waterline']
 
 export type HeaderSettingsModel = {
   titlePosition: TitlePosition
@@ -31,6 +36,7 @@ export type HeaderSettingsModel = {
   titleFont: string
   showTitle: boolean
   titleSize: TitleSize
+  heroEffect: HeroEffect
 }
 
 // 1 - banner carousel with the trip search, menu fixed on top (hidden in
@@ -57,6 +63,7 @@ export const HEADER_DEFAULTS: HeaderSettingsModel = {
   titleFont: 'accent-font',
   showTitle: true,
   titleSize: 'm',
+  heroEffect: 'none',
 }
 
 export function resolveHeroVariant (stored?: number | null): number {
@@ -84,5 +91,6 @@ export function resolveHeaderSettings (stored?: Partial<HeaderSettingsModel> | n
     // Shown unless switched off - a site saved before this existed keeps its name.
     showTitle: stored?.showTitle !== false,
     titleSize: stored?.titleSize && stored.titleSize in TITLE_SIZES ? stored.titleSize : HEADER_DEFAULTS.titleSize,
+    heroEffect: HERO_EFFECTS.includes(stored?.heroEffect as HeroEffect) ? stored!.heroEffect as HeroEffect : HEADER_DEFAULTS.heroEffect,
   }
 }

@@ -108,6 +108,8 @@ export interface BaseBlock {
   // Footer root block, "Bento" variant: the palette keys of its tile
   // colours, as a set (configs/footer-variants.ts BENTO_TILE_SETS).
   tiles?: string[]
+  // footer, on a «Неон» site: the colour of its wave's glowing line (a palette key)
+  waveLine?: string
   // Button: what a click does. Unset = go to its page (route/params/hash);
   // 'form' = open the feedback form, with the texts in `form`, in a popup.
   // url: opens `href` - an address outside the site - in a new tab

@@ -1,3 +1,4 @@
+import type { CardTemplate } from '../configs/card-templates'
 import type {
   CountryModel,
   GlobalSettingsModel,
@@ -82,6 +83,8 @@ export const useCommonStore = defineStore('common', () => {
   const headerSettings = ref<HeaderSettingsModel>(resolveHeaderSettings())
   // The menus' look (global.json menuStyle) - see configs/menu-style.ts.
   const menuStyle = ref<MenuStyleModel>(resolveMenuStyle())
+  // The UI Kit's card templates (configs/card-templates.ts).
+  const cardTemplates = ref<CardTemplate[]>([])
   // The site's style (global.json siteStyle) - configs/site-style.ts.
   const siteStyle = ref<SiteStyle>(resolveSiteStyle(undefined))
   // Each part's own style, if it has one (global.json siteStyleParts).
@@ -207,6 +210,7 @@ export const useCommonStore = defineStore('common', () => {
     company.value = Object.assign({}, { name: provider, legalName, logo, logoWhite, links, icons, baner })
     applyHeaderSettings(response)
     menuStyle.value = resolveMenuStyle(response.menuStyle)
+    cardTemplates.value = Array.isArray(response.cardTemplates) ? response.cardTemplates : []
     siteStyle.value = resolveSiteStyle(response.siteStyle)
     siteStyleParts.value = response.siteStyleParts ?? {}
     contacts.value = Array.isArray(response.contacts) ? response.contacts : []
@@ -286,6 +290,7 @@ export const useCommonStore = defineStore('common', () => {
     heroVariant,
     headerSettings,
     menuStyle,
+    cardTemplates,
     siteStyle,
     siteStyleParts,
     contacts,

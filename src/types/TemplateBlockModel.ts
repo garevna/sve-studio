@@ -178,6 +178,9 @@ export interface BaseBlock {
   cardBackground?: string
   // Class of a UI Kit card style (content/styles/cards.css) - see configs/card-style.ts.
   cardStyle?: string
+  // cards / carousel / tabs block: the UI Kit card template it wears
+  // (configs/card-templates.ts) - its own settings above win over it.
+  cardTemplate?: string
   // "cards" block: the text format shared by every card in it - one class
   // string for the titles, one for the body text, set from the block's own
   // toolbar and read by production's TemplateCard.vue as well as this app's.

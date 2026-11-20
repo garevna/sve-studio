@@ -1,6 +1,8 @@
 <script setup lang="ts">
   import type { TemplateBlockModel } from '@/types/TemplateBlockModel'
   import { computed } from 'vue'
+  import { cardTemplates } from '@/composables/useCardTemplates'
+  import { withCardTemplate } from '@/configs/card-templates'
   import TemplateCard from './TemplateCard.vue'
 
   // Mirrors the production site's src\templates\components\CardSet.vue
@@ -14,9 +16,7 @@
   const props = defineProps<{ item: TemplateBlockModel }>()
 
   const id = computed(() => props.item.id)
-  const background = computed(() => props.item.background)
   const cards = computed(() => props.item.children || [])
-  const color = computed(() => props.item.color)
   const width = computed(() => props.item.width || 320)
   const size = computed(() => props.item.size || 24)
   const ver = computed(() => props.item.ver || 1)
@@ -27,18 +27,21 @@
   // permanently overwrite any legitimate per-card ver/width/etc override the
   // moment someone opens preview once. Building a fresh merged object instead
   // gets the identical rendered result without touching the stored data.
+  // the block as worn: its UI Kit card template under its own settings
+  const block = computed(() => withCardTemplate(props.item, cardTemplates.value))
   function cardWithDefaults (card: TemplateBlockModel): TemplateBlockModel {
     return {
       ...card,
       width: width.value,
       height: props.item.height,
-      size: size.value,
+      size: (block.value.size ?? 0) > 0 ? block.value.size : size.value,
       ver: ver.value,
-      background: background.value,
-      cardBackground: props.item.cardBackground,
-      titleClass: props.item.titleClass,
-      contentClass: props.item.contentClass,
-      color: color.value,
+      background: block.value.background,
+      cardBackground: block.value.cardBackground,
+      cardStyle: block.value.cardStyle,
+      titleClass: block.value.titleClass,
+      contentClass: block.value.contentClass,
+      color: block.value.color,
     }
   }
 </script>

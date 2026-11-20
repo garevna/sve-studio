@@ -1,4 +1,6 @@
 import type { TemplateBlockModel } from '@/types/TemplateBlockModel'
+import { cardTemplates } from '@/composables/useCardTemplates'
+import { withCardTemplate } from '@/configs/card-templates'
 
 // The shared look of a "cards"/"carousel" block, handed down to every card
 // in it - individual children only override what actually differs about
@@ -15,7 +17,10 @@ import type { TemplateBlockModel } from '@/types/TemplateBlockModel'
 // TemplateCard.vue's own cardWidth falls back to '100%' for an unset width,
 // stretching every card full-width while editing even though preview and
 // production drew them at the correct fixed width all along.
-export function cardDefaults (block: TemplateBlockModel): Partial<TemplateBlockModel> {
+// The block as worn: its UI Kit card template under its own settings
+// (configs/card-templates.ts, composables/useCardTemplates.ts).
+export function cardDefaults (raw: TemplateBlockModel): Partial<TemplateBlockModel> {
+  const block = withCardTemplate(raw, cardTemplates.value)
   return {
     ver: block.ver,
     width: block.width || 320,

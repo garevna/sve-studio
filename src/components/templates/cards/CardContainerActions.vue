@@ -7,6 +7,9 @@
   import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
   import PaletteSwatchPicker from '@/components/special/PaletteSwatchPicker.vue'
   import CardStyleMenu from '@/components/templates/cards/CardStyleMenu.vue'
+  import CardTemplateMenu from '@/components/templates/cards/CardTemplateMenu.vue'
+  import { cardTemplates } from '@/composables/useCardTemplates'
+  import { withCardTemplate } from '@/configs/card-templates'
   import { t } from '@/i18n'
   import { defaultCardContentClass, defaultCardTitleClass } from '@/utils/card-text-defaults'
   import { emptyTranslatedModel } from '@/utils/locale-text'
@@ -101,8 +104,13 @@
   // The CARD's fill, not the icon's disc - a palette key, shared by every
   // card in the block for the same reason the icon's look is: it is one
   // design decision about the set, not four independent ones.
+  // What the block wears: its UI Kit card template under its own settings -
+  // the detailed settings below show that, and a change made here is the
+  // block's own (configs/card-templates.ts).
+  const worn = computed(() => withCardTemplate(props.block, cardTemplates.value))
+
   const cardBackground = computed({
-    get: () => props.block.cardBackground || 'transparent',
+    get: () => worn.value.cardBackground || 'transparent',
     set: (value: string) => {
       props.block.cardBackground = value
     },
@@ -121,13 +129,13 @@
   // first click.
   /* eslint-disable vue/no-mutating-props -- see this component's own top comment */
   const titleFormat = computed({
-    get: () => props.block.titleClass || defaultCardTitleClass(props.block.ver || 2),
+    get: () => worn.value.titleClass || defaultCardTitleClass(props.block.ver || 2),
     set: (value: string) => {
       props.block.titleClass = value
     },
   })
   const contentFormat = computed({
-    get: () => props.block.contentClass || defaultCardContentClass(props.block.ver || 2),
+    get: () => worn.value.contentClass || defaultCardContentClass(props.block.ver || 2),
     set: (value: string) => {
       props.block.contentClass = value
     },
@@ -173,6 +181,9 @@
 </script>
 
 <template>
+  <!-- first: the look picked from the UI Kit's templates; the buttons after
+    it are the block's own detailed settings - the exception -->
+  <CardTemplateMenu :block="block" />
   <ToolbarIconButton icon="mdi-plus" :tooltip="t('cards.add')" @click="addCard" />
   <ToolbarIconButton
     :active="dragActive"

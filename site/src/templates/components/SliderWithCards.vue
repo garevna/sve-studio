@@ -5,6 +5,7 @@
   import { Autoplay, Navigation, Pagination } from 'swiper/modules'
   import { Swiper, SwiperSlide } from 'swiper/vue'
   import { computed, ref } from 'vue'
+  import { withCardTemplate } from '@/configs/card-templates'
   import { useCommonStore } from '@/stores/common'
   import TemplateCard from './TemplateCard.vue'
   import 'swiper/css/autoplay'
@@ -22,12 +23,17 @@
 
   const props = defineProps<{ item: TemplateBlockModel }>()
 
+  // The block as worn: its UI Kit card template under its own settings
+  // (configs/card-templates.ts).
+  const { cardTemplates } = storeToRefs(useCommonStore())
+  const block = computed(() => withCardTemplate(props.item, cardTemplates.value))
+
   const id = computed(() => props.item.id)
-  const background = computed(() => props.item.background)
+  const background = computed(() => block.value.background)
   const cards = computed(() => props.item.children || [])
-  const color = computed(() => props.item.color)
+  const color = computed(() => block.value.color)
   const width = computed(() => props.item.width || 320)
-  const size = computed(() => props.item.size || 24)
+  const size = computed(() => block.value.size || 24)
   const ver = computed(() => props.item.ver || 1)
 
   const modules = [Autoplay, Pagination, Navigation]
@@ -84,10 +90,10 @@
             size: card.size ?? size,
             ver: card.ver || ver,
             width: card.width || width,
-            cardStyle: card.cardStyle || props.item.cardStyle,
-            cardBackground: card.cardBackground || props.item.cardBackground,
-            titleClass: card.titleClass || props.item.titleClass,
-            contentClass: card.contentClass || props.item.contentClass,
+            cardStyle: card.cardStyle || block.cardStyle,
+            cardBackground: card.cardBackground || block.cardBackground,
+            titleClass: card.titleClass || block.titleClass,
+            contentClass: card.contentClass || block.contentClass,
           }"
           style="height: 100%"
         />

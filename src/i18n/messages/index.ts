@@ -16,6 +16,7 @@ import buttonSet from './buttonSet.json'
 import calendars from './calendars.json'
 import cards from './cards.json'
 import cardStyles from './cardStyles.json'
+import cardTemplates from './cardTemplates.json'
 import clientApi from './clientApi.json'
 import common from './common.json'
 import confirm from './confirm.json'
@@ -77,6 +78,7 @@ export const MESSAGES = {
   buttonSet,
   cards,
   cardStyles,
+  cardTemplates,
   common,
   confirm,
   contacts,

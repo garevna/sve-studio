@@ -66,7 +66,9 @@ function glowNodes (className: string, glow: CardGlow): CssNode[] {
     { kind: 'rule', selectors: [`${c}:hover`, `${c}:focus-within`], declarations: [
       { property: 'box-shadow', value: glowShadow(glow.color, 1.6), important: false },
     ] },
-    { kind: 'rule', selectors: [`${c} *`], declarations: [
+    // the texts, not the icons: an icon keeps its own colour (a card
+    // template's or the block's)
+    { kind: 'rule', selectors: [`${c} *:not(.v-icon):not(.mdi):not(i):not(svg):not(svg *)`], declarations: [
       { property: 'color', value: 'var(--white)', important: true },
     ] },
   ]
@@ -74,7 +76,7 @@ function glowNodes (className: string, glow: CardGlow): CssNode[] {
 
 function isGlowNode (node: CssNode, className: string): boolean {
   const c = `.${className}`
-  return node.kind === 'rule' && node.selectors.every(selector => selector.startsWith(`${c}:hover`) || selector.startsWith(`${c}:focus-within`) || selector === `${c} *`)
+  return node.kind === 'rule' && node.selectors.every(selector => selector.startsWith(`${c}:hover`) || selector.startsWith(`${c}:focus-within`) || selector.startsWith(`${c} *`))
 }
 
 export interface CardWave {

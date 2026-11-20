@@ -8,6 +8,7 @@ import { createEditorVuetify, installEditor, prepareEditor } from '@/bootstrap/e
 import EditorLocaleMenu from '@/components/special/EditorLocaleMenu.vue'
 import OwnerSiteLink from '@/components/special/OwnerSiteLink.vue'
 import SiteStyleMenu from '@/components/special/SiteStyleMenu.vue'
+import { useCardTemplates } from '@/composables/useCardTemplates'
 import { useLocalOnlyMode } from '@/configs/api-mode'
 import { i18n, t } from '@/i18n'
 import { useUiFeedbackStore } from '@/stores/ui-feedback'
@@ -47,6 +48,8 @@ export default defineNuxtPlugin({
     // the edited site's theme follows the palette and «Неон» from now on
     followEditedPalette(vuetify)
     installEditor(nuxtApp.vueApp, { pinia, vuetify, theme })
+    // the UI Kit's card templates, worn by every card block (useCardTemplates.ts)
+    void useCardTemplates(pinia).load()
     // The editor's own look (packages/editor-ui): its CSS variables, and the
     // same colours for the editor's Vuetify theme - now and on every switch.
     // The interface language, on every top bar next to the colour scheme.

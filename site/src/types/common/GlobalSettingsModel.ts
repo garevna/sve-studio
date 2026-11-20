@@ -1,3 +1,4 @@
+import type { CardTemplate } from '../../configs/card-templates'
 import type { HeaderSettingsModel } from '../../configs/header-layout'
 import type { AuthSettings } from '../../services/auth/types'
 import type { IconSetModel } from './IconSetModel'
@@ -47,6 +48,8 @@ export type GlobalSettingsModel = {
   // A ready palette's id (configs/ready-palettes.ts), worn over palette.json;
   // unset: palette.json itself.
   readyPalette?: string
+  // The UI Kit's card templates (configs/card-templates.ts).
+  cardTemplates?: CardTemplate[]
   logo: {
     src: string
     width: number

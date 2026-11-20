@@ -1,19 +1,20 @@
 <script setup lang="ts">
   import type { TemplateBlockModel } from '@/types/TemplateBlockModel'
-
   import { storeToRefs } from 'pinia'
+
   import SwiperCore from 'swiper'
-
   import { Autoplay, Navigation, Pagination } from 'swiper/modules'
-  import { Swiper, SwiperSlide } from 'swiper/vue'
 
+  import { Swiper, SwiperSlide } from 'swiper/vue'
   import { computed, onUnmounted, ref, watch } from 'vue'
+
   import EditableBlockWrapper from '@/components/editors/EditableBlockWrapper.vue'
   import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
   import { useEditorMode } from '@/composables/useEditorMode'
   import { useSortableList } from '@/composables/useSortableList'
   import { t } from '@/i18n'
   import { useCommonStore } from '@/stores/common'
+  import { cardDefaults as cardDefaults_ } from '@/utils/card-defaults'
   import { stableKey } from '@/utils/stable-key'
   import CardContainerActions from '../cards/CardContainerActions.vue'
   import CardEditDialog from '../cards/CardEditDialog.vue'
@@ -136,18 +137,11 @@
   // max-content now (see the global style block below), so the card inside
   // it needs an actual fixed width to size against, not a '100%' fallback
   // that would just be circular against a max-content parent.
+  // the carousel's settings for its cards - the same ones a card set
+  // passes (utils/card-defaults.ts), its UI Kit template under them
   const cardDefaults = computed(() => ({
-    color: props.block?.color,
-    background: props.block?.background,
-    size: props.block?.size,
-    ver: props.block?.ver,
+    ...(props.block ? cardDefaults_(props.block) : {}),
     width: props.block?.width || props.cards[0]?.width || 320,
-    // the cards' own fill, style and text format - the carousel's settings
-    // for them, the same ones a card set passes (CardSet.vue)
-    cardBackground: props.block?.cardBackground,
-    cardStyle: props.block?.cardStyle,
-    titleClass: props.block?.titleClass,
-    contentClass: props.block?.contentClass,
   }))
 
   // Height: none is stored any more. The editor's own chrome (fields,

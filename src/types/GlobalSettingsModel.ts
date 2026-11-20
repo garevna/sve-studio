@@ -1,3 +1,4 @@
+import type { CardTemplate } from '@/configs/card-templates'
 import type { HeaderSettingsModel } from '@/configs/header-layout'
 import type { DropdownStyle, MenuBarStyle, MobileMenuStyle } from '@/configs/menu-style'
 import type { SiteContact } from '@/configs/site-contacts'
@@ -37,6 +38,8 @@ export interface GlobalSettingsModel {
   // A ready palette's id (configs/ready-palettes.ts), worn over palette.json;
   // unset: palette.json itself.
   readyPalette?: string
+  // The UI Kit's card templates (configs/card-templates.ts).
+  cardTemplates?: CardTemplate[]
   logo: {
     src: string
     width: number

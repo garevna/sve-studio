@@ -94,7 +94,7 @@
   box-shadow: 0 0 4px color-mix(in srgb, var(--neon-glow, var(--warning)) 100%, transparent), 0 0 18px color-mix(in srgb, var(--neon-glow, var(--warning)) 56%, transparent), inset 0 0 18px color-mix(in srgb, var(--neon-glow, var(--warning)) 29%, transparent);
 }
 
-.card-style-7 * {
+.card-style-7 *:not(.v-icon):not(.mdi):not(i):not(svg):not(svg *) {
   color: var(--white) !important;
 }
 
@@ -115,7 +115,7 @@
   box-shadow: 0 0 4px color-mix(in srgb, var(--black) 100%, transparent), 0 0 18px color-mix(in srgb, var(--black) 56%, transparent), inset 0 0 18px color-mix(in srgb, var(--black) 29%, transparent);
 }
 
-.card-style-8 * {
+.card-style-8 *:not(.v-icon):not(.mdi):not(i):not(svg):not(svg *) {
   color: var(--white) !important;
 }
 
@@ -136,7 +136,7 @@
   box-shadow: 0 0 4px color-mix(in srgb, var(--primary) 100%, transparent), 0 0 18px color-mix(in srgb, var(--primary) 56%, transparent), inset 0 0 18px color-mix(in srgb, var(--primary) 29%, transparent);
 }
 
-.card-neon * {
+.card-neon *:not(.v-icon):not(.mdi):not(i):not(svg):not(svg *) {
   color: var(--white) !important;
 }
 
@@ -157,7 +157,7 @@
   box-shadow: 0 0 4px color-mix(in srgb, var(--green) 100%, transparent), 0 0 18px color-mix(in srgb, var(--green) 56%, transparent), inset 0 0 18px color-mix(in srgb, var(--green) 29%, transparent);
 }
 
-.card-style-10 * {
+.card-style-10 *:not(.v-icon):not(.mdi):not(i):not(svg):not(svg *) {
   color: var(--white) !important;
 }
 

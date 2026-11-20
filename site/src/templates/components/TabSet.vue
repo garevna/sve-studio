@@ -3,6 +3,7 @@
   import { storeToRefs } from 'pinia'
   import { computed, ref, watch } from 'vue'
   import TabStrip from '../../components/small/TabStrip.vue'
+  import { withCardTemplate } from '../../configs/card-templates'
   import { useCommonStore } from '../../stores/common'
   import TemplateCard from './TemplateCard.vue'
 
@@ -15,6 +16,11 @@
   // when a tab is switched. A panel comes in from the side of the tab it was
   // switched to. The editor's copy is src/components/templates/cards/TabSet.vue.
   const props = defineProps<{ item: TemplateBlockModel }>()
+
+  // The block as worn: its UI Kit card template under its own settings
+  // (configs/card-templates.ts).
+  const { cardTemplates } = storeToRefs(useCommonStore())
+  const block = computed(() => withCardTemplate(props.item, cardTemplates.value))
   const { locale, defaultLocale } = storeToRefs(useCommonStore())
 
   const cards = computed(() => props.item.children || [])
@@ -48,15 +54,15 @@
       ...card,
       width: 0,
       height: props.item.height,
-      size: props.item.size || 24,
-      mobileSize: props.item.mobileSize,
+      size: block.value.size || 24,
+      mobileSize: block.value.mobileSize,
       ver: props.item.ver || 2,
-      background: props.item.background,
-      color: props.item.color,
-      cardBackground: props.item.cardBackground,
-      cardStyle: props.item.cardStyle,
-      titleClass: props.item.titleClass,
-      contentClass: props.item.contentClass,
+      background: block.value.background,
+      color: block.value.color,
+      cardBackground: block.value.cardBackground,
+      cardStyle: block.value.cardStyle,
+      titleClass: block.value.titleClass,
+      contentClass: block.value.contentClass,
     }
   }
 </script>

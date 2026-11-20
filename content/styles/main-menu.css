@@ -466,6 +466,14 @@
   margin-top: -64px;
 }
 
+/* On a phone the banner's name sits close to its bottom (24px): above the
+   water there, not under the buoys. */
+@media screen and (max-width: 600px) {
+  #app-hero-section:has(+ .main-menu-bar--buoys) .hero-with-title-frame:is(.hero-with-title-frame--bottom-left, .hero-with-title-frame--bottom-right) {
+    padding-bottom: 72px;
+  }
+}
+
 @keyframes buoys-water-run {
   to { transform: translateX(-480px); }
 }
@@ -567,6 +575,70 @@
   }
 }
 
+/* The languages: not a buoy but a spar - a tall float (a navigation
+   mark) with the language's code on it and a little flag on a pole, in a
+   colour of its own (the palette's secondary; «Неон»: the glow), riding
+   slower than the buoys. A click opens the list, as anywhere. */
+.main-menu-bar--buoys .desktop-lang-switcher {
+  --spar: var(--secondary);
+  position: relative;
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  width: 40px;
+  height: 58px;
+  margin-top: 10px;
+  border: 3px solid var(--white);
+  border-radius: 18px 18px 10px 10px;
+  background: linear-gradient(180deg, var(--spar) 0 46%, var(--white) 46% 58%, var(--spar) 58%);
+  box-shadow: 0 6px 10px rgb(0 0 0 / 0.25), inset 0 -4px 0 rgb(0 0 0 / 0.15);
+  color: var(--white) !important;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  transform-origin: 50% 85%;
+  animation: buoy-bob 4.6s ease-in-out infinite;
+  animation-delay: -1.7s;
+}
+
+.main-menu-bar--buoys .desktop-lang-switcher .v-icon {
+  margin: 0 !important;
+  font-size: 14px;
+  color: var(--white) !important;
+}
+
+.main-menu-bar--buoys .desktop-lang-switcher:hover {
+  animation-play-state: paused;
+}
+
+/* the pole and its flag */
+.main-menu-bar--buoys .desktop-lang-switcher::before {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: calc(50% - 1px);
+  width: 2px;
+  height: 14px;
+  background: var(--white);
+}
+
+.main-menu-bar--buoys .desktop-lang-switcher::after {
+  content: "";
+  position: absolute;
+  bottom: calc(100% + 5px);
+  left: calc(50% + 1px);
+  width: 12px;
+  height: 9px;
+  background: var(--spar);
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+}
+
+.site-style-neon .main-menu-bar--buoys .desktop-lang-switcher {
+  --spar: var(--neon-glow, var(--warning));
+}
+
 /* «Неон»: glass buoys with a glowing band */
 .site-style-neon .main-menu-bar--buoys .menu-buoy .menu-key__icon {
   background: color-mix(in srgb, var(--neon-night, var(--black)) 70%, transparent);
@@ -597,7 +669,7 @@
   .main-menu-bar--buoys .desktop-app-bar > .desktop-menu {
     display: flex !important;
     justify-content: safe flex-end;
-    gap: 10px;
+    gap: 4px;
     overflow-x: auto;
     overscroll-behavior-x: contain;
     scroll-snap-type: x proximity;
@@ -609,29 +681,47 @@
   }
   .main-menu-bar--buoys .menu-item.menu-buoy {
     flex: none;
-    min-width: 64px;
+    min-width: 50px;
     scroll-snap-align: start;
   }
   .main-menu-bar--buoys .menu-buoy .menu-key__icon {
-    width: 40px;
-    height: 40px;
-    padding: 8px;
-    font-size: 18px;
+    width: 38px;
+    height: 38px;
+    padding: 7px;
+    font-size: 17px;
   }
+  /* a name only under the current page's buoy - every buoy wearing its
+     name made the row wider than a phone */
   .main-menu-bar--buoys .menu-buoy .menu-key__label {
+    display: none;
     font-size: 11px;
+  }
+  .main-menu-bar--buoys .menu-buoy.menu-key--current .menu-key__label {
+    display: inline-flex;
+  }
+  .main-menu-bar--buoys .menu-buoy.menu-key--current {
+    min-width: 0;
+    max-width: 96px;
+  }
+  .main-menu-bar--buoys .menu-buoy.menu-key--current .menu-key__label {
+    white-space: normal;
+    text-align: center;
   }
   .main-menu-bar--buoys .user-preferences {
     grid-template-columns: max-content;
     grid-template-areas: 'lang-switcher';
   }
+  /* the spar keeps its own upright layout (the console's rule above
+     makes the languages a two-column grid) */
   .main-menu-bar--buoys .desktop-lang-switcher {
-    display: grid !important;
+    display: flex !important;
+    grid-template-columns: none;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .main-menu-bar--buoys::before,
+  .main-menu-bar--buoys .desktop-lang-switcher,
   .main-menu-bar--buoys .menu-item.menu-buoy {
     animation: none;
   }

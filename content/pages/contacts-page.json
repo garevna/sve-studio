@@ -52,7 +52,7 @@
                 "en": "Sole proprietor Iryna Fylyppova",
                 "de": "Einzelunternehmerin Iryna Fylyppova"
               },
-              "class": "default-text mb-4 text-dark text-bold"
+              "class": "default-text mb-4 text-bold text-black"
             },
             {
               "type": "text",
@@ -70,7 +70,7 @@
                 "en": "2147200307",
                 "de": "2147200307"
               },
-              "class": "default-text mb-4 text-bold text-dark"
+              "class": "default-text mb-4 text-bold text-black"
             },
             {
               "type": "text",
@@ -88,7 +88,7 @@
                 "en": "6A Kosmichna Street, Kharkiv",
                 "de": "Charkiw, Kosmicheskaja-Straße 6A"
               },
-              "class": "default-text mb-4 text-dark text-bold"
+              "class": "default-text mb-4 text-bold text-black"
             }
           ]
         },

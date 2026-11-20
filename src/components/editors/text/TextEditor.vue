@@ -259,7 +259,7 @@
       </template>
     </div>
     <v-expand-transition v-if="mode === 'edit' && panelAvailable && !props.vertical">
-      <div v-if="isPanelOpen" :class="['text-format-panel', 'editor-panel', themeClass(EDITOR_THEME_NAME)]">
+      <div v-if="isPanelOpen" :class="['text-format-panel', 'editor-panel', themeClass(EDITOR_THEME_NAME), { 'text-format-panel--short': (props.formatControls?.length ?? 99) <= 2 }]">
         <v-theme-provider theme="editorTheme">
           <slot name="panel" :vertical="false">
             <TextFormatMenu
@@ -334,5 +334,11 @@
    host column without ever needing to widen past it. */
 .text-format-panel--vertical {
   width: fit-content;
+}
+/* A panel narrowed to a control or two (a block's heading: alignment
+   only) is as wide as its buttons, not a long empty strip. */
+.text-format-panel--short {
+  width: fit-content;
+  max-width: 100%;
 }
 </style>

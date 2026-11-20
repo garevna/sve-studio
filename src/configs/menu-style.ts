@@ -263,3 +263,18 @@ export function translated (value: Translated | undefined, locale: string): stri
 // The feedback popup every site starts with (configs/default-popups.ts).
 
 export { FEEDBACK_POPUP_ID } from './default-popups'
+
+// The letter on a key or a buoy without an icon: the first letter of the
+// entry's first meaningful word - «Для бізнесу» is «Б», «Для студій» «С»,
+// not two «Д». The little words a menu entry often starts with are skipped.
+const LITTLE_WORDS = new Set([
+  'для', 'про', 'що', 'як', 'і', 'й', 'та', 'в', 'у', 'на', 'з', 'із', 'до', 'наш', 'наша', 'наше', 'наші', 'ваш', 'ваша', 'ваше', 'ваші',
+  'for', 'about', 'the', 'a', 'an', 'our', 'your', 'to', 'of', 'and',
+  'für', 'über', 'die', 'der', 'das', 'unser', 'unsere', 'ihr', 'ihre', 'zu', 'und',
+])
+
+export function menuInitial (title: string): string {
+  const words = title.trim().split(/\s+/).filter(Boolean)
+  const word = words.find(item => !LITTLE_WORDS.has(item.toLowerCase())) ?? words[0] ?? ''
+  return word.charAt(0).toUpperCase()
+}

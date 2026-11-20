@@ -614,4 +614,8 @@
 
 .site-style-neon :is(#app, .edited-app-scope) {
   background: var(--deep-space-gradient) fixed;
+  /* the night's text colour for what has none of its own (a block's
+     heading) - in the Верф the scope would hand down its Vuetify theme's
+     dark one */
+  color: var(--black);
 }

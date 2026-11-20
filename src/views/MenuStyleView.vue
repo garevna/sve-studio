@@ -11,7 +11,7 @@
   import MobileMenuPreview from '@/components/ui-kit/MobileMenuPreview.vue'
   import MobileMenuRowsEditor from '@/components/ui-kit/MobileMenuRowsEditor.vue'
   import { provideEditorMode } from '@/composables/useEditorMode'
-  import { dropdownVars, MENU_BAR_LOOKS, MOBILE_PRESETS, mobilePreset, resolveMenuStyle, resolveMobileStyle } from '@/configs/menu-style'
+  import { dropdownVars, MENU_BAR_LOOKS, menuInitial, MOBILE_PRESETS, mobilePreset, resolveMenuStyle, resolveMobileStyle } from '@/configs/menu-style'
   import { t } from '@/i18n'
   import { useAjaxStore } from '@/stores/ajax'
   import { useUiFeedbackStore } from '@/stores/ui-feedback'
@@ -163,7 +163,7 @@
                 <span class="menu-key__lamp" />
                 <v-icon v-if="(item.icon || '').startsWith('mdi-')" class="menu-key__icon" :icon="item.icon" />
                 <img v-else-if="item.icon" alt="" class="menu-key__icon" :src="item.icon">
-                <span v-else class="menu-key__icon menu-key__letter">{{ itemName(item).charAt(0).toUpperCase() }}</span>
+                <span v-else class="menu-key__icon menu-key__letter">{{ menuInitial(itemName(item)) }}</span>
                 <span class="menu-key__label">{{ itemName(item) }}</span>
               </div>
               <span v-else>{{ itemName(item) }}</span>

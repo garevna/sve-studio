@@ -4,7 +4,7 @@
   import { computed, ref } from 'vue'
 
   import { useSiteNavigation } from '../../composables/site-navigation'
-  import { dropdownVars } from '../../configs/menu-style'
+  import { dropdownVars, menuInitial } from '../../configs/menu-style'
   import { getImageURL } from '../../services/get-image-url'
   import { useCommonStore } from '../../stores/common'
 
@@ -32,7 +32,7 @@
   const isBuoy = computed(() => menuStyle.value.bar.look === 'buoys')
   const icon = computed(() => props.item.icon || '')
   const mdiIcon = computed(() => icon.value.startsWith('mdi-'))
-  const initial = computed(() => (props.item.title[lang.value] || '').trim().charAt(0).toUpperCase())
+  const initial = computed(() => menuInitial(props.item.title[lang.value] || ''))
 
   // The entry of the page shown (or the group holding it) is highlighted.
   const color = computed(() => {

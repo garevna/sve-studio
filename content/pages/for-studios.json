@@ -385,9 +385,9 @@
       "type": "text",
       "class": "my-5 mb-md-0 accent-font text-thin text-center text-dark h2",
       "content": {
-        "uk": "Ввімкнемо рок-н-рол у вашому бекенді!",
-        "en": "Let’s kick some rock ’n’ roll into your backend!",
-        "de": "Wir bringen Rock ’n’ Roll in Ihr Backend!"
+        "uk": "Спустимо ваш проєкт на воду разом!",
+        "en": "Let’s launch your project together!",
+        "de": "Lassen wir Ihr Projekt gemeinsam vom Stapel!"
       }
     },
     {

@@ -354,6 +354,40 @@
     inset 0 0 22px color-mix(in srgb, var(--neon-glow, var(--warning)) 14%, transparent);
 }
 
+/* A card with a hover side («Картки з наведенням», .card-normal-state) on a
+   «Неон» site: its resting side clear glass with the glowing outline,
+   whatever fill or picture it was given - those are for the other styles;
+   the side that opens under the pointer: a wash of the glow, or its
+   picture. */
+.site-style-neon .card-normal-state > [class*="template-card-"]:not(.v-card--reveal) {
+  background-color: color-mix(in srgb, var(--neon-night, var(--black)) 35%, transparent) !important;
+  background-image: linear-gradient(160deg, color-mix(in srgb, var(--white) 10%, transparent), transparent 45%) !important;
+  border: 1px solid color-mix(in srgb, var(--neon-glow, var(--warning)) 70%, transparent);
+  box-shadow:
+    0 0 6px color-mix(in srgb, var(--neon-glow, var(--warning)) 55%, transparent),
+    0 0 22px color-mix(in srgb, var(--neon-glow, var(--warning)) 24%, transparent),
+    inset 0 0 18px color-mix(in srgb, var(--neon-glow, var(--warning)) 12%, transparent);
+}
+
+/* The side that opens: a fill of its own (a colour) becomes the night
+   washed with the glow - a light fill would carry the night's light text;
+   a picture stays. Opaque: the resting side never shows through. */
+.site-style-neon .card-normal-state > .v-card--reveal:not([style*="url("]) {
+  background-color: var(--neon-night, var(--black)) !important;
+  background-image:
+    linear-gradient(160deg, color-mix(in srgb, var(--white) 10%, transparent), transparent 50%),
+    linear-gradient(0deg, color-mix(in srgb, var(--neon-glow, var(--warning)) 28%, transparent), color-mix(in srgb, var(--neon-glow, var(--warning)) 12%, transparent)) !important;
+}
+
+.site-style-neon .card-normal-state > .v-card--reveal.v-card--reveal--on {
+  opacity: 1 !important;
+}
+
+.site-style-neon .card-normal-state > .v-card--reveal {
+  border: 1px solid color-mix(in srgb, var(--neon-glow, var(--warning)) 85%, transparent);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--neon-glow, var(--warning)) 70%, transparent), 0 0 30px color-mix(in srgb, var(--neon-glow, var(--warning)) 35%, transparent);
+}
+
 /* The site's main button (.primary-button - the default of the blocks that
    have no button picked, and of forms, calculators, popups) while the
    site's buttons wear «Неон»: no solid fill, a glowing outline on dark

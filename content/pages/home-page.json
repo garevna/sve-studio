@@ -98,9 +98,9 @@
     {
       "type": "dark-fone-section",
       "title": {
-        "uk": "Чому ми?",
-        "en": "Why us?",
-        "de": "Warum gerade wir?"
+        "uk": "Чому Верф?",
+        "en": "Why the Shipyard?",
+        "de": "Warum die Werft?"
       },
       "children": [
         {
@@ -111,14 +111,14 @@
           "size": 102,
           "color": "white",
           "title": {
-            "uk": "Звільнення від гравітації",
-            "en": "Freedom from gravity",
-            "de": "Befreiung von der Schwerkraft"
+            "uk": "Правки без розробника",
+            "en": "Edits without a developer",
+            "de": "Änderungen ohne Entwickler"
           },
           "text": {
-            "uk": "Ваші дедлайни не впадуть, бо у нашому вимірі немає сили тяжіння.",
-            "en": "Your deadlines won’t fall by the wayside, because there’s no gravity in our dimension.",
-            "de": "Ihre Deadlines werden nicht verpasst, denn in unserer Dimension gibt es keine Schwerkraft."
+            "uk": "Ціна, фото, новий розділ — ви змінюєте сайт самі, просто на сторінці, і бачите результат одразу.",
+            "en": "A price, a photo, a new section — you change the site yourself, right on the page, and see the result at once.",
+            "de": "Ein Preis, ein Foto, ein neuer Abschnitt — Sie ändern die Website selbst, direkt auf der Seite, und sehen das Ergebnis sofort."
           },
           "background": "transparent"
         },
@@ -130,14 +130,14 @@
           "size": 110,
           "color": "white",
           "title": {
-            "uk": "100% безпіксельна магія",
-            "en": "100% pixel-free magic",
-            "de": "100 % pixelfreie Magie"
+            "uk": "Один стиль на весь сайт",
+            "en": "One style for the whole site",
+            "de": "Ein Stil für die ganze Website"
           },
           "text": {
-            "uk": "Ми розганяємо процесори до швидкості світла, а каву — до стану абсолютного натхнення.",
-            "en": "We accelerate processors to the speed of light and coffee to the state of absolute inspiration.",
-            "de": "Wir beschleunigen Prozessoren auf Lichtgeschwindigkeit und Kaffee auf den Zustand absoluter Inspiration."
+            "uk": "Палітра, кнопки й картки задаються в UI Kit один раз — і кожна нова сторінка вже виглядає як частина вашого сайту.",
+            "en": "The palette, buttons and cards are set once in the UI Kit — and every new page already looks like part of your site.",
+            "de": "Palette, Buttons und Karten werden einmal im UI Kit festgelegt — und jede neue Seite sieht schon wie ein Teil Ihrer Website aus."
           }
         },
         {
@@ -148,14 +148,14 @@
           "size": 94,
           "color": "white",
           "title": {
-            "uk": "Телепатія як послуга",
-            "en": "Telepathy as a service",
-            "de": "Telepathie als Dienstleistung"
+            "uk": "Повідомлення одразу у вас",
+            "en": "Messages straight to you",
+            "de": "Nachrichten direkt bei Ihnen"
           },
           "text": {
-            "uk": "Ви ще не знаєте, чого хочете, а наш код уже компілюється під ваші думки.",
-            "en": "You don’t even know what you want yet, but our code is already compiling to match your thoughts.",
-            "de": "Sie wissen noch nicht, was Sie wollen, doch unser Code wird bereits entsprechend Ihren Gedanken kompiliert."
+            "uk": "Заявка з сайту приходить у ваш Telegram-канал, а відповідь з’являється в кабінеті клієнта.",
+            "en": "A request from the site arrives in your Telegram channel, and your answer appears in the client’s account.",
+            "de": "Eine Anfrage von der Website landet in Ihrem Telegram-Kanal, und Ihre Antwort erscheint im Kundenkonto."
           }
         }
       ],
@@ -209,9 +209,9 @@
           "de": "Frequently Asked Questions"
         },
         "subtitle": {
-          "uk": "Не знайшли відповідь на своє запитання? Зв'яжіться з нами і ми вам допоможемо.",
-          "en": "Didn't find the answer to your question? Contact us and we will help you.",
-          "de": "Wer seid ihr eigentlich?"
+          "uk": "Не знайшли відповідь на своє запитання? Напишіть нам — ми відповімо.",
+          "en": "Didn’t find the answer to your question? Write to us — we will answer.",
+          "de": "Keine Antwort auf Ihre Frage gefunden? Schreiben Sie uns — wir antworten."
         },
         "questionClass": "h4 text-medium text-black text-left",
         "answerClass": "h6 text-thin text-black text-left",
@@ -219,86 +219,86 @@
         "questions": [
           {
             "question": {
-              "uk": "А хто ви взагалі такі?",
-              "en": "Who on earth are you lot?",
-              "de": "Wer seid ihr eigentlich?"
+              "uk": "Що таке Pagewright?",
+              "en": "What is Pagewright?",
+              "de": "Was ist Pagewright?"
             },
             "answer": {
-              "uk": "Ми — Virtual Dimension. Ваш особистий рок-гурт у світі фронтенду та веб-розробки. Ми не пишемо нудний код, ми пишемо цифрові хіти, які не соромно презентувати на світовій арені. Приборкуємо монорепозиторії, наводимо лад у глобальному стані додатків і змушуємо інтерфейси літати.",
-              "en": "We’re Virtual Dimension. Your very own rock band in the world of front-end and web development. We don’t write dull code; we write digital hits that we’re not ashamed to perform in a global stadium. We tame monorepositories, bring order to the global state of applications and make interfaces fly.",
-              "de": "Wir sind Virtual Dimension. Eure persönliche Rockband in der Welt des Frontends und der Webentwicklung. Wir schreiben keinen langweiligen Code, sondern digitale Hits, die man ohne Scham in einem weltweiten Stadion präsentieren kann. Wir bändigen Monorepos, bringen Ordnung in den globalen Zustand von Anwendungen und lassen Benutzeroberflächen fliegen."
+              "uk": "Це Верф, на якій будують сайти-кораблі. Ми збираємо ваш сайт із готових блоків під ваш бізнес, а потім ви самі керуєте ним у візуальному редакторі: тексти, фото, сторінки, меню, стиль.",
+              "en": "It is a Shipyard where sites are built like ships. We assemble your site from ready blocks for your business, and then you run it yourself in a visual editor: texts, photos, pages, menu, style.",
+              "de": "Es ist eine Werft, auf der Websites wie Schiffe gebaut werden. Wir bauen Ihre Website aus fertigen Blöcken für Ihr Geschäft, danach steuern Sie sie selbst im visuellen Editor: Texte, Fotos, Seiten, Menü, Stil."
             }
           },
           {
             "question": {
-              "uk": "Що це за «Багатовимірний овердрайв» у вас на сайті? Це законно?",
-              "en": "What’s this ‘Multidimensional Overdrive’ on your website? Is it legal?",
-              "de": "Was hat es mit diesem „Multidimensional Overdrive“ auf eurer Website auf sich? Ist das legal?"
+              "uk": "Чи потрібно вміти програмувати?",
+              "en": "Do I need to know how to code?",
+              "de": "Muss ich programmieren können?"
             },
             "answer": {
-              "uk": "Абсолютно! Це наша програма лояльності для клієнтів. Ніяких нудних пластикових карток і кешбеків на купівлю молока. Ви працюєте з нами, а ми надаємо вам статус рок-зірок, VIP-перепустки за лаштунки розробки, знижки на хардкорні фічі та захист від legacy-коду. Детальніше можна дізнатися на сторінці програми.",
-              "en": "Absolutely! It’s our customer loyalty programme. No boring plastic cards or cashback on a carton of milk. You work with us, and we give you rock-star status, VIP backstage passes to our development, discounts on hardcore features and protection against legacy code. You can check out more details on the programme page.",
-              "de": "Absolut! Das ist unser Treueprogramm für Kunden. Keine langweiligen Plastikkarten und kein Cashback für den Kauf von Milch. Ihr arbeitet mit uns zusammen, und wir verleihen euch den Status von Rockstars, VIP-Pässe hinter die Kulissen der Entwicklung, Rabatte auf Hardcore-Features und Schutz vor Legacy-Code. Mehr dazu erfahrt ihr auf der Programmseite."
+              "uk": "Ні. Ви клацаєте по тексту на сторінці й пишете, перетягуєте блоки, вибираєте оформлення з готових шаблонів. Код лишається на нашому боці.",
+              "en": "No. You click a text on the page and type, drag blocks around, pick the look from ready templates. The code stays on our side.",
+              "de": "Nein. Sie klicken auf einen Text auf der Seite und schreiben, verschieben Blöcke, wählen das Aussehen aus fertigen Vorlagen. Der Code bleibt bei uns."
             }
           },
           {
             "question": {
-              "uk": "А якщо під час релізу ваш код «зависне» і продукт вийде з ладу?",
-              "en": "What if your code ‘crashes’ during a release and the product goes down?",
-              "de": "Was ist, wenn euer Code beim Release „abstürzt“ und das Produkt ausfällt?"
+              "uk": "Скільки мов може мати сайт?",
+              "en": "How many languages can the site have?",
+              "de": "Wie viele Sprachen kann die Website haben?"
             },
             "answer": {
-              "uk": "Спокійно, без паніки. Ми не розбиваємо гітари об сцену, поки концерт не закінчився. Перед кожним великим релізом ми проводимо жорсткий саундчек: нацьковуємо на сайт headless-браузери, які запускають тести в суворих невидимих умовах. Якщо баг все-таки просочиться — ми виправимо його швидше, ніж Оззі Осборн встигне доспівати куплет.",
-              "en": "Stay calm, don’t panic. We don’t smash guitars on stage until the gig is over. Before every major release, we carry out a rigorous soundcheck: we set headless browsers loose on the site to run tests under harsh, unseen conditions. If a bug does slip through, we’ll fix it faster than Ozzy Osbourne can finish singing a verse.",
-              "de": "Ganz ruhig, keine Panik. Wir zerschlagen keine Gitarren auf der Bühne, bevor das Konzert vorbei ist. Vor jedem großen Release führen wir einen strengen Soundcheck durch: Wir lassen Headless-Browser auf die Website los, die unter rauen, unsichtbaren Bedingungen Tests durchführen. Sollte sich dennoch ein Bug einschleichen – beheben wir ihn schneller, als Ozzy Osbourne einen Vers zu Ende singen kann."
+              "uk": "Скільки потрібно: кожен текст має окреме поле для кожної мови, а картинки підставляються самі, якщо для мови немає своєї.",
+              "en": "As many as you need: every text has its own field for each language, and pictures fill in by themselves when a language has none of its own.",
+              "de": "So viele wie nötig: Jeder Text hat ein eigenes Feld für jede Sprache, und Bilder werden automatisch ergänzt, wenn eine Sprache kein eigenes hat."
             }
           },
           {
             "question": {
-              "uk": "Чи дизайнери знову намалюють крутий макет, який неможливо верстати?",
-              "en": "Will the designers come up with another brilliant layout that’s impossible to lay out?",
-              "de": "Werden die Designer wieder ein cooles Layout entwerfen, das sich unmöglich setzen lässt?"
+              "uk": "Куди приходять заявки з сайту?",
+              "en": "Where do requests from the site go?",
+              "de": "Wohin gehen Anfragen von der Website?"
             },
             "answer": {
-              "uk": "Це виключено. Наші верстальники та дизайнери працюють у одній команді, а не борються за мікрофон. Ми одержимі піксельною точністю та правильною геометрією. Якщо потрібно створити складні, живі контури з ефектом зміни товщини лінії (ніби перо плавно відривається від паперу) — ми сядемо й доопрацюємо кожен SVG-шлях вручну, щоб у браузері на білому тлі все виглядало ідеально.",
-              "en": "Absolutely not. Our layout artists and designers are all on the same team; they’re not fighting over the microphone. We’re obsessed with pixel-perfect precision and correct geometry. If we need to create complex, dynamic outlines with a varying line thickness effect (as if a pen were smoothly lifting off the paper), we’ll sit down and fine-tune every SVG path by hand to ensure everything looks perfect against a white background in the browser.",
-              "de": "Ausgeschlossen. Unsere Layouter und Designer spielen in derselben Band und streiten sich nicht um das Mikrofon. Wir sind besessen davon"
+              "uk": "У ваш Telegram-канал або групу — разом з усіма полями форми. Відповісти можна там само, і відповідь побачить клієнт.",
+              "en": "To your Telegram channel or group — with every field of the form. You can answer right there, and the client sees your answer.",
+              "de": "In Ihren Telegram-Kanal oder Ihre Gruppe — mit allen Feldern des Formulars. Sie können direkt dort antworten, und der Kunde sieht Ihre Antwort."
             }
           },
           {
             "question": {
-              "uk": "У мене складний проєкт: покроковий майстер бронювання, купа знижок, квитки, карта місць… Впораєтеся?",
-              "en": "I’ve got a complex project: a step-by-step booking wizard, loads of discounts, tickets, a seating plan… Can you handle it?",
-              "de": "Ich habe ein komplexes Projekt: einen Schritt-für-Schritt-Buchungsassistenten, jede Menge Rabatte, Tickets, einen Sitzplan … Schafft ihr das?"
+              "uk": "А якщо в мене вже є своя система (CRM, бронювання)?",
+              "en": "What if I already have my own system (CRM, booking)?",
+              "de": "Was, wenn ich schon ein eigenes System habe (CRM, Buchung)?"
             },
             "answer": {
-              "uk": "О, це наш улюблений трек! Ми обожнюємо складні архітектурні соло. Наш стек (Vue/Nuxt, TypeScript, Pinia) налаштований саме на те, щоб перетворювати тонни хаотичних даних і логіки на легкий, чуйний і реактивний інтерфейс. Ви отримаєте індивідуальний інтерактивний майстер, у якому користувач не заблукає, навіть якщо бронюватиме квитки на концерт Metallica, перебуваючи у слемі.",
-              "en": "Oh, that’s our favourite track! We love complex architectural solos. Our tech stack (Vue/Nuxt, TypeScript, Pinia) is tailored to transform tonnes of chaotic data and logic into a lightweight, responsive and reactive interface. You’ll get a custom interactive wizard that users won’t get lost in, even if they’re booking tickets for a Metallica gig whilst in the mosh pit.",
-              "de": "Oh, das ist unser Lieblingsstück! Wir lieben komplexe architektonische Solos. Unser Stack (Vue/Nuxt, TypeScript, Pinia) ist darauf ausgelegt, Unmengen chaotischer Daten und Logik in eine leichtfällige, reaktionsschnelle und reaktive Benutzeroberfläche zu verwandeln. Ihr erhaltet einen maßgeschneiderten, interaktiven Assistenten, in dem sich der Nutzer nicht verirrt – selbst wenn er mitten im Pogo Tickets für ein Metallica-Konzert bucht."
+              "uk": "Сайт причалює до неї: форми передають дані через ваш API, а відповідь системи — вільні дати, ціни — бачить клієнт.",
+              "en": "The site docks to it: forms pass the data through your API, and the client sees your system’s answer — free dates, prices.",
+              "de": "Die Website legt an ihm an: Formulare übergeben die Daten über Ihre API, und der Kunde sieht die Antwort Ihres Systems — freie Termine, Preise."
             }
           },
           {
             "question": {
-              "uk": "Чи можна надсилати правки вночі?",
-              "en": "Can I send changes at night?",
-              "de": "Kann man Änderungen auch nachts einreichen?"
+              "uk": "Чи можна змінити вигляд сайту пізніше?",
+              "en": "Can I change the look of the site later?",
+              "de": "Kann ich das Aussehen der Website später ändern?"
             },
             "answer": {
-              "uk": "Надсилати можна. Але якщо ви робите це після півночі, будьте готові до того, що код писатиметься під важкий метал, а аккаунт-менеджер відповість вам рядком із пісні AC/DC. А якщо серйозно — для нічних рейдів у нас є спеціальний тариф у програмі лояльності, тож ваш опівнічний креатив не пропаде даремно.",
-              "en": "You can send them. But if you do so after midnight, be prepared for the code to be written to the beat of heavy metal, and for your account manager to reply with a line from an AC/DC song. Seriously though – we have a special rate in our loyalty programme for night-time requests, so your midnight creativity won’t go to waste.",
-              "de": "Ja, das geht. Aber wenn ihr das nach Mitternacht macht, müsst ihr damit rechnen, dass der Code im Heavy-Metal-Stil geschrieben wird und euer Kundenbetreuer euch mit einer Zeile aus einem AC/DC-Song antwortet. Im Ernst: Für nächtliche Einsätze haben wir einen speziellen Tarif in unserem Treueprogramm, damit eure nächtliche Kreativität nicht umsonst ist."
+              "uk": "Так. Стиль сайту, палітра, кнопки й картки змінюються в одному місці — і весь сайт переодягається разом, сторінка за сторінкою нічого правити не треба.",
+              "en": "Yes. The site’s style, palette, buttons and cards change in one place — and the whole site changes with them, with nothing to fix page by page.",
+              "de": "Ja. Stil, Palette, Buttons und Karten der Website ändern sich an einer Stelle — und die ganze Website zieht mit, ohne dass man Seite für Seite nacharbeiten muss."
             }
           },
           {
             "question": {
-              "uk": "Як розпочати з вами співпрацю?",
-              "en": "How do I get started working with you?",
-              "de": "Wie kann man mit euch zusammenarbeiten?"
+              "uk": "Як розпочати?",
+              "en": "How do I start?",
+              "de": "Wie fange ich an?"
             },
             "answer": {
-              "uk": "Натисніть кнопку «Увімкнути рок-н-рол» у верхній частині сайту, надішліть свій райдер (технічне завдання) або просто опишіть завдання. Ми налаштуємо гітари, перевіримо бекенд і покажемо, як виглядає справжній цифровий вимір.",
-              "en": "Click the ‘Turn on the Rock ’n’ Roll’ button at the top of the website, send us your rider (specification) or simply describe the task. We’ll tune the guitars, check the backend and show you what the real digital dimension looks like.",
-              "de": "Klickt oben auf der Website auf die Schaltfläche „Rock ’n’ Roll starten“, schickt uns euren Rider (Spezifikationsblatt) oder beschreibt einfach die Aufgabe. Wir stimmen die Gitarren, überprüfen das Backend und zeigen euch, wie die echte digitale Dimension aussieht."
+              "uk": "Напишіть нам про свій бізнес через форму на сайті — ми запропонуємо корабель під ваші задачі й покажемо, як він виглядатиме ще до спуску на воду.",
+              "en": "Tell us about your business through the form on the site — we will suggest a ship for your tasks and show you how it will look before it is launched.",
+              "de": "Erzählen Sie uns über das Formular auf der Website von Ihrem Geschäft — wir schlagen Ihnen ein Schiff für Ihre Aufgaben vor und zeigen, wie es aussieht, noch bevor es vom Stapel läuft."
             }
           }
         ],
@@ -315,27 +315,27 @@
               "type": "header",
               "class": "mb-5 text-left accent-font text-thin text-primary",
               "content": {
-                "uk": "Pagewright: ",
-                "en": "Virtual Dimension: ",
-                "de": "Virtual Dimension:"
+                "uk": "Pagewright: ",
+                "en": "Pagewright: ",
+                "de": "Pagewright: "
               }
             },
             {
               "type": "text",
               "class": "h5 text-medium mb-5 text-left text-selected-date-first-fone-color accent-font-2",
               "content": {
-                "uk": "Менше багів, більше вимірювань.",
-                "en": "Fewer bugs, more dimensions.",
-                "de": "Weniger Bugs, mehr Messungen."
+                "uk": "Менше рутини, більше моря.",
+                "en": "Less routine, more sea.",
+                "de": "Weniger Routine, mehr Meer."
               }
             },
             {
               "type": "text",
               "class": "default-text text-medium text-black",
               "content": {
-                "uk": "Кажуть, що у Pagewright працюють божевільні професори зі світу веб-розробки. Це майже правда. Наша лабораторія займається тим, що бере найскладніші, заплутані бізнес-процеси (наприклад, покрокові майстри бронювання з динамічними знижками та картами місць) і перетворює їх на прості, інтуїтивні інтерфейси. Ми приборкуємо хаотичні API та створюємо цифрові продукти, якими хочеться користуватися.",
-                "en": "They say that Virtual Dimension is home to mad professors from the world of web development. That’s almost true. Our lab specialises in taking the most complex, convoluted business processes (such as step-by-step booking wizards with dynamic discounts and seat maps) and transforming them into simple, intuitive interfaces. We tame chaotic APIs and create digital products that people actually want to use.",
-                "de": "Man sagt, bei Virtual Dimension arbeiteten verrückte Professoren aus der Welt der Webentwicklung. Das stimmt fast. Unser Labor nimmt sich die komplexesten und verworrensten Geschäftsprozesse vor (zum Beispiel schrittweise Buchungsassistenten mit dynamischen Rabatten und Sitzplatzplänen) und verwandelt sie in einfache, intuitive Benutzeroberflächen. Wir bändigen chaotische APIs und entwickeln digitale Produkte, die man gerne nutzt."
+                "uk": "Ми будуємо сайти, як кораблі на верфі: із надійного корпусу, перевірених блоків і вашого власного стилю. Складне — форми, кабінет клієнта, зв’язок із вашою системою — ми беремо на себе, а штурвал віддаємо вам: ви правите тексти, додаєте сторінки й змінюєте вигляд сайту без жодного рядка коду.",
+                "en": "We build sites the way a shipyard builds ships: from a solid hull, proven blocks and your own style. The hard parts — forms, the client account, the link to your system — are ours, and the helm is yours: you edit texts, add pages and change the site’s look without a single line of code.",
+                "de": "Wir bauen Websites so, wie eine Werft Schiffe baut: aus einem soliden Rumpf, bewährten Blöcken und Ihrem eigenen Stil. Das Schwierige — Formulare, das Kundenkonto, die Verbindung zu Ihrem System — übernehmen wir, und das Steuer überlassen wir Ihnen: Sie bearbeiten Texte, fügen Seiten hinzu und ändern das Aussehen ohne eine einzige Zeile Code."
               }
             },
             {
@@ -357,8 +357,8 @@
           "type": "image",
           "content": {
             "uk": "/api/content/images/home-page/pagewright-16.jpeg?v=4e2e9fef",
-            "en": "/api/content/images/home-page/16.jpg?v=6c6a8d78",
-            "de": "/api/content/images/home-page/16.jpg?v=6c6a8d78"
+            "en": "/api/content/images/home-page/pagewright-16.jpeg?v=4e2e9fef",
+            "de": "/api/content/images/home-page/pagewright-16.jpeg?v=4e2e9fef"
           }
         }
       ]

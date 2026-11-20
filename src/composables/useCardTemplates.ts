@@ -1,5 +1,6 @@
 import type { Pinia } from 'pinia'
 import type { CardTemplate } from '@/configs/card-templates'
+import type { HoverCardTemplate } from '@/configs/hover-card-templates'
 import { shallowRef } from 'vue'
 import { useAjaxStore } from '@/stores/ajax'
 
@@ -9,6 +10,8 @@ import { useAjaxStore } from '@/stores/ajax'
 // «Картки» tab (CardTemplatesPanel.vue), saved at once.
 
 export const cardTemplates = shallowRef<CardTemplate[]>([])
+// and the cards' with a hover side (configs/hover-card-templates.ts)
+export const hoverCardTemplates = shallowRef<HoverCardTemplate[]>([])
 let loading: Promise<void> | null = null
 
 export function useCardTemplates (pinia?: Pinia) {
@@ -18,6 +21,7 @@ export function useCardTemplates (pinia?: Pinia) {
     loading ??= ajaxStore.getGlobalSettings()
       .then(settings => {
         cardTemplates.value = Array.isArray(settings?.cardTemplates) ? settings.cardTemplates : []
+        hoverCardTemplates.value = Array.isArray(settings?.hoverCardTemplates) ? settings.hoverCardTemplates : []
       })
       .catch(() => {
         loading = null
@@ -33,5 +37,13 @@ export function useCardTemplates (pinia?: Pinia) {
     }
   }
 
-  return { templates: cardTemplates, load, save }
+  async function saveHover (templates: HoverCardTemplate[]) {
+    hoverCardTemplates.value = templates
+    const settings = await ajaxStore.getGlobalSettings()
+    if (settings) {
+      await ajaxStore.saveGlobalSettings({ ...settings, hoverCardTemplates: templates.length > 0 ? templates : undefined }, { publish: true })
+    }
+  }
+
+  return { templates: cardTemplates, hoverTemplates: hoverCardTemplates, load, save, saveHover }
 }

@@ -153,5 +153,27 @@
     "uk": "Варіант {number}",
     "en": "Variant {number}",
     "de": "Variante {number}"
+  },
+  "columnsAlign": {
+    "uk": "Вирівнювання колонок по вертикалі",
+    "en": "",
+    "de": ""
+  },
+  "columnsAlignOptions": {
+    "start": {
+      "uk": "Догори",
+      "en": "",
+      "de": ""
+    },
+    "center": {
+      "uk": "По центру",
+      "en": "",
+      "de": ""
+    },
+    "end": {
+      "uk": "Донизу",
+      "en": "",
+      "de": ""
+    }
   }
 }

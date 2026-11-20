@@ -1,5 +1,6 @@
 import type { CardTemplate } from '@/configs/card-templates'
 import type { HeaderSettingsModel } from '@/configs/header-layout'
+import type { HoverCardTemplate } from '@/configs/hover-card-templates'
 import type { DropdownStyle, MenuBarStyle, MobileMenuStyle } from '@/configs/menu-style'
 import type { SiteContact } from '@/configs/site-contacts'
 export interface GlobalSettingsModel {
@@ -40,6 +41,8 @@ export interface GlobalSettingsModel {
   readyPalette?: string
   // The UI Kit's card templates (configs/card-templates.ts).
   cardTemplates?: CardTemplate[]
+  // The UI Kit's templates of the cards with a hover side (configs/hover-card-templates.ts).
+  hoverCardTemplates?: HoverCardTemplate[]
   logo: {
     src: string
     width: number

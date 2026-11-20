@@ -3,6 +3,7 @@
   import { computed } from 'vue'
   import ColumnGapMenu from '@/components/editors/ColumnGapMenu.vue'
   import ToolbarIconButton from '@/components/editors/ToolbarIconButton.vue'
+  import HoverTemplateMenu from '@/components/templates/cards/HoverTemplateMenu.vue'
   import { cardWithHoverTemplate } from '@/configs/components/cards/card-with-hover'
   import { t } from '@/i18n'
 
@@ -54,12 +55,14 @@
     const children = props.block.children ??= []
     const card = cardWithHoverTemplate()
     // The group's size, not the default.
-    if (children.length > 0) Object.assign(cardProps(card), { width: cardWidth.value, height: cardHeight.value })
+    if (children.length > 0) Object.assign(cardProps(card), { width: cardWidth.value, height: cardHeight.value, ...(firstCard.value?.hoverTemplate ? { hoverTemplate: firstCard.value.hoverTemplate } : {}) })
     children.push(card)
   }
 </script>
 
 <template>
+  <!-- first: the look picked from the UI Kit's templates -->
+  <HoverTemplateMenu :block="block" />
   <ToolbarIconButton icon="mdi-plus" :tooltip="t('cards.add')" @click="addCard" />
   <!-- The gap between this group's columns, picked from Vuetify's own 4px
     scale and stored as a gc-N class on the block - see

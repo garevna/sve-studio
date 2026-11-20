@@ -2,7 +2,7 @@
   import type { CardTemplate } from '@/configs/card-templates'
   import type { TemplateBlockModel } from '@/types/TemplateBlockModel'
   import type { CardStyleEntry } from '@/utils/card-style-entry'
-  import { computed, onMounted, ref, toRaw, watch } from 'vue'
+  import { computed, nextTick, onMounted, ref, toRaw, watch } from 'vue'
   import TextEditor from '@/components/editors/text/TextEditor.vue'
   import PaletteSwatchPicker from '@/components/special/PaletteSwatchPicker.vue'
   import TemplateCard from '@/components/templates/cards/TemplateCard.vue'
@@ -33,6 +33,8 @@
     await load()
     list.value = structuredClone(toRaw(templates.value))
     styles.value = extractCardStyles(await ajaxStore.getStyleFile('cards.css') ?? '').entries
+    // the watch below sees this load too - only what comes after is an edit
+    await nextTick()
     ready = true
   })
 

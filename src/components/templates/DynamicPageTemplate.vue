@@ -123,7 +123,7 @@
   function sectionAlignClass (block: TemplateBlockModel, blockMode: EditorMode): string {
     const tokens = (block.class || '').split(/\s+/).filter(Boolean)
     if (blockMode !== 'edit') {
-      return tokens.length > 0 ? tokens.join(' ') : 'align-center'
+      return [...tokens, ...(tokens.some(token => ALIGN_CLASS.test(token)) ? [] : ['align-center'])].join(' ')
     }
     return [...tokens.filter(token => !ALIGN_CLASS.test(token)), 'align-start'].join(' ')
   }

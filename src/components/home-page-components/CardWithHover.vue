@@ -1,8 +1,12 @@
 <script setup lang="ts">
   import type { TemplateBlockModel } from '@/types/TemplateBlockModel'
+  import { computed } from 'vue'
   import HoverTemplate from '@/components/templates/cards/HoverTemplate.vue'
+  import { hoverCardTemplates } from '@/composables/useCardTemplates'
+  import { withHoverTemplate } from '@/configs/hover-card-templates'
 
-  const props = defineProps<{
+  const raw = defineProps<{
+    hoverTemplate?: string
     width?: number
     height?: number
     ver?: number
@@ -14,18 +18,22 @@
     hoverImage?: string
     card: TemplateBlockModel
   }>()
+
+  // As worn: its UI Kit template (configs/hover-card-templates.ts) under
+  // its own settings, as on the site.
+  const worn = computed(() => withHoverTemplate(raw, hoverCardTemplates.value))
 </script>
 
 <template>
   <hover-template
-    v-if="props.card && props.card.children && props.card.children[0] && props.card.children[1]"
-    :background-color="props.backgroundColor || 'transparent'"
-    :background-image="props.backgroundImage"
-    :height="props.height"
-    :hover-color="props.hoverColor || 'secondary'"
-    :hover-image="props.hoverImage || ''"
-    :items="[props.card.children[0], props.card.children[1]]"
-    :ver="props.ver"
-    :width="props.width"
+    v-if="worn.card && worn.card.children && worn.card.children[0] && worn.card.children[1]"
+    :background-color="worn.backgroundColor || 'transparent'"
+    :background-image="worn.backgroundImage"
+    :height="worn.height"
+    :hover-color="worn.hoverColor || 'secondary'"
+    :hover-image="worn.hoverImage || ''"
+    :items="[worn.card.children[0], worn.card.children[1]]"
+    :ver="worn.ver"
+    :width="worn.width"
   />
 </template>

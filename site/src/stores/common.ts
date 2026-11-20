@@ -1,4 +1,5 @@
 import type { CardTemplate } from '../configs/card-templates'
+import type { HoverCardTemplate } from '../configs/hover-card-templates'
 import type {
   CountryModel,
   GlobalSettingsModel,
@@ -85,6 +86,7 @@ export const useCommonStore = defineStore('common', () => {
   const menuStyle = ref<MenuStyleModel>(resolveMenuStyle())
   // The UI Kit's card templates (configs/card-templates.ts).
   const cardTemplates = ref<CardTemplate[]>([])
+  const hoverCardTemplates = ref<HoverCardTemplate[]>([])
   // The site's style (global.json siteStyle) - configs/site-style.ts.
   const siteStyle = ref<SiteStyle>(resolveSiteStyle(undefined))
   // Each part's own style, if it has one (global.json siteStyleParts).
@@ -211,6 +213,7 @@ export const useCommonStore = defineStore('common', () => {
     applyHeaderSettings(response)
     menuStyle.value = resolveMenuStyle(response.menuStyle)
     cardTemplates.value = Array.isArray(response.cardTemplates) ? response.cardTemplates : []
+    hoverCardTemplates.value = Array.isArray(response.hoverCardTemplates) ? response.hoverCardTemplates : []
     siteStyle.value = resolveSiteStyle(response.siteStyle)
     siteStyleParts.value = response.siteStyleParts ?? {}
     contacts.value = Array.isArray(response.contacts) ? response.contacts : []
@@ -291,6 +294,7 @@ export const useCommonStore = defineStore('common', () => {
     headerSettings,
     menuStyle,
     cardTemplates,
+    hoverCardTemplates,
     siteStyle,
     siteStyleParts,
     contacts,

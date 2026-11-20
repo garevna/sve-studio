@@ -7,6 +7,7 @@
   import EditorSaveBar from '@/components/special/EditorSaveBar.vue'
   import PaletteSwatchPicker from '@/components/special/PaletteSwatchPicker.vue'
   import CardTemplatesPanel from '@/components/ui-kit/CardTemplatesPanel.vue'
+  import HoverCardTemplatesPanel from '@/components/ui-kit/HoverCardTemplatesPanel.vue'
   import { useSiteStyle } from '@/composables/useSiteStyle'
   import { CARD_STYLE_BY_SITE_STYLE, CARD_STYLE_BY_VARIANT } from '@/configs/card-style'
   import { t } from '@/i18n'
@@ -232,6 +233,7 @@
     <template v-else>
       <!-- first the templates a client picks; the styles they are built of below -->
       <CardTemplatesPanel />
+      <HoverCardTemplatesPanel />
       <p class="card-styles-hint">{{ t('cardStyles.hint') }}</p>
       <p class="card-styles-hint">{{ t('kit.siteStyleCardsShown', { style: t(`kit.siteStyles.${siteStyle.of('cards')}`) }) }}</p>
 

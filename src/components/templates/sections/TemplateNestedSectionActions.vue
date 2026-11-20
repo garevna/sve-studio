@@ -47,6 +47,27 @@
     dialogOpen.value = true
   }
 
+  // How the two columns stand against each other, up and down: an align-*
+  // class on the block (the site and the preview read it; centred unless
+  // set). While editing they stay pinned to the top - DynamicPageTemplate.vue
+  // explains why - so the choice shows in the preview and on the site.
+  const ALIGN_RE = /^align-(start|end|center|baseline|stretch)$/
+  const ALIGNS = [
+    { value: 'start', icon: 'mdi-align-vertical-top' },
+    { value: 'center', icon: 'mdi-align-vertical-center' },
+    { value: 'end', icon: 'mdi-align-vertical-bottom' },
+  ] as const
+  const columnsAlign = computed(() => (props.block.class || '').split(/\s+/).find(token => ALIGN_RE.test(token))?.slice('align-'.length) ?? 'center')
+  const alignIcon = computed(() => ALIGNS.find(item => item.value === columnsAlign.value)?.icon ?? 'mdi-align-vertical-center')
+  function setAlign (value: string) {
+    const kept = (props.block.class || '').split(/\s+/).filter(token => token && !ALIGN_RE.test(token))
+    if (value !== 'center') {
+      kept.push(`align-${value}`)
+    }
+    // eslint-disable-next-line vue/no-mutating-props -- the block is edited in place
+    props.block.class = kept.join(' ') || undefined
+  }
+
   function addLine () {
     const section = textSection.value
     if (!section) return
@@ -57,6 +78,23 @@
 </script>
 
 <template>
+  <v-menu location="bottom center">
+    <template #activator="{ props: menuProps }">
+      <ToolbarIconButton v-bind="menuProps" :icon="alignIcon" :tooltip="t('block.columnsAlign')" />
+    </template>
+    <v-card class="pa-1" theme="editorTheme">
+      <div class="d-flex ga-1">
+        <ToolbarIconButton
+          v-for="item of ALIGNS"
+          :key="item.value"
+          :active="columnsAlign === item.value"
+          :icon="item.icon"
+          :tooltip="t(`block.columnsAlignOptions.${item.value}`)"
+          @click="setAlign(item.value)"
+        />
+      </div>
+    </v-card>
+  </v-menu>
   <ToolbarIconButton
     v-if="textSection"
     icon="mdi-playlist-plus"

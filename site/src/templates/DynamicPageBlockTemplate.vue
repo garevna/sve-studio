@@ -29,6 +29,14 @@
 
   const isLastBlock = computed(() => props.index === (commonStore.dynamicPageContent?.blocks?.length ?? 0) - 1)
 
+  // The two columns of a section: centred against each other unless the
+  // block says otherwise (an align-* class - the editor's «Вирівнювання
+  // колонок»); two align utilities together would fight.
+  const sectionClass = computed(() => {
+    const own = (block.value?.class || '').split(/\s+/).filter(Boolean)
+    return [...own, ...(own.some(token => /^align-(start|end|center|baseline|stretch)$/.test(token)) ? [] : ['align-center'])].join(' ')
+  })
+
   const blockSpacingBottom = computed(() => {
     if (!block.value || block.value.type === 'parallax' || isLastBlock.value) return 0
     return commonStore.currentBlockSpacing
@@ -38,7 +46,7 @@
 <template>
   <div v-if="block" :class="ownBackground ? 'colored-block' : ''" :style="{ marginBottom: blockSpacingBottom + 'px' }">
     <template v-if="block.type === 'section'">
-      <div :id="block.id || `section-${index}`" :class="['d-flex flex-wrap align-center', block.class]">
+      <div :id="block.id || `section-${index}`" :class="['d-flex flex-wrap', sectionClass]">
         <template-nested-section :item="block" />
       </div>
     </template>

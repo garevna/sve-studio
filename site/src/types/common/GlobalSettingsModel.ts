@@ -1,5 +1,6 @@
 import type { CardTemplate } from '../../configs/card-templates'
 import type { HeaderSettingsModel } from '../../configs/header-layout'
+import type { HoverCardTemplate } from '../../configs/hover-card-templates'
 import type { AuthSettings } from '../../services/auth/types'
 import type { IconSetModel } from './IconSetModel'
 import type { LinksModel } from './LinksModel'
@@ -50,6 +51,8 @@ export type GlobalSettingsModel = {
   readyPalette?: string
   // The UI Kit's card templates (configs/card-templates.ts).
   cardTemplates?: CardTemplate[]
+  // The UI Kit's templates of the cards with a hover side (configs/hover-card-templates.ts).
+  hoverCardTemplates?: HoverCardTemplate[]
   logo: {
     src: string
     width: number

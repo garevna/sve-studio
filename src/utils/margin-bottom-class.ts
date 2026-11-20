@@ -6,6 +6,8 @@
 const MB_RE = /\bmb-(\d+)\b/
 const MY_RE = /\bmy-(\d+)\b/
 const MAX_STEP = 16
+// margin-bottom (or both) for one screen size and up: mb-md-0, my-lg-4
+const BREAKPOINT_RE = /^m[by]-(?:sm|md|lg|xl|xxl)-\d+$/
 
 export function readMarginBottomPx (classString?: string): number {
   if (!classString) {
@@ -35,7 +37,9 @@ export function writeMarginBottomPx (classString: string | undefined, px: number
   const myToken = tokens.find(token => MY_RE.test(token))
   const myValue = myToken?.match(MY_RE)?.[1]
 
-  const kept = tokens.filter(token => !MB_RE.test(token) && !MY_RE.test(token))
+  // A screen-size variant (mb-md-0, my-lg-4) would win over the gap set
+  // here on that screen - the gap set here is the one for every screen.
+  const kept = tokens.filter(token => !MB_RE.test(token) && !MY_RE.test(token) && !BREAKPOINT_RE.test(token))
   if (myValue) {
     kept.push(`mt-${myValue}`)
   }

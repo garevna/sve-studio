@@ -21,7 +21,40 @@ export interface CardStyleEntry {
   // «Неон»: a pane of dark glass with a glowing outline - the light inside
   // and around it in the glow's colour, brighter on hover. Its text white.
   glow: CardGlow | null
+  // The colours of what is on the card (palette keys, '' - not set): the
+  // icon, the disc behind it, the title, the text. A block's own colours
+  // (its toolbar, its card template) win over the icon's two; the title's
+  // and text's win over the block's text format.
+  colors: CardColors
   raw: CssDeclaration[]
+}
+
+export type CardColors = { icon: string, disc: string, title: string, text: string }
+export const NO_CARD_COLORS: CardColors = { icon: '', disc: '', title: '', text: '' }
+
+// Kept as custom properties on the card: the icon's two are read by the
+// card itself (TemplateCard.vue - var(--card-icon-color, ...)); the title's
+// and text's by two rules of their own. `:not(#_)` lifts those over the
+// colour classes of the text format and the «Неон» style's white.
+const COLOR_PROPS: Record<keyof CardColors, string> = {
+  icon: '--card-icon-color',
+  disc: '--card-icon-disc',
+  title: '--card-title-color',
+  text: '--card-text-color',
+}
+
+function colorNodes (className: string, colors: CardColors): CssNode[] {
+  const c = `.${className}`
+  const rule = (selector: string, property: string): CssNode => ({ kind: 'rule', selectors: [selector], declarations: [{ property: 'color', value: `var(${property})`, important: true }] })
+  return [
+    ...(colors.title ? [rule(`${c} h4:not(#_)`, COLOR_PROPS.title)] : []),
+    ...(colors.text ? [rule(`${c} .card-content-text:not(#_)`, COLOR_PROPS.text)] : []),
+  ]
+}
+
+function isColorNode (node: CssNode, className: string): boolean {
+  const c = `.${className}`
+  return node.kind === 'rule' && node.selectors.every(selector => selector === `${c} h4:not(#_)` || selector === `${c} .card-content-text:not(#_)`)
 }
 
 export interface CardGlow {
@@ -199,6 +232,12 @@ function unquote (value: string): string {
 // «Штрих» and «Хвиля» are kept as custom properties; read back from them.
 function readEffects (entry: CardStyleEntry, declarations: CssDeclaration[]) {
   const declared = (property: string) => declarations.find(item => item.property === property)?.value.trim()
+  for (const [key, property] of Object.entries(COLOR_PROPS) as [keyof CardColors, string][]) {
+    const value = declared(property)
+    if (value) {
+      entry.colors[key] = varKey(value) ?? value
+    }
+  }
   const strokeColor = declared(STROKE_COLOR)
   if (strokeColor) {
     entry.stroke = {
@@ -229,12 +268,14 @@ export function extractCardStyles (cssText: string): { entries: CardStyleEntry[]
       otherNodes.push(node)
       continue
     }
-    const entry: CardStyleEntry = { className, label: className, background: '', border: '', radius: '', shadow: '', stroke: null, wave: null, glow: null, raw: [] }
+    const entry: CardStyleEntry = { className, label: className, background: '', border: '', radius: '', shadow: '', stroke: null, wave: null, glow: null, colors: { ...NO_CARD_COLORS }, raw: [] }
     readEffects(entry, node.declarations)
     for (const declaration of node.declarations) {
       const { property, value } = declaration
       if (entry.stroke && [STROKE_COLOR, STROKE_WIDTH, STROKE_CORNERS, STROKE_FILL, 'background', 'border'].includes(property)) {
         // written from the stroke's settings (strokeDeclarations)
+      } else if (Object.values(COLOR_PROPS).includes(property)) {
+        // written from the entry's colours
       } else if (entry.glow && [GLOW_COLOR, ...GLOW_OWN].includes(property)) {
         // written from the glow's settings (glowDeclarations)
       } else if (entry.wave && [WAVE_COLOR, ...WAVE_OWN].includes(property)) {
@@ -260,7 +301,7 @@ export function extractCardStyles (cssText: string): { entries: CardStyleEntry[]
   const glowing = entries.filter(entry => entry.glow).map(entry => entry.className)
   return {
     entries,
-    otherNodes: otherNodes.filter(node => !waved.some(className => isWaveNode(node, className)) && !glowing.some(className => isGlowNode(node, className))),
+    otherNodes: otherNodes.filter(node => !waved.some(className => isWaveNode(node, className)) && !glowing.some(className => isGlowNode(node, className)) && !entries.some(entry => isColorNode(node, entry.className))),
   }
 }
 
@@ -297,6 +338,11 @@ export function cardStyleDeclarations (entry: CardStyleEntry): CssDeclaration[] 
     add('isolation', 'isolate')
     add(WAVE_EDGE, entry.wave.edge)
   }
+  for (const [key, property] of Object.entries(COLOR_PROPS) as [keyof CardColors, string][]) {
+    if (entry.colors?.[key]) {
+      add(property, `var(--${entry.colors[key]})`)
+    }
+  }
   declarations.push(...entry.raw)
   return declarations
 }
@@ -306,7 +352,7 @@ export function cardStyleInline (entry: CardStyleEntry): Record<string, string> 
   const style: Record<string, string> = {}
   for (const { property, value } of cardStyleDeclarations(entry)) {
     // the wave's edge too: utils/wave-edge.ts reads it off the sample
-    if (!property.startsWith('--') || property === WAVE_EDGE) {
+    if (!property.startsWith('--') || property === WAVE_EDGE || Object.values(COLOR_PROPS).includes(property)) {
       style[property] = value
     }
   }
@@ -318,6 +364,7 @@ export function serializeCardStyles (entries: CardStyleEntry[], otherNodes: CssN
     { kind: 'rule', selectors: [`.${entry.className}`], declarations: cardStyleDeclarations(entry) } as CssNode,
     ...(entry.wave ? waveNodes(entry.className) : []),
     ...(entry.glow ? glowNodes(entry.className, entry.glow) : []),
+    ...colorNodes(entry.className, entry.colors ?? NO_CARD_COLORS),
   ])
   return `${FILE_HEADER}\n${serializeCss([...nodes, ...otherNodes])}\n`
 }

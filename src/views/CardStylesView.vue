@@ -14,7 +14,7 @@
   import { useAjaxStore } from '@/stores/ajax'
   import { useUiFeedbackStore } from '@/stores/ui-feedback'
   import { getActiveTheme } from '@/utils/active-theme'
-  import { CARD_SHADOWS, CARD_WAVE_EDGES, cardStyleInline, extractCardStyles, serializeCardStyles, STROKE_WIDTHS } from '@/utils/card-style-entry'
+  import { CARD_SHADOWS, CARD_WAVE_EDGES, cardStyleInline, extractCardStyles, NO_CARD_COLORS, serializeCardStyles, STROKE_WIDTHS } from '@/utils/card-style-entry'
   import { EDITED_APP_SCOPE_CLASS } from '@/utils/edited-app-scope'
   import { loadThemeStyles } from '@/utils/load-theme-styles'
   import { parsePaletteEntry } from '@/utils/palette-entry'
@@ -54,6 +54,7 @@
       stroke: style === 'stroke' ? { color: 'primary', width: 2, corners: 'tl-br' } : null,
       wave: style === 'wave' ? { color: 'light-grey-2', edge: 'bottom' } : null,
       glow: style === 'neon' ? { color: 'site' } : null,
+      colors: { ...NO_CARD_COLORS },
       raw: [],
     }
   }
@@ -216,6 +217,7 @@
       wave: group === 'wave' ? { color: 'light-grey-2', edge: 'bottom' } : null,
       // gold, as on the glass panels it imitates
       glow: group === 'neon' ? { color: 'site' } : null,
+      colors: { ...NO_CARD_COLORS },
       raw: [],
     })
     expanded.value = className
@@ -224,6 +226,8 @@
 
   // The edge of the card's outline that waves under the pointer.
   const waveEdgeOptions = computed(() => CARD_WAVE_EDGES.map(value => ({ value, label: t(`cardStyles.waveEdges.${value}`) })))
+
+  const COLOR_KEYS = ['icon', 'disc', 'title', 'text'] as const
 </script>
 
 <template>
@@ -247,10 +251,13 @@
                 and colours when the site is «Неон» -->
               <div :class="['card-styles-stage', EDITED_APP_SCOPE_CLASS]">
                 <div :class="['card-styles-sample', themeClass(APP_THEME_NAME), { [entry.className]: !!entry.wave || !!entry.glow }]" :style="cardStyleInline(entry)">
-                  <v-icon color="primary" icon="mdi-star-outline" size="28" />
+                  <!-- the style's colours (custom properties on the sample) -->
+                  <span class="card-styles-sample-disc">
+                    <v-icon icon="mdi-star-outline" size="28" />
+                  </span>
                   <div>
-                    <div class="card-styles-sample-title">{{ t('cardStyles.sampleTitle') }}</div>
-                    <div class="card-styles-sample-text">{{ t('cardStyles.sampleText') }}</div>
+                    <h4 class="card-styles-sample-title">{{ t('cardStyles.sampleTitle') }}</h4>
+                    <p class="card-styles-sample-text card-content-text">{{ t('cardStyles.sampleText') }}</p>
                   </div>
                 </div>
               </div>
@@ -331,6 +338,19 @@
                   </v-btn-toggle>
                 </template>
                 <p class="card-styles-stroke-hint">{{ t('cardStyles.strokeHint') }}</p>
+              </div>
+
+              <!-- What is on the card: the icon, its disc, the title, the text. -->
+              <div class="card-styles-stroke">
+                <span class="card-styles-group">{{ t('cardStyles.colors') }}</span>
+                <div v-for="key of COLOR_KEYS" :key="key" class="card-styles-field">
+                  <span>{{ t(`cardStyles.colorOf.${key}`) }}</span>
+                  <PaletteSwatchPicker
+                    :model-value="entry.colors[key] || 'transparent'"
+                    @update:model-value="(value: string) => entry.colors[key] = value === 'transparent' ? '' : value"
+                  />
+                </div>
+                <p class="card-styles-stroke-hint">{{ t('cardStyles.colorsHint') }}</p>
               </div>
 
               <!-- «Неон»: dark glass with a glowing outline. -->
@@ -457,11 +477,29 @@
   max-width: 100%;
   padding: 16px 20px;
 }
-.card-styles-sample-title {
+.card-styles-sample-disc {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--card-icon-disc, transparent);
+  color: var(--card-icon-color, var(--primary));
+}
+.card-styles-sample-disc .v-icon {
+  color: var(--card-icon-color, var(--primary)) !important;
+}
+.card-styles-sample-title:not(#_) {
+  margin: 0;
+  /* !important: over the «Неон» style's white, as the site's rule is */
+  color: var(--card-title-color, inherit) !important;
   font-weight: 600;
   font-size: 0.95rem;
 }
-.card-styles-sample-text {
+.card-styles-sample-text:not(#_) {
+  margin: 0;
+  color: var(--card-text-color, inherit) !important;
   font-size: 0.8rem;
   opacity: 0.8;
 }

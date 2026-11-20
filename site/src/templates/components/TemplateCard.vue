@@ -33,7 +33,8 @@
   })
 
   const iconColor = computed(() => {
-    return props.item.color ? `var(--${props.item.color})` : (props.item.background ? 'var(--white)' : 'var(--primary)')
+    // the card style's (UI Kit), else the old defaults
+    return props.item.color ? `var(--${props.item.color})` : (props.item.background ? 'var(--card-icon-color, var(--white))' : 'var(--card-icon-color, var(--primary))')
   })
 
   const iconBackground = computed(() => {
@@ -45,7 +46,7 @@
     // own coloured circle, and that phantom padding would make the card half
     // again as tall as the design it reproduces. The other variants keep the
     // old value so none of their spacing shifts.
-    return ver.value === 4 ? '' : 'transparent'
+    return ver.value === 4 ? '' : 'var(--card-icon-disc, transparent)'
   })
 
   // The card's own fill, as a bare palette key set once on the parent
@@ -119,12 +120,12 @@
     <template v-if="props.item.content">
       <div v-if="Array.isArray(content)" class="card-lines">
         <template v-for="(line, index) in content" :key="index">
-          <p :class="contentClass" style="grid-area: content">
+          <p :class="['card-content-text', contentClass]" style="grid-area: content">
             {{ line }}
           </p>
         </template>
       </div>
-      <p v-else :class="contentClass" style="grid-area: content">
+      <p v-else :class="['card-content-text', contentClass]" style="grid-area: content">
         {{ content }}
       </p>
     </template>

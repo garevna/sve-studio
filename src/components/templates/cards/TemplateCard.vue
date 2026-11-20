@@ -61,7 +61,8 @@
   const iconColor = computed(() => {
     const color = props.item.color || props.defaults?.color
     if (color) return `var(--${color})`
-    return (props.item.background || props.defaults?.background) ? 'var(--white)' : 'var(--primary)'
+    // the card style's (UI Kit), else the old defaults
+    return (props.item.background || props.defaults?.background) ? 'var(--card-icon-color, var(--white))' : 'var(--card-icon-color, var(--primary))'
   })
   const iconBackground = computed(() => {
     const background = props.item.background || props.defaults?.background
@@ -73,7 +74,7 @@
     // their own coloured circle, and that phantom padding would make the
     // card half again as tall as the design it reproduces. The other
     // variants keep the old value so none of their spacing shifts.
-    return ver.value === 4 ? '' : 'transparent'
+    return ver.value === 4 ? '' : 'var(--card-icon-disc, transparent)'
   })
 
   // The card's own fill, as a bare palette key on the parent "cards" block.
